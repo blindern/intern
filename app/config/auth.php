@@ -15,7 +15,8 @@ return array(
 	|
 	*/
 
-	'driver' => 'eloquent',
+	//'driver' => 'eloquent',
+	'driver' => 'ldap',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -67,5 +68,26 @@ return array(
 		'expire' => 60,
 
 	),
+
+
+
+	//'username_field' => 'uid',
+
+	'ldap' => array(
+		'server' => 'ldap.blindern-studenterhjem.no',
+		'tls' => true,
+		'base_dn' => 'dc=blindern-studenterhjem,dc=no',
+		'group_dn' => 'ou=Groups,dc=blindern-studenterhjem,dc=no',
+		'user_dn' => 'ou=Users,dc=blindern-studenterhjem,dc=no',
+		'bind_dn' => 'uid=USERNAME,ou=Users,dc=blindern-studenterhjem,dc=no',
+		'username_field' => 'uid',
+		'user_fields' => array(
+			'id' => 'uidNumber',
+			'username' => 'uid',
+			'email' => 'mail',
+			'realname' => 'cn',
+			'phone' => 'mobile'
+		)
+	)
 
 );

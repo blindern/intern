@@ -1,10 +1,20 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "blindern/intern",
+	"description": "Blindern Studenterhjem Intern",
+	"keywords": ["Blindern Studenterhjem", "Laravel"],
 	"license": "MIT",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "git@github.com:henrist/openldapauth.git"
+		}
+	],
 	"require": {
-		"laravel/framework": "4.1.*"
+		"laravel/framework": "4.1.*",
+		"jasonlewis/basset": "dev-master",
+		"nesbot/Carbon": "*",
+		"twitter/bootstrap": "3.0.3",
+		"henrist/openldapauth": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
