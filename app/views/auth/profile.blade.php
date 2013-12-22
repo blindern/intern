@@ -8,6 +8,7 @@
 <?php
 
 $user = Auth::user();
+$groups = $user->groups();
 
 ?>
 <ul>
@@ -16,21 +17,13 @@ $user = Auth::user();
 	<li>E-post: {{{ $user->email }}}</li>
 	<li>Grupper:
 		<ul>
-			<?php
-			/*if (count($user['groups']) == 0)
-			{
-			?>
+			@if (count($groups) == 0)
 			<li>Ingen grupper!</li>
-			<?php
-			} else {
-				foreach ($user['groups'] as $group)
-				{
-					?>
-			<li><?php echo $group[1]; ?></li>
-					<?php
-				}
-			}*/
-			?>
+			@else
+				@foreach ($groups as $group)
+			<li>{{{ $group['name'] }}}</li>
+				@endforeach
+			@endif
 		</ul>
 	</li>
 </ul>

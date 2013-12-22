@@ -24,3 +24,5 @@ Route::get('login', 'AuthController@get_login');
 Route::post('login', 'AuthController@post_login');
 Route::get('logout', 'AuthController@action_logout');
 Route::get('profile', 'AuthController@action_profile')->before('auth');
+
+Route::get('userlist', 'UsersController@action_userlist')->before('auth');
