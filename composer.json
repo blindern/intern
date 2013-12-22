@@ -14,7 +14,8 @@
 		"jasonlewis/basset": "dev-master",
 		"nesbot/Carbon": "*",
 		"twitter/bootstrap": "3.0.3",
-		"henrist/openldapauth": "dev-master"
+		"henrist/openldapauth": "dev-master",
+		"eluceo/ical": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

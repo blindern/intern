@@ -16,7 +16,10 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-Route::get('kalender', 'KalenderController@index');
+
+// calendar
+Route::get('kalender', 'KalenderController@action_index');
+Route::get('kalender.ical', 'KalenderController@action_ical');
 
 
 // login system

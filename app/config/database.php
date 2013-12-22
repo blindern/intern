@@ -55,12 +55,12 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'database',
-			'username'  => 'root',
-			'password'  => '',
+			'database'  => 'blindern',
+			'username'  => 'blindern_intern',
+			'password'  => 'SUVTNFtfqd6w4MS5', // for development server, it's no real secret :)
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'prefix'    => 'intern_',
 		),
 
 		'pgsql' => array(
