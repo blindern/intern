@@ -86,7 +86,7 @@ $user = Auth::check() ? Auth::user() : null;
 
     <div id="footer" class="hidden-print">
       <div class="container">
-        <p class="text-muted credit">Blindern Studenterhjem (<a href="/">offisiell side</a>) - Kontakt Henrik Steen ved forespørsler vedr. denne siden</p>
+        <p class="text-muted credit">Blindern Studenterhjem (<a href="/">offisiell side</a>) - Kontakt Henrik Steen ved forespørsler vedr. denne siden - <a href="https://github.com/blindern/intern">GitHub-prosjekt</a></p>
       </div>
     </div>
   </body>
