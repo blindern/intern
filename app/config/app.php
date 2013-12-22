@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://blindern-studenterhjem.no/intern2',
+	'url' => 'http://blindern-studenterhjem.no/intern',
 
 	/*
 	|--------------------------------------------------------------------------
