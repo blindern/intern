@@ -49,10 +49,10 @@ $user = Auth::check() ? Auth::user() : null;
               	<ul class="dropdown-menu">
               	  <li{{ (Request::is('printer/siste') ? ' class="active"' : '') }}><a href="{{{ URL::to('printer/siste') }}}">Siste utskrifter</a></li>
                   <li{{ (Request::is('printer/fakturere') ? ' class="active"' : '') }}><a href="{{{ URL::to('printer/fakturere') }}}">Fakturering</a></li>
-	            </ul>
-              <li{{ (Request::is('kalender') ? ' class="kalender"' : '') }}><a href="{{{ URL::to('kalender') }}}">Kalender</a></li>
-	          </li>
+	              </ul>
+  	          </li>
               @endif
+              <li{{ (Request::is('arrplan') ? ' class="active"' : '') }}><a href="{{{ URL::to('arrplan') }}}">Arrangementplan</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             	@if ($user)

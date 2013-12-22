@@ -18,7 +18,8 @@ Route::get('/', function()
 
 
 // calendar
-Route::get('kalender', 'KalenderController@action_index');
+Route::get('arrplan', 'KalenderController@action_index');
+Route::get('arrplan.ical', 'KalenderController@action_ical');
 Route::get('kalender.ical', 'KalenderController@action_ical');
 
 // printer
