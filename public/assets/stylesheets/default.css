@@ -44,3 +44,18 @@ body {
 code {
   font-size: 80%;
 }
+
+
+
+/* Arrangementer */
+.arrangementer {
+  dt {
+    display: inline-block;
+    color: #FF0000;
+    clear: left;
+  }
+  dd {
+    display: inline-block;
+    margin-left: 150px;
+  }
+}

@@ -5,7 +5,11 @@ use \Eluceo\iCal\Component\Event;
 
 class KalenderController extends BaseController {
 	public function action_index() {
-		return View::make("kalender/index");
+		$happenings = Happening::orderBy('start')->get();
+
+		return View::make("kalender/index", array(
+			"happenings" => $happenings
+		));
 	}
 
 	public function action_ical() {

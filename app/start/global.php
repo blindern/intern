@@ -90,3 +90,5 @@ Basset::collection('layout', function($collection)
 		$collection->requireDirectory();
 	});
 });
+
+setlocale(LC_TIME, 'nb_NO');
