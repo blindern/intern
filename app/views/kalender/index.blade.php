@@ -9,7 +9,7 @@
 		@foreach ($happenings as $r)
 	<div class="row">
 		<div class="col-xs-3 text-right">{{{ $r->getDuration() }}}</div>
-		<div class="col-xs-9">{{{ $r->title }}}</div>
+		<div class="col-xs-9">{{ $r->title }}</div>
 	</div>
 		@endforeach
 	
