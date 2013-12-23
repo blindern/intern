@@ -4,6 +4,9 @@ use \Eluceo\iCal\Component\Calendar;
 use \Eluceo\iCal\Component\Event;
 
 class KalenderController extends BaseController {
+	/**
+	 * Handle the main calendar-view
+	 */
 	public function action_index() {
 		$happenings = Happening::orderBy('start')->get();
 
@@ -12,6 +15,9 @@ class KalenderController extends BaseController {
 		));
 	}
 
+	/**
+	 * Handle and render the iCal-version
+	 */
 	public function action_ical() {
 		$happenings = Happening::all();
 
@@ -22,7 +28,7 @@ class KalenderController extends BaseController {
 		{
 			$x = new Event();
 			$x->setDtStart(new \DateTime($happening->start));
-			$x->setDtEnd(new \DateTime($happening->end));
+			$x->setDtEnd($happening->getCalEnd());
 			$x->setNoTime((bool)$happening->allday);
 			$x->setSummary(strip_tags($happening->title));
 			$x->setDescription(strip_tags($happening->info));

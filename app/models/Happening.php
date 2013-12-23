@@ -5,6 +5,11 @@ use Carbon\Carbon;
 class Happening extends Eloquent {
 	protected $table = 'happenings';
 
+	/**
+	 * Get prettyformatted duration
+	 *
+	 * @return string
+	 */
 	public function getDuration()
 	{
 		$start = Carbon::parse($this->start);
@@ -21,5 +26,25 @@ class Happening extends Eloquent {
 		}
 
 		return sprintf("%s - %s", $start->formatLocalized('%e. %b'), $end->formatLocalized('%e. %b'));
+	}
+
+	/**
+	 * Return the end date/time to be used in ical format
+	 *
+	 * @return \DateTime
+	 */
+	public function getCalEnd()
+	{
+		$end = new \DateTime($this->end);
+		
+		// in the database this field is inclusive
+		// for ical it is exclusive, so we need to add one day
+		// only needed if it is an all day-event, else it will have correct end time
+		if ($this->allday)
+		{
+			$end->modify("+1 day");
+		}
+
+		return $end;
 	}
 }
