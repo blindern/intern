@@ -2,23 +2,32 @@
 
 use \Eluceo\iCal\Component\Calendar;
 use \Eluceo\iCal\Component\Event;
+use \Eluceo\iCal\Property\Event\RecurrenceRule;
 
 class KalenderController extends BaseController {
 	/**
 	 * Handle the main calendar-view
 	 */
 	public function action_index() {
-		$happenings = Happening::orderBy('start')->get();
-
+		$happenings = Happening::orderBy('start')->whereNull('frequency')->get();
+		
+		$result = Happening::orderByRaw('WEEKDAY(start), TIME(start)')->whereNotNull('frequency')->get();
+		$recurring = array();
+		foreach ($result as $row)
+		{
+			$recurring[] = $row;
+		}
+		
 		return View::make("kalender/index", array(
-			"happenings" => $happenings
+			"happenings" => $happenings,
+			"recurring"  => $recurring
 		));
 	}
 
 	/**
 	 * Handle and render the iCal-version
 	 */
-	public function action_ical() {
+	public function action_ics() {
 		$happenings = Happening::all();
 
 		$cal = new Calendar("blindern-studenterhjem.no");
@@ -26,14 +35,7 @@ class KalenderController extends BaseController {
 
 		foreach ($happenings as $happening)
 		{
-			$x = new Event();
-			$x->setDtStart(new \DateTime($happening->start));
-			$x->setDtEnd($happening->getCalEnd());
-			$x->setNoTime((bool)$happening->allday);
-			$x->setSummary(strip_tags($happening->title));
-			$x->setDescription(strip_tags($happening->info));
-			$x->setLocation($happening->place);
-			$cal->addEvent($x);
+			$cal->addEvent($happening->getEvent());
 		}
 
 		$response = Response::make($cal->render(), 200, array(

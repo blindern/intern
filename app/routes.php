@@ -19,8 +19,9 @@ Route::get('/', function()
 
 // calendar
 Route::get('arrplan', 'KalenderController@action_index');
-Route::get('arrplan.ical', 'KalenderController@action_ical');
-Route::get('kalender.ical', 'KalenderController@action_ical');
+Route::get('arrplan.ics', 'KalenderController@action_ics');
+Route::get('arrplan.ical', 'KalenderController@action_ics');
+Route::get('kalender.ical', 'KalenderController@action_ics');
 
 // printer
 Route::get('printer/siste', 'PrinterController@action_last')->before('auth');
