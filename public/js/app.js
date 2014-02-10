@@ -410,7 +410,8 @@ $(function() {
 	var router = Backbone.Router.extend({
 		routes: {
 			//"": "index",
-			"printer/fakturere": "printer_fakturere"
+			"printer/fakturere": "printer_fakturere",
+			"printer/siste": "printer_last",
 		},
 
 		index: function()
@@ -426,6 +427,16 @@ $(function() {
 				collection: c
 			});
 			vh.push(v);
+		},
+
+		printer_last: function()
+		{
+			$("#page_title").text("Siste utskrifter");
+			var c = new bs.collections.Prints();
+			var v = new bs.views.PrinterLast({
+				collection: c
+			});
+			vh.push(v, c.fetch());
 		}
 	});
 	new router();

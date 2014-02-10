@@ -55,3 +55,14 @@ bs.collections.Printers = Backbone.Collection.extend({
 		return data.prints;
 	}
 });
+
+/**
+ * List of prints
+ */
+bs.models.Print = Backbone.Model.extend({
+	
+});
+bs.collections.Prints = Backbone.Collection.extend({
+	model: bs.models.Print,
+	url: '/intern/api/printer/last'
+});

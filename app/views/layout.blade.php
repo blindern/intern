@@ -22,8 +22,12 @@ $user = Auth::check() ? Auth::user() : null;
     <script src="{{ asset('node_modules/underscore/underscore-min.js') }}"></script>
     <script src="{{ asset('node_modules/backbone/backbone-min.js') }}"></script>
     <script src="{{ asset('node_modules/handlebars/dist/handlebars.min.js') }}"></script>
+    <script src="{{ asset('node_modules/moment/moment.js') }}"></script>
+    <script src="{{ asset('node_modules/moment/lang/nb.js') }}"></script>
+    <script src="{{ asset('js/handlebars.helpers.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/models/printer.js') }}"></script>
+    <script src="{{ asset('js/views/printer.last.js') }}"></script>
     <script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
