@@ -8,3 +8,10 @@ over forbruk på fellesprinteren, administrere brukere til de ulike
 systemene, forbedret arrangementplan, m.m.
 
 Rammeverket som brukes heter Laravel.
+
+## Oppsett
+
+```
+cd public
+npm install
+```
