@@ -6,4 +6,5 @@ composer.lock
 Thumbs.db
 /node_modules/
 /public/builds/
+/public/node_modules/
 error_log

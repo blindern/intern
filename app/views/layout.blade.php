@@ -17,7 +17,13 @@ $user = Auth::check() ? Auth::user() : null;
     @stylesheets('layout')
     @javascripts('layout')
     @stylesheets('application')
-    
+    <link href="{{ asset('datepicker/css/datepicker.css') }}" rel="stylesheet">
+  
+    <script src="{{ asset('node_modules/underscore/underscore-min.js') }}"></script>
+    <script src="{{ asset('node_modules/backbone/backbone-min.js') }}"></script>
+    <script src="{{ asset('node_modules/handlebars/dist/handlebars.min.js') }}"></script>
+    <script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
