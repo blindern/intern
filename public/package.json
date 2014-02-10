@@ -3,6 +3,7 @@
 	"dependencies": {
 		"underscore": "*",
 		"backbone": "*",
-		"handlebars": "*"
+		"handlebars": "*",
+		"moment": "*"
 	}
 }

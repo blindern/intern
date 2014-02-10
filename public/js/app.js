@@ -1,5 +1,7 @@
 var bs = {views: {}, models: {}, collections: {}};
 
+moment.lang('nb');
+
 
 Handlebars.registerHelper("formatNum", function(num)
 {
