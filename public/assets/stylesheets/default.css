@@ -44,3 +44,16 @@ body {
 code {
   font-size: 80%;
 }
+
+
+@media print {
+  #wrap > .container {
+    padding-top: 0;
+  }
+  .page-header {
+    margin-top: 0;
+  }
+  #page_title {
+    margin: top: 0;
+  }
+}
