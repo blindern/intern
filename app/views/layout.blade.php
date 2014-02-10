@@ -22,6 +22,8 @@ $user = Auth::check() ? Auth::user() : null;
     <script src="{{ asset('node_modules/underscore/underscore-min.js') }}"></script>
     <script src="{{ asset('node_modules/backbone/backbone-min.js') }}"></script>
     <script src="{{ asset('node_modules/handlebars/dist/handlebars.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/models/printer.js') }}"></script>
     <script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -84,9 +86,11 @@ $user = Auth::check() ? Auth::user() : null;
       	<!--<?php /*echo implode("", Messages::get());*/ ?>-->
 
       	<div class="page-header">
-          <h1>@yield('title')</h1>
+          <h1 id="page_title">@yield('title')</h1>
         </div>
-        @yield('content')
+        <div id="content">
+          @yield('content')
+        </div>
       </div>
     </div>
 

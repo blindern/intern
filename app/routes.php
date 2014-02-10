@@ -25,7 +25,12 @@ Route::get('kalender.ical', 'KalenderController@action_ics');
 
 // printer
 Route::get('printer/siste', 'PrinterController@action_last')->before('auth');
-Route::get('printer/fakturere', 'PrinterController@action_fakturere')->before('auth');
+Route::get('printer/fakturere', function()
+{
+	return View::make('layout');
+});
+Route::resource('api/printer/fakturere', "API\\PrinterUsageController", array('only' => array('index')));
+//	'PrinterController@action_fakturere')->before('auth');
 
 // login system
 Route::get('login', 'AuthController@get_login');
