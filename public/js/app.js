@@ -1,4 +1,4 @@
-var bs = {views: {}, models: {}, collections: {}};
+var bs = {views: {}, models: {}, collections: {}, root: '/intern', router: null};
 
 moment.lang('nb');
 
@@ -382,13 +382,14 @@ function ViewHandler(baseView) {
 		// Remove old view
 		// TODO: if (current) current.clear();
 		//if (current) {
-			$(baseView).empty();
+			$(baseView).empty().html('<p>Laster data..</p>');
 		//}
  
 		current = view;
  
 		if (!Array.isArray(defers)) defers = [defers];
 		$.when.apply($, defers).done(function() {
+			$(baseView).empty();
 			view.render();
 			baseView.append(view.$el);
 		}).fail(function() {
@@ -407,11 +408,13 @@ function ViewHandler(baseView) {
 
 $(function() {
 	var vh = new ViewHandler($("#content"));
+	var inited = false; // prevent catchAll to loop at page loading
 	var router = Backbone.Router.extend({
 		routes: {
 			//"": "index",
 			"printer/fakturere": "printer_fakturere",
 			"printer/siste": "printer_last",
+			'*catchAll': 'catchAll'
 		},
 
 		index: function()
@@ -437,9 +440,47 @@ $(function() {
 				collection: c
 			});
 			vh.push(v, c.fetch());
+		},
+
+		catchAll: function(addr)
+		{
+			if (inited) window.location.href = bs.root + '/' + addr;
 		}
 	});
-	new router();
+	bs.router = new router();
 
-	Backbone.history.start({ pushState: true, root: '/intern/', hashState: false });
+	Backbone.history.start({ pushState: true, root: window.bs.root, hashState: false });
+	inited = true;
+});
+
+
+// make active menu element update
+(function()
+{
+	var x = null;
+	$(document).on("click", ".nav a", function()
+	{
+		x = $(this).parent("li");
+	});
+	$(function() {
+		bs.router.bind("all", function(route, router, test)
+		{
+			$(".nav .active").removeClass("active");
+			x.addClass("active");
+		});
+	});
+})();
+
+
+// push local links through router
+$(document).on("click", "a:not([data-bypass])", function(evt) {
+	var app = {root: window.bs.root};
+	var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
+	var root = location.protocol + "//" + location.host + app.root;
+
+	if (href.prop && href.prop.slice(0, root.length) === root && href.attr != '#') {
+		if (href.attr.substring(0, root.length) == root) href.attr = href.attr.substring(root.length);
+		evt.preventDefault();
+		Backbone.history.navigate(href.attr, true);
+	}
 });
