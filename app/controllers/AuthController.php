@@ -21,7 +21,7 @@ class AuthController extends Controller {
 	}
 
 	public function action_logout() {
-		Auth.logout();
+		Auth::logout();
 		return Redirect::to('/');
 	}
 
