@@ -16,7 +16,7 @@ bs.views.Users = bs.views.BaseView.extend({
 					'users': []
 				}
 			],
-			'hidemail': !bs.groupIsAdmin('useradmin')
+			'hidemail': !bs.inGroup(['useradmin', 'kollegiet', 'dugnaden', 'foreningsstyret'])
 		};
 
 		this.collection.each(function(model)

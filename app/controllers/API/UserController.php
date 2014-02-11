@@ -5,7 +5,8 @@ class UserController extends \Controller {
 	{
 		// begrense felter?
 		$except = array();
-		if ((!$user || !\Auth::user()->isSame($user)) && !\Auth::member("useradmin"))
+		$access = \Auth::member("useradmin") || \Auth::member("kollegiet") || \Auth::member("dugnaden") || \Auth::member('foreningsstyret');
+		if ((!$user || !\Auth::user()->isSame($user)) && !$access)
 		{
 			//$except[] = 'phone'; // TODO: not implemented
 			$except[] = 'email';

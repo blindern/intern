@@ -546,11 +546,28 @@ $(document).on("click", "a:not([data-bypass])", function(evt) {
 
 
 // check if we can admin a group
-bs.groupIsAdmin = function(groupName, realadmin)
+bs.groupIsAdmin = function(groupNames, realadmin)
+{
+	return bs.inGroup(groupNames, realadmin, true);
+};
+
+// check if we are in a group
+bs.inGroup = function(groupNames, forceRealMember, admingroup)
 {
 	if (!window.logged_in) return false;
-	if (!realadmin && window.useradmin) return true;
+	if (!forceRealMember && window.useradmin) return true;
 
-	var adminGroup = groupName.indexOf('_admin') != -1 ? groupName : groupName + '_admin';
-	return adminGroup in window.user.groups;
+	if (!(groupNames instanceof Array))
+	{
+		groupNames = [groupNames];
+	}
+
+	for (var i = 0; i < groupNames.length; i++)
+	{
+		var group = groupNames[i];
+		var g = admingroup ? (group.indexOf('_admin') != -1 ? group : group + '_admin') : group;
+		if (g in window.user.groups) return true;
+	};
+
+	return false;
 };
