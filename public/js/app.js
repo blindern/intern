@@ -479,8 +479,20 @@ $(document).on("click", "a:not([data-bypass])", function(evt) {
 	var root = location.protocol + "//" + location.host + app.root;
 
 	if (href.prop && href.prop.slice(0, root.length) === root && href.attr != '#') {
+		if (href.attr.substring(0, app.root.length) == app.root) href.attr = href.attr.substring(app.root.length);
 		if (href.attr.substring(0, root.length) == root) href.attr = href.attr.substring(root.length);
 		evt.preventDefault();
 		Backbone.history.navigate(href.attr, true);
 	}
 });
+
+
+// check if we can admin a group
+bs.groupIsAdmin = function(groupName, realadmin)
+{
+	if (!window.logged_in) return false;
+	if (!realadmin && window.useradmin) return true;
+
+	var adminGroup = groupName.indexOf('_admin') != -1 ? groupName : groupName + '_admin';
+	return adminGroup in window.user.groups;
+};
