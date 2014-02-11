@@ -176,6 +176,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Basset'          => 'Basset\Facade',
+		'User'            => 'HenriSt\OpenLdapAuth\LdapUser',
 
 	),
 
