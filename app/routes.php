@@ -61,3 +61,15 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('groups', $bb);
 	Route::get('group/{group}', $bb);
 });
+
+// dugnaden
+Route::group(array('before' => 'auth'), function()
+{
+	$bb = function()
+	{
+		return View::make('layout');
+	};
+
+	Route::get('dugnaden/old/list', $bb);
+	Route::resource('api/dugnaden/old', 'API\\DugnadenOldController', array('only' => array('index')));
+});

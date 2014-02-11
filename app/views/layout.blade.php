@@ -40,9 +40,11 @@ if ($user)
     <script src="{{ asset('js/models/printer.js') }}"></script>
     <script src="{{ asset('js/models/groups.js') }}"></script>
     <script src="{{ asset('js/models/users.js') }}"></script>
+    <script src="{{ asset('js/models/dugnaden.old.js') }}"></script>
     <script src="{{ asset('js/views/printer.last.js') }}"></script>
     <script src="{{ asset('js/views/groups.js') }}"></script>
     <script src="{{ asset('js/views/users.js') }}"></script>
+    <script src="{{ asset('js/views/dugnaden.old.js') }}"></script>
     <script src="{{ asset('js/views/profile.js') }}"></script>
     <script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
 

@@ -1,0 +1,9 @@
+<p>Dugnad:
+	<select name="dugnad">
+		<option>Velg dugnad</option>
+		{{#each dugnader}}
+			<option value="{{id}}">{{formatDate date 'dddd D. MMMM YYYY'}} ({{people_count}})</option>
+		{{/each}}
+	</select>
+</p>
+<div id="dugnad_liste" style="page-break-before: always"></div>

@@ -420,6 +420,7 @@ $(function() {
 			'profile': 'profile',
 			'users': 'userlist',
 			'user/:name': 'user',
+			'dugnaden/old/list': 'dugnaden_liste',
 			'*catchAll': 'catchAll'
 		},
 
@@ -497,6 +498,16 @@ $(function() {
 			$("#page_title").text("Brukerprofil");
 			var v = new bs.views.Profile();
 			vh.push(v);
+		},
+
+		dugnaden_liste: function()
+		{
+			$("#page_title").text("Dugnadsinnkallinger");
+			var c = new bs.collections.DugnadOld();
+			var v = new bs.views.DugnadOld({
+				collection: c
+			});
+			vh.push(v, c.fetch());
 		},
 
 		catchAll: function(addr)
