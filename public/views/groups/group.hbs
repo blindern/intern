@@ -1,0 +1,18 @@
+<dl>
+	<dt>Gruppenavn</dt>
+	<dd>{{name}}</dd>
+	<dt>GruppeID</dt>
+	<dd>{{id}}</dd>
+	<dt>Medlemmer</dt>
+	<dd>
+		{{#if members}}
+			<ul>
+				{{#each members}}
+					<li><a href="/intern/user/{{this}}">{{this}}</a></li>
+				{{/each}}
+			</ul>
+		{{else}}
+			Ingen medlemmer i gruppa
+		{{/if}}
+	</dd>
+</dl>

@@ -383,6 +383,7 @@ function ViewHandler(baseView) {
 		// TODO: if (current) current.clear();
 		//if (current) {
 			$(baseView).empty().html('<p>Laster data..</p>');
+
 		//}
  
 		current = view;
@@ -414,7 +415,11 @@ $(function() {
 			//"": "index",
 			"printer/fakturere": "printer_fakturere",
 			"printer/siste": "printer_last",
+			'groups': 'grouplist',
+			'group/:name': 'group',
 			'profile': 'profile',
+			'users': 'userlist',
+			'user/:name': 'user',
 			'*catchAll': 'catchAll'
 		},
 
@@ -441,6 +446,50 @@ $(function() {
 				collection: c
 			});
 			vh.push(v, c.fetch());
+		},
+
+		grouplist: function()
+		{
+			$("#page_title").text("Gruppeliste");
+			var c = new bs.collections.Groups();
+			var v = new bs.views.Groups({
+				collection: c
+			});
+			vh.push(v, c.fetch());
+		},
+
+		group: function(name)
+		{
+			$("#page_title").text(name+" (gruppe)");
+			var m = new bs.models.Group({
+				'unique_id': name
+			});
+			var v = new bs.views.Group({
+				model: m
+			});
+			vh.push(v, m.fetch());
+		},
+
+		userlist: function()
+		{
+			$("#page_title").text("Brukerliste");
+			var c = new bs.collections.Users();
+			var v = new bs.views.Users({
+				collection: c
+			});
+			vh.push(v, c.fetch());
+		},
+
+		user: function(name)
+		{
+			$("#page_title").text("Bruker");
+			var m = new bs.models.User({
+				'username': name
+			});
+			var v = new bs.views.User({
+				model: m
+			});
+			vh.push(v, m.fetch());
 		},
 
 		profile: function()
@@ -473,8 +522,9 @@ $(function() {
 	$(function() {
 		bs.router.bind("all", function(route, router, test)
 		{
+			// TODO: match by URL (inline links)
 			$(".nav .active").removeClass("active");
-			x.addClass("active");
+			if (x) x.addClass("active");
 		});
 	});
 })();

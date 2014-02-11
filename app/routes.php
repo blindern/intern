@@ -43,7 +43,7 @@ Route::get('login', 'AuthController@get_login');
 Route::post('login', 'AuthController@post_login');
 Route::get('logout', 'AuthController@action_logout');
 
-Route::get('userlist', 'UsersController@action_userlist')->before('auth');// users and groups
+// users and groups
 Route::group(array('before' => 'auth'), function()
 {
 	$bb = function()
@@ -52,4 +52,12 @@ Route::group(array('before' => 'auth'), function()
 	};
 
 	Route::get('profile', $bb);
+
+	Route::resource('api/user', 'API\\UserController', array('only' => array('index', 'show', 'edit')));
+	Route::get('users', $bb);
+	Route::get('user/{user}', $bb);
+
+	Route::resource('api/group', 'API\\GroupController', array('only' => array('index', 'show')));
+	Route::get('groups', $bb);
+	Route::get('group/{group}', $bb);
 });

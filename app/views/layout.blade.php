@@ -38,7 +38,11 @@ if ($user)
     <script src="{{ asset('js/handlebars.helpers.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/models/printer.js') }}"></script>
+    <script src="{{ asset('js/models/groups.js') }}"></script>
+    <script src="{{ asset('js/models/users.js') }}"></script>
     <script src="{{ asset('js/views/printer.last.js') }}"></script>
+    <script src="{{ asset('js/views/groups.js') }}"></script>
+    <script src="{{ asset('js/views/users.js') }}"></script>
     <script src="{{ asset('js/views/profile.js') }}"></script>
     <script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
 
@@ -73,7 +77,13 @@ if ($user)
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               @if ($user)
-              <li{{ (Request::is('userlist') ? ' class="active"' : '') }}><a href="{{{ URL::to('userlist') }}}">Brukerliste</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brukere og grupper <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li{{ (Request::is('users') ? ' class="active"' : '') }}><a href="{{{ URL::to('users') }}}">Brukerliste</a></li>
+                  <li{{ (Request::is('groups') ? ' class="active"' : '') }}><a href="{{{ URL::to('groups') }}}">Gruppeliste</a></li>
+                </ul>
+              </li>
               <li class="dropdown">
               	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Printer <b class="caret"></b></a>
               	<ul class="dropdown-menu">
