@@ -43,6 +43,13 @@ Route::get('login', 'AuthController@get_login');
 Route::post('login', 'AuthController@post_login');
 Route::get('logout', 'AuthController@action_logout');
 
-// users
-Route::get('profile', 'AuthController@action_profile')->before('auth');
-Route::get('userlist', 'UsersController@action_userlist')->before('auth');
+Route::get('userlist', 'UsersController@action_userlist')->before('auth');// users and groups
+Route::group(array('before' => 'auth'), function()
+{
+	$bb = function()
+	{
+		return View::make('layout');
+	};
+
+	Route::get('profile', $bb);
+});

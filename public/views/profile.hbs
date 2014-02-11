@@ -1,0 +1,19 @@
+<ul>
+	<li>Brukernavn: {{username}}</li>
+	<li>Navn: {{realname}}</li>
+	<li>E-post: {{email}}</li>
+	<li>Grupper:
+		{{#if groups}}
+			<ul>
+				{{#each groups}}
+					<li>
+						<a href="/intern/group/{{name}}">{{name}}</a>
+						{{#if groupadmin}}(admin){{/if}}
+					</li>
+				{{/each}}
+			</ul>
+		{{else}}
+			<i>Ingen grupper</i>
+		{{/if}}
+	</li>
+</ul>

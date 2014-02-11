@@ -414,6 +414,7 @@ $(function() {
 			//"": "index",
 			"printer/fakturere": "printer_fakturere",
 			"printer/siste": "printer_last",
+			'profile': 'profile',
 			'*catchAll': 'catchAll'
 		},
 
@@ -440,6 +441,13 @@ $(function() {
 				collection: c
 			});
 			vh.push(v, c.fetch());
+		},
+
+		profile: function()
+		{
+			$("#page_title").text("Brukerprofil");
+			var v = new bs.views.Profile();
+			vh.push(v);
 		},
 
 		catchAll: function(addr)

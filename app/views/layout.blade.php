@@ -1,6 +1,17 @@
 <?php
 
 $user = Auth::check() ? Auth::user() : null;
+$userdetails = null;
+
+if ($user)
+{
+  $userdetails = array(
+    'username' => $user->username,
+    'realname' => $user->realname,
+    'email' => $user->email,
+    'groups' => $user->groups()
+  );
+}
 
 ?>
 <!DOCTYPE html>
@@ -28,7 +39,14 @@ $user = Auth::check() ? Auth::user() : null;
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/models/printer.js') }}"></script>
     <script src="{{ asset('js/views/printer.last.js') }}"></script>
+    <script src="{{ asset('js/views/profile.js') }}"></script>
     <script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
+
+    <script type="text/javascript">
+    var logged_in = <?php echo json_encode((bool) $user); ?>;
+    var user = <?php echo json_encode($userdetails); ?>;
+    var useradmin = <?php echo json_encode(Auth::member("useradmin")); ?>;
+    </script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

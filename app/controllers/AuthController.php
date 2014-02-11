@@ -24,8 +24,4 @@ class AuthController extends Controller {
 		Auth::logout();
 		return Redirect::to('/');
 	}
-
-	public function action_profile() {
-		return View::make('auth/profile');
-	}
 }
