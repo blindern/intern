@@ -13,7 +13,7 @@ bs.models.Printer = Backbone.Model.extend({
 			comparator: function(leftuser, rightuser)
 			{
 				var realnames = self.collection.realnames;
-				return realnames[leftuser.get("username")].localeCompare(realnames[rightuser.get("username")]);
+				return realnames[leftuser.get("username").toLowerCase()].localeCompare(realnames[rightuser.get("username").toLowerCase()]);
 			}
 		});
 	}

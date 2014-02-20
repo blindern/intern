@@ -19,22 +19,22 @@ class PrinterUsageController extends \Controller {
 		$data = @json_decode(@file_get_contents("https://p.blindern-studenterhjem.no/api.php?method=fakturere&from=$from&to=$to"), true);
 
 		// fetch all usernames
-		$users = array();
+		$usernames = array();
 		foreach ($data['prints'] as $group)
 		{
 			foreach ($group['users'] as $user)
 			{
-				$users[] = $user['username'];
+				$usernames[] = $user['username'];
 			}
 		}
-		$users = array_unique($users);
 		
-		$names = array();
+		$users = $ldap->get_users_by_usernames(array_unique($usernames));
+		$realnames = array();
 		foreach ($users as $user)
 		{
-			$names[$user] = $ldap->get_user_details($user)['realname'];
+			$realnames[strtolower($user->username)] = $user->realname;
 		}
-		$data['realnames'] = $names;
+		$data['realnames'] = $realnames;
 
 		// fetch all members of 'beboer'-group
 		$r = ldap_search($ldap->get_connection(), "ou=Groups,dc=blindern-studenterhjem,dc=no", "(&(objectClass=posixGroup)(cn=beboer))", array("memberUid"));
@@ -56,9 +56,9 @@ class PrinterUsageController extends \Controller {
 		$utflyttet = array();
 		foreach ($users as $user)
 		{
-			if (!in_array(strtolower($user), $beboere))
+			if (!in_array(strtolower($user->username), $beboere))
 			{
-				$utflyttet[] = strtolower($user);
+				$utflyttet[] = strtolower($user->username);
 			}
 		}
 		$data['utflyttet'] = $utflyttet;

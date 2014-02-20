@@ -19,11 +19,11 @@ class PrinterLastController extends \Controller {
 			$users[] = $row['username'];
 		}
 
-		$users = array_unique($users);
+		$users = $ldap->get_users_by_usernames(array_unique($users));
 		$names = array();
 		foreach ($users as $user)
 		{
-			$names[$user] = $ldap->get_user_details($user)['realname'];
+			$names[$user->username] = $user->realname;
 		}
 
 		// fill with realnames
