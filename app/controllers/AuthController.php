@@ -13,8 +13,7 @@ class AuthController extends Controller {
 
 		if (Auth::attempt($user, Input::get('remember_me')))
 		{
-			return View::make('auth/profile');
-			return Redirect::to('/');
+			return Redirect::to('/profile');
 		}
 
 		return View::make('auth/login');
