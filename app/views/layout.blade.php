@@ -95,7 +95,7 @@ if ($user)
             <ul class="nav navbar-nav navbar-right">
             	@if ($user)
               <li class="dropdown{{ (Request::is('profile') ? ' active' : '') }}">
-            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{{ $user->username }}} <b class="caret"></b></a>
+            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{{ $user->realname or $user->username }}} <b class="caret"></b></a>
             		<ul class="dropdown-menu">
             			<li><a href="{{{ URL::to('profile') }}}">Brukerinfo</a></li>
             			<li><a href="{{{ URL::to('logout') }}}">Logg ut</a></li>
