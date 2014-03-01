@@ -83,7 +83,7 @@ return array(
 
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		//'Illuminate\Auth\AuthServiceProvider',
-		'HenriSt\OpenLdapAuth\AuthServiceProvider',
+		'Blindern\Intern\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Session\CommandsServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
@@ -176,7 +176,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Basset'          => 'Basset\Facade',
-		'User'            => 'HenriSt\OpenLdapAuth\LdapUser',
+		'User'            => 'Blindern\Intern\Auth\User',
 
 	),
 

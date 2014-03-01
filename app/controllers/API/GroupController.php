@@ -1,32 +1,31 @@
 <?php namespace API;
 
-use \HenriSt\OpenLdapAuth\Helpers\Ldap;
+use \Blindern\Intern\Auth\Group;
 
 class GroupController extends \Controller {
 	public function index()
 	{
-		$config = app()->config['auth']['ldap'];
-		$ldap = new Ldap($config);
+		$groups = array();
+		foreach (Group::all() as $group)
+		{
+			$groups[] = $group->toArray();
+		}
 
-		$groups = $ldap->get_groups(false);
-		return array_values($groups);
+		return $groups;
 	}
 
 	public function show($group)
 	{
-		$config = app()->config['auth']['ldap'];
-		$ldap = new Ldap($config);
-
-		$group = $ldap->get_groups(true, sprintf('(%s=%s)', $ldap->config['group_fields']['unique_id'], Ldap::escape_string($group)));
-		if ($group)
+		if ($group = Group::find($group))
 		{
-			$uc = new \API\UserController();
+			$c = new UserController();
 
-			$group = reset($group);
-			$members = $group['members'];
-			if (count($members))
-			{
-				// get full objects
+			$group->getMembers();
+			return $group->toArray(array(), 2, $c->exceptFields());
+		}
+	}
+
+	/*			// get full objects
 				$group['members'] = array();
 				$realnames = array();
 				foreach ($ldap->get_users_by_usernames($members) as $user)
@@ -36,10 +35,5 @@ class GroupController extends \Controller {
 				}
 
 				// sort by realname
-				array_multisort($realnames, $group['members']);
-			}
-
-			return $group;
-		}
-	}
+				array_multisort($realnames, $group['members']);*/
 }

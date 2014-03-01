@@ -5,12 +5,7 @@ $userdetails = null;
 
 if ($user)
 {
-  $userdetails = array(
-    'username' => $user->username,
-    'realname' => $user->realname,
-    'email' => $user->email,
-    'groups' => $user->groups()
-  );
+  $userdetails = $user->toArray(array(), 2);
 }
 
 ?>

@@ -1,16 +1,13 @@
 <?php namespace API;
 
-use \HenriSt\OpenLdapAuth\Helpers\Ldap;
+use \Blindern\Intern\Auth\User;
+use \Blindern\Intern\Auth\Group;
 
 class PrinterUsageController extends \Controller {
 	public function index()
 	{
 		// TODO: Error message
 		if (!\Auth::member("lpadmin")) return;
-
-		// set up LDAP
-		$config = app()->config['auth']['ldap'];
-		$ldap = new Ldap($config);
 
 		$from = \Input::get("from");
 		$to = \Input::get("to");
@@ -28,7 +25,7 @@ class PrinterUsageController extends \Controller {
 			}
 		}
 		
-		$users = $ldap->get_users_by_usernames(array_unique($usernames));
+		$users = User::all(); // TODO: filter by array_unique($users)
 		$realnames = array();
 		foreach ($users as $user)
 		{
@@ -36,20 +33,11 @@ class PrinterUsageController extends \Controller {
 		}
 		$data['realnames'] = $realnames;
 
-		// fetch all members of 'beboer'-group
-		$r = ldap_search($ldap->get_connection(), "ou=Groups,dc=blindern-studenterhjem,dc=no", "(&(objectClass=posixGroup)(cn=beboer))", array("memberUid"));
-		$e = ldap_get_entries($ldap->get_connection(), $r);
-
+		$beboer = Group::find("beboer");
 		$beboere = array();
-		for ($i = 0; $i < $e['count']; $i++)
+		if ($beboer)
 		{
-			if (!empty($e[$i]['memberuid']))
-			{
-				for ($j = 0; $j < $e[$i]['memberuid']['count']; $j++)
-				{
-					$beboere[] = $e[$i]['memberuid'][$j];
-				}
-			}
+			$beboere = $beboer->getMembers();
 		}
 
 		// find out who is not beboer any longer

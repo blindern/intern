@@ -92,3 +92,6 @@ Basset::collection('layout', function($collection)
 });
 
 setlocale(LC_TIME, 'nb_NO');
+
+
+\Httpful\Httpful::register(\Httpful\Mime::JSON, new \Httpful\Handlers\JsonHandler(array('decode_as_array' => true)));

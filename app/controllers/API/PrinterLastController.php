@@ -1,14 +1,10 @@
 <?php namespace API;
 
-use \HenriSt\OpenLdapAuth\Helpers\Ldap;
+use \Blindern\Intern\Auth\User;
 
 class PrinterLastController extends \Controller {
 	public function index()
 	{
-		// set up LDAP
-		$config = app()->config['auth']['ldap'];
-		$ldap = new Ldap($config);
-
 		// hent siste utskrifter fra printserveren
 		$last = @json_decode(@file_get_contents("https://p.blindern-studenterhjem.no/api.php?method=pykotalast"), true);
 
@@ -19,7 +15,7 @@ class PrinterLastController extends \Controller {
 			$users[] = $row['username'];
 		}
 
-		$users = $ldap->get_users_by_usernames(array_unique($users));
+		$users = User::all(); // TODO: filter by array_unique($users)
 		$names = array();
 		foreach ($users as $user)
 		{

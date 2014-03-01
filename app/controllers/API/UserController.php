@@ -8,7 +8,7 @@ class UserController extends \Controller {
 		$access = \Auth::member("useradmin") || \Auth::member("kollegiet") || \Auth::member("dugnaden") || \Auth::member('foreningsstyret');
 		if ((!$user || !\Auth::user()->isSame($user)) && !$access)
 		{
-			//$except[] = 'phone'; // TODO: not implemented
+			$except[] = 'phone';
 			$except[] = 'email';
 		}
 
@@ -18,7 +18,7 @@ class UserController extends \Controller {
 	public function index()
 	{
 		$ret = array();
-		$users = \User::all(true);
+		$users = \User::all();
 		foreach ($users as $user)
 		{
 			$ret[] = $user->toArray($this->exceptFields($user));
@@ -30,9 +30,9 @@ class UserController extends \Controller {
 	public function show($username)
 	{
 		$user = \User::find($username);
-		$user->groups();
+		$user->loadGroups(false);
 
-		return $user->toArray($this->exceptFields($user));
+		return $user->toArray($this->exceptFields($user), 2);
 	}
 
 	// return View::make('auth/noaccess', array("group" => "beboer"));

@@ -7,7 +7,7 @@
 			<ul>
 				{{#each groups}}
 					<li>
-						<a href="/intern/group/{{this}}">{{this}}</a>
+						<a href="/intern/group/{{name}}">{{name}}</a> {{#if description}}({{description}}){{/if}}
 					</li>
 				{{/each}}
 			</ul>
