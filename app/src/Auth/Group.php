@@ -153,6 +153,8 @@ class Group  {
 
 	/**
 	 * Get list of members
+	 *
+	 * @return array for user names
 	 */
 	public function getMembers()
 	{
@@ -166,7 +168,29 @@ class Group  {
 			}
 		}
 
-		return (array) $this->members;
+		if ($this->members != null)
+		{
+			$list = array();
+			foreach ($this->members as $user)
+			{
+				$list[] = $user instanceof User ? $user->username : $user;
+			}
+
+			return $list;
+		}
+	}
+
+	/**
+	 * Get objects of members
+	 *
+	 * @return array of user objects, if it is loaded, else null
+	 */
+	public function getMemberObjs()
+	{
+		if (!empty($this->members) && ($this->members[0] instanceof User))
+		{
+			return $this->members;
+		}
 	}
 
 	/**
