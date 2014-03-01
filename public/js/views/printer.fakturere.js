@@ -7,13 +7,20 @@ bs.views.PrinterFakturere = bs.views.BaseView.extend({
 
 	render: function()
 	{
+		// set default period to be last month
+		var d = moment().subtract('month', 1).startOf('month');
+		var from = d.format("YYYY-MM-DD");
+		d.endOf('month');
+		var to = d.format("YYYY-MM-DD");
+
 		this.$el.html(this.template({
-			from: '2013-04-01',
-			to:   '2014-01-31'
+			from: from,
+			to:   to
 		}));
-		this.dateChanged();
 
 		this.subel = this.$("#fakturere_data");
+		this.setSummed(true);
+		this.dateChanged();
 	},
 
 	formatChanged: function()
@@ -37,20 +44,21 @@ bs.views.PrinterFakturere = bs.views.BaseView.extend({
 	{
 		this.collection.setDate(this.$('input[name=date_from]').val(), this.$('input[name=date_to]').val());
 		var self = this;
-		if (this.subel) this.subel.html("Laster data");
+		if (this.subel) this.subel.html("Laster data...");
 		this.collection.fetch().done(function()
 		{
-			if (self.subv) self.subv.render();
+			if (self.subv)
+				self.subv.render();
 		});
 	},
 
-	setSummed: function()
+	setSummed: function(dont_render)
 	{
 		this.subv = new bs.views.PrinterFakturereSummed({
 			el: this.subel
 		});
 		this.subv.par = this;
-		this.subv.render();
+		if (!dont_render) this.subv.render();
 	},
 
 	setDetailed: function()
