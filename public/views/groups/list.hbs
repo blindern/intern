@@ -1,5 +1,16 @@
-<ul>
-	{{#each groups}}
-		<li><a href="/intern/group/{{name}}">{{name}}</a> {{#if description}}({{description}}){{/if}}</li>
-	{{/each}}
+<table class="table table-striped nowrap table-condensed" style="width: auto">
+	<thead>
+		<tr>
+			<th>Gruppe</th>
+			<th>Beskrivelse</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each groups}}
+			<tr>
+				<td><a href="/intern/group/{{name}}">{{name}}</a></td>
+				<td>{{#if description}}{{description}}{{else}}&nbsp;{{/if}}</td>
+			</tr>
+		{{/each}}
+	</tbody>
 </ul>

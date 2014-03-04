@@ -5,16 +5,26 @@
 	<dd>{{id}}</dd>
 	<dt>Beskrivelse</dt>
 	<dd>{{description}}</dd>
-	<dt>Medlemmer</dt>
-	<dd>
-		{{#if members}}
-			<ul>
-				{{#each members}}
-					<li>{{realname}} (<a href="/intern/user/{{username}}">{{username}}</a>)</li>
-				{{/each}}
-			</ul>
-		{{else}}
-			Ingen medlemmer i gruppa
-		{{/if}}
-	</dd>
 </dl>
+
+<h2>Medlemmer</h2>
+{{#if members}}
+	<table class="table table-striped table-condensed" style="width: auto">
+		<thead>
+			<tr>
+				<th>Bruker</th>
+				<th>Navn</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each members}}
+				<tr>
+					<td><a href="/intern/user/{{username}}">{{username}}</a></td>
+					<td>{{realname}}</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+{{else}}
+	Ingen medlemmer i gruppa
+{{/if}}
