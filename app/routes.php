@@ -51,8 +51,6 @@ Route::group(array('before' => 'auth'), function()
 		return View::make('layout');
 	};
 
-	Route::get('profile', $bb);
-
 	Route::resource('api/user', 'API\\UserController', array('only' => array('index', 'show', 'edit')));
 	Route::get('users', $bb);
 	Route::get('user/{user}', $bb);

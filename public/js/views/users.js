@@ -35,17 +35,11 @@ bs.views.User = bs.views.BaseView.extend({
 	render: function()
 	{
 		var data = this.model.toJSON();
-
-		/*var groups = [];
-		$(data.groups).each(function(i, x)
+		for (group in data.groups)
 		{
-			groups.push({
-				'name': x,
-				'groupadmin': bs.groupIsAdmin(x)
-			});
-		});
+			data.groups[group].groupadmin = bs.groupIsAdmin(data.groups[group].name);
+		}
 
-		data.groups = groups;*/
 		this.$el.html(this.template(data));
 	}
 });

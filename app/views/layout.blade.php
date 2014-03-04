@@ -36,6 +36,7 @@ if ($user)
     <script src="{{ asset('js/models/groups.js') }}"></script>
     <script src="{{ asset('js/models/users.js') }}"></script>
     <script src="{{ asset('js/models/dugnaden.old.js') }}"></script>
+    <script src="{{ asset('js/views/index.js') }}"></script>
     <script src="{{ asset('js/views/printer.last.js') }}"></script>
     <script src="{{ asset('js/views/printer.fakturere.js') }}"></script>
     <script src="{{ asset('js/views/groups.js') }}"></script>
@@ -97,7 +98,7 @@ if ($user)
               <li class="dropdown{{ (Request::is('profile') ? ' active' : '') }}">
             		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{{ $user->realname or $user->username }}} <b class="caret"></b></a>
             		<ul class="dropdown-menu">
-            			<li><a href="{{{ URL::to('profile') }}}">Brukerinfo</a></li>
+            			<li><a href="{{{ URL::to('user/'.$user->username) }}}">Brukerinfo</a></li>
             			<li><a href="{{{ URL::to('logout') }}}">Logg ut</a></li>
             		</ul>
             	</li>

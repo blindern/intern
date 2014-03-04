@@ -167,7 +167,6 @@ $(function() {
 			"printer/siste": "printer_last",
 			'groups': 'grouplist',
 			'group/:name': 'group',
-			'profile': 'profile',
 			'users': 'userlist',
 			'user/:name': 'user',
 			'dugnaden/old/list': 'dugnaden_liste',
@@ -243,13 +242,6 @@ $(function() {
 				model: m
 			});
 			vh.push(v, m.fetch());
-		},
-
-		profile: function()
-		{
-			$("#page_title").text("Brukerprofil");
-			var v = new bs.views.Profile();
-			vh.push(v);
 		},
 
 		dugnaden_liste: function()
