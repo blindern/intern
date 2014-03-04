@@ -162,7 +162,7 @@ $(function() {
 	var inited = false; // prevent catchAll to loop at page loading
 	var router = Backbone.Router.extend({
 		routes: {
-			//"": "index",
+			"": "index",
 			"printer/fakturere": "printer_fakturere",
 			"printer/siste": "printer_last",
 			'groups': 'grouplist',
@@ -176,7 +176,9 @@ $(function() {
 
 		index: function()
 		{
-			alert("index");
+			$("#page_title").text("Blindern Studenterhjem Intern");
+			var v = new bs.views.Index();
+			vh.push(v);
 		},
 
 		printer_fakturere: function()
@@ -262,6 +264,7 @@ $(function() {
 
 		catchAll: function(addr)
 		{
+			if (!addr) addr = '';
 			if (inited) window.location.href = bs.root + '/' + addr;
 		}
 	});

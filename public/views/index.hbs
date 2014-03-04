@@ -1,0 +1,8 @@
+<p>Velg en av handlingene i menyen ovenfor.
+	{{#unless user}}
+		Du får flere handlinger ved å være logget inn.
+	{{/unless}}
+ </p>
+ {{#if user}}
+ 	<p>Du er innlogget som {{user.realname}} (<a href="/intern/user/{{user.username}}">{{user.username}}</a>).</p>
+ {{/if}}
