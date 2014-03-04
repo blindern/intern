@@ -125,6 +125,12 @@ bs.views.BaseView = Backbone.View.extend({
 	}
 });
 
+bs.title = function(title)
+{
+	$("#page_title").text(title);
+	document.title = title;
+};
+
 function ViewHandler(baseView) {
 	var current;
 
@@ -175,14 +181,14 @@ $(function() {
 
 		index: function()
 		{
-			$("#page_title").text("Blindern Studenterhjem Intern");
+			bs.title("Blindern Studenterhjem Intern");
 			var v = new bs.views.Index();
 			vh.push(v);
 		},
 
 		printer_fakturere: function()
 		{
-			$("#page_title").text("Fakturering av utskrifter");
+			bs.title("Fakturering av utskrifter");
 			var c = new bs.collections.Printers();
 			var v = new bs.views.PrinterFakturere({
 				collection: c
@@ -192,7 +198,7 @@ $(function() {
 
 		printer_last: function()
 		{
-			$("#page_title").text("Siste utskrifter");
+			bs.title("Siste utskrifter");
 			var c = new bs.collections.Prints();
 			var v = new bs.views.PrinterLast({
 				collection: c
@@ -202,7 +208,7 @@ $(function() {
 
 		grouplist: function()
 		{
-			$("#page_title").text("Gruppeliste");
+			bs.title("Gruppeliste");
 			var c = new bs.collections.Groups();
 			var v = new bs.views.Groups({
 				collection: c
@@ -212,7 +218,7 @@ $(function() {
 
 		group: function(name)
 		{
-			$("#page_title").text(name+" (gruppe)");
+			bs.title(name+" (gruppe)");
 			var m = new bs.models.Group({
 				'unique_id': name
 			});
@@ -224,7 +230,7 @@ $(function() {
 
 		userlist: function()
 		{
-			$("#page_title").text("Brukerliste");
+			bs.title("Brukerliste");
 			var c = new bs.collections.Users();
 			var v = new bs.views.Users({
 				collection: c
@@ -234,7 +240,7 @@ $(function() {
 
 		user: function(name)
 		{
-			$("#page_title").text("Bruker");
+			bs.title("Bruker");
 			var m = new bs.models.User({
 				'username': name
 			});
@@ -246,7 +252,7 @@ $(function() {
 
 		dugnaden_liste: function()
 		{
-			$("#page_title").text("Dugnadsinnkallinger");
+			bs.title("Dugnadsinnkallinger");
 			var c = new bs.collections.DugnadOld();
 			var v = new bs.views.DugnadOld({
 				collection: c
