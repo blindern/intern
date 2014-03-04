@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function()
+$bb = function()
 {
-	return View::make('index');
-});
+	return View::make('layout');
+};
+
+Route::get('/', $bb);
 
 
 // calendar
