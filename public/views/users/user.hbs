@@ -2,17 +2,26 @@
 	<li>Brukernavn: {{username}}</li>
 	<li>Navn: {{realname}}</li>
 	<li>E-post: {{email}}</li>
-	<li>Grupper:
-		{{#if groups}}
-			<ul>
-				{{#each groups}}
-					<li>
-						<a href="/intern/group/{{name}}">{{name}}</a> {{#if description}}({{description}}){{/if}}
-					</li>
-				{{/each}}
-			</ul>
-		{{else}}
-			<i>Ingen grupper</i>
-		{{/if}}
-	</li>
 </ul>
+
+<h2>Grupper</h2>
+{{#if groups}}
+	<table class="table table-striped nowrap table-condensed" style="width: auto">
+		<thead>
+			<tr>
+				<th>Gruppe</th>
+				<th>Beskrivelse</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each groups}}
+				<tr>
+					<td><a href="/intern/group/{{name}}">{{name}}</a></td>
+					<td>{{#if description}}{{description}}{{else}}&nbsp;{{/if}}</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+{{else}}
+	<i>Ingen grupper</i>
+{{/if}}
