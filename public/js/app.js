@@ -3,14 +3,15 @@ var bs = {views: {}, models: {}, collections: {}, root: '/intern', router: null}
 moment.lang('nb');
 
 
-Handlebars.registerHelper("formatNum", function(num)
+Handlebars.registerHelper("formatNum", function(num, decimals)
 {
-	return formatNumber(parseFloat(num));
+	if (typeof(decimals) != "number") decimals = 2;
+	return formatNumber(parseFloat(num), decimals);
 });
 
-function formatNumber(number)
+function formatNumber(number, decimals)
 {
-    number = number.toFixed(2) + '';
+    number = number.toFixed(decimals) + '';
     x = number.split('.');
     x1 = x[0];
     x2 = x.length > 1 ? ',' + x[1] : '';
