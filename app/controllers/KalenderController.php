@@ -9,13 +9,23 @@ class KalenderController extends BaseController {
 	 * Handle the main calendar-view
 	 */
 	public function action_index() {
-		$happenings = Happening::orderBy('start')->whereNull('frequency')->get();
+		$data = HappeningNew::getHappenings();
+
+		/*$happenings = Happening::orderBy('start')->whereNull('frequency')->get();
 		
-		$result = Happening::orderByRaw('WEEKDAY(start), TIME(start)')->whereNotNull('frequency')->get();
+		$result = Happening::orderByRaw('WEEKDAY(start), TIME(start)')->whereNotNull('frequency')->get();*/
+		$happenings = array();
 		$recurring = array();
-		foreach ($result as $row)
+		foreach ($data as $row)
 		{
-			$recurring[] = $row;
+			if ($row->isRecurring())
+			{
+				$recurring[] = $row;
+			}
+			else
+			{
+				$happenings[] = $row;
+			}
 		}
 		
 		return View::make("kalender/index", array(
@@ -28,7 +38,8 @@ class KalenderController extends BaseController {
 	 * Handle and render the iCal-version
 	 */
 	public function action_ics() {
-		$happenings = Happening::all();
+		//$happenings = Happening::all();
+		$happenings = HappeningNew::getHappenings();
 
 		$cal = new Calendar("blindern-studenterhjem.no");
 		$cal->setName("Blindern Studenterhjem");
