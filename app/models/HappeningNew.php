@@ -147,11 +147,12 @@ class HappeningNew {
 
 	public function setRepeat($text)
 	{
-		if (preg_match("~^(DAILY|WEEKLY|MONTHLY):(\\d+):(\\d+)(:(\\d+(,\\d+)*))?$~m", $text, $matches))
+		// syntax: <repeat type>:<number of repeats>:<interval>:<numbers to skip>
+		if (preg_match("~^(DAILY|WEEKLY|MONTHLY):(\\d+)(:(\\d+)(:(\\d+(,\\d+)*))?)?$~m", $text, $matches))
 		{
 			$this->frequency = $matches[1];
-			$this->interval = $matches[2];
-			$this->count = $matches[3];
+			$this->count = $matches[2];
+			$this->interval = isset($matches[3]) ? $matches[3] : 1;
 
 			// TODO: $matches[5];
 		}
