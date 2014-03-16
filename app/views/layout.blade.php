@@ -127,7 +127,7 @@ if ($user)
 
     <div id="footer" class="hidden-print">
       <div class="container">
-        <p class="text-muted credit">Blindern Studenterhjem (<a href="/">offisiell side</a>) - Kontakt Henrik Steen ved forespørsler vedr. denne siden - <a href="https://github.com/blindern/intern">GitHub-prosjekt</a></p>
+        <p class="text-muted credit"><a href="/">Blindern Studenterhjem</a> - Kontakt <a href="/administrasjonen/om_nettsidene">Henrik Steen</a> ved henvendelser vedr. denne siden - <a href="https://github.com/blindern/intern">GitHub-prosjekt</a></p>
       </div>
     </div>
   </body>
