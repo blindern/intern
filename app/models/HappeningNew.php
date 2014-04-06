@@ -14,12 +14,13 @@ class HappeningNew {
 	{
 		$url = "https://blindern-studenterhjem.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
 		$data = file_get_contents($url);
-		if ($data === false)
+		
+		$data = json_decode($data, true);
+		if ($data === false || !isset($data['query']['pages']))
 		{
 			return array();
 		}
 
-		$data = json_decode($data, true);
 		$data = $data['query']['pages'];
 		$data = current($data);
 		$data = $data['revisions'][0]['*'];
