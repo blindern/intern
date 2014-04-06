@@ -122,7 +122,8 @@ bs.views.PrinterFakturereList = bs.views.BaseView.extend({
 			sections[el] = {
 				is_beboer: el == "beboer",
 				printergroups: [],
-				totals: new summer(totals)
+				totals: new summer(totals),
+				occurrences: 0
 			};
 		});
 
@@ -159,11 +160,13 @@ bs.views.PrinterFakturereList = bs.views.BaseView.extend({
 				user.num_rows = user.months.length + (user.show_sum ? 1 : 0);
 				$.extend(user, totals_u);
 				p.users.push(user);
+				if (p.is_beboer) section.occurrences++;
 			});
 
 			$.extend(p, totals_p);
 			p.is_comment_or_alt = p.comment || p.amount_alt;
 			section.printergroups.push(p);
+			if (!p.is_beboer) section.occurrences++;
 		});
 
 		totals.sections = sections;
