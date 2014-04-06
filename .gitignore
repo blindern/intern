@@ -6,5 +6,7 @@ composer.lock
 Thumbs.db
 /node_modules/
 /public/builds/
-/public/node_modules/
+/public/assets/javascript/frontend.js
+/public/assets/stylesheets/frontend.css
 error_log
+/bower_components/

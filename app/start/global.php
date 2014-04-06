@@ -80,17 +80,6 @@ App::down(function()
 
 require app_path().'/filters.php';
 
-
-Basset::collection('layout', function($collection)
-{
-	$collection->add('../vendor/twitter/bootstrap/less/bootstrap.less')->apply('Less');
-	
-	$collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
-	$collection->directory('../vendor/twitter/bootstrap/js', function($collection) {
-		$collection->requireDirectory();
-	});
-});
-
 setlocale(LC_TIME, 'nb_NO');
 
 

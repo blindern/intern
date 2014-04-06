@@ -20,31 +20,10 @@ if ($user)
 
     <title>@yield('title')</title>
 
-    @stylesheets('layout')
-    @javascripts('layout')
-    @stylesheets('application')
-    <link href="{{ asset('datepicker/css/datepicker.css') }}" rel="stylesheet">
-  
-    <script src="{{ asset('node_modules/underscore/underscore-min.js') }}"></script>
-    <script src="{{ asset('node_modules/backbone/backbone-min.js') }}"></script>
-    <script src="{{ asset('node_modules/handlebars/dist/handlebars.min.js') }}"></script>
-    <script src="{{ asset('node_modules/moment/moment.js') }}"></script>
-    <script src="{{ asset('node_modules/moment/lang/nb.js') }}"></script>
-    <script src="{{ asset('js/handlebars.helpers.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/models/printer.js') }}"></script>
-    <script src="{{ asset('js/models/groups.js') }}"></script>
-    <script src="{{ asset('js/models/users.js') }}"></script>
-    <script src="{{ asset('js/models/dugnaden.old.js') }}"></script>
-    <script src="{{ asset('js/views/index.js') }}"></script>
-    <script src="{{ asset('js/views/printer.last.js') }}"></script>
-    <script src="{{ asset('js/views/printer.fakturere.js') }}"></script>
-    <script src="{{ asset('js/views/groups.js') }}"></script>
-    <script src="{{ asset('js/views/users.js') }}"></script>
-    <script src="{{ asset('js/views/dugnaden.old.js') }}"></script>
-    <script src="{{ asset('js/views/profile.js') }}"></script>
-    <script src="{{ asset('datepicker/js/bootstrap-datepicker.js') }}"></script>
-
+    <link href="{{ asset('assets/stylesheets/frontend.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/stylesheets/default.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/javascript/frontend.js') }}"></script>
+    
     <script type="text/javascript">
     var logged_in = <?php echo json_encode((bool) $user); ?>;
     var user = <?php echo json_encode($userdetails); ?>;

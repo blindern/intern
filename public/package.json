@@ -1,9 +1,0 @@
-{
-	"name": "blindern-intern",
-	"dependencies": {
-		"underscore": "*",
-		"backbone": "*",
-		"handlebars": "*",
-		"moment": "*"
-	}
-}

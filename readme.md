@@ -3,7 +3,7 @@
 Koden som kjører systemet på https://blindern-studenterhjem.no/intern/
 
 Siden har til hensikt og ha litt forskjellige verktøy for å gjøre
-ulike oppgaver på studenterhjemme, slik som å generere rapporter
+ulike oppgaver på studenterhjemmet, slik som å generere rapporter
 over forbruk på fellesprinteren, administrere brukere til de ulike
 systemene, forbedret arrangementplan, m.m.
 
@@ -11,7 +11,15 @@ Rammeverket som brukes heter Laravel.
 
 ## Oppsett
 
+Vi bruker Bower for avhengigheter. Installer pakkene med:
+
 ```
-cd public
+bower install
+```
+
+Avhengigheter kompileres og settes sammen ved hjelp av Grunt:
+
+```
 npm install
+grunt watch
 ```
