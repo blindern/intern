@@ -21,7 +21,6 @@ if ($user)
     <title>@yield('title')</title>
 
     <link href="{{ asset('assets/stylesheets/frontend.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/stylesheets/default.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/javascript/frontend.js') }}"></script>
     
     <script type="text/javascript">
