@@ -8,6 +8,8 @@ module.exports = function(grunt)
 		"./bower_components/handlebars/handlebars.min.js",
 		"./bower_components/moment/moment.js",
 		"./bower_components/moment/lang/nb.js",
+		"./bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js",
+		"./bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.no.js",
 		"./app/assets/javascript/app.js",
 		"./app/assets/javascript/models/printer.js",
 		"./app/assets/javascript/models/groups.js",
@@ -21,7 +23,6 @@ module.exports = function(grunt)
 		"./app/assets/javascript/views/dugnaden.old.js",
 		"./app/assets/javascript/views/profile.js",
 		"./app/assets/javascript/handlebars.helpers.js",
-		"./public/assets/datepicker/js/bootstrap-datepicker.js"
 	];
 	grunt.initConfig({
 		concat: {
