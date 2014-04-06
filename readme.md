@@ -11,15 +11,15 @@ Rammeverket som brukes heter Laravel.
 
 ## Oppsett
 
-Vi bruker Bower for avhengigheter. Installer pakkene med:
+* Npm brukes for å installere bower, grunt osv (package.json)
+* Bower brukes for js/css-avhengigheter (bower.json)
+* Grunt brukes for å kompilere js/css-filer (Gruntfile.js)
 
-```
-bower install
-```
-
-Avhengigheter kompileres og settes sammen ved hjelp av Grunt:
+For å sette opp dette:
 
 ```
 npm install
-grunt watch
+export PATH=$PATH:`pwd`/node_modules/.bin
+bower install
+grunt less concat watch
 ```
