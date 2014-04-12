@@ -27,11 +27,13 @@ class User implements UserInterface, RemindableInterface {
 				}
 			}
 
-			if ($data)
+			if (!$data)
 			{
-				$user = new User($data);
-				static::$cache[$user->unique_id] = $user;
+				return null;
 			}
+
+			$user = new User($data);
+			static::$cache[$user->unique_id] = $user;
 		}
 
 		return static::$cache[$username];
