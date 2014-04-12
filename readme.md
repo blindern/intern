@@ -21,5 +21,10 @@ For å sette opp dette:
 npm install
 export PATH=$PATH:`pwd`/node_modules/.bin
 bower install
-grunt less concat watch
+grunt less concat
 ```
+
+Kan også kjøre ```grunt watch``` mens man gjør endringer.
+
+For kjapp oppdatering av produksjonsserver kjør ```deploy.sh```-scriptet.
+
