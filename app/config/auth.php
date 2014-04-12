@@ -76,6 +76,6 @@ return array(
 	'useradmin_group' => 'useradmin',
 
 	'blindern-auth' => array(
-		'api' => 'https://blindern-studenterhjem.no/users-api/'
+		'api' => 'https://foreningenbs.no/users-api/'
 	)
 );
