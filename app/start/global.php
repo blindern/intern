@@ -80,7 +80,7 @@ App::down(function()
 
 require app_path().'/filters.php';
 
-setlocale(LC_TIME, 'nb_NO');
+setlocale(LC_TIME, 'nb_NO.utf8');
 
 
 \Httpful\Httpful::register(\Httpful\Mime::JSON, new \Httpful\Handlers\JsonHandler(array('decode_as_array' => true)));
