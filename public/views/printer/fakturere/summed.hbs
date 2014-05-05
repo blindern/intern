@@ -64,6 +64,9 @@
 										</td>
 										<td style="text-align: right">{{formatNum amount_real}}</td>
 									</tr>
+									{{#unless is_beboer}}
+										<td>&nbsp;</td>
+									{{/unless}}
 								{{/each}}
 							{{else}}
 								<tr>
