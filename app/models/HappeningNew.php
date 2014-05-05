@@ -171,15 +171,15 @@ class HappeningNew {
 
 		if ($start->toDateString() == $end->toDateString())
 		{
-			return Carbon::parse($this->start)->formatLocalized('%e. %B');
+			return Carbon::parse($this->start)->formatLocalized('%A %e. %B');
 		}
 
 		elseif ($start->format("m") == $end->format("m"))
 		{
-			return sprintf("%s-%s", $start->formatLocalized('%e.'), $end->formatLocalized('%e. %B'));
+			return sprintf("%s-%s", $start->formatLocalized('%a %e.'), $end->formatLocalized('%a %e. %B'));
 		}
 
-		return sprintf("%s - %s", $start->formatLocalized('%e. %b'), $end->formatLocalized('%e. %b'));
+		return sprintf("%s - %s", $start->formatLocalized('%a %e. %b'), $end->formatLocalized('%a %e. %b'));
 	}
 
 	/**
