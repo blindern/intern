@@ -39,6 +39,9 @@
 							<td style="text-align: right">&nbsp;</td>
 							<td style="text-align: right">{{formatNum totals.num_pages 0}}</td>
 							<td style="text-align: right">{{formatNum totals.amount_real}}</td>
+							{{#unless is_beboer}}
+								<td>&nbsp;</td>
+							{{/unless}}
 						</tr>
 					</tfoot>
 					<tbody>
@@ -64,9 +67,6 @@
 										</td>
 										<td style="text-align: right">{{formatNum amount_real}}</td>
 									</tr>
-									{{#unless is_beboer}}
-										<td>&nbsp;</td>
-									{{/unless}}
 								{{/each}}
 							{{else}}
 								<tr>
