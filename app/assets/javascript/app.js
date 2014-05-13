@@ -182,7 +182,7 @@ $(function() {
 
 		index: function()
 		{
-			bs.title("Blindern Studenterhjem Intern");
+			bs.title("Foreningen Blindern Studenterhjem");
 			var v = new bs.views.Index();
 			vh.push(v);
 		},
@@ -219,7 +219,7 @@ $(function() {
 
 		group: function(name)
 		{
-			bs.title(name+" (gruppe)");
+			bs.title("Laster...");
 			var m = new bs.models.Group({
 				'unique_id': name
 			});

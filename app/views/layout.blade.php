@@ -20,9 +20,9 @@ if ($user)
 
     <title>@yield('title')</title>
 
-    <link href="{{ asset('assets/stylesheets/frontend.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/stylesheets/frontend.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/javascript/frontend.js') }}"></script>
-    
+
     <script type="text/javascript">
     var logged_in = <?php echo json_encode((bool) $user); ?>;
     var user = <?php echo json_encode($userdetails); ?>;
@@ -49,7 +49,7 @@ if ($user)
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{{ URL::to('/') }}}/">BS Intern</a>
+            <a class="navbar-brand" href="{{{ URL::to('/') }}}/" title="Foreningen Blindern Studenterhjem">FBS</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -68,6 +68,12 @@ if ($user)
                   <li{{ (Request::is('printer/fakturere') ? ' class="active"' : '') }}><a href="{{{ URL::to('printer/fakturere') }}}">Fakturering</a></li>
 	              </ul>
   	          </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dugnaden <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li{{ (Request::is('dugnaden/old/list') ? ' class="active"' : '') }}><a href="{{{ URL::to('dugnaden/old/list') }}}">Dugnadsinnkalling</a></li>
+                </ul>
+              </li>
               @endif
               <li{{ (Request::is('arrplan') ? ' class="active"' : '') }}><a href="{{{ URL::to('arrplan') }}}">Arrangementplan</a></li>
             </ul>
@@ -81,7 +87,7 @@ if ($user)
             		</ul>
             	</li>
             	@else
-              <li><a href="{{{ URL::to('login') }}}">Logg inn</a></li>
+              <li><a href="{{{ URL::to('login') }}}">Logg inn / registrer</a></li>
             	@endif
             </ul>
           </div><!--/.nav-collapse -->
