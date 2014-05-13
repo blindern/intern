@@ -25,28 +25,14 @@ class AuthController extends Controller {
 			$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
 			// send forespørsel
-			$res = mail("henrist@henrist.net", "Printbruker - {$_POST['username']}", "Ønsker tilgang til printer:
+			$res = mail("henrist@henrist.net", "Foreningsbruker - {$_POST['username']}", "Ønsker opprettelse av foreningsbruker:
 
-E-post: {$_POST['email']}
-Brukernavn: {$_POST['username']}
+Info til admin:
 
 Kommandoer:
-smbldap-useradd -aG beboer -N \"{$_POST['fornavn']}\" -S \"{$_POST['etternavn']}\" {$_POST['username']}
+smbldap-useradd -a -N \"{$_POST['fornavn']}\" -S \"{$_POST['etternavn']}\" {$_POST['username']}
+ldapaddusertogroup {$_POST['username']} beboer
 ldapmodifyuser {$_POST['username']}
-
-changetype: modify
-replace: userPassword
-userPassword: $unixpass
--
-add: sambaNTPassword
-sambaNTPassword: $smbpass
--
-add: mail
-mail: {$_POST['email']}".($phone ? "
--
-add: phone
-phone: $phone" : "")."
-
 
 changetype: modify
 replace: userPassword
@@ -62,7 +48,11 @@ replace: phone
 phone: $phone" : "")."
 
 
-Internmail: ".(isset($_POST['internmail']) ? 'Ja' : 'Nei')."
+Internmail: ".(isset($_POST['internmail']) ? 'Ja
+**********************
+** MERK: INTERNMAIL **
+**********************' : 'Nei')."
+
 
 Sendt fra {$_SERVER['REMOTE_ADDR']}
 {$_SERVER['HTTP_USER_AGENT']}", "From: lpadmin@foreningenbs.no\r\nReply-To: $replyto");
