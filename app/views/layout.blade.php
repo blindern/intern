@@ -18,7 +18,7 @@ if ($user)
     <meta name="author" content="">
     <!--<link rel="shortcut icon" href="../../assets/ico/favicon.png">-->
 
-    <title>@yield('title')</title>
+    <title>@yield('title', 'Foreningen Blindern Studenterhjem')</title>
 
     <link href="{{ asset('assets/stylesheets/frontend.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/javascript/frontend.js') }}"></script>
@@ -101,10 +101,10 @@ if ($user)
       	<!--<?php /*echo implode("", Messages::get());*/ ?>-->
 
       	<div class="page-header">
-          <h1 id="page_title">@yield('title')</h1>
+          <h1 id="page_title">@yield('title', 'Foreningen Blindern Studenterhjem')</h1>
         </div>
         <div id="content">
-          @yield('content')
+          @yield('content', '<p>Foreningen Blindern Studenterhjem</p>')
         </div>
       </div>
     </div>
