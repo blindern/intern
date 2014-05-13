@@ -37,9 +37,28 @@ bs.views.User = bs.views.BaseView.extend({
 		var data = this.model.toJSON();
 		for (group in data.groups)
 		{
-			data.groups[group].groupadmin = bs.groupIsAdmin(data.groups[group].name);
+			var name = data.groups[group].name;
+
+			var x = data.group_relations[name];
+			var found = false;
+			for (k in x)
+			{
+				if (x[k] == name)
+				{
+					found = true;
+					data.groups[group].inherited = false;
+					break;
+				}
+			}
+
+			if (!found)
+			{
+				data.groups[group].inherited = x;
+			}
+			data.groups[group].groupadmin = bs.groupIsAdmin(name);
 		}
 
 		this.$el.html(this.template(data));
+		bs.title(this.model.get("realname"));
 	}
 });

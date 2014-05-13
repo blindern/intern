@@ -309,13 +309,14 @@ $(document).on("click", "a:not([data-bypass])", function(evt) {
 
 
 // check if we can admin a group
-bs.groupIsAdmin = function(groupNames, realadmin)
+bs.groupIsAdmin = function(group, realadmin)
 {
-	return bs.inGroup(groupNames, realadmin, true);
+	if (!realadmin && window.useradmin) return true;
+	return (group in window.user.groupowner_relations);
 };
 
 // check if we are in a group
-bs.inGroup = function(groupNames, forceRealMember, admingroup)
+bs.inGroup = function(groupNames, forceRealMember)
 {
 	if (!window.logged_in) return false;
 	if (!forceRealMember && window.useradmin) return true;
@@ -328,8 +329,7 @@ bs.inGroup = function(groupNames, forceRealMember, admingroup)
 	for (var i = 0; i < groupNames.length; i++)
 	{
 		var group = groupNames[i];
-		var g = admingroup ? (group.indexOf('_admin') != -1 ? group : group + '_admin') : group;
-		if (g in window.user.groups) return true;
+		if (group in window.user.group_relations) return true;
 	};
 
 	return false;

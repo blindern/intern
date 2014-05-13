@@ -45,7 +45,7 @@ class Group  {
 			}
 		}
 
-		return static::$cache[$groupname];
+		return !isset(static::$cache[$groupname]) ? null : static::$cache[$groupname];
 	}
 
 	/**
@@ -88,12 +88,34 @@ class Group  {
 	 */
 	protected $is_new = false;
 
+	/*
+	 * owners => list of owners grouped by users and subgroups
+	 * members => list of members grouped by users and subgroups
+	 * members_relation => expanded list of members with source group in subarray
+	 * members_data => user-model collection
+	 */
+
 	/**
 	 * Members of the group
 	 *
-	 * @var array for username strings
+	 * @var array(x => array(y1, y2)) as in user x is in the array because of y1 and y2
+	 */
+	protected $members_relation;
+
+	/**
+	 * Member objects
+	 */
+	protected $members_objs;
+
+	/**
+	 * Members, subgrouped in 'users' and 'groups'
 	 */
 	protected $members;
+
+	/**
+	 * Owners, subgrouped in 'users' and 'groups'
+	 */
+	protected $owners;
 
 	/**
 	 * Constructor
@@ -105,8 +127,26 @@ class Group  {
 	{
 		if (isset($attributes['members']))
 		{
-			$this->setMembers($attributes['members']);
+			$this->members = $attributes['members'];
 			unset($attributes['members']);
+		}
+
+		if (isset($attributes['members_data']))
+		{
+			$this->setMembers($attributes['members_data']);
+			unset($attributes['members_data']);
+		}
+
+		if (isset($attributes['members_relation']))
+		{
+			$this->members_relation = $attributes['members_relation'];
+			unset($attributes['members_relation']);
+		}
+
+		if (isset($attributes['owners']))
+		{
+			$this->owners = $attributes['owners'];
+			unset($attributes['owners']);
 		}
 
 		$this->attributes = $attributes;
@@ -126,10 +166,11 @@ class Group  {
 	 */
 	public function setMembers($list)
 	{
-		$this->members = array();
+		$this->members_objs = array();
+		if (!isset($list)) return;
 		foreach ($list as $user)
 		{
-			$this->members[] = is_array($user) ? User::find($user['unique_id'], $user) : $user;
+			$this->members_objs[] = is_array($user) ? User::find($user['unique_id'], $user) : $user;
 		}
 	}
 
@@ -146,7 +187,7 @@ class Group  {
 			$response = Request::get(Helper::uri('group/'.$this->unique_id))->send();
 			if (isset($response->body['result']['members']))
 			{
-				$this->setMembers($response->body['result']['groups']);
+				$this->setMembers($response->body['result']['members']);
 			}
 		}
 	}
@@ -158,7 +199,12 @@ class Group  {
 	 */
 	public function getMembers()
 	{
-		if ($this->members == null)
+		if (!is_null($this->members_relation))
+		{
+			return array_keys($this->members_relation);
+		}
+
+		if ($this->members_objs == null)
 		{
 			// load members
 			$response = Request::get(Helper::uri('group/'.$this->unique_id))->send();
@@ -168,10 +214,10 @@ class Group  {
 			}
 		}
 
-		if ($this->members != null)
+		if ($this->members_objs != null)
 		{
 			$list = array();
-			foreach ($this->members as $user)
+			foreach ($this->members_objs as $user)
 			{
 				$list[] = $user instanceof User ? $user->username : $user;
 			}
@@ -187,9 +233,9 @@ class Group  {
 	 */
 	public function getMemberObjs()
 	{
-		if (!empty($this->members) && ($this->members[0] instanceof User))
+		if (!empty($this->members_objs) && ($this->members_objs[0] instanceof User))
 		{
-			return $this->members;
+			return $this->members_objs;
 		}
 	}
 
@@ -272,10 +318,10 @@ class Group  {
 			unset($d[$e]);
 
 		// members?
-		if (!is_null($this->members) && $expand_members > 0)
+		if (!is_null($this->members_objs) && $expand_members > 0)
 		{
 			$members = array();
-			foreach ($this->members as $user)
+			foreach ($this->members_objs as $user)
 			{
 				if ($user instanceof User)
 				{
@@ -289,7 +335,14 @@ class Group  {
 				}
 			}
 
-			return array_merge($d, array("members" => $members));
+			$d = array_merge($d, array("members" => $members));
+		}
+
+		if ($expand_members > 0)
+		{
+			$d = array_merge($d, array("owners" => $this->owners));
+			$d = array_merge($d, array("members_real" => $this->members));
+			$d = array_merge($d, array("members_relation" => $this->members_relation));
 		}
 
 		return $d;

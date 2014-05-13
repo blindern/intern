@@ -87,6 +87,20 @@ class User implements UserInterface, RemindableInterface {
 	protected $groups;
 
 	/**
+	 * List of group relations
+	 *
+	 * @var array
+	 */
+	protected $group_relations;
+
+	/**
+	 * List of ownership relations
+	 *
+	 * @var array
+	 */
+	protected $groupowner_relations;
+
+	/**
 	 * Create a new generic User object.
 	 *
 	 * @param  array  $attributes
@@ -98,6 +112,23 @@ class User implements UserInterface, RemindableInterface {
 		{
 			$this->setGroups($attributes['groups']);
 			unset($attributes['groups']);
+		}
+
+		if (isset($attributes['groups_relation']))
+		{
+			$this->group_relations = $attributes['groups_relation'];
+			unset($attributes['groups_relation']);
+
+			if (is_null($this->groups))
+			{
+				$this->groups = array_keys($this->group_relations);
+			}
+		}
+
+		if (isset($attributes['groupsowner_relation']))
+		{
+			$this->groupowner_relations = $attributes['groupsowner_relation'];
+			unset($attributes['groupsowner_relation']);
 		}
 
 		$this->attributes = $attributes;
@@ -145,6 +176,13 @@ class User implements UserInterface, RemindableInterface {
 				return true;
 			}
 		}
+		/*foreach ($this->groups_relation as $name => $bygroup)
+		{
+			if ($name == $group || $name == $allow_superadmin)
+			{
+				return true;
+			}
+		}*/
 
 		return false;
 	}
@@ -156,22 +194,28 @@ class User implements UserInterface, RemindableInterface {
 	 */
 	public function groups($refresh = false)
 	{
-		if ($refresh || is_null($this->groups))
+		if ($refresh || (is_null($this->groups) && is_null($this->groups_relation)))
 		{
 			$this->loadGroups();
 		}
 
-		$list = array();
 		if (!is_null($this->groups))
 		{
+			$list = array();
 			foreach ($this->groups as $group)
 			{
 				if (is_string($group)) $list[] = $group;
 				else $list[] = $group->name;
 			}
+			return $list;
+		}
+
+		if (!is_null($this->groups_relation))
+		{
+			return array_keys($this->groups_relation);
 		}
 		
-		return $list;
+		return array();
 	}
 
 	/**
@@ -200,6 +244,9 @@ class User implements UserInterface, RemindableInterface {
 			{
 				$this->setGroups($response->body['result']['groups']);
 			}
+
+			$this->group_relations = $response->body['result']['groups_relation'];
+			$this->groupowner_relations = $response->body['result']['groupsowner_relation'];
 		}
 	}
 
@@ -328,8 +375,13 @@ class User implements UserInterface, RemindableInterface {
 					$groups[] = $group;
 				}
 			}
+			$d = array_merge($d, array("groups" => $groups));
+		}
 
-			return array_merge($d, array("groups" => $groups));
+		if ($expand_groups > 0)
+		{
+			$d = array_merge($d, array("group_relations" => $this->group_relations));
+			$d = array_merge($d, array("groupowner_relations" => $this->groupowner_relations));
 		}
 
 		return $d;

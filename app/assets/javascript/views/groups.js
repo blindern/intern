@@ -14,6 +14,31 @@ bs.views.Group = bs.views.BaseView.extend({
 
 	render: function()
 	{
-		this.$el.html(this.template(this.model.toJSON()));
+		var data = this.model.toJSON();
+		for (user in data.members)
+		{
+			var name = data.members[user].username;
+
+			var x = data.members_relation[name];
+			var found = false;
+			for (k in x)
+			{
+				if (x[k] == data.name)
+				{
+					found = true;
+					data.members[user].inherited = false;
+					break;
+				}
+			}
+
+			if (!found)
+			{
+				data.members[user].inherited = x;
+			}
+			data.members[user].groupadmin = bs.groupIsAdmin(name);
+		}
+
+		this.$el.html(this.template(data));
+		bs.title('Gruppe: '+this.model.get("name"));
 	}
 });

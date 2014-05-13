@@ -17,11 +17,40 @@
 			{{#each groups}}
 				<tr>
 					<td><a href="/intern/group/{{name}}">{{name}}</a></td>
-					<td>{{#if description}}{{description}}{{else}}&nbsp;{{/if}}</td>
+					<td>
+						{{#if description}}{{description}}{{/if}}
+						{{#if inherited}}
+							{{#if description}}
+								<br />
+							{{/if}}
+							<span class="text-muted">
+							(Indirekte medlem gjennom
+								{{#each inherited}}{{!
+									}}{{#unless @first}},{{/unless}}
+									<a href="/intern/group/{{this}}">{{this}}</a>{{!
+								}}{{/each}}{{!
+							}})
+							</span>
+						{{/if}}
+						{{#unless description}}
+							{{#unless inherited}}
+								&nbsp;
+							{{/unless}}
+						{{/unless}}
+					</td>
 				</tr>
 			{{/each}}
 		</tbody>
 	</table>
 {{else}}
 	<i>Ingen grupper</i>
+{{/if}}
+
+{{#if groupowner_relations}}
+	<h2>Administrator for</h2>
+	<ul>
+		{{#each groupowner_relations}}
+			<li><a href="/intern/group/{{@key}}">{{@key}}</a> (delegert fra {{this}})</li>
+		{{/each}}
+	</ul>
 {{/if}}

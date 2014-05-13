@@ -18,13 +18,50 @@
 		</thead>
 		<tbody>
 			{{#each members}}
-				<tr>
+				<tr{{#if inherited}} style="opacity: 0.5"{{/if}}>
 					<td><a href="/intern/user/{{username}}">{{username}}</a></td>
-					<td>{{realname}}</td>
+					<td>
+						{{realname}}
+						{{#if inherited}}
+							<br />
+							<span class="text-muted">
+							(Indirekte medlem gjennom
+								{{#each inherited}}{{!
+									}}{{#unless @first}},{{/unless}}
+									<a href="/intern/group/{{this}}">{{this}}</a>{{!
+								}}{{/each}}{{!
+							}})
+							</span>
+						{{/if}}
+					</td>
 				</tr>
 			{{/each}}
 		</tbody>
 	</table>
 {{else}}
 	Ingen medlemmer i gruppa
+{{/if}}
+
+{{#if members_real.groups}}
+	<h3>Grupper som er medlemmer</h3>
+	<p>Medlemmer i disse gruppene er også medlemmer av denne gruppa.</p>
+	<ul>
+		{{#each members_real.groups}}
+			<li><a href="/intern/group/{{this}}">{{this}}</a></li>
+		{{/each}}
+	</ul>
+{{/if}}
+
+<h2>Administratorer</h2>
+{{#if owners}}
+	<ul>
+		{{#each owners.groups}}
+			<li>Gruppe: <a href="/intern/group/{{this}}">{{this}}</a></li>
+		{{/each}}
+		{{#each owners.users}}
+			<li><a href="/intern/user/{{this}}">{{this}}</a></li>
+		{{/each}}
+	</ul>
+{{else}}
+	<p>Ingen administratorer er satt.</p>
 {{/if}}
