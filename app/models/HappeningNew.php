@@ -12,7 +12,7 @@ use \Eluceo\iCal\Property\Event\RecurrenceRule;
 class HappeningNew {
 	public static function getHappenings()
 	{
-		$url = "https://blindern-studenterhjem.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
+		$url = "https://foreningenbs.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
 		$data = file_get_contents($url);
 		
 		$data = json_decode($data, true);
@@ -258,5 +258,14 @@ class HappeningNew {
 	public function isRecurring()
 	{
 		return !!$this->frequency;
+	}
+
+	/**
+	 * Check if ended
+	 */
+	public function expired()
+	{
+		$end = new \DateTime($this->end);
+		return $end->format("U") < time();
 	}
 }

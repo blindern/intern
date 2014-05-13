@@ -1,11 +1,85 @@
 <?php
 
+use Blindern\Intern\Passtools\pw;
+
 class AuthController extends Controller {
 	public function get_login() {
 		return View::make('auth/login');
 	}
 
 	public function post_login() {
+		// registrere?
+		if (isset($_POST['fornavn']) && isset($_POST['etternavn']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']))
+		{
+			if (strlen($_POST['password']) < 8)
+				return View::make('auth/login', array(
+					"reg_msg_class" => "danger",
+					"reg_msg" => "Passordet må være minst 8 tegn."));
+
+			$smbpass = pw::smbpass($_POST['password']);
+			$unixpass = pw::unixpass($_POST['password']);
+
+			$replyto = preg_replace("/\s/", "", $_POST['email']);
+			$_POST['username'] = strtolower($_POST['username']);
+
+			$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+
+			// send forespørsel
+			$res = mail("henrist@henrist.net", "Printbruker - {$_POST['username']}", "Ønsker tilgang til printer:
+
+E-post: {$_POST['email']}
+Brukernavn: {$_POST['username']}
+
+Kommandoer:
+smbldap-useradd -aG beboer -N \"{$_POST['fornavn']}\" -S \"{$_POST['etternavn']}\" {$_POST['username']}
+ldapmodifyuser {$_POST['username']}
+
+changetype: modify
+replace: userPassword
+userPassword: $unixpass
+-
+add: sambaNTPassword
+sambaNTPassword: $smbpass
+-
+add: mail
+mail: {$_POST['email']}".($phone ? "
+-
+add: phone
+phone: $phone" : "")."
+
+
+changetype: modify
+replace: userPassword
+userPassword: $unixpass
+-
+replace: sambaNTPassword
+sambaNTPassword: $smbpass
+-
+replace: mail
+mail: {$_POST['email']}".($phone ? "
+-
+replace: phone
+phone: $phone" : "")."
+
+
+Internmail: ".(isset($_POST['internmail']) ? 'Ja' : 'Nei')."
+
+Sendt fra {$_SERVER['REMOTE_ADDR']}
+{$_SERVER['HTTP_USER_AGENT']}", "From: lpadmin@foreningenbs.no\r\nReply-To: $replyto");
+
+			if (!$res) {
+				return View::make('auth/login', array(
+					"reg_msg_class" => "danger",
+					"reg_msg" => "Kunne ikke legge til forespørsel. Kontakt printeroppmann!"));
+			}
+
+			//echo "Din forespørsel er nå sendt. Du får svar når brukeren er klar.";
+
+			return View::make('auth/login', array(
+				"reg_msg_class" => "success",
+				"reg_msg" => "Din forespørsel er nå sendt. Du får svar når brukeren er klar."));
+		}
+
 		$user = array(
 			'username' => Input::get('username'),
 			'password' => Input::get('password')

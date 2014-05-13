@@ -1,8 +1,51 @@
-<p>Velg en av handlingene i menyen ovenfor.
+<p>Foreningen Blindern Studenterhjem er en sosial forening, hvis formål er å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer informasjon om Blindern Studenterhjem og foreningen, se <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">http://blindern-studenterhjem.no/livet/foreningsstyret</a>.</p>
+<p>Disse nettsidene er hovedsaklig myntet på foreningens medlemmer, og mange av sidene er beskyttet med passord.</p>
+
+<hr />
+
+<div class="row fbs_forside_lenker">
+	<div class="col-sm-3">
+		<p><a href="http://blindern-studenterhjem.no/"><span>Blindern Studenterhjems<br />nettside</span></a></p>
+	</div>
+	<div class="col-sm-3">
+		<p><a href="/wiki/Beboersiden"><span>Beboerside og matmeny</span></a></p>
+	</div>
+	<div class="col-sm-3">
+		<p><a href="/wiki/">Wiki</a></p>
+	</div>
+	<div class="col-sm-3">
+		<p><a href="https://p.foreningenbs.no/"><span>Printeroppsett <span>(oppsett, veiledning, feilsøking m.v.)</span></span></a></p>
+	</div>
+</div>
+
+<div class="row fbs_forside_lenker small">
+	<div class="col-sm-2">
+		<p><a href="http://blindern-studenterhjem.no/smaabruket"><span>Småbruket studenthytte <span>(foreningens hytte)</span></span></a></p>
+	</div>
+	<div class="col-sm-2">
+		<p><a href="http://blindern-studenterhjem.no/dugnaden/">Dugnaden</a></p>
+	</div>
+	<div class="col-sm-2">
+		<p><a href="/wiki/VPN"><span>Filområde / VPN <span>(dokumenter i foreningen)</span></a></p>
+	</div>
+	<div class="col-sm-2">
+		<p><a href="/wiki/Internmailen"><span>Internmail <span>(meld deg på!)</span></span></a></p>
+	</div>
+	<div class="col-sm-2">
+		<p><a href="http://blindern-studenterhjem.no/statutter/"><span>Statutter, reglement, instrukser og retningslinjer</span></a></p>
+	</div>
+	<div class="col-sm-2">
+		<p><a href="/tools/"><span>Verktøykasse <span>(for administrator)</span></span></a></p>
+	</div>
+</div>
+
+<hr />
+
+<p>
 	{{#unless user}}
-		Du får flere handlinger ved å være logget inn.
+		Du får flere handlinger ved å <a href="/intern/login">logge inn med foreningsbrukeren din</a>.
 	{{/unless}}
- </p>
- {{#if user}}
- 	<p>Du er innlogget som {{user.realname}} (<a href="/intern/user/{{user.username}}">{{user.username}}</a>).</p>
- {{/if}}
+</p>
+{{#if user}}
+	<p>Du er innlogget som <a href="/intern/user/{{user.username}}">{{user.username}}</a> ({{user.realname}}).</p>
+{{/if}}
