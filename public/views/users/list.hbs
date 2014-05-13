@@ -9,6 +9,7 @@
 					<th>Brukernavn</th>
 					<th>Navn</th>
 					<th>E-post</th>
+					<th>Telefon</th>
 					<th>Grupper</th>
 				</tr>
 			</thead>
@@ -22,14 +23,18 @@
 						{{else}}{{#if email}}
 							<td>{{email}}</td>
 						{{else}}
-							<td><i>Ukjent</i></td>
+							<td class="text-muted"><i>Ukjent</i></td>
 						{{/if}}{{/if}}
+						<td>
+							{{#if phone}}{{phone}}
+							{{else}}&nbsp;{{/if}}
+						</td>
 						<td>
 							{{#each groups}}
 								<a href="/intern/group/{{this}}">{{this}}</a><!--
 								-->{{#unless @last}},{{/unless}}
 							{{else}}
-								<i>Ingen grupper</i>
+								<i class="text-muted">Ingen grupper</i>
 							{{/each}}
 						</td>
 					</tr>
