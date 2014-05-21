@@ -15,6 +15,7 @@ bs.views.Group = bs.views.BaseView.extend({
 	render: function()
 	{
 		var data = this.model.toJSON();
+		var user;
 		for (user in data.members)
 		{
 			var name = data.members[user].username;
