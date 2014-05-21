@@ -7,7 +7,8 @@ class PrinterUsageController extends \Controller {
 	public function index()
 	{
 		// TODO: Error message
-		if (!\Auth::member("lpadmin")) return;
+		//if (!\Auth::member("lpadmin")) return;
+		if (!\Auth::check()) return;
 
 		$from = \Input::get("from");
 		$to = \Input::get("to");

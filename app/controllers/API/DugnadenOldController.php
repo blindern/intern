@@ -3,7 +3,8 @@
 class DugnadenOldController extends \Controller {
 	public function index()
 	{
-		if (!\Auth::member("dugnaden"))
+		//if (!\Auth::member("dugnaden"))
+		if (!\Auth::check())
 		{
 			return array();
 		}
