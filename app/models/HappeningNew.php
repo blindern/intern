@@ -266,6 +266,8 @@ class HappeningNew {
 	public function expired()
 	{
 		$end = new \DateTime($this->end);
-		return $end->format("U") < time();
+		$now = new \DateTime();
+		$now->setTime(0, 0, 0);
+		return $end->format("U") < $now->format("U");
 	}
 }
