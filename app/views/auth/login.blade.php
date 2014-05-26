@@ -61,7 +61,7 @@
 
 		<?php if (!isset($reg_msg_class) || $reg_msg_class != "success"): ?>
 
-		<p>Dette er en tjeneste for beboere ved Blindern Studenterhjem. Har du øvrige spørsmål ta kontakt med <a href="http://blindern-studenterhjem.no/administrasjonen">hjemmets administrasjonen</a>.</p>
+		<p>Dette er en tjeneste for beboere ved Blindern Studenterhjem. Har du øvrige spørsmål ta kontakt med <a href="http://blindern-studenterhjem.no/administrasjonen">hjemmets administrasjon</a>.</p>
 
 		<p style="color: #FF0000">Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent for andre brukere.</p>
 		<p>Du vil kunne bruke dette brukernavnet og passordet til å logge inn på forskjellige tjenester på BS (som f.eks. printeren i biblionette, wikien og Blindernåret).</p>
