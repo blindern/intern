@@ -25,7 +25,7 @@ class AuthController extends Controller {
 			$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
 			// send forespørsel
-			$res = mail("henrist@henrist.net", "Foreningsbruker - {$_POST['username']}", "Ønsker opprettelse av foreningsbruker:
+			$res = mail("it-gruppa@foreningenbs.no", "Foreningsbruker - {$_POST['username']}", "Ønsker opprettelse av foreningsbruker:
 
 Info til admin:
 
@@ -44,8 +44,8 @@ sambaNTPassword: $smbpass
 replace: mail
 mail: {$_POST['email']}".($phone ? "
 -
-replace: phone
-phone: $phone" : "")."
+replace: mobile
+mobile: $phone" : "")."
 
 
 Internmail: ".(isset($_POST['internmail']) ? 'Ja
@@ -60,7 +60,7 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 			if (!$res) {
 				return View::make('auth/login', array(
 					"reg_msg_class" => "danger",
-					"reg_msg" => "Kunne ikke legge til forespørsel. Kontakt printeroppmann!"));
+					"reg_msg" => "Kunne ikke legge til forespørsel. Kontakt <a href=\"mailto:it-gruppa@foreningenbs.no\">IT-gruppa</a>!"));
 			}
 
 			//echo "Din forespørsel er nå sendt. Du får svar når brukeren er klar.";
@@ -75,12 +75,14 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 			'password' => Input::get('password')
 		);
 
-		if (Auth::attempt($user, Input::get('remember_me')))
+		$res = Auth::attempt($user, Input::get('remember_me'));
+		if ($res)
 		{
 			return Redirect::to('/user/'.Auth::user()->username);
 		}
 
-		return View::make('auth/login');
+		return View::make('auth/login', array(
+			"login_error" => 'Ukjent brukernavn eller passord.'));
 	}
 
 	public function action_logout() {

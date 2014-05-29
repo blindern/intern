@@ -15,7 +15,7 @@
 		{{ Form::open(array("class" => "form-horizontal", "role" => "form")) }}
 
 			<?php if (isset($login_error)): ?>
-				<div class="error"><?php echo $login_error; ?></div>
+				<div class="bg-danger" style="padding: 15px; margin: 15px 0"><?php echo $login_error; ?></div>
 			<?php endif; ?>
 
 			<div class="form-group">
