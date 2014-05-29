@@ -111,7 +111,7 @@ if ($user)
 
     <div id="footer" class="hidden-print">
       <div class="container">
-        <p class="text-muted credit"><a href="/">Foreningen Blindern Studenterhjem</a> - Kontakt <a href="mailto:henrist@henrist.net">Henrik Steen</a> ved henvendelser vedr. denne siden - <a href="https://github.com/blindern/intern">GitHub-prosjekt</a></p>
+        <p class="text-muted credit"><a href="/">Foreningen Blindern Studenterhjem</a> - Kontakt <a href="mailto:it-gruppa@foreningenbs.no">it-gruppa@foreningenbs.no</a> ved henvendelser vedr. denne siden - <a href="https://github.com/blindern/intern">GitHub-prosjekt</a></p>
       </div>
     </div>
   </body>
