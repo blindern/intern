@@ -107,10 +107,27 @@ code {
 
 /* For arrangementplan */
 .fbs_happenings {
+  .lowPriority {
+    color: lighten(#000, 50%);
+    &:hover {
+      color: #000;
+    }
+  }
+  .highPriority {
+    color: darken(#FF0000, 20%);
+    &:hover {
+      color: #000;
+    }
+  }
   .old-happening {
     color: lighten(#000, 70%);
     &:hover {
       color: #000;
+    }
+  }
+  .event-date {
+    @media (min-width: @screen-md-min) {
+      text-align: right;
     }
   }
 }

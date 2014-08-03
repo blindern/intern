@@ -51,12 +51,13 @@ class HappeningNew {
 					$is_info = false;
 
 					// match date
-					if (preg_match("~^(\\d{4}-\\d\\d-\\d\\d)( \\d\\d:\\d\\d)?(->(\\d{4}-\\d\\d-\\d\\d)? ?(\\d\\d:\\d\\d)?)?$~", $row, $matches))
+					if (preg_match("~^(\\d{4}-\\d\\d-\\d\\d)( \\d\\d:\\d\\d)?(->(\\d{4}-\\d\\d-\\d\\d)? ?(\\d\\d:\\d\\d)?)? ?(.*)$~", $row, $matches))
 					{
 						// 1 => from date
 						// 2 => from time
 						// 4 =>   to date
 						// 5 =>   to time
+						// 6 => title with options
 
 						$from = $matches[1] . (!empty($matches[2]) ? $matches[2] : '');
 						$to = $from;
@@ -67,12 +68,74 @@ class HappeningNew {
 						}
 
 						$cur = new static();
-						$cur->start = $from;
-						$cur->end   = $to;
+						$cur->start = trim($from);
+						$cur->end   = trim($to);
 						$cur->allday     = empty($matches[2]) || empty($matches[5]);
 
-						$get_title = true;
+						// title can be specified at the date/time-line, or it's own line
+						if ($matches[6])
+						{
+							preg_match("~^(.+?)(\\s+\\((.+?)\\))?(\\s+(LOW|MEDIUM|HIGH))?$~", $matches[6], $submatches);
+
+							$cur->title = trim($submatches[1]);
+							$res[] = $cur;
+							$res_times[] = $cur->start . $cur->end;
+							$get_title = false;
+
+							if (!empty($submatches[3]))
+							{
+								$cur->by = trim($submatches[3]);
+							}
+
+							if (!empty($submatches[5]))
+							{
+								$pri = trim($submatches[5]);
+								switch ($pri)
+								{
+								case "LOW":
+									$cur->priority = "low";
+									break;
+								case "HIGH":
+									$cur->priority = "high";
+									break;
+								default:
+									$cur->priority = "medium";
+								}
+							}
+						}
+						else
+						{
+							$get_title = true;
+						}
 					}
+
+					// comment?
+					// comments are special and only contains date and comments!
+					elseif (preg_match("~^COMMENT (\\d{4}-\\d\\d-\\d\\d)$~", $row, $matches))
+					{
+						$from = $matches[1];
+						$to = $from;
+
+						$cur = new static();
+						$cur->isComment = true;
+						$cur->start = trim($from);
+						$cur->end   = trim($to);
+
+						$res[] = $cur;
+						$res_times[] = $cur->start . $cur->end;
+						$blanks = 0;
+					}
+				}
+
+				elseif ($cur->isComment())
+				{
+					while ($blanks > 0)
+					{
+						$cur->comment .= "\n";
+						$blanks--;
+					}
+					$cur->comment .= trim(substr($row, 2));
+					$blanks = 0;
 				}
 
 				else
@@ -100,6 +163,23 @@ class HappeningNew {
 							$is_info = false;
 						}
 
+						elseif (substr($row, 2, 4) == "PRI:")
+						{
+							$pri = trim(substr($row, 6));
+							switch ($pri)
+							{
+							case "LOW":
+								$cur->priority = "low";
+								break;
+							case "HIGH":
+								$cur->priority = "high";
+								break;
+							default:
+								$cur->priority = "medium";
+							}
+							$is_info = false;
+						}
+
 						elseif (substr($row, 2, 5) == "INFO:")
 						{
 							$cur->info = trim(substr($row, 7));
@@ -116,9 +196,10 @@ class HappeningNew {
 						// additional information (on new line)
 						elseif (substr($row, 2, 2) == "  " && $is_info)
 						{
-							while ($blanks-- > -1)
+							while ($blanks > 0)
 							{
 								$cur->info .= "\n";
+								$blanks--;
 							}
 							$cur->info .= trim($row);
 							$blanks = 0;
@@ -134,9 +215,13 @@ class HappeningNew {
 		}
 	}
 
+	public $isComment;
+	public $comment;
+
 	public $title;
 	public $by;
 	public $place;
+	public $priority = "medium";
 	public $start;
 	public $end;
 	public $info;
@@ -261,6 +346,14 @@ class HappeningNew {
 	}
 
 	/**
+	 * Check if event is simply a comment
+	 */
+	public function isComment()
+	{
+		return $this->isComment;
+	}
+
+	/**
 	 * Check if ended
 	 */
 	public function expired()
@@ -269,5 +362,45 @@ class HappeningNew {
 		$now = new \DateTime();
 		$now->setTime(0, 0, 0);
 		return $end->format("U") < $now->format("U");
+	}
+
+	/**
+	 * Get array representation (for API)
+	 */
+	public function toArray()
+	{
+		if ($this->isComment())
+		{
+			return array(
+				"type" => "comment",
+				"date" => (new \DateTime($this->start))->format("Y-m-d"),
+				"comment" => $this->comment
+			);
+		}
+
+		$d = array(
+			"type" => ($this->isRecurring() ? "event_recurring" : "event"),
+			"title" => $this->title,
+			"by" => $this->by,
+			"place" => $this->place,
+			"priority" => $this->priority,
+			"start" => $this->start,
+			"end" => $this->end,
+			"info" => $this->info,
+			"allday" => $this->allday
+		);
+
+		if ($this->isRecurring())
+		{
+			$d["frequency"] = $this->frequency;
+			$d["interval"] = $this->interval;
+			$d["count"] = $this->count;
+		}
+
+		// this should really be done in the view, but we simplify..
+		$d['expired'] = $this->expired();
+		$d['duration'] = ($this->isRecurring() ? $this->getDurationRecurring() : $this->getDuration());
+
+		return $d;
 	}
 }

@@ -20,10 +20,12 @@ Route::get('/', $bb);
 
 
 // calendar
-Route::get('arrplan', 'KalenderController@action_index');
+Route::get('arrplan', $bb);
+Route::get('arrplan/{sem}', $bb);
 Route::get('arrplan.ics', 'KalenderController@action_ics');
 Route::get('arrplan.ical', 'KalenderController@action_ics');
 Route::get('kalender.ical', 'KalenderController@action_ics');
+Route::resource('api/arrplan', "API\\ArrplanController", array('only' => array('index')));
 
 // printer
 Route::group(array('before' => 'auth'), function()

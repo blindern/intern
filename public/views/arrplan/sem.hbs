@@ -1,0 +1,32 @@
+<!--<h2>Arrangementer: {{title}} ({{sem}})</h2>-->
+
+{{#if events}}
+	<h3>Arrangementer</h3>
+	{{#each events}}
+		<div class="row{{#if expired}} old-happening{{/if}}{{#if lowPriority}} lowPriority{{/if}}{{#if highPriority}} highPriority{{/if}}">
+			<div class="col-sm-3 event-date">{{{duration}}}</div>
+			<div class="col-sm-9">{{title}}{{#if by}} <span style="color: #AAA">[{{by}}]</span>{{/if}}</div>
+		</div>
+	{{/each}}
+{{/if}}
+
+{{#if recurring}}
+	<h3>Øvrige aktiviteter</h3>
+
+	{{#each recurring}}
+		<div class="row">
+			<div class="col-sm-3 event-date">{{{duration}}}</div>
+			<div class="col-sm-9">{{title}}{{#if by}} <span style="color: #AAA">[{{by}}]</span>{{/if}}</div>
+		</div>
+	{{/each}}
+{{/if}}
+
+{{#if comments}}
+	<h3>Kommentarer</h3>
+	<dl>
+		{{#each comments}}
+			<dt>{{date}}</dt>
+			<dd>{{{comment}}}</dd>
+		{{/each}}
+	</dl>
+{{/if}}

@@ -170,6 +170,8 @@ $(function() {
 	var router = Backbone.Router.extend({
 		routes: {
 			"": "index",
+			'arrplan': 'arrplan',
+			'arrplan/:sem': 'arrplan',
 			"printer/fakturere": "printer_fakturere",
 			"printer/siste": "printer_last",
 			'groups': 'grouplist',
@@ -258,6 +260,17 @@ $(function() {
 			var v = new bs.views.DugnadOld({
 				collection: c
 			});
+			vh.push(v, c.fetch());
+		},
+
+		arrplan: function(sem)
+		{
+			bs.title("Arrangementplan på Blindern Studenterhjem");
+			var c = new bs.collections.Arrplan();
+			var v = new bs.views.Arrplan({
+				collection: c
+			});
+			if (sem) v.sem = sem;
 			vh.push(v, c.fetch());
 		},
 
