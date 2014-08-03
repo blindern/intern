@@ -142,7 +142,7 @@ bs.views.PrinterFakturereList = bs.views.BaseView.extend({
 			printer.users.each(function(u) {
 				var user = {
 					realname: self.par.collection.realnames[u.get("username")],
-					utflyttet: self.par.collection.utflyttet[u.get("username")],
+					utflyttet: $.inArray(u.get("username"), self.par.collection.utflyttet) != -1,
 					months: []
 				};
 				var totals_u = new summer(totals_p);
