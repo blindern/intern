@@ -46,6 +46,7 @@ class KalenderController extends BaseController {
 
 		foreach ($happenings as $happening)
 		{
+			if ($happening->isComment()) continue;
 			$cal->addEvent($happening->getEvent());
 		}
 
