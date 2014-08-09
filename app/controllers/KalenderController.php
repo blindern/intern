@@ -51,8 +51,8 @@ class KalenderController extends BaseController {
 		}
 
 		$response = Response::make($cal->render(), 200, array(
-			#'Content-Type' => 'text/calendar; charset=utf-8',
-			#'Content-Disposition' => 'attachment; filename="cal.ics"'
+			'Content-Type' => 'text/calendar; charset=utf-8',
+			'Content-Disposition' => 'inline; filename="cal.ics"'
 		));
 
 		return $response;
