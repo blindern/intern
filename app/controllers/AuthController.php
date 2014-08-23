@@ -24,17 +24,16 @@ class AuthController extends Controller {
 
 			$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
-			// send forespørsel
-			$res = mail("it-gruppa@foreningenbs.no", "Foreningsbruker - {$_POST['username']}", "Ønsker opprettelse av foreningsbruker:
-
-Info til admin:
-
-Kommandoer:
-smbldap-useradd -a -N \"{$_POST['fornavn']}\" -S \"{$_POST['etternavn']}\" {$_POST['username']}
+			// lag fil som kan brukes
+			$f = "/fbs/drift/nybruker/".uniqid();
+			$f1 = $f.".sh";
+			$f2 = $f.".ldif";
+			file_put_contents($f1,
+"smbldap-useradd -a -N \"{$_POST['fornavn']}\" -S \"{$_POST['etternavn']}\" {$_POST['username']}
 ldapaddusertogroup {$_POST['username']} beboer
-ldapmodifyuser {$_POST['username']}
-
-changetype: modify
+ldapmodifyuser {$_POST['username']} <$f2\n");
+			file_put_contents($f2,
+"changetype: modify
 replace: userPassword
 userPassword: $unixpass
 -
@@ -45,13 +44,28 @@ replace: mail
 mail: {$_POST['email']}".($phone ? "
 -
 replace: mobile
-mobile: $phone" : "")."
+mobile: $phone" : "")."\n");
+
+			// send forespørsel
+			$res = mail("it-gruppa@foreningenbs.no", "Foreningsbruker - {$_POST['username']}", "Ønsker opprettelse av foreningsbruker:
 
 
-Internmail: ".(isset($_POST['internmail']) ? 'Ja
+Info til IT-gruppa:
+
+Fornavn: \"{$_POST['fornavn']}\"
+Etternavn: \"{$_POST['etternavn']}\"
+E-post: \"{$_POST['email']}\"
+Ønsket brukernavn: \"{$_POST['username']}\"
+Mobilnr: ".($phone ? "\"$phone\"" : "ikke registrert")."
+
+Kommando for å opprette:
+bash $f1
+
+Internmail: ".(isset($_POST['internmail']) ? "Ja
 **********************
 ** MERK: INTERNMAIL **
-**********************' : 'Nei')."
+{$_POST['email']} {$_POST['fornavn']} {$_POST['etternavn']}
+**********************" : 'Nei')."
 
 
 Sendt fra {$_SERVER['REMOTE_ADDR']}
