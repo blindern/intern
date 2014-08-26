@@ -25,26 +25,17 @@ class AuthController extends Controller {
 			$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
 			// lag fil som kan brukes
-			$f = "/fbs/drift/nybruker/".uniqid();
-			$f1 = $f.".sh";
-			$f2 = $f.".ldif";
-			file_put_contents($f1,
-"smbldap-useradd -a -N \"{$_POST['fornavn']}\" -S \"{$_POST['etternavn']}\" {$_POST['username']}
-ldapaddusertogroup {$_POST['username']} beboer
-ldapmodifyuser {$_POST['username']} <$f2\n");
-			file_put_contents($f2,
-"changetype: modify
-replace: userPassword
-userPassword: $unixpass
--
-replace: sambaNTPassword
-sambaNTPassword: $smbpass
--
-replace: mail
-mail: {$_POST['email']}".($phone ? "
--
-replace: mobile
-mobile: $phone" : "")."\n");
+			$n = uniqid().".sh";
+			$f = "/fbs/drift/nybruker/$n";
+			file_put_contents($f,
+"FIRSTNAME=".escapeshellarg($_POST['fornavn'])."
+LASTNAME=".escapeshellarg($_POST['etternavn'])."
+USERNAME=".escapeshellarg($_POST['username'])."
+MAIL=".escapeshellarg($_POST['email'])."
+PHONE=".escapeshellarg($phone)."
+PASS=".escapeshellarg($unixpass)."
+NTPASS=".escapeshellarg($smbpass)."
+");
 
 			// send forespørsel
 			$res = mail("it-gruppa@foreningenbs.no", "Foreningsbruker - {$_POST['username']}", "Ønsker opprettelse av foreningsbruker:
@@ -59,7 +50,7 @@ E-post: \"{$_POST['email']}\"
 Mobilnr: ".($phone ? "\"$phone\"" : "ikke registrert")."
 
 Kommando for å opprette:
-bash $f1
+/fbs/drift/nybruker/process.sh $n
 
 Internmail: ".(isset($_POST['internmail']) ? "Ja
 **********************
@@ -81,7 +72,7 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 
 			return View::make('auth/login', array(
 				"reg_msg_class" => "success",
-				"reg_msg" => "Din forespørsel er nå sendt. Du får svar når brukeren er klar."));
+				"reg_msg" => "Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert."));
 		}
 
 		$user = array(
