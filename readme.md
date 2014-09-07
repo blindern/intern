@@ -1,6 +1,6 @@
 # Internside Blindern Studenterhjem
 
-Koden som kjører systemet på https://blindern-studenterhjem.no/intern/
+Koden som kjører systemet på https://foreningenbs.no/intern/
 
 Siden har til hensikt og ha litt forskjellige verktøy for å gjøre
 ulike oppgaver på studenterhjemmet, slik som å generere rapporter
