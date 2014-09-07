@@ -10,7 +10,7 @@
 		}
 	],
 	"require": {
-		"laravel/framework": "4.1.*",
+		"laravel/framework": "4.2.*",
 		"nesbot/Carbon": "*",
 		"twitter/bootstrap": "3.0.3",
 		"eluceo/ical": "dev-master",

@@ -67,7 +67,7 @@ class AuthManager extends Manager {
 	 *
 	 * @return string
 	 */
-	protected function getDefaultDriver()
+	public function getDefaultDriver()
 	{
 		return $this->app['config']['auth.driver'];
 	}
