@@ -24,6 +24,9 @@ bower install
 grunt less concat
 ```
 
+Passord til MongoDB-serveren må lagres i filen ```/app/config/database-pw-mongodb.php```
+som filens eneste innhold.
+
 Kan også kjøre ```grunt watch``` mens man gjør endringer.
 
 For kjapp oppdatering av produksjonsserver kjør ```deploy.sh```-scriptet.
