@@ -14,7 +14,8 @@
 		"nesbot/Carbon": "*",
 		"twitter/bootstrap": "3.0.3",
 		"eluceo/ical": "dev-master",
-		"nategood/httpful": "*"
+		"nategood/httpful": "*",
+		"jenssegers/mongodb": "*"
 	},
 	"autoload": {
 		"classmap": [

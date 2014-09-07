@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mongodb',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -81,6 +81,15 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'prefix'   => '',
+		),
+
+		'mongodb' => array(
+			'driver'   => 'mongodb',
+			'host'     => 'vpn.foreningenbs.no',
+			'port'     => 27017,
+			'username' => 'laravel',
+			'password' => require "database-pw-mongodb.php", // denne filen skal KUN inneholde passordet!
+			'database' => 'intern'
 		),
 
 	),

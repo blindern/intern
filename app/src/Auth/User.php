@@ -3,6 +3,7 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Httpful\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class User implements UserInterface, RemindableInterface {
 	/**
@@ -157,6 +158,41 @@ class User implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Get the token value for the "remember me" session.
+	 *
+	 * @return string
+	 */
+	public function getRememberToken()
+	{
+		$u = $this->getLocalUser();
+		if (isset($u->remember_token))
+			return $u->remember_token;
+	}
+
+	/**
+	 * Set the token value for the "remember me" session.
+	 *
+	 * @param  string  $value
+	 * @return void
+	 */
+	public function setRememberToken($value)
+	{
+		$u = $this->getLocalUser();
+		$u->remember_token = $value;
+		$u->save();
+	}
+
+	/**
+	 * Get the column name for the "remember me" token.
+	 *
+	 * @return string
+	 */
+	public function getRememberTokenName()
+	{
+		return 'remember_token';
+	}
+
+	/**
 	 * Check if user is in a group
 	 *
 	 * @param string $group Name of group
@@ -298,6 +334,25 @@ class User implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	/**
+	 * Get object for local user storage
+	 */
+	public function getLocalUser()
+	{
+		static $user = null;
+		if (is_null($user))
+		{
+			try {
+				$user = LocalUser::where('username', $this->attributes['username'])->firstOrFail();
+			} catch (ModelNotFoundException $e) {
+				$user = new LocalUser;
+				$user->username = $this->attributes['username'];
+				$user->save();
+			}
+		}
+		return $user;
 	}
 
 	/**
