@@ -25,7 +25,7 @@ grunt less concat
 ```
 
 Passord til MongoDB-serveren må lagres i filen ```/app/config/database-pw-mongodb.php```
-som filens eneste innhold.
+som en tekst som returneres av PHP.
 
 Kan også kjøre ```grunt watch``` mens man gjør endringer.
 
