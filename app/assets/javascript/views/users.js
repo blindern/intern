@@ -21,7 +21,8 @@ bs.views.Users = bs.views.BaseView.extend({
 					'users': []
 				}
 			],
-			'hidemail': !window.logged_in //!bs.inGroup(['useradmin', 'kollegiet', 'dugnaden', 'foreningsstyret'])
+			'hidemail': !window.logged_in, //!bs.inGroup(['useradmin', 'kollegiet', 'dugnaden', 'foreningsstyret'])
+			'user_count': 0
 		};
 
 		this.collection.each(function(model)
@@ -33,6 +34,7 @@ bs.views.Users = bs.views.BaseView.extend({
 			            ? 2
 			            : 1));
 			data.sections[i].users.push(model.toJSON());
+			data.user_count++;
 		});
 
 		this.$el.html(this.template(data));
