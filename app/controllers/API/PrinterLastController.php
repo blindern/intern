@@ -6,7 +6,7 @@ class PrinterLastController extends \Controller {
 	public function index()
 	{
 		// hent siste utskrifter fra printserveren
-		$last = @json_decode(@file_get_contents("https://p.blindern-studenterhjem.no/api.php?method=pykotalast"), true);
+		$last = @json_decode(@file_get_contents("https://p.foreningenbs.no/api.php?method=pykotalast"), true);
 
 		// fetch all usernames
 		$users = array();
