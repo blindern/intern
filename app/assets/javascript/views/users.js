@@ -14,6 +14,11 @@ bs.views.Users = bs.views.BaseView.extend({
 					'paneltag': 'panel-info',
 					'title': 'Andre brukere',
 					'users': []
+				},
+				{
+					'paneltag': 'panel-info',
+					'title': 'Utflyttede',
+					'users': []
 				}
 			],
 			'hidemail': !window.logged_in //!bs.inGroup(['useradmin', 'kollegiet', 'dugnaden', 'foreningsstyret'])
@@ -22,7 +27,12 @@ bs.views.Users = bs.views.BaseView.extend({
 		this.collection.each(function(model)
 		{
 			var groups = model.get("groups");
-			data.sections[$.inArray('beboer', groups) == -1 ? 1 : 0].users.push(model.toJSON());
+			var i = ($.inArray('beboer', groups) != -1
+			         ? 0
+			         : ($.inArray('utflyttet', groups) != -1
+			            ? 2
+			            : 1));
+			data.sections[i].users.push(model.toJSON());
 		});
 
 		this.$el.html(this.template(data));
