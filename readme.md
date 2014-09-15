@@ -19,7 +19,7 @@ Rammeverket som brukes heter Laravel.
 2. Gå til mappene filene ble lastet ned
 3. Installer globale nodejs-avhengigheter (må ha root-tilgang): ```$ npm install -g bower grunt-cli```
 4. Installer lokale nodejs-avhengigheter: ```$ npm install```
-5. Sett opp lokal konfigurasjon (se lenger ned)
+5. Sett opp [lokal konfigurasjon](#lokal-konfigurasjon)
 
 ### Oppdatering
 1. Oppdater avhengigheter: ```$ bower install``` (```bower``` laster ned/oppdaterer js/css-avhengigheter)
