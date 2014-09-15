@@ -1,3 +1,4 @@
+/.env.php
 /bootstrap/compiled.php
 /vendor
 composer.phar
@@ -9,4 +10,3 @@ Thumbs.db
 /public/assets/stylesheets/frontend.css
 error_log
 /bower_components/
-/app/config/database-pw-mongodb.php

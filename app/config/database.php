@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'blindern',
 			'username'  => 'blindern_intern',
-			'password'  => 'SUVTNFtfqd6w4MS5', // for development server, it's no real secret :)
+			'password'  => $_ENV['INTERN_MYSQL_PASS'],
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'intern_',
@@ -88,7 +88,7 @@ return array(
 			'host'     => 'vpn.foreningenbs.no',
 			'port'     => 27017,
 			'username' => 'laravel',
-			'password' => require "database-pw-mongodb.php", // denne filen skal KUN inneholde passordet!
+			'password' => $_ENV['INTERN_MONGODB_PASS'],
 			'database' => 'intern'
 		),
 

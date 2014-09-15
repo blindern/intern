@@ -24,10 +24,17 @@ bower install
 grunt less concat
 ```
 
-Passord til MongoDB-serveren må lagres i filen ```/app/config/database-pw-mongodb.php```
-som en tekst som returneres av PHP.
+Det må lages en spesiell fil hvor man legger inn passord. Denne skal kalles ```.env.php``` og ligge i rotmappa.
+```php
+<?php
+
+return array(
+	'INTERN_KEY' => 'REPLACE',
+	'INTERN_MONGODB_PASS' => 'REPLACE',
+	'INTERN_MYSQL_PASS' => 'REPLACE'
+);
+```
 
 Kan også kjøre ```grunt watch``` mens man gjør endringer.
 
 For kjapp oppdatering av produksjonsserver kjør ```deploy.sh```-scriptet.
-

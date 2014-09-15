@@ -66,7 +66,7 @@ return array(
 	|
 	*/
 
-	'key' => 'HK5Dd7XqlNWFG3JD5OGV5kREOPgFTG5D',
+	'key' => $_ENV['INTERN_KEY'],
 
 	/*
 	|--------------------------------------------------------------------------
