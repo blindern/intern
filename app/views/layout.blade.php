@@ -53,12 +53,19 @@ if ($user)
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              @if ($user)
+              <li{{ (Request::is('arrplan') ? ' class="active"' : '') }}><a href="{{{ URL::to('arrplan') }}}">Arrangementplan</a></li>
+              {{--@if ($user)--}}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brukere og grupper <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li{{ (Request::is('users') ? ' class="active"' : '') }}><a href="{{{ URL::to('users') }}}">Brukerliste</a></li>
                   <li{{ (Request::is('groups') ? ' class="active"' : '') }}><a href="{{{ URL::to('groups') }}}">Gruppeliste</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dugnaden <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li{{ (Request::is('dugnaden/old/list') ? ' class="active"' : '') }}><a href="{{{ URL::to('dugnaden/old/list') }}}">Dugnadsinnkalling</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -68,14 +75,7 @@ if ($user)
                   <li{{ (Request::is('printer/fakturere') ? ' class="active"' : '') }}><a href="{{{ URL::to('printer/fakturere') }}}">Fakturering</a></li>
 	              </ul>
   	          </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dugnaden <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li{{ (Request::is('dugnaden/old/list') ? ' class="active"' : '') }}><a href="{{{ URL::to('dugnaden/old/list') }}}">Dugnadsinnkalling</a></li>
-                </ul>
-              </li>
-              @endif
-              <li{{ (Request::is('arrplan') ? ' class="active"' : '') }}><a href="{{{ URL::to('arrplan') }}}">Arrangementplan</a></li>
+              {{--@endif--}}
             </ul>
             <ul class="nav navbar-nav navbar-right">
             	@if ($user)
