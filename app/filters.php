@@ -38,6 +38,15 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::to('login');
 });
 
+Route::filter('auth-api', function()
+{
+	if (Auth::guest())
+	{
+		$res = Response::make("Login required.", 403);
+		return $res;
+	}
+});
+
 
 Route::filter('auth.basic', function()
 {
