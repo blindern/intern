@@ -169,11 +169,12 @@ $(function() {
 	var inited = false; // prevent catchAll to loop at page loading
 	var router = Backbone.Router.extend({
 		routes: {
-			"": "index",
+			'': 'index',
 			'arrplan': 'arrplan',
 			'arrplan/:sem': 'arrplan',
-			"printer/fakturere": "printer_fakturere",
-			"printer/siste": "printer_last",
+			'bokdatabase': 'bokdatabase',
+			'printer/fakturere': 'printer_fakturere',
+			'printer/siste': 'printer_last',
 			'groups': 'grouplist',
 			'group/:name': 'group',
 			'users': 'userlist',
@@ -186,6 +187,13 @@ $(function() {
 		{
 			bs.title("Foreningen Blindern Studenterhjem");
 			var v = new bs.views.Index();
+			vh.push(v);
+		},
+
+		bokdatabase: function()
+		{
+			bs.title("Bokdatabase");
+			var v = new bs.views.Bokdatabase();
 			vh.push(v);
 		},
 

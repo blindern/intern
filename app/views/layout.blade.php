@@ -55,6 +55,7 @@ if ($user)
             <ul class="nav navbar-nav">
               <li{{ (Request::is('arrplan') ? ' class="active"' : '') }}><a href="{{{ URL::to('arrplan') }}}">Arrangementplan</a></li>
               {{--@if ($user)--}}
+              <li{{ (Request::is('bokdatabase') ? ' class="active"' : '') }}><a href="{{{ URL::to('bokdatabase') }}}">Bokdatabase</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brukere og grupper <b class="caret"></b></a>
                 <ul class="dropdown-menu">

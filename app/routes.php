@@ -13,6 +13,8 @@
 
 Route::get('/', 'JsController@index');
 
+// bokdatabase
+Route::get('bokdatabase', 'JsController@index');
 
 // calendar
 Route::get('arrplan', 'JsController@index');
