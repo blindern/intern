@@ -41,7 +41,7 @@ class KalenderController extends BaseController {
 		//$happenings = Happening::all();
 		$happenings = HappeningNew::getHappenings();
 
-		$cal = new Calendar("blindern-studenterhjem.no");
+		$cal = new Calendar("foreningenbs.no");
 		$cal->setName("Blindern Studenterhjem");
 
 		foreach ($happenings as $happening)

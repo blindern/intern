@@ -14,7 +14,7 @@ class PrinterUsageController extends \Controller {
 		$to = \Input::get("to");
 
 		// hent data fra printserveren
-		$data = @json_decode(@file_get_contents("https://p.blindern-studenterhjem.no/api.php?method=fakturere&from=$from&to=$to"), true);
+		$data = @json_decode(@file_get_contents("https://p.foreningenbs.no/api.php?method=fakturere&from=$from&to=$to"), true);
 
 		// fetch all usernames
 		$usernames = array();

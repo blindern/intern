@@ -27,7 +27,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://blindern-studenterhjem.no/intern',
+	'url' => 'http://foreningenbs.no/intern',
 
 	/*
 	|--------------------------------------------------------------------------
