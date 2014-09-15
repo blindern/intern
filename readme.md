@@ -11,20 +11,26 @@ Rammeverket som brukes heter Laravel.
 
 ## Oppsett
 
-* Npm brukes for å installere bower, grunt osv (package.json)
-* Bower brukes for js/css-avhengigheter (bower.json)
-* Grunt brukes for å kompilere js/css-filer (Gruntfile.js)
+### Nødvendige pakker på maskinen
+* Vi trenger ```npm``` (```$ sudo apt-get install npm``` på Ubuntu) for å sette opp en del av verktøyene vi bruker
 
-For å sette opp dette:
+### Installasjon
+1. Hent filer fra GitHub: ```$ git clone https://github.com/blindern/intern.git```
+2. Gå til mappene filene ble lastet ned
+3. Installer globale nodejs-avhengigheter (må ha root-tilgang): ```$ npm install -g bower grunt-cli```
+4. Installer lokale nodejs-avhengigheter: ```$ npm install```
+5. Sett opp lokal konfigurasjon (se lenger ned)
 
-```
-npm install
-export PATH=$PATH:`pwd`/node_modules/.bin
-bower install
-grunt less concat
-```
+### Oppdatering
+1. Oppdater avhengigheter: ```$ bower install``` (```bower``` laster ned/oppdaterer js/css-avhengigheter)
+2. Oppdater statiske filer: ```$ grunt``` (vil også kjøre "watcher", trykk ```Ctrl+C``` for å avslutte)
 
-Det må lages en spesiell fil hvor man legger inn passord. Denne skal kalles ```.env.php``` og ligge i rotmappa.
+### Utvikling
+1. Kjør ```grunt``` og la den kjøre i bakgrunnen mens man gjør utvikling, så vil nye CSS- og JavaScript-filer bli generert automatisk ved endringer.
+
+### Lokal konfigurasjon
+
+Det må lages en spesiell fil hvor man legger inn passord, så dette ikke legges i Git-repoet. Denne skal kalles ```.env.php``` og ligge i rotmappa.
 ```php
 <?php
 
@@ -34,7 +40,3 @@ return array(
 	'INTERN_MYSQL_PASS' => 'REPLACE'
 );
 ```
-
-Kan også kjøre ```grunt watch``` mens man gjør endringer.
-
-For kjapp oppdatering av produksjonsserver kjør ```deploy.sh```-scriptet.

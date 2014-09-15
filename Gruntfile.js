@@ -70,7 +70,11 @@ module.exports = function(grunt)
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	
 	// Task definition
-	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('default', [
+		'less',
+		'concat',
+		'watch'
+	]);
 
 	//$collection->add('../vendor/twitter/bootstrap/less/bootstrap.less')->apply('Less');
 	//$collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
