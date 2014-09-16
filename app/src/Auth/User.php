@@ -2,7 +2,6 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Httpful\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class User implements UserInterface, RemindableInterface {
@@ -20,7 +19,7 @@ class User implements UserInterface, RemindableInterface {
 		{
 			if (!$data)
 			{
-				$response = Request::get(Helper::uri('user/'.$username))->send();
+				$response = Helper::get('user/'.$username);
 
 				if (isset($response->body['result']))
 				{
@@ -45,7 +44,7 @@ class User implements UserInterface, RemindableInterface {
 	 */
 	public static function all()
 	{
-		$response = Request::get(Helper::uri('users') . "?grouplevel=1")->send();
+		$response = Helper::get('users?grouplevel=1');
 
 		$users = array();
 		if (isset($response->body['result']))
@@ -273,7 +272,7 @@ class User implements UserInterface, RemindableInterface {
 	{
 		if (is_null($this->groups) || ($force_full_structure && isset($this->groups[0]) && !($this->groups[0] instanceof Group)))
 		{
-			$response = Request::get(Helper::uri('user/'.$this->unique_id) . "?grouplevel=2")->send();
+			$response = Helper::get('user/'.$this->unique_id."?grouplevel=2");
 
 			$this->groups = null;
 			if (isset($response->body['result']['groups']))

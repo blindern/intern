@@ -2,7 +2,6 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Httpful\Request;
 
 class Group  {
 	/**
@@ -22,7 +21,7 @@ class Group  {
 		{
 			if (!$data)
 			{
-				$response = Request::get(Helper::uri('group/'.$groupname))->send();
+				$response = Helper::get('group/'.$groupname);
 
 				if (isset($response->body['result']))
 				{
@@ -53,7 +52,7 @@ class Group  {
 	 */
 	public static function all()
 	{
-		$response = Request::get(Helper::uri('groups'))->send();
+		$response = Helper::get('groups');
 
 		$groups = array();
 		if (isset($response->body['result']))
@@ -184,7 +183,7 @@ class Group  {
 		 */
 		if (!empty($this->members) && !($this->members[0] instanceof User))
 		{
-			$response = Request::get(Helper::uri('group/'.$this->unique_id))->send();
+			$response = Helper::get('group/'.$this->unique_id);
 			if (isset($response->body['result']['members']))
 			{
 				$this->setMembers($response->body['result']['members']);
@@ -207,7 +206,7 @@ class Group  {
 		if ($this->members_objs == null)
 		{
 			// load members
-			$response = Request::get(Helper::uri('group/'.$this->unique_id))->send();
+			$response = Helper::get('group/'.$this->unique_id);
 			if (isset($response->body['result']['members']))
 			{
 				$this->__construct($response->body['result']);

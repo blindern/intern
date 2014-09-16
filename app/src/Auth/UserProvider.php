@@ -3,7 +3,6 @@
 use Illuminate\Database\Connection;
 use Illuminate\Hashing\HasherInterface;
 use Illuminate\Auth;
-use Httpful\Request;
 
 class UserProvider implements Auth\UserProviderInterface {
 	/**
@@ -88,10 +87,10 @@ class UserProvider implements Auth\UserProviderInterface {
 	 */
 	public function validateCredentials(Auth\UserInterface $user, array $credentials)
 	{
-		$response = Request::post(Helper::uri('simpleauth'), http_build_query(array(
+		$response = Helper::post('simpleauth', /*http_build_query(*/array(
 			"username" => $credentials['username'],
 			"password" => $credentials['password']
-		)))->contentType('form')->send();
+		/*)*/), false)->contentType('form')->send();
 
 		return isset($response->body['result']);
 	}

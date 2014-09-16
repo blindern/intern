@@ -76,6 +76,7 @@ return array(
 	'useradmin_group' => 'useradmin',
 
 	'blindern-auth' => array(
-		'api' => 'https://foreningenbs.no/users-api/'
+		'api' => 'https://foreningenbs.no/users-api/',
+		'api-key' => $_ENV['INTERN_USERS_API_KEY']
 	)
 );
