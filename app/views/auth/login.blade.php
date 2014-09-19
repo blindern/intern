@@ -8,7 +8,7 @@
 
 <p>For å logge inn her må du benytte foreningsbrukeren din. Det er den du også bruker på foreningens printer, wiki m.v.</p>
 
-<div class="row">
+<div class="row" class="bs_login_form">
 	<div class="col-md-6">
 		<h2>Eksisterende bruker</h2>
 
@@ -56,7 +56,7 @@
 		<h2>Opprett ny bruker</h2>
 
 		<?php if (isset($reg_msg)): ?>
-			<p class="bg-<?php if ($reg_msg_class) echo $reg_msg_class; else echo "primary"; ?>" style="padding: 15px"><?php echo $reg_msg; ?></p>
+			<p class="regform_msg bg-<?php if ($reg_msg_class) echo $reg_msg_class; else echo "primary"; ?>" style="padding: 15px"><?php echo $reg_msg; ?></p>
 		<?php endif; ?>
 
 		<?php if (!isset($reg_msg_class) || $reg_msg_class != "success"): ?>

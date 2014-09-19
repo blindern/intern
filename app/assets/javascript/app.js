@@ -355,3 +355,28 @@ bs.inGroup = function(groupNames, forceRealMember)
 
 	return false;
 };
+
+
+// handle special pages that don't go through backbone router
+$(document).ready(function() {
+	// focus to username on login page
+	var loginform;
+	if (loginform = $('.bs_login_form'))
+	{
+		// are we in the register-process?
+		// there will be a message in the register form
+		var regmsg = $('.regform_msg');
+		if (regmsg.length > 0)
+		{
+			$('#regform_username').focus();
+		}
+
+		else
+		{
+			if ($('#form_username').val() != "")
+				$('#form_password').focus();
+			else
+				$('#form_username').focus();
+		}
+	}
+});
