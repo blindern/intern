@@ -19,10 +19,10 @@ Rammeverket som brukes heter Laravel.
 ### Installasjon
 1. Hent filer fra GitHub: ```$ git clone https://github.com/blindern/intern.git```
 2. Gå til mappene filene ble lastet ned
-3. Sett opp PHP-avhengigheter: ```$ composer install```
-4. Installer globale nodejs-avhengigheter (må ha root-tilgang): ```$ npm install -g bower grunt-cli```
-5. Installer lokale nodejs-avhengigheter: ```$ npm install```
-6. Sett opp [lokal konfigurasjon](#lokal-konfigurasjon)
+3. Sett opp [lokal konfigurasjon](#lokal-konfigurasjon) (må settes opp før neste trinn)
+4. Sett opp PHP-avhengigheter: ```$ composer install```
+5. Installer globale nodejs-avhengigheter (må ha root-tilgang): ```$ npm install -g bower grunt-cli```
+6. Installer lokale nodejs-avhengigheter: ```$ npm install```
 7. Fortsett på oppdatering
 
 ### Oppdatering
@@ -37,11 +37,25 @@ Rammeverket som brukes heter Laravel.
 Det må lages en spesiell fil hvor man legger inn passord, så dette ikke legges i Git-repoet. Denne skal kalles ```.env.php``` og ligge i rotmappa.
 ```php
 <?php
-
 return array(
     'INTERN_KEY' => 'REPLACE',
     'INTERN_MONGODB_PASS' => 'REPLACE',
     'INTERN_MYSQL_PASS' => 'REPLACE',
     'INTERN_USERS_API_KEY' => 'REPLACE'
 );
+?>
 ```
+
+## Oppsett for IT-gruppa
+For enklere utvikling kan man lagre utviklerversjonen direkte på foreningens server. Man kan da redigere den ved hjelp av f.eks. [nettverksmappa](https://foreningenbs.no/wiki/Foreningens_dokumentarkiv).
+
+1. Opprett din egen adresse ved å lage en mappe i ```/var/www/subdomains```. Hvis mappen kalles ```eksempel```, vil adressen ```https://eksempel.athene.foreningenbs.no/``` se etter filer i ```/var/www/subdomains/eksempel/public```.
+2. Opprett mappen ```/var/www/subdomains/<dinadresseher>/public```
+3. Lag filen ```/var/www/subdomains/<dinadresseher>/public/.htaccess``` med følgende innhold:
+```
+RewriteEngine On
+RewriteRule ^$ /intern/ [R,L]
+```
+4. Utfør [normal installasjon](#installasjon) ovenfor, gå først inn i mappen ```/var/www/subdomains/<dinadresseher>``` før du skriver ```git clone ...```
+5. Lag symlink slik at ```/intern/..```-forespørslene sendes til internsystemet: Gå inn i ```/var/www/subdomains/<dinadresseher>/public``` og skriv: ```ln -s ../intern/public intern```
+6. Du kan nå åpne din egen versjon av internsia ved å gå til https://<dinadresseher>.athene.foreningenbs.no
