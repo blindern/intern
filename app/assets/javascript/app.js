@@ -3,8 +3,6 @@
 			'printer/siste': 'printer_last',
 			'groups': 'grouplist',
 			'group/:name': 'group',
-			'users': 'userlist',
-			'user/:name': 'user',
 		},
 
 		printer_fakturere: function()
@@ -44,28 +42,6 @@
 				'unique_id': name
 			});
 			var v = new bs.views.Group({
-				model: m
-			});
-			vh.push(v, m.fetch());
-		},
-
-		userlist: function()
-		{
-			bs.title("Brukerliste");
-			var c = new bs.collections.Users();
-			var v = new bs.views.Users({
-				collection: c
-			});
-			vh.push(v, c.fetch());
-		},
-
-		user: function(name)
-		{
-			bs.title("Bruker");
-			var m = new bs.models.User({
-				'username': name
-			});
-			var v = new bs.views.User({
 				model: m
 			});
 			vh.push(v, m.fetch());
