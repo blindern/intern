@@ -1,0 +1,16 @@
+<p>Dugnad:
+	<select name="dugnad" ng-model="dugnad_id">
+		<option value="">Velg dugnad</option>
+		<option ng-repeat="dugnad in dugnader" value="{{$index}}">{{dugnad.date | customdate:'dddd D. MMMM YYYY'}} ({{dugnad.people.length}})</option>
+	</select>
+</p>
+<div id="dugnad_liste" style="page-break-before: always">
+	<div ng-repeat="person in dugnader[dugnad_id].people" class="person" style="page-break-inside: avoid; margin-top: 40px">
+		<h2 style="line-height: 80%">Påminnelse om dugnad<br /><span style="font-size: 70%">{{person.name}} (#{{person.room}})</a></h2>
+		<p>Du har dugnad på lørdag!</p>
+		<p>Hei, du er satt opp på dugnad {{dugnader[dugnad_id].date | customdate:'dddd D. MMMM YYYY'}}. Møt opp i peisestua klokken 10:00 iført arbeidsantrekk.</p>
+		<p>Dersom du ikke møter vil du bli tildelt ny dugnad og en bot på kroner 500,-</p>
+		<p>Dersom du ikke har mulighet til å møte på lørdag er det ditt eget ansvar å sørge for at noen andre stiller for deg.</p>
+		<p>Med vennlig hilsen<br />Dugnadsledelsen</p>
+	</div>
+</div>
