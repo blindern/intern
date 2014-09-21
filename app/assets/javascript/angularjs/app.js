@@ -9,8 +9,13 @@ var module = angular.module('intern', [
 	'intern.auth',
 	'intern.arrplan',
 	'intern.bokdatabase',
-	'intern.dugnaden'
+	'intern.dugnaden',
+	'intern.user'
 ]);
+
+module.controller('MainController', function($scope, AuthService) {
+	$scope.AuthService = AuthService;
+});
 
 module.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.otherwise({redirectTo: '/'});

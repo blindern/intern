@@ -36,7 +36,7 @@ if ($user)
     <![endif]-->
   </head>
 
-  <body>
+  <body ng-controller="MainController">
     <div id="wrap">
 
       <!-- Fixed navbar -->
@@ -55,20 +55,20 @@ if ($user)
               <li ng-class="{ active: isActive('/arrplan', '/arrplan/') }"><a href="arrplan">Arrangementplan</a></li>
               <li ng-class="{ active: isActive('/bokdatabase') }"><a href="bokdatabase">Bokdatabase</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brukere og grupper <b class="caret"></b></a>
+                <a href class="dropdown-toggle" data-toggle="dropdown">Brukere og grupper <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li ng-class="{ active: isActive('/users') }"><a href="users">Brukerliste</a></li>
                   <li ng-class="{ active: isActive('/groups') }"><a href="groups">Gruppeliste</a></li>
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dugnaden <b class="caret"></b></a>
+                <a href class="dropdown-toggle" data-toggle="dropdown">Dugnaden <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li ng-class="{ active: isActive('/dugnaden/old/list') }"><a href="dugnaden/old/list">Dugnadsinnkalling</a></li>
                 </ul>
               </li>
               <li class="dropdown">
-              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Printer <b class="caret"></b></a>
+              	<a href class="dropdown-toggle" data-toggle="dropdown">Printer <b class="caret"></b></a>
               	<ul class="dropdown-menu">
               	  <li ng-class="{ active: isActive('printer/siste') }"><a href="printer/siste">Siste utskrifter</a></li>
                   <li ng-class="{ active: isActive('printer/fakturere') }"><a href="printer/fakturere">Fakturering</a></li>
@@ -76,17 +76,15 @@ if ($user)
   	          </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            	@if ($user)
-              <li class="dropdown" ng-class="{ active: isActive('profile') }">
-            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{{ $user->realname or $user->username }}} <b class="caret"></b></a>
+            	<li ng-show="AuthService.isLoggedIn()" class="dropdown" ng-class="{ active: isActive('profile') }">
+            		<a href class="dropdown-toggle" data-toggle="dropdown">@{{AuthService.getUser().realname || AuthService.getUser().username}} <b class="caret"></b></a>
             		<ul class="dropdown-menu">
-            			<li><a href="{{{ URL::to('user/'.$user->username) }}}">Brukerinfo</a></li>
-            			<li><a href="{{{ URL::to('logout') }}}">Logg ut</a></li>
+            			<li><a ng-href="user/@{{AuthService.getUser().username}}">Brukerinfo</a></li>
+            			<li><a href="api/logout">Logg ut</a></li>
             		</ul>
             	</li>
-            	@else
-              <li><a href="{{{ URL::to('login') }}}">Logg inn / registrer</a></li>
-            	@endif
+              <li ng-show="!AuthService.isLoggedIn()"><a href="login">Logg inn</a></li>
+              <li ng-show="!AuthService.isLoggedIn()"><a href="register">Registrer</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

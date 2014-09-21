@@ -34,6 +34,15 @@ factory("AuthService", function($http) {
 	var useradmin = window.useradmin;
 
 	return {
+		isLoggedIn: function() {
+			return logged_in;
+		},
+		getUser: function() {
+			return user;
+		},
+		isUserAdmin: function() {
+			return useradmin;
+		},
 		login: function(credentials) {
 			console.log("api/login", credentials);
 			var login = $http.post('api/login', credentials);
