@@ -1,0 +1,17 @@
+<p ng-if="!groups">Laster informasjon..</p>
+<div ng-show="groups">
+	<table class="table table-striped nowrap table-condensed" style="width: auto">
+		<thead>
+			<tr>
+				<th>Gruppe</th>
+				<th>Beskrivelse</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="group in groups">
+				<td><a ng-href="/intern/group/{{group.name}}">{{group.name}}</a></td>
+				<td>{{group.description || '&nbsp;'}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

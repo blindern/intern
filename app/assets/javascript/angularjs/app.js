@@ -10,6 +10,7 @@ var module = angular.module('intern', [
 	'intern.arrplan',
 	'intern.bokdatabase',
 	'intern.dugnaden',
+	'intern.group',
 	'intern.user'
 ]);
 
