@@ -11,6 +11,7 @@ var module = angular.module('intern', [
 	'intern.bokdatabase',
 	'intern.dugnaden',
 	'intern.group',
+	'intern.printer',
 	'intern.user'
 ]);
 
