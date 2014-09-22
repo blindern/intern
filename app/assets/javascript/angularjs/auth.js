@@ -10,10 +10,23 @@ config(['$routeProvider', function($routeProvider) {
 	when('/register', {
 		templateUrl: 'views/auth/register.html',
 		controller: 'LoginController'
+	}).
+	when('/logout', {
+		template: '',
+		controller: 'LogoutController'
 	});
 }]).
 
+controller('LogoutController', function($location, AuthService) {
+	AuthService.logout().success(function() {
+		$location.path('/');
+	});
+}).
+
 controller("LoginController", function($scope, $location, AuthService, Page) {
+	if (AuthService.isLoggedIn())
+		$location.path('/');
+
 	if ($location.path() == "/register")
 		Page.setTitle('Registrer konto');
 	else
@@ -21,13 +34,13 @@ controller("LoginController", function($scope, $location, AuthService, Page) {
 
 	$scope.credentials = { username: '', password: '', remember_me: true };
 	$scope.login = function() {
-		console.log($scope.credentials);
-		var res = AuthService.login($scope.credentials);
-		console.log("res", res);
+		AuthService.login($scope.credentials).success(function() {
+			$location.path('/user/'+encodeURIComponent(AuthService.getUser().username));
+		});
 	};
 }).
 
-factory("AuthService", function($http) {
+factory("AuthService", function($http, $location) {
 	// these are injected in the main layout from Laravel
 	var logged_in = window.logged_in;
 	var user = window.user;
@@ -44,7 +57,6 @@ factory("AuthService", function($http) {
 			return useradmin;
 		},
 		login: function(credentials) {
-			console.log("api/login", credentials);
 			var login = $http.post('api/login', credentials);
 			login.success(function(res) {
 				if ('flash' in res) {
@@ -62,7 +74,7 @@ factory("AuthService", function($http) {
 			return login;
 		},
 		logout: function() {
-			return $http.post('api/logout').success(function() {
+			return $http.get('logout').success(function() {
 				logged_in = false;
 				user = null;
 				useradmin = null;
@@ -94,4 +106,21 @@ factory("AuthService", function($http) {
 			return false;
 		}
 	};
+}).
+
+// send to login page if required on page request
+config(function($httpProvider) {
+	$httpProvider.responseInterceptors.push(function($q, $location, $injector) {
+		return function(promise) {
+			return promise.then(function(response) {
+				return response;
+			}, function(response) {
+				if (response.status == 401 && response.data.error == 'login-required') {
+					$location.path('/login');
+					return $q.reject(response);
+				}
+				return $q.reject(response);
+			});
+		};
+	});
 });

@@ -41,7 +41,7 @@ Route::get('login', 'JsController@index');
 Route::get('register', 'JsController@index');
 Route::post('api/register', 'AuthController@register');
 Route::post('api/login', 'AuthController@login');
-Route::get('api/logout', 'AuthController@logout');
+Route::get('logout', 'AuthController@logout');
 
 // users and groups
 Route::group(array('before' => 'auth-api'), function()

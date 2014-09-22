@@ -42,8 +42,7 @@ Route::filter('auth-api', function()
 {
 	if (Auth::guest())
 	{
-		$res = Response::make("Login required.", 403);
-		return $res;
+		return Response::json(array('error' => 'login-required'), 401);
 	}
 });
 

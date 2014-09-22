@@ -70,21 +70,21 @@ if ($user)
               <li class="dropdown">
               	<a href class="dropdown-toggle" data-toggle="dropdown">Printer <b class="caret"></b></a>
               	<ul class="dropdown-menu">
-              	  <li ng-class="{ active: isActive('printer/siste') }"><a href="printer/siste">Siste utskrifter</a></li>
-                  <li ng-class="{ active: isActive('printer/fakturere') }"><a href="printer/fakturere">Fakturering</a></li>
+              	  <li ng-class="{ active: isActive('/printer/siste') }"><a href="printer/siste">Siste utskrifter</a></li>
+                  <li ng-class="{ active: isActive('/printer/fakturere') }"><a href="printer/fakturere">Fakturering</a></li>
 	              </ul>
   	          </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            	<li ng-show="AuthService.isLoggedIn()" class="dropdown" ng-class="{ active: isActive('profile') }">
+            	<li ng-show="AuthService.isLoggedIn()" class="dropdown">
             		<a href class="dropdown-toggle" data-toggle="dropdown">@{{AuthService.getUser().realname || AuthService.getUser().username}} <b class="caret"></b></a>
             		<ul class="dropdown-menu">
-            			<li><a ng-href="user/@{{AuthService.getUser().username}}">Brukerinfo</a></li>
-            			<li><a href="api/logout">Logg ut</a></li>
+            			<li ng-class="{ active: isActive('/user/'+AuthService.getUser().username) }"><a ng-href="user/@{{AuthService.getUser().username}}">Brukerinfo</a></li>
+            			<li><a href="logout">Logg ut</a></li>
             		</ul>
             	</li>
-              <li ng-show="!AuthService.isLoggedIn()"><a href="login">Logg inn</a></li>
-              <li ng-show="!AuthService.isLoggedIn()"><a href="register">Registrer</a></li>
+              <li ng-show="!AuthService.isLoggedIn()" ng-class="{ active: isActive('/login') }"><a href="login">Logg inn</a></li>
+              <li ng-show="!AuthService.isLoggedIn()" ng-class="{ active: isActive('/register') }"><a href="register">Registrer</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
