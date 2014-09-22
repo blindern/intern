@@ -35,7 +35,9 @@ controller("LoginController", function($scope, $location, AuthService, Page) {
 	$scope.credentials = { username: '', password: '', remember_me: true };
 	$scope.login = function() {
 		AuthService.login($scope.credentials).success(function() {
-			$location.path('/user/'+encodeURIComponent(AuthService.getUser().username));
+			var path = AuthService.getRedirectUrl();
+			if (!path) path = '/user/'+encodeURIComponent(AuthService.getUser().username);
+			$location.path(path);
 		});
 	};
 }).
@@ -45,6 +47,7 @@ factory("AuthService", function($http, $location) {
 	var logged_in = window.logged_in;
 	var user = window.user;
 	var useradmin = window.useradmin;
+	var redirect_url;
 
 	return {
 		isLoggedIn: function() {
@@ -79,6 +82,18 @@ factory("AuthService", function($http, $location) {
 				user = null;
 				useradmin = null;
 			});
+		},
+
+		// set redirect url to go to on login
+		setRedirectUrl: function(path) {
+			redirect_url = path;
+		},
+
+		// get (and reset) redirect url for login action
+		getRedirectUrl: function() {
+			var path = redirect_url;
+			redirect_url = null;
+			return path;
 		},
 
 		// check if we can admin a group
@@ -116,7 +131,9 @@ config(function($httpProvider) {
 				return response;
 			}, function(response) {
 				if (response.status == 401 && response.data.error == 'login-required') {
+					$injector.get('AuthService').setRedirectUrl($location.path());
 					$location.path('/login');
+					// TODO: information message
 					return $q.reject(response);
 				}
 				return $q.reject(response);
