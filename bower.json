@@ -8,7 +8,8 @@
     "angular": "1.2.x",
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
-    "angular-mocks": "~1.2.x"
+    "angular-mocks": "~1.2.x",
+    "angular-animate": "~1.2.x"
   },
   "devDependencies": {
     "bootstrap-datepicker": "~1.3.0"

@@ -12,6 +12,7 @@ module.exports = function(grunt)
 		"./bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.no.js",
 		"./bower_components/angular/angular.js",
 		"./bower_components/angular-route/angular-route.js",
+		"./bower_components/angular-animate/angular-animate.js",
 		//"./app/assets/javascript/app.js",
 		//"./app/assets/javascript/models/*.js",
 		//"./app/assets/javascript/collections/*.js",

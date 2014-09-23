@@ -94,7 +94,11 @@ if ($user)
 
       <div class="container">
 
-        <div ng-repeat="flash in flashes" class="bg-danger" style="padding: 15px; margin: 15px 0">@{{flash.message}}</div>
+        <div ng-repeat="flash in flashes" class="message-box-wrap">
+          <div class="message-box" ng-class="flash.type ? 'bg-'+flash.type : ''">
+            <b>@{{flash.date|customdate:'HH:mm:ss'}}:</b> <span ng-bind="flash.message"></span>
+          </div>
+        </div>
 
       	<div class="page-header">
           <h1 id="page_title" ng-bind="title">@yield('title', 'Foreningen Blindern Studenterhjem')</h1>

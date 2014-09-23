@@ -1,5 +1,7 @@
 <?php
 
+use Blindern\Intern\Helpers\Flash;
+use Blindern\Intern\Helpers\FlashCollection;
 use Blindern\Intern\Passtools\pw;
 
 class AuthController extends Controller {
@@ -8,7 +10,7 @@ class AuthController extends Controller {
 		if (isset($_POST['fornavn']) && isset($_POST['etternavn']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']))
 		{
 			if (strlen($_POST['password']) < 8)
-				return Response::json(array('flash' => array('message' => 'Passordet må være minst 8 tegn.')));
+				return Flash::forge('Passordet må være minst 8 tegn.')->setError()->asResponse(400);
 
 			$smbpass = pw::smbpass($_POST['password']);
 			$unixpass = pw::unixpass($_POST['password']);
@@ -57,14 +59,12 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 {$_SERVER['HTTP_USER_AGENT']}", "From: lpadmin@foreningenbs.no\r\nReply-To: $replyto");
 
 			if (!$res) {
-				return Response::json(array('flash' => array(
-					'message' => "Kunne ikke legge til forespørsel. Kontakt <a href=\"mailto:it-gruppa@foreningenbs.no\">IT-gruppa</a>!",
-					'type' => 'danger')));
+				return Flash::forge("Kunne ikke legge til forespørsel. Kontakt <a href=\"mailto:it-gruppa@foreningenbs.no\">IT-gruppa</a>!")
+					->setError()->asResponse(500);
 			}
 
-			return Response::json(array('flash' => array(
-				'message' => 'Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert.',
-				'type' => 'success')));
+			return Flash::forge('Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert.')
+				->setSuccess()->asResponse();
 		}
 	}
 
@@ -83,19 +83,11 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 			));
 		}
 
-		return Response::json(array(
-			'flash' => array(
-				'message' => 'Ukjent brukernavn eller passord.'
-			)
-		));
+		return Flash::forge('Ukjent brukernavn eller passord.')->setError()->asResponse(null, 401);
 	}
 
 	public function logout() {
 		Auth::logout();
-		return Response::json(array(
-			'flash' => array(
-				'message' => 'Logget ut.'
-			)
-		));
+		return Flash::forge("Logget ut")->setSuccess()->asResponse();
 	}
 }

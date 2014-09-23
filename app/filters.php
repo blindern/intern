@@ -1,5 +1,8 @@
 <?php
 
+use \Blindern\Intern\Helpers\Flash;
+use \Blindern\Intern\Helpers\FlashContainer;
+
 /*
 |--------------------------------------------------------------------------
 | Application & Route Filters
@@ -42,7 +45,7 @@ Route::filter('auth-api', function()
 {
 	if (Auth::guest())
 	{
-		return Response::json(array('error' => 'login-required'), 401);
+		return Response::json(null, 401, (new Flash("Denne siden krever at du logger inn."))->setError()->toHeader());
 	}
 });
 
