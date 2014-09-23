@@ -14,12 +14,9 @@ angular.module('intern.dugnaden', ['ngRoute', 'intern.helper.page'])
 	});
 }])
 
-.controller('DugnadenCtrl', function($rootScope, $scope, dugnader) {
-	$rootScope.title = 'Dugnadsinnkallinger';
+.controller('DugnadenCtrl', function($scope, dugnader, Page) {
+	Page.setTitle('Dugnadsinnkallinger');
 	$scope.dugnader = dugnader.data;
-
-	console.log(dugnader.data);
-
 })
 
 .factory('DugnadenService', function($http) {

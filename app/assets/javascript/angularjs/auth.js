@@ -130,11 +130,9 @@ config(function($httpProvider) {
 			return promise.then(function(response) {
 				return response;
 			}, function(response) {
-				if (response.status == 401 && response.data.error == 'login-required') {
+				if (response.status == 401 && $location.path() != '/login') {
 					$injector.get('AuthService').setRedirectUrl($location.path());
 					$location.path('/login');
-					// TODO: information message
-					return $q.reject(response);
 				}
 				return $q.reject(response);
 			});

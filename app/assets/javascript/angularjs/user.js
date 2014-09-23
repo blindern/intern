@@ -13,12 +13,12 @@ angular.module('intern.user', ['ngRoute', 'intern.helper.page'])
 	});
 }])
 
-.controller('UserListCtrl', function($rootScope, $scope, $http, AuthService) {
-	$rootScope.title = 'Laster..';
+.controller('UserListCtrl', function($scope, $http, AuthService, Page) {
+	Page.setTitle('Laster..');
 
 	// TODO: cache
 	$http.get('api/user').success(function(ret) {
-		$rootScope.title = "Brukerliste";
+		Page.setTitle("Brukerliste");
 		var user_count = 0, sections = [
 			{
 				'paneltag': 'panel-info',

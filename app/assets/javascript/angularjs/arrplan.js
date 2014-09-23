@@ -21,8 +21,8 @@ angular.module('intern.arrplan', ['ngRoute', 'intern.helper.page'])
 	});
 }])
 
-.controller('VisSem', function($rootScope, $scope, $routeParams, arrplan, ArrplanService) {
-	$rootScope.title = 'Arrangementplan på Blindern Studenterhjem';
+.controller('VisSem', function($scope, $routeParams, arrplan, ArrplanService, Page) {
+	Page.setTitle('Arrangementplan på Blindern Studenterhjem');
 	arrplan = arrplan.data;
 
 	// find sections

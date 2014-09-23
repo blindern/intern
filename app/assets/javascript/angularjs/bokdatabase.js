@@ -9,6 +9,6 @@ angular.module('intern.bokdatabase', ['ngRoute', 'intern.helper.page'])
 	});
 }])
 
-.controller('BokdatabaseCtrl', function($rootScope) {
-	$rootScope.title = 'Bokdatabase';
+.controller('BokdatabaseCtrl', function(Page) {
+	Page.setTitle('Bokdatabase');
 });

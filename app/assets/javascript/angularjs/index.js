@@ -9,6 +9,6 @@ angular.module('intern.index', ['ngRoute', 'intern.helper.page'])
 	});
 }])
 
-.controller('IndexCtrl', function($rootScope) {
-	$rootScope.title = 'Foreningen Blindern Studenterhjem';
+.controller('IndexCtrl', function(Page) {
+	Page.setTitle('Foreningen Blindern Studenterhjem');
 });
