@@ -36,7 +36,7 @@ if ($user)
     <![endif]-->
   </head>
 
-  <body ng-controller="MainController">
+  <body>
     <div id="wrap">
 
       <!-- Fixed navbar -->

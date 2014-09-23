@@ -15,8 +15,8 @@ var module = angular.module('intern', [
 	'intern.user'
 ]);
 
-module.controller('MainController', function($scope, AuthService) {
-	$scope.AuthService = AuthService;
+module.run(function($rootScope, AuthService) {
+	$rootScope.AuthService = AuthService;
 });
 
 module.config(['$routeProvider', function($routeProvider) {
