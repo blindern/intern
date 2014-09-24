@@ -1,79 +1,81 @@
 <div class="row" class="bs_login_form">
 	<div class="col-md-6">
-		<!--
-
-		<?php if (isset($reg_msg)): ?>
-			<p class="regform_msg bg-<?php if ($reg_msg_class) echo $reg_msg_class; else echo "primary"; ?>" style="padding: 15px"><?php echo $reg_msg; ?></p>
-		<?php endif; ?>
-
-		<?php if (!isset($reg_msg_class) || $reg_msg_class != "success"): ?>
-
-		-->
-
 		<p><a href="login">&laquo; Logg inn</a></p>
 
 		<p>Dette er en tjeneste for beboere ved Blindern Studenterhjem. Har du øvrige spørsmål ta kontakt med <a href="http://blindern-studenterhjem.no/administrasjonen">hjemmets administrasjon</a>.</p>
 
-		<p style="color: #FF0000">Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent for andre brukere.</p>
-		<p>Du vil kunne bruke dette brukernavnet og passordet til å logge inn på forskjellige tjenester på BS (som f.eks. printeren i biblionette, wikien og Blindernåret).</p>
+		<div ng-if="success">
+			<p>Din forespørsel er sendt inn.</p>
+		</div>
 
-		<form class="form-horizontal" role="form" ng-submit="register()" autocomplete="off">
-			<div class="form-group">
-				<label for="regform_username" class="col-lg-4 control-label">Brukernavn</label>
-				<div class="col-lg-8">
-					<input type="text" ng-model="reg.username" placeholder="Brukernavn" class="form-control" auto-focus>
-					<span class="help-block">(<b>Små bokstaver</b>, uten mellomrom, bruk gjerne UiO-brukernavn evt. fornavn med to bokstaver fra etternavn)</span>
-				</div>
-			</div>
+		<div ng-if="!success">
+			<p style="color: #FF0000">Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent for andre brukere.</p>
+			<p>Du vil kunne bruke dette brukernavnet og passordet til å logge inn på forskjellige tjenester på BS (som f.eks. printeren i biblionette, wikien og Blindernåret).</p>
 
-			<div class="form-group">
-				<label for="regform_fornavn" class="col-lg-4 control-label">Fullt navn</label>
-				<div class="col-lg-4">
-					<input type="text" ng-model="reg.firstname" placeholder="Fornavn" class="form-control">
+			<form class="form-horizontal" role="form" name="form" ng-submit="register(reg, form)" autocomplete="off" novalidate>
+				<div class="form-group">
+					<label for="regform_username" class="col-lg-4 control-label">Brukernavn</label>
+					<div class="col-lg-8" ng-class="{ 'has-error': (form.username.$error.length || form.username.$error.valid) && form.username.$dirty }">
+						<input type="text" name="username" ng-model="reg.username" placeholder="Brukernavn" class="form-control" valid-username auto-focus>
+						<span class="help-block">(<b>Små bokstaver</b>, uten mellomrom, bruk gjerne UiO-brukernavn evt. fornavn med to bokstaver fra etternavn)</span>
+						<p class="help-block" ng-if="form.username.$error.length && form.username.$dirty">Brukernavn må være mellom 4 og 20 tegn.</p>
+					</div>
 				</div>
-				<div class="col-lg-4">
-					<input type="text" ng-model="reg.lastname" placeholder="Etternavn" class="form-control">
-				</div>
-			</div>
 
-			<div class="form-group">
-				<label for="regform_email" class="col-lg-4 control-label">E-post</label>
-				<div class="col-lg-8">
-					<input type="text" ng-model="reg.email" placeholder="E-postadresse" class="form-control">
+				<div class="form-group">
+					<label for="regform_fornavn" class="col-lg-4 control-label">Fullt navn</label>
+					<div class="col-lg-4" ng-class="{ 'has-error': firstname_error }">
+						<input type="text" name="firstname" ng-model="reg.firstname" placeholder="Fornavn" class="form-control" required>
+						<p class="help-block" ng-if="firstname_error = form.firstname.$error.required && form.firstname.$dirty">Fornavn på oppgis</p>
+					</div>
+					<div class="col-lg-4" ng-class="{ 'has-error': lastname_error }">
+						<input type="text" name="lastname" ng-model="reg.lastname" placeholder="Etternavn" class="form-control" required>
+						<p class="help-block" ng-if="lastname_error = form.lastname.$error.required && form.lastname.$dirty">Etternavn på oppgis</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<label for="regform_phone" class="col-lg-4 control-label">Mobil (valgfritt)</label>
-				<div class="col-lg-8">
-					<input type="text" ng-model="reg.phone" placeholder="Mobilnummer (valgfritt)" class="form-control">
+				<div class="form-group">
+					<label for="regform_email" class="col-lg-4 control-label">E-post</label>
+					<div class="col-lg-8" ng-class="{ 'has-error': email_error }">
+						<input type="email" name="email" ng-model="reg.email" placeholder="E-postadresse" class="form-control" required>
+						<p class="help-block" ng-if="email_error = form.email.$error.email && form.firstname.$dirty">Du må oppgi en korrekt e-postadresse</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<label for="regform_pw" class="col-lg-4 control-label">Passord</label>
-				<div class="col-lg-8">
-					<input type="password" ng-model="reg.password" placeholder="Passord" class="form-control">
-					<span class="help-block">(Minst 8 tegn. Passordet overføres kryptert og blir lagret uten mulighet for å lese passordet.)</span>
+				<div class="form-group" ng-class="{ 'has-error': phone_error }">
+					<label for="regform_phone" class="col-lg-4 control-label">Mobil (valgfritt)</label>
+					<div class="col-lg-8">
+						<input type="text" name="phone" ng-model="reg.phone" placeholder="Mobilnummer (valgfritt)" class="form-control" valid-phone>
+						<p class="help-block" ng-if="phone_error = form.phone.$error.phone && form.phone.$dirty">Kun norske nummer med 8 tall kan registreres</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<div class="col-lg-offset-4 col-lg-8">
-					<label for="internmail">
-						<input type="checkbox" name="internmail" id="internmail" />
-						Legg meg samtidig til på internmailen
-					</label>
+				<div class="form-group">
+					<label for="regform_pw" class="col-lg-4 control-label">Passord</label>
+					<div class="col-lg-8" ng-class="{ 'has-error': password_error }">
+						<input type="password" name="password" ng-model="reg.password" placeholder="Passord" class="form-control" valid-password>
+						<span class="help-block">(Minst 8 tegn. Passordet overføres kryptert og blir lagret uten mulighet for å lese passordet.)</span>
+						<p class="help-block" ng-if="password_error = form.password.$error.length && form.password.$dirty">Passordet må være på minst 8 tegn</p>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<div class="col-lg-offset-4 col-lg-8">
-					<input type="submit" value="Registrer" class="btn btn-default">
-					<span class="help-block">Du vil bli lagt til manuelt, så noe ventetid må påregnes.</span>
+				<div class="form-group">
+					<div class="col-lg-offset-4 col-lg-8">
+						<label for="internmail">
+							<input type="checkbox" ng-model="reg.internmail" id="internmail" />
+							Legg meg samtidig til på internmailen
+						</label>
+					</div>
 				</div>
-			</div>
-			
-		</form>
+
+				<div class="form-group">
+					<div class="col-lg-offset-4 col-lg-8">
+						<input type="submit" value="Registrer" class="btn btn-default">
+						<span class="help-block">Du vil bli lagt til manuelt, så noe ventetid må påregnes.</span>
+					</div>
+				</div>
+				
+			</form>
+		</div>
 	</div>
 </div>

@@ -9,13 +9,64 @@ config(['$routeProvider', function($routeProvider) {
 	}).
 	when('/register', {
 		templateUrl: 'views/auth/register.html',
-		controller: 'LoginController'
+		controller: 'RegisterController'
 	}).
 	when('/logout', {
 		template: '',
 		controller: 'LogoutController'
 	});
 }]).
+
+controller('RegisterController', function($scope, $http, Page) {
+	Page.setTitle("Registrering for beboere/GB-ere");
+	$scope.register = function(reg, form) {
+		if (!form.$valid) return;
+
+		$http.post('api/register', reg).success(function(ret) {
+			$scope.success = true;
+		}).error(function() {
+			// TODO: better error handling
+			alert("Some unknown error occurred.");
+		});
+	};
+}).
+
+directive('validUsername', function() {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function(scope, element, attrs, ctrl) {
+			scope.$watch(attrs.ngModel, function(value) {
+				ctrl.$setValidity('length', value && value.length >= 4 && value.length <= 20);
+				ctrl.$setValidity('valid', value && /^[a-z][a-z0-9]+$/.test(value));
+			});
+		}
+	};
+}).
+
+directive('validPhone', function() {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function(scope, element, attrs, ctrl) {
+			scope.$watch(attrs.ngModel, function(value) {
+				ctrl.$setValidity('phone', !value || /^(|[1-9][0-9]{7})$/.test(value));
+			});
+		}
+	};
+}).
+
+directive('validPassword', function() {
+	return {
+		restrict: 'A',
+		require: 'ngModel',
+		link: function(scope, element, attrs, ctrl) {
+			scope.$watch(attrs.ngModel, function(value) {
+				ctrl.$setValidity('length', value && value.length >= 8);
+			});
+		}
+	};
+}).
 
 controller('LogoutController', function($location, AuthService) {
 	AuthService.logout().success(function() {
