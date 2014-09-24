@@ -37,9 +37,11 @@ Route::group(array('before' => 'auth'), function()
 });
 
 // login system
-Route::get('login', 'AuthController@get_login');
-Route::post('login', 'AuthController@post_login');
-Route::get('logout', 'AuthController@action_logout');
+Route::get('login', 'JsController@index');
+Route::get('register', 'JsController@index');
+Route::post('api/register', 'AuthController@register');
+Route::post('api/login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
 
 // users and groups
 Route::group(array('before' => 'auth-api'), function()

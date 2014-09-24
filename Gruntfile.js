@@ -3,19 +3,15 @@ module.exports = function(grunt)
 	var js_files = [
 		"./bower_components/jquery/dist/jquery.js",
 		"./bower_components/bootstrap/dist/js/bootstrap.js",
-		"./bower_components/underscore/underscore.js",
-		"./bower_components/backbone/backbone.js",
-		"./bower_components/handlebars/handlebars.min.js",
 		"./bower_components/moment/moment.js",
 		"./bower_components/moment/lang/nb.js",
 		"./bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js",
 		"./bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.no.js",
-		"./app/assets/javascript/app.js",
-		"./app/assets/javascript/models/*.js",
-		"./app/assets/javascript/collections/*.js",
-		"./app/assets/javascript/views/*.js",
-		//"./app/assets/javascript/views/profile.js",
-		"./app/assets/javascript/handlebars.helpers.js",
+		"./bower_components/angular/angular.js",
+		"./bower_components/angular-route/angular-route.js",
+		"./bower_components/angular-animate/angular-animate.js",
+		
+		"./app/assets/javascript/**.js"
 	];
 	grunt.initConfig({
 		concat: {

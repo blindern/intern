@@ -1,20 +1,16 @@
 <?php
 
+use Blindern\Intern\Helpers\Flash;
+use Blindern\Intern\Helpers\FlashCollection;
 use Blindern\Intern\Passtools\pw;
 
 class AuthController extends Controller {
-	public function get_login() {
-		return View::make('auth/login');
-	}
-
-	public function post_login() {
+	public function register() {
 		// registrere?
 		if (isset($_POST['fornavn']) && isset($_POST['etternavn']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']))
 		{
 			if (strlen($_POST['password']) < 8)
-				return View::make('auth/login', array(
-					"reg_msg_class" => "danger",
-					"reg_msg" => "Passordet må være minst 8 tegn."));
+				return Flash::forge('Passordet må være minst 8 tegn.')->setError()->asResponse(400);
 
 			$smbpass = pw::smbpass($_POST['password']);
 			$unixpass = pw::unixpass($_POST['password']);
@@ -63,18 +59,16 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 {$_SERVER['HTTP_USER_AGENT']}", "From: lpadmin@foreningenbs.no\r\nReply-To: $replyto");
 
 			if (!$res) {
-				return View::make('auth/login', array(
-					"reg_msg_class" => "danger",
-					"reg_msg" => "Kunne ikke legge til forespørsel. Kontakt <a href=\"mailto:it-gruppa@foreningenbs.no\">IT-gruppa</a>!"));
+				return Flash::forge("Kunne ikke legge til forespørsel. Kontakt <a href=\"mailto:it-gruppa@foreningenbs.no\">IT-gruppa</a>!")
+					->setError()->asResponse(500);
 			}
 
-			//echo "Din forespørsel er nå sendt. Du får svar når brukeren er klar.";
-
-			return View::make('auth/login', array(
-				"reg_msg_class" => "success",
-				"reg_msg" => "Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert."));
+			return Flash::forge('Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert.')
+				->setSuccess()->asResponse();
 		}
+	}
 
+	public function login() {
 		$user = array(
 			'username' => Input::get('username'),
 			'password' => Input::get('password')
@@ -83,15 +77,17 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 		$res = Auth::attempt($user, Input::get('remember_me'));
 		if ($res)
 		{
-			return Redirect::to('/user/'.Auth::user()->username);
+			return Response::json(array(
+				'user' => Auth::user()->toArray(array(), 2),
+				'useradmin' => Auth::member('useradmin')
+			));
 		}
 
-		return View::make('auth/login', array(
-			"login_error" => 'Ukjent brukernavn eller passord.'));
+		return Flash::forge('Ukjent brukernavn eller passord.')->setError()->asResponse(null, 401);
 	}
 
-	public function action_logout() {
+	public function logout() {
 		Auth::logout();
-		return Redirect::to('/');
+		return Flash::forge("Logget ut")->setSuccess()->asResponse();
 	}
 }

@@ -1,0 +1,50 @@
+<div class="fbs_happenings">
+	<ul class="nav nav-tabs" role="tablist">
+		<li ng-repeat="sem in sections | orderBy:'sortkey':true" ng-class="{active: sem.sem == $parent.sem}" data-sem="{sem.sem}">
+			<a href="{{sem.link}}" data-bypass>
+				{{sem.text}}
+			</a>
+		</li>
+	</ul>
+
+	<div ng-show="list_event.length > 0">
+		<h3>Arrangementer</h3>
+
+		<div ng-repeat="event in list_event = (arrplan | filterSem:sem | filter:{'type': 'event'}:true)" class="row" ng-class="{'old-happening': event.expired, lowPriority: event.priority == 'low', highPriority: event.priority == 'high'}">
+			<div class="col-sm-3 event-date">{{event.duration}}</div>
+			<div class="col-sm-9">{{event.title}} <span style="color: #AAA" ng-if="event.by">[{{event.by}}]</span></div>
+		</div>
+	</div>
+
+	<div ng-show="list_event_recurring.length > 0">
+		<h3>Øvrige aktiviteter</h3>
+
+		<div ng-repeat="event in list_event_recurring = (arrplan | filterSem:sem | filter:{'type': 'event_recurring'})" class="row">
+			<div class="col-sm-3 event-date">{{event.duration}}</div>
+			<div class="col-sm-9">{{event.title}} <span style="color: #AAA" ng-if="event.by">[{{event.by}}]</span></div>
+		</div>
+	</div>
+
+	<div ng-show="list_comment.length > 0">
+		<h3>Kommentarer</h3>
+		<dl>
+			<dt ng-repeat-start="event in list_comment = (arrplan | filterSem:sem | filter:{'type': 'comment'})">{{event.date}}</dt>
+			<dd ng-repeat-end ng-bind="event.comment"></dd>
+		</dl>
+	</div>
+
+	<h2>Gjøre endringer på arrangementplanen</h2>
+	<p>Oppdages det feil eller manglende arrangementer kan oversikten endres i wikien:<br />
+		<a href="https://foreningenbs.no/wiki/Arrangementplan_til_nettsiden">
+		https://foreningenbs.no/wiki/Arrangementplan_til_nettsiden</a></p>
+	<p>Alle beboere skal ha tilgang til wikien med sin <a href="/intern/login">foreningsbruker</a>.</p>
+
+	<h2>Google Calendar, kalender på mobil, o.l.</h2>
+	<p>Du kan få kalenderen automatisk inn i Google Calender eller en annen kalender du måtte ha. For dette trenger du å legge inn denne adressen i kalenderen din:<br />
+		<a href="/intern/arrplan.ics">https://foreningenbs.no/intern/arrplan.ics</a> <i>(kopier lenken, ikke last ned)</i>
+	</p>
+	<p>Slik gjør du det for Google Calendar:</p>
+	<p style="text-align: center">
+		<img src="/intern/assets/images/arrplan/googlecal.png" class="img-responsive img-thumbnail" alt="Eksempel med Google Calendar" />
+	</p>
+</div>

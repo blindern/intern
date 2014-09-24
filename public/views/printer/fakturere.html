@@ -1,0 +1,143 @@
+<p>Visningsmodus:
+	<select name="format" ng-model="viewtype">
+		<option value="summed">Oppsummert</option>
+		<option value="detailed">Detaljert</option>
+	</select>
+</p>
+<p>Tidsperiode:
+  <input ng-model="date_from" class="input-small" placeholder="yyyy-mm-dd" type="date" value="{{from}}" date-format="yyyy-mm-dd" ng-change="changeDate()" />
+   - 
+  <input ng-model="date_to" class="input-small" placeholder="yyyy-mm-dd" type="date" value="{{to}}" ng-change="changeDate()" />
+</p>
+
+<div ng-if="!data">
+	<p>Laster data..</p>
+</div>
+<div id="fakturere_data" ng-if="data">
+	<dl>
+		<dt>Til faktuering</dt>
+		<dd>kr {{data.amount_real|formatNum}}</dd>
+		<dt>Antall utskriftsjobber</dt>
+		<dd>{{data.num_jobs|formatNum:0}}</dd>
+		<dt>Antall sider</dt>
+		<dd>{{data.num_pages|formatNum:0}} ({{data.num_pages_real|formatNum:0}} faktureres, {{data.num_pages_alt|formatNum:0}} ikke)</dd>
+	</dl>
+
+	<div ng-show="viewtype == 'summed'" class="row">
+		<div class="col-md-6 printergroup" ng-repeat="section in data.sections">
+			<h2>Fakturering {{section.is_beboer ? 'enkeltbeboere' : 'grupper'}}</h2>
+			<p ng-if="section.is_beboer" ng-repeat="group in section.printergroups | filter:{comment: '!'}:true">
+				{{group.comment}}
+			</p>
+
+			<table class="table table-striped table-condensed" style="width: auto">
+				<thead>
+					<tr>
+						<th>Navn</th>
+						<th>Per side</th>
+						<th>Sider</th>
+						<th>Å betale</th>
+						<th ng-show="!section.is_beboer && viewtype != 'detailed'">Kommentar</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr style="font-style: italic; font-weight: bold">
+						<td ng-if="viewtype == 'summed'">Sum<span ng-if="viewtype == 'summed'"> ({{section.occurrences}} stk)</span></td>
+						<td style="text-align: right">&nbsp;</td>
+						<td style="text-align: right">{{section.totals.num_pages|formatNum:0}}</td>
+						<td style="text-align: right">{{section.totals.amount_real|formatNum}}</td>
+						<td ng-show="!section.is_beboer">&nbsp;</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr ng-repeat="row in section.printergroups|printergroupsSummed:section.is_beboer|orderBy:'printername'|orderBy:'realname'">
+						<td>{{row.realname || row.printername}} <b ng-if="section.is_beboer && row.utflyttet">Utflyttet?</b></td>
+						<td style="text-align: right">
+							<span ng-repeat="(key, val) in row.costlist">{{key|formatNum}}<br /></span>
+						</td>
+						<td style="text-align: right">
+							<span ng-repeat="(key, val) in row.costlist">{{val|formatNum:0}}<br /></span>
+						</td>
+						<td style="text-align: right">{{row.amount_real|formatNum}}</td>
+						<td ng-show="!section.is_beboer">
+							<span ng-if="row.is_comment_or_alt">
+								{{row.comment}}<br />
+								<span ng-if="row.amount_alt">(ikke fakturert: kr {{row.amount_alt|formatNum}})</span>
+							</span>
+							<span ng-if="!row.is_comment_or_alt">&nbsp;</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div ng-show="viewtype == 'detailed'">
+		<div ng-repeat="section in data.sections">
+			<div class="printergroup" ng-repeat="group in section.printergroups | orderBy:'printername'">
+				<h2>Fakturering {{section.is_beboer ? 'enkeltbeboere' : 'gruppe: '+group.printername}}</h2>
+				<p ng-if="group.comment">{{group.comment}}</p>
+
+				<table class="table table-striped table-condensed" style="width: auto">
+					<thead>
+						<tr>
+							<th>Navn</th>
+							<th>Måned</th>
+							<th>Jobber</th>
+							<th>Per side</th>
+							<th>Sider</th>
+							<th>Å betale</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr style="font-style: italic; font-weight: bold">
+							<td ng-if="viewtype == 'summed'">Sum<span ng-if="viewtype == 'summed'"> ({{group.occurrences}} stk)</span></td>
+							<td ng-if="viewtype == 'detailed'" colspan="2">Sum</td>
+							<td ng-if="viewtype == 'detailed'" style="text-align: right">{{group.num_jobs|formatNum:0}}</td>
+							<td style="text-align: right">&nbsp;</td>
+							<td style="text-align: right">{{group.num_pages|formatNum:0}}</td>
+							<td style="text-align: right">{{group.amount_real|formatNum}}</td>
+						</tr>
+					</tfoot>
+					<tbody ng-repeat="row in group.users | orderBy:'realname'">
+						<tr>
+							<td rowspan="{{row.num_rows}}">{{row.realname || row.username}} <b ng-if="section.is_beboer && row.utflyttet">Utflyttet?</b></td>
+
+							<!-- we need this hack (having two similar html-sections) to allow rowspan -->
+							<td>{{row.months[0].name}}</td>
+							<td style="text-align: right">{{row.months[0].num_jobs}}</td>
+							<td style="text-align: right">
+								<span ng-repeat="(key, val) in row.months[0].costlist">{{key|formatNum}}<br /></span>
+							</td>
+							<td style="text-align: right">
+								<span ng-repeat="(key, val) in row.months[0].costlist">{{val|formatNum:0}}<br /></span>
+							</td>
+							<td style="text-align: right">{{row.months[0].amount_real|formatNum}}</td>
+
+						</tr>
+						<tr ng-repeat="month in row.months" ng-if="$index > 0">
+							<td>{{month.name}}</td>
+							<td style="text-align: right">{{month.num_jobs}}</td>
+							<td style="text-align: right">
+								<span ng-repeat="(key, val) in month.costlist">{{key|formatNum}}<br /></span>
+							</td>
+							<td style="text-align: right">
+								<span ng-repeat="(key, val) in month.costlist">{{val|formatNum:0}}<br /></span>
+							</td>
+							<td style="text-align: right">{{month.amount_real|formatNum}}</td>
+						</tr>
+						<tr ng-if="row.show_sum" style="font-style: italic">
+							<td>Sum</td>
+							<td style="text-align: right">{{row.num_jobs}}</td>
+							<td style="text-align: right">&nbsp;</td>
+							<td style="text-align: right">{{row.num_pages|formatNum:0}}</td>
+							<td style="text-align: right">{{row.amount_real|formatNum}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+</div>

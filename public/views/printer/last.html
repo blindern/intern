@@ -1,0 +1,21 @@
+<p ng-if="!prints">Laster data..</p>
+<table class="table table-striped nowrap" ng-show="prints">
+	<thead>
+		<tr>
+			<th>Tid</th>
+			<th>Bruker</th>
+			<th>Navn</th>
+			<th>Printer</th>
+			<th style="text-align: right">Antall sider</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="print in prints">
+			<td>{{print.jobdate|customdate:'dddd D. MMMM YYYY HH:mm'}}</td>
+			<td><a href="user/{{print.username}}">{{print.username}}</a></td>
+			<td>{{print.realname}}</td>
+			<td>{{print.printername}}</td>
+			<td style="text-align: right">{{print.jobsize}}</td>
+		</tr>
+		</tbody>
+</table>
