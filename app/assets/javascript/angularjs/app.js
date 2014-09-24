@@ -35,23 +35,25 @@ module.filter('customdate', function() {
 });
 
 // format number filter, norwegian style
-module.filter('formatNum', function(num, decimals)
+module.filter('formatNum', function()
 {
-	var formatNumber = function(number, decimals)
-	{
-	    number = number.toFixed(decimals) + '';
-	    x = number.split('.');
-	    x1 = x[0];
-	    x2 = x.length > 1 ? ',' + x[1] : '';
-	    var rgx = /(\d+)(\d{3})/;
-	    while (rgx.test(x1)) {
-	        x1 = x1.replace(rgx, '$1' + ' ' + '$2');
-	    }
-	    return x1 + x2;
-	}
+	return function(num, decimals) {
+		var formatNumber = function(number, decimals)
+		{
+		    number = number.toFixed(decimals) + '';
+		    x = number.split('.');
+		    x1 = x[0];
+		    x2 = x.length > 1 ? ',' + x[1] : '';
+		    var rgx = /(\d+)(\d{3})/;
+		    while (rgx.test(x1)) {
+		        x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+		    }
+		    return x1 + x2;
+		}
 
-	if (typeof(decimals) != "number") decimals = 2;
-	return formatNumber(parseFloat(num), decimals);
+		if (typeof(decimals) != "number") decimals = 2;
+		return formatNumber(parseFloat(num), decimals);
+	};
 });
 
 // add 'auto-focus' as an attribute to a tag
