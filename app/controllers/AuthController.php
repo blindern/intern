@@ -9,7 +9,6 @@ class AuthController extends Controller {
 	 * Register new user request
 	 */
 	public function register() {
-		// TODO: proper validation (see client validation)
 		if (!Input::has('firstname') || !Input::has('lastname') ||
 			!Input::has('email') || !Input::has('username') || !Input::has('password'))
 			return Flash::forge('Data missing.')->setError()->asResponse(null, 400);
