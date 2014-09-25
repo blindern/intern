@@ -1,26 +1,49 @@
-<p>Visningsmodus:
-	<select name="format" ng-model="viewtype">
-		<option value="summed">Oppsummert</option>
-		<option value="detailed">Detaljert</option>
-	</select>
-</p>
-<p>Tidsperiode:
-  <input ng-model="date_from" class="input-small" placeholder="yyyy-mm-dd" type="date" value="{{from}}" date-format="yyyy-mm-dd" ng-change="changeDate()" />
-   - 
-  <input ng-model="date_to" class="input-small" placeholder="yyyy-mm-dd" type="date" value="{{to}}" ng-change="changeDate()" />
-</p>
+<div class="form-horizontal hidden-print">
+	<div class="row form-group">
+		<label class="col-md-2 control-label">Visningsmodus</label>
+		<div class="col-md-10">
+			<select name="format" ng-model="viewtype" class="form-control">
+				<option value="summed">Oppsummert</option>
+				<option value="detailed">Detaljert</option>
+			</select>
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="col-md-2 control-label">Tidsperiode</label>
+		<div class="col-md-3">
+			<input ng-model="date_from" class="form-control" placeholder="yyyy-mm-dd" type="date" value="{{from}}" date-format="yyyy-mm-dd" />
+		</div>
+		<div class="col-md-3">
+			<input ng-model="date_to" class="form-control" placeholder="yyyy-mm-dd" type="date" value="{{to}}" date-format="yyyy-mm-dd" />
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<button ng-click="changeMonth(-1)">&laquo; En måned tilbake</button>
+			<button href ng-click="changeMonth(1)">En måned frem &raquo;</button>
+		</div>
+	</div>
+</div>
+<div class="visible-print">
+	<p><b>{{viewtype == 'detailed' ? 'Detaljert oversikt' : 'Oppsummering'}}</b> for perioden <u>{{date_from|customdate:'dddd D. MMMM YYYY'}}</u> til <u>{{date_to|customdate:'dddd D. MMMM YYYY'}}</u>.</p>
+</div>
 
 <div ng-if="!data">
 	<p>Laster data..</p>
 </div>
+
 <div id="fakturere_data" ng-if="data">
-	<dl>
+	<h2>Total statistikk</h2>
+	<dl class="dl-horizontal">
 		<dt>Til faktuering</dt>
 		<dd>kr {{data.amount_real|formatNum}}</dd>
 		<dt>Antall utskriftsjobber</dt>
 		<dd>{{data.num_jobs|formatNum:0}}</dd>
 		<dt>Antall sider</dt>
 		<dd>{{data.num_pages|formatNum:0}} ({{data.num_pages_real|formatNum:0}} faktureres, {{data.num_pages_alt|formatNum:0}} ikke)</dd>
+		<dt>Antall personer</dt>
+		<dd>{{data.sections['beboer'].occurrences}} (privat bruk)</dd>
+		<dd>{{data.unique_people}} (inkludert grupper)</dd>
 	</dl>
 
 	<div ng-show="viewtype == 'summed'" class="row">

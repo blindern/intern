@@ -26,9 +26,19 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 .controller('PrinterUsageController', function($http, $scope, Page) {
 	Page.setTitle("Fakturering av utskrifter");
 
-	$scope.changeDate = function()
+	$scope.$watch('date_from', function()
 	{
 		refreshData();
+	});
+	$scope.$watch('date_to', function()
+	{
+		refreshData();
+	});
+
+	$scope.changeMonth = function(modifyBy)
+	{
+		$scope.date_from = moment($scope.date_from).add('month', modifyBy).startOf('month').format("YYYY-MM-DD");
+		$scope.date_to = moment($scope.date_to).add('month', modifyBy).endOf('month').format("YYYY-MM-DD");
 	};
 
 	// default date
@@ -40,7 +50,7 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 	// default view
 	$scope.viewtype = 'summed';
 
-	function getData(rawdata)
+	function parseData(rawdata)
 	{
 		var summer = function(prev)
 		{
@@ -70,6 +80,7 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 
 		var totals = new summer();
 		var sections = {};
+		var people = [];
 		$(["beboer", "other"]).each(function(i, el)
 		{
 			sections[el] = {
@@ -113,6 +124,7 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 				$.extend(user, totals_u);
 				p.users.push(user);
 				if (p.is_beboer) section.occurrences++;
+				if ($.inArray(u.username, people) == -1) people.push(u.username);
 			});
 
 			$.extend(p, totals_p);
@@ -122,6 +134,7 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 		});
 
 		totals.sections = sections;
+		totals.unique_people = people.length;
 		return totals;
 	}
 
@@ -129,14 +142,9 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 		$scope.data = null;
 		$http.get('api/printer/fakturere?from='+encodeURIComponent($scope.date_from)+'&to='+encodeURIComponent($scope.date_to)).success(function(ret) {
 			// TODO: error handling
-
-			//console.log("http get printer fakturere", ret);
-			$scope.data = getData(ret);
-			//console.log("data to view", $scope.data);
+			$scope.data = parseData(ret);
 		});
 	}
-
-	refreshData();
 }).
 
 // helper for having both user details for personal account and group details for group account for the same loop
