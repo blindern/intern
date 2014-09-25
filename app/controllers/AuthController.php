@@ -14,34 +14,53 @@ class AuthController extends Controller {
 			!Input::has('email') || !Input::has('username') || !Input::has('password'))
 			return Flash::forge('Data missing.')->setError()->asResponse(null, 400);
 
-		$firstname = Input::get('firstname');
-		$lastname = Input::get('lastname');
-		$username = Input::get('username');
-		$email = Input::get('email');
-		$password = Input::get('password');
-		$phone = Input::get('phone');
-		$internmail = (bool)Input::get('internmail');
+		$data = array(
+			'firstname' => Input::get('firstname'),
+			'lastname' => Input::get('lastname'),
+			'username' => Input::get('username'),
+			'email' => Input::get('email'),
+			'password' => Input::get('password'),
+			'phone' => Input::get('phone'),
+			'internmail' => (bool)Input::get('internmail')
+		);
 
-		if (strlen($password) < 8)
-			return Flash::forge('Passordet må være minst 8 tegn.')->setError()->asResponse(null, 400);
+		// TODO: unique username and email
+		$validator = Validator::make($data, array(
+			'firstname' => 'required',
+			'lastname' => 'required',
+			'username' => 'required|min:4|max:20|regex:/^[a-z][a-z0-9]+$/',
+			'email' => 'required|email',
+			'password' => 'required|min:8',
+			'phone' => 'digits:8' // the frontend restricts this further by not allowing 0 in beginning
+		));
 
-		$smbpass = pw::smbpass($password);
-		$unixpass = pw::unixpass($password);
+		if ($validator->fails())
+		{
+			$c = FlashCollection::forge();
+			foreach ($validator->messages()->all(':message') as $message)
+			{
+				$c->add(Flash::forge($message)->setError());
+			}
+			return $c->asResponse(null, 400);
+		}
 
-		$replyto = preg_replace("/\s/", "", $email);
-		$username = strtolower($username);
+		$smbpass = pw::smbpass($data['password']);
+		$unixpass = pw::unixpass($data['password']);
 
-		$phone = !empty($phone) ? $phone : '';
+		$replyto = preg_replace("/\s/", "", $data['email']);
+		$data['username'] = strtolower($data['username']);
+
+		$data['phone'] = !empty($data['phone']) ? $data['phone'] : '';
 
 		// lag fil som kan brukes
 		$n = uniqid().".sh";
 		$f = "/fbs/drift/nybruker/$n";
 		file_put_contents($f,
-"FIRSTNAME=".escapeshellarg($firstname)."
-LASTNAME=".escapeshellarg($lastname)."
-USERNAME=".escapeshellarg($username)."
-MAIL=".escapeshellarg($email)."
-PHONE=".escapeshellarg($phone)."
+"FIRSTNAME=".escapeshellarg($data['firstname'])."
+LASTNAME=".escapeshellarg($data['lastname'])."
+USERNAME=".escapeshellarg($data['username'])."
+MAIL=".escapeshellarg($data['email'])."
+PHONE=".escapeshellarg($data['phone'])."
 PASS=".escapeshellarg($unixpass)."
 NTPASS=".escapeshellarg($smbpass)."
 ");
@@ -52,19 +71,19 @@ NTPASS=".escapeshellarg($smbpass)."
 
 Info til IT-gruppa:
 
-Fornavn: \"{$firstname}\"
-Etternavn: \"{$lastname}\"
-E-post: \"{$email}\"
-Ønsket brukernavn: \"{$username}\"
-Mobilnr: ".($phone ? "\"$phone\"" : "ikke registrert")."
+Fornavn: \"{$data['firstname']}\"
+Etternavn: \"{$data['lastname']}\"
+E-post: \"{$data['email']}\"
+Ønsket brukernavn: \"{$data['username']}\"
+Mobilnr: ".($data['phone'] ? "\"{$data['phone']}\"" : "ikke registrert")."
 
 Kommando for å opprette:
 /fbs/drift/nybruker/process.sh $n
 
-Internmail: ".($internmail ? "Ja
+Internmail: ".($data['internmail'] ? "Ja
 **********************
 ** MERK: INTERNMAIL **
-{$email} {$firstname} {$lastname}
+{$data['email']} {$data['firstname']} {$data['lastname']}
 **********************" : 'Nei')."
 
 

@@ -26,7 +26,6 @@ controller('RegisterController', function($scope, $http, Page) {
 			$scope.success = true;
 		}).error(function() {
 			// TODO: better error handling
-			alert("Some unknown error occurred.");
 		});
 	};
 }).
