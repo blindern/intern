@@ -46,16 +46,11 @@ class UserProvider implements Auth\UserProviderInterface {
 	 */
 	public function retrieveByToken($identifier, $token)
 	{
-		return null;
-		/*$user = $this->conn->table($this->table)
-                                ->where('id', $identifier)
-                                ->where('remember_token', $token)
-                                ->first();
-
-		if ( ! is_null($user))
+		$user = LocalUser::where('username', $identifier)->where(User::REMEMBER_TOKEN, $token)->first();
+		if ($user)
 		{
-			return new GenericUser((array) $user);
-		}*/
+			return User::find($user->username);
+		}
 	}
 
 	/**
@@ -67,9 +62,7 @@ class UserProvider implements Auth\UserProviderInterface {
 	 */
 	public function updateRememberToken(Auth\UserInterface $user, $token)
 	{
-		/*$this->conn->table($this->table)
-                            ->where('id', $user->getAuthIdentifier())
-                            ->update(array('remember_token' => $token));*/
+		$user->setRememberToken($token);
 	}
 
 	/**

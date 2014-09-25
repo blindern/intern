@@ -5,6 +5,8 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class User implements UserInterface, RemindableInterface {
+	const REMEMBER_TOKEN = 'remember_token';
+
 	/**
 	 * Cache objects
 	 */
@@ -209,7 +211,7 @@ class User implements UserInterface, RemindableInterface {
 	 */
 	public function getRememberTokenName()
 	{
-		return 'remember_token';
+		return static::REMEMBER_TOKEN;
 	}
 
 	/**
