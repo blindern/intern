@@ -37,7 +37,7 @@ module.exports = function(grunt)
 		uglify: {
 			all: {
 				files: {
-					// TODO
+					'./public/assets/javascript/frontend.js': './public/assets/javascript/frontend.js'
 				}
 			}
 		},
