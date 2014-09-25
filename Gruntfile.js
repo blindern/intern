@@ -57,6 +57,14 @@ module.exports = function(grunt)
 					livereload: true // reloads browser
 				}
 			}
+		},
+		ngAnnotate: {
+			options: {},
+			all: {
+				files: {
+					'./public/assets/javascript/frontend.js': ['./public/assets/javascript/frontend.js']
+				}
+			}
 		}
 	});
 
@@ -65,6 +73,7 @@ module.exports = function(grunt)
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-ng-annotate');
 	
 	// Task definition
 	grunt.registerTask('default', [
@@ -72,10 +81,11 @@ module.exports = function(grunt)
 		'concat',
 		'watch'
 	]);
-
-	//$collection->add('../vendor/twitter/bootstrap/less/bootstrap.less')->apply('Less');
-	//$collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
-	//$collection->directory('../vendor/twitter/bootstrap/js', function($collection) {
-	//		$collection->requireDirectory();
+	grunt.registerTask('prod', [
+		'less',
+		'concat',
+		'ngAnnotate',
+		'uglify'
+	]);
 
 };
