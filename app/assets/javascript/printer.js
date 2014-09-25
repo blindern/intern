@@ -78,6 +78,21 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 			};
 		};
 
+		// daily statistics
+		var daily = {};
+		var d = moment(rawdata.from);
+		var d_end = moment(rawdata.to);
+		while (true)
+		{
+			daily[d.format('YYYY-MM-DD')] = 0;
+			d = d.add('day', 1);
+			if (!d.isBefore(d_end)) break;
+		}
+		$.each(rawdata.daily, function(i, row)
+		{
+			daily[row['jobday']] = row['sum_jobsize'];
+		});
+
 		var totals = new summer();
 		var sections = {};
 		var people = [];
@@ -135,12 +150,13 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 
 		totals.sections = sections;
 		totals.unique_people = people.length;
+		totals.daily = daily;
 		return totals;
 	}
 
 	function refreshData() {
 		$scope.data = null;
-		$http.get('api/printer/fakturere?from='+encodeURIComponent($scope.date_from)+'&to='+encodeURIComponent($scope.date_to)).success(function(ret) {
+		$http.get('api/printer/fakturere?from='+encodeURIComponent($scope.date_from)+'&to='+encodeURIComponent($scope.date_to), {cache:true}).success(function(ret) {
 			// TODO: error handling
 			$scope.data = parseData(ret);
 		});
@@ -160,5 +176,72 @@ filter('printergroupsSummed', function() {
 			});
 		});
 		return flatten;
+	};
+}).
+
+// chart for daily usage
+// using D3.js
+directive('printerVisualization', function() {
+	var margin = {top: 20, right: 30, bottom: 30, left: 50},
+	    width = 960 - margin.left - margin.right,
+	    height = 150 - margin.top - margin.bottom;
+
+	return {
+		restrict: 'E',
+		link: function(scope, element, attrs) {
+			var svg = d3.select(element[0])
+				.append('svg')
+				.attr('class', 'printerchart')
+				.attr('width', width + margin.left + margin.right)
+				.attr('height', height + margin.top + margin.bottom).append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+			var parseDate = d3.time.format('%Y-%m-%d').parse;
+			var myTimeFormatter = function(date) {
+				return moment(date).format("D. MMM");
+			};
+
+			var x = d3.time.scale().range([0, width]);
+			var y = d3.scale.linear().range([height, 0]);
+			var xAxis = d3.svg.axis().scale(x).orient('bottom').tickFormat(myTimeFormatter);
+			var yAxis = d3.svg.axis().scale(y).orient('left').ticks(6);
+			var area = d3.svg.area()
+			    .x(function(d) { return x(d.date); })
+			    .y0(height)
+			    .y1(function(d) { return y(d.value); });
+
+			scope.$watch('data', function(data) {
+				// clear the chart
+				svg.selectAll('*').remove();
+
+				// we must have something to draw
+				if (!data) return;
+
+				var newdata = [];
+				$.each(data.daily, function(i, elm) {
+					newdata.push({
+						date: parseDate(i),
+						value: +elm
+					});
+				});
+
+				x.domain([parseDate(scope.date_from), parseDate(scope.date_to)]);
+				y.domain([0, d3.max(newdata, function(d) { return d.value; })]);
+
+				svg.append("path")
+				   .datum(newdata)
+				   .attr("class", "area")
+				   .attr("d", area);
+
+				svg.append("g").attr('class', 'x axis').attr('transform', 'translate(0,'+height+')').call(xAxis);
+				svg.append('g').attr('class', 'y axis').call(yAxis)
+				   .append('text')
+				   .attr("transform", "rotate(-90)")
+				   .attr("y", 6)
+				   .attr("dy", ".71em")
+				   .style("text-anchor", "end")
+				   .text("Antall utskrifter");
+			});
+
+		}
 	};
 });

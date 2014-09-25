@@ -46,6 +46,9 @@
 		<dd>{{data.unique_people}} (inkludert grupper)</dd>
 	</dl>
 
+	<h2>Daglig statistikk</h2>
+	<printer-visualization val="data.daily"></printer-visualization>
+
 	<div ng-show="viewtype == 'summed'" class="row">
 		<div class="col-md-6 printergroup" ng-repeat="section in data.sections">
 			<h2>Fakturering {{section.is_beboer ? 'enkeltbeboere' : 'grupper'}}</h2>
