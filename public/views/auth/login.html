@@ -3,28 +3,23 @@
 <div class="row" class="bs_login_form">
 	<div class="col-md-6">
 		<form class="form-horizontal" role="form" ng-submit="login()">
-			<!--
-			<?php if (isset($login_error)): ?>
-				<div class="bg-danger" style="padding: 15px; margin: 15px 0"><?php echo $login_error; ?></div>
-			<?php endif; ?>
-			-->
-
+			
 			<div class="form-group">
-				<label for="form_username" class="col-lg-2 control-label">Brukernavn</label>
-				<div class="col-lg-10">
-					<input type="text" ng-model="credentials.username" placeholder="Brukernavn" class="form-control" auto-focus>
+				<label for="form_username" class="col-lg-4 control-label">Brukernavn eller e-post</label>
+				<div class="col-lg-8">
+					<input type="text" ng-model="credentials.username" placeholder="Brukernavn eller e-postadresse" class="form-control" auto-focus>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="form_password" class="col-lg-2 control-label">Passord</label>
-				<div class="col-lg-10">
+				<label for="form_password" class="col-lg-4 control-label">Passord</label>
+				<div class="col-lg-8">
 					<input type="password" ng-model="credentials.password" placeholder="Passord" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<div class="col-lg-offset-2 col-lg-10">
+				<div class="col-lg-offset-4 col-lg-8">
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" ng-model="credentials.remember_me"> Forbli pålogget
@@ -34,7 +29,7 @@
 			</div>
 
 			<div class="form-group">
-				<div class="col-lg-offset-2 col-lg-10">
+				<div class="col-lg-offset-4 col-lg-8">
 					<input type="submit" class="btn btn-default" value="Logg inn">
 					<a href="register" style="margin-left: 10px">Opprett bruker</a>
 				</div>

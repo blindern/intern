@@ -27,6 +27,17 @@ class UserProvider implements Auth\UserProviderInterface {
 	}
 
 	/**
+	 * Retrieve a user by email address
+	 *
+	 * @param string $email
+	 * @return \Blindern\Intern\Auth\User|null
+	 */
+	public function retrieveByEmail($email)
+	{
+		return User::findByEmail($email);
+	}
+
+	/**
 	 * Retrieve a user by by their unique identifier and "remember me" token.
 	 *
 	 * @param  mixed  $identifier
@@ -69,9 +80,14 @@ class UserProvider implements Auth\UserProviderInterface {
 	 */
 	public function retrieveByCredentials(array $credentials)
 	{
-		// TODO: check by other credentials
-
 		$user = $this->retrieveById($credentials['username']);
+		if (!is_null($user))
+		{
+			return $user;
+		}
+
+		// check if we can match by email
+		$user = $this->retrieveByEmail($credentials['username']);
 		if (!is_null($user))
 		{
 			return $user;
@@ -87,12 +103,11 @@ class UserProvider implements Auth\UserProviderInterface {
 	 */
 	public function validateCredentials(Auth\UserInterface $user, array $credentials)
 	{
-		$response = Helper::post('simpleauth', /*http_build_query(*/array(
-			"username" => $credentials['username'],
+		$response = Helper::post('simpleauth', array(
+			"username" => $user->username,
 			"password" => $credentials['password']
-		/*)*/), false)->contentType('form')->send();
+		), false)->contentType('form')->send();
 
 		return isset($response->body['result']);
 	}
-
 }

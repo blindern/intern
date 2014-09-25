@@ -40,6 +40,27 @@ class User implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Find a specific user by email address
+	 *
+	 * The email lookup is not cached
+	 *
+	 * @param string $email
+	 * @return \Blindern\Intern\Auth\User|null
+	 */
+	public static function findByEmail($email)
+	{
+		$response = Helper::get('users?emails='.urlencode($email));
+
+		// there might be multiple users returned, we only use the first one returned
+		if (isset($response->body['result']) && count($response->body['result']) > 0)
+		{
+			$data = $response->body['result'][0];
+
+			return static::find($data['username'], $data);
+		}
+	}
+
+	/**
 	 * Find all users
 	 */
 	public static function all()
