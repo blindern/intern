@@ -15,10 +15,6 @@ var module = angular.module('intern', [
 	'intern.user'
 ]);
 
-module.run(function($rootScope, AuthService) {
-	$rootScope.AuthService = AuthService;
-});
-
 module.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.otherwise({redirectTo: '/'});
 }]);

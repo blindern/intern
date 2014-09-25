@@ -41,10 +41,5 @@
 
 <hr />
 
-<!--
-{{#if user}}
-	<p>Du er innlogget som <a href="/intern/user/{{user.username}}">{{user.username}}</a> ({{user.realname}}).</p>
-{{else}}
-	<p>Du får flere handlinger ved å <a href="/intern/login">logge inn med foreningsbrukeren din</a>.</p>
-{{/if}}
--->
+<p ng-if="AuthService.isLoggedIn()">Du er innlogget som <a ng-href="/intern/user/{{AuthService.getUser().username}}">{{AuthService.getUser().username}}</a> ({{AuthService.getUser().realname}}).</p>
+<p ng-if="!AuthService.isLoggedIn()">Du får flere handlinger ved å <a href="/intern/login">logge inn med foreningsbrukeren din</a>.</p>

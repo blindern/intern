@@ -17,6 +17,11 @@ config(['$routeProvider', function($routeProvider) {
 	});
 }]).
 
+run(function($rootScope, AuthService) {
+	// create a global binding that can be used by templates
+	$rootScope.AuthService = AuthService;
+}).
+
 controller('RegisterController', function($scope, $http, Page) {
 	Page.setTitle("Registrering for beboere/GB-ere");
 	$scope.register = function(reg, form) {
