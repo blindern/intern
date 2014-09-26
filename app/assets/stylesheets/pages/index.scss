@@ -1,0 +1,35 @@
+/* For forsiden */
+.fbs_forside_lenker {
+  p {
+    margin: 10px 0;
+    a {
+      font-size: 21px;
+      display: block;
+      text-align: center;
+      line-height: 100px;
+      color: darken($link-color, 15%);
+      background-color: $state-info-bg;
+      &:hover {
+        text-decoration: none;
+        background-color: darken($state-info-bg, 10%)
+      }
+      > span {
+        line-height: 1em;
+        display: inline-block;
+        vertical-align: middle;
+        span {
+          display: block;
+          color: lighten(#000, 15%);
+          font-size: 70%;
+        }
+      }
+    }
+  }
+  + .fbs_forside_lenker {
+    margin-top: 15px;
+  }
+  &.small a {
+    font-size: 17px;
+    line-height: 80px;
+  }
+}

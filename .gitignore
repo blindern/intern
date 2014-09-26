@@ -8,5 +8,7 @@ Thumbs.db
 /public/builds/
 /public/assets/javascript/frontend.js
 /public/assets/stylesheets/frontend.css
+/public/assets/stylesheets/frontend.css.map
 error_log
 /bower_components/
+/.sass-cache/

@@ -2,11 +2,11 @@ module.exports = function(grunt)
 {
 	var js_files = [
 		"./bower_components/jquery/dist/jquery.js",
-		"./bower_components/bootstrap/dist/js/bootstrap.js",
+		"./bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
 		"./bower_components/moment/moment.js",
 		"./bower_components/moment/lang/nb.js",
-		"./bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js",
-		"./bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.no.js",
+		//"./bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js",
+		//"./bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.no.js",
 		"./bower_components/angular/angular.js",
 		"./bower_components/angular-route/angular-route.js",
 		"./bower_components/angular-animate/angular-animate.js",
@@ -17,20 +17,30 @@ module.exports = function(grunt)
 	grunt.initConfig({
 		concat: {
 			options: {
-				separator: ";"
+				separator: ";\n",
+				sourceMap: true
 			},
 			js_frondend: {
 				src: js_files,
 				dest: "./public/assets/javascript/frontend.js"
 			}
 		},
-		less: {
-			development: {
+		sass: {
+			dev: {
 				options: {
-					//compress: true
+					style: 'expanded',
+					sourcemap: true
 				},
 				files: {
-					"./public/assets/stylesheets/frontend.css": "./app/assets/stylesheets/frontend.less"
+					"./public/assets/stylesheets/frontend.css": "./app/assets/stylesheets/frontend.scss"
+				}
+			},
+			prod: {
+				options: {
+					style: 'compressed'
+				},
+				files: {
+					"./public/assets/stylesheets/frontend.css": "./app/assets/stylesheets/frontend.scss"
 				}
 			}
 		},
@@ -47,14 +57,14 @@ module.exports = function(grunt)
 				files: js_files,
 				tasks: ['concat'],
 				options: {
-					livereload: true // reloads browser
+					//livereload: true // reloads browser
 				}
 			},
-			less: {
-				files: ["./app/assets/stylesheets/*.less"],
-				tasks: ["less"],
+			sass: {
+				files: ["./app/assets/stylesheets/**/*.scss"],
+				tasks: ["sass:dev"],
 				options: {
-					livereload: true // reloads browser
+					//livereload: true // reloads browser
 				}
 			}
 		},
@@ -71,18 +81,18 @@ module.exports = function(grunt)
 	// Plugin loading
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-ng-annotate');
 	
 	// Task definition
 	grunt.registerTask('default', [
-		'less',
+		'sass:dev',
 		'concat',
 		'watch'
 	]);
 	grunt.registerTask('prod', [
-		'less',
+		'sass:prod',
 		'concat',
 		'ngAnnotate',
 		'uglify'
