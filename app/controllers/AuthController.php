@@ -65,7 +65,7 @@ NTPASS=".escapeshellarg($smbpass)."
 ");
 
 		// send forespørsel
-		$res = mail("it-gruppa@foreningenbs.no", "Foreningsbruker - {$username}", "Ønsker opprettelse av foreningsbruker:
+		$res = mail("it-gruppa@foreningenbs.no", "Foreningsbruker - {$data['username']}", "Ønsker opprettelse av foreningsbruker:
 
 
 Info til IT-gruppa:
