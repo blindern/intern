@@ -8,7 +8,7 @@ var module = angular.module('intern', [
 	'intern.index',
 	'intern.auth',
 	'intern.arrplan',
-	'intern.bokdatabase',
+	'intern.books',
 	'intern.dugnaden',
 	'intern.group',
 	'intern.printer',

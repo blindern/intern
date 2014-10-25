@@ -13,8 +13,11 @@
 
 Route::get('/', 'JsController@index');
 
-// bokdatabase
+// books
+Route::get('books', 'JsController@index');
 Route::get('bokdatabase', 'JsController@index');
+Route::get('books/register', 'JsController@index');
+Route::post('api/books/isbn', 'API\\BookController@isbn');
 
 // calendar
 Route::get('arrplan', 'JsController@index');

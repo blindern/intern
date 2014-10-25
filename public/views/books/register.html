@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="text" class="form-control" ng-model="isbn_search" id="isbn" placeholder="ISBN-kode" autofocus>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" ng-click="isbnSearch()" value="Søk etter bok">
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <label for="title">Tittel</label>
+                <input type="text" class="form-control" ng-model="book.title" id="title" placeholder="Tittel på boka">
+            </div>
+            <div class="form-group">
+                <label for="subtitle">Undertittel</label>
+                <input type="text" class="form-control" ng-model="book.subtitle" id="subtitle" placeholder="Evt. undertittel">
+            </div>
+            <div class="form-group">
+                <label for="authors">Forfattere ({{book.authors.length||0}} forfatter{{book.authors.length==1?'':'e'}})</label>
+                <input type="text" class="form-control" ng-model="book.authors" ng-list="," id="authors" placeholder="Forfattere separert med komma">
+            </div>
+            <div class="form-group">
+                <label for="pubdate">Publisert dato/år</label>
+                <input type="text" class="form-control" ng-model="book.pubdate" id="pubdate" placeholder="yyyy-mm-dd eller yyyy">
+            </div>
+            <div class="form-group">
+                <label for="description">Beskrivelse</label>
+                <input type="text" class="form-control" ng-model="book.description" id="description" placeholder="Evt. beskrivelse">
+            </div>
+            <div class="form-group">
+                <label for="pagenum">Sideantall</label>
+                <input type="text" class="form-control" ng-model="book.pagenum" id="pagenum" placeholder="Heltall">
+            </div>
+            <div class="form-group">
+                <label for="categories">Kategorier ({{book.categories.length||0}} kategori{{book.categories.length==1?'':'er'}})</label>
+                <input type="text" class="form-control" ng-model="book.categories" ng-list="," id="categories" placeholder="Kategorier separert med komma">
+            </div>
+            <div class="form-group">
+                <label for="isbn-result">ISBN</label>
+                <input type="text" disabled class="form-control" ng-model="book.isbn" id="isbn-result" placeholder="Evt. ISBN fra søk">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" ng-click="addbook()" value="Legg til bok">
+            </div>
+        </form>
+    </div>
+</div>
