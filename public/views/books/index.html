@@ -1,3 +1,21 @@
-<p>IT-gruppa skal jobbe med å utvikle en bokdatabase for biblioteket på Blindern Studenterhjem.</p>
-<p>Mer detaljer fra tidligere planlegging: <a href="https://github.com/blindern/bokdatabase/">https://github.com/blindern/bokdatabase/</a>.</p>
-<p>Vi håper å ha noe klart i løpet av september/oktober 2014, slik at biblioteksutvalget kan begynne registrering av bøker. Deretter vil det komme en løsning for å søke i bøkene, og kanskje også mulighet for å kunne gjøre utlån direkte i systemet.</p>
+<div ng-if="total == 0">
+    <p>Ingen bøker er registrert.</p>
+</div>
+
+<div ng-if="total > 0">
+    Bøker:
+    <ul>
+        <li ng-repeat="book in books">
+            <a href="books/{{book._id}}">{{book.title}}</a>
+        </li>
+    </ul>
+
+    Navigasjon:
+    <ul>
+        <li><a ng-click="firstPage()">&laquo;</a></li>
+        <li><a ng-click="prevPage()">&lsaquo;</a></li>
+        <li>{{currentPage}}/{{totalPages}}</li>
+        <li><a ng-click="nextPage()">&rsaquo;</a></li>
+        <li><a ng-click="lastPage()">&raquo;</a></li>
+    </ul>
+</div>
