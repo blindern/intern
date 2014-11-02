@@ -7,7 +7,8 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "angular-animate": "~1.2.x",
-    "d3": "~3.4.11"
+    "d3": "~3.4.11",
+    "angular-ladda": "~0.1.6"
   },
   "devDependencies": {
     "bootstrap-sass-official": "~3.2.0"

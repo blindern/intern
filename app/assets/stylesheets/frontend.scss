@@ -1,9 +1,12 @@
 @import "bootstrap";
 
 @import "template";
+@import "common";
 @import "flashservice";
 
 @import 'pages/arrplan';
 @import 'pages/index';
 @import 'pages/printer';
 @import 'pages/user';
+
+@import '../../../bower_components/ladda/css/ladda.scss';
