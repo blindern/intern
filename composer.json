@@ -15,7 +15,8 @@
 		"twitter/bootstrap": "3.0.3",
 		"eluceo/ical": "dev-master",
 		"nategood/httpful": "*",
-		"jenssegers/mongodb": "*"
+		"jenssegers/mongodb": "*",
+		"google/apiclient": "*"
 	},
 	"autoload": {
 		"classmap": [
