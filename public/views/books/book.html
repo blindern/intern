@@ -1,6 +1,62 @@
-<dl>
-    <dt>Tittel</dt>
-    <dd>{{book.title}}</dd>
-    <dt>ISBN</dt>
-    <dd>{{book.isbn}}</dd>
-</dl>
+<p><a href="books">&laquo; Bokliste</a></p>
+
+<div ng-show="!bib_barcode && show_barcode_form" class="panel panel-default panel-warning">
+	<div class="panel-heading">
+		<h3 class="panel-title">Mangler strekkode</h3>
+	</div>
+	<div class="panel-body">
+		<p>Denne boka er ikke tilknyttet noen strekkode. Alle bøkene bør påføres klistrelapp med strekkode som identifiserer denne oppføringen i bokdatabasen.</p>
+		<form>
+			<div class="row">
+				<div class="col-sm-10">
+					<input type="text" class="form-control" ng-model="barcode" placeholder="Scan bibliotekets strekkode som påføres boken" auto-focus>
+				</div>
+				<div class="col-sm-2">
+					<input type="submit" class="form-control btn-primary" ng-click="registerBarcode()" value="Registrer">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-9">
+		<dl class="dl-horizontal">
+			<dt ng-show="book.pubdate">Utgitt</dt>
+			<dd ng-show="book.pubdate">{{book.pubdate}}</dd>
+
+			<dt ng-show="book.authors">Forfattere</dt>
+			<dd ng-show="book.authors">
+				<span ng-repeat="name in book.authors">
+					{{name}}{{!$last ? ', ' : ''}}
+				</span>
+			</dd>
+
+			<dt ng-show="book.description">Beskrivelse</dt>
+			<dd ng-show="book.description">{{book.description}}</dd>
+
+			<dt ng-show="book.isbn">ISBN</dt>
+			<dd ng-show="book.isbn">{{book.isbn}}</dd>
+
+			<dt>Registrert</dt>
+			<dd>{{book.created_at}}</dd>
+
+			<dt ng-show="bib_barcode">Nummer i databasen</dt>
+			<dd ng-show="bib_barcode">{{bib_barcode}}</dd>
+		</dl>
+	</div>
+	<div class="col-sm-3">
+		<p ng-show="book.thumbnail"><img ng-src="{{book.thumbnail}}" alt=""></p>
+		<p ng-show="book.bib_room" class="text-muted">
+			<i>Plassering:</i><br>
+			{{book.bib_room||'Ikke registrert'}}
+			<span ng-show="book.bib_section">({{book.bib_section}})</span>
+		</p>
+	</div>
+</div>
+
+<p>
+	<a href ng-click="deleteBook()" class="btn btn-danger">Slett boka</a>
+	<a href ng-click="editBook()" class="btn btn-primary">Rediger data</a>
+	<a href="books/register" class="btn btn-success">Registrer ny bok</a>
+</p>
