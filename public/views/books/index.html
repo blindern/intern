@@ -1,0 +1,35 @@
+<p style="float: right"><a href="books/register" class="btn btn-info">Registrer ny bok</a></p>
+
+<p>Den digitale bokdatabasen er fortsatt under utvikling. Det er <a href="group/biblioteksutvalget">biblioteksutvalget</a> som står for registrering av bøkene i biblioteket. {{total}} bøker er registrert i databasen.</p>
+
+<div ng-if="total > 0">
+    <div class="books_list">
+        <div class="book" ng-repeat="book in books">
+            <a href="books/{{book._id}}">
+                <span class="thumb">
+                    <img ng-show="book.thumbnail" ng-src="{{book.thumbnail}}" alt="">
+                </span>
+                <span class="bookdata">
+                    <span class="title">
+                        {{book.title}}<span class="subtitle" ng-show="book.subtitle">: {{book.subtitle}}</span>
+                    </span>
+                    <span class="pubdate" ng-show="book.pubdate">{{book.pubdate}}</span>
+                </span>
+                <span class="placeinfo">
+                    <span class="room" ng-show="book.bib_room">{{book.bib_room}}</span>
+                    <span class="section" ng-show="book.bib_section">{{book.bib_section}}</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <nav class="text-center">
+        <ul class="pagination center">
+            <li><a href ng-click="firstPage()">&laquo;</a></li>
+            <li><a href ng-click="prevPage()">&lsaquo;</a></li>
+            <li><a>{{currentPage}}/{{totalPages}}</a></li>
+            <li><a href ng-click="nextPage()">&rsaquo;</a></li>
+            <li><a href ng-click="lastPage()">&raquo;</a></li>
+        </ul>
+    </nav>
+</div>

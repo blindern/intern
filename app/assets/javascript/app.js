@@ -8,7 +8,7 @@ var module = angular.module('intern', [
 	'intern.index',
 	'intern.auth',
 	'intern.arrplan',
-	'intern.bokdatabase',
+	'intern.books',
 	'intern.dugnaden',
 	'intern.group',
 	'intern.printer',
@@ -58,9 +58,9 @@ module.directive('autoFocus', function($timeout) {
     return {
         restrict: 'AC',
         link: function(_scope, _element) {
-            $timeout(function(){
+        	$timeout(function(){
                 _element[0].focus();
-            }, 0);
+            }, 100);
         }
     };
 });

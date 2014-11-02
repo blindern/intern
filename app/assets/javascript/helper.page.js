@@ -1,4 +1,4 @@
-angular.module('intern.helper.page', ['ngAnimate']).
+angular.module('intern.helper.page', ['ngAnimate', 'angular-ladda']).
 factory('Page', function($rootScope) {
 	$rootScope.title = 'default';
 	return {

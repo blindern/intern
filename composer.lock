@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5d0b35a9d480e600cc1ec8666d69f281",
+    "hash": "44f293487dcdb5c8e30222f2088d69f1",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -209,6 +209,48 @@
                 "zf2"
             ],
             "time": "2014-07-11 05:56:54"
+        },
+        {
+            "name": "google/apiclient",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/google/google-api-php-client.git",
+                "reference": "354ed386eda6cabed86d3492163ae5634a4ba47e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/354ed386eda6cabed86d3492163ae5634a4ba47e",
+                "reference": "354ed386eda6cabed86d3492163ae5634a4ba47e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Client library for Google APIs",
+            "homepage": "http://developers.google.com/api-client-library/php",
+            "keywords": [
+                "google"
+            ],
+            "time": "2014-10-31 09:49:22"
         },
         {
             "name": "ircmaxell/password-compat",

@@ -1,0 +1,59 @@
+.books_list {
+	.book {
+		a {
+			margin-top: 10px;
+			padding: 10px;
+			background-color: #FAFAFA;
+			overflow: hidden;
+			display: block;
+			border-radius: 5px;
+			position: relative;
+			width: 100%;
+
+			.thumb {
+				float: left;
+				display: block;
+				min-width: 62px;
+				min-height: 1px;
+			}
+			.bookdata {
+				float: left;
+				margin-left: 10px;
+			}
+
+			.title {
+				&.have_subtitle:after {
+					content: ':';
+				}
+				.subtitle {
+					color: #555;
+				}
+			}
+
+			.placeinfo {
+				float: right;
+				text-align: right;
+
+				.room {
+					display: block;
+					color: #888;
+				}
+				.section {
+					display: block;
+					color: #888;
+				}
+				.section:before {
+					content: '(';
+				}
+				.section:after {
+					content: ')';
+				}
+			}
+
+			.pubdate {
+				display: block;
+				color: #AAA;
+			}
+		}
+	}
+}

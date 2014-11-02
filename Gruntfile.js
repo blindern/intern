@@ -10,7 +10,12 @@ module.exports = function(grunt)
 		"./bower_components/angular/angular.js",
 		"./bower_components/angular-route/angular-route.js",
 		"./bower_components/angular-animate/angular-animate.js",
+		"./bower_components/angular-resource/angular-resource.js",
 		"./bower_components/d3/d3.js",
+
+		"./bower_components/ladda/js/spin.js",
+		"./bower_components/ladda/js/ladda.js",
+		"./bower_components/angular-ladda/dist/angular-ladda.min.js",
 		
 		"./app/assets/javascript/**.js"
 	];
@@ -75,6 +80,18 @@ module.exports = function(grunt)
 					'./public/assets/javascript/frontend.js': ['./public/assets/javascript/frontend.js']
 				}
 			}
+		},
+		copy: {
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: './bower_components/bootstrap-sass-official/assets/fonts/',
+						src: ['**'],
+						dest: './public/assets/fonts/'
+					}
+				]
+			}
 		}
 	});
 
@@ -83,6 +100,7 @@ module.exports = function(grunt)
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-ng-annotate');
 	
 	// Task definition
@@ -92,6 +110,7 @@ module.exports = function(grunt)
 		'watch'
 	]);
 	grunt.registerTask('prod', [
+		'copy',
 		'sass:prod',
 		'concat',
 		'ngAnnotate',
