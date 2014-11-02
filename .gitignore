@@ -6,6 +6,7 @@ composer.phar
 Thumbs.db
 /node_modules/
 /public/builds/
+/public/assets/fonts/
 /public/assets/javascript/frontend.js
 /public/assets/stylesheets/frontend.css
 /public/assets/stylesheets/frontend.css.map
