@@ -97,84 +97,104 @@ controller("LoginController", function($scope, $location, AuthService, Page) {
 	};
 }).
 
-factory("AuthService", function($http, $location) {
+service("AuthService", function($http, $location, FlashService) {
 	// these are injected in the main layout from Laravel
 	var logged_in = window.logged_in;
 	var user = window.user;
 	var useradmin = window.useradmin;
 	var redirect_url;
 
-	return {
-		isLoggedIn: function() {
-			return logged_in;
-		},
-		getUser: function() {
-			return user;
-		},
-		isUserAdmin: function() {
-			return useradmin;
-		},
-		login: function(credentials) {
-			var login = $http.post('api/login', credentials);
-			login.success(function(res) {
-				if ('flash' in res) {
-					console.log("melding", res.flash);
-				} else if ('user' in res) {
-					logged_in = true;
-					user = res.user;
-					useradmin = res.useradmin;
-				}
-			});
-			login.error(function(res) {
-				// TODO
-				console.log("login error");
-			})
-			return login;
-		},
-		logout: function() {
-			return $http.get('logout').success(function() {
-				logged_in = false;
-				user = null;
-				useradmin = null;
-			});
-		},
+	var self = this;
 
-		// set redirect url to go to on login
-		setRedirectUrl: function(path) {
-			redirect_url = path;
-		},
-
-		// get (and reset) redirect url for login action
-		getRedirectUrl: function() {
-			var path = redirect_url;
-			redirect_url = null;
-			return path;
-		},
-
-		// check if we can admin a group
-		groupIsAdmin: function(group, realadmin) {
-			if (!realadmin && useradmin) return true;
-			return (group in user.groupowner_relations);
-		},
-
-		// check if we are in a group
-		inGroup: function(groupNames, forceRealMember) {
-			if (!logged_in) return false;
-			if (!forceRealMember && useradmin) return true;
-
-			if (!(groupNames instanceof Array))
-			{
-				groupNames = [groupNames];
+	this.isLoggedIn = function() {
+		return logged_in;
+	};
+	this.getUser = function() {
+		return user;
+	};
+	this.isUserAdmin = function() {
+		return useradmin;
+	};
+	this.login = function(credentials) {
+		var login = $http.post('api/login', credentials);
+		login.success(function(res) {
+			if ('flash' in res) {
+				console.log("melding", res.flash);
+			} else if ('user' in res) {
+				logged_in = true;
+				user = res.user;
+				useradmin = res.useradmin;
 			}
+		});
+		login.error(function(res) {
+			// TODO
+			console.log("login error");
+		})
+		return login;
+	};
+	this.logout = function() {
+		return $http.get('logout').success(function() {
+			logged_in = false;
+			user = null;
+			useradmin = null;
+		});
+	};
 
-			for (var i = 0; i < groupNames.length; i++)
-			{
-				var group = groupNames[i];
-				if (group in user.group_relations) return true;
-			};
+	// set redirect url to go to on login
+	this.setRedirectUrl = function(path) {
+		redirect_url = path;
+	};
 
-			return false;
+	// get (and reset) redirect url for login action
+	this.getRedirectUrl = function() {
+		var path = redirect_url;
+		redirect_url = null;
+		return path;
+	};
+
+	// check if we can admin a group
+	this.groupIsAdmin = function(group, realadmin) {
+		if (!realadmin && useradmin) return true;
+		return (group in user.groupowner_relations);
+	};
+
+	// check if we are in a group
+	this.inGroup = function(groupNames, forceRealMember) {
+		if (!logged_in) return false;
+		if (!forceRealMember && useradmin) return true;
+
+		if (!(groupNames instanceof Array))
+		{
+			groupNames = [groupNames];
 		}
+
+		for (var i = 0; i < groupNames.length; i++)
+		{
+			var group = groupNames[i];
+			if (group in user.group_relations) return true;
+		};
+
+		return false;
+	};
+
+	// require login
+	// returns true if access is granted
+	// redirect to login if needed
+	this.requireUser = function() {
+		if (self.isLoggedIn()) return true;
+		FlashService.add({'message': 'Denne siden krever innlogging.', 'type': 'danger'});
+		self.setRedirectUrl($location.path());
+		$location.path('login');
+		return false;
+	};
+
+	// require group access
+	// returns true if access is granted, false if not
+	// give error message or redirect to login if needed
+	this.requireGroup = function(groupNames, forceRealMember) {
+		if (!self.requireUser()) return false;
+		if (self.inGroup(groupNames, forceRealMember)) return true;
+		return false;
 	};
 }).
 
