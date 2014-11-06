@@ -25,11 +25,11 @@ class BookController extends \Controller {
             'found' => true,
             'data' => array(
                 'title' => $result['title'],
-                'subtitle' => $result['subtitle'],
-                'authors' => $result['authors'],
-                'categories' => $result['categories'],
-                'description' => $result['description'],
-                'pubdate' => $result['publishedDate']
+                'subtitle' => @$result['subtitle'] ?: null,
+                'authors' => @$result['authors'] ?: null,
+                'categories' => @$result['categories'] ?: null,
+                'description' => @$result['description'] ?: null,
+                'pubdate' => @$result['publishedDate'] ?: null
             )
         );
     }
