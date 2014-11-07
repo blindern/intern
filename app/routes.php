@@ -66,6 +66,7 @@ Route::group(array('before' => 'auth-api'), function()
 Route::get('dugnaden/old/list', 'JsController@index');
 
 // matmeny
+Route::get('matmeny/plain', 'MatmenyController@index');
 Route::get('api/matmeny', 'API\\MatmenyController@index');
 Route::post('api/matmeny/convert', 'API\\MatmenyController@convert');
 Route::post('api/matmeny', 'API\\MatmenyController@store');
