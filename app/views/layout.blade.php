@@ -8,6 +8,8 @@ if ($user)
   $userdetails = $user->toArray(array(), 2);
 }
 
+$is_office = \Blindern\Intern\Auth\Helper::isOffice();
+
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="intern">
@@ -28,6 +30,7 @@ if ($user)
     var logged_in = <?php echo json_encode((bool) $user); ?>;
     var user = <?php echo json_encode($userdetails); ?>;
     var useradmin = <?php echo json_encode(Auth::member("useradmin")); ?>;
+    var is_office = <?php echo json_encode((bool) $is_office); ?>;
     </script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

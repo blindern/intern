@@ -1,4 +1,26 @@
 /* For forsiden */
+
+.index-matmeny {
+  background-color: lighten($state-info-bg, 5%);
+  text-align: center;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+
+  &, &:hover {
+    text-decoration: none;
+    color: $text-color;
+  }
+  &:hover {
+    background-color: $state-info-bg;
+  }
+
+  p {
+    margin: 10px;
+    display: block;
+  }
+}
+
 .fbs_forside_lenker {
   p {
     margin: 10px 0;

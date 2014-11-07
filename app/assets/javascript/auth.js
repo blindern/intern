@@ -102,6 +102,7 @@ service("AuthService", function($http, $location, FlashService) {
 	var logged_in = window.logged_in;
 	var user = window.user;
 	var useradmin = window.useradmin;
+	var is_office = window.is_office;
 	var redirect_url;
 
 	var self = this;
@@ -195,6 +196,11 @@ service("AuthService", function($http, $location, FlashService) {
 		if (!self.requireUser()) return false;
 		if (self.inGroup(groupNames, forceRealMember)) return true;
 		return false;
+	};
+
+	// check if we have access by IP
+	this.isOffice = function() {
+		return is_office;
 	};
 }).
 

@@ -1,5 +1,27 @@
-<p>Foreningen Blindern Studenterhjem er en sosial forening, hvis formål er å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer informasjon om Blindern Studenterhjem og foreningen, se <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">http://blindern-studenterhjem.no/livet/foreningsstyret</a>.</p>
-<p>Disse nettsidene er hovedsaklig myntet på foreningens medlemmer, og mange av sidene er beskyttet med passord.</p>
+<div class="row">
+	<div ng-class="{ 'col-md-12': !matmeny, 'col-md-9': matmeny }">
+		<p>Foreningen Blindern Studenterhjem er en sosial forening, hvis formål er å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer informasjon om Blindern Studenterhjem og foreningen, se <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">http://blindern-studenterhjem.no/livet/foreningsstyret</a>.</p>
+		<p>Disse nettsidene er hovedsaklig myntet på foreningens medlemmer, og mange av sidene er beskyttet med passord.</p>
+	</div>
+	<div ng-show="matmeny" class="col-md-3">
+		<a href="matmeny" class="index-matmeny">
+			<p class="day"><b>Dagens matrett</b> ({{matmenydate.today|customdate:'dddd'}}):<br>
+				<span ng-show="!matmeny.today">Ukjent</span>
+				<span ng-repeat="dish in matmeny.today.dishes">
+					{{dish}}<span ng-show="!$last">,</span>
+				</span>
+				<span ng-show="matmeny.today.text" style="color: #FF0000">({{matmeny.today.text}})</span>
+			</p>
+			<p>I morgen, {{matmenydate.tomorrow|customdate:'dddd'}}:<br>
+				<span ng-show="!matmeny.tomorrow.day">Ukjent</span>
+				<span ng-repeat="dish in matmeny.tomorrow.dishes">
+					{{dish}}<span ng-show="!$last">,</span>
+				</span>
+				<span ng-show="matmeny.tomorrow.text" style="color: #FF0000">({{matmeny.tomorrow.text}})</span>
+			</p>
+		</a>
+	</div>
+</div>
 
 <hr />
 
