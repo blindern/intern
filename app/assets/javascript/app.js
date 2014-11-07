@@ -12,7 +12,8 @@ var module = angular.module('intern', [
 	'intern.dugnaden',
 	'intern.group',
 	'intern.printer',
-	'intern.user'
+	'intern.user',
+	'intern.matmeny'
 ]);
 
 module.config(['$routeProvider', function($routeProvider) {
