@@ -22,7 +22,8 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	//
+	// give access to the phone app testing page
+	$response->header('Access-Control-Allow-Origin', 'http://dev1.hsw.no:8000');
 });
 
 /*
