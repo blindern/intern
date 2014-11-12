@@ -16,13 +16,15 @@ class GroupController extends \Controller {
 
 	public function show($group)
 	{
-		if ($group = Group::find($group))
-		{
-			$c = new UserController();
-
-			$group->getMembers();
-			return $group->toArray(array(), 2, $c->exceptFields());
+		$group = Group::find($group);
+		if (is_null($group)) {
+			\App::abort(404);
 		}
+
+		$c = new UserController();
+
+		$group->getMembers();
+		return $group->toArray(array(), 2, $c->exceptFields());
 	}
 
 	/*			// get full objects

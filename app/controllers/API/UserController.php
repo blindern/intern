@@ -31,8 +31,11 @@ class UserController extends \Controller {
 	public function show($username)
 	{
 		$user = \User::find($username);
-		$user->loadGroups(false);
+		if (is_null($user)) {
+			\App::abort(404);
+		}
 
+		$user->loadGroups(false);
 		return $user->toArray($this->exceptFields($user), 2);
 	}
 
