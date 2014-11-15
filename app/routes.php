@@ -28,6 +28,7 @@ Route::get('arrplan/{sem}', 'JsController@index');
 Route::get('arrplan.ics', 'KalenderController@action_ics');
 Route::get('arrplan.ical', 'KalenderController@action_ics');
 Route::get('kalender.ical', 'KalenderController@action_ics');
+Route::get('api/arrplan/next', 'API\\ArrplanController@next');
 Route::resource('api/arrplan', "API\\ArrplanController", array('only' => array('index')));
 
 // printer

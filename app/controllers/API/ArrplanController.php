@@ -18,4 +18,10 @@ class ArrplanController extends \Controller {
 
 		return $data;
 	}
+
+	public function next()
+	{
+		$count = max(1, \Input::get('count', 5));
+		return HappeningNew::getNext($count);
+	}
 }

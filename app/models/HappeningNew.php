@@ -23,6 +23,23 @@ class HappeningNew {
 		return $data;
 	}
 
+	/**
+	 * Get the next events, by its end date
+	 * Date of today counts as next event
+	 * Recurring events does not count
+	 */
+	public static function getNext($num = 5)
+	{
+		$res = array();
+		foreach (static::getHappenings() as $ev) {
+			if ($ev->isRecurring()) continue;
+			if ($ev->expired()) continue;
+			$res[] = $ev;
+			if (count($res) >= $num) break;
+		}
+		return $res;
+	}
+
 	private static function getHappeningsFromWiki()
 	{
 		$url = "https://foreningenbs.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
