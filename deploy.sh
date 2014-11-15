@@ -10,4 +10,4 @@
 composer install
 npm install
 bower install
-grunt prod
+gulp --production
