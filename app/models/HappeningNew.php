@@ -10,11 +10,24 @@ use \Eluceo\iCal\Property\Event\RecurrenceRule;
  */
 
 class HappeningNew {
-	public static function getHappenings()
+	const CACHE_NAME = "happenings";
+
+	public static function getHappenings($invalidate_cache = null)
+	{
+		$data = $invalidate_cache ? null : \Cache::get(static::CACHE_NAME);
+		if (is_null($data)) {
+			$data = static::getHappeningsFromWiki();
+			\Cache::put(static::CACHE_NAME, $data, 180);
+		}
+
+		return $data;
+	}
+
+	private static function getHappeningsFromWiki()
 	{
 		$url = "https://foreningenbs.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
 		$data = file_get_contents($url);
-		
+
 		$data = json_decode($data, true);
 		if ($data === false || !isset($data['query']['pages']))
 		{
@@ -286,7 +299,7 @@ class HappeningNew {
 	public function getCalEnd()
 	{
 		$end = new \DateTime($this->end);
-		
+
 		// in the database this field is inclusive
 		// for ical it is exclusive, so we need to add one day
 		// only needed if it is an all day-event, else it will have correct end time

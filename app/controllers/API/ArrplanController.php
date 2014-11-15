@@ -8,14 +8,14 @@ use \Eluceo\iCal\Property\Event\RecurrenceRule;
 class ArrplanController extends \Controller {
 	public function index()
 	{
-		$res = HappeningNew::getHappenings();
+		$res = HappeningNew::getHappenings(isset($_GET['invalidate']));
 
 		$data = array();
 		foreach ($res as $row)
 		{
 			$data[] = $row->toArray();
 		}
-		
-		return \Response::json($data);
+
+		return $data;
 	}
 }

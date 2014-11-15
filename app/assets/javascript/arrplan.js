@@ -55,7 +55,7 @@ angular.module('intern.arrplan', ['ngRoute', 'intern.helper.page'])
 .factory("ArrplanService", function($http) {
 	return {
 		get: function() {
-			return $http.get('api/arrplan', {cache: 'true'});
+			return $http.get('api/arrplan', {cache: 'true', params: {'invalidate': 1}});
 		},
 		getSem: function(arrevent) {
 			var t = function(d)
