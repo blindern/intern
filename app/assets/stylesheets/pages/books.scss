@@ -1,27 +1,36 @@
 .books_list {
+	max-width: 600px;
+	margin: 0 auto;
+
 	.book {
 		a {
 			margin-top: 10px;
 			padding: 10px;
-			background-color: #FAFAFA;
+			background-color: lighten($state-info-bg, 5%);
 			overflow: hidden;
 			display: block;
 			border-radius: 5px;
 			position: relative;
-			width: 100%;
+			text-decoration: none;
+
+			&:hover {
+				background-color: lighten($state-info-bg, 2%);
+			}
 
 			.thumb {
-				float: left;
+				float: right;
 				display: block;
 				min-width: 62px;
 				min-height: 1px;
+				text-align: right;
 			}
+
 			.bookdata {
-				float: left;
-				margin-left: 10px;
+				margin-right: 72px;
 			}
 
 			.title {
+				display: inline;
 				&.have_subtitle:after {
 					content: ':';
 				}
@@ -31,28 +40,43 @@
 			}
 
 			.placeinfo {
-				float: right;
-				text-align: right;
+				margin-top: 5px;
+				margin-right: 72px;
+				color: lighten($text-muted, 20%);
+				font-size: 90%;
 
-				.room {
-					display: block;
-					color: #888;
+				&:before {
+					content: 'Plassering: ';
+				}
+
+				.room, .section {
+					display: inline;
 				}
 				.section {
-					display: block;
-					color: #888;
-				}
-				.section:before {
-					content: '(';
-				}
-				.section:after {
-					content: ')';
+					display: inline;
+					&:before {
+						content: '(';
+					}
+					&:after {
+						content: ')';
+					}
 				}
 			}
 
 			.pubdate {
-				display: block;
+				display: inline;
 				color: #AAA;
+
+				&:before {
+					content: '(';
+				}
+				&:after {
+					content: ')';
+				}
+			}
+
+			@media (min-width: $screen-sm-min) {
+				// evt justeringer for annen visning ved stor skjerm
 			}
 		}
 	}
