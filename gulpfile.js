@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     ngAnnotate = require('gulp-ng-annotate'),
     gulpif = require('gulp-if'),
+    autoprefixer = require('gulp-autoprefixer'),
     args = require('yargs').argv;
 
 // run with --production to do more compressing etc
@@ -34,6 +35,10 @@ var js_files = [
 gulp.task('styles', function() {
     return gulp.src('app/assets/stylesheets/frontend.scss')
         .pipe(sourcemaps.init())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(sass({ style: isProd ? 'compressed' : 'compressed'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/assets/stylesheets'));
