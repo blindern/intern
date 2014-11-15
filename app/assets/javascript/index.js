@@ -12,6 +12,11 @@ angular.module('intern.index', ['ngRoute', 'intern.helper.page', 'intern.matmeny
 .controller('IndexCtrl', function(Page, Matmeny, $http, $scope) {
 	Page.setTitle('Foreningen Blindern Studenterhjem');
 
+    // hent neste arrplan
+    $http.get('api/arrplan/next', {params: {count: 4}}).success(function(ret) {
+        $scope.arrplan = ret;
+    });
+
     // hent matmeny
     var today = moment().format('YYYY-MM-DD');
     var tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');

@@ -1,8 +1,21 @@
 <div class="row">
-	<div ng-class="{ 'col-md-12': !matmeny, 'col-md-9': matmeny }">
+	<div ng-class="{ 'col-md-9': !matmeny, 'col-md-6': matmeny }">
 		<p>Foreningen Blindern Studenterhjem er en sosial forening, hvis formål er å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer informasjon om Blindern Studenterhjem og foreningen, se <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">http://blindern-studenterhjem.no/livet/foreningsstyret</a>.</p>
 		<p>Disse nettsidene er hovedsaklig myntet på foreningens medlemmer, og mange av sidene er beskyttet med passord.</p>
 	</div>
+
+	<div class="col-md-3">
+		<a href="arrplan" class="index-arrplan">
+			<div class="h">Neste på arrangementplanen</div>
+			<div ng-show="!arrplan">Laster...</div>
+			<div ng-show="arrplan">
+				<p ng-repeat="event in arrplan" ng-class="{'old-happening': event.expired, lowPriority: event.priority == 'low', highPriority: event.priority == 'high'}">
+					<span class="text-muted">{{event.duration}}:</span> {{event.title}}
+				</p>
+			</div>
+		</a>
+	</div>
+
 	<div ng-show="matmeny" class="col-md-3">
 		<a href="matmeny" class="index-matmeny">
 			<p class="day"><b>Dagens matrett</b> ({{matmenydate.today|customdate:'dddd'}}):<br>

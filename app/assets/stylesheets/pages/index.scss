@@ -1,6 +1,18 @@
 /* For forsiden */
 
-.index-matmeny {
+.index-arrplan {
+  margin-bottom: 10px;
+  @media (min-width: $screen-md-min) {
+    margin-bottom: 0;
+  }
+  .h {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+  }
+}
+
+.index-matmeny, .index-arrplan {
   background-color: lighten($state-info-bg, 5%);
   text-align: center;
   overflow: hidden;
