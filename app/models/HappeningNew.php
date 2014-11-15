@@ -4,12 +4,13 @@ use Carbon\Carbon;
 use \Eluceo\iCal\Component\Calendar;
 use \Eluceo\iCal\Component\Event;
 use \Eluceo\iCal\Property\Event\RecurrenceRule;
+use Illuminate\Support\Contracts\ArrayableInterface;
 
 /*
  * TODO: Support skips on repeats (split into multiple events)
  */
 
-class HappeningNew {
+class HappeningNew implements ArrayableInterface, JsonSerializable {
 	const CACHE_NAME = "happenings";
 
 	public static function getHappenings($invalidate_cache = null)
@@ -432,5 +433,9 @@ class HappeningNew {
 		$d['duration'] = ($this->isRecurring() ? $this->getDurationRecurring() : $this->getDuration());
 
 		return $d;
+	}
+
+	public function jsonSerialize() {
+		return $this->toArray();
 	}
 }
