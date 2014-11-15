@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     ngAnnotate = require('gulp-ng-annotate'),
     gulpif = require('gulp-if'),
     autoprefixer = require('gulp-autoprefixer'),
+    minifycss = require('gulp-minify-css'),
     args = require('yargs').argv;
 
 // run with --production to do more compressing etc
@@ -39,7 +40,8 @@ gulp.task('styles', function() {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(sass({ style: isProd ? 'compressed' : 'compressed'}))
+        .pipe(sass())
+        .pipe(gulpif(isProd, minifycss()))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/assets/stylesheets'));
 });
