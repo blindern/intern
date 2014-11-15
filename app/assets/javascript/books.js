@@ -116,8 +116,6 @@ mod.controller('BookRegisterCtrl', function(Page, Book, AuthService, $scope, $ht
             $scope.book = new Book();
             $scope.book.isbn = data.isbn;
 
-            restoreParams();
-
             angular.forEach(data.data, function(value, key) {
                 $scope.book[key] = value;
             });
