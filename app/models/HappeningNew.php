@@ -34,6 +34,7 @@ class HappeningNew implements ArrayableInterface, JsonSerializable {
 		$res = array();
 		foreach (static::getHappenings() as $ev) {
 			if ($ev->isRecurring()) continue;
+			if ($ev->isComment()) continue;
 			if ($ev->expired()) continue;
 			$res[] = $ev;
 			if (count($res) >= $num) break;
