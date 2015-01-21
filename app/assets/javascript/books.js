@@ -97,10 +97,8 @@ mod.controller('BookRegisterCtrl', function(Page, Book, AuthService, $scope, $ht
 
     // restore last used parameters
     function restoreParams() {
-        if (typeof(Storage) !== 'undefined') {
-            $scope.book.bib_room = sessionStorage.bookRoom || 'Biblioteket';
-            $scope.book.bib_section = sessionStorage.bookSection || '';
-        }
+        $scope.book.bib_room = sessionStorage.bookRoom || 'Biblioteket';
+        $scope.book.bib_section = sessionStorage.bookSection || '';
     }
     restoreParams();
 
@@ -119,6 +117,8 @@ mod.controller('BookRegisterCtrl', function(Page, Book, AuthService, $scope, $ht
             angular.forEach(data.data, function(value, key) {
                 $scope.book[key] = value;
             });
+
+            restoreParams();
             document.getElementById('title').focus();
         }).then(function() {
             $scope.isbn_is_searching = false;
@@ -126,18 +126,18 @@ mod.controller('BookRegisterCtrl', function(Page, Book, AuthService, $scope, $ht
     };
 
     $scope.addBook = function() {
-        // save some paramters for later usage
-        if (typeof(Storage) !== 'undefined') {
-            sessionStorage.bookRoom = $scope.book.bib_room;
-            sessionStorage.bookSection = $scope.book.bib_section;
-        }
-
         $scope.book.$save(function(result) {
             console.log("book saved?", result);
             if (result._id) {
                 $location.path("/books/" + result._id);
             }
         });
+    };
+
+    $scope.syncMeta = function () {
+        // save some parameters for later usage
+        sessionStorage.bookRoom = $scope.book.bib_room;
+        sessionStorage.bookSection = $scope.book.bib_section;
     };
 });
 

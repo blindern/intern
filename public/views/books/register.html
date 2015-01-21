@@ -8,14 +8,14 @@
         <div class="form-group">
             <label for="description" class="col-sm-3 control-label">Rom</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" ng-model="book.bib_room" id="room" placeholder="I hvilket rom tilhører boka?">
+                <input type="text" class="form-control" ng-model="book.bib_room" id="room" placeholder="I hvilket rom tilhører boka?" ng-change="syncMeta()">
             </div>
         </div>
                 
         <div class="form-group">
             <label for="description" class="col-sm-3 control-label">Seksjon i rommet</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" ng-model="book.bib_section" id="section" placeholder="Hvor i biblioteket boka tilhører">
+                <input type="text" class="form-control" ng-model="book.bib_section" id="section" placeholder="Hvor i biblioteket boka tilhører" ng-change="syncMeta()">
             </div>
         </div>
         
