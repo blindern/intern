@@ -60,7 +60,7 @@ class BookController extends \Controller {
             'title' => 'required',
             'subtitle' => '',
             'authors' => 'array',
-            'pubdate' => 'regex:/^\d{4}(-\d\d(-\d\d)?)?$/',
+            'pubdate' => array('regex:/^(\d{4}-\d\d(-\d\d)?|\d{4}\?|\d{2}\?)$/'),
             'description' => '',
             'isbn' => '',
             'bib_comment' => '',
