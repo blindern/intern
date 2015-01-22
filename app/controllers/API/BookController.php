@@ -41,7 +41,7 @@ class BookController extends \Controller {
      */
     public function index()
     {
-        return Book::orderBy('created_at', 'desc')->paginate($limit = 10);
+        return Book::orderBy('created_at', 'desc')->paginate($limit = 100);
     }
 
 
