@@ -14,7 +14,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => !isset($_SERVER['REMOTE_ADDR']) || $_SERVER['REMOTE_ADDR'] == '37.191.203.206',
 
 	/*
 	|--------------------------------------------------------------------------
