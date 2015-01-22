@@ -6,14 +6,14 @@
 
     <form>
         <div class="form-group">
-            <label for="description" class="col-sm-3 control-label">Rom</label>
+            <label for="room" class="col-sm-3 control-label">Rom</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" ng-model="book.bib_room" id="room" placeholder="I hvilket rom tilhører boka?" ng-change="syncMeta()">
             </div>
         </div>
                 
         <div class="form-group">
-            <label for="description" class="col-sm-3 control-label">Seksjon i rommet</label>
+            <label for="section" class="col-sm-3 control-label">Seksjon i rommet</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" ng-model="book.bib_section" id="section" placeholder="Hvor i biblioteket boka tilhører" ng-change="syncMeta()">
             </div>
@@ -78,7 +78,8 @@
         -->
         <div class="form-group">
             <div class="col-sm-8 col-sm-offset-3">
-            <input type="submit" class="btn btn-primary" ng-click="addBook()" value="Registrer bok i databasen">
+                <input type="submit" class="btn btn-primary" ng-click="addBook()" value="Registrer bok i databasen">
+            </div>
         </div>
     </form>
 </div>
