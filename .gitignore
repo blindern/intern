@@ -17,3 +17,4 @@ error_log
 
 # ignore IntelliJ-files
 .idea/
+*.iml
