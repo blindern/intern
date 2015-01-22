@@ -56,37 +56,10 @@ class BookController extends \Controller {
             return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
         }
 
-        $validator = \Validator::make(Input::all(), array(
-            'title' => 'required',
-            'subtitle' => '',
-            'authors' => 'array',
-            'pubdate' => array('regex:/^(\d{4}-\d\d(-\d\d)?|\d{4}\??|\d{2}\?)$/'),
-            'description' => '',
-            'isbn' => '',
-            'bib_comment' => '',
-            'bib_room' => '',
-            'bib_section' => ''
-        ));
-
-        if ($validator->fails()) {
-            $c = FlashCollection::forge();
-            foreach ($validator->messages()->all(':message') as $message)
-            {
-                $c->add(Flash::forge($message)->setError());
-            }
-            return $c->asResponse(null, 400);
-        }
-
         $book = new Book();
-        $book->title = Input::get('title');
-        $book->subtitle = Input::get('subtitle');
-        $book->authors = Input::get('authors');
-        $book->pubdate = Input::get('pubdate');
-        $book->description = Input::get('description');
-        $book->isbn = Input::get('isbn');
-        $book->bib_comment = Input::get('bib_comment');
-        $book->bib_room = Input::get('bib_room');
-        $book->bib_section = Input::get('bib_section');
+        if (($val = $this->validateInputAndUpdate($book)) !== true) {
+            return $val;
+        }
 
         // check for ISBN-data
         if ($isbn_data = ISBN::searchByISBN($book->isbn)) {
@@ -98,7 +71,6 @@ class BookController extends \Controller {
         }
 
         $book->save();
-
         return $book;
     }
 
@@ -127,7 +99,17 @@ class BookController extends \Controller {
      */
     public function update($id)
     {
-        // TODO
+        $book = Book::find($id);
+        if (!$book) {
+            return Flash::forge('Fant ikke boka.')->setError()->asResponse(null, 404);
+        }
+
+        if (($val = $this->validateInputAndUpdate($book)) !== true) {
+            return $val;
+        }
+
+        $book->save();
+        return $book;
     }
 
 
@@ -188,5 +170,44 @@ class BookController extends \Controller {
         } else {
             return Flash::forge('Ukjent feil.')->setError()->asResponse(null, 404);
         }
+    }
+
+    /**
+     * Run validator for add/edit
+     */
+    private function validateInputAndUpdate(Book $book)
+    {
+        $validator = \Validator::make(Input::all(), array(
+            'title' => 'required',
+            'subtitle' => '',
+            'authors' => 'array',
+            'pubdate' => array('regex:/^(\d{4}-\d\d(-\d\d)?|\d{4}\??|\d{2}\?)$/'),
+            'description' => '',
+            'isbn' => '',
+            'bib_comment' => '',
+            'bib_room' => '',
+            'bib_section' => ''
+        ));
+
+        if ($validator->fails()) {
+            $c = FlashCollection::forge();
+            foreach ($validator->messages()->all(':message') as $message)
+            {
+                $c->add(Flash::forge($message)->setError());
+            }
+            return $c->asResponse(null, 400);
+        }
+
+        $book->title = Input::get('title');
+        $book->subtitle = Input::get('subtitle');
+        $book->authors = Input::get('authors');
+        $book->pubdate = Input::get('pubdate');
+        $book->description = Input::get('description');
+        $book->isbn = Input::get('isbn');
+        $book->bib_comment = Input::get('bib_comment');
+        $book->bib_room = Input::get('bib_room');
+        $book->bib_section = Input::get('bib_section');
+
+        return true;
     }
 }
