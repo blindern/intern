@@ -66,4 +66,22 @@
     font-size: 17px;
     line-height: 80px;
   }
+
+  .wiki-box {
+    p {
+      position: relative;
+    }
+    a span {
+      padding-bottom: 20px;
+    }
+    .search-box {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      right: 5px;
+    }
+    input {
+      width: 100%;
+    }
+  }
 }
