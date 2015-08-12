@@ -19,8 +19,7 @@ class AuthController extends Controller {
 			'username' => Input::get('username'),
 			'email' => Input::get('email'),
 			'password' => Input::get('password'),
-			'phone' => Input::get('phone'),
-			'internmail' => (bool)Input::get('internmail')
+			'phone' => Input::get('phone')
 		);
 
 		// TODO: unique username and email
@@ -79,11 +78,8 @@ Mobilnr: ".($data['phone'] ? "\"{$data['phone']}\"" : "ikke registrert")."
 Kommando for å opprette:
 /fbs/drift/nybruker/process.sh $n
 
-Internmail: ".($data['internmail'] ? "Ja
-**********************
-** MERK: INTERNMAIL **
+Tekst til bs-info-lista:
 {$data['email']} {$data['firstname']} {$data['lastname']}
-**********************" : 'Nei')."
 
 
 Sendt fra {$_SERVER['REMOTE_ADDR']}
