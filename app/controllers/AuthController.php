@@ -51,6 +51,7 @@ class AuthController extends Controller {
 		$data['phone'] = !empty($data['phone']) ? $data['phone'] : '';
 
 		// lag fil som kan brukes
+		setlocale(LC_CTYPE, "nb_NO.UTF-8");
 		$n = uniqid().".sh";
 		$f = "/fbs/drift/nybruker/$n";
 		file_put_contents($f,
