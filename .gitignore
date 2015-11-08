@@ -1,4 +1,5 @@
 /.env.php
+/.env.testing.php
 /bootstrap/compiled.php
 /vendor
 composer.phar
