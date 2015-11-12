@@ -3,7 +3,8 @@
 /**
  * Convert Word-document with weekly menu to a array representing the week
  */
-class FileParser {
+class FileParser
+{
     /**
      * The final result
      *
@@ -16,7 +17,8 @@ class FileParser {
      *
      * @param binary data of the file (the binary for the Word-document)
      */
-    public function __construct($data) {
+    public function __construct($data)
+    {
         // store data temporarily
         $temp_file = tempnam(sys_get_temp_dir(), 'bs-intern-matmeny');
         $f = fopen($temp_file, "w");
@@ -39,7 +41,8 @@ class FileParser {
     /**
      * Parse the contents saved in $this->text
      */
-    private function parse($text) {
+    private function parse($text)
+    {
         // split text so that 1 => "Mandag", 3 => "Tirsdag", 5 => "Onsdag" etc.
         // and indexes 0, 2, 6, .. is content between these daynames
         $days = "(Mandag|Tirsdag|Onsdag|Torsdag|Fredag|Lørdag|Søndag)";
@@ -52,7 +55,8 @@ class FileParser {
 
         // extract contents
         $data = array();
-        reset($result); next($result); // jump to first dayname
+        reset($result);
+        next($result); // jump to first dayname
         $day_id = 1; // 1 --> 7
         while (($row = current($result)) !== false) {
             // the current element should be daynam
@@ -77,7 +81,8 @@ class FileParser {
     /**
      *  Convert the contents for a day in the document to a array
      */
-    private function parse_part($content) {
+    private function parse_part($content)
+    {
         // extract the rows and clear most whitespace
         // contents will always be inside |..| because of the table in the document
         if (!preg_match_all("/^(\s+|\\|\s+)\\|(.+?)\s+\\|/mu", $content, $matches)) {
@@ -87,7 +92,9 @@ class FileParser {
         $res = array();
         foreach ($matches[2] as $row) {
             $row = trim($row);
-            if ($row == "") continue;
+            if ($row == "") {
+                continue;
+            }
 
             // if everything is uppercase, make only first char uppercase
             if (mb_strtoupper($row) == $row) {
@@ -103,12 +110,21 @@ class FileParser {
     /**
      * Get the days generated from the parsing of the document
      */
-    public function getDays() {
+    public function getDays()
+    {
         return $this->days;
     }
 }
 
-class FileParserException extends \Exception {}
-class FileParserEmptyResultException extends FileParserException {}
-class FileParserFormatException extends FileParserException {}
-class FileParserTooFewDaysException extends FileParserFormatException {}
+class FileParserException extends \Exception
+{
+}
+class FileParserEmptyResultException extends FileParserException
+{
+}
+class FileParserFormatException extends FileParserException
+{
+}
+class FileParserTooFewDaysException extends FileParserFormatException
+{
+}

@@ -3,9 +3,8 @@
 $user = Auth::check() ? Auth::user() : null;
 $userdetails = null;
 
-if ($user)
-{
-  $userdetails = $user->toArray(array(), 2);
+if ($user) {
+    $userdetails = $user->toArray(array(), 2);
 }
 
 $is_office = \Blindern\Intern\Auth\Helper::isOffice();

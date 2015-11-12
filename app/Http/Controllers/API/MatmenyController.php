@@ -7,12 +7,14 @@ use Blindern\Intern\Matmeny\FileParserException;
 use Blindern\Intern\Matmeny\FileParserFormatException;
 use \App\Http\Controllers\Controller;
 
-class MatmenyController extends Controller {
+class MatmenyController extends Controller
+{
     /**
      * Hent matmeny for forrige, denne og neste uke
      * evt. etter dato spesifisert i ?from og ?to
      */
-    public function index() {
+    public function index()
+    {
         if (isset($_GET['from'])) {
             $from = $_GET['from'];
         } else {
@@ -37,7 +39,8 @@ class MatmenyController extends Controller {
     /**
      * Konverter word-dokument til ukemeny
      */
-    public function convert() {
+    public function convert()
+    {
         if (!isset($_FILES['file']['tmp_name']) || !is_uploaded_file($_FILES['file']['tmp_name'])) {
             return 'error';
         }
@@ -57,7 +60,8 @@ class MatmenyController extends Controller {
     /**
      * Lagre endringer for en mengde datoer
      */
-    public function store() {
+    public function store()
+    {
         // tilgangsbegrensning
         if (\Auth::guest() && !\Blindern\Intern\Auth\Helper::isOffice()) {
             return Response::json(null, 401, (new Flash("Denne siden krever at du logger inn."))->setError()->toHeader());
@@ -75,15 +79,23 @@ class MatmenyController extends Controller {
         // valider data og bygg ny data
         $change = array();
         foreach (\Input::get('days') as $day) {
-            if (!isset($day['day'])) return 'format-error';
+            if (!isset($day['day'])) {
+                return 'format-error';
+            }
 
             $d = Carbon::parse($day['day']);
-            if ($d->format("Y-m-d") != $day['day']) return 'format-error';
+            if ($d->format("Y-m-d") != $day['day']) {
+                return 'format-error';
+            }
 
             if (isset($day['dishes'])) {
-                if (!is_array($day['dishes'])) return 'format-error';
+                if (!is_array($day['dishes'])) {
+                    return 'format-error';
+                }
                 foreach ($day['dishes'] as $dish) {
-                    if (!is_scalar($dish)) return 'format-error';
+                    if (!is_scalar($dish)) {
+                        return 'format-error';
+                    }
                 }
             }
 
@@ -99,7 +111,9 @@ class MatmenyController extends Controller {
             $delete = empty($data['dishes']) && empty($data['text']);
             $m = Matmeny::where('day', $day)->first();
             if (!$m) {
-                if ($delete) continue;
+                if ($delete) {
+                    continue;
+                }
                 $m = new Matmeny;
                 $m->day = $day;
             } elseif ($delete) {

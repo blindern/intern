@@ -3,8 +3,10 @@
 use Carbon\Carbon;
 use Blindern\Intern\Matmeny\Models\Matmeny;
 
-class MatmenyController extends Controller {
-    public function index() {
+class MatmenyController extends Controller
+{
+    public function index()
+    {
         $from = new Carbon;
         $from->setISODate($from->format("o"), $from->format("W"), 1);
         $from->modify("-1 week");
@@ -33,7 +35,9 @@ class MatmenyController extends Controller {
         for ($i = 0; $i < 3; $i++) {
             for ($j = 0; $j < 7; $j++) {
                 // make day if needed
-                if (!isset($data[$j])) $data[$j] = array();
+                if (!isset($data[$j])) {
+                    $data[$j] = array();
+                }
 
                 // add the day to array
                 $date = $d->format("Y-m-d");

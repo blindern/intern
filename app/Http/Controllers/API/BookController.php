@@ -6,11 +6,15 @@ use Blindern\Intern\Books\Models\Book;
 use Blindern\Intern\Books\ISBN;
 use \App\Http\Controllers\Controller;
 
-class BookController extends Controller {
-    public function isbn() {
+class BookController extends Controller
+{
+    public function isbn()
+    {
         $isbn = \Input::get("isbn");
 
-        if (!empty($isbn)) $result = ISBN::searchByISBN($isbn);
+        if (!empty($isbn)) {
+            $result = ISBN::searchByISBN($isbn);
+        }
 
         if (empty($isbn) || !$result) {
             return array(
@@ -191,8 +195,7 @@ class BookController extends Controller {
 
         if ($validator->fails()) {
             $c = FlashCollection::forge();
-            foreach ($validator->messages()->all(':message') as $message)
-            {
+            foreach ($validator->messages()->all(':message') as $message) {
                 $c->add(Flash::forge($message)->setError());
             }
             return $c->asResponse(null, 400);

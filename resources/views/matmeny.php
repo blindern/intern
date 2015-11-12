@@ -44,14 +44,18 @@
 
             foreach ($day as $date => $day_in_week) {
                 $styles = '';
-                if ($date == $today) $styles .= 'background-color:#00FF00;';
+                if ($date == $today) {
+                    $styles .= 'background-color:#00FF00;';
+                }
 
                 $val = array();
                 if ($day_in_week) {
-                    if (!empty($day_in_week['text']))
+                    if (!empty($day_in_week['text'])) {
                         $val = array('<span style="color:red">'.htmlspecialchars($day_in_week['text']).'</span>');
-                    if (isset($day_in_week['dishes']))
+                    }
+                    if (isset($day_in_week['dishes'])) {
                         $val = array_merge($val, array_map('htmlspecialchars', $day_in_week['dishes']));
+                    }
                 }
 
                 if (count($val) == 0) {

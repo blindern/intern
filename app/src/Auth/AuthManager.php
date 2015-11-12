@@ -3,17 +3,17 @@
 use Illuminate\Support\Manager;
 use Illuminate\Contracts\Auth\Guard as GuardContract;
 
-class AuthManager extends Manager {
-
-	/**
-	 * Create a new driver instance.
-	 *
-	 * @param  string  $driver
-	 * @return mixed
-	 */
-	protected function createDriver($driver)
-	{
-		$guard = parent::createDriver($driver);
+class AuthManager extends Manager
+{
+    /**
+     * Create a new driver instance.
+     *
+     * @param  string  $driver
+     * @return mixed
+     */
+    protected function createDriver($driver)
+    {
+        $guard = parent::createDriver($driver);
 
         // When using the remember me functionality of the authentication services we
         // will need to be set the encryption instance of the guard, which allows
@@ -31,9 +31,9 @@ class AuthManager extends Manager {
         }
 
         return $guard;
-	}
+    }
 
-	/**
+    /**
      * Call a custom driver creator.
      *
      * @param  string  $driver
@@ -50,37 +50,37 @@ class AuthManager extends Manager {
         return new Guard($custom, $this->app['session.store']);
     }
 
-	/**
-	 * Create an instance of the database driver.
-	 *
-	 * @return \Illuminate\Auth\Guard
-	 */
-	public function createBsauthDriver()
-	{
-		$provider = $this->createBsauthProvider();
+    /**
+     * Create an instance of the database driver.
+     *
+     * @return \Illuminate\Auth\Guard
+     */
+    public function createBsauthDriver()
+    {
+        $provider = $this->createBsauthProvider();
 
-		return new Guard($provider, $this->app['session.store']);
-	}
+        return new Guard($provider, $this->app['session.store']);
+    }
 
-	/**
-	 * Create an instance of the database user provider.
-	 *
-	 * @return \HenriSt\OpenLdapAuth\UserProvider
-	 */
-	protected function createBsauthProvider()
-	{
-		return new UserProvider();
-	}
+    /**
+     * Create an instance of the database user provider.
+     *
+     * @return \HenriSt\OpenLdapAuth\UserProvider
+     */
+    protected function createBsauthProvider()
+    {
+        return new UserProvider();
+    }
 
-	/**
-	 * Get the default authentication driver name.
-	 *
-	 * @return string
-	 */
-	public function getDefaultDriver()
-	{
-		return $this->app['config']['auth.driver'];
-	}
+    /**
+     * Get the default authentication driver name.
+     *
+     * @return string
+     */
+    public function getDefaultDriver()
+    {
+        return $this->app['config']['auth.driver'];
+    }
 
     /**
      * Set the default authentication driver name.
