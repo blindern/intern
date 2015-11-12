@@ -25,6 +25,11 @@ module.config(['$locationProvider', function($locationProvider) {
 	$locationProvider.html5Mode(true);
 }]);
 
+module.config(['$httpProvider', function($httpProvider) {
+	// we need to send this header so Larvel knows to send 401 and not 302
+	$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+}]);
+
 module.filter('customdate', function() {
 	return function(datetime, format) {
 		return moment(datetime).format(format);

@@ -34,7 +34,7 @@ Route::get('api/arrplan/next', 'API\\ArrplanController@next');
 Route::resource('api/arrplan', "API\\ArrplanController", array('only' => array('index')));
 
 // printer
-Route::group(array('before' => 'auth-api'), function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('api/printer/last',      'API\\PrinterLastController',  array('only' => array('index')));
     Route::resource('api/printer/fakturere', "API\\PrinterUsageController", array('only' => array('index')));
 });
@@ -49,7 +49,7 @@ Route::post('api/login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
 
 // users and groups
-Route::group(array('before' => 'auth-api'), function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('api/user', 'API\\UserController', array('only' => array('index', 'show', 'edit')));
     Route::resource('api/group', 'API\\GroupController', array('only' => array('index', 'show')));
 });
@@ -60,7 +60,7 @@ Route::get('groups', 'JsController@index');
 Route::get('group/{group}', 'JsController@index');
 
 // dugnaden
-Route::group(array('before' => 'auth-api'), function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('api/dugnaden/old', 'API\\DugnadenOldController', array('only' => array('index')));
 });
 Route::get('dugnaden/old/list', 'JsController@index');
