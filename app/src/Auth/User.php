@@ -1,10 +1,18 @@
 <?php namespace Blindern\Intern\Auth;
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
+//use Illuminate\Auth\UserInterface;
+//use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class User implements UserInterface, RemindableInterface {
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+
+class User implements AuthenticatableContract, CanResetPasswordContract {
+
+	use Authenticatable, CanResetPassword;
+
 	const REMEMBER_TOKEN = 'remember_token';
 
 	/**

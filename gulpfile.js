@@ -7,7 +7,12 @@ var gulp = require('gulp'),
     gulpif = require('gulp-if'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
-    args = require('yargs').argv;
+    args = require('yargs').argv,
+    elixir = require('laravel-elixir');
+
+elixir(function(mix) {
+    mix.less('app.less');
+});
 
 // run with --production to do more compressing etc
 var isProd = !!args.production;
@@ -30,11 +35,11 @@ var js_files = [
     "./bower_components/ladda/js/ladda.js",
     "./bower_components/angular-ladda/dist/angular-ladda.min.js",
 
-    "./app/assets/javascript/**.js"
+    "./resources/assets/javascript/**.js"
 ];
 
 gulp.task('styles', function() {
-    return gulp.src('app/assets/stylesheets/frontend.scss')
+    return gulp.src('resources/assets/stylesheets/frontend.scss')
         .pipe(sourcemaps.init())
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
@@ -62,7 +67,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('app/assets/stylesheets/**/*.scss', ['styles']);
+    gulp.watch('resources/assets/stylesheets/**/*.scss', ['styles']);
     gulp.watch(js_files, ['scripts']);
 });
 

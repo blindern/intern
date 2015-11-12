@@ -3,7 +3,7 @@
 /**
  * Simple flash (status) boxes to be used in HTML-template
  */
-class Flash implements \Illuminate\Support\Contracts\ArrayableInterface {
+class Flash implements \Illuminate\Contracts\Support\Arrayable {
 	/**
 	 * Create object
 	 */

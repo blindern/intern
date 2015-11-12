@@ -5,7 +5,7 @@ use \Response;
 /**
  * Collection for Flash
  */
-class FlashCollection implements \Illuminate\Support\Contracts\ArrayableInterface {
+class FlashCollection implements \Illuminate\Contracts\Support\Arrayable {
 	protected $container;
 
 	/**

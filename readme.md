@@ -7,7 +7,7 @@ ulike oppgaver på studenterhjemmet, slik som å generere rapporter
 over forbruk på fellesprinteren, administrere brukere til de ulike
 systemene, forbedret arrangementplan, m.m.
 
-Rammeverket som brukes heter Laravel.
+Rammeverket som brukes heter Laravel 5.
 
 ## Oppsett
 
@@ -34,17 +34,7 @@ Rammeverket som brukes heter Laravel.
 
 ### Lokal konfigurasjon
 
-Det må lages en spesiell fil hvor man legger inn passord, så dette ikke legges i Git-repoet. Denne skal kalles ```.env.php``` og ligge i rotmappa.
-```php
-<?php
-return array(
-    'INTERN_KEY' => 'REPLACE',
-    'INTERN_MONGODB_PASS' => 'REPLACE',
-    'INTERN_MYSQL_PASS' => 'REPLACE',
-    'INTERN_USERS_API_KEY' => 'REPLACE'
-);
-?>
-```
+Det må lages en spesiell fil hvor man legger inn passord, så dette ikke legges i Git-repoet. Denne skal kalles ```.env``` og ligge i rotmappa. Se ```.env.example``` for eksempelfil.
 
 ## Oppsett for IT-gruppa
 For enklere utvikling kan man lagre utviklerversjonen direkte på foreningens server. Man kan da redigere den ved hjelp av f.eks. [nettverksmappa](https://foreningenbs.no/wiki/Foreningens_dokumentarkiv).

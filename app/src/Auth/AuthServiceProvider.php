@@ -9,7 +9,7 @@ class AuthServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = true;
+	//protected $defer = true;
 
 	/**
 	 * Register the service provider.
@@ -18,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->bindShared('auth', function($app)
+		$this->app->singleton('auth', function($app)
 		{
 			// Once the authentication service has actually been requested by the developer
 			// we will set a variable in the application indicating such. This helps us
@@ -29,15 +29,14 @@ class AuthServiceProvider extends ServiceProvider {
 		});
 	}
 
-
 	/**
 	 * Get the services provided by the provider.
 	 *
 	 * @return array
 	 */
-	public function provides()
+	/*public function provides()
 	{
 		return array('auth');
-	}
+	}*/
 
 }

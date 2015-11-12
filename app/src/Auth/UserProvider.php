@@ -1,10 +1,12 @@
 <?php namespace Blindern\Intern\Auth;
 
 use Illuminate\Database\Connection;
-use Illuminate\Hashing\HasherInterface;
-use Illuminate\Auth;
+//use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Contracts\Auth\Authenticatable as UserContract;
+use Illuminate\Contracts\Auth\UserProvider as UserProviderContract;
+//use User;
 
-class UserProvider implements Auth\UserProviderInterface {
+class UserProvider implements UserProviderContract {
 	/**
 	 * Create a new user provider.
 	 *
@@ -42,7 +44,7 @@ class UserProvider implements Auth\UserProviderInterface {
 	 *
 	 * @param  mixed  $identifier
 	 * @param  string  $token
-	 * @return \Illuminate\Auth\UserInterface|null
+	 * @return \Illuminate\Contracts\Auth\Authenticatable|null
 	 */
 	public function retrieveByToken($identifier, $token)
 	{
@@ -56,11 +58,11 @@ class UserProvider implements Auth\UserProviderInterface {
 	/**
 	 * Update the "remember me" token for the given user in storage.
 	 *
-	 * @param  \Illuminate\Auth\UserInterface  $user
+	 * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
 	 * @param  string  $token
 	 * @return void
 	 */
-	public function updateRememberToken(Auth\UserInterface $user, $token)
+	public function updateRememberToken(UserContract $user, $token)
 	{
 		$user->setRememberToken($token);
 	}
@@ -69,7 +71,7 @@ class UserProvider implements Auth\UserProviderInterface {
 	 * Retrieve a user by the given credentials.
 	 *
 	 * @param  array  $credentials
-	 * @return \Illuminate\Auth\UserInterface|null
+	 * @return \Illuminate\Contracts\Auth\Authenticatable|null
 	 */
 	public function retrieveByCredentials(array $credentials)
 	{
@@ -90,11 +92,11 @@ class UserProvider implements Auth\UserProviderInterface {
 	/**
 	 * Validate a user against the given credentials.
 	 *
-	 * @param  \Illuminate\Auth\UserInterface  $user
+	 * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
 	 * @param  array  $credentials
 	 * @return bool
 	 */
-	public function validateCredentials(Auth\UserInterface $user, array $credentials)
+	public function validateCredentials(UserContract $user, array $credentials)
 	{
 		$response = Helper::post('simpleauth', array(
 			"username" => $user->username,
