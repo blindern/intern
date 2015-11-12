@@ -26,7 +26,7 @@ class AuthController extends Controller
         );
 
         // TODO: unique username and email
-        $validator = Validator::make($data, array(
+        $validator = \Validator::make($data, array(
             'firstname' => 'required',
             'lastname' => 'required',
             'username' => 'required|min:4|max:20|regex:/^[a-z][a-z0-9]+$/',
