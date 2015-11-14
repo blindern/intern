@@ -9,4 +9,4 @@
 #git pull
 composer install
 npm install
-gulp --production
+npm run build

@@ -25,10 +25,10 @@ Rammeverket som brukes heter Laravel 5.
 ### Oppdatering
 1. Installer/oppdater PHP-avhengigheter: ```$ composer install``` (leser fra composer.lock hva som skal installeres)
 2. Installer/oppdater NodeJS-avhengigheter: ```$ npm install```
-3. Generer statiske filer: ```$ node_modules/.bin/gulp --production```
+3. Generer statiske filer: `$ npm run build` (evt. `$ npm run build-dev` for utviklingsversjon)
 
 ### Utvikling
-1. Kjør `gulp` og la den kjøre i bakgrunnen mens man gjør utvikling, så vil nye CSS- og JavaScript-filer bli generert automatisk ved endringer.
+1. Kjør `$ npm run watch` og la den kjøre i bakgrunnen mens man gjør utvikling, så vil nye CSS- og JavaScript-filer bli generert automatisk ved endringer.
 
 ## Oppsett for IT-gruppa
 For enklere utvikling kan man lagre utviklerversjonen direkte på foreningens server. Man kan da redigere den ved hjelp av f.eks. [nettverksmappa](https://foreningenbs.no/wiki/Foreningens_dokumentarkiv).

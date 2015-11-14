@@ -1,5 +1,10 @@
 {
   "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.dist.config.js --progress --profile --colors",
+    "build-dev": "webpack --config webpack.config.js --progress --profile --colors",
+    "watch": "webpack --config webpack.config.js --progress --profile --colors --watch"
+  },
   "dependencies": {},
   "devDependencies": {
     "angular": "~1.2.29",
@@ -15,8 +20,6 @@
     "css-loader": "~0.23.0",
     "d3": "~3.4.13",
     "file-loader": "~0.8.4",
-    "gulp": "^3.8.10",
-    "gulp-util": "~3.0.7",
     "html-loader": "~0.3.0",
     "jquery": "~2.1.4",
     "json-loader": "~0.5.3",
