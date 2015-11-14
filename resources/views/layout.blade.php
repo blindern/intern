@@ -22,8 +22,7 @@ $is_office = \Blindern\Intern\Auth\Helper::isOffice();
 
     <title ng-bind="title">@yield('title', 'Foreningen Blindern Studenterhjem')</title>
 
-    <link href="{{ asset('assets/stylesheets/frontend.css') }}" rel="stylesheet" />
-    <script src="{{ asset('assets/javascript/frontend.js') }}"></script>
+    <script src="{{ asset('builds/app.js') }}"></script>
 
     <script type="text/javascript">
     var logged_in = <?php echo json_encode((bool) $user); ?>;

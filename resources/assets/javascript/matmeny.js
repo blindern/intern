@@ -8,7 +8,7 @@ var mod = angular.module('intern.matmeny', [
 
 mod.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/matmeny', {
-        templateUrl: 'views/matmeny/index.html',
+        templateUrl: require('../views/matmeny/index.html'),
         controller: 'MatmenyCtrl'
     });
 }]);

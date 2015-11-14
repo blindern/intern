@@ -4,11 +4,11 @@ angular.module('intern.user', ['ngRoute', 'intern.helper.page'])
 
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/users', {
-		templateUrl: 'views/users/list.html',
+		templateUrl: require('../views/users/list.html'),
 		controller: 'UserListCtrl'
 	})
 	.when('/user/:name', {
-		templateUrl: 'views/users/user.html',
+		templateUrl: require('../views/users/user.html'),
 		controller: 'UserCtrl'
 	});
 }])
@@ -58,13 +58,13 @@ angular.module('intern.user', ['ngRoute', 'intern.helper.page'])
 	Page.setTitle('Henter informasjon ..');
 
 	$http.get('api/user/'+encodeURIComponent($routeParams['name'])).success(function(data) {
-		for (group in data.groups)
+		for (let group in data.groups)
 		{
 			var name = data.groups[group].name;
 
 			var x = data.group_relations[name];
 			var found = false;
-			for (k in x)
+			for (let k in x)
 			{
 				if (x[k] == name)
 				{

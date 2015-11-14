@@ -4,11 +4,11 @@ angular.module('intern.group', ['ngRoute', 'intern.helper.page'])
 
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/groups', {
-		templateUrl: 'views/groups/list.html',
+		templateUrl: require('../views/groups/list.html'),
 		controller: 'GroupListCtrl'
 	})
 	.when('/group/:name', {
-		templateUrl: 'views/groups/group.html',
+		templateUrl: require('../views/groups/group.html'),
 		controller: 'GroupCtrl'
 	});
 }])
@@ -37,7 +37,7 @@ angular.module('intern.group', ['ngRoute', 'intern.helper.page'])
 
 			var x = data.members_relation[name];
 			var found = false;
-			for (k in x)
+			for (let k in x)
 			{
 				if (x[k] == data.name)
 				{

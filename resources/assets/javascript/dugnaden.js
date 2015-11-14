@@ -4,7 +4,7 @@ angular.module('intern.dugnaden', ['ngRoute', 'intern.helper.page'])
 
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/dugnaden/old/list', {
-		templateUrl: 'views/dugnad/old/index.html',
+		templateUrl: require('../views/dugnad/old/index.html'),
 		controller: 'DugnadenCtrl',
 		resolve: {
 			dugnader: function(DugnadenService) {

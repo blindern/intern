@@ -6,23 +6,23 @@
     mod.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/bokdatabase', {
-                templateUrl: 'views/books/index.html',
+                templateUrl: require('../views/books/index.html'),
                 controller: 'BookHomeCtrl'
             })
             .when('/books', {
-                templateUrl: 'views/books/index.html',
+                templateUrl: require('../views/books/index.html'),
                 controller: 'BookHomeCtrl'
             })
             .when('/books/register', {
-                templateUrl: 'views/books/register.html',
+                templateUrl: require('../views/books/register.html'),
                 controller: 'BookRegisterCtrl'
             })
             .when('/books/:id', {
-                templateUrl: 'views/books/book.html',
+                templateUrl: require('../views/books/book.html'),
                 controller: 'BookItemCtrl'
             })
             .when('/books/:id/edit', {
-                templateUrl: 'views/books/edit.html',
+                templateUrl: require('../views/books/edit.html'),
                 controller: 'BookItemEditCtrl as ctrl'
             });
     }]);

@@ -4,11 +4,11 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/printer/siste', {
-		templateUrl: 'views/printer/last.html',
+		templateUrl: require('../views/printer/last.html'),
 		controller: 'PrinterLastController'
 	}).
 	when('/printer/fakturere', {
-		templateUrl: 'views/printer/fakturere.html',
+		templateUrl: require('../views/printer/fakturere.html'),
 		controller: 'PrinterUsageController'
 	});
 }])

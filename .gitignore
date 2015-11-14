@@ -8,11 +8,6 @@ composer.phar
 Thumbs.db
 /node_modules/
 /public/builds/
-/public/assets/fonts/
-/public/assets/javascript/frontend.js
-/public/assets/javascript/frontend.js.map
-/public/assets/stylesheets/frontend.css
-/public/assets/stylesheets/frontend.css.map
 error_log
 /bower_components/
 /.sass-cache/

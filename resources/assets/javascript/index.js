@@ -4,7 +4,7 @@ angular.module('intern.index', ['ngRoute', 'intern.helper.page', 'intern.matmeny
 
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/', {
-		templateUrl: 'views/index.html',
+		templateUrl: require('../views/index.html'),
 		controller: 'IndexCtrl'
 	});
 }])

@@ -11,7 +11,7 @@ angular.module('intern.arrplan', ['ngRoute', 'intern.helper.page'])
 		}
 	})
 	.when('/arrplan/:sem', {
-		templateUrl: 'views/arrplan/oversikt.html',
+		templateUrl: require('../views/arrplan/oversikt.html'),
 		controller: 'VisSem',
 		resolve: {
 			arrplan: function(ArrplanService) {

@@ -1,76 +1,38 @@
 var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps');
-    uglify = require('gulp-uglify'),
-    concat = require('gulp-concat'),
-    ngAnnotate = require('gulp-ng-annotate'),
-    gulpif = require('gulp-if'),
-    autoprefixer = require('gulp-autoprefixer'),
-    minifycss = require('gulp-minify-css'),
+    gutil = require("gulp-util"),
     args = require('yargs').argv,
-    elixir = require('laravel-elixir');
-
-elixir(function(mix) {
-    mix.less('app.less');
-});
+    webpack = require('webpack'),
+    webpackConfigDev = require('./webpack.config.js'),
+    webpackConfigDist = require('./webpack.dist.config.js');
 
 // run with --production to do more compressing etc
 var isProd = !!args.production;
 
-var js_files = [
-    "./bower_components/jquery/dist/jquery.js",
-    "./bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
-    "./bower_components/moment/moment.js",
-    "./bower_components/moment/lang/nb.js",
-    //"./bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js",
-    //"./bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.no.js",
-    "./bower_components/angular/angular.js",
-    "./bower_components/angular-route/angular-route.js",
-    "./bower_components/angular-animate/angular-animate.js",
-    "./bower_components/angular-resource/angular-resource.js",
-    "./bower_components/angular-file-upload/angular-file-upload.js",
-    "./bower_components/d3/d3.js",
+var webpackBuild = function (callback, config, name) {
+  webpack(config, function (err, stats) {
+    if (err) {
+      throw new gutil.PluginError(name, err);
+    }
 
-    "./bower_components/ladda/js/spin.js",
-    "./bower_components/ladda/js/ladda.js",
-    "./bower_components/angular-ladda/dist/angular-ladda.min.js",
+    gutil.log("[" + name + "]", stats.toString({
+      colors: true
+    }));
 
-    "./resources/assets/javascript/**.js"
-];
+    callback();
+  });
+};
 
-gulp.task('styles', function() {
-    return gulp.src('resources/assets/stylesheets/frontend.scss')
-        .pipe(sourcemaps.init())
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }))
-        .pipe(sass())
-        .pipe(gulpif(isProd, minifycss()))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('public/assets/stylesheets'));
+gulp.task('webpack:build', function (callback) {
+  webpackBuild(callback, webpackConfigDist, 'webpack:build');
 });
 
-gulp.task('scripts', function() {
-    return gulp.src(js_files)
-        .pipe(concat('frontend.js'))
-        .pipe(sourcemaps.init())
-        .pipe(gulpif(isProd, ngAnnotate()))
-        .pipe(gulpif(isProd, uglify()))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('public/assets/javascript'));
+gulp.task("webpack:build-dev", function (callback) {
+  webpackBuild(callback, webpackConfigDev, "webpack:build-dev");
 });
 
-gulp.task('fonts', function() {
-    return gulp.src('bower_components/bootstrap-sass-official/assets/fonts/**')
-        .pipe(gulp.dest('public/assets/fonts'));
+gulp.task('watch', function (callback) {
+  webpackConfigDev.watch = true;
+  webpackBuild(() => {}, webpackConfigDev, "webpack:build-dev");
 });
 
-gulp.task('watch', function() {
-    gulp.watch('resources/assets/stylesheets/**/*.scss', ['styles']);
-    gulp.watch(js_files, ['scripts']);
-});
-
-gulp.task('default', function() {
-    gulp.start('styles', 'scripts');
-});
+gulp.task('default', [isProd ? 'webpack:build' : 'watch']);
