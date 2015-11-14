@@ -6,7 +6,7 @@ var webpack = require('webpack')
 module.exports = {
   cache: false,
   debug: false,
-  devtool: 'eval',
+  devtool: false,
 
   stats: {
     colors: true,
@@ -28,10 +28,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: [path.resolve(__dirname, 'resources')],
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
-        }
+        loaders: ['ng-annotate', 'babel?presets[]=es2015']
       },
       {test: /\.css$/, loader: 'style!css'},
       {test: /\.scss$/, loader: 'style!css!sass'},
