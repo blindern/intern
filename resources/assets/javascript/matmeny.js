@@ -1,10 +1,13 @@
 'use strict';
 
+require('angular-cookies')
+
 var mod = angular.module('intern.matmeny', [
     'ngRoute',
     'intern.helper.page',
     'intern.auth',
-    'angularFileUpload']);
+    'angularFileUpload',
+    'ngCookies']);
 
 mod.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/matmeny', {
@@ -13,7 +16,7 @@ mod.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
-mod.controller('MatmenyCtrl', function($scope, $http, AuthService, FileUploader, Matmeny, Page) {
+mod.controller('MatmenyCtrl', function($scope, $http, $cookies, AuthService, FileUploader, Matmeny, Page) {
     Page.setTitle('Matmeny');
 
     $scope.access = AuthService.isOffice() || AuthService.inGroup('kollegiet');
@@ -70,7 +73,10 @@ mod.controller('MatmenyCtrl', function($scope, $http, AuthService, FileUploader,
     // uploading of menu
     $scope.uploader = new FileUploader({
         url: 'api/matmeny/convert',
-        removeAfterUpload: true
+        removeAfterUpload: true,
+        headers: {
+            'X-XSRF-TOKEN': $cookies['XSRF-TOKEN'] || null
+        }
     });
     $scope.uploader.onAfterAddingFile = function(fileItem) {
         var week = $scope.current_week;
