@@ -10,7 +10,8 @@ use \Carbon\Carbon;
  * - text (optional) some additional description for the day
  * - dishes (optional) array of dishes this day
  */
-class Matmeny extends \Eloquent {
+class Matmeny extends \Eloquent
+{
     protected $table = 'matmeny';
     protected $visible = array('day', 'text', 'dishes');
     protected $appends = array('date_obj');
@@ -20,7 +21,8 @@ class Matmeny extends \Eloquent {
      *
      * @return Carbon
      */
-    public function getDateObjAttribute() {
+    public function getDateObjAttribute()
+    {
         return Carbon::parse($this->day);
     }
 }

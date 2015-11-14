@@ -1,6 +1,7 @@
 <?php namespace Blindern\Intern\Books\Models;
 
-class Book extends \Eloquent {
+class Book extends \Eloquent
+{
     protected $table = 'books';
 
     /**
@@ -13,14 +14,15 @@ class Book extends \Eloquent {
      *
      * Format: BS-XXXX-XX
      */
-    public function setBarcode($barcode) {
+    public function setBarcode($barcode)
+    {
         // check for unique number
         if (!preg_match('/(BS-[0-9A-F]+-)[0-9A-F]+/', $barcode, $match)) {
             return 'format';
         }
 
         if (Book::where('bib_barcode', 'like', $match[1].'%')->first()) {
-        	return 'unique';
+            return 'unique';
         }
 
         $this->bib_barcode = $barcode;

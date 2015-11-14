@@ -1,6 +1,7 @@
 <?php namespace Blindern\Intern\Books;
 
-class ISBN {
+class ISBN
+{
     /**
      * Find information of book by searching the ISBN-number.
      * Information will be cached for later lookup.
@@ -12,11 +13,15 @@ class ISBN {
      */
     public static function searchByISBN($isbn)
     {
-        if (empty($isbn)) return null;
+        if (empty($isbn)) {
+            return null;
+        }
 
         // check if it is in cache
         $cache = static::getFromCache($isbn);
-        if ($cache !== null) return ($cache === false ? null : $cache);
+        if ($cache !== null) {
+            return ($cache === false ? null : $cache);
+        }
 
         // use the Google API to fetch data
         if (!isset($_ENV['INTERN_GOOGLE_API_KEY'])) {
@@ -50,7 +55,8 @@ class ISBN {
      * @param string ISBN-number
      * @return array
      */
-    public static function getFromCache($isbn) {
+    public static function getFromCache($isbn)
+    {
         return \Cache::get('isbn_cache_' . $isbn);
     }
 }

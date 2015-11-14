@@ -7,7 +7,7 @@ ulike oppgaver på studenterhjemmet, slik som å generere rapporter
 over forbruk på fellesprinteren, administrere brukere til de ulike
 systemene, forbedret arrangementplan, m.m.
 
-Rammeverket som brukes heter Laravel.
+Rammeverket som brukes heter Laravel 5.
 
 ## Oppsett
 
@@ -19,32 +19,16 @@ Rammeverket som brukes heter Laravel.
 ### Installasjon
 1. Hent filer fra GitHub: ```$ git clone https://github.com/blindern/intern.git```
 2. Gå til mappene filene ble lastet ned
-3. Sett opp [lokal konfigurasjon](#lokal-konfigurasjon) (må settes opp før neste trinn)
-4. Sett opp PHP-avhengigheter: ```$ composer install```
-5. Installer globale nodejs-avhengigheter (må ha root-tilgang, ikke nødvendig hvis allerede satt opp tidligere): ```$ npm install -g bower grunt-cli```
-6. Installer lokale nodejs-avhengigheter: ```$ npm install```
-7. Fortsett på oppdatering
+3. Kopier filen `.env.example` til `.env` og gjør nødvendige endringer
+4. Fortsett på oppdatering
 
 ### Oppdatering
-1. Oppdater avhengigheter: ```$ bower install``` (```bower``` laster ned/oppdaterer js/css-avhengigheter)
-2. Oppdater statiske filer: ```$ grunt``` (vil også kjøre "watcher", trykk ```Ctrl+C``` for å avslutte)
+1. Installer/oppdater PHP-avhengigheter: ```$ composer install``` (leser fra composer.lock hva som skal installeres)
+2. Installer/oppdater NodeJS-avhengigheter: ```$ npm install```
+3. Generer statiske filer: `$ npm run build` (evt. `$ npm run build-dev` for utviklingsversjon)
 
 ### Utvikling
-1. Kjør ```grunt``` og la den kjøre i bakgrunnen mens man gjør utvikling, så vil nye CSS- og JavaScript-filer bli generert automatisk ved endringer.
-
-### Lokal konfigurasjon
-
-Det må lages en spesiell fil hvor man legger inn passord, så dette ikke legges i Git-repoet. Denne skal kalles ```.env.php``` og ligge i rotmappa.
-```php
-<?php
-return array(
-    'INTERN_KEY' => 'REPLACE',
-    'INTERN_MONGODB_PASS' => 'REPLACE',
-    'INTERN_MYSQL_PASS' => 'REPLACE',
-    'INTERN_USERS_API_KEY' => 'REPLACE'
-);
-?>
-```
+1. Kjør `$ npm run watch` og la den kjøre i bakgrunnen mens man gjør utvikling, så vil nye CSS- og JavaScript-filer bli generert automatisk ved endringer.
 
 ## Oppsett for IT-gruppa
 For enklere utvikling kan man lagre utviklerversjonen direkte på foreningens server. Man kan da redigere den ved hjelp av f.eks. [nettverksmappa](https://foreningenbs.no/wiki/Foreningens_dokumentarkiv).

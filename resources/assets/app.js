@@ -1,0 +1,16 @@
+
+window.jQuery = window.$ = require('jquery')
+window.moment = require('moment')
+require('bootstrap-sass/assets/javascripts/bootstrap')
+require('moment/lang/nb')
+require('angular')
+require('angular-route')
+require('angular-animate')
+require('angular-resource')
+require('angular-file-upload')
+require('ladda/js/spin')
+window.Ladda = require('ladda/js/ladda')
+require('angular-ladda/src/angular-ladda')
+
+require('./javascript/app')
+require('./stylesheets/frontend.scss')
