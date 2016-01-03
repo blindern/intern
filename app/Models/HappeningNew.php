@@ -235,13 +235,41 @@ class HappeningNew implements Arrayable, JsonSerializable
 
     public function setRepeat($text)
     {
-        // syntax: <repeat type>:<number of repeats>:<interval>:<numbers to skip>
-        if (preg_match("~^(DAILY|WEEKLY|MONTHLY):(\\d+)(:(\\d+)(:(\\d+(,\\d+)*))?)?$~m", $text, $matches)) {
+        // syntax: <repeat type>:<number of repeats>[:<interval>[:<list of numbers to skip>]]
+        if (preg_match("~^(DAILY|WEEKLY|MONTHLY):((\\d{4}-\\d\\d-\\d\\d)|(\\d+))(:(\\d+)(:(\\d+(,\\d+)*))?)?$~m", $text, $matches)) {
             $this->frequency = $matches[1];
-            $this->count = $matches[2];
-            $this->interval = isset($matches[3]) ? $matches[3] : 1;
 
-            // TODO: $matches[5];
+            if (!empty($matches[4])) {
+                $this->count = $matches[4];
+            } else {
+                $this->setCountFromUntil($matches[2]);
+            }
+
+            $this->interval = isset($matches[6]) ? (int) $matches[6] : 1;
+
+            // TODO: $matches[8]; (the ones to skip)
+        }
+    }
+
+    private function setCountFromUntil($until_date) {
+        $start = Carbon::parse($this->start);
+        $start->setTime(0, 0, 0);
+
+        $until = Carbon::parse($until_date);
+        $until->addDay();
+
+        switch ($this->frequency) {
+        case 'DAILY':
+            $this->count = $start->diffInDays($until) + 1;
+            break;
+        case 'WEEKLY':
+            $this->count = $start->diffInWeeks($until) + 1;
+            break;
+        case 'MONTHLY':
+            $this->count = $start->diffInMonths($until) + 1;
+            break;
+        default:
+            throw new \Exception("Unknown happening frequency", $this->frequency);
         }
     }
 
