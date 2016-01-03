@@ -30,6 +30,12 @@ angular.module('intern.arrplan', ['ngRoute', 'intern.helper.page'])
 	var sections_id = {};
 	$.each(arrplan, function(i, x)
 	{
+		// helper for the view to sort recurring events in a more logic way as it is presented
+		if (x.type == 'event_recurring') {
+			var start = new Date(x.start);
+			x.recurringsort = ((start.getDay() + 6) % 7) * 10000 + start.getHours() * 100 + start.getMinutes();
+		}
+
 		$.each(ArrplanService.getSem(x), function(i, sem)
 		{
 			var x = sem.substr(0, 1);

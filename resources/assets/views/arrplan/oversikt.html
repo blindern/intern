@@ -19,7 +19,7 @@
 	<div ng-show="list_event_recurring.length > 0">
 		<h3>Øvrige aktiviteter</h3>
 
-		<div ng-repeat="event in list_event_recurring = (arrplan | filterSem:sem | filter:{'type': 'event_recurring'})" class="row">
+		<div ng-repeat="event in list_event_recurring = (arrplan | filterSem:sem | filter:{'type': 'event_recurring'}) | orderBy:'recurringsort'" class="row">
 			<div class="col-sm-3 event-date">{{event.duration}}</div>
 			<div class="col-sm-9">{{event.title}} <span style="color: #AAA" ng-if="event.by">[{{event.by}}]</span></div>
 		</div>
