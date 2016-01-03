@@ -300,7 +300,12 @@ class HappeningNew implements Arrayable, JsonSerializable
     public function getDurationRecurring()
     {
         $start = Carbon::parse($this->start);
-        return ucfirst($start->formatLocalized('%Aer kl %H.%M'));
+
+        if ($this->start == $this->end) {
+            return ucfirst($start->formatLocalized('%Aer'));
+        } else {
+            return ucfirst($start->formatLocalized('%Aer kl %H.%M'));
+        }
     }
 
     /**
