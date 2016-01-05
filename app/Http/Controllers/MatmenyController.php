@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Eluceo\iCal\Component\Calendar;
+use Eluceo\iCal\Component\Event;
 use Blindern\Intern\Matmeny\Models\Matmeny;
 
 class MatmenyController extends Controller
@@ -54,5 +56,50 @@ class MatmenyController extends Controller
         return \View::make('matmeny', array(
             'days' => $data
         ));
+    }
+
+    /**
+     * Handle and render the iCal-version
+     */
+    public function ics()
+    {
+        $cal = new Calendar("foreningenbs.no/matmeny");
+        $cal->setName("Matmeny Blindern Studenterhjem");
+
+        $from = new Carbon;
+        $from->modify('-6 weeks');
+        $to = new Carbon;
+        $to->modify('+2 weeks');
+
+        $days = Matmeny::orderBy('day')
+                ->whereBetween('day', array(
+                        $from->format("Y-m-d"),
+                        $to->format("Y-m-d")))
+                ->get();
+
+        foreach ($days as $day) {
+            $event = new Event();
+            $event->setUseTimezone(true);
+            $event->setDtStart(new \DateTime($day['day']));
+            $end = new \DateTime($day['day']);
+            $end->modify('+1 day');
+            $event->setDtEnd($end);
+            $event->setNoTime(true);
+
+            $text = implode(', ', $day['dishes']);
+            if (!empty($day['text'])) {
+                $text .= ' (' . $day['text'] . ')';
+            }
+
+            $event->setSummary($text);
+            $cal->addEvent($event);
+        }
+
+        $response = \Response::make($cal->render(), 200, array(
+            'Content-Type' => 'text/calendar; charset=utf-8',
+            'Content-Disposition' => 'inline; filename="matmeny.ics"'
+        ));
+
+        return $response;
     }
 }
