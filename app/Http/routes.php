@@ -59,6 +59,11 @@ Route::get('user/{user}', 'JsController@index');
 Route::get('groups', 'JsController@index');
 Route::get('group/{group}', 'JsController@index');
 
+// google apps accounts
+Route::resource('api/googleapps/accounts', '\\Blindern\\Intern\\GoogleApps\\Controllers\\AccountsController');
+Route::resource('api/googleapps/accountusers', '\\Blindern\\Intern\\GoogleApps\\Controllers\\AccountUsersController');
+Route::get('googleapps', 'JsController@index');
+
 // dugnaden
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('api/dugnaden/old', 'API\\DugnadenOldController', array('only' => array('index')));

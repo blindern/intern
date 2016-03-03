@@ -13,7 +13,8 @@ var module = angular.module('intern', [
 	'intern.group',
 	'intern.printer',
 	'intern.user',
-	'intern.matmeny'
+	'intern.matmeny',
+	'intern.googleapps'
 ]);
 
 module.config(['$routeProvider', function($routeProvider) {
@@ -75,6 +76,7 @@ require('./arrplan')
 require('./auth')
 require('./books')
 require('./dugnaden')
+require('./googleapps')
 require('./group')
 require('./helper.page')
 require('./index')
