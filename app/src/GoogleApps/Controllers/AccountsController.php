@@ -13,7 +13,7 @@ class AccountsController extends Controller
     {
         // don't require auth for local requests
         // TODO: this should be replace with some sort of authorization and tokens...
-        if ($_SERVER['REMOTE_ADDR'] !== gethostbyname('athene.foreningenbs.no.')) {
+        if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1' && $_SERVER['REMOTE_ADDR'] !== gethostbyname('athene.foreningenbs.no.')) {
             $this->middleware('auth');
         }
     }
