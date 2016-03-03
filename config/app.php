@@ -16,7 +16,7 @@ return [
     */
 
     // IP-en nedenfor er Henriks IP (kan ha forandret seg siden sist)
-    'debug' => env('APP_DEBUG') || !isset($_SERVER['REMOTE_ADDR']) || $_SERVER['REMOTE_ADDR'] == '37.191.203.206',
+    'debug' => env('APP_DEBUG') || !isset($_SERVER['REMOTE_ADDR']) || $_SERVER['REMOTE_ADDR'] == '37.191.203.193',
 
     /*
     |--------------------------------------------------------------------------
