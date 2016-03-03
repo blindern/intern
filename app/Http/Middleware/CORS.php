@@ -16,7 +16,7 @@ class CORS
         $response = $next($request);
 
         // give access to the phone app testing page
-        $response->header('Access-Control-Allow-Origin', 'http://dev1.hsw.no:8000');
+        $response->headers->set('Access-Control-Allow-Origin', 'http://dev1.hsw.no:8000');
 
         return $response;
     }
