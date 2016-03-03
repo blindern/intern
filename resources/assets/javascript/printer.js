@@ -96,18 +96,45 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 		var totals = new summer();
 		var sections = {};
 		var people = [];
-		$(["beboer", "other"]).each(function(i, el)
-		{
-			sections[el] = {
-				is_beboer: el == "beboer",
+
+		var printers_section = {};
+		$.each(rawdata.sections, function(sectionkey, data) {
+			sections[sectionkey] = {
+				title: data.title,
+				description: data.description,
+				is_beboer: data.is_beboer,
 				printergroups: [],
 				totals: new summer(totals),
 				occurrences: 0
-			};
+			}
+
+			$.each(data.printers, function (i, printer) {
+				printers_section[printer] = sectionkey;
+			});
+		});
+
+		var accounts = [];
+		var printers_account = {};
+		var accounts_sum = null;
+		$.each(rawdata.accounts, function(i, account) {
+			accounts.push({
+				account: account.account,
+				text: account.text,
+				sum: 0
+			});
+
+			if (account.printers === null) {
+				accounts_sum = i;
+			} else {
+				$.each(account.printers, function (j, printer) {
+					printers_account[printer] = i;
+				});
+			}
 		});
 
 		$.each(rawdata.prints, function(key, printer) {
-			var section = sections[printer.printername == "beboer" ? "beboer" : "other"];
+			var sectionkey = printers_section[printer.printername] || rawdata.section_default;
+			var section = sections[sectionkey];
 			var p = {
 				printername: printer.printername,
 				comment: rawdata.texts[printer.printername],
@@ -146,11 +173,44 @@ angular.module('intern.printer', ['ngRoute', 'intern.helper.page'])
 			p.is_comment_or_alt = p.comment || p.amount_alt;
 			section.printergroups.push(p);
 			if (!p.is_beboer) section.occurrences++;
+
+			// add to account (for accounting)
+			if (totals_p.amount_real > 0) {
+				var account_key = printers_account[printer.printername];
+				if (!account_key) {
+					accounts.push({
+						account: 9999,
+						text: 'Ukjent: ' + printer.printername,
+						sum: totals_p.amount_real
+					});
+				} else {
+					accounts[account_key].sum += totals_p.amount_real;
+				}
+				accounts[accounts_sum].sum -= totals_p.amount_real;
+			}
 		});
+
+		// filter out accounts without any value
+		accounts = accounts.reduce(function (prev, cur) {
+			if (cur.sum != 0) {
+				prev.push(cur);
+			}
+			return prev;
+		}, []);
+
+		// convert sections to array to avoid ordering
+		totals.unique_people_beboer = sections['beboer'].occurrences;
+		var new_sections = [];
+		$.each(sections, function (i, val) {
+			new_sections.push(val);
+		});
+		sections = new_sections;
 
 		totals.sections = sections;
 		totals.unique_people = people.length;
 		totals.daily = daily;
+		totals.accounts = accounts;
+
 		return totals;
 	}
 

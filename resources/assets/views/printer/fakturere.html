@@ -35,14 +35,14 @@
 <div id="fakturere_data" ng-if="data">
 	<h2>Total statistikk</h2>
 	<dl class="dl-horizontal">
-		<dt>Til faktuering</dt>
+		<dt>Inntekt i perioden</dt>
 		<dd>kr {{data.amount_real|formatNum}}</dd>
 		<dt>Antall utskriftsjobber</dt>
 		<dd>{{data.num_jobs|formatNum:0}}</dd>
 		<dt>Antall sider</dt>
 		<dd>{{data.num_pages|formatNum:0}} ({{data.num_pages_real|formatNum:0}} faktureres, {{data.num_pages_alt|formatNum:0}} ikke)</dd>
 		<dt>Antall personer</dt>
-		<dd>{{data.sections['beboer'].occurrences}} (privat bruk)</dd>
+		<dd>{{data.unique_people_beboer}} (privat bruk)</dd>
 		<dd>{{data.unique_people}} (inkludert grupper)</dd>
 	</dl>
 
@@ -51,9 +51,12 @@
 
 	<div ng-show="viewtype == 'summed'" class="row">
 		<div class="col-md-6 printergroup" ng-repeat="section in data.sections">
-			<h2>Fakturering {{section.is_beboer ? 'enkeltbeboere' : 'grupper'}}</h2>
+			<h2>{{section.title}}</h2>
 			<p ng-if="section.is_beboer" ng-repeat="group in section.printergroups | filter:{comment: '!'}:true">
 				{{group.comment}}
+			</p>
+			<p ng-if="section.description">
+				{{section.description}}
 			</p>
 
 			<table class="table table-striped table-condensed" style="width: auto">
@@ -88,10 +91,32 @@
 						<td ng-show="!section.is_beboer">
 							<span ng-if="row.is_comment_or_alt">
 								{{row.comment}}<br />
-								<span ng-if="row.amount_alt">(ikke fakturert: kr {{row.amount_alt|formatNum}})</span>
+								<span ng-if="row.amount_alt">(ikke dekket: kr {{row.amount_alt|formatNum}})</span>
 							</span>
 							<span ng-if="!row.is_comment_or_alt">&nbsp;</span>
 						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-md-6 printergroup">
+			<h2>Konteringsliste for FBS</h2>
+			<table class="table table-striped table-condensed" style="width: auto">
+				<thead>
+					<tr>
+						<th>Konto</th>
+						<th>Debet</th>
+						<th>Kredit</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="account in data.accounts">
+						<td>{{account.account}}</td>
+						<td style="text-align: right">{{account.sum > 0 ? (account.sum|formatNum) : ''}}</td>
+						<td style="text-align: right">{{account.sum < 0 ? (account.sum*-1|formatNum) : ''}}</td>
+						<td>{{account.text}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -101,7 +126,7 @@
 	<div ng-show="viewtype == 'detailed'">
 		<div ng-repeat="section in data.sections">
 			<div class="printergroup" ng-repeat="group in section.printergroups | orderBy:'printername'">
-				<h2>Fakturering {{section.is_beboer ? 'enkeltbeboere' : 'gruppe: '+group.printername}}</h2>
+				<h2>{{section.is_beboer ? 'Enkeltbeboere' : 'Gruppe: '+group.printername}}</h2>
 				<p ng-if="group.comment">{{group.comment}}</p>
 
 				<table class="table table-striped table-condensed" style="width: auto">
