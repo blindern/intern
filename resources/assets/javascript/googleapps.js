@@ -37,7 +37,9 @@ require('angular-filter');
         $scope.canEdit = AuthService.inGroup('ukestyret');
 
         function fetchAccounts() {
-            $scope.accounts = GoogleAppsAccount.query();
+            GoogleAppsAccount.query({expand: 1}, function (res) {
+                $scope.accounts = res;
+            });
         }
         fetchAccounts();
 
@@ -61,15 +63,47 @@ require('angular-filter');
             GoogleAppsAccount.delete({id: accountId}, function () {
                 fetchAccounts();
             });
-        }
+        };
 
-        $scope.addUser = function(accountname, username) {
-            if (accountname !== undefined && username !== undefined) {
-                accountname = accountname.trim();
-                username = username.trim();
+        $scope.updateGroup = function(account, name) {
+            if (name !== '') {
+                account.group = name;
+                account.$update(function () {
+                    fetchAccounts();
+                });
+            }
+        };
 
-                if (accountname !== '' && username !== '') {
-                    var user = new GoogleAppsAccountUser({accountname: accountname, username: username});
+        $scope.addAlias = function(account, alias) {
+            account.aliases = account.aliases || [];
+            account.aliases.push(alias);
+            account.$update(function () {
+                fetchAccounts();
+            });
+        };
+
+        $scope.deleteAlias = function(account, alias) {
+            account.aliases = account.aliases || [];
+            var index = account.aliases.indexOf(alias);
+            if (index !== -1) {
+                account.aliases.splice(index, 1);
+                account.$update(function () {
+                    fetchAccounts();
+                });
+            }
+        };
+
+        $scope.addUser = function(details) {
+            if (details.accountname !== undefined && details.username !== undefined) {
+                details.accountname = details.accountname.trim();
+                details.username = details.username.trim();
+
+                if (details.accountname !== '' && details.username !== '') {
+                    var user = new GoogleAppsAccountUser({
+                        accountname: details.accountname,
+                        username: details.username,
+                        notification: details.notification
+                    });
                     user.$save(function (result) {
                         fetchAccounts();
                     });
@@ -79,6 +113,13 @@ require('angular-filter');
 
         $scope.deleteUser = function(userId) {
             GoogleAppsAccountUser.delete({id: userId}, function () {
+                fetchAccounts();
+            });
+        };
+
+        $scope.changeNotification = function(user) {
+            user.notification = !user.notification;
+            GoogleAppsAccountUser.update(user, function (result) {
                 fetchAccounts();
             });
         };

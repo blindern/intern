@@ -1,25 +1,5 @@
-<p>Viser de ulike Google Apps kontoene med hvilke foreningsbrukere som har tilgang. UKEstyret og administratorer kan redigere listen.</p>
+<p>Viser de ulike Google Apps-kontoene med hvilke foreningsbrukere som har tilgang. UKEstyret og administratorer kan redigere listen.</p>
 <p><a href ng-click="edit=true" ng-show="!edit && canEdit">rediger</a></p>
-<div ng-repeat="(group, list) in accounts|groupBy:'group'">
-    <h2>{{group}}</h2>
-    <div ng-repeat="account in list">
-        <h4>{{account.accountname}} <a href ng-show="edit" ng-click="deleteAccount(account._id)">slett</a></h4>
-        <p ng-show="account.users.length == 0">
-            Ingen har tilgang til denne kontoen.
-        </p>
-        <ul>
-            <li ng-repeat="user in account.users">
-                {{user.username}} <a href ng-show="edit" ng-click="deleteUser(user._id)">slett</a>
-            </li>
-            <li ng-show="edit">
-                <form class="form-inline">
-                    <input class="form-control" type="text" ng-model="account.username" placeholder="Foreningsbruker" />
-                    <input class="btn btn-primary" type="submit" value="Gi tilgang" ng-click="addUser(account.accountname, account.username)" />
-                </form>
-            </li>
-        </ul>
-    </div>
-</div>
 
 <div ng-show="edit">
     <h2>Ny konto</h2>
@@ -30,4 +10,79 @@
             <input class="btn btn-primary" type="submit" value="Opprett" ng-click="createAccount()" />
         </p>
     </form>
+</div>
+
+<div ng-repeat="(group, list) in accounts|groupBy:'group'">
+    <h2>{{group}}</h2>
+    <div ng-repeat="account in list">
+        <h4>
+            {{account.accountname}}
+            <span ng-if="!account.edit && (account.aliases && account.aliases.length > 0)" style="font-size: 80%">
+                <span ng-repeat="alias in account.aliases">{{alias}}<span ng-if="!$last">, </span></span>
+            </span>
+
+            <span ng-if="edit" style="float: right">
+                <a href ng-if="!account.edit" ng-click="account.edit = true">rediger</a>
+                <a href ng-click="deleteAccount(account._id)">slett</a>
+                <a href ng-if="!account.newuser" ng-click="account.newuser = true">ny tilgang</a>
+            </span>
+        </h4>
+        <p ng-show="account.users.length == 0">
+            Ingen har tilgang til denne kontoen.
+        </p>
+        <ul>
+            <li ng-repeat="user in account.users">
+                <span style="display: inline-block; min-width: 220px">
+                    <span ng-if="user.realname" ng-attr-title="{{user.username}}">
+                        <a ng-href="user/{{user.username}}">{{user.realname}}</a>
+                    </span>
+                    <span ng-if="!user.realname">
+                        {{user.username}}
+                    </span>
+                </span>
+                <span style="display: inline-block; min-width: 120px">
+                    <span ng-if="user.notification">(mottar varsler)</span>
+                </span>
+                <span ng-if="edit">
+                    <a href ng-click="deleteUser(user._id)">slett tilgang</a> /
+                    <a href ng-click="changeNotification(user)">endre varsel</a>
+                </span>
+            </li>
+            <li ng-if="edit && account.newuser">
+                <form class="form-inline">
+                    <input class="form-control" type="text" ng-model="account.username" placeholder="Foreningsbruker" />
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="account.notification" value="1" /> Varsle om e-poster
+                        </label>
+                    </div>
+                    <input class="btn" type="submit" value="Gi tilgang" ng-click="addUser(account)" />
+                </form>
+            </li>
+        </ul>
+
+        <div ng-if="account.edit">
+            <p>Aliases:</p>
+            <ul>
+                <li ng-repeat="alias in account.aliases">
+                    {{alias}}
+                    <a href ng-click="deleteAlias(account, alias)" ng-if="account.edit">slett</a>
+                </li>
+                <li ng-if="account.edit">
+                    <form class="form-inline">
+                        <input type="text" ng-model="account.newalias" class="form-control" placeholder="Alias" />
+                        <input class="btn" type="submit" value="Legg til" ng-click="addAlias(account, account.newalias)" />
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-if="account.edit">
+            <form class="form-inline">
+                Gruppe/kategori:
+                <input type="text" ng-model="account.newgroupname" ng-init="account.newgroupname = account.group" class="form-control" />
+                <input class="btn" type="submit" value="Oppdater" ng-click="updateGroup(account, account.newgroupname)" />
+            </form>
+        </div>
+    </div>
 </div>

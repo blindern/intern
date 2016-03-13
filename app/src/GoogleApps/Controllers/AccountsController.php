@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Blindern\Intern\Auth\User;
 use Blindern\Intern\Helpers\Flash;
 use Blindern\Intern\Helpers\FlashCollection;
 use Blindern\Intern\GoogleApps\Models\Account;
@@ -13,7 +14,7 @@ class AccountsController extends Controller
     {
         // don't require auth for local requests
         // TODO: this should be replace with some sort of authorization and tokens...
-        if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1' && $_SERVER['REMOTE_ADDR'] !== gethostbyname('athene.foreningenbs.no.')) {
+        if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1' && $_SERVER['REMOTE_ADDR'] !== gethostbyname('athene.foreningenbs.no.') && $_SERVER['REMOTE_ADDR'] !== gethostbyname('hsw.no')) {
             $this->middleware('auth');
         }
     }
@@ -23,9 +24,30 @@ class AccountsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Account::orderBy('accountname')->with('users')->get();
+        $accounts = Account::orderBy('accountname')->with('users')->get();
+
+        if ($request->input('expand')) {
+            // retrieve a list of all users
+            // so we can fill in email and other details
+            $users = array();
+            foreach (User::all() as $user) {
+                $users[strtolower($user->username)] = $user;
+            }
+
+            foreach ($accounts as &$account) {
+                foreach ($account->users as &$accountuser) {
+                    if (isset($users[strtolower($accountuser->username)])) {
+                        $user = $users[strtolower($accountuser->username)];
+                        $accountuser->email = $user->email;
+                        $accountuser->realname = $user->realname;
+                    }
+                }
+            }
+        }
+
+        return $accounts;
     }
 
     /**
@@ -47,9 +69,8 @@ class AccountsController extends Controller
         $account = Account::withTrashed()->where('accountname', $request->input('accountname'))->first();
         if ($account) {
             if ($account->trashed()) {
-                $account->restore();
                 $account->group = $request->input('group');
-                $account->save();
+                $account->restore();
                 return $account;
             }
 
@@ -65,6 +86,30 @@ class AccountsController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id, Request $request)
+    {
+        $account = Account::with('users')->findOrFail($id);
+
+        $this->validate($request, [
+            'accountname' => 'required|max:40',
+            'aliases' => 'array',
+            'group' => 'required'
+        ]);
+
+        $account->accountname = $request->input('accountname');
+        $account->aliases = $request->input('aliases');
+        $account->group = $request->input('group');
+        $account->save();
+
+        return $account;
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  string  $id
@@ -72,7 +117,7 @@ class AccountsController extends Controller
      */
     public function show($id)
     {
-        return Account::findOrFail($id);
+        return Account::with('users')->findOrFail($id);
     }
 
     /**

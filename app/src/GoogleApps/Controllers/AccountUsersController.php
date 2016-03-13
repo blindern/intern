@@ -35,6 +35,7 @@ class AccountUsersController extends Controller
     {
         $this->validate($request, [
             'accountname' => 'required',
+            'notification' => 'boolean',
             'username' => 'required'
         ]);
 
@@ -53,6 +54,7 @@ class AccountUsersController extends Controller
         $accountuser = $account->users()->withTrashed()->where('username', $user->username)->first();
         if ($accountuser) {
             if ($accountuser->trashed()) {
+                $accountuser->notification = (bool) $request->input('notification');
                 $accountuser->restore();
                 return $accountuser;
             }
@@ -61,9 +63,30 @@ class AccountUsersController extends Controller
         }
 
         $accountuser = new AccountUser();
+        $accountuser->notification = (bool) $request->input('notification');
         $accountuser->username = $user->username;
 
         $account->users()->save($accountuser);
+
+        return $accountuser;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id, Request $request)
+    {
+        $accountuser = AccountUser::findOrFail($id);
+
+        $this->validate($request, [
+            'notification' => 'boolean'
+        ]);
+
+        $accountuser->notification = (bool) $request->input('notification');
+        $accountuser->save();
 
         return $accountuser;
     }
