@@ -1,20 +1,21 @@
-<?php namespace App\Http\Controllers;
+<?php namespace Blindern\Intern\Arrplan\Controllers;
 
+use \Blindern\Intern\Arrplan\Models\Happening;
 use \Eluceo\iCal\Component\Calendar;
 use \Eluceo\iCal\Component\Event;
 use \Eluceo\iCal\Property\Event\RecurrenceRule;
 
-class KalenderController extends Controller
+class ArrplanController extends Controller
 {
     /**
      * Handle the main calendar-view
      */
     public function action_index()
     {
-        $data = \HappeningNew::getHappenings();
+        $data = Happening::getHappenings();
 
         /*$happenings = Happening::orderBy('start')->whereNull('frequency')->get();
-        
+
         $result = Happening::orderByRaw('WEEKDAY(start), TIME(start)')->whereNotNull('frequency')->get();*/
         $happenings = array();
         $recurring = array();
@@ -25,7 +26,7 @@ class KalenderController extends Controller
                 $happenings[] = $row;
             }
         }
-        
+
         return \View::make("kalender/index", array(
             "happenings" => $happenings,
             "recurring"  => $recurring
@@ -38,7 +39,7 @@ class KalenderController extends Controller
     public function action_ics()
     {
         //$happenings = Happening::all();
-        $happenings = \HappeningNew::getHappenings();
+        $happenings = Happening::getHappenings();
 
         $cal = new Calendar("foreningenbs.no");
         $cal->setName("Blindern Studenterhjem");

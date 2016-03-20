@@ -27,11 +27,11 @@ Route::post('api/books/{id}/barcode', 'API\\BookController@barcode');
 // calendar
 Route::get('arrplan', 'JsController@index');
 Route::get('arrplan/{sem}', 'JsController@index');
-Route::get('arrplan.ics', 'KalenderController@action_ics');
-Route::get('arrplan.ical', 'KalenderController@action_ics');
-Route::get('kalender.ical', 'KalenderController@action_ics');
-Route::get('api/arrplan/next', 'API\\ArrplanController@next');
-Route::resource('api/arrplan', "API\\ArrplanController", array('only' => array('index')));
+Route::get('arrplan.ics', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanController@action_ics');
+Route::get('arrplan.ical', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanController@action_ics');
+Route::get('kalender.ical', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanController@action_ics');
+Route::get('api/arrplan/next', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanApiController@next');
+Route::resource('api/arrplan', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanApiController', array('only' => array('index')));
 
 // printer
 Route::group(['middleware' => 'auth'], function () {

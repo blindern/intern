@@ -1,4 +1,4 @@
-<?php
+<?php namespace Blindern\Intern\Arrplan\Models;
 
 use Carbon\Carbon;
 use Eluceo\iCal\Component\Calendar;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Support\Arrayable;
  * TODO: Support skips on repeats (split into multiple events)
  */
 
-class HappeningNew implements Arrayable, JsonSerializable
+class Happening implements Arrayable, \JsonSerializable
 {
     const CACHE_NAME = "happenings";
 

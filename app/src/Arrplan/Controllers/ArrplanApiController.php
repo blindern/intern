@@ -1,16 +1,16 @@
-<?php namespace App\Http\Controllers\API;
+<?php namespace Blindern\Intern\Arrplan\Controllers;
 
-use \HappeningNew;
+use \Blindern\Intern\Arrplan\Models\Happening;
 use \Eluceo\iCal\Component\Calendar;
 use \Eluceo\iCal\Component\Event;
 use \Eluceo\iCal\Property\Event\RecurrenceRule;
 use \App\Http\Controllers\Controller;
 
-class ArrplanController extends Controller
+class ArrplanApiController extends Controller
 {
     public function index()
     {
-        $res = HappeningNew::getHappenings(isset($_GET['invalidate']));
+        $res = Happening::getHappenings(isset($_GET['invalidate']));
 
         $data = array();
         foreach ($res as $row) {
@@ -23,6 +23,6 @@ class ArrplanController extends Controller
     public function next()
     {
         $count = max(1, \Input::get('count', 5));
-        return HappeningNew::getNext($count);
+        return Happening::getNext($count);
     }
 }
