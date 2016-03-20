@@ -4,6 +4,7 @@ use \Blindern\Intern\Arrplan\Models\Happening;
 use \Eluceo\iCal\Component\Calendar;
 use \Eluceo\iCal\Component\Event;
 use \Eluceo\iCal\Property\Event\RecurrenceRule;
+use \App\Http\Controllers\Controller;
 
 class ArrplanController extends Controller
 {
@@ -45,7 +46,7 @@ class ArrplanController extends Controller
         $cal->setName("Blindern Studenterhjem");
 
         foreach ($happenings as $happening) {
-            if ($happening->isComment()) {
+            if ($happening->isComment() || $happening->isDuplicateRecurringEvent) {
                 continue;
             }
             $cal->addEvent($happening->getEvent());

@@ -7,6 +7,12 @@
 		</li>
 	</ul>
 
+	<div class="alert alert-info" style="margin-top: 1em">
+		<b>Redigering:</b>
+		Alle beboere kan logge inn på wikien og
+		<a href="https://foreningenbs.no/confluence/display/BS/Arrangementplan">redigere arrangementplanen</a>!
+	</div>
+
 	<div ng-show="list_event.length > 0">
 		<h3>Arrangementer</h3>
 
@@ -18,6 +24,9 @@
 
 	<div ng-show="list_event_recurring.length > 0">
 		<h3>Øvrige aktiviteter</h3>
+		<div class="alert alert-warning">
+			<strong>OBS!</strong> Denne oversikten inneholder arrangementer som har vært avholdt også tidligere i semesteret og som ikke lenger avholdes. Se <a href="https://foreningenbs.no/confluence/display/BS/Arrangementplan">kalenderen på wiki</a> for en mer nøyaktig oversikt.
+		</div>
 
 		<div ng-repeat="event in list_event_recurring = (arrplan | filterSem:sem | filter:{'type': 'event_recurring'}) | orderBy:'recurringsort'" class="row">
 			<div class="col-sm-3 event-date">{{event.duration}}</div>
@@ -32,12 +41,6 @@
 			<dd ng-repeat-end ng-bind="event.comment"></dd>
 		</dl>
 	</div>
-
-	<h2>Gjøre endringer på arrangementplanen</h2>
-	<p>Oppdages det feil eller manglende arrangementer kan oversikten endres i (den gamle) wikien:<br />
-		<a href="https://foreningenbs.no/wiki-2015/Arrangementplan_til_nettsiden">
-		https://foreningenbs.no/wiki-2015/Arrangementplan_til_nettsiden</a></p>
-	<p>Alle beboere skal ha tilgang til wikien med sin <a href="/intern/login">foreningsbruker</a>.</p>
 
 	<h2>Google Calendar, kalender på mobil, o.l.</h2>
 	<p>Du kan få kalenderen automatisk inn i Google Calender eller en annen kalender du måtte ha. For dette trenger du å legge inn denne adressen i kalenderen din:<br />

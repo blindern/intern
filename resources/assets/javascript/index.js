@@ -13,7 +13,7 @@ angular.module('intern.index', ['ngRoute', 'intern.helper.page', 'intern.matmeny
 	Page.setTitle('Foreningen Blindern Studenterhjem');
 
     // hent neste arrplan
-    $http.get('api/arrplan/next', {params: {count: 4}}).success(function(ret) {
+    $http.get('api/arrplan/next', {params: {count: 6}}).success(function(ret) {
         $scope.arrplan = ret;
     });
 

@@ -17,7 +17,8 @@
 		"eluceo/ical": "dev-master",
 		"nategood/httpful": "*",
 		"jenssegers/mongodb": "*",
-		"google/apiclient": "*"
+		"google/apiclient": "*",
+		"johngrogg/ics-parser": "1.0.3"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

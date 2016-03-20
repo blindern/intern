@@ -26,7 +26,6 @@ class HappeningMediaWiki extends Happening
             $lines = preg_split("/\\r?\\n/", implode("\n", $matches[1]));
 
             $res = array();
-            $res_times = array();
             $cur = null;
             $blanks = 0;
             $get_title = false;
@@ -71,7 +70,6 @@ class HappeningMediaWiki extends Happening
 
                             $cur->title = trim($submatches[1]);
                             $res[] = $cur;
-                            $res_times[] = $cur->start . $cur->end;
                             $get_title = false;
 
                             if (!empty($submatches[3])) {
@@ -108,7 +106,6 @@ class HappeningMediaWiki extends Happening
                         $cur->end   = trim($to);
 
                         $res[] = $cur;
-                        $res_times[] = $cur->start . $cur->end;
                         $blanks = 0;
                     }
                 } elseif ($cur->isComment()) {
@@ -123,7 +120,6 @@ class HappeningMediaWiki extends Happening
                         // must be title
                         $cur->title = trim($row);
                         $res[] = $cur;
-                        $res_times[] = $cur->start . $cur->end;
                         $get_title = false;
                     } else {
                         if (substr($row, 2, 3) == "BY:") {
@@ -167,9 +163,6 @@ class HappeningMediaWiki extends Happening
                 }
             }
 
-            // sort it
-            array_multisort($res_times, $res);
-
             return $res;
         }
     }
@@ -189,28 +182,6 @@ class HappeningMediaWiki extends Happening
             $this->interval = isset($matches[6]) ? (int) $matches[6] : 1;
 
             // TODO: $matches[8]; (the ones to skip)
-        }
-    }
-
-    private function setCountFromUntil($until_date) {
-        $start = Carbon::parse($this->start);
-        $start->setTime(0, 0, 0);
-
-        $until = Carbon::parse($until_date);
-        $until->addDay();
-
-        switch ($this->frequency) {
-        case 'DAILY':
-            $this->count = $start->diffInDays($until) + 1;
-            break;
-        case 'WEEKLY':
-            $this->count = $start->diffInWeeks($until) + 1;
-            break;
-        case 'MONTHLY':
-            $this->count = $start->diffInMonths($until) + 1;
-            break;
-        default:
-            throw new \Exception("Unknown happening frequency", $this->frequency);
         }
     }
 }

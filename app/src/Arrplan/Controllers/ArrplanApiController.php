@@ -14,6 +14,10 @@ class ArrplanApiController extends Controller
 
         $data = array();
         foreach ($res as $row) {
+            if ($row->isDuplicateRecurringEvent) {
+                continue;
+            }
+
             $data[] = $row->toArray();
         }
 

@@ -14,25 +14,41 @@ class Happening implements Arrayable, \JsonSerializable
     {
         $data = $invalidate_cache ? null : \Cache::get(static::CACHE_NAME);
         if (is_null($data)) {
-            $data = HappeningMediaWiki::loadExternalEvents();
+            $data = static::loadHappenings();
             \Cache::put(static::CACHE_NAME, $data, 180);
         }
 
         return $data;
     }
 
+    private static function loadHappenings()
+    {
+        $events = array_merge(
+            HappeningMediaWiki::loadExternalEvents(),
+            HappeningConfluence::loadExternalEvents()
+        );
+
+        $event_times = array();
+        foreach ($events as $event) {
+            $event_times[] = $event->start . $event->end;
+        }
+
+        array_multisort($event_times, $events);
+        return $events;
+    }
+
     /**
      * Get the next events, by its end date
      * Date of today counts as next event
-     * Recurring events does not count
      */
     public static function getNext($num = 5)
     {
         $res = array();
+
         foreach (static::getHappenings() as $ev) {
-            if ($ev->isRecurring()) {
+            /*if ($ev->isRecurring()) {
                 continue;
-            }
+            }*/
             if ($ev->isComment()) {
                 continue;
             }
@@ -44,6 +60,7 @@ class Happening implements Arrayable, \JsonSerializable
                 break;
             }
         }
+
         return $res;
     }
 
@@ -63,6 +80,8 @@ class Happening implements Arrayable, \JsonSerializable
     public $interval;
     public $count;
 
+    public $isDuplicateRecurringEvent; // if this is a duplicate event of a recurring event
+
     /**
      * Get prettyformatted duration
      *
@@ -74,7 +93,8 @@ class Happening implements Arrayable, \JsonSerializable
         $end = Carbon::parse($this->end);
 
         if ($start->toDateString() == $end->toDateString()) {
-            return Carbon::parse($this->start)->formatLocalized('%A %e. %B');
+            $time = $start->secondsSinceMidnight() > 0 ? ' kl %H.%M' : '';
+            return Carbon::parse($this->start)->formatLocalized('%A %e. %B' . $time);
         } elseif ($start->format("m") == $end->format("m")) {
             return sprintf("%s-%s", $start->formatLocalized('%a %e.'), $end->formatLocalized('%a %e. %B'));
         }
@@ -180,6 +200,31 @@ class Happening implements Arrayable, \JsonSerializable
         $now = new \DateTime();
         $now->setTime(0, 0, 0);
         return $end->format("U") < $now->format("U");
+    }
+
+    /**
+     * Calculate and store the count of repeats of a recurring event
+     */
+    protected function setCountFromUntil($until_date) {
+        $start = Carbon::parse($this->start);
+        $start->setTime(0, 0, 0);
+
+        $until = Carbon::parse($until_date);
+        $until->addDay();
+
+        switch ($this->frequency) {
+        case 'DAILY':
+            $this->count = $start->diffInDays($until) + 1;
+            break;
+        case 'WEEKLY':
+            $this->count = $start->diffInWeeks($until) + 1;
+            break;
+        case 'MONTHLY':
+            $this->count = $start->diffInMonths($until) + 1;
+            break;
+        default:
+            throw new \Exception("Unknown happening frequency", $this->frequency);
+        }
     }
 
     /**
