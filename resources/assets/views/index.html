@@ -6,7 +6,7 @@
 <div class="row">
 	<div class="col-md-4">
 		<a href="arrplan" class="index-arrplan">
-			<div class="h">Neste på arrangementplanen</div>
+			<h4>Neste på arrangementplanen</h4>
 			<div ng-show="!arrplan">Laster...</div>
 			<div ng-show="arrplan">
 				<p ng-repeat="event in arrplan" ng-class="{'old-happening': event.expired, lowPriority: event.priority == 'low', highPriority: event.priority == 'high'}">
@@ -34,7 +34,7 @@
 					</span>
 					<span ng-show="matmeny.tomorrow.text" style="color: #FF0000">({{matmeny.tomorrow.text}})</span>
 				</p>
-				<p>(Oppdateres ukentlig av kjøkkensjefen.)</p>
+				<p class="text-muted"><i>(Oppdateres ukentlig av kjøkkensjefen.)</i></p>
 			</a>
 		</div>
 		<div class="index-matmeny">
