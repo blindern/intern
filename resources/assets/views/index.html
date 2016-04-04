@@ -1,10 +1,10 @@
-<div class="row">
-	<div class="col-md-3">
-		<p>Foreningen Blindern Studenterhjem er en sosial forening, hvis formål er å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer informasjon om Blindern Studenterhjem og foreningen, se <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">http://blindern-studenterhjem.no/livet/foreningsstyret</a>.</p>
-		<p>Disse nettsidene er hovedsaklig myntet på foreningens medlemmer, og mange av sidene er beskyttet med passord.</p>
-	</div>
+<p>Foreningen Blindern Studenterhjem er en sosial forening, hvis formål er å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer informasjon om Blindern Studenterhjem og foreningen, se <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">http://blindern-studenterhjem.no/livet/foreningsstyret</a>.</p>
+<p>Disse nettsidene er hovedsaklig myntet på foreningens medlemmer, og mange av sidene er beskyttet med passord.</p>
 
-	<div class="col-md-3">
+<hr>
+
+<div class="row">
+	<div class="col-md-4">
 		<a href="arrplan" class="index-arrplan">
 			<div class="h">Neste på arrangementplanen</div>
 			<div ng-show="!arrplan">Laster...</div>
@@ -16,9 +16,10 @@
 		</a>
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div ng-if="matmeny">
 			<a href="matmeny" class="index-matmeny">
+				<h4>Matmeny</h4>
 				<p class="day"><b>Dagens matrett</b> ({{matmenydate.today|customdate:'dddd'}}):<br>
 					<span ng-show="!matmeny.today">Ukjent</span>
 					<span ng-repeat="dish in matmeny.today.dishes">
@@ -33,10 +34,11 @@
 					</span>
 					<span ng-show="matmeny.tomorrow.text" style="color: #FF0000">({{matmeny.tomorrow.text}})</span>
 				</p>
+				<p>(Oppdateres ukentlig av kjøkkensjefen.)</p>
 			</a>
 		</div>
 		<div class="index-matmeny">
-			<h4>Ordinære tider (ikke april)</h4>
+			<h4>Måltider (ikke april)</h4>
 			<table class="table">
 				<thead>
 					<tr>
@@ -70,9 +72,9 @@
 		</div>
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="index-matmeny">
-			<h4>Prøveperiode april</h4>
+			<h4>Måltider prøveperiode april</h4>
 			<p>Gjelder 4. april til 1. mai 2016.</p>
 
 			<table class="table">
@@ -95,13 +97,13 @@
 						<td>Fre</td>
 						<td>07.30-<br />09.00</td>
 						<td>15.30-<br />17.30</td>
-						<td>Matpakke-<br />stasjon<br />16.00-<br />18.00</td>
+						<td>Matpakkestasjon<br />16.00-<br />18.00</td>
 					</tr>
 					<tr>
 						<td>Lør</td>
 						<td>09.30-<br />11.00</td>
 						<td>16.00-<br />17.30</td>
-						<td>Matpakke-<br />stasjon<br />16.00-<br />18.00</td>
+						<td>Matpakkestasjon<br />16.00-<br />18.00</td>
 					</tr>
 					<tr>
 						<td>Søn</td>
