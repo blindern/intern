@@ -19,9 +19,9 @@ Route::get('bokdatabase', 'JsController@index');
 Route::get('books/register', 'JsController@index');
 Route::get('books/{id}', 'JsController@index');
 Route::get('books/{id}/edit', 'JsController@index');
-Route::resource('api/books', 'API\\BookController', array('only' => array('index', 'store', 'show', 'update', 'destroy')));
-Route::post('api/books/isbn', 'API\\BookController@isbn');
-Route::post('api/books/{id}/barcode', 'API\\BookController@barcode');
+Route::resource('api/books', '\\Blindern\\Intern\\Books\\Controllers\\BookController', array('only' => array('index', 'store', 'show', 'update', 'destroy')));
+Route::post('api/books/isbn', '\\Blindern\\Intern\\Books\\Controllers\\BookController@isbn');
+Route::post('api/books/{id}/barcode', '\\Blindern\\Intern\\Books\\Controllers\\BookController@barcode');
 
 
 // calendar

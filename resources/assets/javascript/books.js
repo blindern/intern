@@ -49,6 +49,7 @@
         Page.setTitle('Biblioteket på Blindern Studenterhjem');
 
         $scope.currentPage = 1;
+        $scope.search = "";
 
         // navigation triggers
         $scope.nextPage = function () {
@@ -69,7 +70,8 @@
 
         function pageChange() {
             Book.query({
-                'page': $scope.currentPage
+                'page': $scope.currentPage,
+                'q': $scope.search
             }, function (data) {
                 $scope.books = data.data;
                 $scope.currentPage = data.current_page;
@@ -84,6 +86,23 @@
         $scope.$watch('currentPage', function (newPage, lastPage) {
             if (newPage != lastPage) {
                 pageChange();
+            }
+        });
+
+        // some simple debounce
+        var searchTimer, lastQuery = "";
+        $scope.$watch('search', function (query) {
+            if (searchTimer) {
+                clearTimeout(searchTimer);
+                searchTimer = null;
+            }
+
+            if (query !== lastQuery) {
+                searchTimer = setTimeout(function () {
+                    $scope.currentPage = 1;
+                    lastQuery = query;
+                    pageChange();
+                }, 250);
             }
         });
 

@@ -1,3 +1,8 @@
+.book_search {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
 .books_list {
 	max-width: 600px;
 	margin: 0 auto;
@@ -37,6 +42,10 @@
 				.subtitle {
 					color: #555;
 				}
+			}
+
+			.authors {
+				color: lighten($text-muted, 20%);
 			}
 
 			.placeinfo {

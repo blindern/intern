@@ -1,10 +1,12 @@
-<?php namespace App\Http\Controllers\API;
+<?php namespace Blindern\Intern\Books\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 use Blindern\Intern\Helpers\Flash;
 use Blindern\Intern\Helpers\FlashCollection;
 use Blindern\Intern\Books\Models\Book;
 use Blindern\Intern\Books\ISBN;
-use \App\Http\Controllers\Controller;
 
 class BookController extends Controller
 {
@@ -43,9 +45,26 @@ class BookController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Book::orderBy('created_at', 'desc')->paginate($limit = 100);
+        $query = Book::orderBy('created_at', 'desc');
+
+        if ($request->input('q')) {
+            $s = preg_split("/\s+/", $request->input('q'));
+            foreach ($s as $part) {
+                $query = $query->where(function ($query) use ($part) {
+                    $check = '%' . $part  .'%';
+                    $query->where('title', 'like', $check)
+                          ->orWhere('subtitle', 'like', $check)
+                          ->orWhere('authors', 'like', $check)
+                          ->orWhere('pubdate', 'like', $check)
+                          ->orWHere('isbn', 'like', $check)
+                          ->orWhere('bib_barcode', 'like', $check);
+                });
+            }
+        }
+
+        return $query->paginate($limit = 100);
     }
 
 
