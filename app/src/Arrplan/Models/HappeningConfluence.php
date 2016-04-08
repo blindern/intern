@@ -29,6 +29,8 @@ class HappeningConfluence extends Happening
 
         $recurring_events_parsed = [];
 
+        $tz_correct = new \DateTimeZone('Europe/Oslo');
+
         $events = [];
         foreach ($calendars as $calendar) {
             $ical = new ICal();
@@ -45,7 +47,9 @@ class HappeningConfluence extends Happening
                     $new->start = $start->toDateString();
                     $new->end = $start->toDateString();
                 } else {
+                    $start->timezone = $tz_correct;
                     $new->start = $start->toDateTimeString();
+                    $end->timezone = $tz_correct;
                     $new->end = $end->toDateTimeString();
                 }
 
@@ -62,10 +66,20 @@ class HappeningConfluence extends Happening
                     // we can detect this by looking at UID-field, which will be the same for duplicates
                     // if this is a duplicate, add it as a special event so can show it on
                     // "upcoming events" page
-                    if (in_array($event['UID'], $recurring_events_parsed)) {
+                    if (isset($recurring_events_parsed[$event['UID']])) {
+                        $main_event = $recurring_events_parsed[$event['UID']];
                         $new->isDuplicateRecurringEvent = true;
+
+                        // correct for dst as the ics-parser does this wrong (and confluence sends wrong data)
+                        if (!$main_event->allday) {
+                            $start->addSeconds($main_event->start_object->offset);
+                            $end->addSeconds($main_event->start_object->offset);
+                            $new->start = $start->toDateTimeString();
+                            $new->end = $end->toDateTimeString();
+                        }
                     } else {
-                        $recurring_events_parsed[] = $event['UID'];
+                        $new->start_object = $start;
+                        $recurring_events_parsed[$event['UID']] = $new;
 
                         if (preg_match('/FREQ=(.+?);.*UNTIL=(.+?);.*INTERVAL=(.+?)(;|$)/', $event['RRULE'], $match)) {
                             $new->frequency = $match[1];
