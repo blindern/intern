@@ -1,0 +1,17 @@
+<div class="bukker-bukk">
+    <div class="died" ng-if="bukk.died">
+        Død<span ng-if="bukk.died !== true"> {{bukk.died}}</span>
+    </div>
+
+    <div class="awards">
+        <div class="award" ng-repeat="award in bukk.awards|orderBy:'-year'">
+            <h2>
+                {{award.rank}} {{award.year}}
+            </h2>
+            <div class="thumb" ng-if="award.image_preview_url">
+                <img ng-src="{{award.image_preview_url}}" alt="">
+            </div>
+            <div class="devise" ng-if="award.devise">{{award.devise}}</div>
+        </div>
+    </div>
+</div>

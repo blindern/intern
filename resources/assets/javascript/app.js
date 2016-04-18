@@ -9,6 +9,7 @@ var module = angular.module('intern', [
 	'intern.auth',
 	'intern.arrplan',
 	'intern.books',
+	'intern.bukker',
 	'intern.dugnaden',
 	'intern.group',
 	'intern.printer',
@@ -75,6 +76,7 @@ module.directive('autoFocus', function($timeout) {
 require('./arrplan')
 require('./auth')
 require('./books')
+require('./bukker')
 require('./dugnaden')
 require('./googleapps')
 require('./group')

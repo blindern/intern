@@ -23,6 +23,11 @@ Route::resource('api/books', '\\Blindern\\Intern\\Books\\Controllers\\BookContro
 Route::post('api/books/isbn', '\\Blindern\\Intern\\Books\\Controllers\\BookController@isbn');
 Route::post('api/books/{id}/barcode', '\\Blindern\\Intern\\Books\\Controllers\\BookController@barcode');
 
+// bukker
+Route::get('bukker', 'JsController@index');
+Route::get('bukker/{id}', 'JsController@index');
+Route::get('api/bukker/image', '\\Blindern\\Intern\\Bukker\\Controllers\\BukkerController@image');
+Route::resource('api/bukker', '\\Blindern\\Intern\\Bukker\\Controllers\\BukkerController');
 
 // calendar
 Route::get('arrplan', 'JsController@index');

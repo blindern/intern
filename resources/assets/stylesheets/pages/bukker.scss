@@ -1,0 +1,54 @@
+.bukker {
+    .bukker-list {
+        margin-right: -20px;
+    }
+
+    .bukk {
+        display: inline-block;
+        vertical-align: middle;
+        border: 1px solid #CCC;
+        border-radius: 2px;
+        width: 210px;
+        text-align: center;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        padding: 5px 2px;
+
+        a {
+            color: #333;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .thumb {
+        display: block;
+    }
+
+    .award {
+        font-size: 85%;
+        color: #888;
+    }
+
+    .died {
+        font-size: 85%;
+        color: #888;
+    }
+}
+
+.bukker-bukk {
+    .award {
+        vertical-align: middle;
+        text-align: center;
+
+        .thumb {
+            margin-bottom: 5px;
+        }
+
+        .devise {
+            white-space: pre-wrap;
+        }
+    }
+}
