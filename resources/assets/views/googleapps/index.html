@@ -79,9 +79,11 @@
 
         <div ng-if="account.edit">
             <form class="form-inline">
+                Kontonavn:
+                <input type="text" ng-model="account.newaccountname" ng-init="account.newaccountname = account.accountname" class="form-control" />
                 Gruppe/kategori:
                 <input type="text" ng-model="account.newgroupname" ng-init="account.newgroupname = account.group" class="form-control" />
-                <input class="btn" type="submit" value="Oppdater" ng-click="updateGroup(account, account.newgroupname)" />
+                <input class="btn" type="submit" value="Oppdater" ng-click="updateAccount(account, account.newaccountname, account.newgroupname)" />
             </form>
         </div>
     </div>

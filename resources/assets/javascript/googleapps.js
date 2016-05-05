@@ -65,9 +65,10 @@ require('angular-filter');
             });
         };
 
-        $scope.updateGroup = function(account, name) {
-            if (name !== '') {
-                account.group = name;
+        $scope.updateAccount = function(account, accountname, groupname) {
+            if (accountname.trim() !== '' && groupname.trim() !== '') {
+                account.accountname = accountname.trim();
+                account.group = groupname.trim();
                 account.$update(function () {
                     fetchAccounts();
                 });
