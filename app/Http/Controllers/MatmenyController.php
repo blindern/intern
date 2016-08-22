@@ -86,9 +86,18 @@ class MatmenyController extends Controller
             $event->setDtEnd($end);
             $event->setNoTime(true);
 
-            $text = implode(', ', $day['dishes']);
+            if ($day['dishes']) {
+                $text = implode(', ', $day['dishes']);
+            } else {
+                $text = '';
+            }
+
             if (!empty($day['text'])) {
-                $text .= ' (' . $day['text'] . ')';
+                if ($text !== '') {
+                    $text .= ' ';
+                }
+
+                $text .= '(' . $day['text'] . ')';
             }
 
             $event->setSummary($text);
