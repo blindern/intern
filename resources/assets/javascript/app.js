@@ -1,6 +1,6 @@
 'use strict';
 
-moment.lang('nb');
+moment.locale('nb');
 
 var module = angular.module('intern', [
 	'ngRoute',
