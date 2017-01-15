@@ -2,7 +2,7 @@
 window.jQuery = window.$ = require('jquery')
 window.moment = require('moment')
 require('bootstrap-sass/assets/javascripts/bootstrap')
-require('moment/lang/nb')
+require('moment/locale/nb')
 require('angular')
 require('angular-route')
 require('angular-animate')
