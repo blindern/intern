@@ -11,6 +11,7 @@ Thumbs.db
 error_log
 /bower_components/
 /.sass-cache/
+/.data/
 
 # ignore IntelliJ-files
 .idea/

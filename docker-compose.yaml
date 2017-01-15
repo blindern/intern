@@ -1,0 +1,36 @@
+# only used in development!
+version: '2'
+
+services:
+  fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blindern/intern-dev
+    environment:
+      LARAVEL_ENV: local
+      APP_ENV: local
+      APP_DEBUG: 1
+      APP_KEY: KeNd439jeX9n9hqudOxXqCQErFmbApoi
+      DB_MONGODB_HOST: database
+      DB_MONGODB_PORT: 27017
+      DB_MONGODB_DATABASE: intern
+      DB_MONGODB_USERNAME:
+      DB_MONGODB_PASSWORD:
+      LARAVEL_SESSION_SECURE: 0
+    volumes:
+      - ./:/var/www/html/
+    command: /dev.sh
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.dev.conf:/etc/nginx/conf.d/default.conf
+      - ./:/var/www/html/
+    command: nginx -g 'daemon off;'
+  database:
+    image: mongo
+    volumes:
+      - ./.data/db/:/data/db/
