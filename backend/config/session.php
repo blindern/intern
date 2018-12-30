@@ -148,6 +148,6 @@ return [
     |
     */
 
-    'secure' => true,
+    'secure' => (bool) env('LARAVEL_SESSION_SECURE', true),
 
 ];
