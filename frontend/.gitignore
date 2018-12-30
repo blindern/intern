@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+/node_modules/
+/public/builds/
+/bower_components/
+/.sass-cache/
