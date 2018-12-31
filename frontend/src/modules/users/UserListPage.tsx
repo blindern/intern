@@ -8,6 +8,7 @@ import GroupLink from 'modules/groups/GroupLink'
 import React, { useContext } from 'react'
 import UserLink from './UserLink'
 import { usersService } from './UsersService'
+import styled from 'styled-components';
 
 interface UserSections {
   beboere: UserDetails[]
@@ -47,6 +48,13 @@ const groupAndSortBySections = (userList: UserDetails[]) => {
   return result
 }
 
+const UserListSection = styled.div`
+  td:nth-child(1),
+  td:nth-child(2) {
+    white-space: nowrap;
+  }
+`
+
 const List = ({ userList }: { userList: UserDetails[] }) => {
   const { isLoggedIn } = useContext(AuthContext)
 
@@ -77,7 +85,7 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
       </p>
 
       {sections.map((section, idx) => (
-        <div key={idx} className='panel panel-info userlist'>
+        <UserListSection key={idx} className='panel panel-info'>
           <div className='panel-heading'>
             {section.title} ({section.users.length} stk)
           </div>
@@ -121,7 +129,7 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
               ))}
             </tbody>
           </table>
-        </div>
+        </UserListSection>
       ))}
     </>
   )
