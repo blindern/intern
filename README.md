@@ -4,6 +4,35 @@ OBS! Dette prosjektet gjennomgår for tiden en omskriving. Prosjektet
 er derfor å anse som ustabilt og detaljene i denne README filen er
 utadert.
 
+TODO:
+
+- Få backend til å kjøre i Docker slik det skal i produksjon
+- Deploye backend automatisk via CircleCI
+- Porte resten av gammel Angular-kode til React
+  - Oversikt arrangementplan
+  - Registrer bruker side
+  - Boksystem
+  - Bukker
+  - Dugnadslapper
+  - Google Apps-siden
+  - Rediger av matmeny
+  - Printerfakturering
+  - Siste utskrifter printer
+- Automatisere bygg og test av frontend i CircleCI
+- Automatisere deployment av frontend i CircleCI
+
+Endringene vi gjør betyr at vi ikke har kompabilitet mellom ny backend/frontend
+og eksisterende. Derfor må disse fullføres og deployes i produksjon samtidig.
+
+TODO etter vi har erstattet dagens:
+
+- Oppgradree Bootstrap + jQuery
+- Oppgradere evt. andre gamle avhengigheter i frontend
+- Automatisere backup ved deployment av backend
+- Oppgrade Laravel (vi er på 5.1 fra , siste er 5.7)
+- Bytte ut autentisering til å gå via SAML, kanskje med https://github.com/aacotroneo/laravel-saml2
+- Sette opp Renovate
+
 ---
 
 Koden som kjører systemet på https://foreningenbs.no/intern/
