@@ -106,7 +106,13 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
         $res = \Auth::attempt($user, \Input::get('remember_me'));
         if ($res) {
             return \Response::json(array(
+                'isLoggedIn' => true,
+                'isOffice' => \Blindern\Intern\Auth\Helper::isOffice(),
+                "isUserAdmin" => \Auth::member("useradmin"),
                 'user' => \Auth::user()->toArray(array(), 2),
+                "csrfToken" => csrf_token(),
+
+                // Deprecated
                 'useradmin' => \Auth::member('useradmin')
             ));
         }

@@ -15,7 +15,8 @@ class MeController extends Controller
           "isLoggedIn" => !!$user,
           "isOffice" => $is_office,
           "user" => $user ? $user->toArray(array(), 2) : null,
-          "isUserAdmin" => \Auth::member("useradmin")
+          "isUserAdmin" => \Auth::member("useradmin"),
+          "csrfToken" => csrf_token()
         );
 
         return $data;
