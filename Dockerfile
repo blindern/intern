@@ -39,12 +39,45 @@ RUN \
        fi \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer --quiet \
     && rm composer-setup.php \
-    && mkdir /var/www/.composer \
-    && chown www-data:www-data /var/www/.composer
+    \
+    # intern
+    && mkdir -p /var/intern/cache \
+    && mkdir -p /var/intern/logs \
+    && mkdir -p /var/intern/meta \
+    && mkdir -p /var/intern/sessions \
+    && mkdir -p /var/intern/views \
+    && chown -R www-data:www-data /var/intern /var/www /var/www/html
+
+COPY backend/composer.* /var/www/html/
+
+USER www-data
+
+# create directories that are scanned on composer install
+# this is later replaced with new source, but we need this
+# here to have cache of composer modules to avoid cache miss
+# in case only our code is updated and not dependencies
+RUN set -eux; \
+    mkdir -p \
+      database \
+      app/Models \
+      tests \
+    ; \
+    echo -e '#!/usr/bin/env php\n<?php' >artisan; \
+    echo -e '#!/usr/bin/env php\n<?php' >tests/TestCase.php; \
+    composer install; \
+    mv vendor /var/www/html-vendor; \
+    ln -s /var/www/html-vendor /var/www/html/vendor
+
+COPY backend /var/www/html/
+
+# we run composer install again so the post process commands
+# are run
+RUN composer install
 
 USER root
 COPY container/entrypoint.sh /entrypoint.sh
 COPY container/dev.sh /dev.sh
 
+VOLUME ["/var/intern"]
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php-fpm"]

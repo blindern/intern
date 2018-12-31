@@ -2,11 +2,11 @@
 
 # make sure we are the same user as the one who owns the files
 # this is relevant in development when the developer's source code is mounted in
-if [ "$1" != "php-fpm" ] && [ -d /var/www/html ]; then
-  uid=$(stat -c %u /var/www/html)
-  gid=$(stat -c %u /var/www/html)
+if [ "$1" != "php-fpm" ] && [ -d /var/www/html/app ]; then
+  uid=$(stat -c %u /var/www/html/app)
+  gid=$(stat -c %u /var/www/html/app)
 
-  if [ $(id -u) != $(stat -c %u /var/www/html) ]; then
+  if [ $(id -u) != $(stat -c %u /var/www/html/app) ]; then
     olduid=$(id -u www-data)
     oldgid=$(id -g www-data)
 
@@ -17,14 +17,10 @@ if [ "$1" != "php-fpm" ] && [ -d /var/www/html ]; then
     usermod -g $gid www-data
 
     # make sure vendor is owner by this user
-    if [ -d /var/www/html/vendor ]; then
-      chown -R www-data:www-data /var/www/html/vendor
-    fi
+    chown -R www-data:www-data /var/www/html/vendor
   fi
+else
+  chown -R www-data:www-data /var/billett
 fi
 
-if [ "$1" != "php-fpm" ] && [ "$1" != "/dev.sh" ]; then
-  gosu www-data:www-data "$@"
-else
-  exec "$@"
-fi
+exec "$@"
