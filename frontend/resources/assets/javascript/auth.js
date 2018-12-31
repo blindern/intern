@@ -1,17 +1,3 @@
-'use strict';
-
-angular.module('intern.auth', ['ngRoute', 'intern.helper.page']).
-
-config(['$routeProvider', function($routeProvider) {
-
-}]).
-
-// Page.setTitle('Registrer konto');
-
-run(function($rootScope, AuthService) {
-	// create a global binding that can be used by templates
-	$rootScope.AuthService = AuthService;
-}).
 
 controller('RegisterController', function($scope, $http, Page) {
 	Page.setTitle("Registrering for beboere/GB-ere");
@@ -63,50 +49,9 @@ directive('validPassword', function() {
 	};
 }).
 
-controller('LogoutController', function($location, AuthService) {
-	AuthService.logout().success(function() {
-		$location.path('/');
-	});
-}).
-
 service("AuthService", function($http, $location, FlashService) {
-	// these are injected in the main layout from Laravel
-	var logged_in = window.logged_in;
-	var user = window.user;
-	var useradmin = window.useradmin;
-	var is_office = window.is_office;
-	var redirect_url;
 
 	var self = this;
-
-	this.isLoggedIn = function() {
-		return logged_in;
-	};
-	this.getUser = function() {
-		return user;
-	};
-	this.isUserAdmin = function() {
-		return useradmin;
-	};
-	this.logout = function() {
-		return $http.get('logout').success(function() {
-			logged_in = false;
-			user = null;
-			useradmin = null;
-		});
-	};
-
-	// set redirect url to go to on login
-	this.setRedirectUrl = function(path) {
-		redirect_url = path;
-	};
-
-	// get (and reset) redirect url for login action
-	this.getRedirectUrl = function() {
-		var path = redirect_url;
-		redirect_url = null;
-		return path;
-	};
 
 	// check if we can admin a group
 	this.groupIsAdmin = function(group, realadmin) {
@@ -153,25 +98,4 @@ service("AuthService", function($http, $location, FlashService) {
 		return false;
 	};
 
-	// check if we have access by IP
-	this.isOffice = function() {
-		return is_office;
-	};
 }).
-
-// send to login page if required on page request
-config(function($httpProvider) {
-	$httpProvider.responseInterceptors.push(function($q, $location, $injector) {
-		return function(promise) {
-			return promise.then(function(response) {
-				return response;
-			}, function(response) {
-				if (response.status == 401 && $location.path() != '/login') {
-					$injector.get('AuthService').setRedirectUrl($location.path());
-					$location.path('/login');
-				}
-				return $q.reject(response);
-			});
-		};
-	});
-});
