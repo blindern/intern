@@ -48,7 +48,7 @@ RUN \
     && mkdir -p /var/intern/views \
     && chown -R www-data:www-data /var/intern /var/www /var/www/html
 
-COPY backend/composer.* /var/www/html/
+COPY composer.* /var/www/html/
 
 USER www-data
 
@@ -68,7 +68,7 @@ RUN set -eux; \
     mv vendor /var/www/html-vendor; \
     ln -s /var/www/html-vendor /var/www/html/vendor
 
-COPY backend /var/www/html/
+COPY . /var/www/html/
 
 # we run composer install again so the post process commands
 # are run
