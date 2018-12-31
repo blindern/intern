@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { UserContext } from 'modules/core/auth/UserProvider'
+import { AuthContext } from 'modules/core/auth/UserProvider'
 import Flashes from 'modules/core/flashes/Flashes'
 import { useTitle } from 'modules/core/title/TitleProvider'
 import React, { ReactNode, useContext } from 'react'
@@ -86,7 +86,7 @@ const Footer = styled.div`
 `
 
 const Template = ({ children }: { children: ReactNode }) => {
-  const userdata = useContext(UserContext)
+  const authdata = useContext(AuthContext)
   const title = useTitle()
 
   return (
@@ -147,17 +147,17 @@ const Template = ({ children }: { children: ReactNode }) => {
                 </li>
               </ul>
               <ul className='nav navbar-nav navbar-right'>
-                {userdata.isLoggedIn ? (
+                {authdata.isLoggedIn ? (
                   <li className='dropdown'>
                     <a
                       href=''
                       className='dropdown-toggle'
                       data-toggle='dropdown'
                     >
-                      {userdata.user.username} <b className='caret' />
+                      {authdata.user.username} <b className='caret' />
                     </a>
                     <ul className='dropdown-menu'>
-                      <MenuLink to={`/user/${userdata.user.username}`}>
+                      <MenuLink to={`/user/${authdata.user.username}`}>
                         Brukerinfo
                       </MenuLink>
                       <li>

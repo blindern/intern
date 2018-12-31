@@ -31,6 +31,7 @@ const config = {
     host: '0.0.0.0',
     hot: true,
     port: 3000,
+    publicPath: '/intern/',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],

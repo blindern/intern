@@ -1,4 +1,5 @@
 import Template from 'layout/Template'
+import Login from 'modules/core/auth/Login'
 import UserProvider from 'modules/core/auth/UserProvider'
 import FlashesProvider from 'modules/core/flashes/FlashesProvider'
 import { PageTitle } from 'modules/core/title/PageTitle'
@@ -37,7 +38,7 @@ const Routes = () => (
     />
     <Route exact path='/arrplan/:sem' component={Todo} />
 
-    <Route exact path='/login' component={Todo} />
+    <Route exact path='/login' component={Login} />
     <Route exact path='/registrer' component={Todo} />
     <Route exact path='/logout' component={Todo} />
 

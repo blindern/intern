@@ -1,73 +1,38 @@
 import React from 'react'
+import { Subscription } from 'rxjs'
+import { authService } from '.'
+import { defaultAuthInfo } from './AuthService'
+import { AuthInfo } from './types'
 
-type ArrayAtLeastOne<T> = { 0: T } & T[]
-
-interface GroupRelationMap {
-  // group: [reason]
-  [group: string]: ArrayAtLeastOne<string>
-}
-
-interface UserData {
-  id: number
-  unique_id: string
-  username: string
-  email: string | null
-  realname: string | null
-  phone: string | null
-  groups: Group[]
-  group_relations: GroupRelationMap
-  groupowner_relations: GroupRelationMap
-}
-
-interface Group {
-  id: number
-  unique_id: string
-  name: string
-  description: string | null
-  owners: any // TODO
-  members_real: any // TODO
-  members_relation: any // TODO
-}
-
-interface UserInfoNotLoggedIn {
-  isLoggedIn: false
-  isUserAdmin: boolean
-  isOffice: boolean
-  user: null
-}
-
-interface UserInfoLoggedIn {
-  isLoggedIn: true
-  isUserAdmin: boolean
-  isOffice: boolean
-  user: UserData
-}
-
-type UserInfo = UserInfoNotLoggedIn | UserInfoLoggedIn
-
-const defaultUserData: UserInfoNotLoggedIn = {
-  isLoggedIn: false,
-  isUserAdmin: false,
-  isOffice: false,
-  user: null,
-}
-
-export const UserContext = React.createContext<UserInfo>(defaultUserData)
+export const AuthContext = React.createContext<AuthInfo>(defaultAuthInfo)
 
 class UserProvider extends React.Component {
+  subscriber?: Subscription
+
   state = {
-    data: defaultUserData,
+    data: defaultAuthInfo,
   }
 
   componentDidMount() {
-    // TODO: Fetch user details
+    this.subscriber = authService
+      .getUserDataObservable()
+      .subscribe(userInfo => {
+        this.setState({
+          data: userInfo,
+        })
+      })
+    authService.fetchAuthInfo()
+  }
+
+  componentWillUnmount() {
+    if (this.subscriber) this.subscriber.unsubscribe()
   }
 
   render() {
     return (
-      <UserContext.Provider value={this.state.data}>
+      <AuthContext.Provider value={this.state.data}>
         {this.props.children}
-      </UserContext.Provider>
+      </AuthContext.Provider>
     )
   }
 }

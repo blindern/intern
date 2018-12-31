@@ -1,1 +1,1 @@
-window.BACKEND_URL = '/'
+window.BACKEND_URL = '/intern/'

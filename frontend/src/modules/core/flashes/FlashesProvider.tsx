@@ -1,22 +1,12 @@
 import memoizeOne from 'memoize-one'
 import React, { createContext } from 'react'
-
-type FlashType = 'danger' | null
-
-export interface Flash {
-  type: FlashType
-  message: string
-  date: Date
-}
+import { Subscription } from 'rxjs'
+import { flashesService } from '.'
+import { Flash, FlashArgs } from './FlahesService'
 
 interface ConsumerProps {
   flashes: Flash[]
   flash: (data: FlashArgs) => void
-}
-
-interface FlashArgs {
-  message: string
-  type?: FlashType
 }
 
 const defaultValue: ConsumerProps = {
@@ -31,33 +21,31 @@ interface State {
 }
 
 export default class FlashesProvider extends React.Component<{}, State> {
+  subscriber?: Subscription
+
   state = {
     flashes: [],
   }
+
+  componentDidMount() {
+    this.subscriber = flashesService
+      .getFlashesObservable()
+      .subscribe(flashes => {
+        this.setState({
+          flashes,
+        })
+      })
+  }
+
+  componentWillUnmount() {
+    if (this.subscriber) this.subscriber.unsubscribe()
+  }
+
   getValue = memoizeOne(state => ({
     flashes: state.flashes,
-    flash: this.flash,
+    flash: (args: FlashArgs) => flashesService.addFlash(args),
   }))
-  flash = ({ message, type = 'danger' }: FlashArgs) => {
-    const flashObj: Flash = {
-      type,
-      message,
-      date: new Date(),
-    }
 
-    this.setState(state => ({
-      ...state,
-      flashes: state.flashes.concat([flashObj]),
-    }))
-
-    setTimeout(() => {
-      // Don't bother checking for unmount.
-      this.setState(state => ({
-        ...state,
-        flashes: state.flashes.filter(item => item !== flashObj),
-      }))
-    }, 3000)
-  }
   render() {
     return (
       <FlashesContext.Provider value={this.getValue(this.state)}>

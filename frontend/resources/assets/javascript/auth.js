@@ -6,6 +6,8 @@ config(['$routeProvider', function($routeProvider) {
 
 }]).
 
+// Page.setTitle('Registrer konto');
+
 run(function($rootScope, AuthService) {
 	// create a global binding that can be used by templates
 	$rootScope.AuthService = AuthService;
@@ -67,25 +69,6 @@ controller('LogoutController', function($location, AuthService) {
 	});
 }).
 
-controller("LoginController", function($scope, $location, AuthService, Page) {
-	if (AuthService.isLoggedIn())
-		$location.path('/');
-
-	if ($location.path() == "/register")
-		Page.setTitle('Registrer konto');
-	else
-		Page.setTitle('Logg inn');
-
-	$scope.credentials = { username: '', password: '', remember_me: true };
-	$scope.login = function() {
-		AuthService.login($scope.credentials).success(function() {
-			var path = AuthService.getRedirectUrl();
-			if (!path) path = '/user/'+encodeURIComponent(AuthService.getUser().username);
-			$location.path(path);
-		});
-	};
-}).
-
 service("AuthService", function($http, $location, FlashService) {
 	// these are injected in the main layout from Laravel
 	var logged_in = window.logged_in;
@@ -104,23 +87,6 @@ service("AuthService", function($http, $location, FlashService) {
 	};
 	this.isUserAdmin = function() {
 		return useradmin;
-	};
-	this.login = function(credentials) {
-		var login = $http.post('api/login', credentials);
-		login.success(function(res) {
-			if ('flash' in res) {
-				console.log("melding", res.flash);
-			} else if ('user' in res) {
-				logged_in = true;
-				user = res.user;
-				useradmin = res.useradmin;
-			}
-		});
-		login.error(function(res) {
-			// TODO
-			console.log("login error");
-		})
-		return login;
 	};
 	this.logout = function() {
 		return $http.get('logout').success(function() {
