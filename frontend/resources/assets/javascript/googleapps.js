@@ -6,11 +6,7 @@ require('angular-filter');
     var mod = angular.module('intern.googleapps', ['ngRoute', 'intern.helper.page', 'ngResource', 'angular.filter']);
 
     mod.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/googleapps', {
-                templateUrl: require('../views/googleapps/index.html'),
-                controller: 'GoogleAppsCtrl'
-            });
+
     }]);
 
     mod.service('GoogleAppsAccount', function ($resource) {

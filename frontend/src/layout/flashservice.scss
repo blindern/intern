@@ -1,0 +1,30 @@
+.message-box-wrap {
+  overflow-y: hidden;
+  box-sizing: border-box;
+  opacity: 1;
+  max-height: 100px; /* TODO: set this to actual height with JS? */
+
+  //transition: 3s ease-in-out all;
+
+  &.ng-enter {
+    opacity: 1;
+    max-height: 0;
+    transition: 0.2s ease-in-out all;
+    &.ng-enter-active {
+      //opacity: 1;
+      max-height: 100px; /* TODO: set this to actual height with JS? */
+    }
+  }
+  &.ng-leave {
+    transition: 2s ease-in-out all;
+    &.ng-leave-active {
+      opacity: 0;
+      max-height: 0;
+    }
+  }
+
+  .message-box {
+    margin-top: 15px;
+    padding: 15px;
+  }
+}

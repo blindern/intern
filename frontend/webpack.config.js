@@ -22,7 +22,7 @@ const config = {
   output: {
     chunkFilename: `[name].[${hash_type}].js`,
     path: path.resolve(__dirname, 'build/'),
-    publicPath: '/',
+    publicPath: '/intern/',
     filename: `[name].[${hash_type}].js`,
   },
   devServer: {
@@ -34,6 +34,10 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    modules: [
+      'src',
+      'node_modules',
+    ],
   },
   module: {
     rules: [

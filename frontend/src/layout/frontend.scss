@@ -1,8 +1,7 @@
-@import "bootstrap";
+@import 'bootstrap';
 
-@import "template";
-@import "common";
-@import "flashservice";
+@import 'template';
+@import 'common';
 
 @import 'pages/arrplan';
 @import 'pages/books';
@@ -10,5 +9,3 @@
 @import 'pages/index';
 @import 'pages/printer';
 @import 'pages/user';
-
-@import '~ladda/css/ladda.scss';

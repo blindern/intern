@@ -3,18 +3,7 @@
 angular.module('intern.auth', ['ngRoute', 'intern.helper.page']).
 
 config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/login', {
-		templateUrl: require('../views/auth/login.html'),
-		controller: 'LoginController'
-	}).
-	when('/register', {
-		templateUrl: require('../views/auth/register.html'),
-		controller: 'RegisterController'
-	}).
-	when('/logout', {
-		template: '',
-		controller: 'LogoutController'
-	});
+
 }]).
 
 run(function($rootScope, AuthService) {

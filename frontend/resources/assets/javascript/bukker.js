@@ -4,15 +4,7 @@
     var mod = angular.module('intern.bukker', ['ngRoute', 'intern.helper.page', 'ngResource']);
 
     mod.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/bukker', {
-                templateUrl: require('../views/bukker/index.html'),
-                controller: 'BukkerHomeCtrl'
-            })
-            .when('/bukker/:id', {
-                templateUrl: require('../views/bukker/bukk.html'),
-                controller: 'BukkerItemCtrl'
-            });
+
     }]);
 
     mod.service('Bukk', function ($resource, $http) {

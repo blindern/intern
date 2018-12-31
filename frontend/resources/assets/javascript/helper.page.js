@@ -20,22 +20,6 @@ controller('HeaderController', function($scope, $location) {
 	};
 }).
 
-// notifications
-factory('FlashService', function($rootScope, $timeout, $animate) {
-	$rootScope.flashes = [];
-	var remove_after = 3000;
-	return {
-		// flash = { 'message': 'The message', 'type': 'optional css-class for type' }
-		add: function(flash) {
-			flash.date = new Date();
-			$rootScope.flashes.push(flash);
-			$timeout(function() {
-				$rootScope.flashes.shift();
-			}, remove_after);
-		}
-	};
-}).
-
 // collect notifications from http
 // it might be in the headers or in the data itself
 config(function($httpProvider) {

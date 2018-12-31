@@ -3,14 +3,7 @@
 angular.module('intern.group', ['ngRoute', 'intern.helper.page'])
 
 .config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/groups', {
-		templateUrl: require('../views/groups/list.html'),
-		controller: 'GroupListCtrl'
-	})
-	.when('/group/:name', {
-		templateUrl: require('../views/groups/group.html'),
-		controller: 'GroupCtrl'
-	});
+
 }])
 
 .controller('GroupListCtrl', function($http, $scope, Page) {

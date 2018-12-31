@@ -2,25 +2,6 @@
 
 angular.module('intern.arrplan', ['ngRoute', 'intern.helper.page'])
 
-.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/arrplan', {
-		redirectTo: function() {
-			var d = new Date();
-			var sem = (d.getMonth() >= 6 ? "h" : "v") + d.getFullYear().toString().substr(2, 2);
-			return "arrplan/"+sem;
-		}
-	})
-	.when('/arrplan/:sem', {
-		templateUrl: require('../views/arrplan/oversikt.html'),
-		controller: 'VisSem',
-		resolve: {
-			arrplan: function(ArrplanService) {
-				return ArrplanService.get();
-			}
-		}
-	});
-}])
-
 .controller('VisSem', function($scope, $routeParams, arrplan, ArrplanService, Page) {
 	Page.setTitle('Arrangementplan på Blindern Studenterhjem');
 	arrplan = arrplan.data;

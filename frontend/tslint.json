@@ -7,6 +7,10 @@
   "rules": {
     "no-console": false,
     "curly": false,
-    "member-ordering": false
+    "member-ordering": false,
+    "interface-name": false,
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false,
+    "member-access": false
   }
 }

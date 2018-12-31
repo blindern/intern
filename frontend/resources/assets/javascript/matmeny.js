@@ -10,10 +10,7 @@ var mod = angular.module('intern.matmeny', [
     'ngCookies']);
 
 mod.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/matmeny', {
-        templateUrl: require('../views/matmeny/index.html'),
-        controller: 'MatmenyCtrl'
-    });
+
 }]);
 
 mod.controller('MatmenyCtrl', function($scope, $http, $cookies, AuthService, FileUploader, Matmeny, Page) {

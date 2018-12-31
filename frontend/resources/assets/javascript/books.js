@@ -4,27 +4,7 @@
     var mod = angular.module('intern.books', ['ngRoute', 'intern.helper.page', 'ngResource']);
 
     mod.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/bokdatabase', {
-                templateUrl: require('../views/books/index.html'),
-                controller: 'BookHomeCtrl'
-            })
-            .when('/books', {
-                templateUrl: require('../views/books/index.html'),
-                controller: 'BookHomeCtrl'
-            })
-            .when('/books/register', {
-                templateUrl: require('../views/books/register.html'),
-                controller: 'BookRegisterCtrl'
-            })
-            .when('/books/:id', {
-                templateUrl: require('../views/books/book.html'),
-                controller: 'BookItemCtrl'
-            })
-            .when('/books/:id/edit', {
-                templateUrl: require('../views/books/edit.html'),
-                controller: 'BookItemEditCtrl as ctrl'
-            });
+
     }]);
 
     mod.service('Book', function ($resource, $http) {

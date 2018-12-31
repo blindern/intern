@@ -3,14 +3,7 @@
 angular.module('intern.user', ['ngRoute', 'intern.helper.page'])
 
 .config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/users', {
-		templateUrl: require('../views/users/list.html'),
-		controller: 'UserListCtrl'
-	})
-	.when('/user/:name', {
-		templateUrl: require('../views/users/user.html'),
-		controller: 'UserCtrl'
-	});
+
 }])
 
 .controller('UserListCtrl', function($scope, $http, AuthService, Page) {
