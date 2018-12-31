@@ -46,7 +46,7 @@ interface AuthInfoLoggedIn {
   isLoggedIn: true
   isUserAdmin: boolean
   isOffice: boolean
-  user: UserDetails,
+  user: UserDetails
   csrfToken: string
 }
 

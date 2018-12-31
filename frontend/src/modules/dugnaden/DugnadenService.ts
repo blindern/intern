@@ -1,4 +1,4 @@
-import { get } from "api";
+import { get } from 'api'
 
 export interface DugnadDay {
   checked: '0' | '1'

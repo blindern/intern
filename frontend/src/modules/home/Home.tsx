@@ -1,9 +1,9 @@
 import ArrplanHomeBox from 'modules/arrplan/ArrplanHomeBox'
 import { AuthContext } from 'modules/core/auth/UserProvider'
 import MatmenyHomeBox from 'modules/matmeny/MatmenyHomeBox'
+import UserLink from 'modules/users/UserLink'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import UserLink from 'modules/users/UserLink'
 
 const Home = () => {
   const userdata = useContext(AuthContext)

@@ -1,13 +1,13 @@
 import classNames from 'classnames'
+import { authService } from 'modules/core/auth'
 import { AuthContext } from 'modules/core/auth/UserProvider'
 import Flashes from 'modules/core/flashes/Flashes'
 import { useTitle } from 'modules/core/title/TitleProvider'
-import React, { ReactNode, useContext, useCallback } from 'react'
+import React, { ReactNode, useCallback, useContext } from 'react'
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import './frontend.scss'
-import { authService } from 'modules/core/auth';
 
 interface MenuLinkProps {
   children: ((renderProps: { isActive: boolean }) => ReactNode)
@@ -166,7 +166,9 @@ const Template = ({ children }: { children: ReactNode }) => {
                         Brukerinfo
                       </MenuLink>
                       <li>
-                        <a href='logout' onClick={logout}>Logg ut</a>
+                        <a href='logout' onClick={logout}>
+                          Logg ut
+                        </a>
                       </li>
                     </ul>
                   </li>
