@@ -47,6 +47,7 @@ Route::get('printer/siste', 'JsController@index');
 Route::get('printer/fakturere', 'JsController@index');
 
 // login system
+Route::get('api/me', 'API\\MeController@index');
 Route::get('login', 'JsController@index');
 Route::get('register', 'JsController@index');
 Route::post('api/register', 'AuthController@register');
