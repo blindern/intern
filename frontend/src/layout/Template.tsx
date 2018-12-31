@@ -5,16 +5,17 @@ import { useTitle } from 'modules/core/title/TitleProvider'
 import React, { ReactNode, useContext } from 'react'
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import './frontend.scss'
 
-interface IMenuLinkProps {
+interface MenuLinkProps {
   children: ((renderProps: { isActive: boolean }) => ReactNode)
   exact?: boolean
   strict?: boolean
   to: string | { pathname: string }
 }
 
-const IsActive = ({ exact, strict, to, children }: IMenuLinkProps) => {
+const IsActive = ({ exact, strict, to, children }: MenuLinkProps) => {
   const path = typeof to === 'object' ? to.pathname : to
 
   // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
@@ -40,13 +41,57 @@ const MenuLink = ({ children, to }: { children: ReactNode; to: string }) => (
   </IsActive>
 )
 
+// Wrapper for page content to push down footer
+const Wrap = styled.div`
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+`
+
+const WrapContainer = styled.div`
+  padding: 60px 15px 0;
+  @media print {
+    padding-top: 0;
+  }
+`
+
+const FooterContainer = styled.div`
+  padding-left: 15px;
+  padding-right: 15px;
+`
+
+const CreditText = styled.div`
+  margin: 20px 0;
+`
+
+const PageTitle = styled.h1`
+  @media print {
+    margin-top: 0;
+  }
+`
+
+const PageHeader = styled.div`
+  @media print {
+    margin-top: 0;
+  }
+`
+
+const Footer = styled.div`
+  height: 60px;
+  background-color: #f5f5f5;
+`
+
 const Template = ({ children }: { children: ReactNode }) => {
   const userdata = useContext(UserContext)
   const title = useTitle()
 
   return (
     <>
-      <div id='wrap'>
+      <Wrap>
         <div className='navbar navbar-default navbar-fixed-top'>
           <div className='container'>
             <div className='navbar-header'>
@@ -131,29 +176,29 @@ const Template = ({ children }: { children: ReactNode }) => {
           </div>
         </div>
 
-        <div className='container'>
+        <WrapContainer className='container'>
           <Flashes />
 
-          <div className='page-header'>
-            <h1 id='page_title'>{title}</h1>
-          </div>
+          <PageHeader className='page-header'>
+            <PageTitle>{title}</PageTitle>
+          </PageHeader>
 
           <div id='content'>{children}</div>
-        </div>
-      </div>
+        </WrapContainer>
+      </Wrap>
 
-      <div id='footer' className='hidden-print'>
-        <div className='container'>
-          <p className='text-muted credit'>
+      <Footer className='hidden-print'>
+        <FooterContainer className='container'>
+          <CreditText className='text-muted'>
             <a href='/'>Foreningen Blindern Studenterhjem</a> - Kontakt{' '}
             <a href='mailto:it-gruppa@foreningenbs.no'>
               it-gruppa@foreningenbs.no
             </a>{' '}
             ved henvendelser vedr. denne siden -{' '}
             <a href='https://github.com/blindern/intern'>GitHub-prosjekt</a>
-          </p>
-        </div>
-      </div>
+          </CreditText>
+        </FooterContainer>
+      </Footer>
     </>
   )
 }
