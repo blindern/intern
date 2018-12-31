@@ -1,4 +1,4 @@
-export interface Event {
+export interface NormalEvent {
   allday: boolean
   by: string | null
   duration: string
@@ -18,4 +18,4 @@ export interface Comment {
   type: 'comment'
 }
 
-export type EventItem = Event | Comment
+export type EventItem = NormalEvent | Comment

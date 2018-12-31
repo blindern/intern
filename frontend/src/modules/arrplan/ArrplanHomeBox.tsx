@@ -15,7 +15,7 @@ const ArrplanHomeBox = () => {
           <p
             key={idx}
             className={classNames({
-              'old-happening': event.expired,
+              oldHappening: event.expired,
               lowPriority: event.priority === 'low',
               highPriority: event.priority === 'high',
             })}

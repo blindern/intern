@@ -1,4 +1,5 @@
 import Template from 'layout/Template'
+import ArrplanPage from 'modules/arrplan/ArrplanPage'
 import Login from 'modules/core/auth/Login'
 import UserProvider from 'modules/core/auth/UserProvider'
 import FlashesProvider from 'modules/core/flashes/FlashesProvider'
@@ -42,7 +43,7 @@ const Routes = () => (
         return <Redirect to={`/arrplan/${sem}`} />
       }}
     />
-    <Route exact path='/arrplan/:sem' component={Todo} />
+    <Route exact path='/arrplan/:semester' component={ArrplanPage} />
 
     <Route exact path='/login' component={Login} />
     <Route exact path='/registrer' component={Todo} />
