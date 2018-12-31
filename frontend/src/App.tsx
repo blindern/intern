@@ -8,6 +8,7 @@ import DugnadsinnkallingerPage from 'modules/dugnaden/DugnadsinnkallingerPage'
 import GroupListPage from 'modules/groups/GroupListPage'
 import GroupPage from 'modules/groups/GroupPage'
 import Home from 'modules/home/Home'
+import LastPrintsPage from 'modules/printer/LastPrintsPage'
 import UserListPage from 'modules/users/UserListPage'
 import UserPage from 'modules/users/UserPage'
 import React from 'react'
@@ -69,7 +70,7 @@ const Routes = () => (
 
     <Route exact path='/matmeny' component={Todo} />
 
-    <Route exact path='/printer/siste' component={Todo} />
+    <Route exact path='/printer/siste' component={LastPrintsPage} />
     <Route exact path='/printer/fakturere' component={Todo} />
 
     <Route exact path='/users' component={UserListPage} />

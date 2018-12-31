@@ -16,7 +16,6 @@ TODO:
   - Google Apps-siden
   - Rediger av matmeny
   - Printerfakturering
-  - Siste utskrifter printer
 - Automatisere bygg og test av frontend i CircleCI
 - Automatisere deployment av frontend i CircleCI
 
