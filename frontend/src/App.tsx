@@ -5,10 +5,14 @@ import FlashesProvider from 'modules/core/flashes/FlashesProvider'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import TitleProvider from 'modules/core/title/TitleProvider'
 import Home from 'modules/home/Home'
+import UserListPage from 'modules/users/UserListPage'
+import UserPage from 'modules/users/UserPage'
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { Redirect, Route } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
+import GroupListPage from 'modules/groups/GroupListPage'
+import GroupPage from 'modules/groups/GroupPage'
 
 const Todo = () => (
   <>
@@ -55,16 +59,16 @@ const Routes = () => (
 
     <Route exact path='/googleapps' component={Todo} />
 
-    <Route exact path='/groups' component={Todo} />
-    <Route exact path='/group/:name' component={Todo} />
+    <Route exact path='/groups' component={GroupListPage} />
+    <Route exact path='/group/:name' component={GroupPage} />
 
     <Route exact path='/matmeny' component={Todo} />
 
     <Route exact path='/printer/siste' component={Todo} />
     <Route exact path='/printer/fakturere' component={Todo} />
 
-    <Route exact path='/users' component={Todo} />
-    <Route exact path='/user/:name' component={Todo} />
+    <Route exact path='/users' component={UserListPage} />
+    <Route exact path='/user/:name' component={UserPage} />
   </>
 )
 

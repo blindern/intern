@@ -5,19 +5,27 @@ interface GroupRelationMap {
   [group: string]: ArrayAtLeastOne<string>
 }
 
-interface UserDetails {
+interface UserDetailsBase {
   id: number
   unique_id: string
   username: string
   email: string | null
   realname: string | null
-  phone: string | null
-  groups: Group[]
+  phone: string
+  groups: Group[] | string
   group_relations: GroupRelationMap
   groupowner_relations: GroupRelationMap
 }
 
-interface Group {
+export type UserDetails = UserDetailsBase & {
+  groups: string[]
+}
+
+export type UserDetailsFull = UserDetailsBase & {
+  groups: Group[]
+}
+
+export interface Group {
   id: number
   unique_id: string
   name: string

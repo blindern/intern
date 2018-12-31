@@ -3,6 +3,7 @@ import { AuthContext } from 'modules/core/auth/UserProvider'
 import MatmenyHomeBox from 'modules/matmeny/MatmenyHomeBox'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import UserLink from 'modules/users/UserLink'
 
 const Home = () => {
   const userdata = useContext(AuthContext)
@@ -227,11 +228,8 @@ const Home = () => {
 
       {userdata.isLoggedIn ? (
         <p>
-          Du er innlogget som{' '}
-          <Link to={`/user/${userdata.user.username}`}>
-            {userdata.user.username}
-          </Link>{' '}
-          ({userdata.user.realname}).
+          Du er innlogget som <UserLink username={userdata.user.username} /> (
+          {userdata.user.realname}).
         </p>
       ) : (
         <p>

@@ -1,6 +1,7 @@
 import { BACKEND_URL } from 'env'
 import { authService } from 'modules/core/auth'
-import { flashesService } from 'modules/core/flashes';
+import { flashesService } from 'modules/core/flashes'
+import { useEffect, useState } from 'react'
 
 let backendUrl = BACKEND_URL
 
@@ -62,3 +63,22 @@ export const post = (path: string, data?: any) =>
     },
     body: data != null ? JSON.stringify(data) : null,
   })
+
+// TODO: Handle not found and errors
+export function useApiFetcher<T>(fetcher: () => Promise<T>): T | null {
+  const [result, setResult] = useState<T | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const result = await fetcher()
+      if (!cancelled) setResult(result)
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  })
+
+  return result
+}
