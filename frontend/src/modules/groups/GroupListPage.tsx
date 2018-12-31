@@ -34,7 +34,7 @@ const List = ({ groupList }: { groupList: Group[] }) => (
 )
 
 const GroupListPage = () => {
-  const groupList = useApiFetcher(groupsService.getGroupList)
+  const groupList = useApiFetcher(groupsService.getGroupList, [])
   if (!groupList) {
     return <LoadingPage />
   }

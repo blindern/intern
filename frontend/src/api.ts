@@ -1,7 +1,7 @@
 import { BACKEND_URL } from 'env'
 import { authService } from 'modules/core/auth'
 import { flashesService } from 'modules/core/flashes'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, InputIdentityList } from 'react'
 import history from 'utils/history'
 
 let backendUrl = BACKEND_URL
@@ -85,7 +85,7 @@ export const post = (path: string, data?: any) =>
   })
 
 // TODO: Handle not found and errors
-export function useApiFetcher<T>(fetcher: () => Promise<T>): T | null {
+export function useApiFetcher<T>(fetcher: () => Promise<T>, inputs: InputIdentityList): T | null {
   const [result, setResult] = useState<T | null>(null)
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export function useApiFetcher<T>(fetcher: () => Promise<T>): T | null {
     return () => {
       cancelled = true
     }
-  })
+  }, inputs)
 
   return result
 }

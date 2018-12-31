@@ -112,7 +112,7 @@ const GroupPage = ({
     params: { name },
   },
 }: GroupPageProps) => {
-  const group = useApiFetcher(() => groupsService.getGroup(name))
+  const group = useApiFetcher(() => groupsService.getGroup(name), [name])
   if (!group) {
     return <LoadingPage />
   }

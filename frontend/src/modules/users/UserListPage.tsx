@@ -6,9 +6,9 @@ import { AuthContext } from 'modules/core/auth/UserProvider'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
 import React, { useContext } from 'react'
+import styled from 'styled-components'
 import UserLink from './UserLink'
 import { usersService } from './UsersService'
-import styled from 'styled-components';
 
 interface UserSections {
   beboere: UserDetails[]
@@ -120,7 +120,7 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
                     ) : (
                       <CommaSeparated>
                         {user.groups.map(group => (
-                          <GroupLink groupName={group} />
+                          <GroupLink key={group} groupName={group} />
                         ))}
                       </CommaSeparated>
                     )}
@@ -136,7 +136,7 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
 }
 
 const UserListPage = () => {
-  const userList = useApiFetcher(usersService.getUserList)
+  const userList = useApiFetcher(usersService.getUserList, [])
   if (!userList) {
     return <LoadingPage />
   }

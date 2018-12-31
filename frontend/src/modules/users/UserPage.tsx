@@ -1,11 +1,11 @@
-import { useApiFetcher } from 'api';
-import CommaSeparated from 'components/CommaSeparated';
-import LoadingPage from 'components/LoadingPage';
-import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types';
-import { PageTitle } from 'modules/core/title/PageTitle';
-import GroupLink from 'modules/groups/GroupLink';
-import React from 'react';
-import { usersService } from './UsersService';
+import { useApiFetcher } from 'api'
+import CommaSeparated from 'components/CommaSeparated'
+import LoadingPage from 'components/LoadingPage'
+import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types'
+import { PageTitle } from 'modules/core/title/PageTitle'
+import GroupLink from 'modules/groups/GroupLink'
+import React from 'react'
+import { usersService } from './UsersService'
 
 export const IndirectMemberInfo = ({
   user,
@@ -116,7 +116,7 @@ const UserPage = ({
     params: { name },
   },
 }: UserPageProps) => {
-  const user = useApiFetcher(() => usersService.getUser(name))
+  const user = useApiFetcher(() => usersService.getUser(name), [name])
   if (!user) {
     return <LoadingPage />
   }
