@@ -48,6 +48,8 @@ export const get = (path: string) =>
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
+      // we need to send this header so Larvel knows to send 401 and not 302
+      'X-Requested-With': 'XMLHttpRequest',
     },
   })
 
@@ -60,6 +62,8 @@ export const post = (path: string, data?: any) =>
     headers: {
       'Content-Type': 'application/json',
       'X-CSRF-TOKEN': authService.getUserDataObservable().value.csrfToken || '',
+      // we need to send this header so Larvel knows to send 401 and not 302
+      'X-Requested-With': 'XMLHttpRequest',
     },
     body: data != null ? JSON.stringify(data) : null,
   })
