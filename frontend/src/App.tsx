@@ -4,6 +4,7 @@ import UserProvider from 'modules/core/auth/UserProvider'
 import FlashesProvider from 'modules/core/flashes/FlashesProvider'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import TitleProvider from 'modules/core/title/TitleProvider'
+import DugnadsinnkallingerPage from 'modules/dugnaden/DugnadsinnkallingerPage'
 import GroupListPage from 'modules/groups/GroupListPage'
 import GroupPage from 'modules/groups/GroupPage'
 import Home from 'modules/home/Home'
@@ -55,7 +56,11 @@ const Routes = () => (
     <Route exact path='/bukker' component={Todo} />
     <Route exact path='/bukker/:id' component={Todo} />
 
-    <Route exact path='/dugnaden/old/list' component={Todo} />
+    <Route
+      exact
+      path='/dugnaden/old/list'
+      component={DugnadsinnkallingerPage}
+    />
 
     <Route exact path='/googleapps' component={Todo} />
 

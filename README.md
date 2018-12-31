@@ -13,7 +13,6 @@ TODO:
   - Registrer bruker side
   - Boksystem
   - Bukker
-  - Dugnadslapper
   - Google Apps-siden
   - Rediger av matmeny
   - Printerfakturering
