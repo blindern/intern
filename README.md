@@ -1,5 +1,11 @@
 # Internside Blindern Studenterhjem
 
+OBS! Dette prosjektet gjennomgår for tiden en omskriving. Prosjektet
+er derfor å anse som ustabilt og detaljene i denne README filen er
+utadert.
+
+---
+
 Koden som kjører systemet på https://foreningenbs.no/intern/
 
 Siden har til hensikt og ha litt forskjellige verktøy for å gjøre
