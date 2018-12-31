@@ -4,15 +4,15 @@ import UserProvider from 'modules/core/auth/UserProvider'
 import FlashesProvider from 'modules/core/flashes/FlashesProvider'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import TitleProvider from 'modules/core/title/TitleProvider'
+import GroupListPage from 'modules/groups/GroupListPage'
+import GroupPage from 'modules/groups/GroupPage'
 import Home from 'modules/home/Home'
 import UserListPage from 'modules/users/UserListPage'
 import UserPage from 'modules/users/UserPage'
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import { Redirect, Route } from 'react-router'
-import { BrowserRouter } from 'react-router-dom'
-import GroupListPage from 'modules/groups/GroupListPage'
-import GroupPage from 'modules/groups/GroupPage'
+import { Redirect, Route, Router } from 'react-router'
+import history from 'utils/history'
 
 const Todo = () => (
   <>
@@ -73,7 +73,7 @@ const Routes = () => (
 )
 
 const App = () => (
-  <BrowserRouter basename='/intern'>
+  <Router history={history}>
     <FlashesProvider>
       <TitleProvider>
         <>
@@ -86,7 +86,7 @@ const App = () => (
         </>
       </TitleProvider>
     </FlashesProvider>
-  </BrowserRouter>
+  </Router>
 )
 
 const HotApp = hot(App)

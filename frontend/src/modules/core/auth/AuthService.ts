@@ -1,5 +1,6 @@
 import { get, post } from 'api'
 import { BehaviorSubject } from 'rxjs'
+import history from 'utils/history'
 import { AuthInfo, AuthInfoNotLoggedIn } from './types'
 
 export const defaultAuthInfo: AuthInfoNotLoggedIn = {
@@ -10,10 +11,14 @@ export const defaultAuthInfo: AuthInfoNotLoggedIn = {
 }
 
 export class AuthService {
-  authInfoSubject = new BehaviorSubject<AuthInfo>(defaultAuthInfo)
+  private authInfoSubject = new BehaviorSubject<AuthInfo>(defaultAuthInfo)
+  private loginRedirectUrl: string | null = null
 
   markLoggedOut() {
     this.authInfoSubject.next(defaultAuthInfo)
+
+    // Refetch auth info to get fresh csrf token.
+    this.fetchAuthInfo()
   }
 
   getUserDataObservable = () => this.authInfoSubject
@@ -40,6 +45,13 @@ export class AuthService {
 
     const data = json as AuthInfo
     this.authInfoSubject.next(data)
+
+    if (this.loginRedirectUrl != null) {
+      console.log('redirect to ' + this.loginRedirectUrl)
+      history.push(this.loginRedirectUrl)
+      this.loginRedirectUrl = null
+    }
+
     return data
   }
 
@@ -50,5 +62,9 @@ export class AuthService {
 
     await post('logout')
     this.markLoggedOut()
+  }
+
+  setLoginRedirectUrl(pathname: string) {
+    this.loginRedirectUrl = pathname
   }
 }

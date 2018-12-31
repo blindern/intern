@@ -2,6 +2,7 @@ import { BACKEND_URL } from 'env'
 import { authService } from 'modules/core/auth'
 import { flashesService } from 'modules/core/flashes'
 import { useEffect, useState } from 'react'
+import history from 'utils/history'
 
 let backendUrl = BACKEND_URL
 
@@ -22,6 +23,9 @@ if (backendUrl.indexOf('//') === -1) {
 
 export const api = (url: string) => backendUrl + 'api/' + url // see webpack config
 
+export class NotAuthedError extends Error {}
+export class NotFoundError extends Error {}
+
 const doFetch = async (url: string, options: RequestInit) => {
   const result = await fetch(url, options)
 
@@ -35,6 +39,18 @@ const doFetch = async (url: string, options: RequestInit) => {
     json.forEach(flash => {
       flashesService.addFlash(flash)
     })
+  }
+
+  if (!result.ok) {
+    if (result.status === 401) {
+      throw new NotAuthedError()
+    }
+
+    if (result.status === 404) {
+      throw new NotFoundError()
+    }
+
+    throw Error(`Response not OK: ${result.status}`)
   }
 
   return result
@@ -75,8 +91,19 @@ export function useApiFetcher<T>(fetcher: () => Promise<T>): T | null {
   useEffect(() => {
     let cancelled = false
     ;(async () => {
-      const result = await fetcher()
-      if (!cancelled) setResult(result)
+      try {
+        const result = await fetcher()
+        if (!cancelled) setResult(result)
+      } catch (e) {
+        if (cancelled) return
+
+        if (e instanceof NotAuthedError) {
+          authService.setLoginRedirectUrl(history.location.pathname)
+          history.push('/login')
+        } else {
+          throw e
+        }
+      }
     })()
 
     return () => {
