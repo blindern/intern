@@ -53,6 +53,7 @@ Route::get('register', 'JsController@index');
 Route::post('api/register', 'AuthController@register');
 Route::post('api/login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
+Route::post('api/logout', 'AuthController@logout');
 
 // users and groups
 Route::group(['middleware' => 'auth'], function () {
