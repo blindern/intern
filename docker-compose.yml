@@ -18,6 +18,7 @@ services:
       DB_MONGODB_USERNAME:
       DB_MONGODB_PASSWORD:
       LARAVEL_SESSION_SECURE: 0
+      INTERN_USERS_API_KEY: $INTERN_USERS_API_KEY
     volumes:
      - ./backend/:/var/www/html/
     command: /dev.sh
