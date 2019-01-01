@@ -37,6 +37,11 @@ class ArrplanService {
     const response = await get('arrplan?invalidate=1')
     return (await response.json()) as EventItem[]
   }
+
+  async getNext() {
+    const response = await get('arrplan/next?count=6')
+    return (await response.json()) as EventItem[]
+  }
 }
 
 export const arrplanService = new ArrplanService()

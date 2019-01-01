@@ -1,24 +1,8 @@
+import { useApiFetcher } from 'api'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatDate } from 'utils/dates'
-
-interface MatmenyDay {
-  day: string // YYYY-MM-DD
-  dishes: string[]
-  text: string | null
-}
-
-const matmenydate = {
-  today: '2018-12-31',
-  tomorrow: '2019-01-01',
-}
-
-interface MatmenyProp {
-  today?: MatmenyDay
-  tomorrow?: MatmenyDay
-}
-
-const matmeny: MatmenyProp = {}
+import { MatmenyDay, matmenyService } from './MatmenyService'
 
 const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
   if (!data) return <>Ukjent</>
@@ -32,21 +16,25 @@ const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
 }
 
 const MatmenyHomeBox = () => {
+  const matmeny = useApiFetcher(matmenyService.getHomeData, [])
+
   if (!matmeny) {
     return null
   }
+
+  const { today, tomorrow } = matmeny
 
   return (
     <Link to='/matmeny' className='index-matmeny'>
       <h4>Matmeny</h4>
       <p className='day'>
-        <b>Dagens matrett</b> ({formatDate(matmenydate.today, 'dddd')}):
+        <b>Dagens matrett</b> ({formatDate(today.date, 'dddd')}):
         <br />
-        <MatmenyDay data={matmeny.today} />
+        <MatmenyDay data={today.data} />
       </p>
       <p>
-        I morgen, {formatDate(matmenydate.tomorrow, 'dddd')}:<br />
-        <MatmenyDay data={matmeny.tomorrow} />
+        I morgen, {formatDate(tomorrow.date, 'dddd')}:<br />
+        <MatmenyDay data={tomorrow.data} />
       </p>
       <p className='text-muted'>
         <i>(Oppdateres ukentlig av kjøkkensjefen.)</i>
