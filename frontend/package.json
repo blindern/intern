@@ -21,6 +21,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-transition-group": "^2.0.15",
     "@types/styled-components": "^4.1.4",
+    "@types/yup": "^0.26.4",
     "autoprefixer": "^9.4.3",
     "awesome-typescript-loader": "^5.2.1",
     "bootstrap-sass": "^3.4.0",
@@ -61,6 +62,7 @@
     "webpack": "^4.28.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
-    "yargs": "^12.0.5"
+    "yargs": "^12.0.5",
+    "yup": "^0.26.6"
   }
 }

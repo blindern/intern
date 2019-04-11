@@ -10,6 +10,7 @@ import GroupListPage from 'modules/groups/GroupListPage'
 import GroupPage from 'modules/groups/GroupPage'
 import Home from 'modules/home/Home'
 import LastPrintsPage from 'modules/printer/LastPrintsPage'
+import RegisterUserPage from 'modules/registeruser/RegisterUserPage'
 import UserListPage from 'modules/users/UserListPage'
 import UserPage from 'modules/users/UserPage'
 import React from 'react'
@@ -46,7 +47,7 @@ const Routes = () => (
     <Route exact path='/arrplan/:semester' component={ArrplanPage} />
 
     <Route exact path='/login' component={Login} />
-    <Route exact path='/registrer' component={Todo} />
+    <Route exact path='/registrer' component={RegisterUserPage} />
     <Route exact path='/logout' component={Todo} />
 
     <Route exact path='/bokdatabase' component={Todo} />

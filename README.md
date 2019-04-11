@@ -9,7 +9,6 @@ TODO:
 - Få backend til å kjøre i Docker slik det skal i produksjon
 - Deploye backend automatisk via CircleCI
 - Porte resten av gammel Angular-kode til React
-  - Registrer bruker side
   - Boksystem
   - Bukker
   - Google Apps-siden
