@@ -1,93 +1,9 @@
 (function () {
     'use strict';
 
-    var mod = angular.module('intern.books', ['ngRoute', 'intern.helper.page', 'ngResource']);
-
-    mod.config(['$routeProvider', function ($routeProvider) {
-
-    }]);
-
-    mod.service('Book', function ($resource, $http) {
         var Book = $resource('api/books/:id', {id: '@_id'}, {
-            query: {method: 'GET', isArray: false},
-            update: {method: 'PUT'}
         });
 
-        Book.prototype.setBarcode = function (barcode) {
-            var self = this;
-            return $http.post('api/books/' + this._id + '/barcode', {
-                'barcode': barcode
-            }).success(function () {
-                self.bib_barcode = barcode;
-            });
-        };
-
-        return Book;
-    });
-
-    mod.controller('BookHomeCtrl', function (Page, Book, $scope) {
-        Page.setTitle('Biblioteket på Blindern Studenterhjem');
-
-        $scope.currentPage = 1;
-        $scope.search = "";
-
-        // navigation triggers
-        $scope.nextPage = function () {
-            if ($scope.currentPage < $scope.totalPages) $scope.currentPage++;
-        };
-        $scope.prevPage = function () {
-            if ($scope.currentPage > 1) $scope.currentPage--;
-        };
-        $scope.firstPage = function () {
-            $scope.currentPage = 1;
-        };
-        $scope.lastPage = function () {
-            $scope.currentPage = $scope.totalPages;
-        };
-        $scope.setPage = function (n) {
-            $scope.currentPage = n;
-        };
-
-        function pageChange() {
-            Book.query({
-                'page': $scope.currentPage,
-                'q': $scope.search
-            }, function (data) {
-                $scope.books = data.data;
-                $scope.currentPage = data.current_page;
-                $scope.total = data.total;
-                $scope.perPage = data.per_page;
-                $scope.totalPages = data.last_page;
-                $scope.from = data.from;
-                $scope.to = data.to;
-            });
-        }
-
-        $scope.$watch('currentPage', function (newPage, lastPage) {
-            if (newPage != lastPage) {
-                pageChange();
-            }
-        });
-
-        // some simple debounce
-        var searchTimer, lastQuery = "";
-        $scope.$watch('search', function (query) {
-            if (searchTimer) {
-                clearTimeout(searchTimer);
-                searchTimer = null;
-            }
-
-            if (query !== lastQuery) {
-                searchTimer = setTimeout(function () {
-                    $scope.currentPage = 1;
-                    lastQuery = query;
-                    pageChange();
-                }, 250);
-            }
-        });
-
-        pageChange();
-    });
 
     mod.controller('BookRegisterCtrl', function (Page, Book, AuthService, $scope, $http, $location) {
         Page.setTitle('Registrer bok');

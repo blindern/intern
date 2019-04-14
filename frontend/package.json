@@ -8,7 +8,9 @@
     "prettier": "prettier --write './src/**/*.ts{,x}'",
     "lint": "prettier './src/**/*.ts{,x}' --list-different && tslint --project ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "query-string": "^6.4.2"
+  },
   "devDependencies": {
     "@types/classnames": "^2.2.6",
     "@types/domready": "^1.0.0",
