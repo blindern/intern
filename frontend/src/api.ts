@@ -99,6 +99,19 @@ export const put = (path: string, data?: any) =>
     body: data != null ? JSON.stringify(data) : null,
   })
 
+export const deleteIt = (path: string) =>
+  doFetch(api(path), {
+    method: 'DELETE',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'include',
+    headers: {
+      'X-CSRF-TOKEN': authService.getUserDataObservable().value.csrfToken || '',
+      // we need to send this header so Larvel knows to send 401 and not 302
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  })
+
 // TODO: Handle not found and errors
 export function useApiFetcher<T>(
   fetcher: () => Promise<T>,

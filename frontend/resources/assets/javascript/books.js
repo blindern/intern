@@ -63,38 +63,6 @@
         };
     });
 
-    mod.controller('BookItemCtrl', function (Page, Book, AuthService, $scope, $routeParams, $location, $injector) {
-        console.log("test", getBookOrRedir);
-        getBookOrRedir($routeParams.id, $injector).then(function (result) {
-            $scope.book = result;
-            var handleBarcode = function () {
-                $scope.bib_barcode = $scope.book.bib_barcode ? $scope.book.bib_barcode/*.substring(0, $scope.book.bib_barcode.length - 3)*/ : null;
-
-                if (!$scope.book.bib_barcode) {
-                    $scope.show_barcode_form = AuthService.inGroup('biblioteksutvalget');
-                }
-            };
-            $scope.$watch('book.bib_barcode', handleBarcode);
-            handleBarcode();
-        });
-
-        $scope.deleteBook = function () {
-            if (confirm("Er du sikker på at du vil slette boka fra databasen?")) {
-                $scope.book.$delete(function () {
-                    $location.path('books');
-                });
-            }
-        };
-
-        $scope.registerBarcode = function () {
-            if ($scope.barcode.substring(0, 3) != "BS-") {
-                alert("Ugyldig strekkode for biblioteket.");
-            } else {
-                $scope.book.setBarcode($scope.barcode);
-            }
-        };
-    });
-
     mod.controller('BookItemEditCtrl', function (AuthService, $routeParams, $location, $injector) {
         var ctrl = this;
         getBookOrRedir($routeParams.id, $injector).then(function (book) {
