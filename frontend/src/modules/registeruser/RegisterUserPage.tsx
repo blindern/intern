@@ -1,7 +1,7 @@
-import classNames from 'classnames'
-import { ErrorMessage, Field, FieldProps, Form, Formik } from 'formik'
+import { CustomField } from 'components/form'
+import { Form, Formik } from 'formik'
 import { PageTitle } from 'modules/core/title/PageTitle'
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import { RegisterData, registerUserService } from './RegisterUserService'
@@ -25,51 +25,6 @@ const RegisterSchema = Yup.object().shape({
     .min(8, 'Passordet må være på minst 8 tegn')
     .required('Passordet må være på minst 8 tegn'),
 })
-
-const HelpBlockError = ({ name }: { name: string }) => (
-  <ErrorMessage name={name}>
-    {msg => <p className='help-block'>{msg}</p>}
-  </ErrorMessage>
-)
-
-const CustomField = ({
-  containerClassName,
-  id,
-  name,
-  placeholder,
-  autoFocus,
-  helpBlock,
-  type = 'text',
-}: {
-  containerClassName: string
-  id?: string
-  name: string
-  placeholder: string
-  autoFocus?: boolean
-  helpBlock?: ReactNode
-  type?: 'text' | 'password'
-}) => (
-  <Field name={name}>
-    {({ field, form }: FieldProps) => (
-      <div
-        className={classNames(containerClassName, {
-          'has-error': form.errors[field.name] && form.touched[field.name],
-        })}
-      >
-        <input
-          {...field}
-          type={type}
-          placeholder={placeholder}
-          className='form-control'
-          id={id}
-          autoFocus={autoFocus}
-        />
-        {helpBlock != null && <span className='help-block'>{helpBlock}</span>}
-        <HelpBlockError name={field.name} />
-      </div>
-    )}
-  </Field>
-)
 
 const UsernameGroup = () => (
   <div className='form-group'>
