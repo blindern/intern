@@ -1,4 +1,4 @@
-import { get, post, put, deleteIt } from 'api'
+import { deleteIt, get, post, put } from 'api'
 import { stringify } from 'query-string'
 
 export interface Book {
