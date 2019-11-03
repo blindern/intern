@@ -24,7 +24,7 @@
     "@types/yup": "^0.26.4",
     "autoprefixer": "^9.4.3",
     "awesome-typescript-loader": "^5.2.1",
-    "bootstrap-sass": "^3.4.0",
+    "bootstrap-sass": "^3.4.1",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
