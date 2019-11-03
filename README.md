@@ -17,6 +17,10 @@ TODO:
 - Automatisere bygg og test av frontend i CircleCI
 - Automatisere deployment av frontend i CircleCI
 
+Smådetaljer som også må følges opp:
+
+- ladda
+
 Endringene vi gjør betyr at vi ikke har kompabilitet mellom ny backend/frontend
 og eksisterende. Derfor må disse fullføres og deployes i produksjon samtidig.
 

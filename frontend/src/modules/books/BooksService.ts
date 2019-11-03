@@ -31,6 +31,32 @@ export interface BooksResponse {
   total: number
 }
 
+export interface BookAddData {
+  bib_room: string
+  bib_section: string
+  isbn: string
+  title: string
+  subtitle: string
+  authors: string[]
+  pubdate: string
+  description: string
+  bib_comment: string
+}
+
+export interface IsbnSearchResponse {
+  isbn: string
+  found: boolean
+  // TODO: Fix API response when not found
+  data: {
+    title: string
+    subtitle: string | null
+    authors: []
+    categories: []
+    description: string | null
+    pubdate: string | null
+  } | any[] | null
+}
+
 class BooksService {
   async getList(query: string, page: number) {
     const q = stringify({
@@ -47,9 +73,14 @@ class BooksService {
     return (await response.json()) as Book
   }
 
+  async addBook(data: BookAddData) {
+    const response = await post('books', data)
+    return (await response.json()) as Book
+  }
+
   async update(data: BooksResponse['data'][0]) {
     const response = await put(`books/${encodeURIComponent(data._id)}`, data)
-    // TODO
+    return (await response.json()) as Book
   }
 
   async deleteBook(id: string) {
@@ -60,6 +91,13 @@ class BooksService {
   async setBarcode(id: string, barcode: string) {
     const response = await post(`books/${encodeURIComponent(id)}/barcode`)
     await response.json()
+  }
+
+  async isbnSearch(isbn: string) {
+    const response = await post('books/isbn', {
+      isbn,
+    })
+    return (await response.json()) as IsbnSearchResponse
   }
 }
 

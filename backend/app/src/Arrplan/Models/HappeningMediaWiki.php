@@ -11,7 +11,8 @@ class HappeningMediaWiki extends Happening
     public static function loadExternalEvents()
     {
         $url = "https://foreningenbs.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
-        $data = file_get_contents($url);
+        // $data = file_get_contents($url);
+        $data = file_get_contents('/var/www/html/arr.json');
 
         $data = json_decode($data, true);
         if ($data === false || !isset($data['query']['pages'])) {

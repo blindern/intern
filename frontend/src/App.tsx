@@ -2,6 +2,7 @@ import Template from 'layout/Template'
 import ArrplanPage from 'modules/arrplan/ArrplanPage'
 import BookItemPage from 'modules/books/BookItemPage'
 import BookListPage from 'modules/books/BookListPage'
+import BookRegisterPage from 'modules/books/BookRegisterPage'
 import Login from 'modules/core/auth/Login'
 import UserProvider from 'modules/core/auth/UserProvider'
 import FlashesProvider from 'modules/core/flashes/FlashesProvider'
@@ -54,7 +55,7 @@ const Routes = () => (
 
     <Route exact path='/bokdatabase' component={Todo} />
     <Route exact path='/books' component={BookListPage} />
-    <Route exact path='/books/register' component={Todo} />
+    <Route exact path='/books/register' component={BookRegisterPage} />
     <Route exact path='/books/:id' component={BookItemPage} />
     <Route exact path='/books/:id/edit' component={Todo} />
 
