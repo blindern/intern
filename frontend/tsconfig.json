@@ -10,6 +10,7 @@
     "outDir": "dist",
     "strictNullChecks": true,
     "lib": ["dom", "es6", "es2017.object", "dom.iterable", "scripthost", "es2016.array.include"],
+    "skipLibCheck": true,
     "baseUrl": "./src" /*,
     "paths": {
       "*": [

@@ -1,4 +1,4 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -21,7 +21,6 @@ const config = {
   },
   output: {
     chunkFilename: `[name].[${hash_type}].js`,
-    path: path.resolve(__dirname, 'build/'),
     publicPath: '/intern/',
     filename: `[name].[${hash_type}].js`,
   },
@@ -94,7 +93,7 @@ const config = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       'src/robots.txt',
       // Allow to override environment during development.
