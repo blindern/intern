@@ -26,7 +26,9 @@ const config = {
   },
   devServer: {
     compress: true,
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: '/intern/index.html',
+    },
     host: '0.0.0.0',
     hot: true,
     port: 3000,
