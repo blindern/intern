@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import './frontend.scss'
 
 interface MenuLinkProps {
-  children: ((renderProps: { isActive: boolean }) => ReactNode)
+  children: (renderProps: { isActive: boolean }) => ReactNode
   exact?: boolean
   strict?: boolean
   to: string | { pathname: string }
