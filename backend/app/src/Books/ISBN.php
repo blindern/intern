@@ -25,7 +25,7 @@ class ISBN
 
         // use the Google API to fetch data
         if (!isset($_ENV['INTERN_GOOGLE_API_KEY'])) {
-            throw new Exception("Google API-key not found in ENV-variable INTERN_GOOGLE_API_KEY");
+            throw new \Exception("Google API-key not found in ENV-variable INTERN_GOOGLE_API_KEY");
         }
 
         $client = new \Google_Client();

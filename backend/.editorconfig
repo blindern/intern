@@ -12,3 +12,6 @@ trim_trailing_whitespace = true
 
 [*.{php,yml,xml}]
 indent_size = 4
+
+[composer.json]
+indent_style = tab
