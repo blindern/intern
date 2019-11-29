@@ -19,7 +19,7 @@ jobs:
   build-backend:
     working_directory: ~/repo
     docker:
-      - image: circleci/php:7.1
+      - image: circleci/php:7.4
     steps:
       - checkout
       - restore_cache:
