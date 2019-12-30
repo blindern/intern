@@ -86,7 +86,7 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('DB_MONGODB_HOST', 'localhost'),
+            'host'     => env('DB_MONGODB_HOST', 'mongodb-1.zt.foreningenbs.no'),
             'port'     => env('DB_MONGODB_PORT', 27017),
             'database' => env('DB_MONGODB_DATABASE', 'intern'),
             'username' => env('DB_MONGODB_USERNAME', 'laravel'),
