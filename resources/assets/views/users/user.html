@@ -3,8 +3,8 @@
 	<ul>
 		<li>Brukernavn: {{user.username}}</li>
 		<li>Navn: {{user.realname}}</li>
-		<li>E-post: {{user.email}}</li>
-		<li ng-if="user.phone">Mobil: {{user.phone}}</li>
+		<li>E-post: <a ng-href="mailto:{{user.email}}">{{user.email}}</a></li>
+		<li ng-if="user.phone">Mobil: <a ng-href="tel:{{user.phone}}">{{user.phone}}</a></li>
 	</ul>
 
 	<h2>Grupper</h2>
