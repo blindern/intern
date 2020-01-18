@@ -12,11 +12,17 @@ class AccountsController extends Controller
 {
     public function __construct()
     {
-        // don't require auth for local requests
-        // TODO: this should be replace with some sort of authorization and tokens...
-        if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1' && $_SERVER['REMOTE_ADDR'] !== gethostbyname('athene.foreningenbs.no.') && $_SERVER['REMOTE_ADDR'] !== gethostbyname('hsw.no')) {
-            $this->middleware('auth');
+        // Allow our simplesamlphp to use a Authorization header.
+        if (isset($_ENV['ACCOUNTS_URL_AUTH_TOKEN'])) {
+            $token = $_ENV['ACCOUNTS_URL_AUTH_TOKEN'];
+            $headers = apache_request_headers();
+            if (isset($headers['Authorization']) && $headers['Authorization'] == 'Bearer ' . $token) {
+                // No further auth needed.
+                return;
+            }
         }
+
+        $this->middleware('auth');
     }
 
     /**
