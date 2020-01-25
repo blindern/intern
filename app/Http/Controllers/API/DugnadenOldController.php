@@ -11,7 +11,7 @@ class DugnadenOldController extends Controller
             return array();
         }
 
-        $data = @json_decode(@file_get_contents("https://foreningenbs.no/dugnaden/api.php?method=list"), true);
+        $data = @json_decode(@file_get_contents("http://dugnaden.zt.foreningenbs.no/dugnaden/api.php?method=list"), true);
 
         return $data;
     }
