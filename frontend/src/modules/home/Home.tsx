@@ -40,7 +40,7 @@ const Home = () => {
           <div className='index-matmeny'>
             <h4>Måltider</h4>
             <p>
-              <i>Oppdatert for høst 2017</i>
+              <i>Oppdatert for høst 2020</i>
             </p>
             <table className='table'>
               <thead>
