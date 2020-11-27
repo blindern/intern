@@ -13,7 +13,7 @@
 	"require": {
 		"laravel/framework": "5.1.*",
 		"nesbot/Carbon": "*",
-		"twitter/bootstrap": "3.0.3",
+		"twitter/bootstrap": "3.4.1",
 		"eluceo/ical": "dev-master",
 		"nategood/httpful": "*",
 		"jenssegers/mongodb": "*",
