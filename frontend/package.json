@@ -63,6 +63,6 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "yargs": "^14.2.0",
-    "yup": "^0.27.0"
+    "yup": "^0.28.0"
   }
 }
