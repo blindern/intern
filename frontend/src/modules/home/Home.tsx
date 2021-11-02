@@ -40,7 +40,7 @@ const Home = () => {
           <div className='index-matmeny'>
             <h4>Måltider</h4>
             <p>
-              <i>Oppdatert for høst 2020</i>
+              <i>Oppdatert for høst 2021</i>
             </p>
             <table className='table'>
               <thead>
@@ -155,7 +155,6 @@ const Home = () => {
                   type='text'
                   name='queryString'
                   placeholder='Hurtigsøk'
-                  autoFocus
                 />
               </span>
             </p>

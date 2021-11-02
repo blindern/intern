@@ -54,7 +54,7 @@ class AuthController extends Controller
         // lag fil som kan brukes
         setlocale(LC_CTYPE, "nb_NO.UTF-8");
         $n = uniqid().".sh";
-        $f = "/fbs/drift/nybruker/$n";
+        $f = "/var/www/users/$n";
         file_put_contents($f,
 "FIRSTNAME=".escapeshellarg($data['firstname'])."
 LASTNAME=".escapeshellarg($data['lastname'])."

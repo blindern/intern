@@ -46,8 +46,14 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
     <ul>
       <li>Brukernavn: {user.username}</li>
       <li>Navn: {user.realname}</li>
-      <li>E-post: {user.email}</li>
-      {user.phone && <li>Mobil: {user.phone}</li>}
+      <li>
+        E-post: <a href={`mailto:${user.email}`}>{user.email}</a>
+      </li>
+      {user.phone && (
+        <li>
+          Mobil: <a href={`tel:${user.phone}`}>{user.phone}</a>
+        </li>
+      )}
     </ul>
 
     <h2>Grupper</h2>

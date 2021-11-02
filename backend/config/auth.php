@@ -71,7 +71,7 @@ return [
     'useradmin_group' => 'useradmin',
 
     'blindern-auth' => [
-        'api' => env('INTERN_USERS_API_URL', 'https://foreningenbs.no/users-api/'),
+        'api' => env('INTERN_USERS_API_URL', 'http://users-api.zt.foreningenbs.no:8000'),
         'api-key' => env('INTERN_USERS_API_KEY')
     ]
 
