@@ -8,7 +8,7 @@ class UsersController extends Controller
     {
         // no access?
         if (!\Auth::member("beboer")) {
-            return \View::make('auth/noaccess', array("group" => "beboer"));
+            return \Response::json(array("required_group" => "beboer"), 403);
         }
 
         // set up LDAP

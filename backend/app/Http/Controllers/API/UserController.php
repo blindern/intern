@@ -39,6 +39,4 @@ class UserController extends Controller
         $user->loadGroups(false);
         return $user->toArray($this->exceptFields($user), 2);
     }
-
-    // return View::make('auth/noaccess', array("group" => "beboer"));
 }
