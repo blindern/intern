@@ -1,6 +1,8 @@
 <?php namespace Blindern\Intern\Bukker\Models;
 
-class Bukk extends \Eloquent
+use Jenssegers\Mongodb\Eloquent\Model;
+
+class Bukk extends Model
 {
     /* field list:
        - name

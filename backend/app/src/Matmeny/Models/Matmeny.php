@@ -1,5 +1,6 @@
 <?php namespace Blindern\Intern\Matmeny\Models;
 
+use Jenssegers\Mongodb\Eloquent\Model;
 use \Carbon\Carbon;
 
 /**
@@ -10,7 +11,7 @@ use \Carbon\Carbon;
  * - text (optional) some additional description for the day
  * - dishes (optional) array of dishes this day
  */
-class Matmeny extends \Eloquent
+class Matmeny extends Model
 {
     protected $table = 'matmeny';
     protected $visible = array('day', 'text', 'dishes');

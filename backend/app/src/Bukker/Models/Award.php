@@ -1,6 +1,8 @@
 <?php namespace Blindern\Intern\Bukker\Models;
 
-class Award extends \Eloquent
+use Jenssegers\Mongodb\Eloquent\Model;
+
+class Award extends Model
 {
     /* field list:
        - year

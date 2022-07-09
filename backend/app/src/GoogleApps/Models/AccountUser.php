@@ -1,8 +1,9 @@
 <?php namespace Blindern\Intern\GoogleApps\Models;
 
+use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class AccountUser extends \Eloquent
+class AccountUser extends Model
 {
     use SoftDeletes;
 

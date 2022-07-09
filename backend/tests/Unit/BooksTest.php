@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit;
+
 use Blindern\Intern\Books\ISBN;
+use Tests\TestCase;
 
 class BooksTest extends TestCase
 {

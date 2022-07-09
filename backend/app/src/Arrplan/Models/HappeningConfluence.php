@@ -1,7 +1,7 @@
 <?php namespace Blindern\Intern\Arrplan\Models;
 
 use Carbon\Carbon;
-use ICal; // https://github.com/johngrogg/ics-parser
+use ICal\ICal; // https://github.com/johngrogg/ics-parser
 
 class HappeningConfluence extends Happening
 {
@@ -34,13 +34,17 @@ class HappeningConfluence extends Happening
         $events = [];
         foreach ($calendars as $calendar) {
             $ical = new ICal();
-            $ical->initURL($calendar['url']);
+            $ical->initURL($calendar['url'], array(
+                "skipRecurrence" => true,
+            ));
+
+            /** @var \ICal\Event $event */
 
             foreach ($ical->events() as $event) {
                 $new = new static();
 
-                $start = Carbon::parse($event['DTSTART']);
-                $end = Carbon::parse($event['DTEND']);
+                $start = Carbon::parse($event->dtstart);
+                $end = Carbon::parse($event->dtend);
 
                 $new->allday = $start->secondsSinceMidnight() == 0 && $start->copy()->modify("+1 day") == $end;
                 if ($new->allday) {
@@ -53,21 +57,21 @@ class HappeningConfluence extends Happening
                     $new->end = $end->toDateTimeString();
                 }
 
-                $new->title = $event['SUMMARY'];
+                $new->title = $event->summary;
 
-                if (isset($event['LOCATION'])) {
-                    $new->place = $event['LOCATION'];
+                if (isset($event->location)) {
+                    $new->place = $event->location;
                 }
 
                 $new->priority = $calendar['priority'];
 
-                if (isset($event['RRULE'])) {
+                if (isset($event->rrule)) {
                     // the ics-parser expands all recurring events into seperate events
                     // we can detect this by looking at UID-field, which will be the same for duplicates
                     // if this is a duplicate, add it as a special event so can show it on
                     // "upcoming events" page
-                    if (isset($recurring_events_parsed[$event['UID']])) {
-                        $main_event = $recurring_events_parsed[$event['UID']];
+                    if (isset($recurring_events_parsed[$event->uid])) {
+                        $main_event = $recurring_events_parsed[$event->uid];
                         $new->isDuplicateRecurringEvent = true;
 
                         // correct for dst as the ics-parser does this wrong (and confluence sends wrong data)
@@ -79,9 +83,9 @@ class HappeningConfluence extends Happening
                         }
                     } else {
                         $new->start_object = $start;
-                        $recurring_events_parsed[$event['UID']] = $new;
+                        $recurring_events_parsed[$event->uid] = $new;
 
-                        if (preg_match('/FREQ=(.+?);.*UNTIL=(.+?);.*INTERVAL=(.+?)(;|$)/', $event['RRULE'], $match)) {
+                        if (preg_match('/FREQ=(.+?);.*UNTIL=(.+?);.*INTERVAL=(.+?)(;|$)/', $event->rrule, $match)) {
                             $new->frequency = $match[1];
                             $new->interval = (int) $match[3];
                             $new->setCountFromUntil($match[2]);

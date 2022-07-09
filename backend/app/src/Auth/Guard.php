@@ -1,6 +1,6 @@
 <?php namespace Blindern\Intern\Auth;
 
-class Guard extends \Illuminate\Auth\Guard
+class Guard extends \Illuminate\Auth\SessionGuard
 {
     /**
      * Check if we have access to a group

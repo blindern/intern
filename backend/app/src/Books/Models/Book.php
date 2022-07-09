@@ -1,6 +1,8 @@
 <?php namespace Blindern\Intern\Books\Models;
 
-class Book extends \Eloquent
+use Jenssegers\Mongodb\Eloquent\Model;
+
+class Book extends Model
 {
     protected $table = 'books';
 

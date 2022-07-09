@@ -2,10 +2,7 @@
 # currently in production we don't use Docker
 # (it should but no time to set up yet)
 
-FROM php:5.6-fpm
-MAINTAINER Henrik Steen <henrist@henrist.net>
-
-ENV GOSU_VERSION 1.9
+FROM php:8.1-fpm
 
 RUN \
     # system packages
@@ -16,7 +13,6 @@ RUN \
       gosu \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
-      libmcrypt-dev \
       libpng-dev \
       libssl-dev \
       unzip \
@@ -24,9 +20,8 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     \
     # php extensions
-    && docker-php-ext-install -j$(nproc) mcrypt \
-    && pecl install mongo \
-    && docker-php-ext-enable mongo \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb \
     \
     # set up composer
     && EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig) \
@@ -59,7 +54,6 @@ USER www-data
 RUN set -eux; \
     mkdir -p \
       database \
-      app/Models \
       tests \
     ; \
     echo -e '#!/usr/bin/env php\n<?php' >artisan; \

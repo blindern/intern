@@ -35,6 +35,11 @@ services:
     image: mongo
     volumes:
       - db:/data/db/
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: intern
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - "127.0.0.1:27017:27017"
 
 volumes:
   db:
