@@ -2,7 +2,7 @@
 version: '2'
 
 services:
-  fpm:
+  backend:
     build:
       context: backend
       dockerfile: Dockerfile
@@ -15,22 +15,12 @@ services:
       DB_MONGODB_HOST: database
       DB_MONGODB_PORT: 27017
       DB_MONGODB_DATABASE: intern
-      DB_MONGODB_USERNAME:
-      DB_MONGODB_PASSWORD:
+      DB_MONGODB_USERNAME: intern
+      DB_MONGODB_PASSWORD: secret
       LARAVEL_SESSION_SECURE: 0
       INTERN_USERS_API_KEY: $INTERN_USERS_API_KEY
-    volumes:
-     - ./backend/:/var/www/html/
-    command: /dev.sh
-  nginx:
-    image: nginx:stable-alpine
     ports:
       - "8081:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/default.dev.conf:/etc/nginx/conf.d/default.conf
-      #- ./:/var/www/html/
-    command: nginx -g 'daemon off;'
   database:
     image: mongo
     volumes:

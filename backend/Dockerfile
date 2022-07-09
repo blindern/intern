@@ -2,7 +2,7 @@
 # currently in production we don't use Docker
 # (it should but no time to set up yet)
 
-FROM php:8.1-fpm
+FROM php:8.1-apache
 
 RUN \
     # system packages
@@ -41,7 +41,10 @@ RUN \
     && mkdir -p /var/intern/meta \
     && mkdir -p /var/intern/sessions \
     && mkdir -p /var/intern/views \
-    && chown -R www-data:www-data /var/intern /var/www /var/www/html
+    && chown -R www-data:www-data /var/intern /var/www /var/www/html \
+    \
+    && a2enmod rewrite \
+    && sed -i 's|/var/www/html|/var/www/html/public|' /etc/apache2/sites-available/000-default.conf
 
 COPY composer.* /var/www/html/
 
@@ -62,16 +65,12 @@ RUN set -eux; \
     mv vendor /var/www/html-vendor; \
     ln -s /var/www/html-vendor /var/www/html/vendor
 
-COPY . /var/www/html/
+COPY --chown=www-data:www-data . /var/www/html/
 
 # we run composer install again so the post process commands
 # are run
 RUN composer install
 
 USER root
-COPY container/entrypoint.sh /entrypoint.sh
-COPY container/dev.sh /dev.sh
 
 VOLUME ["/var/intern"]
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["php-fpm"]
