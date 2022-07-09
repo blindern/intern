@@ -14,7 +14,6 @@ import RegisterUserPage from 'modules/registeruser/RegisterUserPage'
 import UserListPage from 'modules/users/UserListPage'
 import UserPage from 'modules/users/UserPage'
 import React from 'react'
-import { hot } from 'react-hot-loader/root'
 import { Redirect, Route, Router } from 'react-router'
 import history from 'utils/history'
 
@@ -97,5 +96,4 @@ const App = () => (
   </Router>
 )
 
-const HotApp = hot(App)
-export default HotApp
+export default App

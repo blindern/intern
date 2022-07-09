@@ -1,4 +1,3 @@
-import { BACKEND_URL } from 'env'
 import { authService } from 'modules/core/auth'
 import { flashesService } from 'modules/core/flashes'
 import { DependencyList, useEffect, useState } from 'react'
