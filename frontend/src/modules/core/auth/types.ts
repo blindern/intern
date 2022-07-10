@@ -25,6 +25,10 @@ export type UserDetailsFull = UserDetailsBase & {
   groups: Group[]
 }
 
+type AuthUserDetails = Omit<UserDetailsBase, 'groups'> & {
+  groups: Group[]
+}
+
 export interface Group {
   id: number
   unique_id: string
@@ -49,7 +53,7 @@ interface AuthInfoLoggedIn {
   isLoggedIn: true
   isUserAdmin: boolean
   isOffice: boolean
-  user: UserDetails
+  user: AuthUserDetails
   csrfToken: string
 }
 

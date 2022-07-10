@@ -16,6 +16,7 @@ export default defineConfig({
         find: 'modules',
         replacement: path.resolve(__dirname, './src/modules'),
       },
+      { find: 'urls', replacement: path.resolve(__dirname, './src/urls') },
       { find: 'utils', replacement: path.resolve(__dirname, './src/utils') },
     ],
   },

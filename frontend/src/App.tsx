@@ -6,6 +6,7 @@ import FlashesProvider from 'modules/core/flashes/FlashesProvider'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import TitleProvider from 'modules/core/title/TitleProvider'
 import DugnadsinnkallingerPage from 'modules/dugnaden/DugnadsinnkallingerPage'
+import { GoogleAppsPage } from 'modules/googleapps/GoogleApps'
 import GroupListPage from 'modules/groups/GroupListPage'
 import GroupPage from 'modules/groups/GroupPage'
 import Home from 'modules/home/Home'
@@ -60,7 +61,7 @@ const RouteList = () => (
 
     <Route path='/dugnaden/old/list' element={<DugnadsinnkallingerPage />} />
 
-    <Route path='/googleapps' element={<Todo />} />
+    <Route path='/googleapps' element={<GoogleAppsPage />} />
 
     <Route path='/groups' element={<GroupListPage />} />
     <Route path='/group/:name' element={<GroupPage />} />
