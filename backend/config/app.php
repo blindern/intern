@@ -57,7 +57,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://foreningenbs.no/intern'),
+    'url' => env('APP_URL', 'https://foreningenbs.no'),
 
     'asset_url' => env('ASSET_URL'),
 

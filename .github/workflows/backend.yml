@@ -1,0 +1,31 @@
+name: backend
+on: [push]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - run: docker-compose up -d database
+
+      - run: composer install -n --prefer-dist
+        working-directory: backend
+
+      - run: php artisan test
+        working-directory: backend
+
+      - name: Build container
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          context: backend
+          tags: blindern/intern-backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

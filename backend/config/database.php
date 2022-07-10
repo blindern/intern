@@ -36,11 +36,11 @@ return [
     'connections' => [
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('DB_MONGODB_HOST', 'mongodb-1.zt.foreningenbs.no'),
+            'host'     => env('DB_MONGODB_HOST', 'localhost'),
             'port'     => env('DB_MONGODB_PORT', 27017),
             'database' => env('DB_MONGODB_DATABASE', 'intern'),
-            'username' => env('DB_MONGODB_USERNAME', 'laravel'),
-            'password' => env('DB_MONGODB_PASSWORD', ''),
+            'username' => env('DB_MONGODB_USERNAME', 'intern'),
+            'password' => env('DB_MONGODB_PASSWORD', 'secret'),
             'options' => [
                 'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'),
             ],

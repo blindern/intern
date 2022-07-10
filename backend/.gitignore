@@ -7,6 +7,7 @@ composer.phar
 .DS_Store
 Thumbs.db
 error_log
+.phpunit.result.cache
 
 # ignore IntelliJ-files
 .idea/
