@@ -67,7 +67,9 @@ const Template = ({ children }: { children: ReactNode }) => {
   const title = useTitle()
   const logout = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    authService.logout()
+
+    // TODO: Handle rejection.
+    void authService.logout()
   }, [])
 
   return (

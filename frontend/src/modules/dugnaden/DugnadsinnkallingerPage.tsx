@@ -87,7 +87,7 @@ const List = ({ list }: { list: DugnadDay[] }) => {
 }
 
 const DugnadsinnkallingerPage = () => {
-  const list = useApiFetcher(dugnadenService.getList, [])
+  const list = useApiFetcher(() => dugnadenService.getList(), [])
   if (!list) {
     return <LoadingPage />
   }

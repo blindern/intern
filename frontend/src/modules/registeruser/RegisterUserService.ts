@@ -11,7 +11,7 @@ export interface RegisterData {
 
 class RegisterUserService {
   async register(data: RegisterData) {
-    const response = await post('register', data)
+    await post('register', data)
 
     // TODO: Return something?
   }

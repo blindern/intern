@@ -13,7 +13,7 @@
     "skipLibCheck": true,
     "baseUrl": "./src"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "vite.config.ts"],
   "exclude": [
     "node_modules"
   ]

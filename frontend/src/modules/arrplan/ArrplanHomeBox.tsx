@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { arrplanService } from './ArrplanService'
 
 const ArrplanHomeBox = () => {
-  const arrplan = useApiFetcher(arrplanService.getNext, [])
+  const arrplan = useApiFetcher(() => arrplanService.getNext(), [])
 
   return (
     <Link to='/arrplan' className='index-arrplan'>

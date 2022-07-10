@@ -29,12 +29,12 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/intern/api": {
-        target: "https://foreningenbs.no/intern/api",
+      '/intern/api': {
+        target: 'https://foreningenbs.no/intern/api',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/intern\/api/, ""),
+        rewrite: (path) => path.replace(/^\/intern\/api/, ''),
       },
     },
-  }
+  },
 })

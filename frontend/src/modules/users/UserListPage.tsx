@@ -136,7 +136,7 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
 }
 
 const UserListPage = () => {
-  const userList = useApiFetcher(usersService.getUserList, [])
+  const userList = useApiFetcher(() => usersService.getUserList(), [])
   if (!userList) {
     return <LoadingPage />
   }

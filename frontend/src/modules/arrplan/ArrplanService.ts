@@ -10,8 +10,6 @@ export interface Semester {
 }
 
 export const getSemesterListFromEvent = (event: EventItem) => {
-  const result = []
-
   const getFromDate = (date: Moment): Semester => {
     const prefix = date.month() >= 6 ? 'h' : 'v'
     const suffix = String(date.year()).slice(2, 4)

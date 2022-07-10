@@ -68,7 +68,7 @@ export const get = (path: string) =>
     },
   })
 
-export const post = (path: string, data?: any) =>
+export const post = (path: string, data?: unknown) =>
   doFetch(api(path), {
     method: 'POST',
     mode: 'cors',
@@ -94,7 +94,9 @@ export function useApiFetcher<T>(
 
   useEffect(() => {
     let cancelled = false
-    ;(async () => {
+
+    // TODO: handle exception
+    void (async () => {
       try {
         const result = await fetcher()
         if (!cancelled) setResult(result)

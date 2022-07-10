@@ -189,7 +189,7 @@ const RegisterForm = () => {
       }}
       validationSchema={RegisterSchema}
     >
-      {({ errors, isSubmitting }) => (
+      {() => (
         <>
           <p style={{ color: '#FF0000' }}>
             Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent

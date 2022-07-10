@@ -6,7 +6,11 @@ import { AuthInfo } from './types'
 
 export const AuthContext = React.createContext<AuthInfo>(defaultAuthInfo)
 
-class UserProvider extends React.Component {
+interface Props {
+  children: React.ReactNode
+}
+
+class UserProvider extends React.Component<Props> {
   subscriber?: Subscription
 
   state = {
@@ -21,7 +25,9 @@ class UserProvider extends React.Component {
           data: userInfo,
         })
       })
-    authService.fetchAuthInfo()
+
+    // TODO: Handle rejection.
+    void authService.fetchAuthInfo()
   }
 
   componentWillUnmount() {

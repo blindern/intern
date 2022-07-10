@@ -1,19 +1,20 @@
-import React from 'react'
-import { ConsumerProps, TitleContext } from './TitleProvider'
+import { useContext, useEffect, useRef } from 'react'
+import { TitleContext } from './TitleProvider'
 
-export class PageTitle extends React.Component<{ title: string }> {
-  static contextType = TitleContext
-  context: ConsumerProps
-  componentWillMount() {
-    this.context.registerTitle(this, this.props.title)
-  }
-  componentDidUpdate() {
-    this.context.updateTitle(this, this.props.title)
-  }
-  componentWillUnmount() {
-    this.context.unregisterTitle(this)
-  }
-  render() {
-    return null
-  }
+export function PageTitle({ title }: { title: string }) {
+  const ref = useRef(Symbol())
+  const context = useContext(TitleContext)
+
+  useEffect(() => {
+    context.registerTitle(ref.current, title)
+    return () => {
+      context.unregisterTitle(ref.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    context.updateTitle(ref.current, title)
+  }, [title])
+
+  return null
 }

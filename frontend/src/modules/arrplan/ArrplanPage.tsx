@@ -221,7 +221,7 @@ const List = ({
 const ArrplanPage = () => {
   const { semester } = useParams()
 
-  const list = useApiFetcher(arrplanService.getList, [])
+  const list = useApiFetcher(() => arrplanService.getList(), [])
   if (!list) {
     return <LoadingPage />
   }

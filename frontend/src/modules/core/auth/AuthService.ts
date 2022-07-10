@@ -17,14 +17,15 @@ export class AuthService {
     this.authInfoSubject.next(defaultAuthInfo)
 
     // Refetch auth info to get fresh csrf token.
-    this.fetchAuthInfo()
+    // TODO: Handle rejection.
+    void this.fetchAuthInfo()
   }
 
   getUserDataObservable = () => this.authInfoSubject
 
   async fetchAuthInfo() {
     const response = await get('me')
-    const authInfo: AuthInfo = await response.json()
+    const authInfo: AuthInfo = (await response.json()) as AuthInfo
 
     this.authInfoSubject.next(authInfo)
   }
@@ -36,6 +37,7 @@ export class AuthService {
       remember_me: rememberMe,
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const json = await response.json()
 
     if (!('user' in json)) {

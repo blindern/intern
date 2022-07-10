@@ -48,7 +48,12 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
       <li>Brukernavn: {user.username}</li>
       <li>Navn: {user.realname}</li>
       <li>
-        E-post: <a href={`mailto:${user.email}`}>{user.email}</a>
+        E-post:{' '}
+        {user.email ? (
+          <a href={`mailto:${user.email}`}>{user.email}</a>
+        ) : (
+          'Ukjent'
+        )}
       </li>
       {user.phone && (
         <li>

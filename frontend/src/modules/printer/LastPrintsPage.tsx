@@ -43,7 +43,7 @@ const List = ({ list }: { list: LastPrintItem[] }) => {
 }
 
 const LastPrintsPage = () => {
-  const list = useApiFetcher(printerService.getLastList, [])
+  const list = useApiFetcher(() => printerService.getLastList(), [])
   if (!list) {
     return <LoadingPage />
   }

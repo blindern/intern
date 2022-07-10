@@ -16,11 +16,15 @@ const defaultValue: ConsumerProps = {
 
 export const FlashesContext = createContext(defaultValue)
 
+interface Props {
+  children: React.ReactNode
+}
+
 interface State {
   flashes: Flash[]
 }
 
-export default class FlashesProvider extends React.Component<{}, State> {
+export default class FlashesProvider extends React.Component<Props, State> {
   subscriber?: Subscription
 
   state = {
@@ -41,7 +45,7 @@ export default class FlashesProvider extends React.Component<{}, State> {
     if (this.subscriber) this.subscriber.unsubscribe()
   }
 
-  getValue = memoizeOne((state) => ({
+  getValue = memoizeOne((state: State) => ({
     flashes: state.flashes,
     flash: (args: FlashArgs) => flashesService.addFlash(args),
   }))

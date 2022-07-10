@@ -1,10 +1,10 @@
 import { get } from 'api'
-import { UserDetailsFull } from 'modules/core/auth/types'
+import { UserDetails, UserDetailsFull } from 'modules/core/auth/types'
 
 class UsersService {
-  async getUserList() {
+  async getUserList(): Promise<UserDetails[]> {
     const response = await get('user')
-    return await response.json()
+    return (await response.json()) as UserDetails[]
   }
 
   async getUser(username: string) {

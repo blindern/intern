@@ -16,7 +16,7 @@ const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
 }
 
 const MatmenyHomeBox = () => {
-  const matmeny = useApiFetcher(matmenyService.getHomeData, [])
+  const matmeny = useApiFetcher(() => matmenyService.getHomeData(), [])
 
   if (!matmeny) {
     return null

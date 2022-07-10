@@ -1,11 +1,11 @@
 import memoizeOne from 'memoize-one'
-import React, { Component, createContext, useContext } from 'react'
+import React, { createContext, useContext } from 'react'
 
 export interface ConsumerProps {
   title: string
-  registerTitle: (comp: Component, value: string) => void
-  unregisterTitle: (comp: Component) => void
-  updateTitle: (comp: Component, value: string) => void
+  registerTitle: (comp: symbol, value: string) => void
+  unregisterTitle: (comp: symbol) => void
+  updateTitle: (comp: symbol, value: string) => void
 }
 
 const defaultValue: ConsumerProps = {
@@ -19,8 +19,12 @@ export const useTitle = () => useContext(TitleContext).title
 
 export const TitleContext = createContext(defaultValue)
 
-export default class TitleProvider extends React.Component {
-  components: Array<{ comp: Component; value: string }> = []
+interface Props {
+  children: React.ReactNode
+}
+
+export default class TitleProvider extends React.Component<Props> {
+  components: Array<{ comp: symbol; value: string }> = []
   state = {
     title: defaultValue.title,
     mounts: [defaultValue.title],
@@ -31,18 +35,18 @@ export default class TitleProvider extends React.Component {
     unregisterTitle: this.unregisterTitle,
     updateTitle: this.updateTitle,
   }))
-  registerTitle = (comp: Component, value: string) => {
+  registerTitle = (comp: symbol, value: string) => {
     this.components.push({
       comp,
       value,
     })
     this.refresh()
   }
-  unregisterTitle = (comp: Component) => {
+  unregisterTitle = (comp: symbol) => {
     this.components = this.components.filter((elm) => elm.comp !== comp)
     this.refresh()
   }
-  updateTitle = (comp: Component, value: string) => {
+  updateTitle = (comp: symbol, value: string) => {
     this.components = this.components.map((elm) =>
       elm.comp === comp ? { ...elm, value } : elm,
     )
