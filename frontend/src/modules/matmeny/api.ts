@@ -1,4 +1,5 @@
 import { get } from 'api'
+import { useQuery } from 'react-query'
 import moment from 'utils/moment'
 
 export interface MatmenyDay {
@@ -7,8 +8,8 @@ export interface MatmenyDay {
   text: string | null
 }
 
-class MatmenyService {
-  async getHomeData() {
+export function useMatmenyHomeData() {
+  return useQuery(['matmeny', 'home-data'], async () => {
     const today = moment().format('YYYY-MM-DD')
     const tomorrow = moment().add(1, 'days').format('YYYY-MM-DD')
 
@@ -25,7 +26,5 @@ class MatmenyService {
         data: data.find((item) => item.day === tomorrow),
       },
     }
-  }
+  })
 }
-
-export const matmenyService = new MatmenyService()

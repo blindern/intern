@@ -4,7 +4,7 @@ import { PageTitle } from 'modules/core/title/PageTitle'
 import React, { ReactNode, useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
-import { RegisterData, registerUserService } from './RegisterUserService'
+import { RegisterData, useRegisterUserMutation } from './api'
 
 const RegisterSchema = Yup.object().shape({
   username: Yup.string()
@@ -162,6 +162,7 @@ const PasswordGroup = () => (
 
 const RegisterForm = () => {
   const [isSent, setIsSent] = useState(false)
+  const { mutateAsync: registerUser } = useRegisterUserMutation()
 
   if (isSent) return <p>Din forespørsel er sendt inn.</p>
 
@@ -177,7 +178,7 @@ const RegisterForm = () => {
       }}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          await registerUserService.register(values)
+          await registerUser(values)
           setIsSent(true)
         } catch (e) {
           console.error('register failed', e)

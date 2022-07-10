@@ -1,17 +1,18 @@
-import { useApiFetcher } from 'api'
 import classNames from 'classnames'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { arrplanService } from './ArrplanService'
+import { useArrplanNext } from './api'
 
 const ArrplanHomeBox = () => {
-  const arrplan = useApiFetcher(() => arrplanService.getNext(), [])
+  const { isFetching, isSuccess, data: arrplan } = useArrplanNext()
 
   return (
     <Link to='/arrplan' className='index-arrplan'>
       <h4>Neste på arrangementplanen</h4>
-      {arrplan == null ? (
+      {isFetching ? (
         <div>Laster...</div>
+      ) : !isSuccess ? (
+        <div>Error</div>
       ) : (
         arrplan.map((event, idx) =>
           event.type === 'event' || event.type === 'event_recurring' ? (

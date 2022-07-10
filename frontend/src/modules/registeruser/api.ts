@@ -1,4 +1,5 @@
 import { post } from 'api'
+import { useMutation } from 'react-query'
 
 export interface RegisterData {
   username: string
@@ -9,12 +10,10 @@ export interface RegisterData {
   password: string
 }
 
-class RegisterUserService {
-  async register(data: RegisterData) {
+export function useRegisterUserMutation() {
+  return useMutation(async (data: RegisterData) => {
     await post('register', data)
 
     // TODO: Return something?
-  }
+  })
 }
-
-export const registerUserService = new RegisterUserService()

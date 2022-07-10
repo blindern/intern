@@ -1,4 +1,5 @@
 import { get } from 'api'
+import { useQuery } from 'react-query'
 
 export interface DugnadDay {
   checked: '0' | '1'
@@ -16,11 +17,9 @@ export interface DugnadPerson {
   type: string
 }
 
-class DugnadenService {
-  async getList() {
+export function useDugnadenList() {
+  return useQuery(['dugnaden', 'old', 'list'], async () => {
     const response = await get('dugnaden/old')
     return (await response.json()) as DugnadDay[]
-  }
+  })
 }
-
-export const dugnadenService = new DugnadenService()

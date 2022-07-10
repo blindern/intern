@@ -1,4 +1,5 @@
 import { get } from 'api'
+import { useQuery } from 'react-query'
 
 export interface LastPrintItem {
   jobdate: string
@@ -8,11 +9,9 @@ export interface LastPrintItem {
   username: string
 }
 
-class PrinterService {
-  async getLastList() {
+export function usePrinterLastList() {
+  return useQuery(['printer', 'last'], async () => {
     const response = await get('printer/last')
     return (await response.json()) as LastPrintItem[]
-  }
+  })
 }
-
-export const printerService = new PrinterService()

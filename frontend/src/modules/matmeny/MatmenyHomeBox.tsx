@@ -1,8 +1,7 @@
-import { useApiFetcher } from 'api'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatDate } from 'utils/dates'
-import { MatmenyDay, matmenyService } from './MatmenyService'
+import { MatmenyDay, useMatmenyHomeData } from './api'
 
 const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
   if (!data) return <>Ukjent</>
@@ -16,9 +15,9 @@ const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
 }
 
 const MatmenyHomeBox = () => {
-  const matmeny = useApiFetcher(() => matmenyService.getHomeData(), [])
+  const { isFetching, isSuccess, data: matmeny } = useMatmenyHomeData()
 
-  if (!matmeny) {
+  if (isFetching || !isSuccess) {
     return null
   }
 

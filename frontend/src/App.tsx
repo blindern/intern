@@ -14,7 +14,14 @@ import RegisterUserPage from 'modules/registeruser/RegisterUserPage'
 import UserListPage from 'modules/users/UserListPage'
 import UserPage from 'modules/users/UserPage'
 import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+
+// TODO: Handle 401 responses
+// if (e instanceof NotAuthedError) {
+//   authService.setLoginRedirectUrl(location.pathname)
+//   navigate('/login')
+const queryClient = new QueryClient()
 
 const Todo = () => (
   <>
@@ -69,20 +76,22 @@ const RouteList = () => (
 )
 
 const App = () => (
-  <BrowserRouter basename='/intern'>
-    <FlashesProvider>
-      <TitleProvider>
-        <>
-          <PageTitle title='Foreningen Blindern Studenterhjem' />
-          <UserProvider>
-            <Template>
-              <RouteList />
-            </Template>
-          </UserProvider>
-        </>
-      </TitleProvider>
-    </FlashesProvider>
-  </BrowserRouter>
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter basename='/intern'>
+      <FlashesProvider>
+        <TitleProvider>
+          <>
+            <PageTitle title='Foreningen Blindern Studenterhjem' />
+            <UserProvider>
+              <Template>
+                <RouteList />
+              </Template>
+            </UserProvider>
+          </>
+        </TitleProvider>
+      </FlashesProvider>
+    </BrowserRouter>
+  </QueryClientProvider>
 )
 
 export default App

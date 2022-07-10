@@ -1,4 +1,3 @@
-import { useApiFetcher } from 'api'
 import classNames from 'classnames'
 import LoadingPage from 'components/LoadingPage'
 import { PageTitle } from 'modules/core/title/PageTitle'
@@ -6,11 +5,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import moment from 'utils/moment'
-import {
-  arrplanService,
-  getSemesterListFromEvent,
-  Semester,
-} from './ArrplanService'
+import { getSemesterListFromEvent, Semester, useArrplanList } from './api'
 import { Comment, EventItem, NormalEvent } from './types'
 
 const getSemesterList = (list: EventItem[]) => {
@@ -221,12 +216,15 @@ const List = ({
 const ArrplanPage = () => {
   const { semester } = useParams()
 
-  const list = useApiFetcher(() => arrplanService.getList(), [])
-  if (!list) {
+  const { isFetching, isSuccess, data } = useArrplanList()
+
+  if (isFetching) {
     return <LoadingPage />
   }
 
-  return <List semesterId={semester!} list={list} />
+  // TODO: show error instead of empty list
+
+  return <List semesterId={semester!} list={isSuccess ? data : []} />
 }
 
 export default ArrplanPage

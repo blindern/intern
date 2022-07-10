@@ -1,10 +1,9 @@
-import { useApiFetcher } from 'api'
 import LoadingPage from 'components/LoadingPage'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { formatDate } from 'utils/dates'
-import { DugnadDay, dugnadenService } from './DugnadenService'
+import { DugnadDay, useDugnadenList } from './api'
 
 const DugnadContainer = styled.div`
   page-break-before: always;
@@ -87,16 +86,21 @@ const List = ({ list }: { list: DugnadDay[] }) => {
 }
 
 const DugnadsinnkallingerPage = () => {
-  const list = useApiFetcher(() => dugnadenService.getList(), [])
-  if (!list) {
+  const { isFetching, isSuccess, data } = useDugnadenList()
+
+  if (isFetching) {
     return <LoadingPage />
+  }
+
+  if (!isSuccess) {
+    return <p>Error</p>
   }
 
   return (
     <>
       <PageTitle title='Dugnadsinnkallinger' />
-      {list.length === 0 && <p>Ingen dugnader ble funnet.</p>}
-      {list.length > 0 && <List list={list} />}
+      {data.length === 0 && <p>Ingen dugnader ble funnet.</p>}
+      {data.length > 0 && <List list={data} />}
     </>
   )
 }

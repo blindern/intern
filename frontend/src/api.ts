@@ -1,7 +1,5 @@
 import { authService } from 'modules/core/auth'
 import { flashesService } from 'modules/core/flashes'
-import { DependencyList, useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 let backendUrl = BACKEND_URL
 
@@ -82,40 +80,3 @@ export const post = (path: string, data?: unknown) =>
     },
     body: data != null ? JSON.stringify(data) : null,
   })
-
-// TODO: Handle not found and errors
-export function useApiFetcher<T>(
-  fetcher: () => Promise<T>,
-  inputs: DependencyList,
-): T | null {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const [result, setResult] = useState<T | null>(null)
-
-  useEffect(() => {
-    let cancelled = false
-
-    // TODO: handle exception
-    void (async () => {
-      try {
-        const result = await fetcher()
-        if (!cancelled) setResult(result)
-      } catch (e) {
-        if (cancelled) return
-
-        if (e instanceof NotAuthedError) {
-          authService.setLoginRedirectUrl(location.pathname)
-          navigate('/login')
-        } else {
-          throw e
-        }
-      }
-    })()
-
-    return () => {
-      cancelled = true
-    }
-  }, inputs)
-
-  return result
-}

@@ -1,14 +1,20 @@
-import { useApiFetcher } from 'api'
-import LoadingPage from 'components/LoadingPage'
-import { Group } from 'modules/core/auth/types'
 import { PageTitle } from 'modules/core/title/PageTitle'
+import { useGroupList } from 'modules/groups/api'
 import React from 'react'
 import GroupLink from './GroupLink'
-import { groupsService } from './GroupsService'
 
-const List = ({ groupList }: { groupList: Group[] }) => (
-  <>
-    <PageTitle title='Grupper' />
+const List = () => {
+  const { isFetching, isSuccess, data } = useGroupList()
+
+  if (isFetching) {
+    return <p>Laster grupper...</p>
+  }
+
+  if (!isSuccess) {
+    return <p>Noe gikk galt</p>
+  }
+
+  return (
     <table
       className='table table-striped nowrap table-condensed'
       style={{ width: 'auto' }}
@@ -20,7 +26,7 @@ const List = ({ groupList }: { groupList: Group[] }) => (
         </tr>
       </thead>
       <tbody>
-        {groupList.map((group) => (
+        {data.map((group) => (
           <tr key={group.name}>
             <td>
               <GroupLink groupName={group.name} />
@@ -30,16 +36,16 @@ const List = ({ groupList }: { groupList: Group[] }) => (
         ))}
       </tbody>
     </table>
-  </>
-)
+  )
+}
 
 const GroupListPage = () => {
-  const groupList = useApiFetcher(() => groupsService.getGroupList(), [])
-  if (!groupList) {
-    return <LoadingPage />
-  }
-
-  return <List groupList={groupList} />
+  return (
+    <>
+      <PageTitle title='Grupper' />
+      <List />
+    </>
+  )
 }
 
 export default GroupListPage

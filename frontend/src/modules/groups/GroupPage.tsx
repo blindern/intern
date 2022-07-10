@@ -1,12 +1,11 @@
-import { useApiFetcher } from 'api'
 import LoadingPage from 'components/LoadingPage'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import UserLink from 'modules/users/UserLink'
 import { IndirectMemberInfo } from 'modules/users/UserPage'
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { GroupDetail, useGroup } from './api'
 import GroupLink from './GroupLink'
-import { GroupDetail, groupsService } from './GroupsService'
 
 const Detail = ({ group }: { group: GroupDetail }) => (
   <>
@@ -103,9 +102,13 @@ const Detail = ({ group }: { group: GroupDetail }) => (
 const GroupPage = () => {
   const { name } = useParams()
 
-  const group = useApiFetcher(() => groupsService.getGroup(name!), [name])
-  if (!group) {
+  const { isFetching, isSuccess, data: group } = useGroup(name!)
+  if (isFetching) {
     return <LoadingPage />
+  }
+
+  if (!isSuccess) {
+    return <p>Noe gikk galt</p>
   }
 
   return <Detail group={group} />

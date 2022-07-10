@@ -1,16 +1,24 @@
-import { useApiFetcher } from 'api'
 import LoadingPage from 'components/LoadingPage'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import UserLink from 'modules/users/UserLink'
 import React from 'react'
 import { formatDate } from 'utils/dates'
-import { LastPrintItem, printerService } from './PrinterService'
+import { usePrinterLastList } from './api'
 
-const List = ({ list }: { list: LastPrintItem[] }) => {
+const LastPrintsPage = () => {
+  const { isFetching, isSuccess, data } = usePrinterLastList()
+  if (isFetching) {
+    return <LoadingPage />
+  }
+
+  if (!isSuccess) {
+    return <p>Failed</p>
+  }
+
   return (
     <>
       <PageTitle title='Siste utskrifter' />
-      {list.length === 0 ? (
+      {data.length === 0 ? (
         <p>Ingen utskrifter ble funnet.</p>
       ) : (
         <table className='table table-striped nowrap'>
@@ -24,7 +32,7 @@ const List = ({ list }: { list: LastPrintItem[] }) => {
             </tr>
           </thead>
           <tbody>
-            {list.map((print, idx) => (
+            {data.map((print, idx) => (
               <tr key={idx}>
                 <td>{formatDate(print.jobdate, 'dddd D. MMMM YYYY HH:mm')}</td>
                 <td>
@@ -40,15 +48,6 @@ const List = ({ list }: { list: LastPrintItem[] }) => {
       )}
     </>
   )
-}
-
-const LastPrintsPage = () => {
-  const list = useApiFetcher(() => printerService.getLastList(), [])
-  if (!list) {
-    return <LoadingPage />
-  }
-
-  return <List list={list} />
 }
 
 export default LastPrintsPage

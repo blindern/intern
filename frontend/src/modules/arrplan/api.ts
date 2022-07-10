@@ -1,5 +1,6 @@
 import { get } from 'api'
 import { Moment } from 'moment'
+import { useQuery } from 'react-query'
 import moment from 'utils/moment'
 import { EventItem } from './types'
 
@@ -30,16 +31,16 @@ export const getSemesterListFromEvent = (event: EventItem) => {
   return start.id === end.id ? [start] : [start, end]
 }
 
-class ArrplanService {
-  async getList() {
+export function useArrplanList() {
+  return useQuery(['arrplan', 'list'], async () => {
     const response = await get('arrplan?invalidate=1')
     return (await response.json()) as EventItem[]
-  }
-
-  async getNext() {
-    const response = await get('arrplan/next?count=6')
-    return (await response.json()) as EventItem[]
-  }
+  })
 }
 
-export const arrplanService = new ArrplanService()
+export function useArrplanNext() {
+  return useQuery(['arrplan', 'next'], async () => {
+    const response = await get('arrplan/next?count=6')
+    return (await response.json()) as EventItem[]
+  })
+}

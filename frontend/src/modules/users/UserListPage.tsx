@@ -1,14 +1,12 @@
-import { useApiFetcher } from 'api'
 import CommaSeparated from 'components/CommaSeparated'
-import LoadingPage from 'components/LoadingPage'
 import { UserDetails } from 'modules/core/auth/types'
 import { AuthContext } from 'modules/core/auth/UserProvider'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
+import { useUserList } from 'modules/users/UsersService'
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import UserLink from './UserLink'
-import { usersService } from './UsersService'
 
 interface UserSections {
   beboere: UserDetails[]
@@ -55,8 +53,17 @@ const UserListSection = styled.div`
   }
 `
 
-const List = ({ userList }: { userList: UserDetails[] }) => {
+const List = () => {
+  const { isFetching, isSuccess, data: userList } = useUserList()
   const { isLoggedIn } = useContext(AuthContext)
+
+  if (isFetching) {
+    return <p>Laster brukerliste...</p>
+  }
+
+  if (!isSuccess) {
+    return <p>Noe gikk galt</p>
+  }
 
   const grouped = groupAndSortBySections(userList)
   const sections = [
@@ -136,12 +143,12 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
 }
 
 const UserListPage = () => {
-  const userList = useApiFetcher(() => usersService.getUserList(), [])
-  if (!userList) {
-    return <LoadingPage />
-  }
-
-  return <List userList={userList} />
+  return (
+    <>
+      <PageTitle title='Brukerliste' />
+      <List />
+    </>
+  )
 }
 
 export default UserListPage

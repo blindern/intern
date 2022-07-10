@@ -1,12 +1,11 @@
-import { useApiFetcher } from 'api'
 import CommaSeparated from 'components/CommaSeparated'
 import LoadingPage from 'components/LoadingPage'
 import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
+import { useUser } from 'modules/users/UsersService'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { usersService } from './UsersService'
 
 export const IndirectMemberInfo = ({
   user,
@@ -118,12 +117,17 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
 const UserPage = () => {
   const { name } = useParams()
 
-  const user = useApiFetcher(() => usersService.getUser(name!), [name])
-  if (!user) {
+  const { isFetching, isSuccess, data } = useUser(name!)
+
+  if (isFetching) {
     return <LoadingPage />
   }
 
-  return <Detail user={user} />
+  if (!isSuccess) {
+    return <p>Noe gikk galt</p>
+  }
+
+  return <Detail user={data} />
 }
 
 export default UserPage
