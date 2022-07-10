@@ -1,12 +1,21 @@
+import { ErrorMessage } from '@hookform/error-message'
 import classNames from 'classnames'
-import { ErrorMessage, Field, FieldProps, Form, Formik } from 'formik'
+import { useYupValidationResolver } from 'modules/core/forms/validation'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import React, { ReactNode, useState } from 'react'
+import {
+  FieldName,
+  FormProvider,
+  get,
+  useForm,
+  useFormContext,
+  useFormState,
+} from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import { RegisterData, useRegisterUserMutation } from './api'
 
-const RegisterSchema = Yup.object().shape({
+const validationSchema = Yup.object({
   username: Yup.string()
     .min(4, 'Brukernavn må være mellom 4 og 20 tegn')
     .max(20, 'Brukernavn må være mellom 4 og 20 tegn')
@@ -26,11 +35,17 @@ const RegisterSchema = Yup.object().shape({
     .required('Passordet må være på minst 8 tegn'),
 })
 
-const HelpBlockError = ({ name }: { name: string }) => (
-  <ErrorMessage name={name}>
-    {(msg) => <p className='help-block'>{msg}</p>}
-  </ErrorMessage>
-)
+const HelpBlockError = ({ name }: { name: FieldName<RegisterData> }) => {
+  const { errors } = useFormState<RegisterData>()
+
+  return (
+    <ErrorMessage
+      errors={errors}
+      name={name}
+      render={({ message }) => <p className='help-block'>{message}</p>}
+    />
+  )
+}
 
 const CustomField = ({
   containerClassName,
@@ -43,33 +58,39 @@ const CustomField = ({
 }: {
   containerClassName: string
   id?: string
-  name: string
+  name: keyof RegisterData
   placeholder: string
   autoFocus?: boolean
   helpBlock?: ReactNode
   type?: 'text' | 'password'
-}) => (
-  <Field name={name}>
-    {({ field, form }: FieldProps) => (
-      <div
-        className={classNames(containerClassName, {
-          'has-error': form.errors[field.name] && form.touched[field.name],
-        })}
-      >
-        <input
-          {...field}
-          type={type}
-          placeholder={placeholder}
-          className='form-control'
-          id={id}
-          autoFocus={autoFocus}
-        />
-        {helpBlock != null && <span className='help-block'>{helpBlock}</span>}
-        <HelpBlockError name={field.name} />
-      </div>
-    )}
-  </Field>
-)
+}) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<RegisterData>()
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const hasErrors: boolean = get(errors, name)
+
+  return (
+    <div
+      className={classNames(containerClassName, {
+        'has-error': hasErrors,
+      })}
+    >
+      <input
+        {...register(name)}
+        type={type}
+        placeholder={placeholder}
+        className='form-control'
+        id={id}
+        autoFocus={autoFocus}
+      />
+      {helpBlock != null && <span className='help-block'>{helpBlock}</span>}
+      <HelpBlockError name={name} />
+    </div>
+  )
+}
 
 const UsernameGroup = () => (
   <div className='form-group'>
@@ -164,76 +185,75 @@ const RegisterForm = () => {
   const [isSent, setIsSent] = useState(false)
   const { mutateAsync: registerUser } = useRegisterUserMutation()
 
+  const resolver = useYupValidationResolver(validationSchema)
+
+  const methods = useForm<RegisterData>({
+    defaultValues: {
+      username: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      password: '',
+    },
+    resolver,
+  })
+
+  async function onSubmit(values: RegisterData) {
+    // TODO: Better error handling
+    await registerUser(values)
+    setIsSent(true)
+  }
+
   if (isSent) return <p>Din forespørsel er sendt inn.</p>
 
   return (
-    <Formik<RegisterData>
-      initialValues={{
-        username: '',
-        firstname: '',
-        lastname: '',
-        email: '',
-        phone: '',
-        password: '',
-      }}
-      onSubmit={async (values, { setSubmitting }) => {
-        try {
-          await registerUser(values)
-          setIsSent(true)
-        } catch (e) {
-          console.error('register failed', e)
-          setIsSent(true)
-          // TODO: Better error handling
-        } finally {
-          setSubmitting(false)
-        }
-      }}
-      validationSchema={RegisterSchema}
-    >
-      {() => (
-        <>
-          <p style={{ color: '#FF0000' }}>
-            Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent
-            for andre brukere.
-          </p>
-          <p>
-            Du vil kunne bruke dette brukernavnet og passordet til å logge inn
-            på forskjellige tjenester på BS (som f.eks. printeren i biblionette,
-            wikien og Blindernåret).
-          </p>
+    <FormProvider {...methods}>
+      <p style={{ color: '#FF0000' }}>
+        Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent for
+        andre brukere.
+      </p>
+      <p>
+        Du vil kunne bruke dette brukernavnet og passordet til å logge inn på
+        forskjellige tjenester på BS (som f.eks. printeren i biblionette, wikien
+        og Blindernåret).
+      </p>
 
-          <Form className='form-horizontal' role='form' autoComplete='off'>
-            <UsernameGroup />
-            <NameGroup />
-            <EmailGroup />
-            <PhoneGroup />
-            <PasswordGroup />
+      <form
+        onSubmit={methods.handleSubmit(onSubmit)}
+        className='form-horizontal'
+        role='form'
+        autoComplete='off'
+      >
+        <UsernameGroup />
+        <NameGroup />
+        <EmailGroup />
+        <PhoneGroup />
+        <PasswordGroup />
 
-            <div className='form-group'>
-              <div className='col-lg-offset-4 col-lg-8'>
-                Når du registrerer deg vil du etter hvert også bli lagt inn på
-                lista bs-info@foreningenbs.no som benyttes til å informere om
-                større begivenheter som f.eks. revy, som kan være relevant også
-                etter botiden. Denne listen kan man melde seg av om ønskelig.
-              </div>
-            </div>
+        <div className='form-group'>
+          <div className='col-lg-offset-4 col-lg-8'>
+            Når du registrerer deg vil du etter hvert også bli lagt inn på lista
+            bs-info@foreningenbs.no som benyttes til å informere om større
+            begivenheter som f.eks. revy, som kan være relevant også etter
+            botiden. Denne listen kan man melde seg av om ønskelig.
+          </div>
+        </div>
 
-            <div className='form-group'>
-              <div className='col-lg-offset-4 col-lg-8'>
-                <input
-                  type='submit'
-                  value='Registrer'
-                  className='btn btn-default'
-                />
-                <span className='help-block'>
-                  Du vil bli lagt til manuelt, så noe ventetid må påregnes.
-                </span>
-              </div>
-            </div>
-          </Form>
-        </>
-      )}
-    </Formik>
+        <div className='form-group'>
+          <div className='col-lg-offset-4 col-lg-8'>
+            <input
+              type='submit'
+              value='Registrer'
+              className='btn btn-default'
+            />
+            <span className='help-block'>
+              Du vil bli lagt til manuelt, så noe ventetid må påregnes.
+            </span>
+          </div>
+        </div>
+      </form>
+    </FormProvider>
   )
 }
 
