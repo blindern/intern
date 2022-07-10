@@ -2,42 +2,14 @@
 
 use \Blindern\Intern\Arrplan\Models\Happening;
 use \Eluceo\iCal\Component\Calendar;
-use \Eluceo\iCal\Component\Event;
-use \Eluceo\iCal\Property\Event\RecurrenceRule;
 use \App\Http\Controllers\Controller;
 
 class ArrplanController extends Controller
 {
     /**
-     * Handle the main calendar-view
-     */
-    public function action_index()
-    {
-        $data = Happening::getHappenings();
-
-        /*$happenings = Happening::orderBy('start')->whereNull('frequency')->get();
-
-        $result = Happening::orderByRaw('WEEKDAY(start), TIME(start)')->whereNotNull('frequency')->get();*/
-        $happenings = array();
-        $recurring = array();
-        foreach ($data as $row) {
-            if ($row->isRecurring()) {
-                $recurring[] = $row;
-            } else {
-                $happenings[] = $row;
-            }
-        }
-
-        return \View::make("kalender/index", array(
-            "happenings" => $happenings,
-            "recurring"  => $recurring
-        ));
-    }
-
-    /**
      * Handle and render the iCal-version
      */
-    public function action_ics()
+    public function ics()
     {
         //$happenings = Happening::all();
         $happenings = Happening::getHappenings();

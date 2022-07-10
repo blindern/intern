@@ -1,66 +1,72 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+use \Blindern\Intern\Arrplan\Controllers\ArrplanApiController;
+use \Blindern\Intern\Arrplan\Controllers\ArrplanController;
+use \Blindern\Intern\Books\Controllers\BookController;
+use \Blindern\Intern\Bukker\Controllers\BukkerController;
+use \App\Http\Controllers\API\DugnadenOldController;
+use \App\Http\Controllers\API\MatmenyController;
+use \App\Http\Controllers\API\MeController;
+use \App\Http\Controllers\API\GroupController;
+use \App\Http\Controllers\API\UserController;
+use \App\Http\Controllers\API\PrinterLastController;
+use \App\Http\Controllers\API\PrinterUsageController;
+use \App\Http\Controllers\AuthController;
+use \Blindern\Intern\GoogleApps\Controllers\AccountsController;
+use \Blindern\Intern\GoogleApps\Controllers\AccountUsersController;
 
-// books
-Route::resource('api/books', '\\Blindern\\Intern\\Books\\Controllers\\BookController', array('only' => array('index', 'store', 'show', 'update', 'destroy')));
-Route::post('api/books/isbn', '\\Blindern\\Intern\\Books\\Controllers\\BookController@isbn');
-Route::post('api/books/{id}/barcode', '\\Blindern\\Intern\\Books\\Controllers\\BookController@barcode');
+Route::prefix('intern/api')->group(function () {
+    // books
+    Route::resource('books', BookController::class, array('only' => array('index', 'store', 'show', 'update', 'destroy')));
+    Route::post('books/isbn', [BookController::class, 'isbn']);
+    Route::post('books/{id}/barcode', [BookController::class, 'barcode']);
 
-// bukker
-Route::get('api/bukker/image', '\\Blindern\\Intern\\Bukker\\Controllers\\BukkerController@image');
-Route::resource('api/bukker', '\\Blindern\\Intern\\Bukker\\Controllers\\BukkerController');
+    // bukker
+    Route::resource('bukker', BukkerController::class);
+    Route::get('bukker/image', [BukkerController::class, 'image']);
 
-// calendar
-Route::get('arrplan.ics', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanController@action_ics');
-Route::get('arrplan.ical', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanController@action_ics');
-Route::get('kalender.ical', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanController@action_ics');
-Route::get('api/arrplan/next', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanApiController@next');
-Route::resource('api/arrplan', '\\Blindern\\Intern\\Arrplan\\Controllers\\ArrplanApiController', array('only' => array('index')));
+    // calendar
+    // TODO: add redirect for old URLs that was not under api
+    Route::get('arrplan.ics', [ArrplanController::class, 'ics']);
+    Route::get('arrplan.ical', [ArrplanController::class, 'ics']);
+    Route::get('kalender.ical', [ArrplanController::class, 'ics']);
+    Route::get('arrplan/next', [ArrplanApiController::class, 'next']);
+    Route::get('arrplan', [ArrplanApiController::class, 'index']);
 
-// printer
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('api/printer/last',      '\\App\\Http\\Controllers\\API\\PrinterLastController',  array('only' => array('index')));
-    Route::resource('api/printer/fakturere', "\\App\\Http\\Controllers\\API\\PrinterUsageController", array('only' => array('index')));
+    // printer
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('printer/last', PrinterLastController::class,  array('only' => array('index')));
+        Route::resource('printer/fakturere', PrinterUsageController::class, array('only' => array('index')));
+    });
+
+    // login system
+    Route::get('me', [MeController::class, 'index']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    // users and groups
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('user', UserController::class, array('only' => array('index', 'show', 'edit')));
+        Route::resource('group', GroupController::class, array('only' => array('index', 'show')));
+    });
+
+    // google apps accounts
+    Route::resource('googleapps/accounts', AccountsController::class);
+    Route::resource('googleapps/accountusers', AccountUsersController::class);
+
+    // dugnaden
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('dugnaden/old', DugnadenOldController::class, array('only' => array('index')));
+    });
+
+    // matmeny
+    // TODO: add redirect for old URLs that was not under api
+    Route::get('matmeny/plain', [MatmenyController::class, 'index']);
+    Route::get('matmeny.ics', [MatmenyController::class, 'ics']);
+    Route::get('matmeny', [MatmenyController::class, 'index']);
+    Route::post('matmeny/convert', [MatmenyController::class, 'convert']);
+    Route::post('matmeny', [MatmenyController::class, 'store']);
 });
-
-// login system
-Route::get('api/me', '\\App\\Http\\Controllers\\API\\MeController@index');
-Route::post('api/register', '\\App\\Http\\Controllers\\AuthController@register');
-Route::post('api/login', '\\App\\Http\\Controllers\\AuthController@login');
-Route::get('logout', '\\App\\Http\\Controllers\\AuthController@logout');
-Route::post('api/logout', '\\App\\Http\\Controllers\\AuthController@logout');
-
-// users and groups
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('api/user', '\\App\\Http\\Controllers\\API\\UserController', array('only' => array('index', 'show', 'edit')));
-    Route::resource('api/group', '\\App\\Http\\Controllers\\API\\GroupController', array('only' => array('index', 'show')));
-});
-
-// google apps accounts
-Route::resource('api/googleapps/accounts', '\\Blindern\\Intern\\GoogleApps\\Controllers\\AccountsController');
-Route::resource('api/googleapps/accountusers', '\\Blindern\\Intern\\GoogleApps\\Controllers\\AccountUsersController');
-
-// dugnaden
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('api/dugnaden/old', '\\App\\Http\\Controllers\\API\\DugnadenOldController', array('only' => array('index')));
-});
-
-// matmeny
-Route::get('matmeny/plain', '\\App\\Http\\Controllers\\MatmenyController@index');
-Route::get('matmeny.ics', '\\App\\Http\\Controllers\\MatmenyController@ics');
-Route::get('api/matmeny', '\\App\\Http\\Controllers\\API\\MatmenyController@index');
-Route::post('api/matmeny/convert', '\\App\\Http\\Controllers\\API\\MatmenyController@convert');
-Route::post('api/matmeny', '\\App\\Http\\Controllers\\API\\MatmenyController@store');
