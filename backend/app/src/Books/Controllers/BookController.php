@@ -3,10 +3,9 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Blindern\Intern\Helpers\Flash;
-use Blindern\Intern\Helpers\FlashCollection;
 use Blindern\Intern\Books\Models\Book;
 use Blindern\Intern\Books\ISBN;
+use Blindern\Intern\Responses;
 
 class BookController extends Controller
 {
@@ -76,7 +75,7 @@ class BookController extends Controller
     public function store()
     {
         if (!\Auth::member("biblioteksutvalget")) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $book = new Book();
@@ -108,7 +107,7 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         if (!$book) {
-            return Flash::forge('Fant ikke boka som ble søkt etter.')->setError()->asResponse(null, 404);
+            return response('', 404);
         }
         return $book;
     }
@@ -124,7 +123,7 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         if (!$book) {
-            return Flash::forge('Fant ikke boka.')->setError()->asResponse(null, 404);
+            return response('', 404);
         }
 
         if (($val = $this->validateInputAndUpdate($book)) !== true) {
@@ -145,12 +144,12 @@ class BookController extends Controller
     public function destroy($id)
     {
         if (!\Auth::member("biblioteksutvalget")) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $book = Book::find($id);
         if (!$book) {
-            return Flash::forge('Fant ikke boka som ble søkt etter.')->setError()->asResponse(null, 404);
+            return response('', 404);
         }
 
         $book->delete();
@@ -165,33 +164,33 @@ class BookController extends Controller
     public function barcode($id)
     {
         if (!\Auth::member("biblioteksutvalget")) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $book = Book::find($id);
         if (!$book) {
-            return Flash::forge('Fant ikke boka som ble søkt etter.')->setError()->asResponse(null, 404);
+            return response('', 404);
         }
 
         // a barcode cannot be changed
         if ($book->bib_barcode) {
-            return Flash::forge('Boka har allerede en strekkode tilegnet.')->setError()->asResponse(null, 400);
+            return Responses::clientError(['Boka har allerede en strekkode tilegnet.']);
         }
 
         $barcode = \Input::get('barcode');
         if (empty($barcode)) {
-            return Flash::forge('Mangler strekkode.')->setError()->asResponse(null, 400);
+            return Responses::clientError(['Mangler strekkode.']);
         }
 
         $res = $book->setBarcode($barcode);
         if ($res === true) {
             return array('barcode' => $barcode);
         } elseif ($res == 'unique') {
-            return Flash::forge('Løpenummeret er allerede i bruk.')->setError()->asResponse(null, 404);
+            return Responses::clientError(['Løpenummeret er allerede i bruk.']);
         } elseif ($res == 'format') {
-            return Flash::forge('Formatet på strekkoden er galt.')->setError()->asResponse(null, 404);
+            return Responses::clientError(['Formatet på strekkoden er galt.']);
         } else {
-            return Flash::forge('Ukjent feil.')->setError()->asResponse(null, 404);
+            return Responses::serverError(['Ukjent feil.']);
         }
     }
 
@@ -213,11 +212,7 @@ class BookController extends Controller
         ));
 
         if ($validator->fails()) {
-            $c = FlashCollection::forge();
-            foreach ($validator->messages()->all(':message') as $message) {
-                $c->add(Flash::forge($message)->setError());
-            }
-            return $c->asResponse(null, 400);
+            return Responses::clientError($validator->messages()->all(':message'));
         }
 
         $book->title = \Input::get('title');

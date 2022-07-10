@@ -6,10 +6,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Exception\HttpResponseException;
 
-use Blindern\Intern\Helpers\Flash;
-use Blindern\Intern\Helpers\FlashCollection;
 use Blindern\Intern\Bukker\Models\Bukk;
 use Blindern\Intern\Bukker\Models\Award;
+use Blindern\Intern\Responses;
 
 class BukkerController extends Controller
 {
@@ -22,7 +21,7 @@ class BukkerController extends Controller
     public function store(Request $request)
     {
         if (!\Auth::member("bukkekollegiet")) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $bukk = new Bukk();
@@ -40,7 +39,7 @@ class BukkerController extends Controller
     public function update($id, Request $request)
     {
         if (!\Auth::member("bukkekollegiet")) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $bukk = Bukk::findOrFail($id);
@@ -53,7 +52,7 @@ class BukkerController extends Controller
     public function destroy($id)
     {
         if (!\Auth::member("bukkekollegiet")) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $bukk = Bukk::findOrFail($id);

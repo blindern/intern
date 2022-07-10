@@ -3,11 +3,10 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Blindern\Intern\Helpers\Flash;
-use Blindern\Intern\Helpers\FlashCollection;
 use Blindern\Intern\GoogleApps\Models\Account;
 use Blindern\Intern\GoogleApps\Models\AccountUser;
 use Blindern\Intern\Auth\User;
+use Blindern\Intern\Responses;
 
 class AccountUsersController extends Controller
 {
@@ -40,7 +39,7 @@ class AccountUsersController extends Controller
         ]);
 
         if (!\Auth::member('ukestyret')) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $account = Account::where('accountname', $request->input('accountname'))->firstOrFail();
@@ -111,7 +110,7 @@ class AccountUsersController extends Controller
     public function destroy($id)
     {
         if (!\Auth::member("ukestyret")) {
-            return Flash::forge('Du har ikke tilgang til denne funksjonen.')->setError()->asResponse(null, 403);
+            return Responses::forbidden(['Du har ikke tilgang til denne funksjonen.']);
         }
 
         $accountuser = AccountUser::findOrFail($id);

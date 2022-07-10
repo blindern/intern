@@ -2,7 +2,7 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Blindern\Intern\Helpers\Flash;
+use Blindern\Intern\Responses;
 
 class Authenticate
 {
@@ -35,7 +35,7 @@ class Authenticate
     {
         if ($this->auth->guest()) {
             if ($request->ajax()) {
-                return \Response::json(null, 401, (new Flash("Denne siden krever at du logger inn."))->setError()->toHeader());
+                return Responses::invalidAuth(["Denne siden krever at du logger inn."]);
             } else {
                 return redirect()->guest('login');
             }

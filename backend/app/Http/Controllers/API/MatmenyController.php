@@ -6,6 +6,7 @@ use Blindern\Intern\Matmeny\FileParser;
 use Blindern\Intern\Matmeny\FileParserException;
 use Blindern\Intern\Matmeny\FileParserFormatException;
 use \App\Http\Controllers\Controller;
+use Blindern\Intern\Responses;
 
 class MatmenyController extends Controller
 {
@@ -64,12 +65,12 @@ class MatmenyController extends Controller
     {
         // tilgangsbegrensning
         if (\Auth::guest() && !\Blindern\Intern\Auth\Helper::isOffice()) {
-            return Response::json(null, 401, (new Flash("Denne siden krever at du logger inn."))->setError()->toHeader());
+            return Responses::invalidAuth(["Denne siden krever at du logger inn."]);
         }
         if (!\Blindern\Intern\Auth\Helper::isOffice() &&
                 !\Auth::member('admin') &&
                 !\Auth::member('kollegiet')) {
-            return Response::json(null, 403, (new Flash("Du har ikke tilgang til denne siden."))->setError()->toHeader());
+            return Responses::forbidden(["Du har ikke tilgang til denne siden."]);
         }
 
         if (!is_array(\Input::get('days'))) {

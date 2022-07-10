@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use Blindern\Intern\Helpers\Flash;
-use Blindern\Intern\Helpers\FlashCollection;
+use Blindern\Intern\Responses;
 use Blindern\Intern\Passtools\pw;
 
 class AuthController extends Controller
@@ -13,7 +12,7 @@ class AuthController extends Controller
     {
         if (!\Input::has('firstname') || !\Input::has('lastname') ||
             !\Input::has('email') || !\Input::has('username') || !\Input::has('password')) {
-            return Flash::forge('Data missing.')->setError()->asResponse(null, 400);
+            return Responses::clientError(['Data missing.']);
         }
 
         $data = array(
@@ -36,11 +35,14 @@ class AuthController extends Controller
         ));
 
         if ($validator->fails()) {
-            $c = FlashCollection::forge();
+            $messages = [];
             foreach ($validator->messages()->all(':message') as $message) {
-                $c->add(Flash::forge($message)->setError());
+                $messages[] = [
+                    'type' => 'danger',
+                    'message' => $message,
+                ];
             }
-            return $c->asResponse(null, 400);
+            return Response::json(['messages' => $messages], 400);
         }
 
         $smbpass = pw::smbpass($data['password']);
@@ -88,12 +90,10 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 {$_SERVER['HTTP_USER_AGENT']}", "From: lpadmin@foreningenbs.no\r\nReply-To: $replyto");
 
         if (!$res) {
-            return Flash::forge("Kunne ikke legge til forespørsel. Kontakt <a href=\"mailto:it-gruppa@foreningenbs.no\">IT-gruppa</a>!")
-                ->setError()->asResponse(null, 500);
+            return Responses::serverError(["Kunne ikke legge til forespørsel. Kontakt IT-gruppa!"]);
         }
 
-        return Flash::forge('Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert.')
-            ->setSuccess()->asResponse();
+        return Responses::success(['Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert.']);
     }
 
     public function login()
@@ -117,12 +117,12 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
             ));
         }
 
-        return Flash::forge('Ukjent brukernavn eller passord.')->setError()->asResponse(null, 401);
+        return Responses::invalidAuth(['Ukjent brukernavn eller passord.']);
     }
 
     public function logout()
     {
         \Auth::logout();
-        return Flash::forge("Logget ut")->setSuccess()->asResponse();
+        return Responses::success(['Logget ut']);
     }
 }
