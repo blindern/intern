@@ -9,7 +9,7 @@ class Responses {
                 'message' => $message,
             ];
         }
-        return Response::json(['messages' => $messages], 400);
+        return \Response::json(['messages' => $messages], 400);
     }
 
     public static function invalidAuth(array $texts) {
@@ -20,7 +20,7 @@ class Responses {
                 'message' => $message,
             ];
         }
-        return Response::json(['messages' => $messages], 401);
+        return \Response::json(['messages' => $messages], 401);
     }
 
     public static function forbidden(array $texts) {
@@ -31,7 +31,7 @@ class Responses {
                 'message' => $message,
             ];
         }
-        return Response::json(['messages' => $messages], 403);
+        return \Response::json(['messages' => $messages], 403);
     }
 
     public static function serverError(array $texts) {
@@ -42,7 +42,7 @@ class Responses {
                 'message' => $message,
             ];
         }
-        return Response::json(['messages' => $messages], 500);
+        return \Response::json(['messages' => $messages], 500);
     }
 
     public static function success(array $texts) {
@@ -53,6 +53,6 @@ class Responses {
                 'message' => $message,
             ];
         }
-        return Response::json(['messages' => $messages], 200);
+        return \Response::json(['messages' => $messages], 200);
     }
 }

@@ -73,13 +73,13 @@ class MatmenyController extends Controller
             return Responses::forbidden(["Du har ikke tilgang til denne siden."]);
         }
 
-        if (!is_array(\Input::get('days'))) {
+        if (!is_array(\Request::input('days'))) {
             return 'format-error';
         }
 
         // valider data og bygg ny data
         $change = array();
-        foreach (\Input::get('days') as $day) {
+        foreach (\Request::input('days') as $day) {
             if (!isset($day['day'])) {
                 return 'format-error';
             }

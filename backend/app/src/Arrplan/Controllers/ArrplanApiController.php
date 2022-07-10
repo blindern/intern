@@ -26,7 +26,7 @@ class ArrplanApiController extends Controller
 
     public function next()
     {
-        $count = max(1, \Input::get('count', 5));
+        $count = max(1, \Request::input('count', 5));
         return Happening::getNext($count);
     }
 }

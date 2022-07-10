@@ -10,18 +10,18 @@ class AuthController extends Controller
      */
     public function register()
     {
-        if (!\Input::has('firstname') || !\Input::has('lastname') ||
-            !\Input::has('email') || !\Input::has('username') || !\Input::has('password')) {
+        if (!\Request::has('firstname') || !\Request::has('lastname') ||
+            !\Request::has('email') || !\Request::has('username') || !\Request::has('password')) {
             return Responses::clientError(['Data missing.']);
         }
 
         $data = array(
-            'firstname' => \Input::get('firstname'),
-            'lastname' => \Input::get('lastname'),
-            'username' => \Input::get('username'),
-            'email' => \Input::get('email'),
-            'password' => \Input::get('password'),
-            'phone' => \Input::get('phone')
+            'firstname' => \Request::input('firstname'),
+            'lastname' => \Request::input('lastname'),
+            'username' => \Request::input('username'),
+            'email' => \Request::input('email'),
+            'password' => \Request::input('password'),
+            'phone' => \Request::input('phone')
         );
 
         // TODO: unique username and email
@@ -99,11 +99,11 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
     public function login()
     {
         $user = array(
-            'username' => \Input::get('username'),
-            'password' => \Input::get('password')
+            'username' => \Request::input('username'),
+            'password' => \Request::input('password')
         );
 
-        $res = \Auth::attempt($user, \Input::get('remember_me'));
+        $res = \Auth::attempt($user, \Request::input('remember_me'));
         if ($res) {
             return \Response::json(array(
                 'isLoggedIn' => true,

@@ -11,7 +11,7 @@ class BookController extends Controller
 {
     public function isbn()
     {
-        $isbn = \Input::get("isbn");
+        $isbn = \Request::input("isbn");
 
         if (!empty($isbn)) {
             $result = ISBN::searchByISBN($isbn);
@@ -177,7 +177,7 @@ class BookController extends Controller
             return Responses::clientError(['Boka har allerede en strekkode tilegnet.']);
         }
 
-        $barcode = \Input::get('barcode');
+        $barcode = \Request::input('barcode');
         if (empty($barcode)) {
             return Responses::clientError(['Mangler strekkode.']);
         }
@@ -199,7 +199,7 @@ class BookController extends Controller
      */
     private function validateInputAndUpdate(Book $book)
     {
-        $validator = \Validator::make(\Input::all(), array(
+        $validator = \Validator::make(\Request::all(), array(
             'title' => 'required',
             'subtitle' => '',
             'authors' => 'array',
@@ -215,15 +215,15 @@ class BookController extends Controller
             return Responses::clientError($validator->messages()->all(':message'));
         }
 
-        $book->title = \Input::get('title');
-        $book->subtitle = \Input::get('subtitle');
-        $book->authors = \Input::get('authors');
-        $book->pubdate = \Input::get('pubdate');
-        $book->description = \Input::get('description');
-        $book->isbn = \Input::get('isbn');
-        $book->bib_comment = \Input::get('bib_comment');
-        $book->bib_room = \Input::get('bib_room');
-        $book->bib_section = \Input::get('bib_section');
+        $book->title = \Request::input('title');
+        $book->subtitle = \Request::input('subtitle');
+        $book->authors = \Request::input('authors');
+        $book->pubdate = \Request::input('pubdate');
+        $book->description = \Request::input('description');
+        $book->isbn = \Request::input('isbn');
+        $book->bib_comment = \Request::input('bib_comment');
+        $book->bib_room = \Request::input('bib_room');
+        $book->bib_section = \Request::input('bib_section');
 
         return true;
     }

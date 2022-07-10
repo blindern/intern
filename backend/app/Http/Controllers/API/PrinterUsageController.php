@@ -8,8 +8,8 @@ class PrinterUsageController extends Controller
 {
     public function index()
     {
-        $from = \Input::get("from");
-        $to = \Input::get("to");
+        $from = \Request::input("from");
+        $to = \Request::input("to");
 
         // hent data fra printserveren
         $data = json_decode(file_get_contents("https://p.foreningenbs.no/api.php?method=fakturere&from=".urlencode($from)."&to=".urlencode($to)), true);
@@ -21,7 +21,7 @@ class PrinterUsageController extends Controller
                 $usernames[] = $user['username'];
             }
         }
-        
+
         $users = User::all(); // TODO: filter by array_unique($users)
         $realnames = array();
         foreach ($users as $user) {
