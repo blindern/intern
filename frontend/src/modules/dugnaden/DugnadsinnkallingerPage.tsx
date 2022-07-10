@@ -27,7 +27,7 @@ const List = ({ list }: { list: DugnadDay[] }) => {
   const [dugnadId, setDugnadId] = useState<string | null>(null)
 
   const dugnad =
-    dugnadId == null ? null : list.find(dugnad => dugnad.id === dugnadId)
+    dugnadId == null ? null : list.find((dugnad) => dugnad.id === dugnadId)
 
   return (
     <>
@@ -36,10 +36,10 @@ const List = ({ list }: { list: DugnadDay[] }) => {
         <select
           name='dugnad'
           value={dugnadId == null ? '' : dugnadId}
-          onChange={e => setDugnadId(e.target.value)}
+          onChange={(e) => setDugnadId(e.target.value)}
         >
           <option value=''>Velg dugnad</option>
-          {list.map(dugnad => (
+          {list.map((dugnad) => (
             <option key={dugnad.id} value={dugnad.id}>
               {formatDate(dugnad.date, 'dddd D. MMMM YYYY')} (
               {dugnad.people.length})

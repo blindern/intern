@@ -39,11 +39,11 @@ export default class TitleProvider extends React.Component {
     this.refresh()
   }
   unregisterTitle = (comp: Component) => {
-    this.components = this.components.filter(elm => elm.comp !== comp)
+    this.components = this.components.filter((elm) => elm.comp !== comp)
     this.refresh()
   }
   updateTitle = (comp: Component, value: string) => {
-    this.components = this.components.map(elm =>
+    this.components = this.components.map((elm) =>
       elm.comp === comp ? { ...elm, value } : elm,
     )
     this.refresh()

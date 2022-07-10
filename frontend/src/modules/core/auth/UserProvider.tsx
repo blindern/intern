@@ -16,7 +16,7 @@ class UserProvider extends React.Component {
   componentDidMount() {
     this.subscriber = authService
       .getUserDataObservable()
-      .subscribe(userInfo => {
+      .subscribe((userInfo) => {
         this.setState({
           data: userInfo,
         })

@@ -28,7 +28,7 @@ export default class FlashesService {
 
     setTimeout(() => {
       this.flashesSubject.next(
-        this.flashesSubject.value.filter(item => item !== flashObj),
+        this.flashesSubject.value.filter((item) => item !== flashObj),
       )
     }, 3000)
   }

@@ -100,7 +100,7 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
               </tr>
             </thead>
             <tbody>
-              {section.users.map(user => (
+              {section.users.map((user) => (
                 <tr key={user.username}>
                   <td>
                     <UserLink username={user.username} />
@@ -119,7 +119,7 @@ const List = ({ userList }: { userList: UserDetails[] }) => {
                       <i className='text-muted'>Ingen grupper</i>
                     ) : (
                       <CommaSeparated>
-                        {user.groups.map(group => (
+                        {user.groups.map((group) => (
                           <GroupLink key={group} groupName={group} />
                         ))}
                       </CommaSeparated>

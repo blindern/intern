@@ -35,7 +35,7 @@ const doFetch = async (url: string, options: RequestInit) => {
       type?: 'danger' | null
     }>
 
-    json.forEach(flash => {
+    json.forEach((flash) => {
       flashesService.addFlash(flash)
     })
   }

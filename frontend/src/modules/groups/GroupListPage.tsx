@@ -20,7 +20,7 @@ const List = ({ groupList }: { groupList: Group[] }) => (
         </tr>
       </thead>
       <tbody>
-        {groupList.map(group => (
+        {groupList.map((group) => (
           <tr key={group.name}>
             <td>
               <GroupLink groupName={group.name} />

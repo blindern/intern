@@ -16,7 +16,7 @@ import { Comment, EventItem, NormalEvent } from './types'
 const getSemesterList = (list: EventItem[]) => {
   const hashedSemesters = list.reduce<{ [id: string]: Semester }>(
     (acc, event) => {
-      getSemesterListFromEvent(event).forEach(s => {
+      getSemesterListFromEvent(event).forEach((s) => {
         acc[s.id] = s
       })
       return acc
@@ -36,8 +36,8 @@ const getSemesterList = (list: EventItem[]) => {
 }
 
 const filterEventsBySemester = (list: EventItem[], semesterId: string) =>
-  list.filter(event =>
-    getSemesterListFromEvent(event).find(item => item.id === semesterId),
+  list.filter((event) =>
+    getSemesterListFromEvent(event).find((item) => item.id === semesterId),
   )
 
 const getRecurringEventSortKey = (event: NormalEvent) => {
@@ -95,20 +95,20 @@ const List = ({
   list: EventItem[]
 }) => {
   const semesters = getSemesterList(list)
-  const activeSemester = semesters.find(item => item.id === semesterId)
+  const activeSemester = semesters.find((item) => item.id === semesterId)
 
   const eventsCurrentSemester =
     activeSemester != null ? filterEventsBySemester(list, semesterId) : []
 
   const eventsNormal = eventsCurrentSemester.filter(
-    item => item.type === 'event',
+    (item) => item.type === 'event',
   ) as NormalEvent[]
 
   const eventsRecurring = eventsCurrentSemester
-    .filter(item => item.type === 'event_recurring')
+    .filter((item) => item.type === 'event_recurring')
     .sort(sortRecurringEvents) as NormalEvent[]
   const comments = eventsCurrentSemester.filter(
-    item => item.type === 'comment',
+    (item) => item.type === 'comment',
   ) as Comment[]
 
   return (
@@ -117,7 +117,7 @@ const List = ({
 
       <ArrplanContainer>
         <ul className='nav nav-tabs' role='tablist'>
-          {semesters.map(semester => (
+          {semesters.map((semester) => (
             <li
               key={semester.id}
               className={semester === activeSemester ? 'active' : ''}

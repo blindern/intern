@@ -30,7 +30,7 @@ export default class FlashesProvider extends React.Component<{}, State> {
   componentDidMount() {
     this.subscriber = flashesService
       .getFlashesObservable()
-      .subscribe(flashes => {
+      .subscribe((flashes) => {
         this.setState({
           flashes,
         })
@@ -41,7 +41,7 @@ export default class FlashesProvider extends React.Component<{}, State> {
     if (this.subscriber) this.subscriber.unsubscribe()
   }
 
-  getValue = memoizeOne(state => ({
+  getValue = memoizeOne((state) => ({
     flashes: state.flashes,
     flash: (args: FlashArgs) => flashesService.addFlash(args),
   }))

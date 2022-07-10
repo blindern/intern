@@ -28,7 +28,7 @@ const RegisterSchema = Yup.object().shape({
 
 const HelpBlockError = ({ name }: { name: string }) => (
   <ErrorMessage name={name}>
-    {msg => <p className='help-block'>{msg}</p>}
+    {(msg) => <p className='help-block'>{msg}</p>}
   </ErrorMessage>
 )
 

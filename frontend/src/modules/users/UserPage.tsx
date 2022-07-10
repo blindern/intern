@@ -31,7 +31,7 @@ export const IndirectMemberInfo = ({
       <span className='text-muted'>
         (Indirekte medlem gjennom{' '}
         <CommaSeparated>
-          {user.group_relations[group.name].map(n => (
+          {user.group_relations[group.name].map((n) => (
             <GroupLink key={n} groupName={n} />
           ))}
         </CommaSeparated>
@@ -74,7 +74,7 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
           </tr>
         </thead>
         <tbody>
-          {user.groups.map(group => (
+          {user.groups.map((group) => (
             <tr key={group.name}>
               <td>
                 <GroupLink groupName={group.name} />
@@ -97,7 +97,7 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
             <li key={name}>
               <GroupLink groupName={name} /> (delegert fra{' '}
               <CommaSeparated>
-                {from.map(n => (
+                {from.map((n) => (
                   <GroupLink key={n} groupName={n} />
                 ))}
               </CommaSeparated>

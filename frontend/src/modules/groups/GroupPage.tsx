@@ -38,7 +38,7 @@ const Detail = ({ group }: { group: GroupDetail }) => (
           </tr>
         </thead>
         <tbody>
-          {group.members.map(member => (
+          {group.members.map((member) => (
             <tr
               key={member.username}
               style={{
@@ -69,7 +69,7 @@ const Detail = ({ group }: { group: GroupDetail }) => (
         <h3>Grupper som er medlemmer</h3>
         <p>Medlemmer i disse gruppene er også medlemmer av denne gruppa.</p>
         <ul>
-          {group.members_real.groups.map(group => (
+          {group.members_real.groups.map((group) => (
             <li key={group}>
               <GroupLink groupName={group} />
             </li>
@@ -84,12 +84,12 @@ const Detail = ({ group }: { group: GroupDetail }) => (
     ) : (
       <>
         <ul>
-          {group.owners.groups.map(groupName => (
+          {group.owners.groups.map((groupName) => (
             <li key={groupName}>
               <GroupLink groupName={groupName} />
             </li>
           ))}
-          {group.owners.users.map(username => (
+          {group.owners.users.map((username) => (
             <li key={username}>
               <UserLink username={username} />
             </li>
