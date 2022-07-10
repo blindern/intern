@@ -1,3 +1,4 @@
+/.env
 /.env.php
 /.env.testing.php
 /bootstrap/compiled.php
