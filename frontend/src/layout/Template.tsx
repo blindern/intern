@@ -4,43 +4,19 @@ import { AuthContext } from 'modules/core/auth/UserProvider'
 import Flashes from 'modules/core/flashes/Flashes'
 import { useTitle } from 'modules/core/title/TitleProvider'
 import React, { ReactNode, useCallback, useContext } from 'react'
-import { Route } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link, useMatch } from 'react-router-dom'
 import styled from 'styled-components'
 import './frontend.scss'
 
-interface MenuLinkProps {
-  children: (renderProps: { isActive: boolean }) => ReactNode
-  exact?: boolean
-  strict?: boolean
-  to: string | { pathname: string }
-}
-
-const IsActive = ({ exact, strict, to, children }: MenuLinkProps) => {
-  const path = typeof to === 'object' ? to.pathname : to
-
-  // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
-  const escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, '\\$1')
+const MenuLink = ({ children, to }: { children: ReactNode; to: string }) => {
+  const isActive = useMatch(to) != null
 
   return (
-    <Route
-      path={escapedPath}
-      exact={exact}
-      strict={strict}
-      children={({ match }) => children({ isActive: !!match })}
-    />
+    <li className={classNames({ active: isActive })}>
+      <Link to={to}>{children}</Link>
+    </li>
   )
 }
-
-const MenuLink = ({ children, to }: { children: ReactNode; to: string }) => (
-  <IsActive to={to}>
-    {({ isActive }) => (
-      <li className={classNames({ active: isActive })}>
-        <Link to={to}>{children}</Link>
-      </li>
-    )}
-  </IsActive>
-)
 
 // Wrapper for page content to push down footer
 const Wrap = styled.div`

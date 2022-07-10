@@ -1,7 +1,7 @@
 import { authService } from 'modules/core/auth'
 import { flashesService } from 'modules/core/flashes'
 import { DependencyList, useEffect, useState } from 'react'
-import history from 'utils/history'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 let backendUrl = BACKEND_URL
 
@@ -88,6 +88,8 @@ export function useApiFetcher<T>(
   fetcher: () => Promise<T>,
   inputs: DependencyList,
 ): T | null {
+  const location = useLocation()
+  const navigate = useNavigate()
   const [result, setResult] = useState<T | null>(null)
 
   useEffect(() => {
@@ -100,8 +102,8 @@ export function useApiFetcher<T>(
         if (cancelled) return
 
         if (e instanceof NotAuthedError) {
-          authService.setLoginRedirectUrl(history.location.pathname)
-          history.push('/login')
+          authService.setLoginRedirectUrl(location.pathname)
+          navigate('/login')
         } else {
           throw e
         }

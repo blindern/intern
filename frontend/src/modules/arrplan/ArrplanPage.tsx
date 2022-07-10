@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import LoadingPage from 'components/LoadingPage'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import moment from 'utils/moment'
 import {
@@ -218,25 +218,15 @@ const List = ({
   )
 }
 
-interface ArrplanPageProps {
-  match: {
-    params: {
-      semester: string
-    }
-  }
-}
+const ArrplanPage = () => {
+  const { semester } = useParams()
 
-const ArrplanPage = ({
-  match: {
-    params: { semester },
-  },
-}: ArrplanPageProps) => {
   const list = useApiFetcher(arrplanService.getList, [])
   if (!list) {
     return <LoadingPage />
   }
 
-  return <List semesterId={semester} list={list} />
+  return <List semesterId={semester!} list={list} />
 }
 
 export default ArrplanPage

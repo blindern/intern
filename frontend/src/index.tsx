@@ -1,6 +1,6 @@
 import domready from 'domready'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import App from './App'
 
 import { buildTime, gitCommitShort } from './manifest'
@@ -17,6 +17,8 @@ console.info(
     `- from Git commit ${gitCommitShort}: ${commitLink}`,
 )
 
-domready(() => {
-  ReactDOM.render(<App />, document.getElementById('react_container'))
-})
+ReactDOM.createRoot(document.getElementById('react_container')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)

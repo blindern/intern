@@ -1,6 +1,5 @@
 import { get, post } from 'api'
 import { BehaviorSubject } from 'rxjs'
-import history from 'utils/history'
 import { AuthInfo, AuthInfoNotLoggedIn } from './types'
 
 export const defaultAuthInfo: AuthInfoNotLoggedIn = {
@@ -48,7 +47,7 @@ export class AuthService {
 
     if (this.loginRedirectUrl != null) {
       console.log('redirect to ' + this.loginRedirectUrl)
-      history.push(this.loginRedirectUrl)
+      window.location.assign(this.loginRedirectUrl)
       this.loginRedirectUrl = null
     }
 

@@ -4,6 +4,7 @@ import { PageTitle } from 'modules/core/title/PageTitle'
 import UserLink from 'modules/users/UserLink'
 import { IndirectMemberInfo } from 'modules/users/UserPage'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import GroupLink from './GroupLink'
 import { GroupDetail, groupsService } from './GroupsService'
 
@@ -99,20 +100,10 @@ const Detail = ({ group }: { group: GroupDetail }) => (
   </>
 )
 
-interface GroupPageProps {
-  match: {
-    params: {
-      name: string
-    }
-  }
-}
+const GroupPage = () => {
+  const { name } = useParams()
 
-const GroupPage = ({
-  match: {
-    params: { name },
-  },
-}: GroupPageProps) => {
-  const group = useApiFetcher(() => groupsService.getGroup(name), [name])
+  const group = useApiFetcher(() => groupsService.getGroup(name!), [name])
   if (!group) {
     return <LoadingPage />
   }

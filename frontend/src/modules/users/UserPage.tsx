@@ -5,6 +5,7 @@ import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { usersService } from './UsersService'
 
 export const IndirectMemberInfo = ({
@@ -109,20 +110,10 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
   </>
 )
 
-interface UserPageProps {
-  match: {
-    params: {
-      name: string
-    }
-  }
-}
+const UserPage = () => {
+  const { name } = useParams()
 
-const UserPage = ({
-  match: {
-    params: { name },
-  },
-}: UserPageProps) => {
-  const user = useApiFetcher(() => usersService.getUser(name), [name])
+  const user = useApiFetcher(() => usersService.getUser(name!), [name])
   if (!user) {
     return <LoadingPage />
   }

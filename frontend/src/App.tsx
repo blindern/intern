@@ -14,8 +14,7 @@ import RegisterUserPage from 'modules/registeruser/RegisterUserPage'
 import UserListPage from 'modules/users/UserListPage'
 import UserPage from 'modules/users/UserPage'
 import React from 'react'
-import { Redirect, Route, Router } from 'react-router'
-import history from 'utils/history'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 const Todo = () => (
   <>
@@ -24,76 +23,66 @@ const Todo = () => (
   </>
 )
 
-const Routes = () => (
-  <>
-    <Route exact path='/' component={Home} />
+function ArrplanRedir() {
+  const d = new Date()
+  const sem =
+    (d.getMonth() >= 6 ? 'h' : 'v') + d.getFullYear().toString().substring(2, 4)
 
-    <Route
-      exact
-      path='/arrplan'
-      render={() => {
-        const d = new Date()
-        const sem =
-          (d.getMonth() >= 6 ? 'h' : 'v') +
-          d
-            .getFullYear()
-            .toString()
-            .substr(2, 2)
+  return <Navigate to={`/arrplan/${sem}`} />
+}
 
-        return <Redirect to={`/arrplan/${sem}`} />
-      }}
-    />
-    <Route exact path='/arrplan/:semester' component={ArrplanPage} />
+const RouteList = () => (
+  <Routes>
+    <Route path='/' element={<Home />} />
 
-    <Route exact path='/login' component={Login} />
-    <Route exact path='/registrer' component={RegisterUserPage} />
-    <Route exact path='/logout' component={Todo} />
+    <Route path='/arrplan' element={<ArrplanRedir />} />
+    <Route path='/arrplan/:semester' element={<ArrplanPage />} />
 
-    <Route exact path='/bokdatabase' component={Todo} />
-    <Route exact path='/books' component={Todo} />
-    <Route exact path='/books/register' component={Todo} />
-    <Route exact path='/books/:id' component={Todo} />
-    <Route exact path='/books/:id/edit' component={Todo} />
+    <Route path='/login' element={<Login />} />
+    <Route path='/registrer' element={<RegisterUserPage />} />
+    <Route path='/logout' element={<Todo />} />
 
-    <Route exact path='/bukker' component={Todo} />
-    <Route exact path='/bukker/:id' component={Todo} />
+    <Route path='/bokdatabase' element={<Todo />} />
+    <Route path='/books' element={<Todo />} />
+    <Route path='/books/register' element={<Todo />} />
+    <Route path='/books/:id' element={<Todo />} />
+    <Route path='/books/:id/edit' element={<Todo />} />
 
-    <Route
-      exact
-      path='/dugnaden/old/list'
-      component={DugnadsinnkallingerPage}
-    />
+    <Route path='/bukker' element={<Todo />} />
+    <Route path='/bukker/:id' element={<Todo />} />
 
-    <Route exact path='/googleapps' component={Todo} />
+    <Route path='/dugnaden/old/list' element={<DugnadsinnkallingerPage />} />
 
-    <Route exact path='/groups' component={GroupListPage} />
-    <Route exact path='/group/:name' component={GroupPage} />
+    <Route path='/googleapps' element={<Todo />} />
 
-    <Route exact path='/matmeny' component={Todo} />
+    <Route path='/groups' element={<GroupListPage />} />
+    <Route path='/group/:name' element={<GroupPage />} />
 
-    <Route exact path='/printer/siste' component={LastPrintsPage} />
-    <Route exact path='/printer/fakturere' component={Todo} />
+    <Route path='/matmeny' element={<Todo />} />
 
-    <Route exact path='/users' component={UserListPage} />
-    <Route exact path='/user/:name' component={UserPage} />
-  </>
+    <Route path='/printer/siste' element={<LastPrintsPage />} />
+    <Route path='/printer/fakturere' element={<Todo />} />
+
+    <Route path='/users' element={<UserListPage />} />
+    <Route path='/user/:name' element={<UserPage />} />
+  </Routes>
 )
 
 const App = () => (
-  <Router history={history}>
+  <BrowserRouter basename='/intern'>
     <FlashesProvider>
       <TitleProvider>
         <>
           <PageTitle title='Foreningen Blindern Studenterhjem' />
           <UserProvider>
             <Template>
-              <Routes />
+              <RouteList />
             </Template>
           </UserProvider>
         </>
       </TitleProvider>
     </FlashesProvider>
-  </Router>
+  </BrowserRouter>
 )
 
 export default App

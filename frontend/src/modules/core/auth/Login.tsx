@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import React, { useContext } from 'react'
-import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { authService } from '.'
 import { PageTitle } from '../title/PageTitle'
 import { AuthContext } from './UserProvider'
@@ -16,7 +15,7 @@ const Login = () => {
   const { isLoggedIn } = useContext(AuthContext)
 
   if (isLoggedIn) {
-    return <Redirect to='/' />
+    return <Navigate to='/' />
   }
 
   return (
