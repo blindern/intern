@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router-dom'
 import { authService } from '.'
-import { PageTitle } from '../title/PageTitle'
+import { useTitle } from '../title/PageTitle'
 import { AuthContext } from './UserProvider'
 
 interface FormValues {
@@ -12,6 +12,7 @@ interface FormValues {
 }
 
 const Login = () => {
+  useTitle('Logg inn')
   const { isLoggedIn } = useContext(AuthContext)
 
   const { handleSubmit, formState, register } = useForm<FormValues>({
@@ -33,7 +34,6 @@ const Login = () => {
 
   return (
     <>
-      <PageTitle title='Logg inn' />
       <p>
         For å logge inn her må du benytte foreningsbrukeren din. Det er den du
         også bruker på foreningens printer, wiki m.v.

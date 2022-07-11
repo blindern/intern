@@ -1,7 +1,7 @@
 import CommaSeparated from 'components/CommaSeparated'
 import { UserDetails } from 'modules/core/auth/types'
 import { AuthContext } from 'modules/core/auth/UserProvider'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
 import { useUserList } from 'modules/users/UsersService'
 import React, { useContext } from 'react'
@@ -53,7 +53,9 @@ const UserListSection = styled.div`
   }
 `
 
-const List = () => {
+const UserListPage = () => {
+  useTitle('Brukerliste')
+
   const { isFetching, isSuccess, data: userList } = useUserList()
   const { isLoggedIn } = useContext(AuthContext)
 
@@ -85,7 +87,6 @@ const List = () => {
 
   return (
     <>
-      <PageTitle title='Brukerliste' />
       <p>
         Denne brukerlisten kan ses av alle innloggede brukere. Totalt eksisterer
         det {userList.length} brukere i systemet.
@@ -138,15 +139,6 @@ const List = () => {
           </table>
         </UserListSection>
       ))}
-    </>
-  )
-}
-
-const UserListPage = () => {
-  return (
-    <>
-      <PageTitle title='Brukerliste' />
-      <List />
     </>
   )
 }

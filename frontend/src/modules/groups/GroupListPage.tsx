@@ -1,9 +1,11 @@
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import { useGroupList } from 'modules/groups/api'
 import React from 'react'
 import GroupLink from './GroupLink'
 
-const List = () => {
+const GroupListPage = () => {
+  useTitle('Grupper')
+
   const { isFetching, isSuccess, data } = useGroupList()
 
   if (isFetching) {
@@ -36,15 +38,6 @@ const List = () => {
         ))}
       </tbody>
     </table>
-  )
-}
-
-const GroupListPage = () => {
-  return (
-    <>
-      <PageTitle title='Grupper' />
-      <List />
-    </>
   )
 }
 

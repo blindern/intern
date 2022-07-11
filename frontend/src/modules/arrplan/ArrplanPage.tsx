@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import LoadingPage from 'components/LoadingPage'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
@@ -89,6 +89,8 @@ const List = ({
   semesterId: string
   list: EventItem[]
 }) => {
+  useTitle('Arrangementplan på Blindern Studenterhjem')
+
   const semesters = getSemesterList(list)
   const activeSemester = semesters.find((item) => item.id === semesterId)
 
@@ -108,8 +110,6 @@ const List = ({
 
   return (
     <>
-      <PageTitle title='Arrangementplan på Blindern Studenterhjem' />
-
       <ArrplanContainer>
         <ul className='nav nav-tabs' role='tablist'>
           {semesters.map((semester) => (

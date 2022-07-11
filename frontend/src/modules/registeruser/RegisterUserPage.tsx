@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message'
 import classNames from 'classnames'
 import { useYupValidationResolver } from 'modules/core/forms/validation'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import React, { ReactNode, useState } from 'react'
 import {
   FieldName,
@@ -257,9 +257,10 @@ const RegisterForm = () => {
   )
 }
 
-const RegisterUserPage = () => (
-  <>
-    <PageTitle title='Registrering for beboere/GB-ere' />
+const RegisterUserPage = () => {
+  useTitle('Registrering for beboere/GB-ere')
+
+  return (
     <div className='row'>
       <div className='col-md-6'>
         <p>
@@ -278,7 +279,7 @@ const RegisterUserPage = () => (
         <RegisterForm />
       </div>
     </div>
-  </>
-)
+  )
+}
 
 export default RegisterUserPage

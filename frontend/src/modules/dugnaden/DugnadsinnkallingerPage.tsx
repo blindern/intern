@@ -1,5 +1,5 @@
 import LoadingPage from 'components/LoadingPage'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { formatDate } from 'utils/dates'
@@ -86,6 +86,7 @@ const List = ({ list }: { list: DugnadDay[] }) => {
 }
 
 const DugnadsinnkallingerPage = () => {
+  useTitle('Dugnadsinnkallinger')
   const { isFetching, isSuccess, data } = useDugnadenList()
 
   if (isFetching) {
@@ -98,7 +99,6 @@ const DugnadsinnkallingerPage = () => {
 
   return (
     <>
-      <PageTitle title='Dugnadsinnkallinger' />
       {data.length === 0 && <p>Ingen dugnader ble funnet.</p>}
       {data.length > 0 && <List list={data} />}
     </>

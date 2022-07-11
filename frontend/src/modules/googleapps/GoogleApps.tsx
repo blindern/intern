@@ -1,12 +1,14 @@
 import { groupBy } from 'lodash'
 import { useIsMemberOf } from 'modules/core/auth/hooks'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import { AccountItem } from 'modules/googleapps/AccountItem'
 import { useGoogleAppsAccounts } from 'modules/googleapps/api'
 import { NewAccount } from 'modules/googleapps/NewAccount'
 import React, { useState } from 'react'
 
 export function GoogleAppsPage() {
+  useTitle('Google Apps')
+
   const canEdit = useIsMemberOf(['ukestyret'])
 
   const { isFetching, isSuccess, data: accounts } = useGoogleAppsAccounts()
@@ -17,7 +19,6 @@ export function GoogleAppsPage() {
 
   return (
     <>
-      <PageTitle title='Google Apps' />
       <p>
         Viser de ulike Google Apps-kontoene med hvilke foreningsbrukere som har
         tilgang. UKEstyret og administratorer kan redigere listen.

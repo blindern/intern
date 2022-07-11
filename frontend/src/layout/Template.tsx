@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { authService } from 'modules/core/auth'
 import { AuthContext } from 'modules/core/auth/UserProvider'
 import Flashes from 'modules/core/flashes/Flashes'
-import { useTitle } from 'modules/core/title/TitleProvider'
+import { useCurrentTitle } from 'modules/core/title/TitleProvider'
 import React, { ReactNode, useCallback, useContext } from 'react'
 import { Link, useMatch } from 'react-router-dom'
 import styled from 'styled-components'
@@ -64,7 +64,7 @@ const Footer = styled.div`
 
 const Template = ({ children }: { children: ReactNode }) => {
   const authdata = useContext(AuthContext)
-  const title = useTitle()
+  const title = useCurrentTitle()
   const logout = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 

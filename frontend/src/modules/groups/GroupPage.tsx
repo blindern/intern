@@ -1,5 +1,5 @@
 import LoadingPage from 'components/LoadingPage'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import UserLink from 'modules/users/UserLink'
 import { IndirectMemberInfo } from 'modules/users/UserPage'
 import React from 'react'
@@ -9,8 +9,6 @@ import GroupLink from './GroupLink'
 
 const Detail = ({ group }: { group: GroupDetail }) => (
   <>
-    <PageTitle title={`Gruppe: ${group.name}`} />
-
     <dl>
       <dt>Gruppenavn</dt>
       <dd>{group.name}</dd>
@@ -103,6 +101,9 @@ const GroupPage = () => {
   const { name } = useParams()
 
   const { isFetching, isSuccess, data: group } = useGroup(name!)
+
+  useTitle(group ? `Gruppe: ${group.name}` : 'Gruppe')
+
   if (isFetching) {
     return <LoadingPage />
   }

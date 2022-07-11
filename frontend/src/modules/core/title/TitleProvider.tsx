@@ -15,7 +15,7 @@ const defaultValue: ConsumerProps = {
   updateTitle: () => null,
 }
 
-export const useTitle = () => useContext(TitleContext).title
+export const useCurrentTitle = () => useContext(TitleContext).title
 
 export const TitleContext = createContext(defaultValue)
 

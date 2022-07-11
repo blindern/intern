@@ -1,7 +1,7 @@
 import CommaSeparated from 'components/CommaSeparated'
 import LoadingPage from 'components/LoadingPage'
 import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
 import { useUser } from 'modules/users/UsersService'
 import React from 'react'
@@ -42,7 +42,6 @@ export const IndirectMemberInfo = ({
 
 const Detail = ({ user }: { user: UserDetailsFull }) => (
   <>
-    <PageTitle title={user.realname || user.username} />
     <ul>
       <li>Brukernavn: {user.username}</li>
       <li>Navn: {user.realname}</li>
@@ -118,6 +117,8 @@ const UserPage = () => {
   const { name } = useParams()
 
   const { isFetching, isSuccess, data } = useUser(name!)
+
+  useTitle(data ? data.realname ?? data.username : 'Bruker')
 
   if (isFetching) {
     return <LoadingPage />

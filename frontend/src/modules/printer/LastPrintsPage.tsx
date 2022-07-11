@@ -1,11 +1,13 @@
 import LoadingPage from 'components/LoadingPage'
-import { PageTitle } from 'modules/core/title/PageTitle'
+import { useTitle } from 'modules/core/title/PageTitle'
 import UserLink from 'modules/users/UserLink'
 import React from 'react'
 import { formatDate } from 'utils/dates'
 import { usePrinterLastList } from './api'
 
 const LastPrintsPage = () => {
+  useTitle('Siste utskrifter')
+
   const { isFetching, isSuccess, data } = usePrinterLastList()
   if (isFetching) {
     return <LoadingPage />
@@ -17,7 +19,6 @@ const LastPrintsPage = () => {
 
   return (
     <>
-      <PageTitle title='Siste utskrifter' />
       {data.length === 0 ? (
         <p>Ingen utskrifter ble funnet.</p>
       ) : (
