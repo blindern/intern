@@ -1,10 +1,10 @@
-import { get } from 'api'
-import { useQuery } from 'react-query'
+import { get, post, upload } from 'api'
+import { useMutation, useQuery } from 'react-query'
 import moment from 'utils/moment'
 
 export interface MatmenyDay {
   day: string // YYYY-MM-DD
-  dishes: string[]
+  dishes: string[] | null
   text: string | null
 }
 
@@ -26,5 +26,36 @@ export function useMatmenyHomeData() {
         data: data.find((item) => item.day === tomorrow),
       },
     }
+  })
+}
+
+export function useMatmenyData(from: string, to: string) {
+  return useQuery(buildMatmenyDataKey(from, to), async () => {
+    const response = await get(
+      `matmeny?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`,
+    )
+    return (await response.json()) as MatmenyDay[]
+  })
+}
+
+export function buildMatmenyDataKey(from: string, to: string) {
+  return ['matmeny', 'list', { from, to }]
+}
+
+export function useUpdateMatmenyDaysMutation() {
+  return useMutation(async (days: MatmenyDay[]) => {
+    const response = await post('matmeny', {
+      days,
+    })
+    return (await response.json()) as MatmenyDay[]
+  })
+}
+
+export function useConvertMatmenyDocMutation() {
+  return useMutation(async (file: File) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    const response = await upload('matmeny/convert', formData)
+    return (await response.json()) as Record<number, string[]>
   })
 }

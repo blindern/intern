@@ -9,15 +9,15 @@ const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
   return (
     <>
       {data.dishes.join(', ')}
-      {data.text && <span style={{ color: '#FF0000' }}>({data.text})</span>}
+      {data.text && <span style={{ color: '#FF0000' }}> ({data.text})</span>}
     </>
   )
 }
 
 const MatmenyHomeBox = () => {
-  const { isFetching, isSuccess, data: matmeny } = useMatmenyHomeData()
+  const { data: matmeny } = useMatmenyHomeData()
 
-  if (isFetching || !isSuccess) {
+  if (!matmeny) {
     return null
   }
 

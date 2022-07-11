@@ -4,10 +4,14 @@
 
 FROM php:8.1-apache
 
+ENV LANG=C.UTF-8
+
 RUN \
     # system packages
     apt-get update \
     && apt-get install -y --no-install-recommends \
+      # antiword is used for matmeny.
+      antiword \
       curl \
       git \
       gosu \

@@ -26,7 +26,7 @@ class FileParser
         fclose($f);
 
         // convert
-        $text = utf8_encode(shell_exec("antiword -w 0 ".escapeshellarg($temp_file)));
+        $text = shell_exec("antiword -w 0 ".escapeshellarg($temp_file));
 
         // delete temp file
         unlink($temp_file);

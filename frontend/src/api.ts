@@ -108,3 +108,17 @@ export const delete_ = (path: string) =>
       'X-Requested-With': 'XMLHttpRequest',
     },
   })
+
+export const upload = (path: string, body: FormData) =>
+  doFetch(api(path), {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'include',
+    headers: {
+      'X-CSRF-TOKEN': authService.getUserDataObservable().value.csrfToken || '',
+      // we need to send this header so Larvel knows to send 401 and not 302
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+    body,
+  })

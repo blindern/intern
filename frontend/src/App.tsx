@@ -10,6 +10,7 @@ import { GoogleAppsPage } from 'modules/googleapps/GoogleApps'
 import GroupListPage from 'modules/groups/GroupListPage'
 import GroupPage from 'modules/groups/GroupPage'
 import Home from 'modules/home/Home'
+import { MatmenyPage } from 'modules/matmeny/MatmenyPage'
 import { PrinterInvoicingPage } from 'modules/printer/invoicing/PrinterInvoicingPage'
 import LastPrintsPage from 'modules/printer/LastPrintsPage'
 import RegisterUserPage from 'modules/registeruser/RegisterUserPage'
@@ -67,7 +68,7 @@ const RouteList = () => (
     <Route path='/groups' element={<GroupListPage />} />
     <Route path='/group/:name' element={<GroupPage />} />
 
-    <Route path='/matmeny' element={<Todo />} />
+    <Route path='/matmeny' element={<MatmenyPage />} />
 
     <Route path='/printer/siste' element={<LastPrintsPage />} />
     <Route path='/printer/fakturere' element={<PrinterInvoicingPage />} />
