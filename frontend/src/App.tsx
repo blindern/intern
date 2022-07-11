@@ -1,5 +1,7 @@
 import Template from 'layout/Template'
 import ArrplanPage from 'modules/arrplan/ArrplanPage'
+import { BukkListPage } from 'modules/bukker/BukkListPage'
+import { BukkPage } from 'modules/bukker/BukkPage'
 import Login from 'modules/core/auth/Login'
 import UserProvider from 'modules/core/auth/UserProvider'
 import FlashesProvider from 'modules/core/flashes/FlashesProvider'
@@ -58,8 +60,8 @@ const RouteList = () => (
     <Route path='/books/:id' element={<Todo />} />
     <Route path='/books/:id/edit' element={<Todo />} />
 
-    <Route path='/bukker' element={<Todo />} />
-    <Route path='/bukker/:id' element={<Todo />} />
+    <Route path='/bukker' element={<BukkListPage />} />
+    <Route path='/bukker/:id' element={<BukkPage />} />
 
     <Route path='/dugnaden/old/list' element={<DugnadsinnkallingerPage />} />
 
