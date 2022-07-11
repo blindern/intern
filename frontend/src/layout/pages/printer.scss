@@ -1,5 +1,9 @@
 /* For printer */
 .printerchart {
+  * {
+    font-size: 14px;
+  }
+
   .axis path,
   .axis line {
     fill: none;
@@ -8,5 +12,8 @@
   }
   .area {
     fill: steelblue;
+  }
+  .ytext {
+    fill: #000;
   }
 }

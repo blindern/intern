@@ -10,6 +10,7 @@ import { GoogleAppsPage } from 'modules/googleapps/GoogleApps'
 import GroupListPage from 'modules/groups/GroupListPage'
 import GroupPage from 'modules/groups/GroupPage'
 import Home from 'modules/home/Home'
+import { PrinterInvoicingPage } from 'modules/printer/invoicing/PrinterInvoicingPage'
 import LastPrintsPage from 'modules/printer/LastPrintsPage'
 import RegisterUserPage from 'modules/registeruser/RegisterUserPage'
 import UserListPage from 'modules/users/UserListPage'
@@ -69,7 +70,7 @@ const RouteList = () => (
     <Route path='/matmeny' element={<Todo />} />
 
     <Route path='/printer/siste' element={<LastPrintsPage />} />
-    <Route path='/printer/fakturere' element={<Todo />} />
+    <Route path='/printer/fakturere' element={<PrinterInvoicingPage />} />
 
     <Route path='/users' element={<UserListPage />} />
     <Route path='/user/:name' element={<UserPage />} />

@@ -1,5 +1,5 @@
 import moment from 'moment'
-import 'moment/locale/nb'
+import 'moment/dist/locale/nb'
 
 moment.locale('nb')
 
