@@ -38,6 +38,7 @@ import { ListUsersPage } from "modules/users/ListUsersPage"
 import { UserPage } from "modules/users/UserPage"
 import React from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
 import { Navigate, Route, Routes } from "react-router-dom"
 
 const history = createBrowserHistory()
@@ -120,6 +121,7 @@ export const App = () => (
       <ApiServiceProvider apiService={apiService}>
         <FlashesProvider flashesService={flashesService}>
           <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
             <LoggedOutHandler>
               <TitleProvider>
                 <>
