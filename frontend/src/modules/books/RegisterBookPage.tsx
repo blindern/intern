@@ -17,7 +17,7 @@ import {
 } from 'modules/books/fields'
 import { NoAuth } from 'modules/books/NoAuth'
 import { useAuthorization } from 'modules/core/auth/Authorization'
-import { flashesService } from 'modules/core/flashes'
+import { useFlashes } from 'modules/core/flashes/FlashesProvider'
 import { useTitle } from 'modules/core/title/PageTitle'
 import React, { useMemo } from 'react'
 import { FormProvider, useForm, useWatch } from 'react-hook-form'
@@ -25,6 +25,7 @@ import { useNavigate } from 'react-router-dom'
 import { bookUrl } from 'urls'
 
 function RegisterBook() {
+  const flashesService = useFlashes()
   const { mutateAsync } = useCreateBookMutation()
   const { mutateAsync: isbnMutateSync, isLoading: isbn_is_searching } =
     useSearchIsbnMutation()

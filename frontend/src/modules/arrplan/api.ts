@@ -1,4 +1,4 @@
-import { get } from 'api'
+import { useApiService } from 'modules/core/api/ApiServiceProvider'
 import { Moment } from 'moment'
 import { useQuery } from 'react-query'
 import moment from 'utils/moment'
@@ -32,15 +32,17 @@ export const getSemesterListFromEvent = (event: EventItem) => {
 }
 
 export function useArrplanList() {
+  const api = useApiService()
   return useQuery(['arrplan', 'list'], async () => {
-    const response = await get('arrplan?invalidate=1')
+    const response = await api.get('arrplan?invalidate=1')
     return (await response.json()) as EventItem[]
   })
 }
 
 export function useArrplanNext() {
+  const api = useApiService()
   return useQuery(['arrplan', 'next'], async () => {
-    const response = await get('arrplan/next?count=6')
+    const response = await api.get('arrplan/next?count=6')
     return (await response.json()) as EventItem[]
   })
 }

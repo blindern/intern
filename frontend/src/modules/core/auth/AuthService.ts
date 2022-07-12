@@ -1,4 +1,4 @@
-import { get, post } from 'api'
+import { ApiService } from 'modules/core/api/ApiService'
 import { BehaviorSubject } from 'rxjs'
 import { AuthInfo, AuthInfoNotLoggedIn } from './types'
 
@@ -13,6 +13,8 @@ export class AuthService {
   private authInfoSubject = new BehaviorSubject<AuthInfo>(defaultAuthInfo)
   private loginRedirectUrl: string | null = null
 
+  constructor(readonly api: ApiService) {}
+
   markLoggedOut() {
     this.authInfoSubject.next(defaultAuthInfo)
 
@@ -21,17 +23,17 @@ export class AuthService {
     void this.fetchAuthInfo()
   }
 
-  getUserDataObservable = () => this.authInfoSubject
+  getAuthInfoObservable = () => this.authInfoSubject
 
   async fetchAuthInfo() {
-    const response = await get('me')
+    const response = await this.api.get('me')
     const authInfo: AuthInfo = (await response.json()) as AuthInfo
 
     this.authInfoSubject.next(authInfo)
   }
 
   async login(username: string, password: string, rememberMe: boolean) {
-    const response = await post('login', {
+    const response = await this.api.post('login', {
       username,
       password,
       remember_me: rememberMe,
@@ -48,7 +50,6 @@ export class AuthService {
     this.authInfoSubject.next(data)
 
     if (this.loginRedirectUrl != null) {
-      console.log('redirect to ' + this.loginRedirectUrl)
       window.location.assign(this.loginRedirectUrl)
       this.loginRedirectUrl = null
     }
@@ -61,7 +62,7 @@ export class AuthService {
       return
     }
 
-    await post('logout')
+    await this.api.post('logout')
     this.markLoggedOut()
   }
 

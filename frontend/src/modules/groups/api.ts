@@ -1,4 +1,4 @@
-import { get } from 'api'
+import { useApiService } from 'modules/core/api/ApiServiceProvider'
 import { Group, UserDetails } from 'modules/core/auth/types'
 import { useQuery } from 'react-query'
 
@@ -22,15 +22,17 @@ export interface GroupDetail {
 }
 
 export function useGroupList() {
+  const api = useApiService()
   return useQuery(['group', 'list'], async () => {
-    const response = await get('group')
+    const response = await api.get('group')
     return (await response.json()) as Group[]
   })
 }
 
 export function useGroup(groupName: string) {
+  const api = useApiService()
   return useQuery(['group', 'item', groupName], async () => {
-    const response = await get('group/' + encodeURIComponent(groupName))
+    const response = await api.get('group/' + encodeURIComponent(groupName))
     return (await response.json()) as GroupDetail
   })
 }

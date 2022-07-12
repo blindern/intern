@@ -1,12 +1,12 @@
 import ArrplanHomeBox from 'modules/arrplan/ArrplanHomeBox'
-import { AuthContext } from 'modules/core/auth/UserProvider'
+import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
 import MatmenyHomeBox from 'modules/matmeny/MatmenyHomeBox'
 import UserLink from 'modules/users/UserLink'
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
-  const userdata = useContext(AuthContext)
+  const authInfo = useAuthInfo()
 
   return (
     <>
@@ -225,10 +225,10 @@ const Home = () => {
 
       <hr />
 
-      {userdata.isLoggedIn ? (
+      {authInfo.isLoggedIn ? (
         <p>
-          Du er innlogget som <UserLink username={userdata.user.username} /> (
-          {userdata.user.realname}).
+          Du er innlogget som <UserLink username={authInfo.user.username} /> (
+          {authInfo.user.realname}).
         </p>
       ) : (
         <p>

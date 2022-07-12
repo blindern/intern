@@ -6,7 +6,7 @@ export interface Flash {
   date: Date
 }
 
-type FlashType = 'danger' | null
+type FlashType = 'danger' | 'success'
 
 export interface FlashArgs {
   message: string

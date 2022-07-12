@@ -1,60 +1,52 @@
-import memoizeOne from 'memoize-one'
-import React, { createContext } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Subscription } from 'rxjs'
-import { flashesService } from '.'
-import { Flash, FlashArgs } from './FlahesService'
+import FlashesService, { Flash } from './FlahesService'
 
-interface ConsumerProps {
-  flashes: Flash[]
-  flash: (data: FlashArgs) => void
+export const FlashesContext = createContext<FlashesService | null>(null)
+
+export function useFlashes() {
+  const value = useContext(FlashesContext)
+  if (value == null) {
+    throw new Error('FlashesContext not provided')
+  }
+  return value
 }
 
-const defaultValue: ConsumerProps = {
-  flashes: [],
-  flash: () => null,
-}
+export function useFlashesList() {
+  const flashesService = useFlashes()
+  const subscriber = useRef<Subscription>()
+  const [flashes, setFlashes] = useState<Flash[]>([])
 
-export const FlashesContext = createContext(defaultValue)
+  useEffect(() => {
+    subscriber.current = flashesService
+      .getFlashesObservable()
+      .subscribe((flashes) => {
+        setFlashes(flashes)
+      })
+
+    return () => {
+      subscriber.current?.unsubscribe()
+    }
+  }, [flashesService])
+
+  return flashes
+}
 
 interface Props {
+  flashesService: FlashesService
   children: React.ReactNode
 }
 
-interface State {
-  flashes: Flash[]
-}
-
-export default class FlashesProvider extends React.Component<Props, State> {
-  subscriber?: Subscription
-
-  state = {
-    flashes: [],
-  }
-
-  componentDidMount() {
-    this.subscriber = flashesService
-      .getFlashesObservable()
-      .subscribe((flashes) => {
-        this.setState({
-          flashes,
-        })
-      })
-  }
-
-  componentWillUnmount() {
-    if (this.subscriber) this.subscriber.unsubscribe()
-  }
-
-  getValue = memoizeOne((state: State) => ({
-    flashes: state.flashes,
-    flash: (args: FlashArgs) => flashesService.addFlash(args),
-  }))
-
-  render() {
-    return (
-      <FlashesContext.Provider value={this.getValue(this.state)}>
-        {this.props.children}
-      </FlashesContext.Provider>
-    )
-  }
+export function FlashesProvider(props: Props) {
+  return (
+    <FlashesContext.Provider value={props.flashesService}>
+      {props.children}
+    </FlashesContext.Provider>
+  )
 }

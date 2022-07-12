@@ -1,10 +1,10 @@
 import CommaSeparated from 'components/CommaSeparated'
+import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
 import { UserDetails } from 'modules/core/auth/types'
-import { AuthContext } from 'modules/core/auth/UserProvider'
 import { useTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
-import { useUserList } from 'modules/users/UsersService'
-import React, { useContext } from 'react'
+import { useUserList } from 'modules/users/api'
+import React from 'react'
 import styled from 'styled-components'
 import UserLink from './UserLink'
 
@@ -56,12 +56,14 @@ const UserListSection = styled.div`
 const UserListPage = () => {
   useTitle('Brukerliste')
 
-  const { isFetching, isSuccess, data: userList } = useUserList()
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isFetching, isSuccess, error, data: userList } = useUserList()
+  const { isLoggedIn } = useAuthInfo()
 
   if (isFetching) {
     return <p>Laster brukerliste...</p>
   }
+
+  console.log(error)
 
   if (!isSuccess) {
     return <p>Noe gikk galt</p>

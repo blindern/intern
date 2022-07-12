@@ -1,6 +1,5 @@
+import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
 import { AuthInfo } from 'modules/core/auth/types'
-import { AuthContext } from 'modules/core/auth/UserProvider'
-import { useContext } from 'react'
 
 export function isMemberOf(
   auth: AuthInfo,
@@ -26,6 +25,6 @@ export function useIsMemberOf(
   candidateGroupNames: string[],
   forceRealMember?: boolean,
 ) {
-  const auth = useContext(AuthContext)
-  return isMemberOf(auth, candidateGroupNames, forceRealMember)
+  const authInfo = useAuthInfo()
+  return isMemberOf(authInfo, candidateGroupNames, forceRealMember)
 }

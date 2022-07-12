@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import styled, { keyframes } from 'styled-components'
 import { formatDate } from 'utils/dates'
-import { FlashesContext } from './FlashesProvider'
+import { useFlashesList } from './FlashesProvider'
 
 const animateIn = keyframes`
   from {
@@ -43,7 +43,7 @@ const MessageBox = styled.div`
 `
 
 const Flashes = () => {
-  const { flashes } = useContext(FlashesContext)
+  const flashes = useFlashesList()
 
   return (
     <TransitionGroup component={null}>

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import { useAuthService } from 'modules/core/auth/AuthServiceProvider'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router-dom'
-import { authService } from '.'
 import { useTitle } from '../title/PageTitle'
-import { AuthContext } from './UserProvider'
+import { useAuthInfo } from './AuthInfoProvider'
 
 interface FormValues {
   username: string
@@ -13,7 +13,8 @@ interface FormValues {
 
 const Login = () => {
   useTitle('Logg inn')
-  const { isLoggedIn } = useContext(AuthContext)
+  const authService = useAuthService()
+  const { isLoggedIn } = useAuthInfo()
 
   const { handleSubmit, formState, register } = useForm<FormValues>({
     defaultValues: {

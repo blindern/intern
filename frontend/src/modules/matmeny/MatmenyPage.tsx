@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { isEqual, keyBy } from 'lodash'
+import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
 import { useIsMemberOf } from 'modules/core/auth/hooks'
-import { AuthContext } from 'modules/core/auth/UserProvider'
 import { useTitle } from 'modules/core/title/PageTitle'
 import {
   buildMatmenyDataKey,
@@ -10,7 +10,7 @@ import {
   useUpdateMatmenyDaysMutation,
 } from 'modules/matmeny/api'
 import { FileUploader } from 'modules/matmeny/FileUploader'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { formatDate } from 'utils/dates'
 import moment from 'utils/moment'
@@ -331,9 +331,9 @@ export function MatmenyPage() {
   useTitle('Matmeny')
 
   const kollegiet = useIsMemberOf(['kollegiet'])
-  const auth = useContext(AuthContext)
+  const authInfo = useAuthInfo()
 
-  const access = auth.isOffice || kollegiet
+  const access = authInfo.isOffice || kollegiet
 
   return (
     <>

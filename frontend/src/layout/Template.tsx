@@ -1,9 +1,9 @@
 import classNames from 'classnames'
-import { authService } from 'modules/core/auth'
-import { AuthContext } from 'modules/core/auth/UserProvider'
+import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
+import { useAuthService } from 'modules/core/auth/AuthServiceProvider'
 import Flashes from 'modules/core/flashes/Flashes'
 import { useCurrentTitle } from 'modules/core/title/TitleProvider'
-import React, { ReactNode, useCallback, useContext } from 'react'
+import React, { ReactNode, useCallback } from 'react'
 import { Link, useMatch } from 'react-router-dom'
 import styled from 'styled-components'
 import './frontend.scss'
@@ -63,7 +63,8 @@ const Footer = styled.div`
 `
 
 const Template = ({ children }: { children: ReactNode }) => {
-  const authdata = useContext(AuthContext)
+  const authInfo = useAuthInfo()
+  const authService = useAuthService()
   const title = useCurrentTitle()
   const logout = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -130,17 +131,17 @@ const Template = ({ children }: { children: ReactNode }) => {
                 </li>
               </ul>
               <ul className='nav navbar-nav navbar-right'>
-                {authdata.isLoggedIn ? (
+                {authInfo.isLoggedIn ? (
                   <li className='dropdown'>
                     <a
                       href=''
                       className='dropdown-toggle'
                       data-toggle='dropdown'
                     >
-                      {authdata.user.username} <b className='caret' />
+                      {authInfo.user.username} <b className='caret' />
                     </a>
                     <ul className='dropdown-menu'>
-                      <MenuLink to={`/user/${authdata.user.username}`}>
+                      <MenuLink to={`/user/${authInfo.user.username}`}>
                         Brukerinfo
                       </MenuLink>
                       <li>

@@ -1,4 +1,4 @@
-import { get } from 'api'
+import { useApiService } from 'modules/core/api/ApiServiceProvider'
 import { useQuery } from 'react-query'
 
 export interface DugnadDay {
@@ -18,8 +18,9 @@ export interface DugnadPerson {
 }
 
 export function useDugnadenList() {
+  const api = useApiService()
   return useQuery(['dugnaden', 'old', 'list'], async () => {
-    const response = await get('dugnaden/old')
+    const response = await api.get('dugnaden/old')
     return (await response.json()) as DugnadDay[]
   })
 }

@@ -1,4 +1,4 @@
-import { delete_, get, post, put } from 'api'
+import { useApiService } from 'modules/core/api/ApiServiceProvider'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 export interface CreateAccountPayload {
@@ -36,18 +36,20 @@ export interface CreateAccountUserPayload {
 const listQueryKey = ['googleapps', 'accounts', 'list']
 
 export function useGoogleAppsAccounts() {
+  const api = useApiService()
   return useQuery(listQueryKey, async () => {
-    const response = await get('googleapps/accounts?expand=1')
+    const response = await api.get('googleapps/accounts?expand=1')
     return (await response.json()) as Account[]
   })
 }
 
 export function useGoogleAppsCreateAccountMutation() {
+  const api = useApiService()
   const queryClient = useQueryClient()
 
   return useMutation(
     async (data: CreateAccountPayload) => {
-      const response = await post('googleapps/accounts', data)
+      const response = await api.post('googleapps/accounts', data)
       return (await response.json()) as Account
     },
     {
@@ -59,11 +61,12 @@ export function useGoogleAppsCreateAccountMutation() {
 }
 
 export function useGoogleAppsUpdateAccountMutation() {
+  const api = useApiService()
   const queryClient = useQueryClient()
 
   return useMutation(
     async (data: Account) => {
-      const response = await put(
+      const response = await api.put(
         'googleapps/accounts/' + encodeURIComponent(data._id),
         data,
       )
@@ -78,11 +81,12 @@ export function useGoogleAppsUpdateAccountMutation() {
 }
 
 export function useGoogleAppsDeleteAccountMutation() {
+  const api = useApiService()
   const queryClient = useQueryClient()
 
   return useMutation(
     async (data: Account) => {
-      const response = await delete_(
+      const response = await api.delete(
         'googleapps/accounts/' + encodeURIComponent(data._id),
       )
       if (!response.ok) {
@@ -99,11 +103,12 @@ export function useGoogleAppsDeleteAccountMutation() {
 }
 
 export function useGoogleAppsCreateAccountUserMutation() {
+  const api = useApiService()
   const queryClient = useQueryClient()
 
   return useMutation(
     async (data: CreateAccountUserPayload) => {
-      const response = await post('googleapps/accountusers', data)
+      const response = await api.post('googleapps/accountusers', data)
       return (await response.json()) as AccountUser
     },
     {
@@ -115,11 +120,12 @@ export function useGoogleAppsCreateAccountUserMutation() {
 }
 
 export function useGoogleAppsUpdateAccountUserMutation() {
+  const api = useApiService()
   const queryClient = useQueryClient()
 
   return useMutation(
     async (data: AccountUser) => {
-      const response = await put(
+      const response = await api.put(
         'googleapps/accountusers/' + encodeURIComponent(data._id),
         data,
       )
@@ -134,11 +140,12 @@ export function useGoogleAppsUpdateAccountUserMutation() {
 }
 
 export function useGoogleAppsDeleteAccountUserMutation() {
+  const api = useApiService()
   const queryClient = useQueryClient()
 
   return useMutation(
     async (data: AccountUser) => {
-      const response = await delete_(
+      const response = await api.delete(
         'googleapps/accountusers/' + encodeURIComponent(data._id),
       )
       if (!response.ok) {

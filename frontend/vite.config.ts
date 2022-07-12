@@ -6,7 +6,6 @@ export default defineConfig({
   base: '/intern/',
   resolve: {
     alias: [
-      { find: 'api', replacement: path.resolve(__dirname, './src/api') },
       {
         find: 'components',
         replacement: path.resolve(__dirname, './src/components'),

@@ -3,7 +3,7 @@ import LoadingPage from 'components/LoadingPage'
 import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types'
 import { useTitle } from 'modules/core/title/PageTitle'
 import GroupLink from 'modules/groups/GroupLink'
-import { useUser } from 'modules/users/UsersService'
+import { useUser } from 'modules/users/api'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 

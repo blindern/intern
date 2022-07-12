@@ -1,3 +1,4 @@
+import { createBrowserHistory } from 'history'
 import Template from 'layout/Template'
 import ArrplanPage from 'modules/arrplan/ArrplanPage'
 import { BookPage } from 'modules/books/BookPage'
@@ -6,9 +7,16 @@ import { ListBooksPage } from 'modules/books/ListBooksPage'
 import { RegisterBookPage } from 'modules/books/RegisterBookPage'
 import { BukkListPage } from 'modules/bukker/BukkListPage'
 import { BukkPage } from 'modules/bukker/BukkPage'
+import { ApiService } from 'modules/core/api/ApiService'
+import { ApiServiceProvider } from 'modules/core/api/ApiServiceProvider'
+import { ResponseError } from 'modules/core/api/errors'
+import { AuthInfoProvider } from 'modules/core/auth/AuthInfoProvider'
+import { AuthService } from 'modules/core/auth/AuthService'
+import { AuthServiceProvider } from 'modules/core/auth/AuthServiceProvider'
 import Login from 'modules/core/auth/Login'
-import UserProvider from 'modules/core/auth/UserProvider'
-import FlashesProvider from 'modules/core/flashes/FlashesProvider'
+import FlashesService from 'modules/core/flashes/FlahesService'
+import { FlashesProvider } from 'modules/core/flashes/FlashesProvider'
+import { CustomRouter } from 'modules/core/routing/CustomRouter'
 import { PageTitle } from 'modules/core/title/PageTitle'
 import TitleProvider from 'modules/core/title/TitleProvider'
 import DugnadsinnkallingerPage from 'modules/dugnaden/DugnadsinnkallingerPage'
@@ -24,13 +32,34 @@ import UserListPage from 'modules/users/UserListPage'
 import UserPage from 'modules/users/UserPage'
 import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
-// TODO: Handle 401 responses
-// if (e instanceof NotAuthedError) {
-//   authService.setLoginRedirectUrl(location.pathname)
-//   navigate('/login')
-const queryClient = new QueryClient()
+const history = createBrowserHistory()
+
+const flashesService = new FlashesService()
+const apiService = new ApiService(flashesService, history)
+const authService = new AuthService(apiService)
+apiService.setAuthService(authService)
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      async onError(error) {
+        if (error instanceof ResponseError) {
+          await apiService.handleErrors2(error)
+        }
+      },
+    },
+    queries: {
+      async onError(error) {
+        console.log('got error', error)
+        if (error instanceof ResponseError) {
+          await apiService.handleErrors2(error)
+        }
+      },
+    },
+  },
+})
 
 const Todo = () => (
   <>
@@ -85,22 +114,26 @@ const RouteList = () => (
 )
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter basename='/intern'>
-      <FlashesProvider>
-        <TitleProvider>
-          <>
-            <PageTitle title='Foreningen Blindern Studenterhjem' />
-            <UserProvider>
-              <Template>
-                <RouteList />
-              </Template>
-            </UserProvider>
-          </>
-        </TitleProvider>
-      </FlashesProvider>
-    </BrowserRouter>
-  </QueryClientProvider>
+  <CustomRouter history={history} basename='/intern'>
+    <AuthServiceProvider authService={authService}>
+      <ApiServiceProvider apiService={apiService}>
+        <FlashesProvider flashesService={flashesService}>
+          <QueryClientProvider client={queryClient}>
+            <TitleProvider>
+              <>
+                <PageTitle title='Foreningen Blindern Studenterhjem' />
+                <AuthInfoProvider>
+                  <Template>
+                    <RouteList />
+                  </Template>
+                </AuthInfoProvider>
+              </>
+            </TitleProvider>
+          </QueryClientProvider>
+        </FlashesProvider>
+      </ApiServiceProvider>{' '}
+    </AuthServiceProvider>
+  </CustomRouter>
 )
 
 export default App
