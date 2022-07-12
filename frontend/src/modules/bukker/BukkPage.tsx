@@ -36,6 +36,8 @@ export function BukkPage() {
 
   return (
     <div className="bukker-bukk">
+      <PageTitle title={bukk.name} />
+
       {bukk.died && (
         <div className="died">Død{bukk.died !== true && <> {bukk.died}</>}</div>
       )}
