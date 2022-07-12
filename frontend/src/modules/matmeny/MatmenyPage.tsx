@@ -187,10 +187,13 @@ function MatmenyAdmin() {
     })
 
     void mutateAsync(days).then((response) => {
-      const savedDays = response.map((it) => it.day)
+      // Note that days that is emptied will not be part
+      // of the list reponse (the day is deleted).
+
+      const savedDays = days.map((it) => it.day)
 
       queryClient.setQueryData(buildMatmenyDataKey(firstDate, lastDate), [
-        ...(data ?? []).filter((it) => savedDays.includes(it.day)),
+        ...(data ?? []).filter((it) => !savedDays.includes(it.day)),
         ...response,
       ])
 
