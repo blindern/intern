@@ -11,7 +11,7 @@ interface FormValues {
   rememberMe: boolean
 }
 
-const LoginPage = () => {
+export const LoginPage = () => {
   useTitle('Logg inn')
   const authService = useAuthService()
   const { isLoggedIn } = useAuthInfo()
@@ -107,5 +107,3 @@ const LoginPage = () => {
     </>
   )
 }
-
-export default LoginPage

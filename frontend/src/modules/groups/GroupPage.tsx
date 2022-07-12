@@ -1,11 +1,11 @@
-import LoadingPage from 'components/LoadingPage'
+import { LoadingPage } from 'components/LoadingPage'
 import { useTitle } from 'modules/core/title/PageTitle'
-import UserLink from 'modules/users/UserLink'
+import { UserLink } from 'modules/users/UserLink'
 import { IndirectMemberInfo } from 'modules/users/UserPage'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { GroupDetail, useGroup } from './api'
-import GroupLink from './GroupLink'
+import { GroupLink } from './GroupLink'
 
 const Detail = ({ group }: { group: GroupDetail }) => (
   <>

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import LoadingPage from 'components/LoadingPage'
+import { LoadingPage } from 'components/LoadingPage'
 import { useTitle } from 'modules/core/title/PageTitle'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'

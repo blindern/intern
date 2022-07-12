@@ -13,7 +13,7 @@ export interface FlashArgs {
   type?: FlashType
 }
 
-export default class FlashesService {
+export class FlashesService {
   flashesSubject = new BehaviorSubject<Flash[]>([])
   getFlashesObservable = () => this.flashesSubject
 

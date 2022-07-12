@@ -1,7 +1,7 @@
 import { useTitle } from 'modules/core/title/PageTitle'
 import { useGroupList } from 'modules/groups/api'
 import React from 'react'
-import GroupLink from './GroupLink'
+import { GroupLink } from './GroupLink'
 
 export const ListGroupsPage = () => {
   useTitle('Grupper')

@@ -1,11 +1,11 @@
-import ArrplanHomeBox from 'modules/arrplan/ArrplanHomeBox'
+import { ArrplanHomeBox } from 'modules/arrplan/ArrplanHomeBox'
 import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
-import MatmenyHomeBox from 'modules/matmeny/MatmenyHomeBox'
-import UserLink from 'modules/users/UserLink'
+import { MatmenyHomeBox } from 'modules/matmeny/MatmenyHomeBox'
+import { UserLink } from 'modules/users/UserLink'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Home = () => {
+export const HomePage = () => {
   const authInfo = useAuthInfo()
 
   return (
@@ -239,5 +239,3 @@ const Home = () => {
     </>
   )
 }
-
-export default Home

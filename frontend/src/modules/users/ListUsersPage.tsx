@@ -1,12 +1,12 @@
-import CommaSeparated from 'components/CommaSeparated'
+import { CommaSeparated } from 'components/CommaSeparated'
 import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
 import { UserDetails } from 'modules/core/auth/types'
 import { useTitle } from 'modules/core/title/PageTitle'
-import GroupLink from 'modules/groups/GroupLink'
+import { GroupLink } from 'modules/groups/GroupLink'
 import { useUserList } from 'modules/users/api'
 import React from 'react'
 import styled from 'styled-components'
-import UserLink from './UserLink'
+import { UserLink } from './UserLink'
 
 interface UserSections {
   beboere: UserDetails[]
@@ -53,7 +53,7 @@ const UserListSection = styled.div`
   }
 `
 
-const ListUsersPage = () => {
+export const ListUsersPage = () => {
   useTitle('Brukerliste')
 
   const { isFetching, isSuccess, error, data: userList } = useUserList()
@@ -144,5 +144,3 @@ const ListUsersPage = () => {
     </>
   )
 }
-
-export default ListUsersPage

@@ -1,4 +1,4 @@
-import LoadingPage from 'components/LoadingPage'
+import { LoadingPage } from 'components/LoadingPage'
 import { useTitle } from 'modules/core/title/PageTitle'
 import React, { useState } from 'react'
 import styled from 'styled-components'
@@ -85,7 +85,7 @@ const List = ({ list }: { list: DugnadDay[] }) => {
   )
 }
 
-const DugnadsinnkallingerPage = () => {
+export const DugnadsinnkallingerPage = () => {
   useTitle('Dugnadsinnkallinger')
   const { isFetching, isSuccess, data } = useDugnadenList()
 
@@ -104,5 +104,3 @@ const DugnadsinnkallingerPage = () => {
     </>
   )
 }
-
-export default DugnadsinnkallingerPage

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
 import { useAuthService } from 'modules/core/auth/AuthServiceProvider'
-import Flashes from 'modules/core/flashes/Flashes'
+import { Flashes } from 'modules/core/flashes/Flashes'
 import { useCurrentTitle } from 'modules/core/title/TitleProvider'
 import React, { ReactNode, useCallback } from 'react'
 import { Link, useMatch } from 'react-router-dom'
@@ -62,7 +62,7 @@ const Footer = styled.div`
   background-color: #f5f5f5;
 `
 
-const Template = ({ children }: { children: ReactNode }) => {
+export const Template = ({ children }: { children: ReactNode }) => {
   const authInfo = useAuthInfo()
   const authService = useAuthService()
   const title = useCurrentTitle()
@@ -188,5 +188,3 @@ const Template = ({ children }: { children: ReactNode }) => {
     </>
   )
 }
-
-export default Template

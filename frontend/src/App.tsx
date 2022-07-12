@@ -1,5 +1,5 @@
 import { createBrowserHistory } from 'history'
-import Template from 'layout/Template'
+import { Template } from 'layout/Template'
 import { ArrplanPage } from 'modules/arrplan/ArrplanPage'
 import { BookPage } from 'modules/books/BookPage'
 import { EditBookPage } from 'modules/books/EditBookPage'
@@ -13,23 +13,23 @@ import { ResponseError } from 'modules/core/api/errors'
 import { AuthInfoProvider } from 'modules/core/auth/AuthInfoProvider'
 import { AuthService } from 'modules/core/auth/AuthService'
 import { AuthServiceProvider } from 'modules/core/auth/AuthServiceProvider'
-import LoginPage from 'modules/core/auth/LoginPage'
-import FlashesService from 'modules/core/flashes/FlahesService'
+import { LoginPage } from 'modules/core/auth/LoginPage'
+import { FlashesService } from 'modules/core/flashes/FlahesService'
 import { FlashesProvider } from 'modules/core/flashes/FlashesProvider'
 import { CustomRouter } from 'modules/core/routing/CustomRouter'
 import { PageTitle } from 'modules/core/title/PageTitle'
-import TitleProvider from 'modules/core/title/TitleProvider'
-import DugnadsinnkallingerPage from 'modules/dugnaden/DugnadsinnkallingerPage'
+import { TitleProvider } from 'modules/core/title/TitleProvider'
+import { DugnadsinnkallingerPage } from 'modules/dugnaden/DugnadsinnkallingerPage'
 import { GoogleAppsPage } from 'modules/googleapps/GoogleAppsPage'
 import { GroupPage } from 'modules/groups/GroupPage'
 import { ListGroupsPage } from 'modules/groups/ListGroupsPage'
-import HomePage from 'modules/home/HomePage'
+import { HomePage } from 'modules/home/HomePage'
 import { MatmenyPage } from 'modules/matmeny/MatmenyPage'
 import { PrinterInvoicingPage } from 'modules/printer/invoicing/PrinterInvoicingPage'
-import LastPrintsPage from 'modules/printer/LastPrintsPage'
-import RegisterUserPage from 'modules/registeruser/RegisterUserPage'
-import ListUsersPage from 'modules/users/ListUsersPage'
-import UserPage from 'modules/users/UserPage'
+import { LastPrintsPage } from 'modules/printer/LastPrintsPage'
+import { RegisterUserPage } from 'modules/registeruser/RegisterUserPage'
+import { ListUsersPage } from 'modules/users/ListUsersPage'
+import { UserPage } from 'modules/users/UserPage'
 import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -105,7 +105,7 @@ const RouteList = () => (
   </Routes>
 )
 
-const App = () => (
+export const App = () => (
   <CustomRouter history={history} basename='/intern'>
     <AuthServiceProvider authService={authService}>
       <ApiServiceProvider apiService={apiService}>
@@ -127,5 +127,3 @@ const App = () => (
     </AuthServiceProvider>
   </CustomRouter>
 )
-
-export default App

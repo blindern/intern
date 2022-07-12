@@ -1,8 +1,8 @@
-import CommaSeparated from 'components/CommaSeparated'
-import LoadingPage from 'components/LoadingPage'
+import { CommaSeparated } from 'components/CommaSeparated'
+import { LoadingPage } from 'components/LoadingPage'
 import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types'
 import { useTitle } from 'modules/core/title/PageTitle'
-import GroupLink from 'modules/groups/GroupLink'
+import { GroupLink } from 'modules/groups/GroupLink'
 import { useUser } from 'modules/users/api'
 import React from 'react'
 import { useParams } from 'react-router-dom'
@@ -113,7 +113,7 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
   </>
 )
 
-const UserPage = () => {
+export const UserPage = () => {
   const { name } = useParams()
 
   const { isFetching, isSuccess, data } = useUser(name!)
@@ -130,5 +130,3 @@ const UserPage = () => {
 
   return <Detail user={data} />
 }
-
-export default UserPage

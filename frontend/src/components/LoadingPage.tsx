@@ -1,11 +1,9 @@
 import { PageTitle } from 'modules/core/title/PageTitle'
 import React from 'react'
 
-const LoadingPage = () => (
+export const LoadingPage = () => (
   <>
     <PageTitle title='Laster...' />
     <p>Laster informasjon..</p>
   </>
 )
-
-export default LoadingPage

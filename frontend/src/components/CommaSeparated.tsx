@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-const CommaSeparated = ({ children }: { children: ReactNode }) => (
+export const CommaSeparated = ({ children }: { children: ReactNode }) => (
   <>
     {React.Children.toArray(children).reduce<ReactNode[]>((acc, child, idx) => {
       if (acc.length > 0) {
@@ -11,5 +11,3 @@ const CommaSeparated = ({ children }: { children: ReactNode }) => (
     }, [])}
   </>
 )
-
-export default CommaSeparated

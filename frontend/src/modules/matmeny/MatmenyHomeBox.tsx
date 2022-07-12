@@ -14,7 +14,7 @@ const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
   )
 }
 
-const MatmenyHomeBox = () => {
+export const MatmenyHomeBox = () => {
   const { data: matmeny } = useMatmenyHomeData()
 
   if (!matmeny) {
@@ -41,5 +41,3 @@ const MatmenyHomeBox = () => {
     </Link>
   )
 }
-
-export default MatmenyHomeBox

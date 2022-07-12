@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useArrplanNext } from './api'
 
-const ArrplanHomeBox = () => {
+export const ArrplanHomeBox = () => {
   const { isFetching, isSuccess, data: arrplan } = useArrplanNext()
 
   return (
@@ -35,5 +35,3 @@ const ArrplanHomeBox = () => {
     </Link>
   )
 }
-
-export default ArrplanHomeBox

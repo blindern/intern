@@ -9,7 +9,7 @@ import {
 } from 'modules/core/api/errors'
 import { api } from 'modules/core/api/utils'
 import { AuthService } from 'modules/core/auth/AuthService'
-import FlashesService from 'modules/core/flashes/FlahesService'
+import { FlashesService } from 'modules/core/flashes/FlahesService'
 
 interface MessagesInError {
   messages: {

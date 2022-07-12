@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 import { Subscription } from 'rxjs'
-import FlashesService, { Flash } from './FlahesService'
+import { Flash, FlashesService } from './FlahesService'
 
 export const FlashesContext = createContext<FlashesService | null>(null)
 

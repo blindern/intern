@@ -42,7 +42,7 @@ const MessageBox = styled.div`
   padding: 15px;
 `
 
-const Flashes = () => {
+export const Flashes = () => {
   const flashes = useFlashesList()
 
   return (
@@ -59,5 +59,3 @@ const Flashes = () => {
     </TransitionGroup>
   )
 }
-
-export default Flashes

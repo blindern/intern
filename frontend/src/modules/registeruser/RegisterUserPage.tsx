@@ -257,7 +257,7 @@ const RegisterForm = () => {
   )
 }
 
-const RegisterUserPage = () => {
+export const RegisterUserPage = () => {
   useTitle('Registrering for beboere/GB-ere')
 
   return (
@@ -281,5 +281,3 @@ const RegisterUserPage = () => {
     </div>
   )
 }
-
-export default RegisterUserPage

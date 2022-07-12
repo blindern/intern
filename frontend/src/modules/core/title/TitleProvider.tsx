@@ -23,7 +23,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export default class TitleProvider extends React.Component<Props> {
+export class TitleProvider extends React.Component<Props> {
   components: Array<{ comp: symbol; value: string }> = []
   state = {
     title: defaultValue.title,

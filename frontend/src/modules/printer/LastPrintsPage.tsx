@@ -1,11 +1,11 @@
-import LoadingPage from 'components/LoadingPage'
+import { LoadingPage } from 'components/LoadingPage'
 import { useTitle } from 'modules/core/title/PageTitle'
-import UserLink from 'modules/users/UserLink'
+import { UserLink } from 'modules/users/UserLink'
 import React from 'react'
 import { formatDate } from 'utils/dates'
 import { usePrinterLastList } from './api'
 
-const LastPrintsPage = () => {
+export const LastPrintsPage = () => {
   useTitle('Siste utskrifter')
 
   const { isFetching, isSuccess, data } = usePrinterLastList()
@@ -50,5 +50,3 @@ const LastPrintsPage = () => {
     </>
   )
 }
-
-export default LastPrintsPage
