@@ -5,12 +5,12 @@ import { Link } from "react-router-dom"
 import { formatDate } from "utils/dates"
 import { MatmenyDay, useMatmenyHomeData } from "./api"
 
-const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
+const MatmenyDayItem = ({ data }: { data?: MatmenyDay }) => {
   if (!data) return <>Ukjent</>
 
   return (
     <>
-      {data.dishes.join(", ")}
+      {(data.dishes ?? []).join(", ")}
       {data.text && <span style={{ color: "#FF0000" }}> ({data.text})</span>}
     </>
   )
@@ -31,11 +31,11 @@ export const MatmenyHomeBox = () => {
           <p className="day">
             <b>Dagens matrett</b> ({formatDate(matmeny.today.date, "dddd")}):
             <br />
-            <MatmenyDay data={matmeny.today.data} />
+            <MatmenyDayItem data={matmeny.today.data} />
           </p>
           <p>
             I morgen, {formatDate(matmeny.tomorrow.date, "dddd")}:<br />
-            <MatmenyDay data={matmeny.tomorrow.data} />
+            <MatmenyDayItem data={matmeny.tomorrow.data} />
           </p>
         </>
       )}
