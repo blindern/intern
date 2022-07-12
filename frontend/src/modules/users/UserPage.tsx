@@ -1,11 +1,14 @@
 import { CommaSeparated } from "components/CommaSeparated"
+import { ErrorPage } from "components/ErrorPage"
 import { LoadingPage } from "components/LoadingPage"
+import { NotFoundError } from "modules/core/api/errors"
 import { Group, UserDetails, UserDetailsFull } from "modules/core/auth/types"
-import { useTitle } from "modules/core/title/PageTitle"
+import { PageTitle } from "modules/core/title/PageTitle"
 import { GroupLink } from "modules/groups/GroupLink"
 import { useUser } from "modules/users/api"
 import React from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import { listUsersUrl } from "urls"
 
 export const IndirectMemberInfo = ({
   user,
@@ -42,6 +45,8 @@ export const IndirectMemberInfo = ({
 
 const Detail = ({ user }: { user: UserDetailsFull }) => (
   <>
+    <PageTitle title={user.realname ?? user.username} />
+
     <ul>
       <li>Brukernavn: {user.username}</li>
       <li>Navn: {user.realname}</li>
@@ -116,16 +121,26 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
 export const UserPage = () => {
   const { name } = useParams()
 
-  const { isFetching, isSuccess, data } = useUser(name!)
+  const { isLoading, isError, error, data } = useUser(name!)
 
-  useTitle(data ? data.realname ?? data.username : "Bruker")
-
-  if (isFetching) {
-    return <LoadingPage />
+  if (error instanceof NotFoundError) {
+    return (
+      <>
+        <PageTitle title="Ukjent bruker" />
+        <p>Brukeren er ikke registrert</p>
+        <p>
+          <Link to={listUsersUrl()}>Til oversikten</Link>
+        </p>
+      </>
+    )
   }
 
-  if (!isSuccess) {
-    return <p>Noe gikk galt</p>
+  if (isLoading) {
+    return <LoadingPage title="Laster bruker ..." />
+  }
+
+  if (isError && data == null) {
+    return <ErrorPage error={error} title="Feil ved lasting av bruker" />
   }
 
   return <Detail user={data} />

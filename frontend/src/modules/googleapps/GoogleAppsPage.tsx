@@ -1,3 +1,5 @@
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { groupBy } from "lodash"
 import { useIsMemberOf } from "modules/core/auth/hooks"
 import { useTitle } from "modules/core/title/PageTitle"
@@ -11,7 +13,7 @@ export function GoogleAppsPage() {
 
   const canEdit = useIsMemberOf(["ukestyret"])
 
-  const { isFetching, isSuccess, data: accounts } = useGoogleAppsAccounts()
+  const { isLoading, isError, error, data: accounts } = useGoogleAppsAccounts()
 
   const [isEditing, setEditing] = useState(false)
 
@@ -24,10 +26,10 @@ export function GoogleAppsPage() {
         tilgang. UKEstyret og administratorer kan redigere listen.
       </p>
 
-      {isFetching && accounts === undefined ? (
-        <p>Henter liste...</p>
-      ) : !isSuccess ? (
-        <p>Feil ved henting av liste...</p>
+      {isLoading ? (
+        <Loading />
+      ) : isError && !accounts ? (
+        <ErrorMessages error={error} />
       ) : (
         <>
           {canEdit && (

@@ -1,4 +1,7 @@
+import { ErrorPage } from "components/ErrorPage"
+import { LoadingPage } from "components/LoadingPage"
 import { Book, useBook, useUpdateBookMutation } from "modules/books/api"
+import { BookNotFoundPage } from "modules/books/BookNotFoundPage"
 import {
   AuthorsField,
   BibCommentField,
@@ -11,15 +14,16 @@ import {
   TitleField,
 } from "modules/books/fields"
 import { NoAuth } from "modules/books/NoAuth"
-import { bookTitle } from "modules/books/utils"
+import { NotFoundError } from "modules/core/api/errors"
 import { useAuthorization } from "modules/core/auth/Authorization"
-import { useTitle } from "modules/core/title/PageTitle"
 import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { bookUrl } from "urls"
 
-function EditBook({ book }: { book: Book }) {
+function EditBook({ id }: { id: string }) {
+  const { isLoading, isError, error, data: book } = useBook(id)
+
   const { mutateAsync } = useUpdateBookMutation()
   const navigate = useNavigate()
 
@@ -27,9 +31,21 @@ function EditBook({ book }: { book: Book }) {
     defaultValues: book,
   })
 
+  if (error instanceof NotFoundError) {
+    return <BookNotFoundPage />
+  }
+
+  if (isLoading) {
+    return <LoadingPage title="Laster bok ..." />
+  }
+
+  if (isError && book == null) {
+    return <ErrorPage error={error} title="Feil ved lasting av bok" />
+  }
+
   function onSubmit(values: Book) {
     void mutateAsync(values).then(() => {
-      navigate(bookUrl(book._id))
+      navigate(bookUrl(book!._id))
     })
   }
 
@@ -67,28 +83,11 @@ function EditBook({ book }: { book: Book }) {
 
 export function EditBookPage() {
   const { id } = useParams()
-  const { isFetching, data: book } = useBook(id!)
   const { bookAdmin } = useAuthorization()
-
-  useTitle(
-    book
-      ? bookTitle(book)
-      : isFetching
-      ? "Laster bok ..."
-      : "Feil ved lasting av bok",
-  )
 
   if (!bookAdmin) {
     return <NoAuth />
   }
 
-  if (!book && isFetching) {
-    return <p>Laster bok ...</p>
-  }
-
-  if (!book) {
-    return <p>Feil ved henting av data</p>
-  }
-
-  return <EditBook book={book} />
+  return <EditBook id={id!} />
 }

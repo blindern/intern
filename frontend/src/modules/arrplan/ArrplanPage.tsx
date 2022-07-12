@@ -1,5 +1,6 @@
 import classNames from "classnames"
-import { LoadingPage } from "components/LoadingPage"
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { useTitle } from "modules/core/title/PageTitle"
 import React from "react"
 import { Link, useParams } from "react-router-dom"
@@ -89,8 +90,6 @@ const List = ({
   semesterId: string
   list: EventItem[]
 }) => {
-  useTitle("Arrangementplan på Blindern Studenterhjem")
-
   const semesters = getSemesterList(list)
   const activeSemester = semesters.find((item) => item.id === semesterId)
 
@@ -215,14 +214,17 @@ const List = ({
 
 export const ArrplanPage = () => {
   const { semester } = useParams()
+  const { isLoading, isError, error, data } = useArrplanList()
 
-  const { isFetching, isSuccess, data } = useArrplanList()
+  useTitle("Arrangementplan på Blindern Studenterhjem")
 
-  if (isFetching) {
-    return <LoadingPage />
+  if (isLoading) {
+    return <Loading />
   }
 
-  // TODO: show error instead of empty list
+  if (isError && data == null) {
+    return <ErrorMessages error={error} />
+  }
 
-  return <List semesterId={semester!} list={isSuccess ? data : []} />
+  return <List semesterId={semester!} list={data} />
 }

@@ -1,4 +1,5 @@
-import { LoadingPage } from "components/LoadingPage"
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { useTitle } from "modules/core/title/PageTitle"
 import { UserLink } from "modules/users/UserLink"
 import React from "react"
@@ -8,13 +9,14 @@ import { usePrinterLastList } from "./api"
 export const LastPrintsPage = () => {
   useTitle("Siste utskrifter")
 
-  const { isFetching, isSuccess, data } = usePrinterLastList()
-  if (isFetching) {
-    return <LoadingPage />
+  const { isLoading, isError, error, data } = usePrinterLastList()
+
+  if (isLoading) {
+    return <Loading />
   }
 
-  if (!isSuccess) {
-    return <p>Failed</p>
+  if (isError && data == null) {
+    return <ErrorMessages error={error} />
   }
 
   return (

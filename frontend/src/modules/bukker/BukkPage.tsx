@@ -1,21 +1,35 @@
+import { ErrorPage } from "components/ErrorPage"
+import { LoadingPage } from "components/LoadingPage"
 import { orderBy } from "lodash"
 import { useBukk } from "modules/bukker/api"
-import { useTitle } from "modules/core/title/PageTitle"
+import { NotFoundError } from "modules/core/api/errors"
+import { PageTitle } from "modules/core/title/PageTitle"
 import React from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import { listBukkerUrl } from "urls"
 
 export function BukkPage() {
   const { id } = useParams()
-  const { isFetching, data: bukk } = useBukk(id!)
+  const { isLoading, isError, error, data: bukk } = useBukk(id!)
 
-  useTitle(bukk?.name ?? "Bukk")
-
-  if (!bukk && isFetching) {
-    return <p>Henter data...</p>
+  if (error instanceof NotFoundError) {
+    return (
+      <>
+        <PageTitle title="Ukjent bukk" />
+        <p>Oppføringen er ikke registrert</p>
+        <p>
+          <Link to={listBukkerUrl()}>Til oversikten</Link>
+        </p>
+      </>
+    )
   }
 
-  if (!bukk) {
-    return <p>Klarte ikke å hente data</p>
+  if (isLoading) {
+    return <LoadingPage title="Laster bukk ..." />
+  }
+
+  if (isError && bukk == null) {
+    return <ErrorPage error={error} />
   }
 
   const awards = orderBy(bukk.awards, "year", "desc")

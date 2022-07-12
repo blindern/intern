@@ -1,3 +1,5 @@
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { useTitle } from "modules/core/title/PageTitle"
 import { usePrinterInvoiceData } from "modules/printer/api"
 import { DailyGraph } from "modules/printer/invoicing/DailyGraph"
@@ -12,7 +14,12 @@ export function PrinterInvoicingPage() {
   useTitle("Fakturering av utskrifter")
 
   const { dateFrom, dateTo, changeMonth, setDateFrom, setDateTo } = useDates()
-  const { data: rawdata } = usePrinterInvoiceData(dateFrom, dateTo)
+  const {
+    isLoading,
+    isError,
+    error,
+    data: rawdata,
+  } = usePrinterInvoiceData(dateFrom, dateTo)
   const data = rawdata ? aggregateData(rawdata) : undefined
   const [viewType, setViewType] = useState<"summed" | "detailed">("summed")
 
@@ -83,7 +90,13 @@ export function PrinterInvoicingPage() {
         </p>
       </div>
 
-      {!data && <p>Laster data..</p>}
+      {isLoading ? (
+        <Loading />
+      ) : isError && rawdata == null ? (
+        <ErrorMessages error={error} />
+      ) : (
+        ""
+      )}
 
       {data && rawdata && (
         <>

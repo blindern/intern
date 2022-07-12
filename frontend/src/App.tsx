@@ -9,7 +9,12 @@ import { BukkPage } from "modules/bukker/BukkPage"
 import { ListBukkerPage } from "modules/bukker/ListBukkerPage"
 import { ApiService } from "modules/core/api/ApiService"
 import { ApiServiceProvider } from "modules/core/api/ApiServiceProvider"
-import { ResponseError } from "modules/core/api/errors"
+import {
+  BadRequestError,
+  ForbiddenError,
+  NotAuthedError,
+  NotFoundError,
+} from "modules/core/api/errors"
 import { AuthInfoProvider } from "modules/core/auth/AuthInfoProvider"
 import { AuthService } from "modules/core/auth/AuthService"
 import { AuthServiceProvider } from "modules/core/auth/AuthServiceProvider"
@@ -43,19 +48,22 @@ apiService.setAuthService(authService)
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    mutations: {
-      async onError(error) {
-        if (error instanceof ResponseError) {
-          await apiService.handleErrors2(error)
-        }
-      },
-    },
     queries: {
-      async onError(error) {
-        console.log("got error", error)
-        if (error instanceof ResponseError) {
-          await apiService.handleErrors2(error)
+      // Override default retry logic (that uses 3 retries)
+      // so we ignore certain errors.
+      retry(failureCount, error) {
+        if (failureCount > 3) {
+          return false
         }
+        if (
+          error instanceof NotFoundError ||
+          error instanceof NotAuthedError ||
+          error instanceof BadRequestError ||
+          error instanceof ForbiddenError
+        ) {
+          return false
+        }
+        return true
       },
     },
   },

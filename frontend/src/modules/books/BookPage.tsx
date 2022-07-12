@@ -1,8 +1,12 @@
+import { ErrorPage } from "components/ErrorPage"
+import { LoadingPage } from "components/LoadingPage"
 import { Book, useBook, useDeleteBookMutation } from "modules/books/api"
+import { BookNotFoundPage } from "modules/books/BookNotFoundPage"
 import { SetBarcode } from "modules/books/SetBarcode"
 import { bookTitle } from "modules/books/utils"
+import { NotFoundError } from "modules/core/api/errors"
 import { useAuthorization } from "modules/core/auth/Authorization"
-import { useTitle } from "modules/core/title/PageTitle"
+import { PageTitle } from "modules/core/title/PageTitle"
 import React from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { booksUrl, editBookUrl, registerBookUrl } from "urls"
@@ -28,27 +32,24 @@ function DeleteButton({ book }: { book: Book }) {
 
 export function BookPage() {
   const { id } = useParams()
-  const { isFetching, data: book } = useBook(id!)
+  const { isLoading, isError, error, data: book } = useBook(id!)
   const { bookAdmin } = useAuthorization()
 
-  useTitle(
-    book
-      ? bookTitle(book)
-      : isFetching
-      ? "Laster bok ..."
-      : "Feil ved lasting av bok",
-  )
-
-  if (!book && isFetching) {
-    return <p>Laster bok ...</p>
+  if (error instanceof NotFoundError) {
+    return <BookNotFoundPage />
   }
 
-  if (!book) {
-    return <p>Feil ved henting av data</p>
+  if (isLoading) {
+    return <LoadingPage title="Laster bok ..." />
+  }
+
+  if (isError && book == null) {
+    return <ErrorPage error={error} title="Feil ved lasting av bok" />
   }
 
   return (
     <>
+      <PageTitle title={bookTitle(book)} />
       <p className="pull-right">
         <Link className="btn btn-success" to={registerBookUrl()}>
           Registrer ny bok

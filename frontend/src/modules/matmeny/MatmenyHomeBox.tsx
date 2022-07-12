@@ -1,3 +1,5 @@
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import React from "react"
 import { Link } from "react-router-dom"
 import { formatDate } from "utils/dates"
@@ -15,26 +17,28 @@ const MatmenyDay = ({ data }: { data?: MatmenyDay }) => {
 }
 
 export const MatmenyHomeBox = () => {
-  const { data: matmeny } = useMatmenyHomeData()
-
-  if (!matmeny) {
-    return null
-  }
-
-  const { today, tomorrow } = matmeny
+  const { isLoading, isError, error, data: matmeny } = useMatmenyHomeData()
 
   return (
     <Link to="/matmeny" className="index-matmeny">
       <h4>Matmeny</h4>
-      <p className="day">
-        <b>Dagens matrett</b> ({formatDate(today.date, "dddd")}):
-        <br />
-        <MatmenyDay data={today.data} />
-      </p>
-      <p>
-        I morgen, {formatDate(tomorrow.date, "dddd")}:<br />
-        <MatmenyDay data={tomorrow.data} />
-      </p>
+      {isLoading ? (
+        <Loading />
+      ) : isError && !matmeny ? (
+        <ErrorMessages error={error} />
+      ) : (
+        <>
+          <p className="day">
+            <b>Dagens matrett</b> ({formatDate(matmeny.today.date, "dddd")}):
+            <br />
+            <MatmenyDay data={matmeny.today.data} />
+          </p>
+          <p>
+            I morgen, {formatDate(matmeny.tomorrow.date, "dddd")}:<br />
+            <MatmenyDay data={matmeny.tomorrow.data} />
+          </p>
+        </>
+      )}
       <p className="text-muted">
         <i>(Oppdateres ukentlig av kjøkkensjefen.)</i>
       </p>

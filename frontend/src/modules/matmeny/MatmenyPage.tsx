@@ -1,4 +1,6 @@
 import classNames from "classnames"
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { isEqual, keyBy } from "lodash"
 import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
 import { useIsMemberOf } from "modules/core/auth/hooks"
@@ -144,7 +146,10 @@ function MatmenyAdmin() {
     .add(nextWeeksToShow, "weeks")
     .format("YYYY-MM-DD")
 
-  const { isFetching, data } = useMatmenyData(firstDate, lastDate)
+  const { isLoading, isError, error, data } = useMatmenyData(
+    firstDate,
+    lastDate,
+  )
 
   const { weeks } = useWeeks(data ?? [], prevWeeksToShow, nextWeeksToShow)
 
@@ -199,12 +204,12 @@ function MatmenyAdmin() {
     })
   }
 
-  if (!data && !isFetching) {
-    return <p>Feil ved henting av data</p>
+  if (isLoading) {
+    return <Loading />
   }
 
-  if (!data) {
-    return <p>Henter data...</p>
+  if (isError && data == null) {
+    return <ErrorMessages error={error} />
   }
 
   return (

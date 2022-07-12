@@ -9,7 +9,7 @@ import {
 } from "modules/core/api/errors"
 import { api } from "modules/core/api/utils"
 import { AuthService } from "modules/core/auth/AuthService"
-import { FlashesService } from "modules/core/flashes/FlahesService"
+import { FlashArgs, FlashesService } from "modules/core/flashes/FlahesService"
 
 interface MessagesInError {
   messages: {
@@ -34,6 +34,25 @@ export class ApiService {
     const response = await fetch(url, options)
 
     if (!response.ok) {
+      let data
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        data = await response.json()
+      } catch (e) {
+        data = null
+      }
+
+      let messages: FlashArgs[] = []
+      if (data && "messages" in data) {
+        const data2 = data as MessagesInError
+        if (data2.messages.length > 0) {
+          messages = data2.messages.map<FlashArgs>((message) => ({
+            type: message.type,
+            message: message.message,
+          }))
+        }
+      }
+
       if (response.status === 401) {
         this.authService.markLoggedOut()
         if (!this.history.location.pathname.endsWith("/login")) {
@@ -44,79 +63,72 @@ export class ApiService {
           this.authService.setLoginRedirectUrl(this.history.location.pathname)
           this.history.push("/intern/login")
         }
-        throw new NotAuthedError(response)
+        throw new NotAuthedError(response, messages, data)
       }
 
       if (response.status === 403) {
-        throw new ForbiddenError(response)
+        throw new ForbiddenError(response, messages, data)
       }
 
       if (response.status === 404) {
-        throw new NotFoundError(response)
+        throw new NotFoundError(response, messages, data)
       }
 
       if (response.status >= 500) {
-        throw new ServerError(response)
+        throw new ServerError(response, messages, data)
       }
 
       if (response.status === 400) {
-        throw new BadRequestError(response)
+        throw new BadRequestError(response, messages, data)
       }
 
-      throw new ResponseError(response)
+      throw new ResponseError(response, messages, data)
     }
 
     return response
   }
 
-  public async handleErrors2(error: ResponseError) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const data = await error.response.json()
-
-    let foundMessages = false
-
-    if ("messages" in data) {
-      for (const message of (data as MessagesInError).messages) {
-        this.flashes.addFlash({
-          type: message.type,
-          message: message.message,
-        })
-        foundMessages = true
-      }
-    }
-
-    if (foundMessages) {
-      return
+  public errorToMessages(error: ResponseError): FlashArgs[] {
+    if (error.messages.length > 0) {
+      return error.messages
     }
 
     if (error instanceof ServerError) {
-      this.flashes.addFlash({
-        type: "danger",
-        message: "Ukjent feil oppsto",
-      })
+      return [
+        {
+          type: "danger",
+          message: "Ukjent feil oppsto",
+        },
+      ]
     } else if (error instanceof ForbiddenError) {
-      this.flashes.addFlash({
-        type: "danger",
-        message: "Du har ikke tilgang",
-      })
+      return [
+        {
+          type: "danger",
+          message: "Du har ikke tilgang",
+        },
+      ]
     } else if (error instanceof NotFoundError) {
-      this.flashes.addFlash({
-        type: "danger",
-        message: "Ressursen ble ikke funnet",
-      })
+      return [
+        {
+          type: "danger",
+          message: "Ressursen ble ikke funnet",
+        },
+      ]
     } else if (error instanceof BadRequestError) {
-      this.flashes.addFlash({
-        type: "danger",
-        message: "Ukjent feil med verdiene som ble sendt",
-      })
+      return [
+        {
+          type: "danger",
+          message: "Ukjent feil med verdiene som ble sendt",
+        },
+      ]
     } else {
-      this.flashes.addFlash({
-        type: "danger",
-        message: "Ukjent feil",
-      })
+      return [
+        {
+          type: "danger",
+          message: `Ukjent feil: ${String(error)}`,
+        },
+      ]
     }
-
-    return
   }
 
   public async handleErrors(fn: () => Promise<Response>) {
@@ -127,7 +139,10 @@ export class ApiService {
         throw e
       }
 
-      await this.handleErrors2(e)
+      for (const message of this.errorToMessages(e)) {
+        this.flashes.addFlash(message)
+      }
+
       throw e
     }
   }

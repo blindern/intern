@@ -1,3 +1,5 @@
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { useTitle } from "modules/core/title/PageTitle"
 import { useGroupList } from "modules/groups/api"
 import React from "react"
@@ -6,14 +8,14 @@ import { GroupLink } from "./GroupLink"
 export const ListGroupsPage = () => {
   useTitle("Grupper")
 
-  const { isFetching, isSuccess, data } = useGroupList()
+  const { isLoading, isError, error, data } = useGroupList()
 
-  if (isFetching) {
-    return <p>Laster grupper...</p>
+  if (isLoading) {
+    return <Loading />
   }
 
-  if (!isSuccess) {
-    return <p>Noe gikk galt</p>
+  if (isError && data == null) {
+    return <ErrorMessages error={error} />
   }
 
   return (

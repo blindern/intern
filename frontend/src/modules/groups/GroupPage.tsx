@@ -1,14 +1,19 @@
+import { ErrorPage } from "components/ErrorPage"
 import { LoadingPage } from "components/LoadingPage"
-import { useTitle } from "modules/core/title/PageTitle"
+import { NotFoundError } from "modules/core/api/errors"
+import { PageTitle } from "modules/core/title/PageTitle"
 import { UserLink } from "modules/users/UserLink"
 import { IndirectMemberInfo } from "modules/users/UserPage"
 import React from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import { listGroupsUrl } from "urls"
 import { GroupDetail, useGroup } from "./api"
 import { GroupLink } from "./GroupLink"
 
 const Detail = ({ group }: { group: GroupDetail }) => (
   <>
+    <PageTitle title={`Gruppe: ${group.name}`} />
+
     <dl>
       <dt>Gruppenavn</dt>
       <dd>{group.name}</dd>
@@ -100,17 +105,27 @@ const Detail = ({ group }: { group: GroupDetail }) => (
 export const GroupPage = () => {
   const { name } = useParams()
 
-  const { isFetching, isSuccess, data: group } = useGroup(name!)
+  const { isLoading, isError, error, data } = useGroup(name!)
 
-  useTitle(group ? `Gruppe: ${group.name}` : "Gruppe")
-
-  if (isFetching) {
-    return <LoadingPage />
+  if (error instanceof NotFoundError) {
+    return (
+      <>
+        <PageTitle title="Ukjent gruppe" />
+        <p>Gruppen er ikke registrert</p>
+        <p>
+          <Link to={listGroupsUrl()}>Til oversikten</Link>
+        </p>
+      </>
+    )
   }
 
-  if (!isSuccess) {
-    return <p>Noe gikk galt</p>
+  if (isLoading) {
+    return <LoadingPage title="Laster gruppe ..." />
   }
 
-  return <Detail group={group} />
+  if (isError && data == null) {
+    return <ErrorPage error={error} title="Feil ved lasting av gruppe" />
+  }
+
+  return <Detail group={data} />
 }

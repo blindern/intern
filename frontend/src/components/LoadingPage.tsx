@@ -1,9 +1,10 @@
+import { Loading } from "components/Loading"
 import { PageTitle } from "modules/core/title/PageTitle"
 import React from "react"
 
-export const LoadingPage = () => (
+export const LoadingPage = ({ title = "Laster..." }: { title?: string }) => (
   <>
-    <PageTitle title="Laster..." />
-    <p>Laster informasjon..</p>
+    <PageTitle title={title} />
+    <Loading />
   </>
 )

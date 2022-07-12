@@ -1,5 +1,11 @@
+import { FlashArgs } from "modules/core/flashes/FlahesService"
+
 export class ResponseError extends Error {
-  constructor(readonly response: Response) {
+  constructor(
+    readonly response: Response,
+    readonly messages: FlashArgs[],
+    readonly json: unknown,
+  ) {
     super(response.statusText)
   }
 }

@@ -1,4 +1,5 @@
-import { LoadingPage } from "components/LoadingPage"
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { useTitle } from "modules/core/title/PageTitle"
 import React, { useState } from "react"
 import styled from "styled-components"
@@ -87,14 +88,14 @@ const List = ({ list }: { list: DugnadDay[] }) => {
 
 export const DugnadsinnkallingerPage = () => {
   useTitle("Dugnadsinnkallinger")
-  const { isFetching, isSuccess, data } = useDugnadenList()
+  const { isLoading, isError, error, data } = useDugnadenList()
 
-  if (isFetching) {
-    return <LoadingPage />
+  if (isLoading) {
+    return <Loading />
   }
 
-  if (!isSuccess) {
-    return <p>Error</p>
+  if (isError && data == null) {
+    return <ErrorMessages error={error} />
   }
 
   return (

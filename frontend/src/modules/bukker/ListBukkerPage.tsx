@@ -1,3 +1,5 @@
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { orderBy } from "lodash"
 import { Bukk, useBukkList } from "modules/bukker/api"
 import { useTitle } from "modules/core/title/PageTitle"
@@ -19,14 +21,14 @@ function getThumb(bukk: Bukk) {
 export function ListBukkerPage() {
   useTitle("Bukker")
 
-  const { isFetching, data: bukker } = useBukkList()
+  const { isLoading, isError, error, data: bukker } = useBukkList()
 
-  if (!bukker && isFetching) {
-    return <p>Henter data...</p>
+  if (isLoading) {
+    return <Loading />
   }
 
-  if (!bukker) {
-    return <p>Klarte ikke å hente data</p>
+  if (isError && bukker == null) {
+    return <ErrorMessages error={error} />
   }
 
   let countHoy = 0
@@ -64,7 +66,7 @@ export function ListBukkerPage() {
   return (
     <div className="bukker">
       <p>
-        Totalt {bukker.length} bukker er registrert. {countHoy} høyheter,{" "}
+        Totalt {bukker!.length} bukker er registrert. {countHoy} høyheter,{" "}
         {countHelOnly} ({countHelAll}) helheter og {countHalvOnly} (
         {countHalvAll}) halvheter.
       </p>

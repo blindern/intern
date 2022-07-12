@@ -1,4 +1,6 @@
 import { useDebounceCallback } from "@react-hook/debounce"
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { Book, useBookList } from "modules/books/api"
 import { Pagination } from "modules/books/Pagination"
 import { useTitle } from "modules/core/title/PageTitle"
@@ -57,7 +59,7 @@ export function ListBooksPage() {
     setCurrentPage(1)
   }, 250)
 
-  const { isFetching, data } = useBookList({
+  const { isLoading, isError, data, error } = useBookList({
     q: search,
     page: currentPage,
   })
@@ -119,11 +121,15 @@ export function ListBooksPage() {
           </div>
         </form>
 
-        {!isFetching && !data && <p>Feil ved henting av data</p>}
-
-        {data?.total === 0 && search !== "" && <p>Ingen treff ble funnet</p>}
-
-        {(data?.data ?? []).length > 0 && (
+        {isLoading ? (
+          <Loading />
+        ) : isError && data == null ? (
+          <ErrorMessages error={error} />
+        ) : data.total === 0 && search !== "" ? (
+          <p>Ingen treff ble funnet</p>
+        ) : data.total === 0 ? (
+          <p>Ingen bøker er registrert</p>
+        ) : (
           <>
             <div className="books_list">
               {data?.data.map((book) => (

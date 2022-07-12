@@ -1,4 +1,6 @@
 import { CommaSeparated } from "components/CommaSeparated"
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
 import { UserDetails } from "modules/core/auth/types"
 import { useTitle } from "modules/core/title/PageTitle"
@@ -56,17 +58,15 @@ const UserListSection = styled.div`
 export const ListUsersPage = () => {
   useTitle("Brukerliste")
 
-  const { isFetching, isSuccess, error, data: userList } = useUserList()
+  const { isLoading, isError, error, data: userList } = useUserList()
   const { isLoggedIn } = useAuthInfo()
 
-  if (isFetching) {
-    return <p>Laster brukerliste...</p>
+  if (isLoading) {
+    return <Loading />
   }
 
-  console.log(error)
-
-  if (!isSuccess) {
-    return <p>Noe gikk galt</p>
+  if (isError && userList == null) {
+    return <ErrorMessages error={error} />
   }
 
   const grouped = groupAndSortBySections(userList)

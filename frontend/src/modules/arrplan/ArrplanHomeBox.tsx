@@ -1,18 +1,20 @@
 import classNames from "classnames"
+import { ErrorMessages as ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import React from "react"
 import { Link } from "react-router-dom"
 import { useArrplanNext } from "./api"
 
 export const ArrplanHomeBox = () => {
-  const { isFetching, isSuccess, data: arrplan } = useArrplanNext()
+  const { isLoading, isError, error, data: arrplan } = useArrplanNext()
 
   return (
     <Link to="/arrplan" className="index-arrplan">
       <h4>Neste på arrangementplanen</h4>
-      {isFetching ? (
-        <div>Laster...</div>
-      ) : !isSuccess ? (
-        <div>Error</div>
+      {isLoading ? (
+        <Loading />
+      ) : isError && arrplan == null ? (
+        <ErrorMessages error={error} />
       ) : (
         arrplan.map((event, idx) =>
           event.type === "event" || event.type === "event_recurring" ? (
