@@ -213,7 +213,7 @@ const List = ({
   )
 }
 
-const ArrplanPage = () => {
+export const ArrplanPage = () => {
   const { semester } = useParams()
 
   const { isFetching, isSuccess, data } = useArrplanList()
@@ -226,5 +226,3 @@ const ArrplanPage = () => {
 
   return <List semesterId={semester!} list={isSuccess ? data : []} />
 }
-
-export default ArrplanPage

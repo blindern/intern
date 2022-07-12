@@ -53,7 +53,7 @@ const UserListSection = styled.div`
   }
 `
 
-const UserListPage = () => {
+const ListUsersPage = () => {
   useTitle('Brukerliste')
 
   const { isFetching, isSuccess, error, data: userList } = useUserList()
@@ -145,4 +145,4 @@ const UserListPage = () => {
   )
 }
 
-export default UserListPage
+export default ListUsersPage

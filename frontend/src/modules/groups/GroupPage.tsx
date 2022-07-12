@@ -97,7 +97,7 @@ const Detail = ({ group }: { group: GroupDetail }) => (
   </>
 )
 
-const GroupPage = () => {
+export const GroupPage = () => {
   const { name } = useParams()
 
   const { isFetching, isSuccess, data: group } = useGroup(name!)
@@ -114,5 +114,3 @@ const GroupPage = () => {
 
   return <Detail group={group} />
 }
-
-export default GroupPage

@@ -3,7 +3,7 @@ import { useGroupList } from 'modules/groups/api'
 import React from 'react'
 import GroupLink from './GroupLink'
 
-const GroupListPage = () => {
+export const ListGroupsPage = () => {
   useTitle('Grupper')
 
   const { isFetching, isSuccess, data } = useGroupList()
@@ -40,5 +40,3 @@ const GroupListPage = () => {
     </table>
   )
 }
-
-export default GroupListPage

@@ -16,7 +16,7 @@ function getThumb(bukk: Bukk) {
   )[0]?.image_preview_url
 }
 
-export function BukkListPage() {
+export function ListBukkerPage() {
   useTitle('Bukker')
 
   const { isFetching, data: bukker } = useBukkList()
