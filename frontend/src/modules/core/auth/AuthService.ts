@@ -1,4 +1,5 @@
 import { ApiService } from "modules/core/api/ApiService"
+import { api } from "modules/core/api/utils"
 import { BehaviorSubject, Subject } from "rxjs"
 import { AuthInfo, Me } from "./types"
 
@@ -17,13 +18,17 @@ export const defaultAuthInfo: AuthInfo = {
 export class AuthService {
   private authInfoSubject = new BehaviorSubject<AuthInfo>(defaultAuthInfo)
   private possiblyLoggedOutSubject = new Subject<void>()
-  private loginRedirectUrl: string | null = null
+  private shouldLogoutSubject = new BehaviorSubject(false)
 
   constructor(readonly api: ApiService) {}
 
   markLoggedOut() {
+    const isLoggedOut = this.authInfoSubject.value.data.isLoggedIn
+
     this.authInfoSubject.next(defaultAuthInfo)
-    this.possiblyLoggedOutSubject.next()
+    if (isLoggedOut) {
+      this.possiblyLoggedOutSubject.next()
+    }
 
     // Refetch auth info to get fresh csrf token.
     // TODO: Handle rejection.
@@ -32,6 +37,7 @@ export class AuthService {
 
   getAuthInfoObservable = () => this.authInfoSubject
   getPossiblyLoggedOutObservable = () => this.possiblyLoggedOutSubject
+  getShouldLogoutObservable = () => this.shouldLogoutSubject
 
   async fetchAuthInfo() {
     try {
@@ -57,46 +63,24 @@ export class AuthService {
     }
   }
 
-  async login(username: string, password: string, rememberMe: boolean) {
-    const response = await this.api.post("login", {
-      username,
-      password,
-      remember_me: rememberMe,
-    })
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const json = await response.json()
-
-    if (!("user" in json)) {
-      throw Error("Unexpected response")
-    }
-
-    const data = json as Me
-    this.authInfoSubject.next({
-      isLoading: false,
-      isError: false,
-      error: null,
-      data,
-    })
-
-    if (this.loginRedirectUrl != null) {
-      window.location.assign(this.loginRedirectUrl)
-      this.loginRedirectUrl = null
-    }
-
-    return data
+  logout() {
+    // See component in AuthServiceProvider.
+    this.shouldLogoutSubject.next(true)
   }
 
-  async logout() {
-    if (!this.authInfoSubject.value.data.isLoggedIn) {
-      return
-    }
-
-    await this.api.post("logout")
-    this.markLoggedOut()
+  getLoginUrl() {
+    return api(
+      `saml2/login?returnTo=${encodeURIComponent(window.location.href)}`,
+    )
   }
 
-  setLoginRedirectUrl(pathname: string) {
-    this.loginRedirectUrl = pathname
+  getLogoutUrl() {
+    return api(
+      `saml2/logout?_token=${encodeURIComponent(
+        this.authInfoSubject.value.data.csrfToken ?? "",
+      )}&returnTo=${encodeURIComponent(
+        window.location.protocol + "//" + window.location.host + "/intern/",
+      )}`,
+    )
   }
 }

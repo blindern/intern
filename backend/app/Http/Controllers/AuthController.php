@@ -95,34 +95,4 @@ Sendt fra {$_SERVER['REMOTE_ADDR']}
 
         return Responses::success(['Din forespørsel er nå sendt. Du får svar på e-post når brukeren er registrert.']);
     }
-
-    public function login()
-    {
-        $user = array(
-            'username' => \Request::input('username'),
-            'password' => \Request::input('password')
-        );
-
-        $res = \Auth::attempt($user, \Request::input('remember_me'));
-        if ($res) {
-            return \Response::json(array(
-                'isLoggedIn' => true,
-                'isOffice' => \Blindern\Intern\Auth\Helper::isOffice(),
-                "isUserAdmin" => \Auth::member("useradmin"),
-                'user' => \Auth::user()->toArray(array(), 2),
-                "csrfToken" => csrf_token(),
-
-                // Deprecated
-                'useradmin' => \Auth::member('useradmin')
-            ));
-        }
-
-        return Responses::invalidAuth(['Ukjent brukernavn eller passord.']);
-    }
-
-    public function logout()
-    {
-        \Auth::logout();
-        return Responses::success(['Logget ut']);
-    }
 }

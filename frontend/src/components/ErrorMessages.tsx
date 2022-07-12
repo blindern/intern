@@ -1,5 +1,6 @@
 import { useApiService } from "modules/core/api/ApiServiceProvider"
-import { ResponseError } from "modules/core/api/errors"
+import { NotAuthedError, ResponseError } from "modules/core/api/errors"
+import { RedirectToLogin } from "modules/core/auth/RedirectToLogin"
 import { FlashArgs } from "modules/core/flashes/FlahesService"
 import React, { useMemo } from "react"
 
@@ -26,6 +27,8 @@ export function ErrorMessages({ error }: { error: unknown }) {
           {message.message}
         </p>
       ))}
+
+      {error instanceof NotAuthedError && <RedirectToLogin />}
     </>
   )
 }

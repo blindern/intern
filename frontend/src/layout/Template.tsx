@@ -66,11 +66,18 @@ export const Template = ({ children }: { children: ReactNode }) => {
   const authInfo = useAuthInfo()
   const authService = useAuthService()
   const title = useCurrentTitle()
-  const logout = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
 
-    // TODO: Handle rejection.
-    void authService.logout()
+  const logoutHandler = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault()
+      authService.logout()
+    },
+    [],
+  )
+
+  const login = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    window.location.assign(authService.getLoginUrl())
   }, [])
 
   return (
@@ -149,7 +156,7 @@ export const Template = ({ children }: { children: ReactNode }) => {
                         Brukerinfo
                       </MenuLink>
                       <li>
-                        <a href="logout" onClick={logout}>
+                        <a href="/" onClick={logoutHandler}>
                           Logg ut
                         </a>
                       </li>
@@ -157,7 +164,11 @@ export const Template = ({ children }: { children: ReactNode }) => {
                   </li>
                 ) : (
                   <>
-                    <MenuLink to="/login">Logg inn</MenuLink>
+                    <li>
+                      <a href="/" onClick={login}>
+                        Logg inn
+                      </a>
+                    </li>
                     <MenuLink to="/registrer">Registrer</MenuLink>
                   </>
                 )}

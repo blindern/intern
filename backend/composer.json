@@ -12,16 +12,17 @@
 	],
 	"require": {
 		"php": "^8.0.2",
+		"eluceo/ical": "2.7.0",
+		"google/apiclient": "2.12.6",
 		"guzzlehttp/guzzle": "^7.2",
+		"jenssegers/mongodb": "3.9.1",
+		"johngrogg/ics-parser": "3.1.1",
 		"laravel/framework": "^9.19",
 		"laravel/sanctum": "^2.14.1",
 		"laravel/tinker": "^2.7",
-		"nesbot/carbon": "2.59.1",
-		"eluceo/ical": "2.7.0",
 		"nategood/httpful": "0.3.2",
-		"jenssegers/mongodb": "3.9.1",
-		"google/apiclient": "2.12.6",
-		"johngrogg/ics-parser": "3.1.1"
+		"nesbot/carbon": "2.59.1",
+		"onelogin/php-saml": "3.6.1"
 	},
 	"require-dev": {
 		"fakerphp/faker": "^1.9.1",
@@ -30,7 +31,7 @@
 		"nunomaduro/collision": "^6.1",
 		"phpunit/phpunit": "^9.5.10",
 		"spatie/laravel-ignition": "^1.0"
-},
+	},
 	"autoload": {
 		"classmap": [
 			"database"

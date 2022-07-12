@@ -14,6 +14,7 @@ use \App\Http\Controllers\API\UserController;
 use \App\Http\Controllers\API\PrinterLastController;
 use \App\Http\Controllers\API\PrinterUsageController;
 use \App\Http\Controllers\AuthController;
+use Blindern\Intern\Saml2\Saml2Controller;
 use \Blindern\Intern\GoogleApps\Controllers\AccountsController;
 use \Blindern\Intern\GoogleApps\Controllers\AccountUsersController;
 
@@ -41,11 +42,16 @@ Route::prefix('intern/api')->group(function () {
         Route::resource('printer/fakturere', PrinterUsageController::class, array('only' => array('index')));
     });
 
-    // login system
+    // auth system
     Route::get('me', [MeController::class, 'index']);
     Route::post('register', [AuthController::class, 'register']);
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
+
+    // saml2 login
+    Route::get('saml2/metadata', [Saml2Controller::class, 'metadata'])->name('saml2.metadata');
+    Route::post('saml2/acs', [Saml2Controller::class, 'acs'])->name('saml2.acs');
+    Route::get('saml2/sls', [Saml2Controller::class, 'sls'])->name('saml2.sls');
+    Route::get('saml2/login', [Saml2Controller::class, 'login'])->name('saml2.login');
+    Route::post('saml2/logout', [Saml2Controller::class, 'logout'])->name('saml2.logout');
 
     // users and groups
     Route::group(['middleware' => 'auth'], function () {

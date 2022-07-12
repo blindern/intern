@@ -266,7 +266,7 @@ class User implements AuthenticatableContract, CanResetPasswordContract
         if (!is_null($this->groups_relation)) {
             return array_keys($this->groups_relation);
         }
-        
+
         return array();
     }
 

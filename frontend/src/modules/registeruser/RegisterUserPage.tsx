@@ -1,5 +1,6 @@
 import { ErrorMessage } from "@hookform/error-message"
 import classNames from "classnames"
+import { useAuthService } from "modules/core/auth/AuthServiceProvider"
 import { useYupValidationResolver } from "modules/core/forms/validation"
 import { useTitle } from "modules/core/title/PageTitle"
 import React, { ReactNode, useState } from "react"
@@ -11,7 +12,6 @@ import {
   useFormContext,
   useFormState,
 } from "react-hook-form"
-import { Link } from "react-router-dom"
 import * as Yup from "yup"
 import { RegisterData, useRegisterUserMutation } from "./api"
 
@@ -259,12 +259,13 @@ const RegisterForm = () => {
 
 export const RegisterUserPage = () => {
   useTitle("Registrering for beboere/GB-ere")
+  const authService = useAuthService()
 
   return (
     <div className="row">
       <div className="col-md-6">
         <p>
-          <Link to="/login">&laquo; Logg inn</Link>
+          <a href={authService.getLoginUrl()}>&laquo; Logg inn</a>
         </p>
 
         <p>

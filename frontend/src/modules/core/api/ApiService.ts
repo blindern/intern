@@ -55,14 +55,6 @@ export class ApiService {
 
       if (response.status === 401) {
         this.authService.markLoggedOut()
-        if (!this.history.location.pathname.endsWith("/login")) {
-          this.flashes.addFlash({
-            type: "danger",
-            message: "Denne siden krever at du logger inn.",
-          })
-          this.authService.setLoginRedirectUrl(this.history.location.pathname)
-          this.history.push("/intern/login")
-        }
         throw new NotAuthedError(response, messages, data)
       }
 
@@ -93,7 +85,14 @@ export class ApiService {
       return error.messages
     }
 
-    if (error instanceof ServerError) {
+    if (error instanceof NotAuthedError) {
+      return [
+        {
+          type: "danger",
+          message: "Pålogging kreves",
+        },
+      ]
+    } else if (error instanceof ServerError) {
       return [
         {
           type: "danger",

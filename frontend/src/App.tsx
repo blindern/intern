@@ -19,7 +19,6 @@ import { AuthInfoProvider } from "modules/core/auth/AuthInfoProvider"
 import { AuthService } from "modules/core/auth/AuthService"
 import { AuthServiceProvider } from "modules/core/auth/AuthServiceProvider"
 import { LoggedOutHandler } from "modules/core/auth/LoggedOutHandler"
-import { LoginPage } from "modules/core/auth/LoginPage"
 import { FlashesService } from "modules/core/flashes/FlahesService"
 import { FlashesProvider } from "modules/core/flashes/FlashesProvider"
 import { CustomRouter } from "modules/core/routing/CustomRouter"
@@ -86,7 +85,6 @@ const RouteList = () => (
     <Route path="/arrplan" element={<ArrplanRedir />} />
     <Route path="/arrplan/:semester" element={<ArrplanPage />} />
 
-    <Route path="/login" element={<LoginPage />} />
     <Route path="/registrer" element={<RegisterUserPage />} />
 
     <Route path="/bokdatabase" element={<Navigate to={"/books"} />} />
