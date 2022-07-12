@@ -225,17 +225,18 @@ export const HomePage = () => {
 
       <hr />
 
-      {authInfo.isLoggedIn ? (
+      {authInfo.data.isLoggedIn ? (
         <p>
-          Du er innlogget som <UserLink username={authInfo.user.username} /> (
-          {authInfo.user.realname}).
+          Du er innlogget som{" "}
+          <UserLink username={authInfo.data.user.username} /> (
+          {authInfo.data.user.realname}).
         </p>
-      ) : (
+      ) : !authInfo.isError && !authInfo.isLoading ? (
         <p>
           Du får flere handlinger ved å{" "}
           <Link to="/login">logge inn med foreningsbrukeren din</Link>.
         </p>
-      )}
+      ) : null}
     </>
   )
 }

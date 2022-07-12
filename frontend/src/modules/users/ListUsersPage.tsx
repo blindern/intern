@@ -1,7 +1,6 @@
 import { CommaSeparated } from "components/CommaSeparated"
 import { ErrorMessages } from "components/ErrorMessages"
 import { Loading } from "components/Loading"
-import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
 import { UserDetails } from "modules/core/auth/types"
 import { useTitle } from "modules/core/title/PageTitle"
 import { GroupLink } from "modules/groups/GroupLink"
@@ -59,7 +58,6 @@ export const ListUsersPage = () => {
   useTitle("Brukerliste")
 
   const { isLoading, isError, error, data: userList } = useUserList()
-  const { isLoggedIn } = useAuthInfo()
 
   if (isLoading) {
     return <Loading />
@@ -84,8 +82,6 @@ export const ListUsersPage = () => {
       users: grouped.utflyttede,
     },
   ]
-
-  const hideEmail = !isLoggedIn
 
   return (
     <>
@@ -116,13 +112,7 @@ export const ListUsersPage = () => {
                     <UserLink username={user.username} />
                   </td>
                   <td>{user.realname}</td>
-                  {hideEmail ? (
-                    <td>
-                      <i>Skjult</i>
-                    </td>
-                  ) : (
-                    <td>{user.email}</td>
-                  )}
+                  <td>{user.email}</td>
                   <td>{user.phone}</td>
                   <td>
                     {user.groups.length === 0 ? (

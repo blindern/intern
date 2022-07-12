@@ -156,7 +156,7 @@ export class ApiService {
 
     if (includeCsrf) {
       headers["X-CSRF-TOKEN"] =
-        this.authService.getAuthInfoObservable().value.csrfToken ?? ""
+        this.authService.getAuthInfoObservable().value.data.csrfToken ?? ""
     }
 
     const result: RequestInit = {

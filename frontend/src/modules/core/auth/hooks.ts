@@ -6,14 +6,14 @@ export function isMemberOf(
   candidateGroupNames: string[],
   forceRealMember = false,
 ) {
-  if (!auth.isLoggedIn) {
+  if (!auth.data.isLoggedIn) {
     return false
   }
 
-  if (!forceRealMember && auth.isUserAdmin) return true
+  if (!forceRealMember && auth.data.isUserAdmin) return true
 
   for (const groupName of candidateGroupNames) {
-    if (groupName in auth.user.group_relations) {
+    if (groupName in auth.data.user.group_relations) {
       return true
     }
   }

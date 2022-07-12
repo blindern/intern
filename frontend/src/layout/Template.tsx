@@ -131,17 +131,21 @@ export const Template = ({ children }: { children: ReactNode }) => {
                 </li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                {authInfo.isLoggedIn ? (
+                {authInfo.isLoading ? (
+                  <li className="navbar-text">Laster ...</li>
+                ) : authInfo.isError ? (
+                  <li className="navbar-text">Ukjent feil</li>
+                ) : authInfo.data.isLoggedIn ? (
                   <li className="dropdown">
                     <a
                       href=""
                       className="dropdown-toggle"
                       data-toggle="dropdown"
                     >
-                      {authInfo.user.username} <b className="caret" />
+                      {authInfo.data.user.username} <b className="caret" />
                     </a>
                     <ul className="dropdown-menu">
-                      <MenuLink to={`/user/${authInfo.user.username}`}>
+                      <MenuLink to={`/user/${authInfo.data.user.username}`}>
                         Brukerinfo
                       </MenuLink>
                       <li>

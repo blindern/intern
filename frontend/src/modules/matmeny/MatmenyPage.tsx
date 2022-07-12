@@ -341,7 +341,7 @@ export function MatmenyPage() {
   const kollegiet = useIsMemberOf(["kollegiet"])
   const authInfo = useAuthInfo()
 
-  const access = authInfo.isOffice || kollegiet
+  const access = authInfo.data.isOffice || kollegiet
 
   return (
     <>

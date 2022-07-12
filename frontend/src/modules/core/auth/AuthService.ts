@@ -1,12 +1,17 @@
 import { ApiService } from "modules/core/api/ApiService"
 import { BehaviorSubject, Subject } from "rxjs"
-import { AuthInfo, AuthInfoNotLoggedIn } from "./types"
+import { AuthInfo, Me } from "./types"
 
-export const defaultAuthInfo: AuthInfoNotLoggedIn = {
-  isLoggedIn: false,
-  isUserAdmin: false,
-  isOffice: false,
-  csrfToken: null,
+export const defaultAuthInfo: AuthInfo = {
+  isLoading: true,
+  isError: false,
+  error: null,
+  data: {
+    isLoggedIn: false,
+    isUserAdmin: false,
+    isOffice: false,
+    csrfToken: null,
+  },
 }
 
 export class AuthService {
@@ -29,10 +34,27 @@ export class AuthService {
   getPossiblyLoggedOutObservable = () => this.possiblyLoggedOutSubject
 
   async fetchAuthInfo() {
-    const response = await this.api.get("me")
-    const authInfo: AuthInfo = (await response.json()) as AuthInfo
+    try {
+      const response = await this.api.get("me")
+      const authInfo = (await response.json()) as Me
+      this.authInfoSubject.next({
+        isLoading: false,
+        isError: false,
+        error: null,
+        data: authInfo,
+      })
+    } catch (e) {
+      if (!(e instanceof Error)) {
+        throw e
+      }
 
-    this.authInfoSubject.next(authInfo)
+      this.authInfoSubject.next({
+        isLoading: false,
+        isError: true,
+        error: e,
+        data: this.authInfoSubject.value.data,
+      })
+    }
   }
 
   async login(username: string, password: string, rememberMe: boolean) {
@@ -49,8 +71,13 @@ export class AuthService {
       throw Error("Unexpected response")
     }
 
-    const data = json as AuthInfo
-    this.authInfoSubject.next(data)
+    const data = json as Me
+    this.authInfoSubject.next({
+      isLoading: false,
+      isError: false,
+      error: null,
+      data,
+    })
 
     if (this.loginRedirectUrl != null) {
       window.location.assign(this.loginRedirectUrl)
@@ -61,7 +88,7 @@ export class AuthService {
   }
 
   async logout() {
-    if (!this.authInfoSubject.value.isLoggedIn) {
+    if (!this.authInfoSubject.value.data.isLoggedIn) {
       return
     }
 

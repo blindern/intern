@@ -42,14 +42,14 @@ export interface Group {
   members_relation: any // TODO
 }
 
-export interface AuthInfoNotLoggedIn {
+export interface MeNotLoggedIn {
   isLoggedIn: false
   isUserAdmin: boolean
   isOffice: boolean
   csrfToken: string | null
 }
 
-interface AuthInfoLoggedIn {
+interface MeLoggedIn {
   isLoggedIn: true
   isUserAdmin: boolean
   isOffice: boolean
@@ -57,4 +57,11 @@ interface AuthInfoLoggedIn {
   csrfToken: string
 }
 
-export type AuthInfo = AuthInfoNotLoggedIn | AuthInfoLoggedIn
+export type Me = MeNotLoggedIn | MeLoggedIn
+
+export type AuthInfo = {
+  isLoading: boolean
+  isError: boolean
+  error: Error | null
+  data: Me
+}

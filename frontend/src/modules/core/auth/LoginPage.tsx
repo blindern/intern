@@ -1,3 +1,5 @@
+import { ErrorMessages } from "components/ErrorMessages"
+import { Loading } from "components/Loading"
 import { useAuthService } from "modules/core/auth/AuthServiceProvider"
 import React from "react"
 import { useForm } from "react-hook-form"
@@ -14,7 +16,12 @@ interface FormValues {
 export const LoginPage = () => {
   useTitle("Logg inn")
   const authService = useAuthService()
-  const { isLoggedIn } = useAuthInfo()
+  const {
+    isLoading,
+    isError,
+    error,
+    data: { isLoggedIn },
+  } = useAuthInfo()
 
   const { handleSubmit, formState, register } = useForm<FormValues>({
     defaultValues: {
@@ -27,6 +34,14 @@ export const LoginPage = () => {
   async function onSubmit(values: FormValues) {
     // TODO: handle failure
     await authService.login(values.username, values.password, values.rememberMe)
+  }
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (isError) {
+    return <ErrorMessages error={error} />
   }
 
   if (isLoggedIn) {
