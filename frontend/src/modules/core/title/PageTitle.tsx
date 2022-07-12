@@ -1,18 +1,18 @@
-import { useContext, useEffect, useRef } from "react"
+import { useContext, useLayoutEffect, useRef } from "react"
 import { TitleContext } from "./TitleProvider"
 
 export function useTitle(title: string) {
   const ref = useRef(Symbol())
   const context = useContext(TitleContext)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     context.registerTitle(ref.current, title)
     return () => {
       context.unregisterTitle(ref.current)
     }
   }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     context.updateTitle(ref.current, title)
   }, [title])
 }
