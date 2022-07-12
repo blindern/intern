@@ -1,4 +1,4 @@
-import { Summer } from 'modules/printer/invoicing/utils'
+import { Summer } from "modules/printer/invoicing/utils"
 
 export interface PrinterUser {
   username: string

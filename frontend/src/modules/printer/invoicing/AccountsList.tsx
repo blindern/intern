@@ -1,8 +1,8 @@
-import { FormatNumber } from 'components/FormatNumber'
-import { PrinterInvoiceResponse } from 'modules/printer/api'
-import { RightTd } from 'modules/printer/invoicing/Helpers'
-import { Data } from 'modules/printer/invoicing/types'
-import React, { useMemo } from 'react'
+import { FormatNumber } from "components/FormatNumber"
+import { PrinterInvoiceResponse } from "modules/printer/api"
+import { RightTd } from "modules/printer/invoicing/Helpers"
+import { Data } from "modules/printer/invoicing/types"
+import React, { useMemo } from "react"
 
 export function AccountsList({
   data,
@@ -33,7 +33,7 @@ export function AccountsList({
     })
 
     if (sumAccountIdx == null) {
-      throw Error('accounts_sum is null')
+      throw Error("accounts_sum is null")
     }
 
     for (const printer of rawdata.prints) {
@@ -46,7 +46,7 @@ export function AccountsList({
         if (!account_key) {
           result.push({
             account: 9999,
-            text: 'Ukjent: ' + printer.printername,
+            text: "Ukjent: " + printer.printername,
             sum: printerSummer.amountReal,
           })
         } else {
@@ -60,11 +60,11 @@ export function AccountsList({
   }, [data, rawdata])
 
   return (
-    <div className='col-md-6 printergroup'>
+    <div className="col-md-6 printergroup">
       <h2>Konteringsliste for FBS</h2>
       <table
-        className='table table-striped table-condensed'
-        style={{ width: 'auto' }}
+        className="table table-striped table-condensed"
+        style={{ width: "auto" }}
       >
         <thead>
           <tr>
@@ -79,13 +79,13 @@ export function AccountsList({
             <tr key={accountidx}>
               <td>{account.account}</td>
               <RightTd>
-                {account.sum > 0 ? <FormatNumber value={account.sum} /> : ''}
+                {account.sum > 0 ? <FormatNumber value={account.sum} /> : ""}
               </RightTd>
               <RightTd>
                 {account.sum < 0 ? (
                   <FormatNumber value={account.sum * -1} />
                 ) : (
-                  ''
+                  ""
                 )}
               </RightTd>
               <td>{account.text}</td>

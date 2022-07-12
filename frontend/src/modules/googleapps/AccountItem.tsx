@@ -1,4 +1,4 @@
-import { AddAlias } from 'modules/googleapps/AddAlias'
+import { AddAlias } from "modules/googleapps/AddAlias"
 import {
   Account,
   AccountUser,
@@ -6,11 +6,11 @@ import {
   useGoogleAppsDeleteAccountUserMutation,
   useGoogleAppsUpdateAccountMutation,
   useGoogleAppsUpdateAccountUserMutation,
-} from 'modules/googleapps/api'
-import { EditAccount } from 'modules/googleapps/EditAccount'
-import { NewAccountUser } from 'modules/googleapps/NewAccountUser'
-import React, { useState } from 'react'
-import { userUrl } from 'urls'
+} from "modules/googleapps/api"
+import { EditAccount } from "modules/googleapps/EditAccount"
+import { NewAccountUser } from "modules/googleapps/NewAccountUser"
+import React, { useState } from "react"
+import { userUrl } from "urls"
 
 export function AccountItem({
   account,
@@ -58,11 +58,11 @@ export function AccountItem({
         {account.accountname}
         {!isEdit && account.aliases && account.aliases.length > 0 && (
           <>
-            {' '}
-            <span style={{ fontSize: '80%' }}>
+            {" "}
+            <span style={{ fontSize: "80%" }}>
               {account.aliases.map((alias, idx) => (
                 <>
-                  {idx > 0 && ', '}
+                  {idx > 0 && ", "}
                   {alias}
                 </>
               ))}
@@ -71,7 +71,7 @@ export function AccountItem({
         )}
 
         {globalEdit && (
-          <span style={{ float: 'right' }}>
+          <span style={{ float: "right" }}>
             <button onClick={() => setIsEdit(!isEdit)}>rediger</button>
             <button onClick={() => deleteAccount()}>slett</button>
             <button onClick={() => setIsNewUser(!isNewUser)}>ny tilgang</button>
@@ -84,18 +84,18 @@ export function AccountItem({
       <ul>
         {users.map((user) => (
           <li key={user._id}>
-            <span style={{ display: 'inline-block', minWidth: '220px' }}>
+            <span style={{ display: "inline-block", minWidth: "220px" }}>
               <a href={userUrl(user.username)}>
                 {user.realname ?? user.username}
               </a>
             </span>
-            <span style={{ display: 'inline-block', minWidth: '120px' }}>
+            <span style={{ display: "inline-block", minWidth: "120px" }}>
               {user.notification && <>(mottar varsler)</>}
             </span>
             {globalEdit && (
               <>
-                <button onClick={() => deleteUser(user)}>slett tilgang</button>{' '}
-                /{' '}
+                <button onClick={() => deleteUser(user)}>slett tilgang</button>{" "}
+                /{" "}
                 <button onClick={() => changeNotification(user)}>
                   endre varsel
                 </button>

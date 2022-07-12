@@ -1,5 +1,5 @@
-import { useApiService } from 'modules/core/api/ApiServiceProvider'
-import { useMutation } from 'react-query'
+import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useMutation } from "react-query"
 
 export interface RegisterData {
   username: string
@@ -13,7 +13,7 @@ export interface RegisterData {
 export function useRegisterUserMutation() {
   const api = useApiService()
   return useMutation(async (data: RegisterData) => {
-    await api.post('register', data)
+    await api.post("register", data)
 
     // TODO: Return something?
   })

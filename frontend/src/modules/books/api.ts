@@ -1,5 +1,5 @@
-import { useApiService } from 'modules/core/api/ApiServiceProvider'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 
 export interface Book {
   _id: string
@@ -34,7 +34,7 @@ export interface BookListResponse {
   data: Book[]
 }
 
-export type CreateBookPayload = Omit<Book, '_id' | 'updated_at' | 'created_at'>
+export type CreateBookPayload = Omit<Book, "_id" | "updated_at" | "created_at">
 
 interface SearchIsbnResult {
   isbn?: string
@@ -51,24 +51,24 @@ interface SearchIsbnResult {
 
 export function useBookList(variables?: { q?: string; page?: number }) {
   const api = useApiService()
-  return useQuery(['books', 'list', variables], async () => {
+  return useQuery(["books", "list", variables], async () => {
     const params = new URLSearchParams()
-    if (variables?.q !== undefined) params.set('q', variables.q)
+    if (variables?.q !== undefined) params.set("q", variables.q)
     if (variables?.page !== undefined)
-      params.set('page', String(variables.page))
+      params.set("page", String(variables.page))
     const response = await api.get(`books?${params.toString()}`)
     return (await response.json()) as BookListResponse
   })
 }
 
 function buildBookKey(id: string) {
-  return ['books', 'item', id]
+  return ["books", "item", id]
 }
 
 export function useBook(id: string) {
   const api = useApiService()
   return useQuery(buildBookKey(id), async () => {
-    const response = await api.get('books/' + encodeURIComponent(id))
+    const response = await api.get("books/" + encodeURIComponent(id))
     return (await response.json()) as Book
   })
 }
@@ -79,7 +79,7 @@ export function useUpdateBookMutation() {
 
   return useMutation(
     async (book: Book) => {
-      await api.put('books/' + encodeURIComponent(book._id), book)
+      await api.put("books/" + encodeURIComponent(book._id), book)
     },
     {
       onSuccess: async (_, book) => {
@@ -96,14 +96,14 @@ export function useSetBookBarcodeMutation() {
   return useMutation(
     async ({ book, barcode }: { book: Book; barcode: string }) => {
       const response = await api.post(
-        'books/' + encodeURIComponent(book._id) + '/barcode',
+        "books/" + encodeURIComponent(book._id) + "/barcode",
         {
           barcode,
         },
       )
       if (!response.ok) {
         console.log(response)
-        throw new Error('Response failed')
+        throw new Error("Response failed")
       }
     },
     {
@@ -117,10 +117,10 @@ export function useSetBookBarcodeMutation() {
 export function useDeleteBookMutation() {
   const api = useApiService()
   return useMutation(async (book: Book) => {
-    const response = await api.delete('books/' + encodeURIComponent(book._id))
+    const response = await api.delete("books/" + encodeURIComponent(book._id))
     if (!response.ok) {
       console.log(response)
-      throw new Error('Response failed')
+      throw new Error("Response failed")
     }
   })
 }
@@ -128,7 +128,7 @@ export function useDeleteBookMutation() {
 export function useCreateBookMutation() {
   const api = useApiService()
   return useMutation(async (book: CreateBookPayload) => {
-    const response = await api.post('books', book)
+    const response = await api.post("books", book)
     return (await response.json()) as Book
   })
 }
@@ -136,7 +136,7 @@ export function useCreateBookMutation() {
 export function useSearchIsbnMutation() {
   const api = useApiService()
   return useMutation(async (isbn: string) => {
-    const response = await api.post('books/isbn', {
+    const response = await api.post("books/isbn", {
       isbn,
     })
     return (await response.json()) as SearchIsbnResult

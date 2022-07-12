@@ -1,11 +1,11 @@
-import { LoadingPage } from 'components/LoadingPage'
-import { useTitle } from 'modules/core/title/PageTitle'
-import { UserLink } from 'modules/users/UserLink'
-import { IndirectMemberInfo } from 'modules/users/UserPage'
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { GroupDetail, useGroup } from './api'
-import { GroupLink } from './GroupLink'
+import { LoadingPage } from "components/LoadingPage"
+import { useTitle } from "modules/core/title/PageTitle"
+import { UserLink } from "modules/users/UserLink"
+import { IndirectMemberInfo } from "modules/users/UserPage"
+import React from "react"
+import { useParams } from "react-router-dom"
+import { GroupDetail, useGroup } from "./api"
+import { GroupLink } from "./GroupLink"
 
 const Detail = ({ group }: { group: GroupDetail }) => (
   <>
@@ -25,8 +25,8 @@ const Detail = ({ group }: { group: GroupDetail }) => (
 
     {group.members.length > 0 && (
       <table
-        className='table table-striped table-condensed'
-        style={{ width: 'auto' }}
+        className="table table-striped table-condensed"
+        style={{ width: "auto" }}
       >
         <thead>
           <tr>
@@ -102,7 +102,7 @@ export const GroupPage = () => {
 
   const { isFetching, isSuccess, data: group } = useGroup(name!)
 
-  useTitle(group ? `Gruppe: ${group.name}` : 'Gruppe')
+  useTitle(group ? `Gruppe: ${group.name}` : "Gruppe")
 
   if (isFetching) {
     return <LoadingPage />

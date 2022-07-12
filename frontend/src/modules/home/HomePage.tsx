@@ -1,9 +1,9 @@
-import { ArrplanHomeBox } from 'modules/arrplan/ArrplanHomeBox'
-import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
-import { MatmenyHomeBox } from 'modules/matmeny/MatmenyHomeBox'
-import { UserLink } from 'modules/users/UserLink'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { ArrplanHomeBox } from "modules/arrplan/ArrplanHomeBox"
+import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
+import { MatmenyHomeBox } from "modules/matmeny/MatmenyHomeBox"
+import { UserLink } from "modules/users/UserLink"
+import React from "react"
+import { Link } from "react-router-dom"
 
 export const HomePage = () => {
   const authInfo = useAuthInfo()
@@ -14,9 +14,9 @@ export const HomePage = () => {
         Foreningen Blindern Studenterhjem er en sosial forening, hvis formål er
         å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for
         både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer
-        informasjon om Blindern Studenterhjem og foreningen, se{' '}
-        <a href='http://blindern-studenterhjem.no/livet/foreningsstyret'>
-          {'http://blindern-studenterhjem.no/livet/foreningsstyret'}
+        informasjon om Blindern Studenterhjem og foreningen, se{" "}
+        <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">
+          {"http://blindern-studenterhjem.no/livet/foreningsstyret"}
         </a>
         .
       </p>
@@ -27,22 +27,22 @@ export const HomePage = () => {
 
       <hr />
 
-      <div className='row'>
-        <div className='col-md-4'>
+      <div className="row">
+        <div className="col-md-4">
           <ArrplanHomeBox />
         </div>
 
-        <div className='col-md-4'>
+        <div className="col-md-4">
           <MatmenyHomeBox />
         </div>
 
-        <div className='col-md-4'>
-          <div className='index-matmeny'>
+        <div className="col-md-4">
+          <div className="index-matmeny">
             <h4>Måltider</h4>
             <p>
               <i>Oppdatert for høst 2021</i>
             </p>
-            <table className='table'>
+            <table className="table">
               <thead>
                 <tr>
                   <th>&nbsp;</th>
@@ -105,8 +105,8 @@ export const HomePage = () => {
               </tbody>
             </table>
             <p>
-              Se også{' '}
-              <a href='https://foreningenbs.no/confluence/x/eQYf'>wiki</a> for
+              Se også{" "}
+              <a href="https://foreningenbs.no/confluence/x/eQYf">wiki</a> for
               mer detaljer.
             </p>
           </div>
@@ -115,10 +115,10 @@ export const HomePage = () => {
 
       <hr />
 
-      <div className='row fbs_forside_lenker'>
-        <div className='col-sm-3'>
+      <div className="row fbs_forside_lenker">
+        <div className="col-sm-3">
           <p>
-            <a href='http://blindern-studenterhjem.no/'>
+            <a href="http://blindern-studenterhjem.no/">
               <span>
                 Blindern Studenterhjems
                 <br />
@@ -127,44 +127,44 @@ export const HomePage = () => {
             </a>
           </p>
         </div>
-        <div className='col-sm-3'>
+        <div className="col-sm-3">
           <p>
-            <a href='https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FNgEf'>
+            <a href="https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FNgEf">
               <span>
-                Beboerside og matmeny{' '}
+                Beboerside og matmeny{" "}
                 <span>(+ kontaktinformasjon oppmenn)</span>
               </span>
             </a>
           </p>
         </div>
-        <div className='col-sm-3 wiki-box'>
+        <div className="col-sm-3 wiki-box">
           <form
-            className='form-inline'
-            method='get'
-            action='https://foreningenbs.no/wiki/'
+            className="form-inline"
+            method="get"
+            action="https://foreningenbs.no/wiki/"
           >
             <p>
-              <a href='https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FNgEf'>
+              <a href="https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FNgEf">
                 <span>
                   Wiki <span>(&laquo;alt&raquo; du trenger å vite om BS)</span>
                 </span>
               </a>
-              <span className='search-box'>
+              <span className="search-box">
                 <input
-                  className='form-control'
-                  type='text'
-                  name='queryString'
-                  placeholder='Hurtigsøk'
+                  className="form-control"
+                  type="text"
+                  name="queryString"
+                  placeholder="Hurtigsøk"
                 />
               </span>
             </p>
           </form>
         </div>
-        <div className='col-sm-3'>
+        <div className="col-sm-3">
           <p>
-            <a href='https://p.foreningenbs.no/'>
+            <a href="https://p.foreningenbs.no/">
               <span>
-                Printeroppsett{' '}
+                Printeroppsett{" "}
                 <span>(oppsett, veiledning, feilsøking m.v.)</span>
               </span>
             </a>
@@ -172,49 +172,49 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <div className='row fbs_forside_lenker small'>
-        <div className='col-sm-2'>
+      <div className="row fbs_forside_lenker small">
+        <div className="col-sm-2">
           <p>
-            <a href='/smaabruket/'>
+            <a href="/smaabruket/">
               <span>
                 Småbruket studenthytte <span>(foreningens hytte)</span>
               </span>
             </a>
           </p>
         </div>
-        <div className='col-sm-2'>
+        <div className="col-sm-2">
           <p>
-            <a href='/dugnaden/'>
+            <a href="/dugnaden/">
               <span>Dugnaden</span>
             </a>
           </p>
         </div>
-        <div className='col-sm-2'>
+        <div className="col-sm-2">
           <p>
-            <a href='https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FbQBV'>
+            <a href="https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FbQBV">
               <span>Økonomi i FBS</span>
             </a>
           </p>
         </div>
-        <div className='col-sm-2'>
+        <div className="col-sm-2">
           <p>
-            <a href='/foreningen/'>
+            <a href="/foreningen/">
               <span>
                 Foreningens <b>dokumentområde</b>
               </span>
             </a>
           </p>
         </div>
-        <div className='col-sm-2'>
+        <div className="col-sm-2">
           <p>
-            <a href='http://foreningenbs.no/statutter/'>
+            <a href="http://foreningenbs.no/statutter/">
               <span>Statutter, reglement, instrukser og retningslinjer</span>
             </a>
           </p>
         </div>
-        <div className='col-sm-2'>
+        <div className="col-sm-2">
           <p>
-            <a href='/tools/'>
+            <a href="/tools/">
               <span>
                 Verktøykasse <span>(for IT-gruppa)</span>
               </span>
@@ -232,8 +232,8 @@ export const HomePage = () => {
         </p>
       ) : (
         <p>
-          Du får flere handlinger ved å{' '}
-          <Link to='/login'>logge inn med foreningsbrukeren din</Link>.
+          Du får flere handlinger ved å{" "}
+          <Link to="/login">logge inn med foreningsbrukeren din</Link>.
         </p>
       )}
     </>

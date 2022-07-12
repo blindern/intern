@@ -1,4 +1,4 @@
-import { useAuthService } from 'modules/core/auth/AuthServiceProvider'
+import { useAuthService } from "modules/core/auth/AuthServiceProvider"
 import React, {
   createContext,
   ReactNode,
@@ -6,10 +6,10 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from 'react'
-import { Subscription } from 'rxjs'
-import { defaultAuthInfo } from './AuthService'
-import { AuthInfo } from './types'
+} from "react"
+import { Subscription } from "rxjs"
+import { defaultAuthInfo } from "./AuthService"
+import { AuthInfo } from "./types"
 
 const AuthInfoContext = createContext<AuthInfo>(defaultAuthInfo)
 

@@ -1,6 +1,6 @@
-import { BrowserHistory } from 'history'
-import React, { ReactNode, useLayoutEffect, useState } from 'react'
-import { Router } from 'react-router-dom'
+import { BrowserHistory } from "history"
+import React, { ReactNode, useLayoutEffect, useState } from "react"
+import { Router } from "react-router-dom"
 
 // The CustomRouter allows us to keep a reference to history outside of it.
 

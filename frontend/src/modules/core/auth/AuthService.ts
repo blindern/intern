@@ -1,6 +1,6 @@
-import { ApiService } from 'modules/core/api/ApiService'
-import { BehaviorSubject } from 'rxjs'
-import { AuthInfo, AuthInfoNotLoggedIn } from './types'
+import { ApiService } from "modules/core/api/ApiService"
+import { BehaviorSubject } from "rxjs"
+import { AuthInfo, AuthInfoNotLoggedIn } from "./types"
 
 export const defaultAuthInfo: AuthInfoNotLoggedIn = {
   isLoggedIn: false,
@@ -26,14 +26,14 @@ export class AuthService {
   getAuthInfoObservable = () => this.authInfoSubject
 
   async fetchAuthInfo() {
-    const response = await this.api.get('me')
+    const response = await this.api.get("me")
     const authInfo: AuthInfo = (await response.json()) as AuthInfo
 
     this.authInfoSubject.next(authInfo)
   }
 
   async login(username: string, password: string, rememberMe: boolean) {
-    const response = await this.api.post('login', {
+    const response = await this.api.post("login", {
       username,
       password,
       remember_me: rememberMe,
@@ -42,8 +42,8 @@ export class AuthService {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const json = await response.json()
 
-    if (!('user' in json)) {
-      throw Error('Unexpected response')
+    if (!("user" in json)) {
+      throw Error("Unexpected response")
     }
 
     const data = json as AuthInfo
@@ -62,7 +62,7 @@ export class AuthService {
       return
     }
 
-    await this.api.post('logout')
+    await this.api.post("logout")
     this.markLoggedOut()
   }
 

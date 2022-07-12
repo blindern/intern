@@ -4,16 +4,16 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from 'react'
-import { Subscription } from 'rxjs'
-import { Flash, FlashesService } from './FlahesService'
+} from "react"
+import { Subscription } from "rxjs"
+import { Flash, FlashesService } from "./FlahesService"
 
 export const FlashesContext = createContext<FlashesService | null>(null)
 
 export function useFlashes() {
   const value = useContext(FlashesContext)
   if (value == null) {
-    throw new Error('FlashesContext not provided')
+    throw new Error("FlashesContext not provided")
   }
   return value
 }

@@ -1,23 +1,23 @@
-import { orderBy } from 'lodash'
-import { Bukk, useBukkList } from 'modules/bukker/api'
-import { useTitle } from 'modules/core/title/PageTitle'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { bukkUrl } from 'urls'
+import { orderBy } from "lodash"
+import { Bukk, useBukkList } from "modules/bukker/api"
+import { useTitle } from "modules/core/title/PageTitle"
+import React from "react"
+import { Link } from "react-router-dom"
+import { bukkUrl } from "urls"
 
 function sortValue(bukk: Bukk) {
-  const newestAward = orderBy(bukk.awards, 'year', 'desc')[0]
+  const newestAward = orderBy(bukk.awards, "year", "desc")[0]
   return `${newestAward.year}-${newestAward.rank}-${bukk.name}`
 }
 
 function getThumb(bukk: Bukk) {
-  return orderBy(bukk.awards, 'year', 'desc').filter(
+  return orderBy(bukk.awards, "year", "desc").filter(
     (award) => award.image_preview_url,
   )[0]?.image_preview_url
 }
 
 export function ListBukkerPage() {
-  useTitle('Bukker')
+  useTitle("Bukker")
 
   const { isFetching, data: bukker } = useBukkList()
 
@@ -36,9 +36,9 @@ export function ListBukkerPage() {
   let countHalvAll = 0
 
   for (const bukk of bukker) {
-    const hoy = bukk.awards.some((award) => award.rank === 'Høy')
-    const hel = bukk.awards.some((award) => award.rank === 'Hel')
-    const halv = bukk.awards.some((award) => award.rank === 'Halv')
+    const hoy = bukk.awards.some((award) => award.rank === "Høy")
+    const hel = bukk.awards.some((award) => award.rank === "Hel")
+    const halv = bukk.awards.some((award) => award.rank === "Halv")
 
     if (hoy) {
       countHoy++
@@ -59,40 +59,40 @@ export function ListBukkerPage() {
     }
   }
 
-  const bukkerSorted = orderBy(bukker, (bukk) => sortValue(bukk), 'desc')
+  const bukkerSorted = orderBy(bukker, (bukk) => sortValue(bukk), "desc")
 
   return (
-    <div className='bukker'>
+    <div className="bukker">
       <p>
-        Totalt {bukker.length} bukker er registrert. {countHoy} høyheter,{' '}
+        Totalt {bukker.length} bukker er registrert. {countHoy} høyheter,{" "}
         {countHelOnly} ({countHelAll}) helheter og {countHalvOnly} (
         {countHalvAll}) halvheter.
       </p>
-      <div className='bukker-list'>
+      <div className="bukker-list">
         {bukkerSorted.map((bukk) => {
           const thumb = getThumb(bukk)
-          const awards = orderBy(bukk.awards, 'year', 'desc')
+          const awards = orderBy(bukk.awards, "year", "desc")
 
           return (
-            <div key={bukk._id} className='bukk'>
+            <div key={bukk._id} className="bukk">
               <Link to={bukkUrl(bukk._id)}>
-                <div className='bukkdata'>
-                  <div className='name'>{bukk.name}</div>
-                  <div className='awards'>
+                <div className="bukkdata">
+                  <div className="name">{bukk.name}</div>
+                  <div className="awards">
                     {thumb && (
-                      <span className='thumb'>
-                        <img src={thumb} alt='' />
+                      <span className="thumb">
+                        <img src={thumb} alt="" />
                       </span>
                     )}
                     {awards.map((award, idx) => (
-                      <span key={idx} className='award'>
-                        {idx > 0 && ', '}
+                      <span key={idx} className="award">
+                        {idx > 0 && ", "}
                         {award.rank} {award.year}
                       </span>
                     ))}
                   </div>
                   {bukk.died && (
-                    <div className='died'>
+                    <div className="died">
                       Død{bukk.died !== true && <> {bukk.died}</>}
                     </div>
                   )}

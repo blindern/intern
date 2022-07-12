@@ -19,9 +19,9 @@ export function editBookUrl(id: string) {
 }
 
 export function booksUrl() {
-  return '/books'
+  return "/books"
 }
 
 export function registerBookUrl() {
-  return '/books/register'
+  return "/books/register"
 }

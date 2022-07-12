@@ -1,5 +1,5 @@
-import { useCallback } from 'react'
-import { BaseSchema, ValidationError } from 'yup'
+import { useCallback } from "react"
+import { BaseSchema, ValidationError } from "yup"
 
 export const useYupValidationResolver = <FormValues>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -27,7 +27,7 @@ export const useYupValidationResolver = <FormValues>(
             (allErrors, currentError) => ({
               ...allErrors,
               [currentError.path!]: {
-                type: currentError.type ?? 'validation',
+                type: currentError.type ?? "validation",
                 message: currentError.message,
               },
             }),

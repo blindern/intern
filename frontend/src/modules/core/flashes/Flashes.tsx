@@ -1,8 +1,8 @@
-import React from 'react'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import styled, { keyframes } from 'styled-components'
-import { formatDate } from 'utils/dates'
-import { useFlashesList } from './FlashesProvider'
+import React from "react"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import styled, { keyframes } from "styled-components"
+import { formatDate } from "utils/dates"
+import { useFlashesList } from "./FlashesProvider"
 
 const animateIn = keyframes`
   from {
@@ -48,10 +48,10 @@ export const Flashes = () => {
   return (
     <TransitionGroup component={null}>
       {flashes.map((flash, idx) => (
-        <CSSTransition timeout={300} classNames='flash' key={idx}>
+        <CSSTransition timeout={300} classNames="flash" key={idx}>
           <MessageBoxWrap>
-            <MessageBox className={flash.type ? `bg-${flash.type}` : ''}>
-              <b>{formatDate(flash.date, 'HH:mm:ss')}:</b> {flash.message}
+            <MessageBox className={flash.type ? `bg-${flash.type}` : ""}>
+              <b>{formatDate(flash.date, "HH:mm:ss")}:</b> {flash.message}
             </MessageBox>
           </MessageBoxWrap>
         </CSSTransition>

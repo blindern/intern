@@ -1,10 +1,10 @@
-import { useTitle } from 'modules/core/title/PageTitle'
-import { useGroupList } from 'modules/groups/api'
-import React from 'react'
-import { GroupLink } from './GroupLink'
+import { useTitle } from "modules/core/title/PageTitle"
+import { useGroupList } from "modules/groups/api"
+import React from "react"
+import { GroupLink } from "./GroupLink"
 
 export const ListGroupsPage = () => {
-  useTitle('Grupper')
+  useTitle("Grupper")
 
   const { isFetching, isSuccess, data } = useGroupList()
 
@@ -18,8 +18,8 @@ export const ListGroupsPage = () => {
 
   return (
     <table
-      className='table table-striped nowrap table-condensed'
-      style={{ width: 'auto' }}
+      className="table table-striped nowrap table-condensed"
+      style={{ width: "auto" }}
     >
       <thead>
         <tr>

@@ -1,5 +1,5 @@
-import { useApiService } from 'modules/core/api/ApiServiceProvider'
-import { useQuery } from 'react-query'
+import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useQuery } from "react-query"
 
 export interface LastPrintItem {
   jobdate: string
@@ -59,15 +59,15 @@ export interface PrinterInvoiceResponse {
 
 export function usePrinterLastList() {
   const api = useApiService()
-  return useQuery(['printer', 'last'], async () => {
-    const response = await api.get('printer/last')
+  return useQuery(["printer", "last"], async () => {
+    const response = await api.get("printer/last")
     return (await response.json()) as LastPrintItem[]
   })
 }
 
 export function usePrinterInvoiceData(from: string, to: string) {
   const api = useApiService()
-  return useQuery(['printer', 'invoice', { from, to }], async () => {
+  return useQuery(["printer", "invoice", { from, to }], async () => {
     const response = await api.get(
       `printer/fakturere?from=${encodeURIComponent(
         from,

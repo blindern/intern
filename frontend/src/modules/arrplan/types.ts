@@ -6,16 +6,16 @@ export interface NormalEvent {
   expired: boolean
   info: string | null
   place: string | null
-  priority: 'high' | 'medium' | 'low'
+  priority: "high" | "medium" | "low"
   start: string // YYYY-MM-DD
   title: string
-  type: 'event' | 'event_recurring'
+  type: "event" | "event_recurring"
 }
 
 export interface Comment {
   comment: string
   date: string // YYYY-MM-DD
-  type: 'comment'
+  type: "comment"
 }
 
 export type EventItem = NormalEvent | Comment

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 interface Props {
   firstPage(): void
@@ -11,8 +11,8 @@ interface Props {
 
 export function Pagination(props: Props) {
   return (
-    <nav className='text-center'>
-      <ul className='pagination center'>
+    <nav className="text-center">
+      <ul className="pagination center">
         <li>
           <a
             onClick={() => {

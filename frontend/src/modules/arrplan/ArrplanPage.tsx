@@ -1,12 +1,12 @@
-import classNames from 'classnames'
-import { LoadingPage } from 'components/LoadingPage'
-import { useTitle } from 'modules/core/title/PageTitle'
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import moment from 'utils/moment'
-import { getSemesterListFromEvent, Semester, useArrplanList } from './api'
-import { Comment, EventItem, NormalEvent } from './types'
+import classNames from "classnames"
+import { LoadingPage } from "components/LoadingPage"
+import { useTitle } from "modules/core/title/PageTitle"
+import React from "react"
+import { Link, useParams } from "react-router-dom"
+import styled from "styled-components"
+import moment from "utils/moment"
+import { getSemesterListFromEvent, Semester, useArrplanList } from "./api"
+import { Comment, EventItem, NormalEvent } from "./types"
 
 const getSemesterList = (list: EventItem[]) => {
   const hashedSemesters = list.reduce<{ [id: string]: Semester }>(
@@ -22,8 +22,8 @@ const getSemesterList = (list: EventItem[]) => {
   const semesters = Object.values(hashedSemesters)
     .map(({ id, semester, year }) => ({
       id,
-      text: `${semester === 'h' ? 'Høst' : 'Vår'} ${year}`,
-      sortKey: `${year}-${semester === 'v' ? '0' : '1'}`,
+      text: `${semester === "h" ? "Høst" : "Vår"} ${year}`,
+      sortKey: `${year}-${semester === "v" ? "0" : "1"}`,
     }))
     .sort((a, b) => b.sortKey.localeCompare(a.sortKey))
 
@@ -75,8 +75,8 @@ const EventTitle = ({ event }: { event: NormalEvent }) => (
     {event.title}
     {event.by && (
       <>
-        {' '}
-        <span style={{ color: '#AAA' }}>[{event.by}]</span>
+        {" "}
+        <span style={{ color: "#AAA" }}>[{event.by}]</span>
       </>
     )}
   </>
@@ -89,7 +89,7 @@ const List = ({
   semesterId: string
   list: EventItem[]
 }) => {
-  useTitle('Arrangementplan på Blindern Studenterhjem')
+  useTitle("Arrangementplan på Blindern Studenterhjem")
 
   const semesters = getSemesterList(list)
   const activeSemester = semesters.find((item) => item.id === semesterId)
@@ -98,33 +98,33 @@ const List = ({
     activeSemester != null ? filterEventsBySemester(list, semesterId) : []
 
   const eventsNormal = eventsCurrentSemester.filter(
-    (item) => item.type === 'event',
+    (item) => item.type === "event",
   ) as NormalEvent[]
 
   const eventsRecurring = eventsCurrentSemester
-    .filter((item) => item.type === 'event_recurring')
+    .filter((item) => item.type === "event_recurring")
     .sort(sortRecurringEvents) as NormalEvent[]
   const comments = eventsCurrentSemester.filter(
-    (item) => item.type === 'comment',
+    (item) => item.type === "comment",
   ) as Comment[]
 
   return (
     <>
       <ArrplanContainer>
-        <ul className='nav nav-tabs' role='tablist'>
+        <ul className="nav nav-tabs" role="tablist">
           {semesters.map((semester) => (
             <li
               key={semester.id}
-              className={semester === activeSemester ? 'active' : ''}
+              className={semester === activeSemester ? "active" : ""}
             >
               <Link to={`/arrplan/${semester.id}`}>{semester.text}</Link>
             </li>
           ))}
         </ul>
 
-        <div className='alert alert-info' style={{ marginTop: '1em' }}>
-          <b>Redigering:</b> Alle beboere kan logge inn på wikien og{' '}
-          <a href='https://foreningenbs.no/confluence/display/BS/Arrangementplan'>
+        <div className="alert alert-info" style={{ marginTop: "1em" }}>
+          <b>Redigering:</b> Alle beboere kan logge inn på wikien og{" "}
+          <a href="https://foreningenbs.no/confluence/display/BS/Arrangementplan">
             redigere arrangementplanen
           </a>
           !
@@ -136,14 +136,14 @@ const List = ({
             {eventsNormal.map((event, idx) => (
               <div
                 key={idx}
-                className={classNames('row', {
+                className={classNames("row", {
                   oldHappening: event.expired,
-                  lowPriority: event.priority === 'low',
-                  highPriority: event.priority === 'high',
+                  lowPriority: event.priority === "low",
+                  highPriority: event.priority === "high",
                 })}
               >
-                <EventDate className='col-sm-3'>{event.duration}</EventDate>
-                <div className='col-sm-9'>
+                <EventDate className="col-sm-3">{event.duration}</EventDate>
+                <div className="col-sm-9">
                   <EventTitle event={event} />
                 </div>
               </div>
@@ -154,20 +154,20 @@ const List = ({
         {eventsRecurring.length > 0 && (
           <>
             <h3>Øvrige aktiviteter</h3>
-            <div className='alert alert-warning'>
+            <div className="alert alert-warning">
               <strong>OBS!</strong> Denne oversikten inneholder arrangementer
               som har vært avholdt også tidligere i semesteret og som ikke
-              lenger avholdes. Se{' '}
-              <a href='https://foreningenbs.no/confluence/display/BS/Arrangementplan'>
+              lenger avholdes. Se{" "}
+              <a href="https://foreningenbs.no/confluence/display/BS/Arrangementplan">
                 kalenderen på wiki
-              </a>{' '}
+              </a>{" "}
               for en mer nøyaktig oversikt.
             </div>
 
             {eventsRecurring.map((event, idx) => (
-              <div key={idx} className='row'>
-                <EventDate className='col-sm-3'>{event.duration}</EventDate>
-                <div className='col-sm-9'>
+              <div key={idx} className="row">
+                <EventDate className="col-sm-3">{event.duration}</EventDate>
+                <div className="col-sm-9">
                   <EventTitle event={event} />
                 </div>
               </div>
@@ -195,17 +195,17 @@ const List = ({
           kalender du måtte ha. For dette trenger du å legge inn denne adressen
           i kalenderen din:
           <br />
-          <a href='/intern/arrplan.ics'>
-            {'https://foreningenbs.no/intern/arrplan.ics'}
-          </a>{' '}
+          <a href="/intern/arrplan.ics">
+            {"https://foreningenbs.no/intern/arrplan.ics"}
+          </a>{" "}
           <i>(kopier lenken, ikke last ned)</i>
         </p>
         <p>Slik gjør du det for Google Calendar:</p>
-        <p style={{ textAlign: 'center' }}>
+        <p style={{ textAlign: "center" }}>
           <img
-            src='/intern/assets/images/arrplan/googlecal.png'
-            className='img-responsive img-thumbnail'
-            alt='Eksempel med Google Calendar'
+            src="/intern/assets/images/arrplan/googlecal.png"
+            className="img-responsive img-thumbnail"
+            alt="Eksempel med Google Calendar"
           />
         </p>
       </ArrplanContainer>

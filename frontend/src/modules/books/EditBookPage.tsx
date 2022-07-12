@@ -1,4 +1,4 @@
-import { Book, useBook, useUpdateBookMutation } from 'modules/books/api'
+import { Book, useBook, useUpdateBookMutation } from "modules/books/api"
 import {
   AuthorsField,
   BibCommentField,
@@ -9,15 +9,15 @@ import {
   PubdateField,
   SubtitleField,
   TitleField,
-} from 'modules/books/fields'
-import { NoAuth } from 'modules/books/NoAuth'
-import { bookTitle } from 'modules/books/utils'
-import { useAuthorization } from 'modules/core/auth/Authorization'
-import { useTitle } from 'modules/core/title/PageTitle'
-import React from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { bookUrl } from 'urls'
+} from "modules/books/fields"
+import { NoAuth } from "modules/books/NoAuth"
+import { bookTitle } from "modules/books/utils"
+import { useAuthorization } from "modules/core/auth/Authorization"
+import { useTitle } from "modules/core/title/PageTitle"
+import React from "react"
+import { FormProvider, useForm } from "react-hook-form"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { bookUrl } from "urls"
 
 function EditBook({ book }: { book: Book }) {
   const { mutateAsync } = useUpdateBookMutation()
@@ -35,7 +35,7 @@ function EditBook({ book }: { book: Book }) {
 
   return (
     <FormProvider {...methods}>
-      <div className='form-horizontal'>
+      <div className="form-horizontal">
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <TitleField autoFocus />
           <SubtitleField />
@@ -47,14 +47,14 @@ function EditBook({ book }: { book: Book }) {
           <IsbnField />
           <BibCommentField rows={5} />
 
-          <div className='form-group'>
-            <div className='col-sm-8 col-sm-offset-3'>
+          <div className="form-group">
+            <div className="col-sm-8 col-sm-offset-3">
               <input
-                className='btn btn-primary'
-                type='submit'
-                value='Lagre endringer'
+                className="btn btn-primary"
+                type="submit"
+                value="Lagre endringer"
               />
-              <Link className='btn btn-default' to={bookUrl(book._id)}>
+              <Link className="btn btn-default" to={bookUrl(book._id)}>
                 Avbryt
               </Link>
             </div>
@@ -74,8 +74,8 @@ export function EditBookPage() {
     book
       ? bookTitle(book)
       : isFetching
-      ? 'Laster bok ...'
-      : 'Feil ved lasting av bok',
+      ? "Laster bok ..."
+      : "Feil ved lasting av bok",
   )
 
   if (!bookAdmin) {

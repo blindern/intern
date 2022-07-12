@@ -1,5 +1,5 @@
-import { useApiService } from 'modules/core/api/ApiServiceProvider'
-import { useQuery } from 'react-query'
+import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useQuery } from "react-query"
 
 export interface Bukk {
   _id: string
@@ -17,16 +17,16 @@ export interface Bukk {
 
 export function useBukkList() {
   const api = useApiService()
-  return useQuery(['bukker', 'list'], async () => {
-    const response = await api.get('bukker')
+  return useQuery(["bukker", "list"], async () => {
+    const response = await api.get("bukker")
     return (await response.json()) as Bukk[]
   })
 }
 
 export function useBukk(id: string) {
   const api = useApiService()
-  return useQuery(['bukker', 'item', id], async () => {
-    const response = await api.get('bukker/' + encodeURIComponent(id))
+  return useQuery(["bukker", "item", id], async () => {
+    const response = await api.get("bukker/" + encodeURIComponent(id))
     return (await response.json()) as Bukk
   })
 }

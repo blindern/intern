@@ -1,15 +1,15 @@
-import { groupBy } from 'lodash'
-import { useIsMemberOf } from 'modules/core/auth/hooks'
-import { useTitle } from 'modules/core/title/PageTitle'
-import { AccountItem } from 'modules/googleapps/AccountItem'
-import { useGoogleAppsAccounts } from 'modules/googleapps/api'
-import { NewAccount } from 'modules/googleapps/NewAccount'
-import React, { useState } from 'react'
+import { groupBy } from "lodash"
+import { useIsMemberOf } from "modules/core/auth/hooks"
+import { useTitle } from "modules/core/title/PageTitle"
+import { AccountItem } from "modules/googleapps/AccountItem"
+import { useGoogleAppsAccounts } from "modules/googleapps/api"
+import { NewAccount } from "modules/googleapps/NewAccount"
+import React, { useState } from "react"
 
 export function GoogleAppsPage() {
-  useTitle('Google Apps')
+  useTitle("Google Apps")
 
-  const canEdit = useIsMemberOf(['ukestyret'])
+  const canEdit = useIsMemberOf(["ukestyret"])
 
   const { isFetching, isSuccess, data: accounts } = useGoogleAppsAccounts()
 

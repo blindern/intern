@@ -1,6 +1,6 @@
-import { useGoogleAppsCreateAccountMutation } from 'modules/googleapps/api'
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useGoogleAppsCreateAccountMutation } from "modules/googleapps/api"
+import React from "react"
+import { useForm } from "react-hook-form"
 
 interface NewAccountForm {
   accountname: string
@@ -12,7 +12,7 @@ export function NewAccount() {
   const { handleSubmit, register, reset } = useForm<NewAccountForm>()
 
   async function onSubmit(values: NewAccountForm) {
-    if (values.accountname != '' && values.group != '') {
+    if (values.accountname != "" && values.group != "") {
       await mutateAsync({
         accountname: values.accountname.trim(),
         group: values.group.trim(),
@@ -22,21 +22,21 @@ export function NewAccount() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='form-inline'>
+    <form onSubmit={handleSubmit(onSubmit)} className="form-inline">
       <p>
         <input
-          {...register('accountname')}
-          className='form-control'
-          type='text'
-          placeholder='Google-konto'
+          {...register("accountname")}
+          className="form-control"
+          type="text"
+          placeholder="Google-konto"
         />
         <input
-          {...register('group')}
-          className='form-control'
-          type='text'
-          placeholder='Gruppe'
+          {...register("group")}
+          className="form-control"
+          type="text"
+          placeholder="Gruppe"
         />
-        <input className='btn btn-primary' type='submit' value='Opprett' />
+        <input className="btn btn-primary" type="submit" value="Opprett" />
       </p>
     </form>
   )

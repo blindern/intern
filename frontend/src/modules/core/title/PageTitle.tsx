@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef } from 'react'
-import { TitleContext } from './TitleProvider'
+import { useContext, useEffect, useRef } from "react"
+import { TitleContext } from "./TitleProvider"
 
 export function useTitle(title: string) {
   const ref = useRef(Symbol())

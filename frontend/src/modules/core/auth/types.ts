@@ -25,7 +25,7 @@ export type UserDetailsFull = UserDetailsBase & {
   groups: Group[]
 }
 
-type AuthUserDetails = Omit<UserDetailsBase, 'groups'> & {
+type AuthUserDetails = Omit<UserDetailsBase, "groups"> & {
   groups: Group[]
 }
 

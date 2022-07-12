@@ -1,15 +1,15 @@
-import classNames from 'classnames'
-import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
-import { useAuthService } from 'modules/core/auth/AuthServiceProvider'
-import { Flashes } from 'modules/core/flashes/Flashes'
-import { useCurrentTitle } from 'modules/core/title/TitleProvider'
-import React, { ReactNode, useCallback } from 'react'
-import { Link, useMatch } from 'react-router-dom'
-import styled from 'styled-components'
-import './frontend.scss'
+import classNames from "classnames"
+import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
+import { useAuthService } from "modules/core/auth/AuthServiceProvider"
+import { Flashes } from "modules/core/flashes/Flashes"
+import { useCurrentTitle } from "modules/core/title/TitleProvider"
+import React, { ReactNode, useCallback } from "react"
+import { Link, useMatch } from "react-router-dom"
+import styled from "styled-components"
+import "./frontend.scss"
 
 const MenuLink = ({ children, to }: { children: ReactNode; to: string }) => {
-  const isActive = useMatch(to + '/*') != null
+  const isActive = useMatch(to + "/*") != null
 
   return (
     <li className={classNames({ active: isActive })}>
@@ -76,76 +76,76 @@ export const Template = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Wrap>
-        <div className='navbar navbar-default navbar-fixed-top'>
-          <div className='container'>
-            <div className='navbar-header'>
+        <div className="navbar navbar-default navbar-fixed-top">
+          <div className="container">
+            <div className="navbar-header">
               <button
-                type='button'
-                className='navbar-toggle'
-                data-toggle='collapse'
-                data-target='.navbar-collapse'
+                type="button"
+                className="navbar-toggle"
+                data-toggle="collapse"
+                data-target=".navbar-collapse"
               >
-                <span className='icon-bar' />
-                <span className='icon-bar' />
-                <span className='icon-bar' />
+                <span className="icon-bar" />
+                <span className="icon-bar" />
+                <span className="icon-bar" />
               </button>
               <Link
-                className='navbar-brand'
-                to='/'
-                title='Foreningen Blindern Studenterhjem'
+                className="navbar-brand"
+                to="/"
+                title="Foreningen Blindern Studenterhjem"
               >
                 FBS
               </Link>
             </div>
-            <div className='collapse navbar-collapse'>
-              <ul className='nav navbar-nav'>
-                <MenuLink to='/arrplan'>Arrangementplan</MenuLink>
-                <MenuLink to='/books'>Biblioteket</MenuLink>
-                <li className='dropdown'>
-                  <a href='' className='dropdown-toggle' data-toggle='dropdown'>
-                    Brukere og grupper <b className='caret' />
+            <div className="collapse navbar-collapse">
+              <ul className="nav navbar-nav">
+                <MenuLink to="/arrplan">Arrangementplan</MenuLink>
+                <MenuLink to="/books">Biblioteket</MenuLink>
+                <li className="dropdown">
+                  <a href="" className="dropdown-toggle" data-toggle="dropdown">
+                    Brukere og grupper <b className="caret" />
                   </a>
-                  <ul className='dropdown-menu'>
-                    <MenuLink to='/users'>Brukerliste</MenuLink>
-                    <MenuLink to='/groups'>Gruppeliste</MenuLink>
+                  <ul className="dropdown-menu">
+                    <MenuLink to="/users">Brukerliste</MenuLink>
+                    <MenuLink to="/groups">Gruppeliste</MenuLink>
                   </ul>
                 </li>
-                <li className='dropdown'>
-                  <a href='' className='dropdown-toggle' data-toggle='dropdown'>
-                    Dugnaden <b className='caret' />
+                <li className="dropdown">
+                  <a href="" className="dropdown-toggle" data-toggle="dropdown">
+                    Dugnaden <b className="caret" />
                   </a>
-                  <ul className='dropdown-menu'>
-                    <MenuLink to='/dugnaden/old/list'>
+                  <ul className="dropdown-menu">
+                    <MenuLink to="/dugnaden/old/list">
                       Dugnadsinnkalling
                     </MenuLink>
                   </ul>
                 </li>
-                <li className='dropdown'>
-                  <a href='' className='dropdown-toggle' data-toggle='dropdown'>
-                    Printer <b className='caret' />
+                <li className="dropdown">
+                  <a href="" className="dropdown-toggle" data-toggle="dropdown">
+                    Printer <b className="caret" />
                   </a>
-                  <ul className='dropdown-menu'>
-                    <MenuLink to='/printer/siste'>Siste utskrifter</MenuLink>
-                    <MenuLink to='/printer/fakturere'>Fakturering</MenuLink>
+                  <ul className="dropdown-menu">
+                    <MenuLink to="/printer/siste">Siste utskrifter</MenuLink>
+                    <MenuLink to="/printer/fakturere">Fakturering</MenuLink>
                   </ul>
                 </li>
               </ul>
-              <ul className='nav navbar-nav navbar-right'>
+              <ul className="nav navbar-nav navbar-right">
                 {authInfo.isLoggedIn ? (
-                  <li className='dropdown'>
+                  <li className="dropdown">
                     <a
-                      href=''
-                      className='dropdown-toggle'
-                      data-toggle='dropdown'
+                      href=""
+                      className="dropdown-toggle"
+                      data-toggle="dropdown"
                     >
-                      {authInfo.user.username} <b className='caret' />
+                      {authInfo.user.username} <b className="caret" />
                     </a>
-                    <ul className='dropdown-menu'>
+                    <ul className="dropdown-menu">
                       <MenuLink to={`/user/${authInfo.user.username}`}>
                         Brukerinfo
                       </MenuLink>
                       <li>
-                        <a href='logout' onClick={logout}>
+                        <a href="logout" onClick={logout}>
                           Logg ut
                         </a>
                       </li>
@@ -153,8 +153,8 @@ export const Template = ({ children }: { children: ReactNode }) => {
                   </li>
                 ) : (
                   <>
-                    <MenuLink to='/login'>Logg inn</MenuLink>
-                    <MenuLink to='/registrer'>Registrer</MenuLink>
+                    <MenuLink to="/login">Logg inn</MenuLink>
+                    <MenuLink to="/registrer">Registrer</MenuLink>
                   </>
                 )}
               </ul>
@@ -162,26 +162,26 @@ export const Template = ({ children }: { children: ReactNode }) => {
           </div>
         </div>
 
-        <WrapContainer className='container'>
+        <WrapContainer className="container">
           <Flashes />
 
-          <PageHeader className='page-header'>
+          <PageHeader className="page-header">
             <PageTitle>{title}</PageTitle>
           </PageHeader>
 
-          <div id='content'>{children}</div>
+          <div id="content">{children}</div>
         </WrapContainer>
       </Wrap>
 
-      <Footer className='hidden-print'>
-        <FooterContainer className='container'>
-          <CreditText className='text-muted'>
-            <a href='/'>Foreningen Blindern Studenterhjem</a> - Kontakt{' '}
-            <a href='mailto:it-gruppa@foreningenbs.no'>
+      <Footer className="hidden-print">
+        <FooterContainer className="container">
+          <CreditText className="text-muted">
+            <a href="/">Foreningen Blindern Studenterhjem</a> - Kontakt{" "}
+            <a href="mailto:it-gruppa@foreningenbs.no">
               it-gruppa@foreningenbs.no
-            </a>{' '}
-            ved henvendelser vedr. denne siden -{' '}
-            <a href='https://github.com/blindern/intern'>GitHub-prosjekt</a>
+            </a>{" "}
+            ved henvendelser vedr. denne siden -{" "}
+            <a href="https://github.com/blindern/intern">GitHub-prosjekt</a>
           </CreditText>
         </FooterContainer>
       </Footer>

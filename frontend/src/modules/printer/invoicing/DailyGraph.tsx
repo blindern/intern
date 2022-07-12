@@ -1,8 +1,8 @@
-import * as d3 from 'd3'
-import { Selection } from 'd3-selection'
-import moment from 'utils/moment'
-import React, { useLayoutEffect, useMemo, useRef } from 'react'
-import { PrinterInvoiceResponse } from 'modules/printer/api'
+import * as d3 from "d3"
+import { Selection } from "d3-selection"
+import moment from "utils/moment"
+import React, { useLayoutEffect, useMemo, useRef } from "react"
+import { PrinterInvoiceResponse } from "modules/printer/api"
 
 // chart for daily usage
 // using D3.js
@@ -13,8 +13,8 @@ function getDaily(data: PrinterInvoiceResponse): Record<string, number> {
   let d = moment(data.from)
   const d_end = moment(data.to)
   while (true) {
-    daily[d.format('YYYY-MM-DD')] = 0
-    d = d.add(1, 'day')
+    daily[d.format("YYYY-MM-DD")] = 0
+    d = d.add(1, "day")
     if (!d.isBefore(d_end)) break
   }
 
@@ -47,18 +47,18 @@ export function DailyGraph({
     if (svg.current == null) {
       svg.current = d3
         .select(el.current)
-        .append('svg')
-        .attr('class', 'printerchart')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`)
+        .append("svg")
+        .attr("class", "printerchart")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`)
     }
   }, [])
 
   useLayoutEffect(() => {
-    const parseDate = d3.timeParse('%Y-%m-%d')
-    const myTimeFormatter = (date: Date) => moment(date).format('D. MMM')
+    const parseDate = d3.timeParse("%Y-%m-%d")
+    const myTimeFormatter = (date: Date) => moment(date).format("D. MMM")
 
     const newdata = Object.entries(data).map(([i, elm]) => ({
       date: parseDate(i)!,
@@ -85,27 +85,27 @@ export function DailyGraph({
         return y(d.value)
       })
 
-    svg.current!.selectAll('*').remove()
+    svg.current!.selectAll("*").remove()
 
-    svg.current!.append('path').attr('class', 'area').attr('d', area(newdata))
+    svg.current!.append("path").attr("class", "area").attr("d", area(newdata))
 
     svg
-      .current!.append('g')
-      .attr('class', 'x axis')
-      .attr('transform', `translate(0,${height})`)
+      .current!.append("g")
+      .attr("class", "x axis")
+      .attr("transform", `translate(0,${height})`)
       .call(xAxis)
 
     svg
-      .current!.append('g')
-      .attr('class', 'y axis')
+      .current!.append("g")
+      .attr("class", "y axis")
       .call(yAxis)
-      .append('text')
-      .attr('transform', 'rotate(-90)')
-      .attr('y', 6)
-      .attr('dy', '.71em')
-      .attr('class', 'ytext')
-      .style('text-anchor', 'end')
-      .text('Antall utskrifter')
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .attr("class", "ytext")
+      .style("text-anchor", "end")
+      .text("Antall utskrifter")
   }, [data])
 
   return (

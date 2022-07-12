@@ -1,9 +1,9 @@
 import {
   Account,
   useGoogleAppsUpdateAccountMutation,
-} from 'modules/googleapps/api'
-import React from 'react'
-import { useForm } from 'react-hook-form'
+} from "modules/googleapps/api"
+import React from "react"
+import { useForm } from "react-hook-form"
 
 interface EditAccountForm {
   accountname: string
@@ -26,7 +26,7 @@ export function EditAccount({
   })
 
   async function onSubmit(values: EditAccountForm) {
-    if (values.accountname != '' && values.group != '') {
+    if (values.accountname != "" && values.group != "") {
       await mutateAsync({
         ...account,
         aliases: account.aliases ?? [],
@@ -38,16 +38,16 @@ export function EditAccount({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='form-inline'>
-      Kontonavn:{' '}
+    <form onSubmit={handleSubmit(onSubmit)} className="form-inline">
+      Kontonavn:{" "}
       <input
-        {...register('accountname')}
-        type='text'
-        className='form-control'
-      />{' '}
-      Gruppe/kategori:{' '}
-      <input {...register('group')} type='text' className='form-control' />{' '}
-      <input className='btn' type='submit' value='Oppdater' />
+        {...register("accountname")}
+        type="text"
+        className="form-control"
+      />{" "}
+      Gruppe/kategori:{" "}
+      <input {...register("group")} type="text" className="form-control" />{" "}
+      <input className="btn" type="submit" value="Oppdater" />
     </form>
   )
 }

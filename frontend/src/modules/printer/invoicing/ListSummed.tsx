@@ -1,10 +1,10 @@
-import { FormatNumber } from 'components/FormatNumber'
-import { PrinterInvoiceResponse } from 'modules/printer/api'
-import { AccountsList } from 'modules/printer/invoicing/AccountsList'
-import { CostColumns } from 'modules/printer/invoicing/CostColumns'
-import { RightTd } from 'modules/printer/invoicing/Helpers'
-import { Data } from 'modules/printer/invoicing/types'
-import React from 'react'
+import { FormatNumber } from "components/FormatNumber"
+import { PrinterInvoiceResponse } from "modules/printer/api"
+import { AccountsList } from "modules/printer/invoicing/AccountsList"
+import { CostColumns } from "modules/printer/invoicing/CostColumns"
+import { RightTd } from "modules/printer/invoicing/Helpers"
+import { Data } from "modules/printer/invoicing/types"
+import React from "react"
 
 export function ListSummed({
   data,
@@ -14,7 +14,7 @@ export function ListSummed({
   rawdata: PrinterInvoiceResponse
 }) {
   return (
-    <div className='row'>
+    <div className="row">
       {data.sections.map((section, sectionidx) => {
         const groups = section.isBeboer
           ? section.printers
@@ -36,12 +36,12 @@ export function ListSummed({
               }))
 
         return (
-          <div key={sectionidx} className='col-md-6 printergroup'>
+          <div key={sectionidx} className="col-md-6 printergroup">
             <h2>{section.title}</h2>
 
             {section.isBeboer &&
               section.printers
-                .filter((it) => it.comment != null && it.comment !== '')
+                .filter((it) => it.comment != null && it.comment !== "")
                 .map((group, groupidx) => (
                   <p key={groupidx}>{group.comment}</p>
                 ))}
@@ -49,8 +49,8 @@ export function ListSummed({
             {section.description && <p>{section.description}</p>}
 
             <table
-              className='table table-striped table-condensed'
-              style={{ width: 'auto' }}
+              className="table table-striped table-condensed"
+              style={{ width: "auto" }}
             >
               <thead>
                 <tr>
@@ -62,7 +62,7 @@ export function ListSummed({
                 </tr>
               </thead>
               <tfoot>
-                <tr style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
+                <tr style={{ fontStyle: "italic", fontWeight: "bold" }}>
                   <td>Sum ({groups.length} stk)</td>
                   <td />
                   <RightTd>
@@ -79,7 +79,7 @@ export function ListSummed({
               </tfoot>
               <tbody>
                 {groups.map((row) => {
-                  const hasComment = row.comment != null && row.comment !== ''
+                  const hasComment = row.comment != null && row.comment !== ""
 
                   return (
                     <tr key={row.name}>
@@ -101,7 +101,7 @@ export function ListSummed({
                               <br />
                               {row.summer.amountAlt > 0 && (
                                 <>
-                                  (ikke dekket: kr{' '}
+                                  (ikke dekket: kr{" "}
                                   <FormatNumber value={row.summer.amountAlt} />)
                                 </>
                               )}

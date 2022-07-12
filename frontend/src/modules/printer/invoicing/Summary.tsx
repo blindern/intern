@@ -1,7 +1,7 @@
-import { FormatNumber } from 'components/FormatNumber'
-import { PrinterInvoiceResponse } from 'modules/printer/api'
-import { Summer } from 'modules/printer/invoicing/utils'
-import React, { useMemo } from 'react'
+import { FormatNumber } from "components/FormatNumber"
+import { PrinterInvoiceResponse } from "modules/printer/api"
+import { Summer } from "modules/printer/invoicing/utils"
+import React, { useMemo } from "react"
 
 export function Summary({
   data,
@@ -32,7 +32,7 @@ export function Summary({
   return (
     <>
       <h2>Total statistikk</h2>
-      <dl className='dl-horizontal'>
+      <dl className="dl-horizontal">
         <dt>Bruk i perioden</dt>
         <dd>
           kr <FormatNumber value={summer.amountReal} /> (se spesifikasjon
@@ -48,7 +48,7 @@ export function Summary({
           <FormatNumber
             value={summer.numPagesReal}
             decimals={0}
-          /> faktureres,{' '}
+          /> faktureres,{" "}
           <FormatNumber value={summer.numPagesAlt} decimals={0} /> ikke)
         </dd>
         <dt>Antall personer</dt>

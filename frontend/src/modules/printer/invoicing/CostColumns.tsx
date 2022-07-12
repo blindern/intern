@@ -1,6 +1,6 @@
-import { FormatNumber } from 'components/FormatNumber'
-import { RightTd } from 'modules/printer/invoicing/Helpers'
-import React from 'react'
+import { FormatNumber } from "components/FormatNumber"
+import { RightTd } from "modules/printer/invoicing/Helpers"
+import React from "react"
 
 export function CostColumns({
   countByCost,

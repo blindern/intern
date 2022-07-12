@@ -1,9 +1,9 @@
 import {
   Account,
   useGoogleAppsCreateAccountUserMutation,
-} from 'modules/googleapps/api'
-import React from 'react'
-import { useForm } from 'react-hook-form'
+} from "modules/googleapps/api"
+import React from "react"
+import { useForm } from "react-hook-form"
 
 interface NewAccountUserForm {
   username: string
@@ -17,7 +17,7 @@ export function NewAccountUser({ account }: { account: Account }) {
   async function onSubmit(values: NewAccountUserForm) {
     const username = values.username.trim()
 
-    if (username != '') {
+    if (username != "") {
       await mutateAsync({
         accountname: account.accountname,
         username,
@@ -28,20 +28,20 @@ export function NewAccountUser({ account }: { account: Account }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='form-inline'>
+    <form onSubmit={handleSubmit(onSubmit)} className="form-inline">
       <input
-        {...register('username')}
-        className='form-control'
-        type='text'
-        placeholder='Foreningsbruker'
+        {...register("username")}
+        className="form-control"
+        type="text"
+        placeholder="Foreningsbruker"
       />
-      <div className='checkbox'>
+      <div className="checkbox">
         <label>
-          <input {...register('notification')} type='checkbox' /> Varsle om
+          <input {...register("notification")} type="checkbox" /> Varsle om
           e-poster
         </label>
       </div>
-      <input className='btn' type='submit' value='Gi tilgang' />
+      <input className="btn" type="submit" value="Gi tilgang" />
     </form>
   )
 }

@@ -1,19 +1,19 @@
-import classNames from 'classnames'
-import { isEqual, keyBy } from 'lodash'
-import { useAuthInfo } from 'modules/core/auth/AuthInfoProvider'
-import { useIsMemberOf } from 'modules/core/auth/hooks'
-import { useTitle } from 'modules/core/title/PageTitle'
+import classNames from "classnames"
+import { isEqual, keyBy } from "lodash"
+import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
+import { useIsMemberOf } from "modules/core/auth/hooks"
+import { useTitle } from "modules/core/title/PageTitle"
 import {
   buildMatmenyDataKey,
   MatmenyDay,
   useMatmenyData,
   useUpdateMatmenyDaysMutation,
-} from 'modules/matmeny/api'
-import { FileUploader } from 'modules/matmeny/FileUploader'
-import React, { useState } from 'react'
-import { useQueryClient } from 'react-query'
-import { formatDate } from 'utils/dates'
-import moment from 'utils/moment'
+} from "modules/matmeny/api"
+import { FileUploader } from "modules/matmeny/FileUploader"
+import React, { useState } from "react"
+import { useQueryClient } from "react-query"
+import { formatDate } from "utils/dates"
+import moment from "utils/moment"
 
 interface Week {
   year: string
@@ -41,8 +41,8 @@ function useModifiedData(data: MatmenyDay[]) {
     updater: (current: ModifiedDay) => ModifiedDay,
   ) {
     const persisted = {
-      dishes: dataByDate[date]?.dishes?.join(',') ?? '',
-      text: dataByDate[date]?.text || '',
+      dishes: dataByDate[date]?.dishes?.join(",") ?? "",
+      text: dataByDate[date]?.text || "",
     }
 
     setModifiedDays((prev) => {
@@ -74,7 +74,7 @@ function useModifiedData(data: MatmenyDay[]) {
   }
 
   const weeksWithChanges = new Set(
-    Object.keys(modifiedDays).map((it) => moment(it).format('GGGG-WW')),
+    Object.keys(modifiedDays).map((it) => moment(it).format("GGGG-WW")),
   )
 
   return {
@@ -94,32 +94,32 @@ function useWeeks(
 ) {
   const weeks: Record<string, Week> = {}
 
-  const d = moment().startOf('week')
-  d.subtract(prevWeeksToShow, 'weeks')
+  const d = moment().startOf("week")
+  d.subtract(prevWeeksToShow, "weeks")
   for (let i = 0; i < prevWeeksToShow + nextWeeksToShow + 1; i++) {
     const week: Week = {
-      year: d.format('GGGG'),
-      week: d.format('WW'),
+      year: d.format("GGGG"),
+      week: d.format("WW"),
       relnum: i - prevWeeksToShow,
       start: moment(d),
       days: {},
       datacount: 0,
     }
-    weeks[d.format('GGGG-WW')] = week
+    weeks[d.format("GGGG-WW")] = week
     for (let j = 0; j < 7; j++) {
-      week.days[d.format('YYYY-MM-DD')] = {
-        day: d.format('YYYY-MM-DD'),
+      week.days[d.format("YYYY-MM-DD")] = {
+        day: d.format("YYYY-MM-DD"),
         text: null,
         dishes: [],
       }
-      d.add(1, 'days')
+      d.add(1, "days")
     }
   }
 
   for (const elm of data) {
     const d = moment(elm.day)
-    weeks[d.format('GGGG-WW')].days[elm.day] = elm
-    weeks[d.format('GGGG-WW')].datacount++
+    weeks[d.format("GGGG-WW")].days[elm.day] = elm
+    weeks[d.format("GGGG-WW")].datacount++
   }
 
   return { weeks }
@@ -135,14 +135,14 @@ function MatmenyAdmin() {
     useUpdateMatmenyDaysMutation()
 
   const firstDate = moment()
-    .startOf('week')
-    .subtract(prevWeeksToShow, 'weeks')
-    .format('YYYY-MM-DD')
+    .startOf("week")
+    .subtract(prevWeeksToShow, "weeks")
+    .format("YYYY-MM-DD")
 
   const lastDate = moment()
-    .endOf('week')
-    .add(nextWeeksToShow, 'weeks')
-    .format('YYYY-MM-DD')
+    .endOf("week")
+    .add(nextWeeksToShow, "weeks")
+    .format("YYYY-MM-DD")
 
   const { isFetching, data } = useMatmenyData(firstDate, lastDate)
 
@@ -150,8 +150,8 @@ function MatmenyAdmin() {
 
   const [currentWeek, setCurrentWeek] = useState(() => {
     const d = moment()
-    if (parseInt(d.format('E')) > 3) d.add(1, 'week')
-    return d.format('GGGG-WW')
+    if (parseInt(d.format("E")) > 3) d.add(1, "week")
+    return d.format("GGGG-WW")
   })
 
   const {
@@ -173,9 +173,9 @@ function MatmenyAdmin() {
       const modified = modifiedDays[day.day]
       if (modified) {
         result.dishes = modified.dishes
-          .split(',')
+          .split(",")
           .map((it) => it.trim())
-          .filter((it) => it !== '')
+          .filter((it) => it !== "")
         result.text = modified.text
       }
       return result
@@ -209,32 +209,32 @@ function MatmenyAdmin() {
 
   return (
     <div>
-      <div className='panel panel-warning'>
-        <div className='panel-heading'>
-          <h2 className='panel-title'>Redigering av matmenyen</h2>
+      <div className="panel panel-warning">
+        <div className="panel-heading">
+          <h2 className="panel-title">Redigering av matmenyen</h2>
         </div>
 
-        <div className='panel-body'>
-          <div className='form-horizontal'>
-            <div className='form-group'>
-              <label className='col-md-3 control-label'>Velg uke</label>
-              <div className='col-md-9'>
+        <div className="panel-body">
+          <div className="form-horizontal">
+            <div className="form-group">
+              <label className="col-md-3 control-label">Velg uke</label>
+              <div className="col-md-9">
                 <select
-                  className='form-control'
+                  className="form-control"
                   value={currentWeek}
                   onChange={(ev) => setCurrentWeek(ev.target.value)}
                 >
                   {Object.values(weeks).map((week, idx) => (
                     <option key={idx} value={`${week.year}-${week.week}`}>
                       <>
-                        Uke {week.week} {week.year} (fra{' '}
-                        {formatDate(week.start, 'DD.MM')}){' '}
+                        Uke {week.week} {week.year} (fra{" "}
+                        {formatDate(week.start, "DD.MM")}){" "}
                         {week.relnum == 1
-                          ? '(neste uke)'
+                          ? "(neste uke)"
                           : week.relnum == 0
-                          ? '(inneværende uke)'
-                          : ''}{' '}
-                        {week.datacount ? ' (har data)' : ''}
+                          ? "(inneværende uke)"
+                          : ""}{" "}
+                        {week.datacount ? " (har data)" : ""}
                       </>
                     </option>
                   ))}
@@ -242,16 +242,16 @@ function MatmenyAdmin() {
               </div>
             </div>
 
-            <div className='form-group'>
-              <label className='col-md-3 control-label'>
+            <div className="form-group">
+              <label className="col-md-3 control-label">
                 Importer fra menydokument
               </label>
-              <div className='col-md-9'>
+              <div className="col-md-9">
                 <FileUploader
                   firstDayInCurrentWeek={weeks[currentWeek].start}
                   updateDay={updateDay}
                 />
-                <span className='help-block'>
+                <span className="help-block">
                   OBS! Dokumentet må benytte kjøkkenets matmeny-mal lagret i
                   .doc for å la seg lese automatisk.
                 </span>
@@ -259,10 +259,10 @@ function MatmenyAdmin() {
             </div>
 
             <form
-              name='inputform'
-              autoComplete='off'
+              name="inputform"
+              autoComplete="off"
               className={classNames({
-                'has-warning': currentWeekHasChanges,
+                "has-warning": currentWeekHasChanges,
               })}
               onSubmit={(ev) => {
                 ev.preventDefault()
@@ -270,46 +270,46 @@ function MatmenyAdmin() {
               }}
             >
               {Object.entries(weeks[currentWeek].days).map(([date, day]) => (
-                <div key={date} className='form-group'>
-                  <label className='col-md-3 control-label'>
-                    {formatDate(date, 'dddd D. MMM')}
+                <div key={date} className="form-group">
+                  <label className="col-md-3 control-label">
+                    {formatDate(date, "dddd D. MMM")}
                   </label>
-                  <div className='col-md-4'>
+                  <div className="col-md-4">
                     <input
-                      type='text'
+                      type="text"
                       value={
                         modifiedDays[date]?.dishes ??
-                        day.dishes?.join(',') ??
-                        ''
+                        day.dishes?.join(",") ??
+                        ""
                       }
                       onChange={(ev) => updateDishes(date, ev.target.value)}
-                      className='form-control'
-                      placeholder='Matretter, separer med komma'
+                      className="form-control"
+                      placeholder="Matretter, separer med komma"
                     />
                   </div>
-                  <div className='col-md-5'>
+                  <div className="col-md-5">
                     <input
-                      type='text'
-                      value={modifiedDays[date]?.text ?? day.text ?? ''}
+                      type="text"
+                      value={modifiedDays[date]?.text ?? day.text ?? ""}
                       onChange={(ev) => updateText(date, ev.target.value)}
-                      className='form-control'
-                      placeholder='Evt. kommentar for dagen'
+                      className="form-control"
+                      placeholder="Evt. kommentar for dagen"
                     />
                   </div>
                 </div>
               ))}
 
               {weeksWithChanges.has(currentWeek) && (
-                <div className='form-group'>
-                  <div className='col-md-9 col-md-offset-3'>
+                <div className="form-group">
+                  <div className="col-md-9 col-md-offset-3">
                     <input
-                      type='submit'
+                      type="submit"
                       value={
                         isSubmitting
-                          ? 'Lagre endringer (...)'
-                          : 'Lagre endringer'
+                          ? "Lagre endringer (...)"
+                          : "Lagre endringer"
                       }
-                      className='btn btn-primary'
+                      className="btn btn-primary"
                     />
                   </div>
                 </div>
@@ -318,7 +318,7 @@ function MatmenyAdmin() {
           </div>
         </div>
 
-        <div className='panel-footer'>
+        <div className="panel-footer">
           Denne tjenesten er tilgjengelig for administrasjonen (på deres
           nettverk), kollegiet og IT-gruppa.
         </div>
@@ -328,9 +328,9 @@ function MatmenyAdmin() {
 }
 
 export function MatmenyPage() {
-  useTitle('Matmeny')
+  useTitle("Matmeny")
 
-  const kollegiet = useIsMemberOf(['kollegiet'])
+  const kollegiet = useIsMemberOf(["kollegiet"])
   const authInfo = useAuthInfo()
 
   const access = authInfo.isOffice || kollegiet
@@ -338,14 +338,14 @@ export function MatmenyPage() {
   return (
     <>
       <p>
-        Ukemenyen finner du her:{' '}
-        <a href='matmeny/plain' target='_self'>
+        Ukemenyen finner du her:{" "}
+        <a href="matmeny/plain" target="_self">
           matmeny/plain
         </a>
       </p>
       <p>
-        Du kan også bruke følgende adresse og legge inn i kalenderen din:{' '}
-        <a href='matmeny.ics' target='_self'>
+        Du kan også bruke følgende adresse og legge inn i kalenderen din:{" "}
+        <a href="matmeny.ics" target="_self">
           https://foreningenbs.no/intern/matmeny.ics
         </a>
       </p>

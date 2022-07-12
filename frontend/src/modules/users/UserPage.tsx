@@ -1,18 +1,18 @@
-import { CommaSeparated } from 'components/CommaSeparated'
-import { LoadingPage } from 'components/LoadingPage'
-import { Group, UserDetails, UserDetailsFull } from 'modules/core/auth/types'
-import { useTitle } from 'modules/core/title/PageTitle'
-import { GroupLink } from 'modules/groups/GroupLink'
-import { useUser } from 'modules/users/api'
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import { CommaSeparated } from "components/CommaSeparated"
+import { LoadingPage } from "components/LoadingPage"
+import { Group, UserDetails, UserDetailsFull } from "modules/core/auth/types"
+import { useTitle } from "modules/core/title/PageTitle"
+import { GroupLink } from "modules/groups/GroupLink"
+import { useUser } from "modules/users/api"
+import React from "react"
+import { useParams } from "react-router-dom"
 
 export const IndirectMemberInfo = ({
   user,
   group,
 }: {
-  user: Pick<UserDetails, 'group_relations'>
-  group: Pick<Group, 'name' | 'description'>
+  user: Pick<UserDetails, "group_relations">
+  group: Pick<Group, "name" | "description">
 }) => {
   if (!(group.name in user.group_relations)) {
     return null
@@ -27,8 +27,8 @@ export const IndirectMemberInfo = ({
   return (
     <>
       {group.description && <br />}
-      <span className='text-muted'>
-        (Indirekte medlem gjennom{' '}
+      <span className="text-muted">
+        (Indirekte medlem gjennom{" "}
         <CommaSeparated>
           {user.group_relations[group.name].map((n) => (
             <GroupLink key={n} groupName={n} />
@@ -46,11 +46,11 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
       <li>Brukernavn: {user.username}</li>
       <li>Navn: {user.realname}</li>
       <li>
-        E-post:{' '}
+        E-post:{" "}
         {user.email ? (
           <a href={`mailto:${user.email}`}>{user.email}</a>
         ) : (
-          'Ukjent'
+          "Ukjent"
         )}
       </li>
       {user.phone && (
@@ -67,8 +67,8 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
       </p>
     ) : (
       <table
-        className='table table-striped nowrap table-condensed'
-        style={{ width: 'auto' }}
+        className="table table-striped nowrap table-condensed"
+        style={{ width: "auto" }}
       >
         <thead>
           <tr>
@@ -98,7 +98,7 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
         <ul>
           {Object.entries(user.groupowner_relations).map(([name, from]) => (
             <li key={name}>
-              <GroupLink groupName={name} /> (delegert fra{' '}
+              <GroupLink groupName={name} /> (delegert fra{" "}
               <CommaSeparated>
                 {from.map((n) => (
                   <GroupLink key={n} groupName={n} />
@@ -118,7 +118,7 @@ export const UserPage = () => {
 
   const { isFetching, isSuccess, data } = useUser(name!)
 
-  useTitle(data ? data.realname ?? data.username : 'Bruker')
+  useTitle(data ? data.realname ?? data.username : "Bruker")
 
   if (isFetching) {
     return <LoadingPage />

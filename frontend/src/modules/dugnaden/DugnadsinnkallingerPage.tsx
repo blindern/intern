@@ -1,9 +1,9 @@
-import { LoadingPage } from 'components/LoadingPage'
-import { useTitle } from 'modules/core/title/PageTitle'
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { formatDate } from 'utils/dates'
-import { DugnadDay, useDugnadenList } from './api'
+import { LoadingPage } from "components/LoadingPage"
+import { useTitle } from "modules/core/title/PageTitle"
+import React, { useState } from "react"
+import styled from "styled-components"
+import { formatDate } from "utils/dates"
+import { DugnadDay, useDugnadenList } from "./api"
 
 const DugnadContainer = styled.div`
   page-break-before: always;
@@ -31,16 +31,16 @@ const List = ({ list }: { list: DugnadDay[] }) => {
   return (
     <>
       <p>
-        Dugnad:{' '}
+        Dugnad:{" "}
         <select
-          name='dugnad'
-          value={dugnadId == null ? '' : dugnadId}
+          name="dugnad"
+          value={dugnadId == null ? "" : dugnadId}
           onChange={(e) => setDugnadId(e.target.value)}
         >
-          <option value=''>Velg dugnad</option>
+          <option value="">Velg dugnad</option>
           {list.map((dugnad) => (
             <option key={dugnad.id} value={dugnad.id}>
-              {formatDate(dugnad.date, 'dddd D. MMMM YYYY')} (
+              {formatDate(dugnad.date, "dddd D. MMMM YYYY")} (
               {dugnad.people.length})
             </option>
           ))}
@@ -60,8 +60,8 @@ const List = ({ list }: { list: DugnadDay[] }) => {
               </Header>
               <p>Du har dugnad på lørdag!</p>
               <p>
-                Hei, du er satt opp på dugnad{' '}
-                {formatDate(dugnad.date, 'dddd D. MMMM YYYY')}. Møt opp i
+                Hei, du er satt opp på dugnad{" "}
+                {formatDate(dugnad.date, "dddd D. MMMM YYYY")}. Møt opp i
                 peisestua klokken 10:00 iført arbeidsantrekk.
               </p>
               <p>
@@ -86,7 +86,7 @@ const List = ({ list }: { list: DugnadDay[] }) => {
 }
 
 export const DugnadsinnkallingerPage = () => {
-  useTitle('Dugnadsinnkallinger')
+  useTitle("Dugnadsinnkallinger")
   const { isFetching, isSuccess, data } = useDugnadenList()
 
   if (isFetching) {

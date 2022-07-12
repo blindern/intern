@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject } from "rxjs"
 
 export interface Flash {
   type: FlashType
@@ -6,7 +6,7 @@ export interface Flash {
   date: Date
 }
 
-type FlashType = 'danger' | 'success'
+type FlashType = "danger" | "success"
 
 export interface FlashArgs {
   message: string
@@ -17,7 +17,7 @@ export class FlashesService {
   flashesSubject = new BehaviorSubject<Flash[]>([])
   getFlashesObservable = () => this.flashesSubject
 
-  addFlash({ type = 'danger', message }: FlashArgs) {
+  addFlash({ type = "danger", message }: FlashArgs) {
     const flashObj: Flash = {
       type,
       message,

@@ -1,5 +1,5 @@
-import memoizeOne from 'memoize-one'
-import React, { createContext, useContext } from 'react'
+import memoizeOne from "memoize-one"
+import React, { createContext, useContext } from "react"
 
 export interface ConsumerProps {
   title: string
@@ -9,7 +9,7 @@ export interface ConsumerProps {
 }
 
 const defaultValue: ConsumerProps = {
-  title: 'FBS',
+  title: "FBS",
   registerTitle: () => null,
   unregisterTitle: () => null,
   updateTitle: () => null,

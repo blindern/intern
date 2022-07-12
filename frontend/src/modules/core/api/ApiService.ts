@@ -1,4 +1,4 @@
-import { BrowserHistory } from 'history'
+import { BrowserHistory } from "history"
 import {
   BadRequestError,
   ForbiddenError,
@@ -6,14 +6,14 @@ import {
   NotFoundError,
   ResponseError,
   ServerError,
-} from 'modules/core/api/errors'
-import { api } from 'modules/core/api/utils'
-import { AuthService } from 'modules/core/auth/AuthService'
-import { FlashesService } from 'modules/core/flashes/FlahesService'
+} from "modules/core/api/errors"
+import { api } from "modules/core/api/utils"
+import { AuthService } from "modules/core/auth/AuthService"
+import { FlashesService } from "modules/core/flashes/FlahesService"
 
 interface MessagesInError {
   messages: {
-    type: 'danger' | 'success'
+    type: "danger" | "success"
     message: string
   }[]
 }
@@ -36,13 +36,13 @@ export class ApiService {
     if (!response.ok) {
       if (response.status === 401) {
         this.authService.markLoggedOut()
-        if (!this.history.location.pathname.endsWith('/login')) {
+        if (!this.history.location.pathname.endsWith("/login")) {
           this.flashes.addFlash({
-            type: 'danger',
-            message: 'Denne siden krever at du logger inn.',
+            type: "danger",
+            message: "Denne siden krever at du logger inn.",
           })
           this.authService.setLoginRedirectUrl(this.history.location.pathname)
-          this.history.push('/intern/login')
+          this.history.push("/intern/login")
         }
         throw new NotAuthedError(response)
       }
@@ -75,7 +75,7 @@ export class ApiService {
 
     let foundMessages = false
 
-    if ('messages' in data) {
+    if ("messages" in data) {
       for (const message of (data as MessagesInError).messages) {
         this.flashes.addFlash({
           type: message.type,
@@ -91,28 +91,28 @@ export class ApiService {
 
     if (error instanceof ServerError) {
       this.flashes.addFlash({
-        type: 'danger',
-        message: 'Ukjent feil oppsto',
+        type: "danger",
+        message: "Ukjent feil oppsto",
       })
     } else if (error instanceof ForbiddenError) {
       this.flashes.addFlash({
-        type: 'danger',
-        message: 'Du har ikke tilgang',
+        type: "danger",
+        message: "Du har ikke tilgang",
       })
     } else if (error instanceof NotFoundError) {
       this.flashes.addFlash({
-        type: 'danger',
-        message: 'Ressursen ble ikke funnet',
+        type: "danger",
+        message: "Ressursen ble ikke funnet",
       })
     } else if (error instanceof BadRequestError) {
       this.flashes.addFlash({
-        type: 'danger',
-        message: 'Ukjent feil med verdiene som ble sendt',
+        type: "danger",
+        message: "Ukjent feil med verdiene som ble sendt",
       })
     } else {
       this.flashes.addFlash({
-        type: 'danger',
-        message: 'Ukjent feil',
+        type: "danger",
+        message: "Ukjent feil",
       })
     }
 
@@ -134,20 +134,20 @@ export class ApiService {
 
   private fetchProps(includeCsrf: boolean): RequestInit {
     const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       // we need to send this header so Larvel knows to send 401 and not 302
-      'X-Requested-With': 'XMLHttpRequest',
+      "X-Requested-With": "XMLHttpRequest",
     }
 
     if (includeCsrf) {
-      headers['X-CSRF-TOKEN'] =
-        this.authService.getAuthInfoObservable().value.csrfToken ?? ''
+      headers["X-CSRF-TOKEN"] =
+        this.authService.getAuthInfoObservable().value.csrfToken ?? ""
     }
 
     const result: RequestInit = {
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'include',
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "include",
       headers,
     }
 
@@ -157,7 +157,7 @@ export class ApiService {
   public get(path: string) {
     // This don't use handleErrors. The caller should handle that for GET.
     return this.execute(api(path), {
-      method: 'GET',
+      method: "GET",
       ...this.fetchProps(false),
     })
   }
@@ -165,7 +165,7 @@ export class ApiService {
   public post(path: string, data?: unknown) {
     return this.handleErrors(async () =>
       this.execute(api(path), {
-        method: 'POST',
+        method: "POST",
         ...this.fetchProps(true),
         body: data != null ? JSON.stringify(data) : null,
       }),
@@ -175,7 +175,7 @@ export class ApiService {
   public put(path: string, data?: unknown) {
     return this.handleErrors(async () =>
       this.execute(api(path), {
-        method: 'PUT',
+        method: "PUT",
         ...this.fetchProps(true),
         body: data != null ? JSON.stringify(data) : null,
       }),
@@ -185,7 +185,7 @@ export class ApiService {
   public delete(path: string) {
     return this.handleErrors(async () =>
       this.execute(api(path), {
-        method: 'DELETE',
+        method: "DELETE",
         ...this.fetchProps(true),
       }),
     )
@@ -194,7 +194,7 @@ export class ApiService {
   public upload(path: string, body: FormData) {
     return this.handleErrors(async () =>
       this.execute(api(path), {
-        method: 'POST',
+        method: "POST",
         ...this.fetchProps(true),
         body,
       }),

@@ -1,5 +1,5 @@
-import { useApiService } from 'modules/core/api/ApiServiceProvider'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 
 export interface CreateAccountPayload {
   accountname: string
@@ -33,12 +33,12 @@ export interface CreateAccountUserPayload {
   notification: boolean
 }
 
-const listQueryKey = ['googleapps', 'accounts', 'list']
+const listQueryKey = ["googleapps", "accounts", "list"]
 
 export function useGoogleAppsAccounts() {
   const api = useApiService()
   return useQuery(listQueryKey, async () => {
-    const response = await api.get('googleapps/accounts?expand=1')
+    const response = await api.get("googleapps/accounts?expand=1")
     return (await response.json()) as Account[]
   })
 }
@@ -49,7 +49,7 @@ export function useGoogleAppsCreateAccountMutation() {
 
   return useMutation(
     async (data: CreateAccountPayload) => {
-      const response = await api.post('googleapps/accounts', data)
+      const response = await api.post("googleapps/accounts", data)
       return (await response.json()) as Account
     },
     {
@@ -67,7 +67,7 @@ export function useGoogleAppsUpdateAccountMutation() {
   return useMutation(
     async (data: Account) => {
       const response = await api.put(
-        'googleapps/accounts/' + encodeURIComponent(data._id),
+        "googleapps/accounts/" + encodeURIComponent(data._id),
         data,
       )
       return (await response.json()) as Account
@@ -87,11 +87,11 @@ export function useGoogleAppsDeleteAccountMutation() {
   return useMutation(
     async (data: Account) => {
       const response = await api.delete(
-        'googleapps/accounts/' + encodeURIComponent(data._id),
+        "googleapps/accounts/" + encodeURIComponent(data._id),
       )
       if (!response.ok) {
         console.log(response)
-        throw new Error('Response failed')
+        throw new Error("Response failed")
       }
     },
     {
@@ -108,7 +108,7 @@ export function useGoogleAppsCreateAccountUserMutation() {
 
   return useMutation(
     async (data: CreateAccountUserPayload) => {
-      const response = await api.post('googleapps/accountusers', data)
+      const response = await api.post("googleapps/accountusers", data)
       return (await response.json()) as AccountUser
     },
     {
@@ -126,7 +126,7 @@ export function useGoogleAppsUpdateAccountUserMutation() {
   return useMutation(
     async (data: AccountUser) => {
       const response = await api.put(
-        'googleapps/accountusers/' + encodeURIComponent(data._id),
+        "googleapps/accountusers/" + encodeURIComponent(data._id),
         data,
       )
       return (await response.json()) as AccountUser
@@ -146,11 +146,11 @@ export function useGoogleAppsDeleteAccountUserMutation() {
   return useMutation(
     async (data: AccountUser) => {
       const response = await api.delete(
-        'googleapps/accountusers/' + encodeURIComponent(data._id),
+        "googleapps/accountusers/" + encodeURIComponent(data._id),
       )
       if (!response.ok) {
         console.log(response)
-        throw new Error('Response failed')
+        throw new Error("Response failed")
       }
     },
     {

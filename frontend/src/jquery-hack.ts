@@ -1,4 +1,4 @@
-import jQuery from 'jquery'
+import jQuery from "jquery"
 
 // jQuery is used by Bootstrap.
 

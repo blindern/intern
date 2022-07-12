@@ -1,6 +1,6 @@
-import { useId } from 'modules/core/forms/ids'
-import React from 'react'
-import { Controller, useFormContext } from 'react-hook-form'
+import { useId } from "modules/core/forms/ids"
+import React from "react"
+import { Controller, useFormContext } from "react-hook-form"
 
 export function TextareaField({
   label,
@@ -17,14 +17,14 @@ export function TextareaField({
   const { register } = useFormContext()
 
   return (
-    <div className='form-group'>
-      <label htmlFor={id} className='col-sm-3 control-label'>
+    <div className="form-group">
+      <label htmlFor={id} className="col-sm-3 control-label">
         {label}
       </label>
-      <div className='col-sm-6'>
+      <div className="col-sm-6">
         <textarea
           {...register(name)}
-          className='form-control'
+          className="form-control"
           id={id}
           placeholder={placeholder}
           rows={rows}
@@ -51,15 +51,15 @@ export function TextField({
   const { register } = useFormContext()
 
   return (
-    <div className='form-group'>
-      <label htmlFor={id} className='col-sm-3 control-label'>
+    <div className="form-group">
+      <label htmlFor={id} className="col-sm-3 control-label">
         {label}
       </label>
-      <div className='col-sm-6'>
+      <div className="col-sm-6">
         <input
           {...register(name)}
-          type='text'
-          className='form-control'
+          type="text"
+          className="form-control"
           id={id}
           placeholder={placeholder}
           autoFocus={autoFocus}
@@ -83,23 +83,23 @@ export function MultiTextField({
   const { control } = useFormContext()
 
   return (
-    <div className='form-group'>
-      <label htmlFor={id} className='col-sm-3 control-label'>
+    <div className="form-group">
+      <label htmlFor={id} className="col-sm-3 control-label">
         {label}
       </label>
-      <div className='col-sm-6'>
+      <div className="col-sm-6">
         <Controller
           name={name}
           control={control}
           render={({ field }) => (
             <input
               {...field}
-              type='text'
-              className='form-control'
+              type="text"
+              className="form-control"
               id={id}
               placeholder={placeholder}
-              value={(field.value as string[] | null)?.join(',') ?? ''}
-              onChange={(e) => field.onChange(e.target.value.split(','))}
+              value={(field.value as string[] | null)?.join(",") ?? ""}
+              onChange={(e) => field.onChange(e.target.value.split(","))}
             />
           )}
         />
@@ -111,9 +111,9 @@ export function MultiTextField({
 export function TitleField({ autoFocus }: { autoFocus?: boolean }) {
   return (
     <TextField
-      name='title'
-      label='Tittel'
-      placeholder='Tittel på boka'
+      name="title"
+      label="Tittel"
+      placeholder="Tittel på boka"
       autoFocus={autoFocus}
       required
     />
@@ -122,27 +122,27 @@ export function TitleField({ autoFocus }: { autoFocus?: boolean }) {
 export function SubtitleField() {
   return (
     <TextField
-      name='subtitle'
-      label='Undertittel'
-      placeholder='Evt. undertittel'
+      name="subtitle"
+      label="Undertittel"
+      placeholder="Evt. undertittel"
     />
   )
 }
 export function AuthorsField() {
   return (
     <MultiTextField
-      name='authors'
-      label='Forfattere'
-      placeholder='Forfattere separert med komma'
+      name="authors"
+      label="Forfattere"
+      placeholder="Forfattere separert med komma"
     />
   )
 }
 export function PubdateField() {
   return (
     <TextField
-      name='pubdate'
-      label='Publisert dato/år'
-      placeholder='yyyy-mm-dd eller yyyy-mm eller yyyy eller yyyy? eller yy?'
+      name="pubdate"
+      label="Publisert dato/år"
+      placeholder="yyyy-mm-dd eller yyyy-mm eller yyyy eller yyyy? eller yy?"
     />
   )
 }
@@ -150,9 +150,9 @@ export function PubdateField() {
 export function DescriptionField({ rows }: { rows: number }) {
   return (
     <TextareaField
-      name='description'
-      label='Beskrivelse'
-      placeholder='Evt. beskrivelse om boka'
+      name="description"
+      label="Beskrivelse"
+      placeholder="Evt. beskrivelse om boka"
       rows={rows}
     />
   )
@@ -161,9 +161,9 @@ export function DescriptionField({ rows }: { rows: number }) {
 export function BibRoomField() {
   return (
     <TextField
-      name='bib_room'
-      label='Rom'
-      placeholder='I hvilket rom tilhører boka?'
+      name="bib_room"
+      label="Rom"
+      placeholder="I hvilket rom tilhører boka?"
     />
   )
 }
@@ -171,9 +171,9 @@ export function BibRoomField() {
 export function BibSectionField() {
   return (
     <TextField
-      name='bib_section'
-      label='Seksjon i rommet'
-      placeholder='Hvor i biblioteket boka tilhører'
+      name="bib_section"
+      label="Seksjon i rommet"
+      placeholder="Hvor i biblioteket boka tilhører"
     />
   )
 }
@@ -181,9 +181,9 @@ export function BibSectionField() {
 export function BibCommentField({ rows }: { rows: number }) {
   return (
     <TextareaField
-      name='bib_comment'
-      label='Biblioteksutvalgets kommentar'
-      placeholder='Evt. kommentar hvis man vil si noe om tilstand til boka eller liknende'
+      name="bib_comment"
+      label="Biblioteksutvalgets kommentar"
+      placeholder="Evt. kommentar hvis man vil si noe om tilstand til boka eller liknende"
       rows={rows}
     />
   )
@@ -192,9 +192,9 @@ export function BibCommentField({ rows }: { rows: number }) {
 export function IsbnField({ autoFocus }: { autoFocus?: boolean }) {
   return (
     <TextField
-      name='isbn'
-      label='ISBN'
-      placeholder='ISBN-kode'
+      name="isbn"
+      label="ISBN"
+      placeholder="ISBN-kode"
       autoFocus={autoFocus}
     />
   )
