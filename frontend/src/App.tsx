@@ -61,13 +61,6 @@ const queryClient = new QueryClient({
   },
 })
 
-const Todo = () => (
-  <>
-    <PageTitle title='TODO' />
-    <p>TODO</p>
-  </>
-)
-
 function ArrplanRedir() {
   const d = new Date()
   const sem =
@@ -85,7 +78,6 @@ const RouteList = () => (
 
     <Route path='/login' element={<Login />} />
     <Route path='/registrer' element={<RegisterUserPage />} />
-    <Route path='/logout' element={<Todo />} />
 
     <Route path='/bokdatabase' element={<Navigate to={'/books'} />} />
     <Route path='/books' element={<ListBooksPage />} />
