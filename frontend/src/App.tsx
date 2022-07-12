@@ -1,5 +1,9 @@
 import Template from 'layout/Template'
 import ArrplanPage from 'modules/arrplan/ArrplanPage'
+import { BookPage } from 'modules/books/BookPage'
+import { EditBookPage } from 'modules/books/EditBookPage'
+import { ListBooksPage } from 'modules/books/ListBooksPage'
+import { RegisterBookPage } from 'modules/books/RegisterBookPage'
 import { BukkListPage } from 'modules/bukker/BukkListPage'
 import { BukkPage } from 'modules/bukker/BukkPage'
 import Login from 'modules/core/auth/Login'
@@ -55,10 +59,10 @@ const RouteList = () => (
     <Route path='/logout' element={<Todo />} />
 
     <Route path='/bokdatabase' element={<Todo />} />
-    <Route path='/books' element={<Todo />} />
-    <Route path='/books/register' element={<Todo />} />
-    <Route path='/books/:id' element={<Todo />} />
-    <Route path='/books/:id/edit' element={<Todo />} />
+    <Route path='/books' element={<ListBooksPage />} />
+    <Route path='/books/register' element={<RegisterBookPage />} />
+    <Route path='/books/:id' element={<BookPage />} />
+    <Route path='/books/:id/edit' element={<EditBookPage />} />
 
     <Route path='/bukker' element={<BukkListPage />} />
     <Route path='/bukker/:id' element={<BukkPage />} />

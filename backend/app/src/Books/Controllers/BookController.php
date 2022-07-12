@@ -85,6 +85,8 @@ class BookController extends Controller
 
         // check for ISBN-data
         if ($isbn_data = ISBN::searchByISBN($book->isbn)) {
+            // Convert stdClass to associative arrays.
+            $isbn_data = json_decode(json_encode($isbn_data), true);
             $book->isbn_data = $isbn_data;
 
             if (isset($isbn_data['imageLinks']['smallThumbnail'])) {

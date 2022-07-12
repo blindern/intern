@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import './frontend.scss'
 
 const MenuLink = ({ children, to }: { children: ReactNode; to: string }) => {
-  const isActive = useMatch(to) != null
+  const isActive = useMatch(to + '/*') != null
 
   return (
     <li className={classNames({ active: isActive })}>

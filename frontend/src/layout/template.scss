@@ -16,14 +16,11 @@ code {
 }
 
 // pull right after headers should be positioned next to header
-/*
-Don't think this is used? Remove if not
 
-[ng-view] .pull-right:first-child {
+.pull-right:first-child {
   float: none !important;
   @media (min-width: $screen-sm-min) {
     float: right !important;
     margin-top: -75px;
   }
 }
-*/

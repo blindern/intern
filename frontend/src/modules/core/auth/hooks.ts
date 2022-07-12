@@ -1,12 +1,12 @@
+import { AuthInfo } from 'modules/core/auth/types'
 import { AuthContext } from 'modules/core/auth/UserProvider'
 import { useContext } from 'react'
 
-export function useIsMemberOf(
+export function isMemberOf(
+  auth: AuthInfo,
   candidateGroupNames: string[],
   forceRealMember = false,
 ) {
-  const auth = useContext(AuthContext)
-
   if (!auth.isLoggedIn) {
     return false
   }
@@ -20,4 +20,12 @@ export function useIsMemberOf(
   }
 
   return false
+}
+
+export function useIsMemberOf(
+  candidateGroupNames: string[],
+  forceRealMember?: boolean,
+) {
+  const auth = useContext(AuthContext)
+  return isMemberOf(auth, candidateGroupNames, forceRealMember)
 }
