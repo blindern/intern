@@ -25,7 +25,7 @@ return [
 
     'allowed_headers' => ['content-type', 'x-xsrf-token', 'x-csrf-token', 'x-requested-with'],
 
-    'exposed_headers' => ['x-flashes'],
+    'exposed_headers' => [],
 
     'max_age' => 0,
 

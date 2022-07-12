@@ -26,18 +26,6 @@ export class NotFoundError extends Error {}
 const doFetch = async (url: string, options: RequestInit) => {
   const result = await fetch(url, options)
 
-  const flashes = result.headers.get('X-Flashes')
-  if (flashes != null) {
-    const json = JSON.parse(flashes) as Array<{
-      message: string
-      type?: 'danger' | null
-    }>
-
-    json.forEach((flash) => {
-      flashesService.addFlash(flash)
-    })
-  }
-
   if (!result.ok) {
     if (result.status === 401) {
       throw new NotAuthedError()
