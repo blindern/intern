@@ -1,5 +1,5 @@
 import { ApiService } from "modules/core/api/ApiService"
-import { BehaviorSubject } from "rxjs"
+import { BehaviorSubject, Subject } from "rxjs"
 import { AuthInfo, AuthInfoNotLoggedIn } from "./types"
 
 export const defaultAuthInfo: AuthInfoNotLoggedIn = {
@@ -11,12 +11,14 @@ export const defaultAuthInfo: AuthInfoNotLoggedIn = {
 
 export class AuthService {
   private authInfoSubject = new BehaviorSubject<AuthInfo>(defaultAuthInfo)
+  private possiblyLoggedOutSubject = new Subject<void>()
   private loginRedirectUrl: string | null = null
 
   constructor(readonly api: ApiService) {}
 
   markLoggedOut() {
     this.authInfoSubject.next(defaultAuthInfo)
+    this.possiblyLoggedOutSubject.next()
 
     // Refetch auth info to get fresh csrf token.
     // TODO: Handle rejection.
@@ -24,6 +26,7 @@ export class AuthService {
   }
 
   getAuthInfoObservable = () => this.authInfoSubject
+  getPossiblyLoggedOutObservable = () => this.possiblyLoggedOutSubject
 
   async fetchAuthInfo() {
     const response = await this.api.get("me")

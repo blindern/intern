@@ -18,6 +18,7 @@ import {
 import { AuthInfoProvider } from "modules/core/auth/AuthInfoProvider"
 import { AuthService } from "modules/core/auth/AuthService"
 import { AuthServiceProvider } from "modules/core/auth/AuthServiceProvider"
+import { LoggedOutHandler } from "modules/core/auth/LoggedOutHandler"
 import { LoginPage } from "modules/core/auth/LoginPage"
 import { FlashesService } from "modules/core/flashes/FlahesService"
 import { FlashesProvider } from "modules/core/flashes/FlashesProvider"
@@ -119,16 +120,18 @@ export const App = () => (
       <ApiServiceProvider apiService={apiService}>
         <FlashesProvider flashesService={flashesService}>
           <QueryClientProvider client={queryClient}>
-            <TitleProvider>
-              <>
-                <PageTitle title="Foreningen Blindern Studenterhjem" />
-                <AuthInfoProvider>
-                  <Template>
-                    <RouteList />
-                  </Template>
-                </AuthInfoProvider>
-              </>
-            </TitleProvider>
+            <LoggedOutHandler>
+              <TitleProvider>
+                <>
+                  <PageTitle title="Foreningen Blindern Studenterhjem" />
+                  <AuthInfoProvider>
+                    <Template>
+                      <RouteList />
+                    </Template>
+                  </AuthInfoProvider>
+                </>
+              </TitleProvider>
+            </LoggedOutHandler>
           </QueryClientProvider>
         </FlashesProvider>
       </ApiServiceProvider>{" "}
