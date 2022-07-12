@@ -4,7 +4,7 @@ version: '2'
 services:
   backend:
     build:
-      context: backend
+      context: .
       dockerfile: Dockerfile
     image: blindern/intern-backend
     environment:

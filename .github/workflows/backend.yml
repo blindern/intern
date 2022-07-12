@@ -14,6 +14,7 @@ jobs:
           php-version: '8.1'
 
       - run: docker-compose up -d database
+        working-directory: backend
 
       - run: composer install -n --prefer-dist
         working-directory: backend
@@ -22,7 +23,6 @@ jobs:
         working-directory: backend
 
       - name: Build container
-        id: docker_build
         uses: docker/build-push-action@v3
         with:
           context: backend
