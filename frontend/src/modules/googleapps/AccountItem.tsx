@@ -10,6 +10,7 @@ import {
 import { EditAccount } from "modules/googleapps/EditAccount"
 import { NewAccountUser } from "modules/googleapps/NewAccountUser"
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { userUrl } from "urls"
 
 export function AccountItem({
@@ -85,9 +86,9 @@ export function AccountItem({
         {users.map((user) => (
           <li key={user._id}>
             <span style={{ display: "inline-block", minWidth: "220px" }}>
-              <a href={userUrl(user.username)}>
+              <Link to={userUrl(user.username)}>
                 {user.realname ?? user.username}
-              </a>
+              </Link>
             </span>
             <span style={{ display: "inline-block", minWidth: "120px" }}>
               {user.notification && <>(mottar varsler)</>}
