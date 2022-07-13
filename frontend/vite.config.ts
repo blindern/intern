@@ -39,6 +39,7 @@ export default defineConfig({
     BACKEND_URL: JSON.stringify(process.env.BACKEND_URL ?? "/intern/"),
   },
   server: {
+    port: 3000,
     proxy: {
       "/intern/api": {
         target: "https://foreningenbs.no/intern/api",
@@ -47,5 +48,8 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/intern\/api/, ""),
       },
     },
+  },
+  preview: {
+    port: 3000,
   },
 })
