@@ -12,6 +12,7 @@ export default defineConfig({
       eslint: {
         lintCommand: "eslint .",
       },
+      overlay: { initialIsOpen: false },
     }),
   ],
   base: "/intern/",
