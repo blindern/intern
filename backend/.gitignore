@@ -1,0 +1,14 @@
+/.env
+/.env.php
+/.env.testing.php
+/bootstrap/compiled.php
+/vendor
+composer.phar
+.DS_Store
+Thumbs.db
+error_log
+.phpunit.result.cache
+
+# ignore IntelliJ-files
+.idea/
+*.iml

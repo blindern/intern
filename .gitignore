@@ -1,17 +1,2 @@
+/.data/
 /.env
-/.env.php
-/.env.testing.php
-/bootstrap/compiled.php
-/vendor
-composer.phar
-.DS_Store
-Thumbs.db
-/node_modules/
-/public/builds/
-error_log
-/bower_components/
-/.sass-cache/
-
-# ignore IntelliJ-files
-.idea/
-*.iml

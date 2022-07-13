@@ -1,0 +1,19 @@
+/* For printer */
+.printerchart {
+  * {
+    font-size: 14px;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+  .area {
+    fill: steelblue;
+  }
+  .ytext {
+    fill: #000;
+  }
+}
