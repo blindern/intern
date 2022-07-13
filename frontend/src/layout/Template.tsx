@@ -191,7 +191,11 @@ export const Template = ({ children }: { children: ReactNode }) => {
       <Footer className="hidden-print">
         <FooterContainer className="container">
           <CreditText className="text-muted">
-            <a href="/">Foreningen Blindern Studenterhjem</a> - Kontakt{" "}
+            <a href="/">Foreningen Blindern Studenterhjem</a> - Org.nr{" "}
+            <a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=982118387">
+              982 118 387
+            </a>{" "}
+            - Kontakt{" "}
             <a href="mailto:it-gruppa@foreningenbs.no">
               it-gruppa@foreningenbs.no
             </a>{" "}
