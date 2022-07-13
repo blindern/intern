@@ -56,7 +56,7 @@ class AuthController extends Controller
         // lag fil som kan brukes
         setlocale(LC_CTYPE, "nb_NO.UTF-8");
         $n = uniqid().".sh";
-        $f = "/var/www/users/$n";
+        $f = storage_path('user-requests') . "/$n";
         file_put_contents($f,
 "FIRSTNAME=".escapeshellarg($data['firstname'])."
 LASTNAME=".escapeshellarg($data['lastname'])."
