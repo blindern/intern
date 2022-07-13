@@ -15,8 +15,8 @@ export const HomePage = () => {
         å skape, drive og tilrettelegge muligheten for sosiale aktiviteter for
         både nåværende og fremtidige beboere på Blindern Studenterhjem. For mer
         informasjon om Blindern Studenterhjem og foreningen, se{" "}
-        <a href="http://blindern-studenterhjem.no/livet/foreningsstyret">
-          {"http://blindern-studenterhjem.no/livet/foreningsstyret"}
+        <a href="https://www.blindern-studenterhjem.no/livet/foreningsstyret/">
+          {"https://www.blindern-studenterhjem.no/livet/foreningsstyret/"}
         </a>
         .
       </p>
@@ -118,7 +118,7 @@ export const HomePage = () => {
       <div className="row fbs_forside_lenker">
         <div className="col-sm-3">
           <p>
-            <a href="http://blindern-studenterhjem.no/">
+            <a href="https://www.blindern-studenterhjem.no/">
               <span>
                 Blindern Studenterhjems
                 <br />

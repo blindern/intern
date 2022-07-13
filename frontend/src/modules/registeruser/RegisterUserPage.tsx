@@ -262,7 +262,7 @@ export const RegisterUserPage = () => {
         <p>
           Dette er en tjeneste for beboere ved Blindern Studenterhjem. Har du
           øvrige spørsmål ta kontakt med{" "}
-          <a href="http://blindern-studenterhjem.no/administrasjonen">
+          <a href="https://www.blindern-studenterhjem.no/kontakt/">
             hjemmets administrasjon
           </a>
           .
