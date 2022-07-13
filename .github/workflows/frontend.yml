@@ -27,6 +27,7 @@ jobs:
         working-directory: frontend
 
       - name: Build docker image
+        id: docker_build
         uses: docker/build-push-action@v3
         with:
           context: frontend
@@ -34,3 +35,16 @@ jobs:
           tags: blindern/intern-frontend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/master'
+        run: |
+          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          {
+            "service": "intern",
+            "attributes": {
+              "frontend_image": "blindern/intern-frontend@${{ steps.docker_build.outputs.digest }}"
+            }
+          }'
+        env:
+          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
