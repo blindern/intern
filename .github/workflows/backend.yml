@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: backend
-          push: ${{ github.ref == 'refs/heads/modernize' }}
+          push: ${{ github.ref == 'refs/heads/master' }}
           tags: blindern/intern-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
