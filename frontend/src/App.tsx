@@ -86,9 +86,9 @@ const RouteList = () => (
     <Route path="/arrplan" element={<ArrplanRedir />} />
     <Route path="/arrplan/:semester" element={<ArrplanPage />} />
 
-    <Route path="/registrer" element={<RegisterUserPage />} />
+    <Route path="/register" element={<RegisterUserPage />} />
 
-    <Route path="/bokdatabase" element={<Navigate to={"/books"} />} />
+    <Route path="/bokdatabase" element={<Navigate to="/books" />} />
     <Route path="/books" element={<ListBooksPage />} />
     <Route path="/books/register" element={<RegisterBookPage />} />
     <Route path="/books/:id" element={<BookPage />} />

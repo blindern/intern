@@ -169,7 +169,7 @@ export const Template = ({ children }: { children: ReactNode }) => {
                         Logg inn
                       </a>
                     </li>
-                    <MenuLink to="/registrer">Registrer</MenuLink>
+                    <MenuLink to="/register">Registrer</MenuLink>
                   </>
                 )}
               </ul>
