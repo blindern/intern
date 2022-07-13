@@ -1,6 +1,5 @@
 import { ErrorMessage } from "@hookform/error-message"
 import classNames from "classnames"
-import { useAuthService } from "modules/core/auth/AuthServiceProvider"
 import { useYupValidationResolver } from "modules/core/forms/validation"
 import { useTitle } from "modules/core/title/PageTitle"
 import React, { ReactNode, useState } from "react"
@@ -183,7 +182,7 @@ const PasswordGroup = () => (
 
 const RegisterForm = () => {
   const [isSent, setIsSent] = useState(false)
-  const { mutateAsync: registerUser } = useRegisterUserMutation()
+  const { isLoading, mutateAsync: registerUser } = useRegisterUserMutation()
 
   const resolver = useYupValidationResolver(validationSchema)
 
@@ -200,25 +199,19 @@ const RegisterForm = () => {
   })
 
   async function onSubmit(values: RegisterData) {
-    // TODO: Better error handling
     await registerUser(values)
     setIsSent(true)
   }
 
-  if (isSent) return <p>Din forespørsel er sendt inn.</p>
+  if (isSent)
+    return (
+      <p>
+        <b>Din forespørsel er sendt inn.</b>
+      </p>
+    )
 
   return (
     <FormProvider {...methods}>
-      <p style={{ color: "#FF0000" }}>
-        Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent for
-        andre brukere.
-      </p>
-      <p>
-        Du vil kunne bruke dette brukernavnet og passordet til å logge inn på
-        forskjellige tjenester på BS (som f.eks. printeren i biblionette, wikien
-        og Blindernåret).
-      </p>
-
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
         className="form-horizontal"
@@ -235,8 +228,11 @@ const RegisterForm = () => {
           <div className="col-lg-offset-4 col-lg-8">
             <input
               type="submit"
-              value="Registrer"
-              className="btn btn-default"
+              value={
+                isLoading ? "Send inn forespørsel ..." : "Send inn forespørsel"
+              }
+              className="btn btn-primary"
+              disabled={isLoading}
             />
             <span className="help-block">
               Du vil bli lagt til manuelt, så noe ventetid må påregnes.
@@ -250,15 +246,10 @@ const RegisterForm = () => {
 
 export const RegisterUserPage = () => {
   useTitle("Registrering for beboere/GB-ere")
-  const authService = useAuthService()
 
   return (
     <div className="row">
       <div className="col-md-6">
-        <p>
-          <a href={authService.getLoginUrl()}>&laquo; Logg inn</a>
-        </p>
-
         <p>
           Dette er en tjeneste for beboere ved Blindern Studenterhjem. Har du
           øvrige spørsmål ta kontakt med{" "}
@@ -266,6 +257,18 @@ export const RegisterUserPage = () => {
             hjemmets administrasjon
           </a>
           .
+        </p>
+
+        <p>
+          Du vil kunne bruke dette brukernavnet og passordet til å logge inn på
+          forskjellige tjenester på BS (som f.eks. printeren i biblionette,
+          wikien og Blindernåret). Vi omtaler denne brukeren som din{" "}
+          <em>Foreningsbruker</em>.
+        </p>
+
+        <p style={{ color: "#FF0000" }}>
+          Opplysningene du oppgir, med unntak av passord, vil bli gjort kjent
+          for andre brukere.
         </p>
 
         <RegisterForm />

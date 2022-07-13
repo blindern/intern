@@ -14,7 +14,5 @@ export function useRegisterUserMutation() {
   const api = useApiService()
   return useMutation(async (data: RegisterData) => {
     await api.post("register", data)
-
-    // TODO: Return something?
   })
 }
