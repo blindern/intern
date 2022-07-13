@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+$is_https = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https';
+
 return [
 
     /*
@@ -142,7 +144,7 @@ return [
     |
     */
 
-    'path' => '/',
+    'path' => '/intern/api/',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +170,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => $is_https,
 
     /*
     |--------------------------------------------------------------------------
@@ -196,6 +198,6 @@ return [
     |
     */
 
-    'same_site' => 'none',
+    'same_site' => $is_https ? 'none' : 'lax',
 
 ];
