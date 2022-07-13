@@ -40,14 +40,6 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    proxy: {
-      "/intern/api": {
-        target: "https://foreningenbs.no/intern/api",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/intern\/api/, ""),
-      },
-    },
   },
   preview: {
     port: 3000,
