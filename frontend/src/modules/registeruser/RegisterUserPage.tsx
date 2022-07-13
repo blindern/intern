@@ -233,15 +233,6 @@ const RegisterForm = () => {
 
         <div className="form-group">
           <div className="col-lg-offset-4 col-lg-8">
-            Når du registrerer deg vil du etter hvert også bli lagt inn på lista
-            bs-info@foreningenbs.no som benyttes til å informere om større
-            begivenheter som f.eks. revy, som kan være relevant også etter
-            botiden. Denne listen kan man melde seg av om ønskelig.
-          </div>
-        </div>
-
-        <div className="form-group">
-          <div className="col-lg-offset-4 col-lg-8">
             <input
               type="submit"
               value="Registrer"

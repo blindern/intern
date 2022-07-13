@@ -14,11 +14,6 @@ Kommando for å opprette:
 /fbs/drift/nybruker/process.sh <?=$filename?>
 
 
-Tekst til bs-info-lista:
-<?=$email?> <?=$firstname?> <?=$lastname?>
-
-
-
 Sendt fra <?=$_SERVER['REMOTE_ADDR']?>
 
 <?=$_SERVER['HTTP_USER_AGENT']?>
