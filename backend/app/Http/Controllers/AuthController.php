@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers;
 
+use App\Mail\RegisterUser;
 use Blindern\Intern\Responses;
 use Blindern\Intern\Passtools\pw;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -48,15 +50,13 @@ class AuthController extends Controller
         $smbpass = pw::smbpass($data['password']);
         $unixpass = pw::unixpass($data['password']);
 
-        $replyto = preg_replace("/\s/", "", $data['email']);
         $data['username'] = strtolower($data['username']);
 
         $data['phone'] = !empty($data['phone']) ? $data['phone'] : '';
 
         // lag fil som kan brukes
-        setlocale(LC_CTYPE, "nb_NO.UTF-8");
-        $n = uniqid().".sh";
-        $f = storage_path('user-requests') . "/$n";
+        $filename = uniqid().".sh";
+        $f = storage_path('user-requests') . "/$filename";
         file_put_contents($f,
 "FIRSTNAME=".escapeshellarg($data['firstname'])."
 LASTNAME=".escapeshellarg($data['lastname'])."
@@ -67,27 +67,12 @@ PASS=".escapeshellarg($unixpass)."
 NTPASS=".escapeshellarg($smbpass)."
 ");
 
+        $data['filename'] = $filename;
+
         // send forespørsel
-        $res = mail("it-gruppa@foreningenbs.no", "Foreningsbruker - {$data['username']}", "Ønsker opprettelse av foreningsbruker:
+        $to = env("REGISTERUSER_NOTIFY_EMAIL", "it-gruppa@foreningenbs.no");
 
-
-Info til IT-gruppa:
-
-Fornavn: \"{$data['firstname']}\"
-Etternavn: \"{$data['lastname']}\"
-E-post: \"{$data['email']}\"
-Ønsket brukernavn: \"{$data['username']}\"
-Mobilnr: ".($data['phone'] ? "\"{$data['phone']}\"" : "ikke registrert")."
-
-Kommando for å opprette:
-/fbs/drift/nybruker/process.sh $n
-
-Tekst til bs-info-lista:
-{$data['email']} {$data['firstname']} {$data['lastname']}
-
-
-Sendt fra {$_SERVER['REMOTE_ADDR']}
-{$_SERVER['HTTP_USER_AGENT']}", "From: lpadmin@foreningenbs.no\r\nReply-To: $replyto");
+        $res = Mail::to($to)->send(new RegisterUser($data, $filename));
 
         if (!$res) {
             return Responses::serverError(["Kunne ikke legge til forespørsel. Kontakt IT-gruppa!"]);
