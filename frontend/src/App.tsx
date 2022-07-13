@@ -1,3 +1,4 @@
+import { NotFoundPage } from "components/NotFoundPage"
 import { createBrowserHistory } from "history"
 import { Template } from "layout/Template"
 import { ArrplanPage } from "modules/arrplan/ArrplanPage"
@@ -110,6 +111,8 @@ const RouteList = () => (
 
     <Route path="/users" element={<ListUsersPage />} />
     <Route path="/user/:name" element={<UserPage />} />
+
+    <Route path="*" element={<NotFoundPage />} />
   </Routes>
 )
 
