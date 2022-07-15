@@ -127,16 +127,6 @@ export const HomePage = () => {
             </a>
           </p>
         </div>
-        <div className="col-sm-3">
-          <p>
-            <a href="https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FNgEf">
-              <span>
-                Beboerside og matmeny{" "}
-                <span>(+ kontaktinformasjon oppmenn)</span>
-              </span>
-            </a>
-          </p>
-        </div>
         <div className="col-sm-3 wiki-box">
           <form
             className="form-inline"
@@ -146,7 +136,8 @@ export const HomePage = () => {
             <p>
               <a href="https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FNgEf">
                 <span>
-                  Wiki <span>(&laquo;alt&raquo; du trenger å vite om BS)</span>
+                  Wiki / beboerside{" "}
+                  <span>(&laquo;alt&raquo; du trenger å vite om BS)</span>
                 </span>
               </a>
               <span className="search-box">
@@ -162,10 +153,16 @@ export const HomePage = () => {
         </div>
         <div className="col-sm-3">
           <p>
-            <a href="https://p.foreningenbs.no/">
+            <a href="https://foreningenbs.no/slack/">
+              <span>Slack</span>
+            </a>
+          </p>
+        </div>
+        <div className="col-sm-3">
+          <p>
+            <a href="https://foreningenbs.no/confluence/display/BS/Printer">
               <span>
-                Printeroppsett{" "}
-                <span>(oppsett, veiledning, feilsøking m.v.)</span>
+                Printer <span>(oppsett, veiledning, feilsøking m.v.)</span>
               </span>
             </a>
           </p>
@@ -175,7 +172,7 @@ export const HomePage = () => {
       <div className="row fbs_forside_lenker small">
         <div className="col-sm-2">
           <p>
-            <a href="/smaabruket/">
+            <a href="https://foreningenbs.no/smaabruket/">
               <span>
                 Småbruket studenthytte <span>(foreningens hytte)</span>
               </span>
@@ -184,24 +181,8 @@ export const HomePage = () => {
         </div>
         <div className="col-sm-2">
           <p>
-            <a href="/dugnaden/">
+            <a href="https://foreningenbs.no/dugnaden/">
               <span>Dugnaden</span>
-            </a>
-          </p>
-        </div>
-        <div className="col-sm-2">
-          <p>
-            <a href="https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FbQBV">
-              <span>Økonomi i FBS</span>
-            </a>
-          </p>
-        </div>
-        <div className="col-sm-2">
-          <p>
-            <a href="/foreningen/">
-              <span>
-                Foreningens <b>dokumentområde</b>
-              </span>
             </a>
           </p>
         </div>
@@ -214,7 +195,21 @@ export const HomePage = () => {
         </div>
         <div className="col-sm-2">
           <p>
-            <a href="/tools/">
+            <a href="https://foreningenbs.no/filer/">
+              <span>Filer</span>
+            </a>
+          </p>
+        </div>
+        <div className="col-sm-2">
+          <p>
+            <a href="https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=%2Fx%2FbQBV">
+              <span>Økonomi i FBS</span>
+            </a>
+          </p>
+        </div>
+        <div className="col-sm-2">
+          <p>
+            <a href="https://foreningenbs.no/tools/">
               <span>
                 Verktøykasse <span>(for IT-gruppa)</span>
               </span>
