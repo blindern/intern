@@ -27,6 +27,35 @@ export const HomePage = () => {
 
       <hr />
 
+      <div className="fbs_forside_news">
+        <h4>Oppdateringer sommer 2022</h4>
+        <ol>
+          <li>
+            <b>Vipps så er du logget inn!</b> Du kan nå logge inn med Vipps på
+            alle sidene. Du må ha en registrert foreningsbruker med samme
+            e-postadresse eller telefonnummer som du har registrert i Vipps.
+          </li>
+          <li>
+            <b>Filarkivet</b> (foreningens dokumentarkiv) har gjenoppstått:{" "}
+            <a href="https://foreningenbs.no/filer/">
+              https://foreningenbs.no/filer/
+            </a>
+          </li>
+          <li>
+            <b>Internsiden</b> er teknisk fornyet. Vil du gjøre endringer? Se{" "}
+            <a href="https://github.com/blindern/intern">
+              https://github.com/blindern/intern
+            </a>
+          </li>
+        </ol>
+        <p>
+          Spørsmål eller bidra? Kom til #it-gruppa på foreningens{" "}
+          <a href="https://foreningenbs.no/slack/">Slack</a>
+        </p>
+      </div>
+
+      <hr />
+
       <div className="row">
         <div className="col-md-4">
           <ArrplanHomeBox />
