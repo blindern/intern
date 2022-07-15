@@ -22,7 +22,7 @@
 		"laravel/tinker": "2.7.2",
 		"nategood/httpful": "0.3.2",
 		"nesbot/carbon": "2.59.1",
-		"onelogin/php-saml": "4.0.1"
+		"onelogin/php-saml": "4.1.0"
 	},
 	"require-dev": {
 		"fakerphp/faker": "1.19.0",
