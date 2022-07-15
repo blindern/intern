@@ -1,8 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use Eluceo\iCal\Component\Calendar;
-use Eluceo\iCal\Component\Event;
+use Eluceo\iCal\Domain\Entity\Calendar;
+use Eluceo\iCal\Domain\Entity\Event;
+use Eluceo\iCal\Domain\ValueObject\SingleDay;
+use Eluceo\iCal\Domain\ValueObject\Date;
+use Eluceo\iCal\Presentation\Factory\CalendarFactory;
 use Blindern\Intern\Matmeny\Models\Matmeny;
 
 class MatmenyController extends Controller
@@ -63,8 +66,7 @@ class MatmenyController extends Controller
      */
     public function ics()
     {
-        $cal = new Calendar("foreningenbs.no/matmeny");
-        $cal->setName("Matmeny Blindern Studenterhjem");
+        $cal = new Calendar();
 
         $from = new Carbon;
         $from->modify('-6 weeks');
@@ -78,13 +80,8 @@ class MatmenyController extends Controller
                 ->get();
 
         foreach ($days as $day) {
-            $event = new Event();
-            $event->setUseTimezone(true);
-            $event->setDtStart(new \DateTime($day['day']));
             $end = new \DateTime($day['day']);
             $end->modify('+1 day');
-            $event->setDtEnd($end);
-            $event->setNoTime(true);
 
             if ($day['dishes']) {
                 $text = implode(', ', $day['dishes']);
@@ -100,11 +97,20 @@ class MatmenyController extends Controller
                 $text .= '(' . $day['text'] . ')';
             }
 
+            $date = new Date(\DateTimeImmutable::createFromFormat('Y-m-d', $day['day']));
+            $occurrence = new SingleDay($date);
+
+            $event = new Event();
+            $event->setSummary($text);
+            $event->setOccurrence($occurrence);
             $event->setSummary($text);
             $cal->addEvent($event);
         }
 
-        $response = \Response::make($cal->render(), 200, array(
+        $componentFactory = new CalendarFactory();
+        $calendarComponent = $componentFactory->createCalendar($cal);
+
+        $response = \Response::make($calendarComponent, 200, array(
             'Content-Type' => 'text/calendar; charset=utf-8',
             'Content-Disposition' => 'inline; filename="matmeny.ics"'
         ));

@@ -14,6 +14,7 @@ use \App\Http\Controllers\API\UserController;
 use \App\Http\Controllers\API\PrinterLastController;
 use \App\Http\Controllers\API\PrinterUsageController;
 use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\MatmenyController as MatmenyPlainController;
 use Blindern\Intern\Saml2\Saml2Controller;
 use \Blindern\Intern\GoogleApps\Controllers\AccountsController;
 use \Blindern\Intern\GoogleApps\Controllers\AccountUsersController;
@@ -69,9 +70,8 @@ Route::prefix('intern/api')->group(function () {
     });
 
     // matmeny
-    // TODO: add redirect for old URLs that was not under api
-    Route::get('matmeny/plain', [MatmenyController::class, 'index']);
-    Route::get('matmeny.ics', [MatmenyController::class, 'ics']);
+    Route::get('matmeny/plain', [MatmenyPlainController::class, 'index']);
+    Route::get('matmeny.ics', [MatmenyPlainController::class, 'ics']);
     Route::get('matmeny', [MatmenyController::class, 'index']);
     Route::post('matmeny/convert', [MatmenyController::class, 'convert']);
     Route::post('matmeny', [MatmenyController::class, 'store']);
