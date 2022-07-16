@@ -16,7 +16,7 @@
 		"google/apiclient": "2.12.6",
 		"guzzlehttp/guzzle": "7.4.5",
 		"jenssegers/mongodb": "3.9.1",
-		"johngrogg/ics-parser": "3.1.1",
+		"johngrogg/ics-parser": "3.2.0",
 		"laravel/framework": "9.20.0",
 		"laravel/sanctum": "2.15.1",
 		"laravel/tinker": "2.7.2",
