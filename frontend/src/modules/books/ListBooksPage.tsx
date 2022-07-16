@@ -6,7 +6,7 @@ import { Pagination } from "modules/books/Pagination"
 import { useTitle } from "modules/core/title/PageTitle"
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { bookUrl } from "urls"
+import { bookUrl, groupUrl, registerBookUrl } from "urls"
 
 function BookItem({ book }: { book: Book }) {
   return (
@@ -89,7 +89,7 @@ export function ListBooksPage() {
   return (
     <>
       <p style={{ float: "right" }}>
-        <Link to="books/register" className="btn btn-info">
+        <Link to={registerBookUrl()} className="btn btn-info">
           Registrer ny bok
         </Link>
       </p>
@@ -99,9 +99,10 @@ export function ListBooksPage() {
         <a href="https://github.com/blindern/intern/labels/bokdatabase">
           GitHub
         </a>
-        . Det er <Link to="group/biblioteksutvalget">biblioteksutvalget</Link>{" "}
-        som står for registrering av bøkene i biblioteket. {data?.total} bøker
-        er registrert i databasen.
+        . Det er{" "}
+        <Link to={groupUrl("biblioteksutvalget")}>biblioteksutvalget</Link> som
+        står for registrering av bøkene i biblioteket. {data?.total} bøker er
+        registrert i databasen.
       </p>
 
       <div className="books_list">

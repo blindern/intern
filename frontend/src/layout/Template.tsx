@@ -1,11 +1,22 @@
 import classNames from "classnames"
+import { LoginLink } from "components/LoginLink"
+import { LogoutLink } from "components/LogoutLink"
 import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
-import { useAuthService } from "modules/core/auth/AuthServiceProvider"
 import { Flashes } from "modules/core/flashes/Flashes"
 import { useCurrentTitle } from "modules/core/title/TitleProvider"
-import React, { ReactNode, useCallback } from "react"
+import React, { ReactNode } from "react"
 import { Link, useMatch } from "react-router-dom"
 import styled from "styled-components"
+import {
+  arrplanUrl,
+  dugnadsinnkallingerUrl,
+  lastPrintsUrl,
+  listBooksUrl,
+  listGroupsUrl,
+  listUsersUrl,
+  printerInvocingUrl,
+  registerUserUrl,
+} from "urls"
 import "./frontend.scss"
 
 const MenuLink = ({ children, to }: { children: ReactNode; to: string }) => {
@@ -64,21 +75,7 @@ const Footer = styled.div`
 
 export const Template = ({ children }: { children: ReactNode }) => {
   const authInfo = useAuthInfo()
-  const authService = useAuthService()
   const title = useCurrentTitle()
-
-  const logoutHandler = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault()
-      authService.logout()
-    },
-    [],
-  )
-
-  const login = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    window.location.assign(authService.getLoginUrl())
-  }, [])
 
   return (
     <>
@@ -106,15 +103,15 @@ export const Template = ({ children }: { children: ReactNode }) => {
             </div>
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav">
-                <MenuLink to="/arrplan">Arrangementplan</MenuLink>
-                <MenuLink to="/books">Biblioteket</MenuLink>
+                <MenuLink to={arrplanUrl()}>Arrangementplan</MenuLink>
+                <MenuLink to={listBooksUrl()}>Biblioteket</MenuLink>
                 <li className="dropdown">
                   <a href="" className="dropdown-toggle" data-toggle="dropdown">
                     Brukere og grupper <b className="caret" />
                   </a>
                   <ul className="dropdown-menu">
-                    <MenuLink to="/users">Brukerliste</MenuLink>
-                    <MenuLink to="/groups">Gruppeliste</MenuLink>
+                    <MenuLink to={listUsersUrl()}>Brukerliste</MenuLink>
+                    <MenuLink to={listGroupsUrl()}>Gruppeliste</MenuLink>
                   </ul>
                 </li>
                 <li className="dropdown">
@@ -122,7 +119,7 @@ export const Template = ({ children }: { children: ReactNode }) => {
                     Dugnaden <b className="caret" />
                   </a>
                   <ul className="dropdown-menu">
-                    <MenuLink to="/dugnaden/old/list">
+                    <MenuLink to={dugnadsinnkallingerUrl()}>
                       Dugnadsinnkalling
                     </MenuLink>
                   </ul>
@@ -132,8 +129,8 @@ export const Template = ({ children }: { children: ReactNode }) => {
                     Printer <b className="caret" />
                   </a>
                   <ul className="dropdown-menu">
-                    <MenuLink to="/printer/siste">Siste utskrifter</MenuLink>
-                    <MenuLink to="/printer/fakturere">Fakturering</MenuLink>
+                    <MenuLink to={lastPrintsUrl()}>Siste utskrifter</MenuLink>
+                    <MenuLink to={printerInvocingUrl()}>Fakturering</MenuLink>
                   </ul>
                 </li>
               </ul>
@@ -156,20 +153,16 @@ export const Template = ({ children }: { children: ReactNode }) => {
                         Brukerinfo
                       </MenuLink>
                       <li>
-                        <a href="/" onClick={logoutHandler}>
-                          Logg ut
-                        </a>
+                        <LogoutLink>Logg ut</LogoutLink>
                       </li>
                     </ul>
                   </li>
                 ) : (
                   <>
                     <li>
-                      <a href="/" onClick={login}>
-                        Logg inn
-                      </a>
+                      <LoginLink>Logg inn</LoginLink>
                     </li>
-                    <MenuLink to="/register">Registrer</MenuLink>
+                    <MenuLink to={registerUserUrl()}>Registrer</MenuLink>
                   </>
                 )}
               </ul>

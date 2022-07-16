@@ -1,15 +1,16 @@
 import classNames from "classnames"
-import { ErrorMessages as ErrorMessages } from "components/ErrorMessages"
+import { ErrorMessages } from "components/ErrorMessages"
 import { Loading } from "components/Loading"
 import React from "react"
 import { Link } from "react-router-dom"
+import { arrplanUrl } from "urls"
 import { useArrplanNext } from "./api"
 
 export const ArrplanHomeBox = () => {
   const { isLoading, isError, error, data: arrplan } = useArrplanNext()
 
   return (
-    <Link to="/arrplan" className="index-arrplan">
+    <Link to={arrplanUrl()} className="index-arrplan">
       <h4>Neste på arrangementplanen</h4>
       {isLoading ? (
         <Loading />

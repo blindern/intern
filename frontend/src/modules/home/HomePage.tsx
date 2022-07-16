@@ -1,9 +1,9 @@
+import { LoginLink } from "components/LoginLink"
 import { ArrplanHomeBox } from "modules/arrplan/ArrplanHomeBox"
 import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
 import { MatmenyHomeBox } from "modules/matmeny/MatmenyHomeBox"
 import { UserLink } from "modules/users/UserLink"
 import React from "react"
-import { Link } from "react-router-dom"
 
 export const HomePage = () => {
   const authInfo = useAuthInfo()
@@ -258,7 +258,7 @@ export const HomePage = () => {
       ) : !authInfo.isError && !authInfo.isLoading ? (
         <p>
           Du får flere handlinger ved å{" "}
-          <Link to="/login">logge inn med foreningsbrukeren din</Link>.
+          <LoginLink>logge inn med foreningsbrukeren din</LoginLink>.
         </p>
       ) : null}
     </>

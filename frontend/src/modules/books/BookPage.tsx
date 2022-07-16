@@ -9,7 +9,7 @@ import { useAuthorization } from "modules/core/auth/Authorization"
 import { PageTitle } from "modules/core/title/PageTitle"
 import React from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { booksUrl, editBookUrl, registerBookUrl } from "urls"
+import { listBooksUrl, editBookUrl, registerBookUrl } from "urls"
 
 function DeleteButton({ book }: { book: Book }) {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ function DeleteButton({ book }: { book: Book }) {
   function deleteBook() {
     if (confirm("Er du sikker på at du vil slette boka fra databasen?")) {
       void mutateAsync(book).then(() => {
-        navigate(booksUrl())
+        navigate(listBooksUrl())
       })
     }
   }
@@ -128,7 +128,7 @@ export function BookPage() {
       </div>
 
       <p>
-        <Link to={booksUrl()}>&laquo; Bokliste</Link>
+        <Link to={listBooksUrl()}>&laquo; Bokliste</Link>
       </p>
     </>
   )

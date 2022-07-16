@@ -1,3 +1,11 @@
+export function homeUrl() {
+  return "/"
+}
+
+export function arrplanUrl() {
+  return "/arrplan"
+}
+
 export function groupUrl(groupName: string) {
   return `/group/${encodeURIComponent(groupName)}`
 }
@@ -30,10 +38,30 @@ export function editBookUrl(id: string) {
   return `/books/${encodeURIComponent(id)}/edit`
 }
 
-export function booksUrl() {
+export function listBooksUrl() {
   return "/books"
 }
 
 export function registerBookUrl() {
   return "/books/register"
+}
+
+export function dugnadsinnkallingerUrl() {
+  return "/dugnaden/old/list"
+}
+
+export function lastPrintsUrl() {
+  return "/printer/siste"
+}
+
+export function printerInvocingUrl() {
+  return "/printer/fakturere"
+}
+
+export function matmenyUrl() {
+  return "/matmeny"
+}
+
+export function registerUserUrl() {
+  return "/register"
 }

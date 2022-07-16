@@ -2,6 +2,7 @@ import { ErrorMessages } from "components/ErrorMessages"
 import { Loading } from "components/Loading"
 import React from "react"
 import { Link } from "react-router-dom"
+import { matmenyUrl } from "urls"
 import { formatDate } from "utils/dates"
 import { MatmenyDay, useMatmenyHomeData } from "./api"
 
@@ -20,7 +21,7 @@ export const MatmenyHomeBox = () => {
   const { isLoading, isError, error, data: matmeny } = useMatmenyHomeData()
 
   return (
-    <Link to="/matmeny" className="index-matmeny">
+    <Link to={matmenyUrl()} className="index-matmeny">
       <h4>Matmeny</h4>
       {isLoading ? (
         <Loading />
