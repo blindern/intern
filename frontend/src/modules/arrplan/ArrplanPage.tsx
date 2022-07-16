@@ -65,6 +65,22 @@ const ArrplanContainer = styled.div`
   }
 `
 
+const SemesterList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin-right: 2rem;
+    line-height: 2rem;
+  }
+
+  li.active {
+    text-decoration: underline;
+  }
+`
+
 const EventDate = styled.div`
   @media (min-width: 768px) {
     text-align: right;
@@ -110,7 +126,13 @@ const List = ({
   return (
     <>
       <ArrplanContainer>
-        <ul className="nav nav-tabs" role="tablist">
+        <p>
+          <a href="https://foreningenbs.no/confluence/display/BS/Arrangementplan">
+            Rediger
+          </a>
+        </p>
+
+        <SemesterList role="tablist">
           {semesters.map((semester) => (
             <li
               key={semester.id}
@@ -119,15 +141,7 @@ const List = ({
               <Link to={`/arrplan/${semester.id}`}>{semester.text}</Link>
             </li>
           ))}
-        </ul>
-
-        <div className="alert alert-info" style={{ marginTop: "1em" }}>
-          <b>Redigering:</b> Alle beboere kan logge inn på wikien og{" "}
-          <a href="https://foreningenbs.no/confluence/display/BS/Arrangementplan">
-            redigere arrangementplanen
-          </a>
-          !
-        </div>
+        </SemesterList>
 
         {eventsNormal.length > 0 && (
           <>
