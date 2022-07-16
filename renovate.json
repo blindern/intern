@@ -1,5 +1,21 @@
 {
-  "extends": [
-    "config:base"
-  ]
+  "extends": ["config:base"],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "major": {
+    "automerge": false
+  },
+  "packageRules": [
+    {
+      "matchPaths": ["frontend/**"],
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "automergeType": "branch"
+    }
+  ],
+  "prCreation": "not-pending",
+  "stabilityDays": 3,
+  "prNotPendingHours": 74,
+  "timezone": "Europe/Oslo"
 }
