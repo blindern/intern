@@ -24,6 +24,8 @@ jobs:
           php-version: '8.1'
           extensions: mongodb
 
+      - run: pecl list
+
       - run: docker-compose up -d database
         working-directory: backend
 
