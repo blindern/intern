@@ -1,6 +1,5 @@
 # intern backend
 
-
 ## Development
 
 You need Docker, docker-compose, PHP and Composer.
