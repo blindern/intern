@@ -47,7 +47,7 @@ RUN \
     && mkdir -p /var/intern/views \
     && chown -R www-data:www-data /var/intern /var/www /var/www/html \
     \
-    && a2enmod rewrite \
+    && a2enmod rewrite remoteip \
     && sed -i 's|/var/www/html|/var/www/html/public|' /etc/apache2/sites-available/000-default.conf
 
 COPY composer.* /var/www/html/
