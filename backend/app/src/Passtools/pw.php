@@ -2,12 +2,6 @@
 
 class pw
 {
-    public static function smbpass($value)
-    {
-        $smbhash = new smbHash();
-        return $smbhash->nthash($value);
-    }
-
     public static function unixpass($password)
     {
         // SSHA with random 4-character salt

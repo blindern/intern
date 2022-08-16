@@ -47,7 +47,6 @@ class AuthController extends Controller
             return Response::json(['messages' => $messages], 400);
         }
 
-        $smbpass = pw::smbpass($data['password']);
         $unixpass = pw::unixpass($data['password']);
 
         $data['username'] = strtolower($data['username']);
@@ -64,7 +63,6 @@ USERNAME=".escapeshellarg($data['username'])."
 MAIL=".escapeshellarg($data['email'])."
 PHONE=".escapeshellarg($data['phone'])."
 PASS=".escapeshellarg($unixpass)."
-NTPASS=".escapeshellarg($smbpass)."
 ");
 
         $data['filename'] = $filename;
