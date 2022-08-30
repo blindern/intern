@@ -1,12 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use Eluceo\iCal\Domain\Entity\Calendar;
-use Eluceo\iCal\Domain\Entity\Event;
-use Eluceo\iCal\Domain\ValueObject\SingleDay;
-use Eluceo\iCal\Domain\ValueObject\Date;
-use Eluceo\iCal\Presentation\Factory\CalendarFactory;
 use Blindern\Intern\Matmeny\Models\Matmeny;
+use Carbon\Carbon;
+use Spatie\IcalendarGenerator\Components\Calendar;
+use Spatie\IcalendarGenerator\Components\Event;
 
 class MatmenyController extends Controller
 {
@@ -66,12 +63,13 @@ class MatmenyController extends Controller
      */
     public function ics()
     {
-        $cal = new Calendar();
+        $calendar = Calendar::create("foreningenbs.no/matmeny");
+        $calendar->description("Matmeny Blindern Studenterhjem");
 
         $from = new Carbon;
-        $from->modify('-6 weeks');
+        $from->modify('-52 weeks');
         $to = new Carbon;
-        $to->modify('+2 weeks');
+        $to->modify('+5 weeks');
 
         $days = Matmeny::orderBy('day')
                 ->whereBetween('day', array(
@@ -97,20 +95,17 @@ class MatmenyController extends Controller
                 $text .= '(' . $day['text'] . ')';
             }
 
-            $date = new Date(\DateTimeImmutable::createFromFormat('Y-m-d', $day['day']));
-            $occurrence = new SingleDay($date);
+            $date = \DateTimeImmutable::createFromFormat('Y-m-d', $day['day']);
 
-            $event = new Event();
-            $event->setSummary($text);
-            $event->setOccurrence($occurrence);
-            $event->setSummary($text);
-            $cal->addEvent($event);
+            $event = Event::create($text);
+            $event->uniqueIdentifier("matmeny-" . $day['day']);
+            $event->startsAt($date);
+            $event->fullDay();
+            $event->withoutTimezone();
+            $calendar->event($event);
         }
 
-        $componentFactory = new CalendarFactory();
-        $calendarComponent = $componentFactory->createCalendar($cal);
-
-        $response = \Response::make($calendarComponent, 200, array(
+        $response = \Response::make($calendar->get(), 200, array(
             'Content-Type' => 'text/calendar; charset=utf-8',
             'Content-Disposition' => 'inline; filename="matmeny.ics"'
         ));

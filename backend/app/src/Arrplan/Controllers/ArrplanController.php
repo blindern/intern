@@ -1,8 +1,8 @@
 <?php namespace Blindern\Intern\Arrplan\Controllers;
 
 use \Blindern\Intern\Arrplan\Models\Happening;
-use \Eluceo\iCal\Component\Calendar;
 use \App\Http\Controllers\Controller;
+use Spatie\IcalendarGenerator\Components\Calendar;
 
 class ArrplanController extends Controller
 {
@@ -14,17 +14,17 @@ class ArrplanController extends Controller
         //$happenings = Happening::all();
         $happenings = Happening::getHappenings();
 
-        $cal = new Calendar("foreningenbs.no");
-        $cal->setName("Blindern Studenterhjem");
+        $calendar = Calendar::create("foreningenbs.no");
+        $calendar->description("Blindern Studenterhjem");
 
         foreach ($happenings as $happening) {
             if ($happening->isComment() || $happening->isDuplicateRecurringEvent) {
                 continue;
             }
-            $cal->addEvent($happening->getEvent());
+            $calendar->event($happening->getEvent());
         }
 
-        $response = \Response::make($cal->render(), 200, array(
+        $response = \Response::make($calendar->get(), 200, array(
             'Content-Type' => 'text/calendar; charset=utf-8',
             'Content-Disposition' => 'inline; filename="cal.ics"'
         ));

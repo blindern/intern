@@ -1,9 +1,6 @@
 <?php namespace Blindern\Intern\Arrplan\Controllers;
 
 use \Blindern\Intern\Arrplan\Models\Happening;
-use \Eluceo\iCal\Component\Calendar;
-use \Eluceo\iCal\Component\Event;
-use \Eluceo\iCal\Property\Event\RecurrenceRule;
 use \App\Http\Controllers\Controller;
 
 class ArrplanApiController extends Controller

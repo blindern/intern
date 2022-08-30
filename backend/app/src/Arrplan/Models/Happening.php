@@ -1,10 +1,10 @@
 <?php namespace Blindern\Intern\Arrplan\Models;
 
 use Carbon\Carbon;
-use Eluceo\iCal\Component\Calendar;
-use Eluceo\iCal\Component\Event;
-use Eluceo\iCal\Property\Event\RecurrenceRule;
 use Illuminate\Contracts\Support\Arrayable;
+use Spatie\IcalendarGenerator\Components\Event;
+use Spatie\IcalendarGenerator\Enums\RecurrenceFrequency;
+use Spatie\IcalendarGenerator\ValueObjects\RRule;
 
 class Happening implements Arrayable, \JsonSerializable
 {
@@ -140,7 +140,7 @@ class Happening implements Arrayable, \JsonSerializable
     /**
      * Get a event object representing this happening
      *
-     * @return \Eluceo\iCal\Component\Event
+     * @return \Spatie\IcalendarGenerator\Components\Event
      */
     public function getEvent()
     {
@@ -155,24 +155,32 @@ class Happening implements Arrayable, \JsonSerializable
             $desc .= strip_tags(nl2br($this->info));
         }
 
-        $x = new Event();
-        $x->setUseTimezone(true);
-        $x->setDtStart(new \DateTime($this->start));
-        $x->setDtEnd($this->getCalEnd());
-        $x->setNoTime((bool)$this->allday);
-        $x->setSummary(strip_tags($this->title));
-        $x->setDescription($desc);
-        $x->setLocation($this->place);
+        $event = Event::create(strip_tags($this->title));
 
-        if ($this->frequency) {
-            $r = new RecurrenceRule();
-            $r->setFreq($this->frequency);
-            $r->setInterval($this->interval);
-            $r->setCount($this->count);
-            $x->setRecurrenceRule($r);
+        if ($desc) {
+            $event->description($desc);
         }
 
-        return $x;
+        if ($this->place) {
+            $event->address($this->place);
+        }
+
+        $event->startsAt(new \DateTime($this->start));
+        $event->endsAt($this->getCalEnd());
+
+        if ((bool) $this->allday) {
+            $event->fullDay();
+        }
+
+        if ($this->frequency) {
+            $rrule = RRule::frequency(RecurrenceFrequency::from($this->frequency));
+            $rrule->interval($this->interval);
+            $rrule->times($this->count);
+
+            $event->rrule($rrule);
+        }
+
+        return $event;
     }
 
     /**

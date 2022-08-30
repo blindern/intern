@@ -12,7 +12,6 @@
 	],
 	"require": {
 		"php": "^8.0.2",
-		"eluceo/ical": "2.7.0",
 		"google/apiclient": "2.12.6",
 		"guzzlehttp/guzzle": "7.4.5",
 		"jenssegers/mongodb": "3.9.1",
@@ -22,7 +21,8 @@
 		"laravel/tinker": "2.7.2",
 		"nategood/httpful": "0.3.2",
 		"nesbot/carbon": "2.60.0",
-		"onelogin/php-saml": "4.1.0"
+		"onelogin/php-saml": "4.1.0",
+		"spatie/icalendar-generator": "^2.3"
 	},
 	"require-dev": {
 		"fakerphp/faker": "1.20.0",
