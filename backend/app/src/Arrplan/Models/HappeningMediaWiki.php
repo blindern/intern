@@ -10,9 +10,11 @@ class HappeningMediaWiki extends Happening
 {
     public static function loadExternalEvents()
     {
-        $url = "http://web-1.zt.foreningenbs.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
-        $data = file_get_contents($url);
+        // We previously fetched from this URL, but have now stored the output with this code.
+        // $url = "http://web-1.zt.foreningenbs.no/w/api.php?format=json&action=query&titles=Arrangementplan_til_nettsiden&prop=revisions&rvprop=content";
+        // $data = file_get_contents($url);
 
+        $data = file_get_contents(resource_path('mediawiki-arrplan.json'));
         $data = json_decode($data, true);
         if ($data === false || !isset($data['query']['pages'])) {
             return array();
