@@ -90,6 +90,12 @@ class HappeningConfluence extends Happening
                             $new->interval = (int) $match[3];
                             $new->setCountFromUntil($match[2]);
                         }
+
+                        if (preg_match('/FREQ=(.+?);.*COUNT=(.+?);.*INTERVAL=(.+?)(;|$)/', $event->rrule, $match)) {
+                            $new->frequency = $match[1];
+                            $new->interval = (int) $match[3];
+                            $new->count = (int) $match[2];
+                        }
                     }
                 }
 
