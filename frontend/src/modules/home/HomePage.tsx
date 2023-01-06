@@ -69,7 +69,7 @@ export const HomePage = () => {
           <div className="index-matmeny">
             <h4>Måltider</h4>
             <p>
-              <i>Gjeldende vår 2022</i>
+              <i>Gjeldende vår 2023</i>
             </p>
             <table className="table">
               <thead>
