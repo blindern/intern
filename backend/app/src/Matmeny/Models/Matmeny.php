@@ -1,6 +1,6 @@
 <?php namespace Blindern\Intern\Matmeny\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 use \Carbon\Carbon;
 
 /**

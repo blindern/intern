@@ -1,6 +1,6 @@
 <?php namespace Blindern\Intern\Books\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 class Book extends Model
 {

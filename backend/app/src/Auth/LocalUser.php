@@ -1,6 +1,6 @@
 <?php namespace Blindern\Intern\Auth;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 /*
  * Dette objektet har til formål å kunne lagre noen variabler

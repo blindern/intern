@@ -1,6 +1,6 @@
 <?php namespace Blindern\Intern\Bukker\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 class Bukk extends Model
 {
