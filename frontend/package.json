@@ -27,7 +27,7 @@
     "react-router-dom": "6.3.0",
     "react-transition-group": "4.4.5",
     "rxjs": "7.5.6",
-    "styled-components": "5.3.5",
+    "styled-components": "5.3.11",
     "yup": "0.32.11"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "@types/react-router": "5.1.20",
     "@types/react-router-dom": "5.3.3",
     "@types/react-transition-group": "4.4.7",
-    "@types/styled-components": "5.1.26",
+    "@types/styled-components": "5.1.28",
     "@typescript-eslint/eslint-plugin": "5.35.1",
     "@typescript-eslint/parser": "5.35.1",
     "@vitejs/plugin-react": "2.0.1",
