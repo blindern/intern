@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "backend/**"
+      - ".github/workflows/backend.yml"
 jobs:
   backend:
     runs-on: ubuntu-latest
