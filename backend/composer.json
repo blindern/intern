@@ -11,7 +11,7 @@
 		}
 	],
 	"require": {
-		"php": "^8.0.2",
+		"php": "^8.2",
 		"google/apiclient": "2.12.6",
 		"guzzlehttp/guzzle": "7.4.5",
 		"mongodb/laravel-mongodb": "^4.0",

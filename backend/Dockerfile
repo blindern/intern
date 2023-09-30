@@ -2,7 +2,7 @@
 # currently in production we don't use Docker
 # (it should but no time to set up yet)
 
-FROM php:8.1-apache@sha256:f1c5dba2a2981f91ec31b9596d4165acd0b46e58382e47622487e130a21e420d
+FROM php:8.2-apache@sha256:1a37ccc9f7b3ac36ecabe672dd2ad4865c2d5c697f3432f0fd463e629ad9d8f2
 
 ENV LANG=C.UTF-8
 
@@ -25,7 +25,6 @@ RUN \
       wget \
     && rm -rf /var/lib/apt/lists/* \
     \
-
     # php extensions
     && pecl install mongodb \
     && docker-php-ext-enable mongodb \
