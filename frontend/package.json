@@ -9,7 +9,7 @@
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
-    "@hookform/error-message": "2.0.0",
+    "@hookform/error-message": "2.0.1",
     "@react-hook/debounce": "4.0.0",
     "classnames": "2.3.1",
     "d3": "7.6.1",
