@@ -19,6 +19,9 @@ services:
       DB_MONGODB_PASSWORD: secret
       LARAVEL_SESSION_SECURE: 0
       INTERN_USERS_API_KEY: $INTERN_USERS_API_KEY
+      PRINTERDB_DSN: pgsql:host=postgresql-1.zt.foreningenbs.no;dbname=pykota
+      PRINTERDB_USERNAME: $PRINTERDB_USERNAME
+      PRINTERDB_PASSWORD: $PRINTERDB_PASSWORD
     ports:
       - "8081:80"
   database:

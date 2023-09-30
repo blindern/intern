@@ -1,14 +1,15 @@
 <?php namespace App\Http\Controllers\API;
 
 use \Blindern\Intern\Auth\User;
+use \Blindern\Intern\Printer\Printer;
 use \App\Http\Controllers\Controller;
 
 class PrinterLastController extends Controller
 {
     public function index()
     {
-        // hent siste utskrifter fra printserveren
-        $last = @json_decode(@file_get_contents("https://p.foreningenbs.no/api.php?method=pykotalast"), true);
+        $p = new Printer();
+        $last = $p->getLastPrints(30);
 
         // fetch all usernames
         $users = array();

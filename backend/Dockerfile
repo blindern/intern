@@ -17,15 +17,21 @@ RUN \
       gosu \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
+      # pgsql for printerdb
+      libpq-dev \
       libpng-dev \
       libssl-dev \
       unzip \
       wget \
     && rm -rf /var/lib/apt/lists/* \
     \
+
     # php extensions
     && pecl install mongodb \
     && docker-php-ext-enable mongodb \
+    \
+    # pgsql for printerdb
+    && docker-php-ext-install pdo_pgsql \
     \
     # set up composer
     && EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig) \

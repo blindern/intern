@@ -2,17 +2,33 @@
 
 use \Blindern\Intern\Auth\User;
 use \Blindern\Intern\Auth\Group;
+use \Blindern\Intern\Printer\Printer;
+use \Blindern\Intern\Printer\PrinterConfig;
 use \App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class PrinterUsageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $from = \Request::input("from");
-        $to = \Request::input("to");
+        $validatedData = $this->validate($request, [
+            'from' => 'required|regex:/^\\d\\d\\d\\d-\\d\\d-\\d\\d$/',
+            'to' => 'required|regex:/^\\d\\d\\d\\d-\\d\\d-\\d\\d$/',
+        ]);
 
-        // hent data fra printserveren
-        $data = json_decode(file_get_contents("https://p.foreningenbs.no/api.php?method=fakturere&from=".urlencode($from)."&to=".urlencode($to)), true);
+        $from = $validatedData['from'];
+        $to = $validatedData['to'];
+
+        $p = new Printer();
+        $data['prints'] = $p->getUsageData($from, $to);
+        $data['texts'] = PrinterConfig::$texts;
+        $data['no_faktura'] = PrinterConfig::$no_faktura;
+        $data['from'] = $from;
+        $data['to'] = $to;
+        $data['daily'] = $p->getDailyUsageData($from, $to);
+        $data['sections'] = PrinterConfig::$sections;
+        $data['section_default'] = PrinterConfig::$section_default;
+        $data['accounts'] = PrinterConfig::$accounts;
 
         // fetch all usernames
         $usernames = array();
