@@ -46,7 +46,7 @@
     "@typescript-eslint/eslint-plugin": "5.35.1",
     "@typescript-eslint/parser": "5.35.1",
     "@vitejs/plugin-react": "2.0.1",
-    "autoprefixer": "10.4.8",
+    "autoprefixer": "10.4.16",
     "bootstrap-sass": "3.4.3",
     "eslint": "8.22.0",
     "eslint-config-prettier": "8.5.0",
