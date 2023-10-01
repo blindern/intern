@@ -1,7 +1,7 @@
-import { useConvertMatmenyDocMutation } from "modules/matmeny/api"
-import { ModifiedDay } from "modules/matmeny/MatmenyPage"
+import { useConvertMatmenyDocMutation } from "modules/matmeny/api.js"
+import { ModifiedDay } from "modules/matmeny/MatmenyPage.js"
 import React, { ChangeEvent } from "react"
-import moment from "utils/moment"
+import moment from "utils/moment.js"
 
 export function FileUploader({
   firstDayInCurrentWeek,
@@ -16,7 +16,7 @@ export function FileUploader({
   const { mutateAsync, isLoading } = useConvertMatmenyDocMutation()
 
   function onFileChange(ev: ChangeEvent<HTMLInputElement>) {
-    mutateAsync(ev.target.files![0])
+    mutateAsync(ev.target.files![0]!)
       .then((parsed) => {
         for (const [dayNum, dishes] of Object.entries(parsed)) {
           const day = moment(firstDayInCurrentWeek)

@@ -11,7 +11,7 @@ export function FormatNumber({
   const numberStr = number.toFixed(decimals) + ""
 
   const x = numberStr.split(".")
-  let x1 = x[0]
+  let x1 = x[0]!
   const x2 = x.length > 1 ? "," + x[1] : ""
   const rgx = /(\d+)(\d{3})/
   while (rgx.test(x1)) {

@@ -1,6 +1,6 @@
-import { FormatNumber } from "components/FormatNumber"
-import { PrinterInvoiceResponse } from "modules/printer/api"
-import { Summer } from "modules/printer/invoicing/utils"
+import { FormatNumber } from "components/FormatNumber.js"
+import { PrinterInvoiceResponse } from "modules/printer/api.js"
+import { Summer } from "modules/printer/invoicing/utils.js"
 import React, { useMemo } from "react"
 
 export function Summary({

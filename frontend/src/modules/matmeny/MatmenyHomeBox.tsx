@@ -1,12 +1,12 @@
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
 import React from "react"
 import { Link } from "react-router-dom"
-import { matmenyUrl } from "urls"
-import { formatDate } from "utils/dates"
-import { MatmenyDay, useMatmenyHomeData } from "./api"
+import { matmenyUrl } from "utils/urls.js"
+import { formatDate } from "utils/dates.js"
+import { MatmenyDay, useMatmenyHomeData } from "./api.js"
 
-const MatmenyDayItem = ({ data }: { data?: MatmenyDay }) => {
+const MatmenyDayItem = ({ data }: { data?: MatmenyDay | undefined }) => {
   if (!data) return <>Ukjent</>
 
   return (

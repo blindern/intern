@@ -1,8 +1,8 @@
 import React from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-import styled, { keyframes } from "styled-components"
-import { formatDate } from "utils/dates"
-import { useFlashesList } from "./FlashesProvider"
+import { styled, keyframes } from "styled-components"
+import { formatDate } from "utils/dates.js"
+import { useFlashesList } from "./FlashesProvider.js"
 
 const animateIn = keyframes`
   from {

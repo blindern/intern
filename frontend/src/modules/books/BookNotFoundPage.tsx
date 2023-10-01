@@ -1,7 +1,7 @@
-import { PageTitle } from "modules/core/title/PageTitle"
+import { PageTitle } from "modules/core/title/PageTitle.js"
 import React from "react"
 import { Link } from "react-router-dom"
-import { listBooksUrl } from "urls"
+import { listBooksUrl } from "utils/urls.js"
 
 export function BookNotFoundPage() {
   return (

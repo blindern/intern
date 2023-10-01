@@ -1,10 +1,10 @@
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
-import { useTitle } from "modules/core/title/PageTitle"
-import { UserLink } from "modules/users/UserLink"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
+import { UserLink } from "modules/users/UserLink.js"
 import React from "react"
-import { formatDate } from "utils/dates"
-import { usePrinterLastList } from "./api"
+import { formatDate } from "utils/dates.js"
+import { usePrinterLastList } from "./api.js"
 
 export const LastPrintsPage = () => {
   useTitle("Siste utskrifter")

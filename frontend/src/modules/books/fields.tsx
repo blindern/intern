@@ -1,4 +1,4 @@
-import { useId } from "modules/core/forms/ids"
+import { useId } from "modules/core/forms/ids.js"
 import React from "react"
 import { Controller, useFormContext } from "react-hook-form"
 
@@ -44,8 +44,8 @@ export function TextField({
   label: string
   name: string
   placeholder: string
-  autoFocus?: boolean
-  required?: boolean
+  autoFocus?: boolean | undefined
+  required?: boolean | undefined
 }) {
   const id = useId()
   const { register } = useFormContext()

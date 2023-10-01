@@ -1,4 +1,4 @@
-import { useAuthService } from "modules/core/auth/AuthServiceProvider"
+import { useAuthService } from "modules/core/auth/AuthServiceProvider.js"
 import React, { ReactNode, useMemo } from "react"
 import { useQueryClient } from "@tanstack/react-query"
 

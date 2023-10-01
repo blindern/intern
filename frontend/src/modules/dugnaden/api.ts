@@ -1,4 +1,4 @@
-import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useApiService } from "modules/core/api/ApiServiceProvider.js"
 import { useQuery } from "@tanstack/react-query"
 
 export interface DugnadDay {

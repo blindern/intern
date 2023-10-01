@@ -1,10 +1,10 @@
-import { PrinterInvoiceResponse } from "modules/printer/api"
-import { Data, PrinterUser } from "modules/printer/invoicing/types"
+import { PrinterInvoiceResponse } from "modules/printer/api.js"
+import { Data, PrinterUser } from "modules/printer/invoicing/types.js"
 import { useState } from "react"
-import moment from "utils/moment"
+import moment from "utils/moment.js"
 
 export class Summer {
-  prev?: Summer
+  prev?: Summer | undefined
 
   numJobs = 0
   numPages = 0
@@ -15,7 +15,7 @@ export class Summer {
   amountAlt = 0
   countByCost: Record<number, number> = {}
 
-  constructor(prev?: Summer) {
+  constructor(prev?: Summer | undefined) {
     this.prev = prev
   }
 
@@ -68,7 +68,7 @@ export function aggregateData(data: PrinterInvoiceResponse): Data | undefined {
   for (const printer of data.prints) {
     const sectionKey =
       printernameToSectionKey[printer.printername] ?? data.section_default
-    const section = sections[sectionKey]
+    const section = sections[sectionKey]!
     const printerSummer = new Summer(section.summer)
     const isAlt = data.no_faktura.includes(printer.printername)
 
@@ -96,7 +96,7 @@ export function aggregateData(data: PrinterInvoiceResponse): Data | undefined {
       users.push({
         summer: userSummer,
         username: user.username,
-        realname: data.realnames[user.username],
+        realname: data.realnames[user.username]!,
         utflyttet: data.utflyttet.includes(user.username),
         months,
       })

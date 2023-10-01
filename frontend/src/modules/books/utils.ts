@@ -1,4 +1,4 @@
-import { Book } from "modules/books/api"
+import { Book } from "modules/books/api.js"
 
 export function bookTitle(book: Book) {
   return (

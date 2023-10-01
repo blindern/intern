@@ -1,12 +1,12 @@
 import classNames from "classnames"
-import { LoginLink } from "components/LoginLink"
-import { LogoutLink } from "components/LogoutLink"
-import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
-import { Flashes } from "modules/core/flashes/Flashes"
-import { useCurrentTitle } from "modules/core/title/TitleProvider"
+import { LoginLink } from "components/LoginLink.js"
+import { LogoutLink } from "components/LogoutLink.js"
+import { useAuthInfo } from "modules/core/auth/AuthInfoProvider.js"
+import { Flashes } from "modules/core/flashes/Flashes.js"
+import { useCurrentTitle } from "modules/core/title/TitleProvider.js"
 import React, { ReactNode } from "react"
 import { Link, useMatch } from "react-router-dom"
-import styled from "styled-components"
+import { styled } from "styled-components"
 import {
   arrplanUrl,
   dugnadsinnkallingerUrl,
@@ -16,7 +16,7 @@ import {
   listUsersUrl,
   printerInvocingUrl,
   registerUserUrl,
-} from "urls"
+} from "utils/urls.js"
 import "./frontend.scss"
 
 const MenuLink = ({ children, to }: { children: ReactNode; to: string }) => {

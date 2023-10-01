@@ -1,5 +1,15 @@
-import memoizeOne from "memoize-one"
+import { EqualityFn, MemoizedFn, default as _memoizeOne } from "memoize-one"
 import React, { createContext, useContext } from "react"
+
+type MemoizeOneFn = <TFunc extends (this: any, ...newArgs: any[]) => any>(
+  resultFn: TFunc,
+  isEqual?: EqualityFn<TFunc>,
+) => MemoizedFn<TFunc>
+
+// For reasons I have not spent time investigating, the type definitions for
+// memoize-one or the way we import it doesn't seem to be right. This override
+// fixes it as a workaround.
+const memoizeOne = _memoizeOne as unknown as MemoizeOneFn
 
 export interface ConsumerProps {
   title: string
@@ -25,7 +35,7 @@ interface Props {
 
 export class TitleProvider extends React.Component<Props> {
   components: { comp: symbol; value: string }[] = []
-  state = {
+  override state = {
     title: defaultValue.title,
     mounts: [defaultValue.title],
   }
@@ -56,7 +66,7 @@ export class TitleProvider extends React.Component<Props> {
     const title =
       this.components.length === 0
         ? defaultValue.title
-        : this.components[this.components.length - 1].value
+        : this.components[this.components.length - 1]!.value
 
     this.setState({
       title,
@@ -64,7 +74,7 @@ export class TitleProvider extends React.Component<Props> {
 
     document.title = title
   }
-  render() {
+  override render() {
     return (
       <TitleContext.Provider value={this.getValue(this.state.title)}>
         {this.props.children}

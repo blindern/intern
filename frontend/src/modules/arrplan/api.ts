@@ -1,8 +1,8 @@
-import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useApiService } from "modules/core/api/ApiServiceProvider.js"
 import { Moment } from "moment"
 import { useQuery } from "@tanstack/react-query"
-import moment from "utils/moment"
-import { EventItem } from "./types"
+import moment from "utils/moment.js"
+import { EventItem } from "./types.js"
 
 export interface Semester {
   id: string

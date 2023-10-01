@@ -1,14 +1,14 @@
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
 import { orderBy } from "lodash"
-import { Bukk, useBukkList } from "modules/bukker/api"
-import { useTitle } from "modules/core/title/PageTitle"
+import { Bukk, useBukkList } from "modules/bukker/api.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import React from "react"
 import { Link } from "react-router-dom"
-import { bukkUrl } from "urls"
+import { bukkUrl } from "utils/urls.js"
 
 function sortValue(bukk: Bukk) {
-  const newestAward = orderBy(bukk.awards, "year", "desc")[0]
+  const newestAward = orderBy(bukk.awards, "year", "desc")[0]!
   return `${newestAward.year}-${newestAward.rank}-${bukk.name}`
 }
 

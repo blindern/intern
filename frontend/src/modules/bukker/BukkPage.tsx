@@ -1,12 +1,12 @@
-import { ErrorPage } from "components/ErrorPage"
-import { LoadingPage } from "components/LoadingPage"
+import { ErrorPage } from "components/ErrorPage.js"
+import { LoadingPage } from "components/LoadingPage.js"
 import { orderBy } from "lodash"
-import { useBukk } from "modules/bukker/api"
-import { NotFoundError } from "modules/core/api/errors"
-import { PageTitle } from "modules/core/title/PageTitle"
+import { useBukk } from "modules/bukker/api.js"
+import { NotFoundError } from "modules/core/api/errors.js"
+import { PageTitle } from "modules/core/title/PageTitle.js"
 import React from "react"
 import { Link, useParams } from "react-router-dom"
-import { listBukkerUrl } from "urls"
+import { listBukkerUrl } from "utils/urls.js"
 
 export function BukkPage() {
   const { id } = useParams()

@@ -1,11 +1,11 @@
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
 import { groupBy } from "lodash"
-import { useIsMemberOf } from "modules/core/auth/hooks"
-import { useTitle } from "modules/core/title/PageTitle"
-import { AccountItem } from "modules/googleapps/AccountItem"
-import { useGoogleAppsAccounts } from "modules/googleapps/api"
-import { NewAccount } from "modules/googleapps/NewAccount"
+import { useIsMemberOf } from "modules/core/auth/hooks.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
+import { AccountItem } from "modules/googleapps/AccountItem.js"
+import { useGoogleAppsAccounts } from "modules/googleapps/api.js"
+import { NewAccount } from "modules/googleapps/NewAccount.js"
 import React, { useState } from "react"
 
 export function GoogleAppsPage() {

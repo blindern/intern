@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react"
-import { AuthService } from "./AuthService"
+import { AuthService } from "./AuthService.js"
 
 const AuthServiceContext = createContext<AuthService | null>(null)
 

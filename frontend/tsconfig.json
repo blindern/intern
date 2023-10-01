@@ -1,18 +1,13 @@
 {
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node18/tsconfig"],
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "jsx": "react",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "sourceMap": true,
-    "outDir": "dist",
-    "strictNullChecks": true,
-    "lib": ["dom", "es6", "es2017.object", "dom.iterable", "scripthost", "es2016.array.include"],
-    "skipLibCheck": true,
+    "jsx": "react",
+    "noEmit": true,
     "baseUrl": "./src",
-    "noEmit": true
+    "lib": ["DOM"]
   },
   "include": ["src/**/*", "vite.config.ts"],
   "exclude": [

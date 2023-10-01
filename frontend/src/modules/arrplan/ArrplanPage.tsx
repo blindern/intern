@@ -1,13 +1,13 @@
 import classNames from "classnames"
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
-import { useTitle } from "modules/core/title/PageTitle"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import React from "react"
 import { Link, useParams } from "react-router-dom"
-import styled from "styled-components"
-import moment from "utils/moment"
-import { getSemesterListFromEvent, Semester, useArrplanList } from "./api"
-import { Comment, EventItem, NormalEvent } from "./types"
+import { styled } from "styled-components"
+import moment from "utils/moment.js"
+import { getSemesterListFromEvent, Semester, useArrplanList } from "./api.js"
+import { Comment, EventItem, NormalEvent } from "./types.js"
 
 const getSemesterList = (list: EventItem[]) => {
   const hashedSemesters = list.reduce<Record<string, Semester>>(
@@ -117,8 +117,8 @@ const List = ({
   ) as NormalEvent[]
 
   const eventsRecurring = eventsCurrentSemester
-    .filter((item) => item.type === "event_recurring")
-    .sort(sortRecurringEvents) as NormalEvent[]
+    .filter((item): item is NormalEvent => item.type === "event_recurring")
+    .sort(sortRecurringEvents)
   const comments = eventsCurrentSemester.filter(
     (item) => item.type === "comment",
   ) as Comment[]

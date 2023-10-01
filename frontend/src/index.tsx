@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import { App } from "./App"
+import { App } from "./App.js"
 
-import { buildTime, gitCommitShort } from "./manifest"
+import { buildTime, gitCommitShort } from "./manifest.js"
 
-import "./jquery-hack"
+import "./jquery-hack.js"
 
 import "bootstrap-sass/assets/javascripts/bootstrap"
 

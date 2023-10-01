@@ -1,7 +1,7 @@
-import { ApiService } from "modules/core/api/ApiService"
-import { api } from "modules/core/api/utils"
+import { ApiService } from "modules/core/api/ApiService.js"
+import { api } from "modules/core/api/utils.js"
 import { BehaviorSubject, Subject } from "rxjs"
-import { AuthInfo, Me } from "./types"
+import { AuthInfo, Me } from "./types.js"
 
 export const defaultAuthInfo: AuthInfo = {
   isLoading: true,

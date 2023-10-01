@@ -1,22 +1,24 @@
-import { useApiService } from "modules/core/api/ApiServiceProvider"
+import { useApiService } from "modules/core/api/ApiServiceProvider.js"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 export interface Book {
   _id: string
-  title?: string | null
-  subtitle?: string | null
-  authors?: string[]
-  pubdate?: string | null
-  description?: string | null
-  isbn?: string | null
-  bib_comment?: string | null
-  bib_room?: string | null
-  bib_section?: string | null
-  isbn_data?: {
-    [field: string]: any
-    industryIdentifiers?: { type: string; identifier: string }[]
-  }
-  thumbnail?: string | null
+  title?: string | null | undefined
+  subtitle?: string | null | undefined
+  authors?: string[] | undefined
+  pubdate?: string | null | undefined
+  description?: string | null | undefined
+  isbn?: string | null | undefined
+  bib_comment?: string | null | undefined
+  bib_room?: string | null | undefined
+  bib_section?: string | null | undefined
+  isbn_data?:
+    | {
+        [field: string]: any
+        industryIdentifiers?: { type: string; identifier: string }[]
+      }
+    | undefined
+  thumbnail?: string | null | undefined
   updated_at: string
   created_at: string
   bib_barcode: string | null

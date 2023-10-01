@@ -1,14 +1,14 @@
-import { ErrorPage } from "components/ErrorPage"
-import { LoadingPage } from "components/LoadingPage"
-import { NotFoundError } from "modules/core/api/errors"
-import { PageTitle } from "modules/core/title/PageTitle"
-import { UserLink } from "modules/users/UserLink"
-import { IndirectMemberInfo } from "modules/users/UserPage"
+import { ErrorPage } from "components/ErrorPage.js"
+import { LoadingPage } from "components/LoadingPage.js"
+import { NotFoundError } from "modules/core/api/errors.js"
+import { PageTitle } from "modules/core/title/PageTitle.js"
+import { UserLink } from "modules/users/UserLink.js"
+import { IndirectMemberInfo } from "modules/users/UserPage.js"
 import React from "react"
 import { Link, useParams } from "react-router-dom"
-import { listGroupsUrl } from "urls"
-import { GroupDetail, useGroup } from "./api"
-import { GroupLink } from "./GroupLink"
+import { listGroupsUrl } from "utils/urls.js"
+import { GroupDetail, useGroup } from "./api.js"
+import { GroupLink } from "./GroupLink.js"
 
 const Detail = ({ group }: { group: GroupDetail }) => (
   <>
@@ -44,7 +44,7 @@ const Detail = ({ group }: { group: GroupDetail }) => (
             <tr
               key={member.username}
               style={{
-                opacity: !member.group_relations[group.name].includes(
+                opacity: !member.group_relations[group.name]!.includes(
                   group.name,
                 )
                   ? 0.5

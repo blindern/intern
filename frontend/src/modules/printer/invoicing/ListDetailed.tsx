@@ -1,7 +1,7 @@
-import { FormatNumber } from "components/FormatNumber"
-import { CostColumns } from "modules/printer/invoicing/CostColumns"
-import { RightTd } from "modules/printer/invoicing/Helpers"
-import { Data } from "modules/printer/invoicing/types"
+import { FormatNumber } from "components/FormatNumber.js"
+import { CostColumns } from "modules/printer/invoicing/CostColumns.js"
+import { RightTd } from "modules/printer/invoicing/Helpers.js"
+import { Data } from "modules/printer/invoicing/types.js"
 import React from "react"
 
 export function ListDetailed({ data }: { data: Data }) {

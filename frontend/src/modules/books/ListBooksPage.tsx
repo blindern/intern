@@ -1,12 +1,12 @@
 import { useDebounceCallback } from "@react-hook/debounce"
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
-import { Book, useBookList } from "modules/books/api"
-import { Pagination } from "modules/books/Pagination"
-import { useTitle } from "modules/core/title/PageTitle"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
+import { Book, useBookList } from "modules/books/api.js"
+import { Pagination } from "modules/books/Pagination.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { bookUrl, groupUrl, registerBookUrl } from "urls"
+import { bookUrl, groupUrl, registerBookUrl } from "utils/urls.js"
 
 function BookItem({ book }: { book: Book }) {
   return (

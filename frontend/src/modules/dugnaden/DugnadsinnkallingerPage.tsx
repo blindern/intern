@@ -1,10 +1,10 @@
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
-import { useTitle } from "modules/core/title/PageTitle"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import React, { useState } from "react"
-import styled from "styled-components"
-import { formatDate } from "utils/dates"
-import { DugnadDay, useDugnadenList } from "./api"
+import { styled } from "styled-components"
+import { formatDate } from "utils/dates.js"
+import { DugnadDay, useDugnadenList } from "./api.js"
 
 const DugnadContainer = styled.div`
   page-break-before: always;

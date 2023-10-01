@@ -1,13 +1,13 @@
-import { CommaSeparated } from "components/CommaSeparated"
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
-import { UserDetails } from "modules/core/auth/types"
-import { useTitle } from "modules/core/title/PageTitle"
-import { GroupLink } from "modules/groups/GroupLink"
-import { useUserList } from "modules/users/api"
+import { CommaSeparated } from "components/CommaSeparated.js"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
+import { UserDetails } from "modules/core/auth/types.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
+import { GroupLink } from "modules/groups/GroupLink.js"
+import { useUserList } from "modules/users/api.js"
 import React from "react"
-import styled from "styled-components"
-import { UserLink } from "./UserLink"
+import { styled } from "styled-components"
+import { UserLink } from "./UserLink.js"
 
 interface UserSections {
   beboere: UserDetails[]

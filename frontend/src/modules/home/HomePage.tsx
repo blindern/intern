@@ -1,8 +1,8 @@
-import { LoginLink } from "components/LoginLink"
-import { ArrplanHomeBox } from "modules/arrplan/ArrplanHomeBox"
-import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
-import { MatmenyHomeBox } from "modules/matmeny/MatmenyHomeBox"
-import { UserLink } from "modules/users/UserLink"
+import { LoginLink } from "components/LoginLink.js"
+import { ArrplanHomeBox } from "modules/arrplan/ArrplanHomeBox.js"
+import { useAuthInfo } from "modules/core/auth/AuthInfoProvider.js"
+import { MatmenyHomeBox } from "modules/matmeny/MatmenyHomeBox.js"
+import { UserLink } from "modules/users/UserLink.js"
 import React from "react"
 
 export const HomePage = () => {

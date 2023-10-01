@@ -1,5 +1,5 @@
-import { useApiService } from "modules/core/api/ApiServiceProvider"
-import { UserDetails, UserDetailsFull } from "modules/core/auth/types"
+import { useApiService } from "modules/core/api/ApiServiceProvider.js"
+import { UserDetails, UserDetailsFull } from "modules/core/auth/types.js"
 import { useQuery } from "@tanstack/react-query"
 
 export function useUserList() {

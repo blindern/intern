@@ -1,5 +1,5 @@
-import { FormatNumber } from "components/FormatNumber"
-import { RightTd } from "modules/printer/invoicing/Helpers"
+import { FormatNumber } from "components/FormatNumber.js"
+import { RightTd } from "modules/printer/invoicing/Helpers.js"
 import React from "react"
 
 export function CostColumns({

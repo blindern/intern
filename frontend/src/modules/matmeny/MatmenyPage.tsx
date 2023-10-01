@@ -1,21 +1,21 @@
 import classNames from "classnames"
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
 import { isEqual, keyBy } from "lodash"
-import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
-import { useIsMemberOf } from "modules/core/auth/hooks"
-import { useTitle } from "modules/core/title/PageTitle"
+import { useAuthInfo } from "modules/core/auth/AuthInfoProvider.js"
+import { useIsMemberOf } from "modules/core/auth/hooks.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import {
   buildMatmenyDataKey,
   MatmenyDay,
   useMatmenyData,
   useUpdateMatmenyDaysMutation,
-} from "modules/matmeny/api"
-import { FileUploader } from "modules/matmeny/FileUploader"
+} from "modules/matmeny/api.js"
+import { FileUploader } from "modules/matmeny/FileUploader.js"
 import React, { useState } from "react"
 import { useQueryClient } from "@tanstack/react-query"
-import { formatDate } from "utils/dates"
-import moment from "utils/moment"
+import { formatDate } from "utils/dates.js"
+import moment from "utils/moment.js"
 
 interface Week {
   year: string
@@ -121,8 +121,8 @@ function useWeeks(
 
   for (const elm of data) {
     const d = moment(elm.day)
-    weeks[d.format("GGGG-WW")].days[elm.day] = elm
-    weeks[d.format("GGGG-WW")].datacount++
+    weeks[d.format("GGGG-WW")]!.days[elm.day] = elm
+    weeks[d.format("GGGG-WW")]!.datacount++
   }
 
   return { weeks }
@@ -174,7 +174,7 @@ function MatmenyAdmin() {
   function saveChanges() {
     if (!currentWeekHasChanges) return
 
-    const days = Object.values(weeks[currentWeek].days).map((day) => {
+    const days = Object.values(weeks[currentWeek]!.days).map((day) => {
       const result = { ...day }
       const modified = modifiedDays[day.day]
       if (modified) {
@@ -257,7 +257,7 @@ function MatmenyAdmin() {
               </label>
               <div className="col-md-9">
                 <FileUploader
-                  firstDayInCurrentWeek={weeks[currentWeek].start}
+                  firstDayInCurrentWeek={weeks[currentWeek]!.start}
                   updateDay={updateDay}
                 />
                 <span className="help-block">
@@ -278,7 +278,7 @@ function MatmenyAdmin() {
                 saveChanges()
               }}
             >
-              {Object.entries(weeks[currentWeek].days).map(([date, day]) => (
+              {Object.entries(weeks[currentWeek]!.days).map(([date, day]) => (
                 <div key={date} className="form-group">
                   <label className="col-md-3 control-label">
                     {formatDate(date, "dddd D. MMM")}

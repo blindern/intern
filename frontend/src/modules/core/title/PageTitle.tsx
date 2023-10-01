@@ -1,5 +1,5 @@
 import { useContext, useLayoutEffect, useState } from "react"
-import { TitleContext } from "./TitleProvider"
+import { TitleContext } from "./TitleProvider.js"
 
 export function useTitle(title: string) {
   const [titleSymbol] = useState(() => Symbol())

@@ -1,5 +1,5 @@
-import { useAuthInfo } from "modules/core/auth/AuthInfoProvider"
-import { AuthInfo } from "modules/core/auth/types"
+import { useAuthInfo } from "modules/core/auth/AuthInfoProvider.js"
+import { AuthInfo } from "modules/core/auth/types.js"
 
 export function isMemberOf(
   auth: AuthInfo,

@@ -1,4 +1,4 @@
-import { useAuthService } from "modules/core/auth/AuthServiceProvider"
+import { useAuthService } from "modules/core/auth/AuthServiceProvider.js"
 import React, { ReactNode, useCallback } from "react"
 
 export function LogoutLink({ children }: { children: ReactNode }) {

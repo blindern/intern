@@ -6,10 +6,13 @@ import {
   NotFoundError,
   ResponseError,
   ServerError,
-} from "modules/core/api/errors"
-import { api } from "modules/core/api/utils"
-import { AuthService } from "modules/core/auth/AuthService"
-import { FlashArgs, FlashesService } from "modules/core/flashes/FlahesService"
+} from "modules/core/api/errors.js"
+import { api } from "modules/core/api/utils.js"
+import { AuthService } from "modules/core/auth/AuthService.js"
+import {
+  FlashArgs,
+  FlashesService,
+} from "modules/core/flashes/FlahesService.js"
 
 interface MessagesInError {
   messages: {
@@ -19,7 +22,7 @@ interface MessagesInError {
 }
 
 export class ApiService {
-  private authService: AuthService
+  private authService: AuthService | undefined
 
   constructor(
     readonly flashes: FlashesService,
@@ -54,7 +57,7 @@ export class ApiService {
       }
 
       if (response.status === 401) {
-        this.authService.markLoggedOut()
+        this.authService!.markLoggedOut()
         throw new NotAuthedError(response, messages, data)
       }
 
@@ -155,7 +158,7 @@ export class ApiService {
 
     if (includeCsrf) {
       headers["X-CSRF-TOKEN"] =
-        this.authService.getAuthInfoObservable().value.data.csrfToken ?? ""
+        this.authService!.getAuthInfoObservable().value.data.csrfToken ?? ""
     }
 
     const result: RequestInit = {

@@ -1,7 +1,7 @@
 import {
   Account,
   useGoogleAppsCreateAccountUserMutation,
-} from "modules/googleapps/api"
+} from "modules/googleapps/api.js"
 import React from "react"
 import { useForm } from "react-hook-form"
 

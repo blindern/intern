@@ -1,5 +1,6 @@
 import react from "@vitejs/plugin-react"
 import git from "git-rev-sync"
+import { fileURLToPath } from "node:url"
 import path from "path"
 import { defineConfig } from "vite"
 import checker from "vite-plugin-checker"
@@ -32,12 +33,12 @@ export default defineConfig({
     ],
   },
   define: {
-    DEBUG: process.env.DEBUG === "true",
+    DEBUG: process.env["DEBUG"] === "true",
     __BUILD_INFO__: JSON.stringify({
       buildTime: new Date().toString(),
-      gitCommitShort: git.short(),
+      gitCommitShort: git.short(fileURLToPath(import.meta.url)),
     }),
-    BACKEND_URL: JSON.stringify(process.env.BACKEND_URL ?? "/intern/"),
+    BACKEND_URL: JSON.stringify(process.env["BACKEND_URL"] ?? "/intern/"),
   },
   server: {
     port: 3000,

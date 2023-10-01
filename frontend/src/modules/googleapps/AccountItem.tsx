@@ -1,4 +1,4 @@
-import { AddAlias } from "modules/googleapps/AddAlias"
+import { AddAlias } from "modules/googleapps/AddAlias.js"
 import {
   Account,
   AccountUser,
@@ -6,12 +6,12 @@ import {
   useGoogleAppsDeleteAccountUserMutation,
   useGoogleAppsUpdateAccountMutation,
   useGoogleAppsUpdateAccountUserMutation,
-} from "modules/googleapps/api"
-import { EditAccount } from "modules/googleapps/EditAccount"
-import { NewAccountUser } from "modules/googleapps/NewAccountUser"
+} from "modules/googleapps/api.js"
+import { EditAccount } from "modules/googleapps/EditAccount.js"
+import { NewAccountUser } from "modules/googleapps/NewAccountUser.js"
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { userUrl } from "urls"
+import { userUrl } from "utils/urls.js"
 
 export function AccountItem({
   account,

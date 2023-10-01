@@ -1,9 +1,9 @@
-import { FormatNumber } from "components/FormatNumber"
-import { PrinterInvoiceResponse } from "modules/printer/api"
-import { AccountsList } from "modules/printer/invoicing/AccountsList"
-import { CostColumns } from "modules/printer/invoicing/CostColumns"
-import { RightTd } from "modules/printer/invoicing/Helpers"
-import { Data } from "modules/printer/invoicing/types"
+import { FormatNumber } from "components/FormatNumber.js"
+import { PrinterInvoiceResponse } from "modules/printer/api.js"
+import { AccountsList } from "modules/printer/invoicing/AccountsList.js"
+import { CostColumns } from "modules/printer/invoicing/CostColumns.js"
+import { RightTd } from "modules/printer/invoicing/Helpers.js"
+import { Data } from "modules/printer/invoicing/types.js"
 import React from "react"
 
 export function ListSummed({

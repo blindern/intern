@@ -1,7 +1,7 @@
-import { ErrorPage } from "components/ErrorPage"
-import { LoadingPage } from "components/LoadingPage"
-import { Book, useBook, useUpdateBookMutation } from "modules/books/api"
-import { BookNotFoundPage } from "modules/books/BookNotFoundPage"
+import { ErrorPage } from "components/ErrorPage.js"
+import { LoadingPage } from "components/LoadingPage.js"
+import { Book, useBook, useUpdateBookMutation } from "modules/books/api.js"
+import { BookNotFoundPage } from "modules/books/BookNotFoundPage.js"
 import {
   AuthorsField,
   BibCommentField,
@@ -12,15 +12,15 @@ import {
   PubdateField,
   SubtitleField,
   TitleField,
-} from "modules/books/fields"
-import { NoAuth } from "modules/books/NoAuth"
-import { NotFoundError } from "modules/core/api/errors"
-import { useAuthorization } from "modules/core/auth/Authorization"
-import { useTitle } from "modules/core/title/PageTitle"
+} from "modules/books/fields.js"
+import { NoAuth } from "modules/books/NoAuth.js"
+import { NotFoundError } from "modules/core/api/errors.js"
+import { useAuthorization } from "modules/core/auth/Authorization.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { bookUrl } from "urls"
+import { bookUrl } from "utils/urls.js"
 
 function EditBook({ id }: { id: string }) {
   const { isLoading, isError, error, data: book } = useBook(id)

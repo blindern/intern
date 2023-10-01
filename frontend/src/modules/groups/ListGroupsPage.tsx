@@ -1,9 +1,9 @@
-import { ErrorMessages } from "components/ErrorMessages"
-import { Loading } from "components/Loading"
-import { useTitle } from "modules/core/title/PageTitle"
-import { useGroupList } from "modules/groups/api"
+import { ErrorMessages } from "components/ErrorMessages.js"
+import { Loading } from "components/Loading.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
+import { useGroupList } from "modules/groups/api.js"
 import React from "react"
-import { GroupLink } from "./GroupLink"
+import { GroupLink } from "./GroupLink.js"
 
 export const ListGroupsPage = () => {
   useTitle("Grupper")

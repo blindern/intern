@@ -1,7 +1,7 @@
 import { ErrorMessage } from "@hookform/error-message"
 import classNames from "classnames"
-import { useYupValidationResolver } from "modules/core/forms/validation"
-import { useTitle } from "modules/core/title/PageTitle"
+import { useYupValidationResolver } from "modules/core/forms/validation.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import React, { ReactNode, useState } from "react"
 import {
   FieldName,
@@ -12,7 +12,7 @@ import {
   useFormState,
 } from "react-hook-form"
 import * as Yup from "yup"
-import { RegisterData, useRegisterUserMutation } from "./api"
+import { RegisterData, useRegisterUserMutation } from "./api.js"
 
 const validationSchema = Yup.object({
   username: Yup.string()

@@ -1,8 +1,8 @@
 import * as d3 from "d3"
 import { Selection } from "d3-selection"
-import { PrinterInvoiceResponse } from "modules/printer/api"
+import { PrinterInvoiceResponse } from "modules/printer/api.js"
 import React, { useLayoutEffect, useMemo, useRef } from "react"
-import moment from "utils/moment"
+import moment from "utils/moment.js"
 
 // chart for daily usage
 // using D3.js
@@ -73,7 +73,7 @@ export function DailyGraph({
       .scaleLinear()
       .domain([0, d3.max(newdata, (d) => d.value)!])
       .range([height, 0])
-    const xAxis = d3.axisBottom(x).tickFormat(myTimeFormatter)
+    const xAxis = d3.axisBottom<Date>(x).tickFormat(myTimeFormatter)
     const yAxis = d3.axisLeft(y).ticks(6)
     const area = d3
       .area<(typeof newdata)[0]>()

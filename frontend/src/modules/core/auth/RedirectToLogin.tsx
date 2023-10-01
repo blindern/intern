@@ -1,4 +1,4 @@
-import { useAuthService } from "modules/core/auth/AuthServiceProvider"
+import { useAuthService } from "modules/core/auth/AuthServiceProvider.js"
 import React, { ReactNode, useLayoutEffect } from "react"
 
 export function RedirectToLogin({ children = null }: { children?: ReactNode }) {

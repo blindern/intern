@@ -1,14 +1,14 @@
-import { CommaSeparated } from "components/CommaSeparated"
-import { ErrorPage } from "components/ErrorPage"
-import { LoadingPage } from "components/LoadingPage"
-import { NotFoundError } from "modules/core/api/errors"
-import { Group, UserDetails, UserDetailsFull } from "modules/core/auth/types"
-import { PageTitle } from "modules/core/title/PageTitle"
-import { GroupLink } from "modules/groups/GroupLink"
-import { useUser } from "modules/users/api"
+import { CommaSeparated } from "components/CommaSeparated.js"
+import { ErrorPage } from "components/ErrorPage.js"
+import { LoadingPage } from "components/LoadingPage.js"
+import { NotFoundError } from "modules/core/api/errors.js"
+import { Group, UserDetails, UserDetailsFull } from "modules/core/auth/types.js"
+import { PageTitle } from "modules/core/title/PageTitle.js"
+import { GroupLink } from "modules/groups/GroupLink.js"
+import { useUser } from "modules/users/api.js"
 import React from "react"
 import { Link, useParams } from "react-router-dom"
-import { listUsersUrl } from "urls"
+import { listUsersUrl } from "utils/urls.js"
 
 export const IndirectMemberInfo = ({
   user,
@@ -21,7 +21,7 @@ export const IndirectMemberInfo = ({
     return null
   }
 
-  const groups = user.group_relations[group.name]
+  const groups = user.group_relations[group.name]!
 
   if (groups.includes(group.name)) {
     return null
@@ -33,7 +33,7 @@ export const IndirectMemberInfo = ({
       <span className="text-muted">
         (Indirekte medlem gjennom{" "}
         <CommaSeparated>
-          {user.group_relations[group.name].map((n) => (
+          {user.group_relations[group.name]!.map((n) => (
             <GroupLink key={n} groupName={n} />
           ))}
         </CommaSeparated>

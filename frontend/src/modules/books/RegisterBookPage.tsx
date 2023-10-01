@@ -1,9 +1,8 @@
 import {
-  Book,
   CreateBookPayload,
   useCreateBookMutation,
   useSearchIsbnMutation,
-} from "modules/books/api"
+} from "modules/books/api.js"
 import {
   AuthorsField,
   BibCommentField,
@@ -14,15 +13,15 @@ import {
   PubdateField,
   SubtitleField,
   TitleField,
-} from "modules/books/fields"
-import { NoAuth } from "modules/books/NoAuth"
-import { useAuthorization } from "modules/core/auth/Authorization"
-import { useFlashes } from "modules/core/flashes/FlashesProvider"
-import { useTitle } from "modules/core/title/PageTitle"
+} from "modules/books/fields.js"
+import { NoAuth } from "modules/books/NoAuth.js"
+import { useAuthorization } from "modules/core/auth/Authorization.js"
+import { useFlashes } from "modules/core/flashes/FlashesProvider.js"
+import { useTitle } from "modules/core/title/PageTitle.js"
 import React, { useMemo } from "react"
 import { FormProvider, useForm, useWatch } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import { bookUrl } from "urls"
+import { bookUrl } from "utils/urls.js"
 
 function RegisterBook() {
   const flashesService = useFlashes()
@@ -53,7 +52,7 @@ function RegisterBook() {
     sessionStorage.setItem("bookSection", bibSection ?? "")
   }, [bibRoom, bibSection])
 
-  function onSubmit(values: Book) {
+  function onSubmit(values: CreateBookPayload) {
     void mutateAsync(values).then((book) => {
       navigate(bookUrl(book._id))
     })

@@ -1,4 +1,4 @@
-import { FlashArgs } from "modules/core/flashes/FlahesService"
+import { FlashArgs } from "modules/core/flashes/FlahesService.js"
 
 export class ResponseError extends Error {
   constructor(
