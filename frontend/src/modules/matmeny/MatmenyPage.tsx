@@ -44,6 +44,7 @@ function useModifiedData(data: MatmenyDay[]) {
   ) {
     const persisted = {
       dishes: dataByDate[date]?.dishes?.join(",") ?? "",
+      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       text: dataByDate[date]?.text || "",
     }
 

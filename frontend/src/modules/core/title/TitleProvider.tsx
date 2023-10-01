@@ -24,7 +24,7 @@ interface Props {
 }
 
 export class TitleProvider extends React.Component<Props> {
-  components: Array<{ comp: symbol; value: string }> = []
+  components: { comp: symbol; value: string }[] = []
   state = {
     title: defaultValue.title,
     mounts: [defaultValue.title],

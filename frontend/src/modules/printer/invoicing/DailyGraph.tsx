@@ -76,7 +76,7 @@ export function DailyGraph({
     const xAxis = d3.axisBottom(x).tickFormat(myTimeFormatter)
     const yAxis = d3.axisLeft(y).ticks(6)
     const area = d3
-      .area<typeof newdata[0]>()
+      .area<(typeof newdata)[0]>()
       .x((d) => {
         return x(d.date)
       })

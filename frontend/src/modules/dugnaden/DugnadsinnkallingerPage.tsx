@@ -35,7 +35,7 @@ const List = ({ list }: { list: DugnadDay[] }) => {
         Dugnad:{" "}
         <select
           name="dugnad"
-          value={dugnadId == null ? "" : dugnadId}
+          value={dugnadId ?? ""}
           onChange={(e) => setDugnadId(e.target.value)}
         >
           <option value="">Velg dugnad</option>

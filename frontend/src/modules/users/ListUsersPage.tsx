@@ -15,8 +15,7 @@ interface UserSections {
   utflyttede: UserDetails[]
 }
 
-const realnameFallback = (user: UserDetails) =>
-  user.realname == null ? user.username : user.realname
+const realnameFallback = (user: UserDetails) => user.realname ?? user.username
 
 const compareByRealname = (a: UserDetails, b: UserDetails) =>
   realnameFallback(a).localeCompare(realnameFallback(b))

@@ -2,10 +2,10 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:prettier/recommended",
+    "plugin:deprecation/recommended"
   ],
   "plugins": ["deprecation"],
   "overrides": [

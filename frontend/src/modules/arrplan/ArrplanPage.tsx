@@ -10,7 +10,7 @@ import { getSemesterListFromEvent, Semester, useArrplanList } from "./api"
 import { Comment, EventItem, NormalEvent } from "./types"
 
 const getSemesterList = (list: EventItem[]) => {
-  const hashedSemesters = list.reduce<{ [id: string]: Semester }>(
+  const hashedSemesters = list.reduce<Record<string, Semester>>(
     (acc, event) => {
       getSemesterListFromEvent(event).forEach((s) => {
         acc[s.id] = s

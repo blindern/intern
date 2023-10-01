@@ -51,7 +51,6 @@ export function PrinterInvoicingPage() {
               type="date"
               value={dateFrom}
               onChange={(ev) => setDateFrom(ev.target.value)}
-              date-format="yyyy-mm-dd"
             />
           </div>
           <div className="col-md-3">
@@ -61,7 +60,6 @@ export function PrinterInvoicingPage() {
               type="date"
               value={dateTo}
               onChange={(ev) => setDateTo(ev.target.value)}
-              date-format="yyyy-mm-dd"
             />
           </div>
         </div>

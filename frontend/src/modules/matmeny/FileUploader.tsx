@@ -37,15 +37,11 @@ export function FileUploader({
   }
 
   if (isLoading) {
-    return (
-      <span className="form-control" ng-show="uploadprogress">
-        Laster opp..
-      </span>
-    )
+    return <span className="form-control">Laster opp..</span>
   }
 
   return (
-    <div ng-if="!uploadprogress">
+    <div>
       {<input type="file" className="form-control" onChange={onFileChange} />}
     </div>
   )

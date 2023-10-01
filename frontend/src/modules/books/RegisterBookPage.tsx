@@ -60,7 +60,7 @@ function RegisterBook() {
   }
 
   function isbnSearch() {
-    const isbn = (methods.getValues("isbn") as string).replace(/-/g, "")
+    const isbn = methods.getValues("isbn")!.replace(/-/g, "")
     void isbnMutateSync(isbn).then((data) => {
       if (data.found) {
         methods.setFocus("title")

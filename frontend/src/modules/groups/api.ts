@@ -16,9 +16,7 @@ export interface GroupDetail {
     users: string[]
     groups: string[]
   }
-  members_relation: {
-    [name: string]: string[]
-  }
+  members_relation: Record<string, string[]>
 }
 
 export function useGroupList() {

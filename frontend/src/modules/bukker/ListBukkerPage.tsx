@@ -66,7 +66,7 @@ export function ListBukkerPage() {
   return (
     <div className="bukker">
       <p>
-        Totalt {bukker!.length} bukker er registrert. {countHoy} høyheter,{" "}
+        Totalt {bukker.length} bukker er registrert. {countHoy} høyheter,{" "}
         {countHelOnly} ({countHelAll}) helheter og {countHalvOnly} (
         {countHalvAll}) halvheter.
       </p>

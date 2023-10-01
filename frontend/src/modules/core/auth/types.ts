@@ -1,9 +1,6 @@
 type ArrayAtLeastOne<T> = { 0: T } & T[]
 
-interface GroupRelationMap {
-  // group: [reason]
-  [group: string]: ArrayAtLeastOne<string>
-}
+type GroupRelationMap = Record<string, ArrayAtLeastOne<string>>
 
 interface UserDetailsBase {
   id: number
@@ -59,7 +56,7 @@ interface MeLoggedIn {
 
 export type Me = MeNotLoggedIn | MeLoggedIn
 
-export type AuthInfo = {
+export interface AuthInfo {
   isLoading: boolean
   isError: boolean
   error: Error | null

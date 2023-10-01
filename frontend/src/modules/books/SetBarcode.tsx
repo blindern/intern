@@ -7,7 +7,7 @@ export function SetBarcode({ book }: { book: Book }) {
   const { mutate: mutateBarcode } = useSetBookBarcodeMutation()
 
   function registerBarcode() {
-    if (newBarcode.substring(0, 3) != "BS-") {
+    if (!newBarcode.startsWith("BS-")) {
       alert("Ugyldig strekkode for biblioteket.")
     } else {
       mutateBarcode({

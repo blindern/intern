@@ -26,9 +26,7 @@ export interface PrinterInvoiceResponse {
       }[]
     }[]
   }[]
-  texts: {
-    [printername: string]: string
-  }
+  texts: Record<string, string>
   no_faktura: string[]
   from: string
   to: string
@@ -37,23 +35,22 @@ export interface PrinterInvoiceResponse {
     count_jobs: number
     sum_jobsize: number
   }[]
-  sections: {
-    [section: string]: {
+  sections: Record<
+    string,
+    {
       printers: string[]
       is_beboer: boolean
       title: string
       description: string
     }
-  }
+  >
   section_default: string
   accounts: {
     printers: string[] | null
     account: string | number
     text: string
   }[]
-  realnames: {
-    [username: string]: string
-  }
+  realnames: Record<string, string>
   utflyttet: [username: string]
 }
 

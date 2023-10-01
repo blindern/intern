@@ -31,7 +31,7 @@ export const ArrplanHomeBox = () => {
               {event.title}
             </p>
           ) : (
-            <p>Ukjent</p>
+            <p key={idx}>Ukjent</p>
           ),
         )
       )}
