@@ -16,7 +16,7 @@ export function LoggedOutHandler({ children }: { children: ReactNode }) {
     return () => {
       subscriber.unsubscribe()
     }
-  }, [])
+  }, [authService, queryClient])
 
   return <>{children}</>
 }

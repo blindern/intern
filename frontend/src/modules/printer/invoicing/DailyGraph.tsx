@@ -1,8 +1,8 @@
 import * as d3 from "d3"
 import { Selection } from "d3-selection"
-import moment from "utils/moment"
-import React, { useLayoutEffect, useMemo, useRef } from "react"
 import { PrinterInvoiceResponse } from "modules/printer/api"
+import React, { useLayoutEffect, useMemo, useRef } from "react"
+import moment from "utils/moment"
 
 // chart for daily usage
 // using D3.js
@@ -54,7 +54,7 @@ export function DailyGraph({
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`)
     }
-  }, [])
+  }, [height, margin.bottom, margin.left, margin.right, margin.top, width])
 
   useLayoutEffect(() => {
     const parseDate = d3.timeParse("%Y-%m-%d")
@@ -106,7 +106,7 @@ export function DailyGraph({
       .attr("class", "ytext")
       .style("text-anchor", "end")
       .text("Antall utskrifter")
-  }, [data])
+  }, [data, dateFrom, dateTo, height, width])
 
   return (
     <>

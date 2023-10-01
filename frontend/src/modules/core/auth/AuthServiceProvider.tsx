@@ -51,7 +51,7 @@ export function AuthServiceProvider({
     return () => {
       subscriber.unsubscribe()
     }
-  }, [])
+  }, [authService])
 
   return (
     <AuthServiceContext.Provider value={authService}>

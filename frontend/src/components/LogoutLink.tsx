@@ -9,7 +9,7 @@ export function LogoutLink({ children }: { children: ReactNode }) {
       e.preventDefault()
       authService.logout()
     },
-    [],
+    [authService],
   )
 
   return (

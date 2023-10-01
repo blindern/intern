@@ -1,20 +1,21 @@
-import { useContext, useLayoutEffect, useRef } from "react"
+import { useContext, useLayoutEffect, useState } from "react"
 import { TitleContext } from "./TitleProvider"
 
 export function useTitle(title: string) {
-  const ref = useRef(Symbol())
+  const [titleSymbol] = useState(() => Symbol())
   const context = useContext(TitleContext)
 
   useLayoutEffect(() => {
-    context.registerTitle(ref.current, title)
+    context.registerTitle(titleSymbol, title)
     return () => {
-      context.unregisterTitle(ref.current)
+      context.unregisterTitle(titleSymbol)
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [context, titleSymbol])
 
   useLayoutEffect(() => {
-    context.updateTitle(ref.current, title)
-  }, [title])
+    context.updateTitle(titleSymbol, title)
+  }, [context, title, titleSymbol])
 }
 
 export function PageTitle({ title }: { title: string }) {

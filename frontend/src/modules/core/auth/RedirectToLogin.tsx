@@ -6,7 +6,7 @@ export function RedirectToLogin({ children = null }: { children?: ReactNode }) {
 
   useLayoutEffect(() => {
     window.location.assign(authService.getLoginUrl())
-  }, [])
+  }, [authService])
 
   return <>{children}</>
 }

@@ -18,7 +18,7 @@ export function ErrorMessages({ error }: { error: unknown }) {
         },
       ]
     }
-  }, [error])
+  }, [apiService, error])
 
   return (
     <>
