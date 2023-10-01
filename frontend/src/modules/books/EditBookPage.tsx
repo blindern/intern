@@ -16,6 +16,7 @@ import {
 import { NoAuth } from "modules/books/NoAuth"
 import { NotFoundError } from "modules/core/api/errors"
 import { useAuthorization } from "modules/core/auth/Authorization"
+import { useTitle } from "modules/core/title/PageTitle"
 import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { Link, useNavigate, useParams } from "react-router-dom"
@@ -23,13 +24,6 @@ import { bookUrl } from "urls"
 
 function EditBook({ id }: { id: string }) {
   const { isLoading, isError, error, data: book } = useBook(id)
-
-  const { mutateAsync } = useUpdateBookMutation()
-  const navigate = useNavigate()
-
-  const methods = useForm<Book>({
-    defaultValues: book,
-  })
 
   if (error instanceof NotFoundError) {
     return <BookNotFoundPage />
@@ -43,9 +37,22 @@ function EditBook({ id }: { id: string }) {
     return <ErrorPage error={error} title="Feil ved lasting av bok" />
   }
 
+  return <EditBookForm book={book} />
+}
+
+function EditBookForm({ book }: { book: Book }) {
+  const { mutateAsync } = useUpdateBookMutation()
+  const navigate = useNavigate()
+
+  useTitle(`Rediger bok: ${book.title}`)
+
+  const methods = useForm<Book>({
+    defaultValues: book,
+  })
+
   function onSubmit(values: Book) {
     void mutateAsync(values).then(() => {
-      navigate(bookUrl(book!._id))
+      navigate(bookUrl(book._id))
     })
   }
 
