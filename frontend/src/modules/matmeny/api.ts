@@ -1,5 +1,5 @@
 import { useApiService } from "modules/core/api/ApiServiceProvider"
-import { useMutation, useQuery } from "react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import moment from "utils/moment"
 
 export interface MatmenyDay {

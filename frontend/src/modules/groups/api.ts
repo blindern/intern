@@ -1,6 +1,6 @@
 import { useApiService } from "modules/core/api/ApiServiceProvider"
 import { Group, UserDetails } from "modules/core/auth/types"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 export interface GroupDetail {
   id: number

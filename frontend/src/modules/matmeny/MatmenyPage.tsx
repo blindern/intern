@@ -13,7 +13,7 @@ import {
 } from "modules/matmeny/api"
 import { FileUploader } from "modules/matmeny/FileUploader"
 import React, { useState } from "react"
-import { useQueryClient } from "react-query"
+import { useQueryClient } from "@tanstack/react-query"
 import { formatDate } from "utils/dates"
 import moment from "utils/moment"
 

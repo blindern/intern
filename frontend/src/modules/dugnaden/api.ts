@@ -1,5 +1,5 @@
 import { useApiService } from "modules/core/api/ApiServiceProvider"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 
 export interface DugnadDay {
   checked: "0" | "1"

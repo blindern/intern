@@ -1,5 +1,5 @@
 import { useApiService } from "modules/core/api/ApiServiceProvider"
-import { useMutation } from "react-query"
+import { useMutation } from "@tanstack/react-query"
 
 export interface RegisterData {
   username: string

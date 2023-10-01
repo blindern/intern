@@ -1,5 +1,5 @@
 import { useApiService } from "modules/core/api/ApiServiceProvider"
-import { useMutation, useQuery, useQueryClient } from "react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 export interface CreateAccountPayload {
   accountname: string

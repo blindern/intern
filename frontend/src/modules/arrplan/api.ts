@@ -1,6 +1,6 @@
 import { useApiService } from "modules/core/api/ApiServiceProvider"
 import { Moment } from "moment"
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query"
 import moment from "utils/moment"
 import { EventItem } from "./types"
 
