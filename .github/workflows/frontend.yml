@@ -33,7 +33,7 @@ jobs:
 
       - name: Build docker image
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: frontend
           push: ${{ github.ref == 'refs/heads/master' }}
