@@ -11,6 +11,11 @@
       "matchPaths": ["frontend/**"],
       "automerge": true,
       "automergeType": "branch"
+    },
+    {
+      "matchPaths": ["backend/**"],
+      "automerge": true,
+      "automergeType": "branch"
     }
   ],
   "prCreation": "not-pending",
