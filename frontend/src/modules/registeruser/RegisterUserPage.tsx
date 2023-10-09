@@ -25,10 +25,12 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("Du må oppgi en korrekt e-postadresse")
     .required("Du må oppgi en korrekt e-postadresse"),
-  phone: Yup.string().matches(
-    /^(|[1-9][0-9]{7})$/,
-    "Kun norske nummer med 8 tall kan registreres",
-  ),
+  phone: Yup.string()
+    .matches(
+      /^(|[1-9][0-9]{7})$/,
+      "Kun norske nummer med 8 tall kan registreres",
+    )
+    .ensure(),
   password: Yup.string()
     .min(8, "Passordet må være på minst 8 tegn")
     .required("Passordet må være på minst 8 tegn"),
@@ -184,7 +186,7 @@ const RegisterForm = () => {
   const [isSent, setIsSent] = useState(false)
   const { isLoading, mutateAsync: registerUser } = useRegisterUserMutation()
 
-  const resolver = useYupValidationResolver(validationSchema)
+  const resolver = useYupValidationResolver<RegisterData>(validationSchema)
 
   const methods = useForm<RegisterData>({
     defaultValues: {
