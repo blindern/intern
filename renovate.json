@@ -9,7 +9,6 @@
   "packageRules": [
     {
       "matchPaths": ["frontend/**"],
-      "matchDepTypes": ["devDependencies"],
       "automerge": true,
       "automergeType": "branch"
     }
