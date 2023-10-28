@@ -2,7 +2,7 @@
 # currently in production we don't use Docker
 # (it should but no time to set up yet)
 
-FROM php:8.2-apache@sha256:5309df839d0a762f2460b98f477701600ab295885fdc88c75bf93d5e6f433137
+FROM php:8.2-apache@sha256:ee4b54ed99add9c7cdfb0276d832163611f45eada6a94df02abf60b8f5a8732e
 
 ENV LANG=C.UTF-8
 
