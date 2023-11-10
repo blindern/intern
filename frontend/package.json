@@ -37,7 +37,7 @@
     "@tsconfig/strictest": "2.0.2",
     "@types/classnames": "2.3.0",
     "@types/d3": "7.4.2",
-    "@types/domready": "1.0.1",
+    "@types/domready": "1.0.2",
     "@types/git-rev-sync": "2.0.1",
     "@types/jquery": "3.5.26",
     "@types/lodash": "4.14.200",
