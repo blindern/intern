@@ -52,7 +52,7 @@
     "@vitejs/plugin-react": "4.2.0",
     "autoprefixer": "10.4.16",
     "bootstrap-sass": "3.4.3",
-    "eslint": "8.54.0",
+    "eslint": "8.55.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-config-react-hooks": "1.0.0",
     "eslint-plugin-deprecation": "2.0.0",
