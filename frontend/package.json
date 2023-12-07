@@ -49,7 +49,7 @@
     "@types/react-transition-group": "4.4.9",
     "@typescript-eslint/eslint-plugin": "6.13.1",
     "@typescript-eslint/parser": "6.13.1",
-    "@vitejs/plugin-react": "4.2.0",
+    "@vitejs/plugin-react": "4.2.1",
     "autoprefixer": "10.4.16",
     "bootstrap-sass": "3.4.3",
     "eslint": "8.55.0",
