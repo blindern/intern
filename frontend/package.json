@@ -12,7 +12,7 @@
   "dependencies": {
     "@hookform/error-message": "2.0.1",
     "@react-hook/debounce": "4.0.0",
-    "classnames": "2.5.0",
+    "classnames": "2.5.1",
     "d3": "7.8.5",
     "domready": "1.0.8",
     "history": "5.3.0",
