@@ -69,6 +69,7 @@ class MatmenyController extends Controller
         }
         if (!\Blindern\Intern\Auth\Helper::isOffice() &&
                 !\Auth::member('admin') &&
+                !\Auth::member('ansatt') &&
                 !\Auth::member('kollegiet')) {
             return Responses::forbidden(["Du har ikke tilgang til denne siden."]);
         }

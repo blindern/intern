@@ -339,10 +339,10 @@ function MatmenyAdmin() {
 export function MatmenyPage() {
   useTitle("Matmeny")
 
-  const kollegiet = useIsMemberOf(["kollegiet"])
+  const groupAccess = useIsMemberOf(["kollegiet", "ansatt"])
   const authInfo = useAuthInfo()
 
-  const access = authInfo.data.isOffice || kollegiet
+  const access = authInfo.data.isOffice || groupAccess
 
   return (
     <>
