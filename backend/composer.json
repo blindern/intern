@@ -20,7 +20,7 @@
 		"laravel/sanctum": "^3.2",
 		"laravel/tinker": "^2.8",
 		"nategood/httpful": "0.3.2",
-		"nesbot/carbon": "2.72.2",
+		"nesbot/carbon": "2.72.3",
 		"onelogin/php-saml": "4.1.0",
 		"spatie/icalendar-generator": "^2.3"
 	},
