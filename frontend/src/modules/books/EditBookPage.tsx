@@ -23,13 +23,13 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { bookUrl } from "utils/urls.js"
 
 function EditBook({ id }: { id: string }) {
-  const { isLoading, isError, error, data: book } = useBook(id)
+  const { isPending, isError, error, data: book } = useBook(id)
 
   if (error instanceof NotFoundError) {
     return <BookNotFoundPage />
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingPage title="Laster bok ..." />
   }
 

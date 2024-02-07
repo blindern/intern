@@ -12,7 +12,9 @@ export interface RegisterData {
 
 export function useRegisterUserMutation() {
   const api = useApiService()
-  return useMutation(async (data: RegisterData) => {
-    await api.post("register", data)
+  return useMutation({
+    mutationFn: async (data: RegisterData) => {
+      await api.post("register", data)
+    },
   })
 }

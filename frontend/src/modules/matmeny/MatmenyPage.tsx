@@ -134,7 +134,7 @@ function MatmenyAdmin() {
   const prevWeeksToShow = 4
   const nextWeeksToShow = 4
 
-  const { mutateAsync, isLoading: isSubmitting } =
+  const { mutateAsync, isPending: isSubmitting } =
     useUpdateMatmenyDaysMutation()
 
   const firstDate = moment()
@@ -147,7 +147,7 @@ function MatmenyAdmin() {
     .add(nextWeeksToShow, "weeks")
     .format("YYYY-MM-DD")
 
-  const { isLoading, isError, error, data } = useMatmenyData(
+  const { isPending, isError, error, data } = useMatmenyData(
     firstDate,
     lastDate,
   )
@@ -208,7 +208,7 @@ function MatmenyAdmin() {
     })
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />
   }
 

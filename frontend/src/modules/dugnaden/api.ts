@@ -19,8 +19,12 @@ export interface DugnadPerson {
 
 export function useDugnadenList() {
   const api = useApiService()
-  return useQuery(["dugnaden", "old", "list"], async () => {
-    const response = await api.get("dugnaden/old")
-    return (await response.json()) as DugnadDay[]
+  return useQuery({
+    queryKey: ["dugnaden", "old", "list"],
+
+    queryFn: async () => {
+      const response = await api.get("dugnaden/old")
+      return (await response.json()) as DugnadDay[]
+    },
   })
 }

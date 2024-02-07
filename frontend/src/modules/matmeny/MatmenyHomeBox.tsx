@@ -18,12 +18,12 @@ const MatmenyDayItem = ({ data }: { data?: MatmenyDay | undefined }) => {
 }
 
 export const MatmenyHomeBox = () => {
-  const { isLoading, isError, error, data: matmeny } = useMatmenyHomeData()
+  const { isPending, isError, error, data: matmeny } = useMatmenyHomeData()
 
   return (
     <Link to={matmenyUrl()} className="index-matmeny">
       <h4>Matmeny</h4>
-      {isLoading ? (
+      {isPending ? (
         <Loading />
       ) : isError && !matmeny ? (
         <ErrorMessages error={error} />

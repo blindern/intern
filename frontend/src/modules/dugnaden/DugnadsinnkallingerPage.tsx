@@ -88,9 +88,9 @@ const List = ({ list }: { list: DugnadDay[] }) => {
 
 export const DugnadsinnkallingerPage = () => {
   useTitle("Dugnadsinnkallinger")
-  const { isLoading, isError, error, data } = useDugnadenList()
+  const { isPending, isError, error, data } = useDugnadenList()
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />
   }
 

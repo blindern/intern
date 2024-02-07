@@ -33,16 +33,24 @@ export const getSemesterListFromEvent = (event: EventItem) => {
 
 export function useArrplanList() {
   const api = useApiService()
-  return useQuery(["arrplan", "list"], async () => {
-    const response = await api.get("arrplan?invalidate=1")
-    return (await response.json()) as EventItem[]
+  return useQuery({
+    queryKey: ["arrplan", "list"],
+
+    queryFn: async () => {
+      const response = await api.get("arrplan?invalidate=1")
+      return (await response.json()) as EventItem[]
+    },
   })
 }
 
 export function useArrplanNext() {
   const api = useApiService()
-  return useQuery(["arrplan", "next"], async () => {
-    const response = await api.get("arrplan/next?count=6")
-    return (await response.json()) as EventItem[]
+  return useQuery({
+    queryKey: ["arrplan", "next"],
+
+    queryFn: async () => {
+      const response = await api.get("arrplan/next?count=6")
+      return (await response.json()) as EventItem[]
+    },
   })
 }

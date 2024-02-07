@@ -13,7 +13,7 @@ export function FileUploader({
     updater: (current: ModifiedDay) => ModifiedDay,
   ) => void
 }) {
-  const { mutateAsync, isLoading } = useConvertMatmenyDocMutation()
+  const { mutateAsync, isPending } = useConvertMatmenyDocMutation()
 
   function onFileChange(ev: ChangeEvent<HTMLInputElement>) {
     mutateAsync(ev.target.files![0]!)
@@ -36,7 +36,7 @@ export function FileUploader({
       })
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <span className="form-control">Laster opp..</span>
   }
 

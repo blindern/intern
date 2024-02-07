@@ -56,20 +56,28 @@ export interface PrinterInvoiceResponse {
 
 export function usePrinterLastList() {
   const api = useApiService()
-  return useQuery(["printer", "last"], async () => {
-    const response = await api.get("printer/last")
-    return (await response.json()) as LastPrintItem[]
+  return useQuery({
+    queryKey: ["printer", "last"],
+
+    queryFn: async () => {
+      const response = await api.get("printer/last")
+      return (await response.json()) as LastPrintItem[]
+    },
   })
 }
 
 export function usePrinterInvoiceData(from: string, to: string) {
   const api = useApiService()
-  return useQuery(["printer", "invoice", { from, to }], async () => {
-    const response = await api.get(
-      `printer/fakturere?from=${encodeURIComponent(
-        from,
-      )}&to=${encodeURIComponent(to)}`,
-    )
-    return (await response.json()) as PrinterInvoiceResponse
+  return useQuery({
+    queryKey: ["printer", "invoice", { from, to }],
+
+    queryFn: async () => {
+      const response = await api.get(
+        `printer/fakturere?from=${encodeURIComponent(
+          from,
+        )}&to=${encodeURIComponent(to)}`,
+      )
+      return (await response.json()) as PrinterInvoiceResponse
+    },
   })
 }

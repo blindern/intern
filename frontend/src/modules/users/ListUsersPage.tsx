@@ -56,9 +56,9 @@ const UserListSection = styled.div`
 export const ListUsersPage = () => {
   useTitle("Brukerliste")
 
-  const { isLoading, isError, error, data: userList } = useUserList()
+  const { isPending, isError, error, data: userList } = useUserList()
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />
   }
 

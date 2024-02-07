@@ -17,16 +17,24 @@ export interface Bukk {
 
 export function useBukkList() {
   const api = useApiService()
-  return useQuery(["bukker", "list"], async () => {
-    const response = await api.get("bukker")
-    return (await response.json()) as Bukk[]
+  return useQuery({
+    queryKey: ["bukker", "list"],
+
+    queryFn: async () => {
+      const response = await api.get("bukker")
+      return (await response.json()) as Bukk[]
+    },
   })
 }
 
 export function useBukk(id: string) {
   const api = useApiService()
-  return useQuery(["bukker", "item", id], async () => {
-    const response = await api.get("bukker/" + encodeURIComponent(id))
-    return (await response.json()) as Bukk
+  return useQuery({
+    queryKey: ["bukker", "item", id],
+
+    queryFn: async () => {
+      const response = await api.get("bukker/" + encodeURIComponent(id))
+      return (await response.json()) as Bukk
+    },
   })
 }

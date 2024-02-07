@@ -7,12 +7,12 @@ import { arrplanUrl } from "utils/urls.js"
 import { useArrplanNext } from "./api.js"
 
 export const ArrplanHomeBox = () => {
-  const { isLoading, isError, error, data: arrplan } = useArrplanNext()
+  const { isPending, isError, error, data: arrplan } = useArrplanNext()
 
   return (
     <Link to={arrplanUrl()} className="index-arrplan">
       <h4>Neste på arrangementplanen</h4>
-      {isLoading ? (
+      {isPending ? (
         <Loading />
       ) : isError && arrplan == null ? (
         <ErrorMessages error={error} />

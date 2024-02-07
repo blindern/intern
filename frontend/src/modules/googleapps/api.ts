@@ -37,9 +37,13 @@ const listQueryKey = ["googleapps", "accounts", "list"]
 
 export function useGoogleAppsAccounts() {
   const api = useApiService()
-  return useQuery(listQueryKey, async () => {
-    const response = await api.get("googleapps/accounts?expand=1")
-    return (await response.json()) as Account[]
+  return useQuery({
+    queryKey: listQueryKey,
+
+    queryFn: async () => {
+      const response = await api.get("googleapps/accounts?expand=1")
+      return (await response.json()) as Account[]
+    },
   })
 }
 
@@ -47,45 +51,45 @@ export function useGoogleAppsCreateAccountMutation() {
   const api = useApiService()
   const queryClient = useQueryClient()
 
-  return useMutation(
-    async (data: CreateAccountPayload) => {
+  return useMutation({
+    mutationFn: async (data: CreateAccountPayload) => {
       const response = await api.post("googleapps/accounts", data)
       return (await response.json()) as Account
     },
-    {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries(listQueryKey)
-      },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: listQueryKey,
+      })
     },
-  )
+  })
 }
 
 export function useGoogleAppsUpdateAccountMutation() {
   const api = useApiService()
   const queryClient = useQueryClient()
 
-  return useMutation(
-    async (data: Account) => {
+  return useMutation({
+    mutationFn: async (data: Account) => {
       const response = await api.put(
         "googleapps/accounts/" + encodeURIComponent(data._id),
         data,
       )
       return (await response.json()) as Account
     },
-    {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries(listQueryKey)
-      },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: listQueryKey,
+      })
     },
-  )
+  })
 }
 
 export function useGoogleAppsDeleteAccountMutation() {
   const api = useApiService()
   const queryClient = useQueryClient()
 
-  return useMutation(
-    async (data: Account) => {
+  return useMutation({
+    mutationFn: async (data: Account) => {
       const response = await api.delete(
         "googleapps/accounts/" + encodeURIComponent(data._id),
       )
@@ -94,57 +98,57 @@ export function useGoogleAppsDeleteAccountMutation() {
         throw new Error("Response failed")
       }
     },
-    {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries(listQueryKey)
-      },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: listQueryKey,
+      })
     },
-  )
+  })
 }
 
 export function useGoogleAppsCreateAccountUserMutation() {
   const api = useApiService()
   const queryClient = useQueryClient()
 
-  return useMutation(
-    async (data: CreateAccountUserPayload) => {
+  return useMutation({
+    mutationFn: async (data: CreateAccountUserPayload) => {
       const response = await api.post("googleapps/accountusers", data)
       return (await response.json()) as AccountUser
     },
-    {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries(listQueryKey)
-      },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: listQueryKey,
+      })
     },
-  )
+  })
 }
 
 export function useGoogleAppsUpdateAccountUserMutation() {
   const api = useApiService()
   const queryClient = useQueryClient()
 
-  return useMutation(
-    async (data: AccountUser) => {
+  return useMutation({
+    mutationFn: async (data: AccountUser) => {
       const response = await api.put(
         "googleapps/accountusers/" + encodeURIComponent(data._id),
         data,
       )
       return (await response.json()) as AccountUser
     },
-    {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries(listQueryKey)
-      },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: listQueryKey,
+      })
     },
-  )
+  })
 }
 
 export function useGoogleAppsDeleteAccountUserMutation() {
   const api = useApiService()
   const queryClient = useQueryClient()
 
-  return useMutation(
-    async (data: AccountUser) => {
+  return useMutation({
+    mutationFn: async (data: AccountUser) => {
       const response = await api.delete(
         "googleapps/accountusers/" + encodeURIComponent(data._id),
       )
@@ -153,10 +157,10 @@ export function useGoogleAppsDeleteAccountUserMutation() {
         throw new Error("Response failed")
       }
     },
-    {
-      onSuccess: async () => {
-        await queryClient.invalidateQueries(listQueryKey)
-      },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: listQueryKey,
+      })
     },
-  )
+  })
 }

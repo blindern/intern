@@ -15,7 +15,7 @@ export function PrinterInvoicingPage() {
 
   const { dateFrom, dateTo, changeMonth, setDateFrom, setDateTo } = useDates()
   const {
-    isLoading,
+    isPending,
     isError,
     error,
     data: rawdata,
@@ -88,7 +88,7 @@ export function PrinterInvoicingPage() {
         </p>
       </div>
 
-      {isLoading ? (
+      {isPending ? (
         <Loading />
       ) : isError && rawdata == null ? (
         <ErrorMessages error={error} />

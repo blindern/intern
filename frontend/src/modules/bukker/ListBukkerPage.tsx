@@ -21,9 +21,9 @@ function getThumb(bukk: Bukk) {
 export function ListBukkerPage() {
   useTitle("Bukker")
 
-  const { isLoading, isError, error, data: bukker } = useBukkList()
+  const { isPending, isError, error, data: bukker } = useBukkList()
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />
   }
 
