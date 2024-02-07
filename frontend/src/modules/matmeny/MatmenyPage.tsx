@@ -241,8 +241,8 @@ function MatmenyAdmin() {
                         {week.relnum == 1
                           ? "(neste uke)"
                           : week.relnum == 0
-                          ? "(inneværende uke)"
-                          : ""}{" "}
+                            ? "(inneværende uke)"
+                            : ""}{" "}
                         {week.datacount ? " (har data)" : ""}
                       </>
                     </option>
