@@ -184,7 +184,7 @@ const PasswordGroup = () => (
 
 const RegisterForm = () => {
   const [isSent, setIsSent] = useState(false)
-  const { isLoading, mutateAsync: registerUser } = useRegisterUserMutation()
+  const { isPending, mutateAsync: registerUser } = useRegisterUserMutation()
 
   const resolver = useYupValidationResolver<RegisterData>(validationSchema)
 
@@ -231,10 +231,10 @@ const RegisterForm = () => {
             <input
               type="submit"
               value={
-                isLoading ? "Send inn forespørsel ..." : "Send inn forespørsel"
+                isPending ? "Send inn forespørsel ..." : "Send inn forespørsel"
               }
               className="btn btn-primary"
-              disabled={isLoading}
+              disabled={isPending}
             />
             <span className="help-block">
               Du vil bli lagt til manuelt, så noe ventetid må påregnes.

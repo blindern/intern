@@ -21,16 +21,24 @@ export interface GroupDetail {
 
 export function useGroupList() {
   const api = useApiService()
-  return useQuery(["group", "list"], async () => {
-    const response = await api.get("group")
-    return (await response.json()) as Group[]
+  return useQuery({
+    queryKey: ["group", "list"],
+
+    queryFn: async () => {
+      const response = await api.get("group")
+      return (await response.json()) as Group[]
+    },
   })
 }
 
 export function useGroup(groupName: string) {
   const api = useApiService()
-  return useQuery(["group", "item", groupName], async () => {
-    const response = await api.get("group/" + encodeURIComponent(groupName))
-    return (await response.json()) as GroupDetail
+  return useQuery({
+    queryKey: ["group", "item", groupName],
+
+    queryFn: async () => {
+      const response = await api.get("group/" + encodeURIComponent(groupName))
+      return (await response.json()) as GroupDetail
+    },
   })
 }

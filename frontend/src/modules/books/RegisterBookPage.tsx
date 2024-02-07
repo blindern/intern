@@ -26,7 +26,7 @@ import { bookUrl } from "utils/urls.js"
 function RegisterBook() {
   const flashesService = useFlashes()
   const { mutateAsync } = useCreateBookMutation()
-  const { mutateAsync: isbnMutateSync, isLoading: isbn_is_searching } =
+  const { mutateAsync: isbnMutateSync, isPending: isbn_is_searching } =
     useSearchIsbnMutation()
   const navigate = useNavigate()
 

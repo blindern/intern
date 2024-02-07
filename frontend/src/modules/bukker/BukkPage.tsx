@@ -10,7 +10,7 @@ import { listBukkerUrl } from "utils/urls.js"
 
 export function BukkPage() {
   const { id } = useParams()
-  const { isLoading, isError, error, data: bukk } = useBukk(id!)
+  const { isPending, isError, error, data: bukk } = useBukk(id!)
 
   if (error instanceof NotFoundError) {
     return (
@@ -24,7 +24,7 @@ export function BukkPage() {
     )
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingPage title="Laster bukk ..." />
   }
 

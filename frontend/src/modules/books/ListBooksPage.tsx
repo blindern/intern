@@ -59,7 +59,7 @@ export function ListBooksPage() {
     setCurrentPage(1)
   }, 250)
 
-  const { isLoading, isError, data, error } = useBookList({
+  const { isPending, isError, data, error } = useBookList({
     q: search,
     page: currentPage,
   })
@@ -122,7 +122,7 @@ export function ListBooksPage() {
           </div>
         </form>
 
-        {isLoading ? (
+        {isPending ? (
           <Loading />
         ) : isError && data == null ? (
           <ErrorMessages error={error} />

@@ -9,9 +9,9 @@ import { usePrinterLastList } from "./api.js"
 export const LastPrintsPage = () => {
   useTitle("Siste utskrifter")
 
-  const { isLoading, isError, error, data } = usePrinterLastList()
+  const { isPending, isError, error, data } = usePrinterLastList()
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />
   }
 

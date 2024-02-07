@@ -105,7 +105,7 @@ const Detail = ({ group }: { group: GroupDetail }) => (
 export const GroupPage = () => {
   const { name } = useParams()
 
-  const { isLoading, isError, error, data } = useGroup(name!)
+  const { isPending, isError, error, data } = useGroup(name!)
 
   if (error instanceof NotFoundError) {
     return (
@@ -119,7 +119,7 @@ export const GroupPage = () => {
     )
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingPage title="Laster gruppe ..." />
   }
 

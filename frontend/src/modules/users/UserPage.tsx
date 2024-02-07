@@ -121,7 +121,7 @@ const Detail = ({ user }: { user: UserDetailsFull }) => (
 export const UserPage = () => {
   const { name } = useParams()
 
-  const { isLoading, isError, error, data } = useUser(name!)
+  const { isPending, isError, error, data } = useUser(name!)
 
   if (error instanceof NotFoundError) {
     return (
@@ -135,7 +135,7 @@ export const UserPage = () => {
     )
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingPage title="Laster bruker ..." />
   }
 

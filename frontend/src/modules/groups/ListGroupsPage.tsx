@@ -8,9 +8,9 @@ import { GroupLink } from "./GroupLink.js"
 export const ListGroupsPage = () => {
   useTitle("Grupper")
 
-  const { isLoading, isError, error, data } = useGroupList()
+  const { isPending, isError, error, data } = useGroupList()
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />
   }
 

@@ -32,14 +32,14 @@ function DeleteButton({ book }: { book: Book }) {
 
 export function BookPage() {
   const { id } = useParams()
-  const { isLoading, isError, error, data: book } = useBook(id!)
+  const { isPending, isError, error, data: book } = useBook(id!)
   const { bookAdmin } = useAuthorization()
 
   if (error instanceof NotFoundError) {
     return <BookNotFoundPage />
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <LoadingPage title="Laster bok ..." />
   }
 

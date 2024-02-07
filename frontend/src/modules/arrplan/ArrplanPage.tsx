@@ -228,11 +228,11 @@ const List = ({
 
 export const ArrplanPage = () => {
   const { semester } = useParams()
-  const { isLoading, isError, error, data } = useArrplanList()
+  const { isPending, isError, error, data } = useArrplanList()
 
   useTitle("Arrangementplan på Blindern Studenterhjem")
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />
   }
 

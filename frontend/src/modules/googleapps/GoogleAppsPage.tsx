@@ -13,7 +13,7 @@ export function GoogleAppsPage() {
 
   const canEdit = useIsMemberOf(["ukestyret"])
 
-  const { isLoading, isError, error, data: accounts } = useGoogleAppsAccounts()
+  const { isPending, isError, error, data: accounts } = useGoogleAppsAccounts()
 
   const [isEditing, setEditing] = useState(false)
 
@@ -26,7 +26,7 @@ export function GoogleAppsPage() {
         tilgang. UKEstyret og administratorer kan redigere listen.
       </p>
 
-      {isLoading ? (
+      {isPending ? (
         <Loading />
       ) : isError && !accounts ? (
         <ErrorMessages error={error} />
