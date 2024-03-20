@@ -35,7 +35,7 @@
     "@tanstack/react-query-devtools": "5.28.4",
     "@tsconfig/node18": "18.2.2",
     "@tsconfig/strictest": "2.0.3",
-    "@types/classnames": "2.3.0",
+    "@types/classnames": "2.3.1",
     "@types/d3": "7.4.3",
     "@types/domready": "1.0.2",
     "@types/git-rev-sync": "2.0.2",
