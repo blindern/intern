@@ -33,7 +33,7 @@
   "devDependencies": {
     "@tanstack/react-query": "5.28.6",
     "@tanstack/react-query-devtools": "5.28.6",
-    "@tsconfig/node18": "18.2.2",
+    "@tsconfig/node18": "18.2.3",
     "@tsconfig/strictest": "2.0.3",
     "@types/classnames": "2.3.1",
     "@types/d3": "7.4.3",
