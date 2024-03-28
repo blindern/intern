@@ -10,7 +10,8 @@ locally, but it is not recomended for active development.
 
    You need to set `INTERN_USERS_API_KEY` in order to be able to log in
 
-   TODO: How to get this value
+   Get this from https://github.com/blindern/drift/blob/main/ansible/roles/service-intern/files/backend-secrets.env
+   (clone it locally and see the decrypted file)
 
 1. Start local database
 
