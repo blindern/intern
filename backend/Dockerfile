@@ -1,7 +1,3 @@
-# this setup is only used for development
-# currently in production we don't use Docker
-# (it should but no time to set up yet)
-
 FROM php:8.3-apache@sha256:3a042ba70387a239c4d587ebef1ba10e405637d69c01e1702b7cbe6c8f523077
 
 ENV LANG=C.UTF-8
