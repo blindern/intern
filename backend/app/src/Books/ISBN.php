@@ -4,7 +4,7 @@ class ISBN
 {
     public static function hasKey()
     {
-        return isset($_ENV['INTERN_GOOGLE_API_KE2Y']);
+        return isset($_ENV['INTERN_GOOGLE_API_KEY']);
     }
 
     /**
