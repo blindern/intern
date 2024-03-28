@@ -1,7 +1,9 @@
 {
   "extends": ["config:base"],
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "branchTopic": "lock-file-maintenance-{{packageFile}}",
+    "commitMessageExtra": "({{packageFile}})"
   },
   "major": {
     "automerge": false
