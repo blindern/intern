@@ -17,7 +17,7 @@
 		"mongodb/laravel-mongodb": "^4.0",
 		"johngrogg/ics-parser": "3.4.0",
 		"laravel/framework": "^10.0",
-		"laravel/sanctum": "^3.2",
+		"laravel/sanctum": "^4.0",
 		"laravel/tinker": "^2.8",
 		"nategood/httpful": "0.3.2",
 		"nesbot/carbon": "2.72.3",
