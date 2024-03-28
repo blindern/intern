@@ -2,6 +2,11 @@
 
 class ISBN
 {
+    public static function hasKey()
+    {
+        return isset($_ENV['INTERN_GOOGLE_API_KE2Y']);
+    }
+
     /**
      * Find information of book by searching the ISBN-number.
      * Information will be cached for later lookup.

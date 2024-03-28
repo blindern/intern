@@ -25,7 +25,9 @@ services:
     ports:
       - "8081:80"
   database:
-    image: mongo
+    # See latest value for
+    # https://github.com/blindern/drift/blob/38fcba4affe5416c86e00a797ee6c4f3f52b6509/ansible/site.yml#L70
+    image: mongo:5.0
     volumes:
       - db:/data/db/
     environment:

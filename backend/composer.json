@@ -11,16 +11,17 @@
 		}
 	],
 	"require": {
-		"php": "^8.2",
+		"php": "^8.3",
 		"google/apiclient": "2.15.3",
 		"guzzlehttp/guzzle": "7.8.1",
-		"mongodb/laravel-mongodb": "^4.0",
 		"johngrogg/ics-parser": "3.4.0",
-		"laravel/framework": "^10.0",
-		"laravel/sanctum": "^3.2",
-		"laravel/tinker": "^2.8",
+		"laravel/framework": "^11.0",
+		"laravel/sanctum": "^4.0",
+		"laravel/tinker": "^2.9",
+		"mongodb/laravel-mongodb": "^4.2",
+		"mongodb/mongodb": "1.17.1",
 		"nategood/httpful": "0.3.2",
-		"nesbot/carbon": "2.72.3",
+		"nesbot/carbon": "3.2.2",
 		"onelogin/php-saml": "4.1.0",
 		"spatie/icalendar-generator": "^2.3"
 	},
@@ -28,8 +29,8 @@
 		"fakerphp/faker": "1.23.1",
 		"laravel/sail": "^1.25",
 		"mockery/mockery": "1.6.11",
-		"nunomaduro/collision": "^7.0",
-		"phpunit/phpunit": "^10.0",
+		"nunomaduro/collision": "^8.1",
+		"phpunit/phpunit": "^11.0",
 		"spatie/laravel-ignition": "^2.0"
 	},
 	"autoload": {

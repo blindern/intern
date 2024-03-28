@@ -34,3 +34,21 @@ locally, but it is not recomended for active development.
 1. Check the app
 
    http://localhost:8081/intern/api/me
+
+On errors check logs in the `storage/logs` directory.
+
+## Pre-commit checklist
+
+1. Run tests (note that database must be running)
+
+   ```bash
+   php artisan test
+   ```
+
+## Composer tips
+
+Show available commands: `composer list`
+
+Show outdated deps: `composer outdated`
+
+After editing `composer.json`: `composer update`

@@ -22,8 +22,8 @@ jobs:
 
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
-          extensions: mongodb-1.16.2
+          php-version: '8.3'
+          extensions: mongodb-1.17.3
 
       - run: docker-compose up -d database
         working-directory: backend
@@ -33,6 +33,8 @@ jobs:
 
       - run: php artisan test
         working-directory: backend
+        env:
+          INTERN_GOOGLE_API_KEY: ${{ secrets.INTERN_GOOGLE_API_KEY }}
 
       - name: Build container
         id: docker_build

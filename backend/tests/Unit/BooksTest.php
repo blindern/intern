@@ -9,16 +9,22 @@ class BooksTest extends TestCase
 {
     public function testISBNSearch()
     {
-        /* Disabled as it requires an API key.
+        if (!ISBN::hasKey())
+        {
+            $this->markTestSkipped("Skipping test since no API key present");
+            return;
+        }
+
         $isbn = '9780988262591';
         $result = ISBN::searchByISBN($isbn);
 
-        $this->assertInternalType('array', $result);
+        var_dump($result);
+
+        $this->assertIsArray($result);
         $this->assertNotEmpty($result['title']);
         $this->assertNotEmpty($result['subtitle']);
-        $this->assertInternalType('array', $result['authors']);
-        $this->assertNotEmpty($result['pageCount']);
+        $this->assertIsArray($result['authors']);
+        $this->assertIsInt($result['pageCount']);
         $this->assertNotEmpty($result['publishedDate']);
-        */
     }
 }

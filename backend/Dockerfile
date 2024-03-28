@@ -22,7 +22,7 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     \
     # php extensions
-    && pecl install mongodb \
+    && pecl install mongodb-1.17.3 \
     && docker-php-ext-enable mongodb \
     \
     # pgsql for printerdb
