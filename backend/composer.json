@@ -16,7 +16,7 @@
 		"guzzlehttp/guzzle": "7.8.1",
 		"mongodb/laravel-mongodb": "^4.0",
 		"johngrogg/ics-parser": "3.4.0",
-		"laravel/framework": "^10.0",
+		"laravel/framework": "^11.0",
 		"laravel/sanctum": "^3.2",
 		"laravel/tinker": "^2.8",
 		"nategood/httpful": "0.3.2",
