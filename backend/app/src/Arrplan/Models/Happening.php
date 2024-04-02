@@ -89,17 +89,17 @@ class Happening implements Arrayable, \JsonSerializable
      */
     public function getDuration()
     {
-        $start = Carbon::parse($this->start);
-        $end = Carbon::parse($this->end);
+        $start = Carbon::parse($this->start)->locale('nb_NO');
+        $end = Carbon::parse($this->end)->locale('nb_NO');
 
         if ($start->toDateString() == $end->toDateString()) {
-            $time = $start->secondsSinceMidnight() > 0 ? ' kl %H.%M' : '';
-            return Carbon::parse($this->start)->formatLocalized('%A %e. %B' . $time);
+            $time = $start->secondsSinceMidnight() > 0 ? ' [kl] HH.mm' : '';
+            return Carbon::parse($this->start)->isoFormat('dddd D. MMMM' . $time);
         } elseif ($start->format("m") == $end->format("m")) {
-            return sprintf("%s-%s", $start->formatLocalized('%a %e.'), $end->formatLocalized('%a %e. %B'));
+            return sprintf("%s-%s", $start->isoFormat('ddd D.'), $end->isoFormat('ddd D. MMMM'));
         }
 
-        return sprintf("%s - %s", $start->formatLocalized('%a %e. %b'), $end->formatLocalized('%a %e. %b'));
+        return sprintf("%s - %s", $start->isoFormat('ddd D. MMM'), $end->isoFormat('ddd D. MMM'));
     }
 
     /**
@@ -109,12 +109,12 @@ class Happening implements Arrayable, \JsonSerializable
      */
     public function getDurationRecurring()
     {
-        $start = Carbon::parse($this->start);
+        $start = Carbon::parse($this->start)->locale('nb_NO');
 
         if ($this->start == $this->end) {
-            return ucfirst($start->formatLocalized('%Aer'));
+            return ucfirst($start->isoFormat('dddd[er]'));
         } else {
-            return ucfirst($start->formatLocalized('%Aer kl %H.%M'));
+            return ucfirst($start->isoFormat('dddd[er kl] HH.mm'));
         }
     }
 
