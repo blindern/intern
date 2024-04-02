@@ -18,7 +18,7 @@ class Saml2Service
     {
         OneLoginUtils::setProxyVars(true);
 
-        $isDev = !is_null(getenv("DEV_SSO"));
+        $isDev = getenv("DEV_SSO") !== false;
         $prefix = $isDev ? "http://localhost:8888" : "https://foreningenbs.no";
 
         $this->saml = new OneLoginAuth([
