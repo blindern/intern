@@ -61,7 +61,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "git-rev-sync": "3.0.2",
     "prettier": "3.2.5",
-    "sass": "1.74.1",
+    "sass": "1.75.0",
     "typescript": "5.4.5",
     "vite": "5.2.8",
     "vite-plugin-checker": "0.6.4"
