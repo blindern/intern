@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "238e8803ce7ab31753815634be7333bf",
+    "content-hash": "e0706e04fd88b00f91d4e4bb94dbd0a6",
     "packages": [
         {
             "name": "brick/math",
@@ -2473,24 +2473,24 @@
         },
         {
             "name": "nategood/httpful",
-            "version": "0.3.2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nategood/httpful.git",
-                "reference": "0cded3ea97ba905600de9ceb9ef13f3ab681587c"
+                "reference": "ea02c8aedef70b9a453ce97978d9d7c413972f15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nategood/httpful/zipball/0cded3ea97ba905600de9ceb9ef13f3ab681587c",
-                "reference": "0cded3ea97ba905600de9ceb9ef13f3ab681587c",
+                "url": "https://api.github.com/repos/nategood/httpful/zipball/ea02c8aedef70b9a453ce97978d9d7c413972f15",
+                "reference": "ea02c8aedef70b9a453ce97978d9d7c413972f15",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "php": ">=7.2"
+                "php": ">=8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "*"
+                "phpunit/phpunit": "^10.5"
             },
             "type": "library",
             "autoload": {
@@ -2521,9 +2521,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nategood/httpful/issues",
-                "source": "https://github.com/nategood/httpful/tree/v0.3.2"
+                "source": "https://github.com/nategood/httpful/tree/v1.0.0"
             },
-            "time": "2020-01-25T01:13:13+00:00"
+            "time": "2024-05-01T11:33:16+00:00"
         },
         {
             "name": "nesbot/carbon",
