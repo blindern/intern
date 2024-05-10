@@ -39,7 +39,7 @@
     "@types/d3": "7.4.3",
     "@types/domready": "1.0.2",
     "@types/git-rev-sync": "2.0.2",
-    "@types/jquery": "3.5.29",
+    "@types/jquery": "3.5.30",
     "@types/lodash": "4.17.1",
     "@types/node": "20.12.10",
     "@types/react": "18.3.1",
