@@ -14,7 +14,7 @@ Kommando for å opprette:
 /fbs/drift/nybruker/process.sh <?= $filename ?>
 
 
-Nærmere tekniske detaljer kan sees i https://github.com/blindern/drift/tree/main/ldap-toolbox
+Informasjon for foreningsbrukeroppmann: https://foreningenbs.no/confluence/display/IT/LDAP
 
 
 Sendt fra <?= isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'] ?>
