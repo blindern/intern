@@ -4168,16 +4168,16 @@
         },
         {
             "name": "spatie/icalendar-generator",
-            "version": "2.6.2",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/icalendar-generator.git",
-                "reference": "60bb7fdf7c0fe4fdd20685a152096062047a3b88"
+                "reference": "00097f69a35a4b0b98b71f4700f828ffa15a4c2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/icalendar-generator/zipball/60bb7fdf7c0fe4fdd20685a152096062047a3b88",
-                "reference": "60bb7fdf7c0fe4fdd20685a152096062047a3b88",
+                "url": "https://api.github.com/repos/spatie/icalendar-generator/zipball/00097f69a35a4b0b98b71f4700f828ffa15a4c2d",
+                "reference": "00097f69a35a4b0b98b71f4700f828ffa15a4c2d",
                 "shasum": ""
             },
             "require": {
@@ -4222,9 +4222,9 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/icalendar-generator/issues",
-                "source": "https://github.com/spatie/icalendar-generator/tree/2.6.2"
+                "source": "https://github.com/spatie/icalendar-generator/tree/2.8.0"
             },
-            "time": "2024-05-08T10:19:06+00:00"
+            "time": "2024-05-16T15:11:32+00:00"
         },
         {
             "name": "symfony/clock",
