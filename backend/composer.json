@@ -22,7 +22,7 @@
 		"mongodb/mongodb": "1.19.0",
 		"nategood/httpful": "1.0.0",
 		"nesbot/carbon": "3.4.0",
-		"onelogin/php-saml": "4.1.0",
+		"onelogin/php-saml": "4.2.0",
 		"spatie/icalendar-generator": "^2.3"
 	},
 	"require-dev": {
