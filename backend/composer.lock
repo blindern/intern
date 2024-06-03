@@ -711,16 +711,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.356.0",
+            "version": "v0.358.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "8e22b0a6f661f2db3f99abb6ee5a1dcf28d370e7"
+                "reference": "a6daf60ee25cb45b6e3dbd04b62d1df39a609fbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/8e22b0a6f661f2db3f99abb6ee5a1dcf28d370e7",
-                "reference": "8e22b0a6f661f2db3f99abb6ee5a1dcf28d370e7",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/a6daf60ee25cb45b6e3dbd04b62d1df39a609fbd",
+                "reference": "a6daf60ee25cb45b6e3dbd04b62d1df39a609fbd",
                 "shasum": ""
             },
             "require": {
@@ -749,22 +749,22 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.356.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.358.0"
             },
-            "time": "2024-05-18T01:10:18+00:00"
+            "time": "2024-06-03T01:02:16+00:00"
         },
         {
             "name": "google/auth",
-            "version": "v1.39.0",
+            "version": "v1.40.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "23e8e696d87f8d7dfefbd347ca1c99ce17ecb368"
+                "reference": "bff9f2d01677e71a98394b5ac981b99523df5178"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/23e8e696d87f8d7dfefbd347ca1c99ce17ecb368",
-                "reference": "23e8e696d87f8d7dfefbd347ca1c99ce17ecb368",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/bff9f2d01677e71a98394b5ac981b99523df5178",
+                "reference": "bff9f2d01677e71a98394b5ac981b99523df5178",
                 "shasum": ""
             },
             "require": {
@@ -809,9 +809,9 @@
             "support": {
                 "docs": "https://googleapis.github.io/google-auth-library-php/main/",
                 "issues": "https://github.com/googleapis/google-auth-library-php/issues",
-                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.39.0"
+                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.40.0"
             },
-            "time": "2024-05-02T16:03:51+00:00"
+            "time": "2024-05-31T19:16:15+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -2181,16 +2181,16 @@
         },
         {
             "name": "mongodb/laravel-mongodb",
-            "version": "4.3.0",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/laravel-mongodb.git",
-                "reference": "64d6dc05a8f08d9cf09f6b2d54f891a1692f6181"
+                "reference": "57b76b463ddcd5e023029a21be9a8239d50bae7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/laravel-mongodb/zipball/64d6dc05a8f08d9cf09f6b2d54f891a1692f6181",
-                "reference": "64d6dc05a8f08d9cf09f6b2d54f891a1692f6181",
+                "url": "https://api.github.com/repos/mongodb/laravel-mongodb/zipball/57b76b463ddcd5e023029a21be9a8239d50bae7e",
+                "reference": "57b76b463ddcd5e023029a21be9a8239d50bae7e",
                 "shasum": ""
             },
             "require": {
@@ -2203,6 +2203,9 @@
                 "illuminate/support": "^10.0|^11",
                 "mongodb/mongodb": "^1.15",
                 "php": "^8.1"
+            },
+            "conflict": {
+                "illuminate/bus": "< 10.37.2"
             },
             "replace": {
                 "jenssegers/mongodb": "self.version"
@@ -2224,7 +2227,8 @@
                 "laravel": {
                     "providers": [
                         "MongoDB\\Laravel\\MongoDBServiceProvider",
-                        "MongoDB\\Laravel\\MongoDBQueueServiceProvider"
+                        "MongoDB\\Laravel\\MongoDBQueueServiceProvider",
+                        "MongoDB\\Laravel\\MongoDBBusServiceProvider"
                     ]
                 }
             },
@@ -2272,9 +2276,9 @@
             "support": {
                 "issues": "https://www.mongodb.com/support",
                 "security": "https://www.mongodb.com/security",
-                "source": "https://github.com/mongodb/laravel-mongodb/tree/4.3.0"
+                "source": "https://github.com/mongodb/laravel-mongodb/tree/4.4.0"
             },
-            "time": "2024-04-26T15:53:27+00:00"
+            "time": "2024-05-31T07:04:07+00:00"
         },
         {
             "name": "mongodb/mongodb",
@@ -4219,16 +4223,16 @@
         },
         {
             "name": "symfony/clock",
-            "version": "v7.0.7",
+            "version": "v7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/clock.git",
-                "reference": "2008671acb4a30b01c453de193cf9c80549ebda6"
+                "reference": "fe47b7cf6a68c045c37928aa89a39d5eb9a2b37c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/clock/zipball/2008671acb4a30b01c453de193cf9c80549ebda6",
-                "reference": "2008671acb4a30b01c453de193cf9c80549ebda6",
+                "url": "https://api.github.com/repos/symfony/clock/zipball/fe47b7cf6a68c045c37928aa89a39d5eb9a2b37c",
+                "reference": "fe47b7cf6a68c045c37928aa89a39d5eb9a2b37c",
                 "shasum": ""
             },
             "require": {
@@ -4273,7 +4277,7 @@
                 "time"
             ],
             "support": {
-                "source": "https://github.com/symfony/clock/tree/v7.0.7"
+                "source": "https://github.com/symfony/clock/tree/v7.1.0"
             },
             "funding": [
                 {
@@ -4289,7 +4293,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/console",
@@ -6267,16 +6271,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v7.0.7",
+            "version": "v7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "1515e03afaa93e6419aba5d5c9d209159317100b"
+                "reference": "583d18e461eada8270ca44b7d99f07abf1ab048e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/1515e03afaa93e6419aba5d5c9d209159317100b",
-                "reference": "1515e03afaa93e6419aba5d5c9d209159317100b",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/583d18e461eada8270ca44b7d99f07abf1ab048e",
+                "reference": "583d18e461eada8270ca44b7d99f07abf1ab048e",
                 "shasum": ""
             },
             "require": {
@@ -6341,7 +6345,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v7.0.7"
+                "source": "https://github.com/symfony/translation/tree/v7.1.0"
             },
             "funding": [
                 {
@@ -6357,7 +6361,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-05-02T11:50:05+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -8950,16 +8954,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.14.1",
+            "version": "1.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "c23cc018c5f423d2f413b99f84655fceb6549811"
+                "reference": "5e11c11f675bb5251f061491a493e04a1a571532"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/c23cc018c5f423d2f413b99f84655fceb6549811",
-                "reference": "c23cc018c5f423d2f413b99f84655fceb6549811",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/5e11c11f675bb5251f061491a493e04a1a571532",
+                "reference": "5e11c11f675bb5251f061491a493e04a1a571532",
                 "shasum": ""
             },
             "require": {
@@ -9029,7 +9033,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-03T15:56:16+00:00"
+            "time": "2024-05-29T08:10:20+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
@@ -9125,16 +9129,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v7.0.7",
+            "version": "v7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "0d3916ae69ea28b59d94b60c4f2b50f4e25adb5c"
+                "reference": "c5f718c94e3c37dd77b77484e6cf0b524b2d405e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0d3916ae69ea28b59d94b60c4f2b50f4e25adb5c",
-                "reference": "0d3916ae69ea28b59d94b60c4f2b50f4e25adb5c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5f718c94e3c37dd77b77484e6cf0b524b2d405e",
+                "reference": "c5f718c94e3c37dd77b77484e6cf0b524b2d405e",
                 "shasum": ""
             },
             "require": {
@@ -9176,7 +9180,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v7.0.7"
+                "source": "https://github.com/symfony/yaml/tree/v7.1.0"
             },
             "funding": [
                 {
@@ -9192,7 +9196,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-28T11:44:19+00:00"
+            "time": "2024-04-28T18:29:00+00:00"
         },
         {
             "name": "theseer/tokenizer",
