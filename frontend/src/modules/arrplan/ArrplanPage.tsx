@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom"
 import { styled } from "styled-components"
 import moment from "utils/moment.js"
 import { getSemesterListFromEvent, Semester, useArrplanList } from "./api.js"
-import { Comment, EventItem, NormalEvent } from "./types.js"
+import { EventItem, NormalEvent } from "./types.js"
 
 const getSemesterList = (list: EventItem[]) => {
   const hashedSemesters = list.reduce<Record<string, Semester>>(
@@ -121,7 +121,7 @@ const List = ({
     .sort(sortRecurringEvents)
   const comments = eventsCurrentSemester.filter(
     (item) => item.type === "comment",
-  ) as Comment[]
+  )
 
   return (
     <>
