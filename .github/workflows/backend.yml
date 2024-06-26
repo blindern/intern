@@ -38,7 +38,7 @@ jobs:
 
       - name: Build container
         id: docker_build
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: backend
           push: ${{ github.ref == 'refs/heads/main' }}
