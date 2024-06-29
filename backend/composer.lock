@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5e576089f58daeefaac4a2eaf3521fd",
+    "content-hash": "c2bc2d1384b84f7c92fef4400286b5d1",
     "packages": [
         {
             "name": "brick/math",
@@ -1288,16 +1288,16 @@
         },
         {
             "name": "johngrogg/ics-parser",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/u01jmg3/ics-parser.git",
-                "reference": "de0c3a426bd5b7d6aae2d9f7367410672e633108"
+                "reference": "abb41a4a46256389aa4e6f582bad76f0d4cb3ebc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/u01jmg3/ics-parser/zipball/de0c3a426bd5b7d6aae2d9f7367410672e633108",
-                "reference": "de0c3a426bd5b7d6aae2d9f7367410672e633108",
+                "url": "https://api.github.com/repos/u01jmg3/ics-parser/zipball/abb41a4a46256389aa4e6f582bad76f0d4cb3ebc",
+                "reference": "abb41a4a46256389aa4e6f582bad76f0d4cb3ebc",
                 "shasum": ""
             },
             "require": {
@@ -1340,7 +1340,7 @@
             ],
             "support": {
                 "issues": "https://github.com/u01jmg3/ics-parser/issues",
-                "source": "https://github.com/u01jmg3/ics-parser/tree/v3.4.0"
+                "source": "https://github.com/u01jmg3/ics-parser/tree/v3.4.1"
             },
             "funding": [
                 {
@@ -1348,7 +1348,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-08T16:01:26+00:00"
+            "time": "2024-06-26T08:18:40+00:00"
         },
         {
             "name": "laravel/framework",
