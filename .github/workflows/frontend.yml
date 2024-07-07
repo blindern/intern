@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: frontend/package.json
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -24,11 +27,11 @@ jobs:
         with:
           node-version: '20'
 
-      - run: npm ci
+      - run: pnpm install
         working-directory: frontend
-      - run: npm run lint
+      - run: pnpm run lint
         working-directory: frontend
-      - run: npm run build
+      - run: pnpm run build
         working-directory: frontend
 
       - name: Build docker image

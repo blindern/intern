@@ -1,5 +1,5 @@
 import * as d3 from "d3"
-import { Selection } from "d3-selection"
+import { Selection } from "d3"
 import { PrinterInvoiceResponse } from "modules/printer/api.js"
 import React, { useLayoutEffect, useMemo, useRef } from "react"
 import moment from "utils/moment.js"
