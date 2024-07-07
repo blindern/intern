@@ -12,6 +12,7 @@ function getDaily(data: PrinterInvoiceResponse): Record<string, number> {
   const daily: Record<string, number> = {}
   let d = moment(data.from)
   const d_end = moment(data.to)
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     daily[d.format("YYYY-MM-DD")] = 0
     d = d.add(1, "day")
