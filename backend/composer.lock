@@ -2182,16 +2182,16 @@
         },
         {
             "name": "mongodb/laravel-mongodb",
-            "version": "4.5.0",
+            "version": "4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/laravel-mongodb.git",
-                "reference": "d82ab46a371ece0b151086948e6b8e18427964e4"
+                "reference": "179c6a6fe589d6721ca0d12072e0502de402b796"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/laravel-mongodb/zipball/d82ab46a371ece0b151086948e6b8e18427964e4",
-                "reference": "d82ab46a371ece0b151086948e6b8e18427964e4",
+                "url": "https://api.github.com/repos/mongodb/laravel-mongodb/zipball/179c6a6fe589d6721ca0d12072e0502de402b796",
+                "reference": "179c6a6fe589d6721ca0d12072e0502de402b796",
                 "shasum": ""
             },
             "require": {
@@ -2280,9 +2280,9 @@
             "support": {
                 "issues": "https://www.mongodb.com/support",
                 "security": "https://www.mongodb.com/security",
-                "source": "https://github.com/mongodb/laravel-mongodb/tree/4.5.0"
+                "source": "https://github.com/mongodb/laravel-mongodb/tree/4.6.0"
             },
-            "time": "2024-06-20T13:52:34+00:00"
+            "time": "2024-07-09T13:14:18+00:00"
         },
         {
             "name": "mongodb/mongodb",
