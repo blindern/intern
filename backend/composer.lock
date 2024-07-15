@@ -711,16 +711,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.363.0",
+            "version": "v0.364.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "5a0943e498e98e23dccdd98c5a3f74bc1b442053"
+                "reference": "edc08087aa3ca63d3b74f24d59f1d2caab39b5d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/5a0943e498e98e23dccdd98c5a3f74bc1b442053",
-                "reference": "5a0943e498e98e23dccdd98c5a3f74bc1b442053",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/edc08087aa3ca63d3b74f24d59f1d2caab39b5d9",
+                "reference": "edc08087aa3ca63d3b74f24d59f1d2caab39b5d9",
                 "shasum": ""
             },
             "require": {
@@ -749,9 +749,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.363.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.364.0"
             },
-            "time": "2024-07-02T01:04:18+00:00"
+            "time": "2024-07-11T01:08:44+00:00"
         },
         {
             "name": "google/auth",
@@ -8889,16 +8889,16 @@
         },
         {
             "name": "spatie/error-solutions",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/error-solutions.git",
-                "reference": "264a7eef892aceb2fd65e206127ad3af4f3a2d6b"
+                "reference": "4bb6c734dc992b2db3e26df1ef021c75d2218b13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/error-solutions/zipball/264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
-                "reference": "264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
+                "url": "https://api.github.com/repos/spatie/error-solutions/zipball/4bb6c734dc992b2db3e26df1ef021c75d2218b13",
+                "reference": "4bb6c734dc992b2db3e26df1ef021c75d2218b13",
                 "shasum": ""
             },
             "require": {
@@ -8951,7 +8951,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/error-solutions/issues",
-                "source": "https://github.com/spatie/error-solutions/tree/1.0.4"
+                "source": "https://github.com/spatie/error-solutions/tree/1.0.5"
             },
             "funding": [
                 {
@@ -8959,7 +8959,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-28T13:33:04+00:00"
+            "time": "2024-07-09T12:13:32+00:00"
         },
         {
             "name": "spatie/flare-client-php",
