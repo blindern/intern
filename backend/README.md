@@ -2,7 +2,7 @@
 
 ## Development
 
-You need Docker, docker-compose, PHP and Composer.
+You need Docker, PHP and Composer.
 It is also possible to use Docker to run the backend service
 locally, but it is not recomended for active development.
 
@@ -16,7 +16,7 @@ locally, but it is not recomended for active development.
 1. Start local database
 
    ```bash
-   docker-compose up database
+   docker compose up database
    ```
 
 1. Install dependencies

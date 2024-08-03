@@ -25,7 +25,7 @@ jobs:
           php-version: '8.3'
           extensions: mongodb-1.18.0
 
-      - run: docker-compose up -d database
+      - run: docker compose up -d database
         working-directory: backend
 
       - run: composer install -n --prefer-dist
