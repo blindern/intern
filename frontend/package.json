@@ -39,7 +39,7 @@
     "@tsconfig/strictest": "2.0.5",
     "@types/d3": "7.4.3",
     "@types/domready": "1.0.2",
-    "@types/eslint": "8.56.11",
+    "@types/eslint": "8.56.12",
     "@types/eslint__js": "8.42.3",
     "@types/git-rev-sync": "2.0.2",
     "@types/jquery": "3.5.30",
