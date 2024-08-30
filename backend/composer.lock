@@ -2183,16 +2183,16 @@
         },
         {
             "name": "mongodb/laravel-mongodb",
-            "version": "4.7.2",
+            "version": "4.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/laravel-mongodb.git",
-                "reference": "efab63bf6da5b6df23f57ac4dc0f519e096d0a4e"
+                "reference": "6a8a2e3b8b897e3854f1fa28c6c29b3a6f0e0069"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/laravel-mongodb/zipball/efab63bf6da5b6df23f57ac4dc0f519e096d0a4e",
-                "reference": "efab63bf6da5b6df23f57ac4dc0f519e096d0a4e",
+                "url": "https://api.github.com/repos/mongodb/laravel-mongodb/zipball/6a8a2e3b8b897e3854f1fa28c6c29b3a6f0e0069",
+                "reference": "6a8a2e3b8b897e3854f1fa28c6c29b3a6f0e0069",
                 "shasum": ""
             },
             "require": {
@@ -2281,9 +2281,9 @@
             "support": {
                 "issues": "https://www.mongodb.com/support",
                 "security": "https://www.mongodb.com/security",
-                "source": "https://github.com/mongodb/laravel-mongodb/tree/4.7.2"
+                "source": "https://github.com/mongodb/laravel-mongodb/tree/4.8.0"
             },
-            "time": "2024-08-26T15:49:44+00:00"
+            "time": "2024-08-27T16:45:13+00:00"
         },
         {
             "name": "mongodb/mongodb",
