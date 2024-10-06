@@ -711,16 +711,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.374.0",
+            "version": "v0.375.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "5f6060df419f4f72dcc970197f9a9b1613cecc62"
+                "reference": "ad8c4fcf925fd10198c20e2d7a3390183dc24bf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/5f6060df419f4f72dcc970197f9a9b1613cecc62",
-                "reference": "5f6060df419f4f72dcc970197f9a9b1613cecc62",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/ad8c4fcf925fd10198c20e2d7a3390183dc24bf1",
+                "reference": "ad8c4fcf925fd10198c20e2d7a3390183dc24bf1",
                 "shasum": ""
             },
             "require": {
@@ -749,9 +749,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.374.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.375.0"
             },
-            "time": "2024-09-23T01:02:23+00:00"
+            "time": "2024-09-29T01:10:26+00:00"
         },
         {
             "name": "google/auth",
@@ -2633,12 +2633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/schema.git",
-                "reference": "8de8c4e8669f978835e14e4ad2291935a022ee40"
+                "reference": "9522dad6211c4d995a01a9ac529da88d0b0ba7b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/schema/zipball/8de8c4e8669f978835e14e4ad2291935a022ee40",
-                "reference": "8de8c4e8669f978835e14e4ad2291935a022ee40",
+                "url": "https://api.github.com/repos/nette/schema/zipball/9522dad6211c4d995a01a9ac529da88d0b0ba7b5",
+                "reference": "9522dad6211c4d995a01a9ac529da88d0b0ba7b5",
                 "shasum": ""
             },
             "require": {
@@ -2687,7 +2687,7 @@
                 "issues": "https://github.com/nette/schema/issues",
                 "source": "https://github.com/nette/schema/tree/v1.3.1"
             },
-            "time": "2024-10-05T00:06:25+00:00"
+            "time": "2024-10-05T03:01:50+00:00"
         },
         {
             "name": "nette/utils",
@@ -7734,16 +7734,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.3.6",
+            "version": "11.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d62c45a19c665bb872c2a47023a0baf41a98bb2b"
+                "reference": "89fe0c530133c08f7fff89d3d727154e4e504925"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d62c45a19c665bb872c2a47023a0baf41a98bb2b",
-                "reference": "d62c45a19c665bb872c2a47023a0baf41a98bb2b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/89fe0c530133c08f7fff89d3d727154e4e504925",
+                "reference": "89fe0c530133c08f7fff89d3d727154e4e504925",
                 "shasum": ""
             },
             "require": {
@@ -7782,7 +7782,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "11.3-dev"
+                    "dev-main": "11.4-dev"
                 }
             },
             "autoload": {
@@ -7814,7 +7814,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.3.6"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.4.0"
             },
             "funding": [
                 {
@@ -7830,7 +7830,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-19T10:54:28+00:00"
+            "time": "2024-10-05T08:39:03+00:00"
         },
         {
             "name": "sebastian/cli-parser",
