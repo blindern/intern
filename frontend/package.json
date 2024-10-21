@@ -43,7 +43,7 @@
     "@types/eslint__js": "8.42.3",
     "@types/git-rev-sync": "2.0.2",
     "@types/jquery": "3.5.31",
-    "@types/lodash": "4.17.10",
+    "@types/lodash": "4.17.11",
     "@types/node": "20.16.12",
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.1",
