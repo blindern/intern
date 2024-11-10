@@ -26,7 +26,7 @@
 		"spatie/icalendar-generator": "^2.3"
 	},
 	"require-dev": {
-		"fakerphp/faker": "1.23.1",
+		"fakerphp/faker": "1.24.0",
 		"laravel/sail": "^1.25",
 		"mockery/mockery": "1.6.12",
 		"nunomaduro/collision": "^8.1",
