@@ -109,11 +109,11 @@ importers:
         specifier: 22.10.1
         version: 22.10.1
       '@types/react':
-        specifier: 18.3.13
-        version: 18.3.13
+        specifier: 18.3.14
+        version: 18.3.14
       '@types/react-dom':
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 18.3.2
+        version: 18.3.2
       '@types/react-router':
         specifier: 5.1.20
         version: 5.1.20
@@ -157,8 +157,8 @@ importers:
         specifier: 7.37.2
         version: 7.37.2(eslint@9.9.1)
       eslint-plugin-react-hooks:
-        specifier: 5.0.0
-        version: 5.0.0(eslint@9.9.1)
+        specifier: 5.1.0
+        version: 5.1.0(eslint@9.9.1)
       git-rev-sync:
         specifier: 3.0.2
         version: 3.0.2
@@ -860,8 +860,8 @@ packages:
   '@types/prop-types@15.7.13':
     resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
 
-  '@types/react-dom@18.3.1':
-    resolution: {integrity: sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==}
+  '@types/react-dom@18.3.2':
+    resolution: {integrity: sha512-Fqp+rcvem9wEnGr3RY8dYNvSQ8PoLqjZ9HLgaPUOjJJD120uDyOxOjc/39M4Kddp9JQCxpGQbnhVQF0C0ncYVg==}
 
   '@types/react-router-dom@5.3.3':
     resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
@@ -872,8 +872,8 @@ packages:
   '@types/react-transition-group@4.4.11':
     resolution: {integrity: sha512-RM05tAniPZ5DZPzzNFP+DmrcOdD0efDUxMy3145oljWSl3x9ZV5vhme98gTxFrj2lhXvmGNnUiuDyJgY9IKkNA==}
 
-  '@types/react@18.3.13':
-    resolution: {integrity: sha512-ii/gswMmOievxAJed4PAHT949bpYjPKXvXo1v6cRB/kqc2ZR4n+SgyCyvyc5Fec5ez8VnUumI1Vk7j6fRyRogg==}
+  '@types/react@18.3.14':
+    resolution: {integrity: sha512-NzahNKvjNhVjuPBQ+2G7WlxstQ+47kXZNHlUvFakDViuIEfGY926GqhMueQFZ7woG+sPiQKlF36XfrIUVSUfFg==}
 
   '@types/sizzle@2.3.9':
     resolution: {integrity: sha512-xzLEyKB50yqCUPUJkIsrVvoWNfFUbIZI+RspLWt8u+tIW/BetMBZtgV2LY/2o+tYH8dRvQ+eoPf3NdhQCcLE2w==}
@@ -1397,8 +1397,8 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-react-hooks@5.0.0:
-    resolution: {integrity: sha512-hIOwI+5hYGpJEc4uPRmz2ulCjAGD/N13Lukkh8cLV0i2IRk/bdZDYjgLVHj+U9Z704kLIdIO6iueGvxNur0sgw==}
+  eslint-plugin-react-hooks@5.1.0:
+    resolution: {integrity: sha512-mpJRtPgHN2tNAvZ35AMfqeB3Xqeo273QxrHJsbBEPWODRM4r0yB6jfoROqKEYrOn27UtRPpcpHc2UqyBSuUNTw==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -3013,26 +3013,26 @@ snapshots:
 
   '@types/prop-types@15.7.13': {}
 
-  '@types/react-dom@18.3.1':
+  '@types/react-dom@18.3.2':
     dependencies:
-      '@types/react': 18.3.13
+      '@types/react': 18.3.14
 
   '@types/react-router-dom@5.3.3':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 18.3.13
+      '@types/react': 18.3.14
       '@types/react-router': 5.1.20
 
   '@types/react-router@5.1.20':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 18.3.13
+      '@types/react': 18.3.14
 
   '@types/react-transition-group@4.4.11':
     dependencies:
-      '@types/react': 18.3.13
+      '@types/react': 18.3.14
 
-  '@types/react@18.3.13':
+  '@types/react@18.3.14':
     dependencies:
       '@types/prop-types': 15.7.13
       csstype: 3.1.3
@@ -3730,7 +3730,7 @@ snapshots:
       '@types/eslint': 8.56.12
       eslint-config-prettier: 9.1.0(eslint@9.9.1)
 
-  eslint-plugin-react-hooks@5.0.0(eslint@9.9.1):
+  eslint-plugin-react-hooks@5.1.0(eslint@9.9.1):
     dependencies:
       eslint: 9.9.1
 
