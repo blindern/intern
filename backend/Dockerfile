@@ -1,4 +1,4 @@
-FROM php:8.3-apache@sha256:7a3fd6ae9c9d240810bae95d3aaf894be4f0ec1a022b0a5f129d658a625e2ac2
+FROM php:8.3-apache@sha256:77937b9fd7019747ce5f7af6222fd693dbc6d029e5d34e1862868126db1ce0d9
 
 ENV LANG=C.UTF-8
 
