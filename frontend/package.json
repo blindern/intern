@@ -71,5 +71,5 @@
     "vite": "6.1.0",
     "vite-plugin-checker": "0.8.0"
   },
-  "packageManager": "pnpm@10.2.1"
+  "packageManager": "pnpm@10.3.0"
 }
