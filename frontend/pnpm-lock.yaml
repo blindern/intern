@@ -131,10 +131,10 @@ importers:
         version: 7.17.0(eslint@9.9.1)(typescript@5.7.3)
       '@vitejs/plugin-react':
         specifier: 4.3.4
-        version: 4.3.4(vite@6.1.0(@types/node@22.13.4)(sass@1.85.0))
+        version: 4.3.4(vite@6.1.1(@types/node@22.13.4)(sass@1.85.0))
       autoprefixer:
         specifier: 10.4.20
-        version: 10.4.20(postcss@8.5.1)
+        version: 10.4.20(postcss@8.5.3)
       bootstrap-sass:
         specifier: 3.4.3
         version: 3.4.3
@@ -178,11 +178,11 @@ importers:
         specifier: 7.17.0
         version: 7.17.0(eslint@9.9.1)(typescript@5.7.3)
       vite:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@22.13.4)(sass@1.85.0)
+        specifier: 6.1.1
+        version: 6.1.1(@types/node@22.13.4)(sass@1.85.0)
       vite-plugin-checker:
         specifier: 0.8.0
-        version: 0.8.0(eslint@9.9.1)(optionator@0.9.4)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.4)(sass@1.85.0))
+        version: 0.8.0(eslint@9.9.1)(optionator@0.9.4)(typescript@5.7.3)(vite@6.1.1(@types/node@22.13.4)(sass@1.85.0))
 
 packages:
 
@@ -2000,8 +2000,8 @@ packages:
     resolution: {integrity: sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.5.1:
-    resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
+  postcss@8.5.3:
+    resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -2386,8 +2386,8 @@ packages:
       vue-tsc:
         optional: true
 
-  vite@6.1.0:
-    resolution: {integrity: sha512-RjjMipCKVoR4hVfPY6GQTgveinjNuyLw+qruksLDvA5ktI1150VmcMBKmQaEWJhg/j6Uaf6dNCNA0AfdzUb/hQ==}
+  vite@6.1.1:
+    resolution: {integrity: sha512-4GgM54XrwRfrOp297aIYspIti66k56v16ZnqHvrIM7mG+HjDlAwS7p+Srr7J6fGvEdOJ5JcQ/D9T7HhtdXDTzA==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -3239,14 +3239,14 @@ snapshots:
       '@typescript-eslint/types': 7.18.0
       eslint-visitor-keys: 3.4.3
 
-  '@vitejs/plugin-react@4.3.4(vite@6.1.0(@types/node@22.13.4)(sass@1.85.0))':
+  '@vitejs/plugin-react@4.3.4(vite@6.1.1(@types/node@22.13.4)(sass@1.85.0))':
     dependencies:
       '@babel/core': 7.26.8
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.8)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.8)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 6.1.0(@types/node@22.13.4)(sass@1.85.0)
+      vite: 6.1.1(@types/node@22.13.4)(sass@1.85.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -3339,14 +3339,14 @@ snapshots:
 
   async-function@1.0.0: {}
 
-  autoprefixer@10.4.20(postcss@8.5.1):
+  autoprefixer@10.4.20(postcss@8.5.3):
     dependencies:
       browserslist: 4.24.4
       caniuse-lite: 1.0.30001699
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.1
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -4438,7 +4438,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postcss@8.5.1:
+  postcss@8.5.3:
     dependencies:
       nanoid: 3.3.8
       picocolors: 1.1.1
@@ -4865,7 +4865,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-checker@0.8.0(eslint@9.9.1)(optionator@0.9.4)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.4)(sass@1.85.0)):
+  vite-plugin-checker@0.8.0(eslint@9.9.1)(optionator@0.9.4)(typescript@5.7.3)(vite@6.1.1(@types/node@22.13.4)(sass@1.85.0)):
     dependencies:
       '@babel/code-frame': 7.26.2
       ansi-escapes: 4.3.2
@@ -4877,7 +4877,7 @@ snapshots:
       npm-run-path: 4.0.1
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.3
-      vite: 6.1.0(@types/node@22.13.4)(sass@1.85.0)
+      vite: 6.1.1(@types/node@22.13.4)(sass@1.85.0)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.12
@@ -4887,10 +4887,10 @@ snapshots:
       optionator: 0.9.4
       typescript: 5.7.3
 
-  vite@6.1.0(@types/node@22.13.4)(sass@1.85.0):
+  vite@6.1.1(@types/node@22.13.4)(sass@1.85.0):
     dependencies:
       esbuild: 0.24.2
-      postcss: 8.5.1
+      postcss: 8.5.3
       rollup: 4.34.6
     optionalDependencies:
       '@types/node': 22.13.4
