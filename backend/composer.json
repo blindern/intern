@@ -21,7 +21,7 @@
 		"mongodb/laravel-mongodb": "^5.0",
 		"mongodb/mongodb": "1.19.1",
 		"nategood/httpful": "1.0.0",
-		"nesbot/carbon": "3.8.5",
+		"nesbot/carbon": "3.8.6",
 		"onelogin/php-saml": "4.2.0",
 		"spatie/icalendar-generator": "^2.3"
 	},
