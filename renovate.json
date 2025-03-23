@@ -1,5 +1,7 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended"
+  ],
   "lockFileMaintenance": {
     "enabled": true,
     "branchTopic": "lock-file-maintenance-{{packageFile}}",
@@ -10,18 +12,22 @@
   },
   "packageRules": [
     {
-      "matchPaths": ["frontend/**"],
+      "matchFileNames": [
+        "frontend/**"
+      ],
       "automerge": true,
       "automergeType": "branch"
     },
     {
-      "matchPaths": ["backend/**"],
+      "matchFileNames": [
+        "backend/**"
+      ],
       "automerge": true,
       "automergeType": "branch"
     }
   ],
   "prCreation": "not-pending",
-  "stabilityDays": 3,
+  "minimumReleaseAge": "3 days",
   "prNotPendingHours": 74,
   "timezone": "Europe/Oslo"
 }
