@@ -1,7 +1,7 @@
 import { ErrorMessages } from "components/ErrorMessages.js"
 import { Loading } from "components/Loading.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
-import React, { useState } from "react"
+import { useState } from "react"
 import { styled } from "styled-components"
 import { formatDate } from "utils/dates.js"
 import { DugnadDay, useDugnadenList } from "./api.js"

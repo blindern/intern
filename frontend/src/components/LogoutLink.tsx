@@ -1,5 +1,5 @@
 import { useAuthService } from "modules/core/auth/AuthServiceProvider.js"
-import React, { ReactNode, useCallback } from "react"
+import { ReactNode, useCallback } from "react"
 
 export function LogoutLink({ children }: { children: ReactNode }) {
   const authService = useAuthService()

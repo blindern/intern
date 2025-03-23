@@ -1,6 +1,6 @@
 import { FormatNumber } from "components/FormatNumber.js"
 import { RightTd } from "modules/printer/invoicing/Helpers.js"
-import React from "react"
+import { Fragment } from "react"
 
 export function CostColumns({
   countByCost,
@@ -11,18 +11,18 @@ export function CostColumns({
     <>
       <RightTd>
         {Object.keys(countByCost).map((it) => (
-          <React.Fragment key={it}>
+          <Fragment key={it}>
             <FormatNumber value={it} />
             <br />
-          </React.Fragment>
+          </Fragment>
         ))}
       </RightTd>
       <RightTd>
         {Object.values(countByCost).map((it) => (
-          <React.Fragment key={it}>
+          <Fragment key={it}>
             <FormatNumber value={it} decimals={0} />
             <br />
-          </React.Fragment>
+          </Fragment>
         ))}
       </RightTd>
     </>

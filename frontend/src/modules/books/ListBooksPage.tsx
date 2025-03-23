@@ -4,7 +4,7 @@ import { Loading } from "components/Loading.js"
 import { Book, useBookList } from "modules/books/api.js"
 import { Pagination } from "modules/books/Pagination.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
-import React, { useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { bookUrl, groupUrl, registerBookUrl } from "utils/urls.js"
 

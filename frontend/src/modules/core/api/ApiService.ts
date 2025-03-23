@@ -41,7 +41,7 @@ export class ApiService {
       try {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         data = await response.json()
-      } catch (e) {
+      } catch {
         data = null
       }
 
@@ -127,7 +127,7 @@ export class ApiService {
       return [
         {
           type: "danger",
-          message: `Ukjent feil: ${String(error)}`,
+          message: `Ukjent feil: ${JSON.stringify(error)}`,
         },
       ]
     }

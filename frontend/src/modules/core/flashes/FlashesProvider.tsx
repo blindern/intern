@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { Subscription } from "rxjs"
 import { Flash, FlashesService } from "./FlahesService.js"
 
@@ -20,7 +14,7 @@ export function useFlashes() {
 
 export function useFlashesList() {
   const flashesService = useFlashes()
-  const subscriber = useRef<Subscription>()
+  const subscriber = useRef<Subscription>(null)
   const [flashes, setFlashes] = useState<Flash[]>([])
 
   useEffect(() => {

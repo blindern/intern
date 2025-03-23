@@ -1,6 +1,6 @@
 import { useConvertMatmenyDocMutation } from "modules/matmeny/api.js"
 import { ModifiedDay } from "modules/matmeny/MatmenyPage.js"
-import React, { ChangeEvent } from "react"
+import { ChangeEvent } from "react"
 import moment from "utils/moment.js"
 
 export function FileUploader({

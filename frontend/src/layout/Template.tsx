@@ -4,7 +4,7 @@ import { LogoutLink } from "components/LogoutLink.js"
 import { useAuthInfo } from "modules/core/auth/AuthInfoProvider.js"
 import { Flashes } from "modules/core/flashes/Flashes.js"
 import { useCurrentTitle } from "modules/core/title/TitleProvider.js"
-import React, { ReactNode } from "react"
+import { ReactNode } from "react"
 import { Link, useMatch } from "react-router-dom"
 import { styled } from "styled-components"
 import {

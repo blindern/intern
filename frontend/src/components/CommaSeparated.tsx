@@ -1,10 +1,10 @@
-import React, { ReactNode } from "react"
+import { Children, Fragment, ReactNode } from "react"
 
 export const CommaSeparated = ({ children }: { children: ReactNode }) => (
   <>
-    {React.Children.toArray(children).reduce<ReactNode[]>((acc, child, idx) => {
+    {Children.toArray(children).reduce<ReactNode[]>((acc, child, idx) => {
       if (acc.length > 0) {
-        acc.push(<React.Fragment key={`comma-${idx}`}>, </React.Fragment>)
+        acc.push(<Fragment key={`comma-${idx}`}>, </Fragment>)
       }
       acc.push(child)
       return acc

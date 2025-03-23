@@ -2,7 +2,6 @@ import {
   Account,
   useGoogleAppsUpdateAccountMutation,
 } from "modules/googleapps/api.js"
-import React from "react"
 import { useForm } from "react-hook-form"
 
 interface EditAccountForm {
@@ -15,7 +14,7 @@ export function EditAccount({
   editComplete,
 }: {
   account: Account
-  editComplete(): void
+  editComplete: () => void
 }) {
   const { mutateAsync } = useGoogleAppsUpdateAccountMutation()
   const { handleSubmit, register } = useForm<EditAccountForm>({

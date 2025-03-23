@@ -2,7 +2,6 @@ import { useCallback } from "react"
 import { Schema, ValidationError } from "yup"
 
 export const useYupValidationResolver = <FormValues>(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   validationSchema: Schema<FormValues, any, any>,
 ) =>
   useCallback(

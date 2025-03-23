@@ -1,5 +1,5 @@
 import { EqualityFn, MemoizedFn, default as _memoizeOne } from "memoize-one"
-import React, { createContext, useContext } from "react"
+import { Component, createContext, useContext } from "react"
 
 type MemoizeOneFn = <TFunc extends (this: any, ...newArgs: any[]) => any>(
   resultFn: TFunc,
@@ -33,7 +33,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export class TitleProvider extends React.Component<Props> {
+export class TitleProvider extends Component<Props> {
   components: { comp: symbol; value: string }[] = []
   override state = {
     title: defaultValue.title,

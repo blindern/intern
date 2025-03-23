@@ -3,7 +3,6 @@ import { ArrplanHomeBox } from "modules/arrplan/ArrplanHomeBox.js"
 import { useAuthInfo } from "modules/core/auth/AuthInfoProvider.js"
 import { MatmenyHomeBox } from "modules/matmeny/MatmenyHomeBox.js"
 import { UserLink } from "modules/users/UserLink.js"
-import React from "react"
 
 export const HomePage = () => {
   const authInfo = useAuthInfo()

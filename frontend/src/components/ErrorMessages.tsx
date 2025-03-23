@@ -2,7 +2,7 @@ import { useApiService } from "modules/core/api/ApiServiceProvider.js"
 import { NotAuthedError, ResponseError } from "modules/core/api/errors.js"
 import { RedirectToLogin } from "modules/core/auth/RedirectToLogin.js"
 import { FlashArgs } from "modules/core/flashes/FlahesService.js"
-import React, { useMemo } from "react"
+import { useMemo } from "react"
 
 export function ErrorMessages({ error }: { error: unknown }) {
   const apiService = useApiService()

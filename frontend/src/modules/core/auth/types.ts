@@ -31,11 +31,8 @@ export interface Group {
   unique_id: string
   name: string
   description: string | null
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   owners: any // TODO
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   members_real: any // TODO
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   members_relation: any // TODO
 }
 

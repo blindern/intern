@@ -2,7 +2,7 @@ import { ErrorMessage } from "@hookform/error-message"
 import classNames from "classnames"
 import { useYupValidationResolver } from "modules/core/forms/validation.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
-import React, { ReactNode, useState } from "react"
+import { ReactNode, useState } from "react"
 import {
   FieldName,
   FormProvider,

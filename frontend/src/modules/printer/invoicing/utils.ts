@@ -15,7 +15,7 @@ export class Summer {
   amountAlt = 0
   countByCost: Record<number, number> = {}
 
-  constructor(prev?: Summer | undefined) {
+  constructor(prev?: Summer) {
     this.prev = prev
   }
 

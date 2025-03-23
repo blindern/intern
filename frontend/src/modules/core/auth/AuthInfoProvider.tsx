@@ -1,5 +1,5 @@
 import { useAuthService } from "modules/core/auth/AuthServiceProvider.js"
-import React, {
+import {
   createContext,
   ReactNode,
   useContext,
@@ -18,7 +18,7 @@ export function useAuthInfo() {
 }
 
 export function AuthInfoProvider({ children }: { children: ReactNode }) {
-  const subscriber = useRef<Subscription>()
+  const subscriber = useRef<Subscription>(null)
   const [authInfo, setAuthInfo] = useState<AuthInfo>(defaultAuthInfo)
   const authService = useAuthService()
 

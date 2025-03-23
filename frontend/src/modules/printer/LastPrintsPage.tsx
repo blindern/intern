@@ -2,7 +2,6 @@ import { ErrorMessages } from "components/ErrorMessages.js"
 import { Loading } from "components/Loading.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
 import { UserLink } from "modules/users/UserLink.js"
-import React from "react"
 import { formatDate } from "utils/dates.js"
 import { usePrinterLastList } from "./api.js"
 

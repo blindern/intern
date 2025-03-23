@@ -5,7 +5,6 @@ import { UserDetails } from "modules/core/auth/types.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
 import { GroupLink } from "modules/groups/GroupLink.js"
 import { useUserList } from "modules/users/api.js"
-import React from "react"
 import { styled } from "styled-components"
 import { UserLink } from "./UserLink.js"
 

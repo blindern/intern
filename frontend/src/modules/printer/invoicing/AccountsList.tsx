@@ -2,7 +2,7 @@ import { FormatNumber } from "components/FormatNumber.js"
 import { PrinterInvoiceResponse } from "modules/printer/api.js"
 import { RightTd } from "modules/printer/invoicing/Helpers.js"
 import { Data } from "modules/printer/invoicing/types.js"
-import React, { useMemo } from "react"
+import { useMemo } from "react"
 
 export function AccountsList({
   data,

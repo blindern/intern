@@ -1,5 +1,5 @@
 import { useAuthService } from "modules/core/auth/AuthServiceProvider.js"
-import React, { ReactNode, useLayoutEffect } from "react"
+import { ReactNode, useLayoutEffect } from "react"
 
 export function RedirectToLogin({ children = null }: { children?: ReactNode }) {
   const authService = useAuthService()

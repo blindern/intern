@@ -3,7 +3,6 @@ import { Loading } from "components/Loading.js"
 import { orderBy } from "lodash"
 import { Bukk, useBukkList } from "modules/bukker/api.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
-import React from "react"
 import { Link } from "react-router-dom"
 import { bukkUrl } from "utils/urls.js"
 
@@ -13,9 +12,9 @@ function sortValue(bukk: Bukk) {
 }
 
 function getThumb(bukk: Bukk) {
-  return orderBy(bukk.awards, "year", "desc").filter(
+  return orderBy(bukk.awards, "year", "desc").find(
     (award) => award.image_preview_url,
-  )[0]?.image_preview_url
+  )?.image_preview_url
 }
 
 export function ListBukkerPage() {

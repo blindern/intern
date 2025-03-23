@@ -17,7 +17,6 @@ import { NoAuth } from "modules/books/NoAuth.js"
 import { NotFoundError } from "modules/core/api/errors.js"
 import { useAuthorization } from "modules/core/auth/Authorization.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
-import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { bookUrl } from "utils/urls.js"
@@ -51,8 +50,8 @@ function EditBookForm({ book }: { book: Book }) {
   })
 
   function onSubmit(values: Book) {
-    void mutateAsync(values).then(() => {
-      navigate(bookUrl(book._id))
+    void mutateAsync(values).then(async () => {
+      await navigate(bookUrl(book._id))
     })
   }
 

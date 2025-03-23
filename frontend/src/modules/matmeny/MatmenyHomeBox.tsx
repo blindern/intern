@@ -1,6 +1,5 @@
 import { ErrorMessages } from "components/ErrorMessages.js"
 import { Loading } from "components/Loading.js"
-import React from "react"
 import { Link } from "react-router-dom"
 import { matmenyUrl } from "utils/urls.js"
 import { formatDate } from "utils/dates.js"

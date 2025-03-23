@@ -1,7 +1,7 @@
 import * as d3 from "d3"
 import { Selection } from "d3"
 import { PrinterInvoiceResponse } from "modules/printer/api.js"
-import React, { useLayoutEffect, useMemo, useRef } from "react"
+import { useLayoutEffect, useMemo, useRef } from "react"
 import moment from "utils/moment.js"
 
 // chart for daily usage
@@ -12,7 +12,6 @@ function getDaily(data: PrinterInvoiceResponse): Record<string, number> {
   const daily: Record<string, number> = {}
   let d = moment(data.from)
   const d_end = moment(data.to)
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     daily[d.format("YYYY-MM-DD")] = 0
     d = d.add(1, "day")
@@ -38,7 +37,7 @@ export function DailyGraph({
   const data = useMemo(() => getDaily(rawdata), [rawdata])
 
   const el = useRef<HTMLDivElement>(null)
-  const svg = useRef<Selection<SVGGElement, any, any, any>>()
+  const svg = useRef<Selection<SVGGElement, any, any, any>>(null)
 
   const margin = { top: 20, right: 30, bottom: 30, left: 50 },
     width = 960 - margin.left - margin.right,

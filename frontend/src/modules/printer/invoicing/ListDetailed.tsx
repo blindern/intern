@@ -2,13 +2,13 @@ import { FormatNumber } from "components/FormatNumber.js"
 import { CostColumns } from "modules/printer/invoicing/CostColumns.js"
 import { RightTd } from "modules/printer/invoicing/Helpers.js"
 import { Data } from "modules/printer/invoicing/types.js"
-import React from "react"
+import { Fragment } from "react"
 
 export function ListDetailed({ data }: { data: Data }) {
   return (
     <>
       {data.sections.map((section, sectionidx) => (
-        <React.Fragment key={sectionidx}>
+        <Fragment key={sectionidx}>
           {[...section.printers]
             .sort((a, b) => a.printername.localeCompare(b.printername))
             .map((group) => (
@@ -107,7 +107,7 @@ export function ListDetailed({ data }: { data: Data }) {
                 </table>
               </div>
             ))}
-        </React.Fragment>
+        </Fragment>
       ))}
     </>
   )

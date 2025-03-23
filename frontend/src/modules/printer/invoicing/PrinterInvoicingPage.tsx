@@ -7,7 +7,7 @@ import { ListDetailed } from "modules/printer/invoicing/ListDetailed.js"
 import { ListSummed } from "modules/printer/invoicing/ListSummed.js"
 import { Summary } from "modules/printer/invoicing/Summary.js"
 import { aggregateData, useDates } from "modules/printer/invoicing/utils.js"
-import React, { useState } from "react"
+import { useState } from "react"
 import { formatDate } from "utils/dates.js"
 
 export function PrinterInvoicingPage() {

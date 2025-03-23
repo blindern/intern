@@ -1,5 +1,5 @@
 import { useAuthService } from "modules/core/auth/AuthServiceProvider.js"
-import React, { ReactNode, useMemo } from "react"
+import { ReactNode, useMemo } from "react"
 import { useQueryClient } from "@tanstack/react-query"
 
 export function LoggedOutHandler({ children }: { children: ReactNode }) {

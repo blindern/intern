@@ -1,7 +1,6 @@
 import classNames from "classnames"
 import { ErrorMessages } from "components/ErrorMessages.js"
 import { Loading } from "components/Loading.js"
-import React from "react"
 import { Link } from "react-router-dom"
 import { arrplanUrl } from "utils/urls.js"
 import { useArrplanNext } from "./api.js"

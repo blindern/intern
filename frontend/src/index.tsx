@@ -1,5 +1,5 @@
-import React from "react"
 import ReactDOM from "react-dom/client"
+import { StrictMode } from "react"
 import { App } from "./App.js"
 
 import { buildTime, gitCommitShort } from "./manifest.js"
@@ -17,7 +17,7 @@ console.info(
 )
 
 ReactDOM.createRoot(document.getElementById("react_container")!).render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 )

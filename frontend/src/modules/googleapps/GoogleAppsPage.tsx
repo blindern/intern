@@ -6,7 +6,7 @@ import { useTitle } from "modules/core/title/PageTitle.js"
 import { AccountItem } from "modules/googleapps/AccountItem.js"
 import { useGoogleAppsAccounts } from "modules/googleapps/api.js"
 import { NewAccount } from "modules/googleapps/NewAccount.js"
-import React, { useState } from "react"
+import { Fragment, useState } from "react"
 
 export function GoogleAppsPage() {
   useTitle("Google Apps")
@@ -52,7 +52,7 @@ export function GoogleAppsPage() {
       )}
 
       {Object.entries(accountgroups).map(([group, groupaccounts]) => (
-        <React.Fragment key={group}>
+        <Fragment key={group}>
           <h2>{group}</h2>
           {groupaccounts.map((account) => (
             <AccountItem
@@ -61,7 +61,7 @@ export function GoogleAppsPage() {
               globalEdit={isEditing}
             />
           ))}
-        </React.Fragment>
+        </Fragment>
       ))}
     </>
   )

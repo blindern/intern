@@ -18,7 +18,7 @@ import { NoAuth } from "modules/books/NoAuth.js"
 import { useAuthorization } from "modules/core/auth/Authorization.js"
 import { useFlashes } from "modules/core/flashes/FlashesProvider.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
-import React, { useMemo } from "react"
+import { useMemo } from "react"
 import { FormProvider, useForm, useWatch } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { bookUrl } from "utils/urls.js"
@@ -53,8 +53,8 @@ function RegisterBook() {
   }, [bibRoom, bibSection])
 
   function onSubmit(values: CreateBookPayload) {
-    void mutateAsync(values).then((book) => {
-      navigate(bookUrl(book._id))
+    void mutateAsync(values).then(async (book) => {
+      await navigate(bookUrl(book._id))
     })
   }
 

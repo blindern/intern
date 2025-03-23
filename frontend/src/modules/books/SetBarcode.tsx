@@ -1,5 +1,5 @@
 import { Book, useSetBookBarcodeMutation } from "modules/books/api.js"
-import React, { useState } from "react"
+import { useState } from "react"
 
 export function SetBarcode({ book }: { book: Book }) {
   const [newBarcode, setNewBarcode] = useState("")

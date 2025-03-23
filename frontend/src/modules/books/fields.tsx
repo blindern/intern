@@ -1,5 +1,4 @@
 import { useId } from "modules/core/forms/ids.js"
-import React from "react"
 import { Controller, useFormContext } from "react-hook-form"
 
 export function TextareaField({

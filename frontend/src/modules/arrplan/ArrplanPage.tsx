@@ -2,12 +2,12 @@ import classNames from "classnames"
 import { ErrorMessages } from "components/ErrorMessages.js"
 import { Loading } from "components/Loading.js"
 import { useTitle } from "modules/core/title/PageTitle.js"
-import React from "react"
 import { Link, useParams } from "react-router-dom"
 import { styled } from "styled-components"
 import moment from "utils/moment.js"
 import { getSemesterListFromEvent, Semester, useArrplanList } from "./api.js"
 import { EventItem, NormalEvent } from "./types.js"
+import { Fragment } from "react"
 
 const getSemesterList = (list: EventItem[]) => {
   const hashedSemesters = list.reduce<Record<string, Semester>>(
@@ -193,10 +193,10 @@ const List = ({
             <h3>Kommentarer</h3>
             <dl>
               {comments.map(({ date, comment }, idx) => (
-                <React.Fragment key={idx}>
+                <Fragment key={idx}>
                   <dt>{date}</dt>
                   <dd>{comment}</dd>
-                </React.Fragment>
+                </Fragment>
               ))}
             </dl>
           </>
