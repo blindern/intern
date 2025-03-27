@@ -80,7 +80,7 @@ importers:
         version: 5.69.0(@tanstack/react-query@5.69.0(react@19.0.0))(react@19.0.0)
       '@tsconfig/node22':
         specifier: ^22.0.0
-        version: 22.0.0
+        version: 22.0.1
       '@tsconfig/strictest':
         specifier: 2.0.5
         version: 2.0.5
@@ -732,8 +732,8 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@tsconfig/node22@22.0.0':
-    resolution: {integrity: sha512-twLQ77zevtxobBOD4ToAtVmuYrpeYUh3qh+TEp+08IWhpsrIflVHqQ1F1CiPxQGL7doCdBIOOCF+1Tm833faNg==}
+  '@tsconfig/node22@22.0.1':
+    resolution: {integrity: sha512-VkgOa3n6jvs1p+r3DiwBqeEwGAwEvnVCg/hIjiANl5IEcqP3G0u5m8cBJspe1t9qjZRlZ7WFgqq5bJrGdgAKMg==}
 
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
@@ -854,6 +854,9 @@ packages:
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
+
+  '@types/estree@1.0.7':
+    resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
 
   '@types/geojson@7946.0.16':
     resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
@@ -2832,7 +2835,7 @@ snapshots:
       '@tanstack/query-core': 5.69.0
       react: 19.0.0
 
-  '@tsconfig/node22@22.0.0': {}
+  '@tsconfig/node22@22.0.1': {}
 
   '@tsconfig/strictest@2.0.5': {}
 
@@ -2980,11 +2983,14 @@ snapshots:
 
   '@types/eslint@9.6.1':
     dependencies:
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.7
       '@types/json-schema': 7.0.15
     optional: true
 
   '@types/estree@1.0.6': {}
+
+  '@types/estree@1.0.7':
+    optional: true
 
   '@types/geojson@7946.0.16': {}
 
