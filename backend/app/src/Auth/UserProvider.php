@@ -22,7 +22,7 @@ class UserProvider implements UserProviderContract
      * Retrieve a user by their unique identifier.
      *
      * @param  mixed  $identifier
-     * @return \HenriSt\OpenLdapAuth\LdapUser|null
+     * @return \Blindern\Intern\Auth\User|null
      */
     public function retrieveById($identifier)
     {

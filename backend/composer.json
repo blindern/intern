@@ -4,12 +4,6 @@
 	"keywords": ["Blindern Studenterhjem", "Laravel"],
 	"license": "MIT",
 	"type": "project",
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "git@github.com:henrist/openldapauth.git"
-		}
-	],
 	"require": {
 		"php": "^8.3",
 		"google/apiclient": "2.18.3",
