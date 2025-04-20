@@ -119,7 +119,7 @@ importers:
         version: 4.4.12(@types/react@19.1.2)
       '@vitejs/plugin-react':
         specifier: 4.4.0
-        version: 4.4.0(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3))
+        version: 4.4.0(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3))
       autoprefixer:
         specifier: 10.4.21
         version: 10.4.21(postcss@8.5.3)
@@ -166,11 +166,11 @@ importers:
         specifier: 8.27.0
         version: 8.27.0(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
       vite:
-        specifier: 6.3.0
-        version: 6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)
+        specifier: 6.3.1
+        version: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)
       vite-plugin-checker:
         specifier: 0.9.1
-        version: 0.9.1(eslint@9.24.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3))
+        version: 0.9.1(eslint@9.24.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3))
 
 packages:
 
@@ -2313,8 +2313,8 @@ packages:
       vue-tsc:
         optional: true
 
-  vite@6.3.0:
-    resolution: {integrity: sha512-9aC0n4pr6hIbvi1YOpFjwQ+QOTGssvbJKoeYkuHHGWwlXfdxQlI8L2qNMo9awEEcCPSiS+5mJZk5jH1PAqoDeQ==}
+  vite@6.3.1:
+    resolution: {integrity: sha512-kkzzkqtMESYklo96HKKPE5KKLkC1amlsqt+RjFMlX2AvbRB/0wghap19NdBxxwGZ+h/C6DLCrcEphPIItlGrRQ==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -3115,14 +3115,14 @@ snapshots:
       '@typescript-eslint/types': 8.27.0
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-react@4.4.0(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3))':
+  '@vitejs/plugin-react@4.4.0(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)
+      vite: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -4681,7 +4681,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-checker@0.9.1(eslint@9.24.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)):
+  vite-plugin-checker@0.9.1(eslint@9.24.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)):
     dependencies:
       '@babel/code-frame': 7.26.2
       chokidar: 4.0.3
@@ -4691,14 +4691,14 @@ snapshots:
       strip-ansi: 7.1.0
       tiny-invariant: 1.3.3
       tinyglobby: 0.2.12
-      vite: 6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)
+      vite: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)
       vscode-uri: 3.1.0
     optionalDependencies:
       eslint: 9.24.0(jiti@2.4.2)
       optionator: 0.9.4
       typescript: 5.8.3
 
-  vite@6.3.0(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3):
+  vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3):
     dependencies:
       esbuild: 0.25.2
       fdir: 6.4.3(picomatch@4.0.2)
