@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "1.2.8",
-    "@eslint/js": "9.24.0",
+    "@eslint/js": "9.25.0",
     "@tanstack/react-query": "5.74.4",
     "@tanstack/react-query-devtools": "5.74.4",
     "@tsconfig/node22": "^22.0.0",
@@ -51,7 +51,7 @@
     "@vitejs/plugin-react": "4.4.0",
     "autoprefixer": "10.4.21",
     "bootstrap-sass": "3.4.3",
-    "eslint": "9.24.0",
+    "eslint": "9.25.0",
     "eslint-config-prettier": "10.1.2",
     "eslint-config-react-hooks": "1.0.0",
     "eslint-plugin-prettier": "5.2.6",
