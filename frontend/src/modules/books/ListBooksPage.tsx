@@ -133,9 +133,9 @@ export function ListBooksPage() {
         ) : (
           <>
             <div className="books_list">
-              {data?.data.map((book) => (
-                <BookItem key={book.id} book={book} />
-              ))}
+              {data?.data.map((book) => 
+              <BookItem key={book.id} book={book} />
+              )}
             </div>
 
             <Pagination

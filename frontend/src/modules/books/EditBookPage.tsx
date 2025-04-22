@@ -51,7 +51,7 @@ function EditBookForm({ book }: { book: Book }) {
 
   function onSubmit(values: Book) {
     void mutateAsync(values).then(async () => {
-      await navigate(bookUrl(book._id))
+      await navigate(bookUrl(book.id))
     })
   }
 
@@ -76,7 +76,7 @@ function EditBookForm({ book }: { book: Book }) {
                 type="submit"
                 value="Lagre endringer"
               />
-              <Link className="btn btn-default" to={bookUrl(book._id)}>
+              <Link className="btn btn-default" to={bookUrl(book.id)}>
                 Avbryt
               </Link>
             </div>
