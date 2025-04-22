@@ -2,7 +2,6 @@ import { useApiService } from "modules/core/api/ApiServiceProvider.js"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 export interface Book {
-  _id: string
   title?: string | null | undefined
   subtitle?: string | null | undefined
   authors?: string[] | undefined
@@ -22,6 +21,7 @@ export interface Book {
   updated_at: string
   created_at: string
   bib_barcode: string | null
+  id: string
 }
 
 export interface BookListResponse {
@@ -89,10 +89,10 @@ export function useUpdateBookMutation() {
 
   return useMutation({
     mutationFn: async (book: Book) => {
-      await api.put("books/" + encodeURIComponent(book._id), book)
+      await api.put("books/" + encodeURIComponent(book.id), book)
     },
     onSuccess: async (_, book) => {
-      await queryClient.invalidateQueries({ queryKey: buildBookKey(book._id) })
+      await queryClient.invalidateQueries({ queryKey: buildBookKey(book.id) })
     },
   })
 }
@@ -104,7 +104,7 @@ export function useSetBookBarcodeMutation() {
   return useMutation({
     mutationFn: async ({ book, barcode }: { book: Book; barcode: string }) => {
       const response = await api.post(
-        "books/" + encodeURIComponent(book._id) + "/barcode",
+        "books/" + encodeURIComponent(book.id) + "/barcode",
         {
           barcode,
         },
@@ -115,7 +115,7 @@ export function useSetBookBarcodeMutation() {
       }
     },
     onSuccess: async (_, { book }) => {
-      await queryClient.invalidateQueries({ queryKey: buildBookKey(book._id) })
+      await queryClient.invalidateQueries({ queryKey: buildBookKey(book.id) })
     },
   })
 }
@@ -124,7 +124,7 @@ export function useDeleteBookMutation() {
   const api = useApiService()
   return useMutation({
     mutationFn: async (book: Book) => {
-      const response = await api.delete("books/" + encodeURIComponent(book._id))
+      const response = await api.delete("books/" + encodeURIComponent(book.id))
       if (!response.ok) {
         console.log(response)
         throw new Error("Response failed")

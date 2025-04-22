@@ -10,8 +10,8 @@ import { bookUrl, groupUrl, registerBookUrl } from "utils/urls.js"
 
 function BookItem({ book }: { book: Book }) {
   return (
-    <div key={book._id} className="book">
-      <Link to={bookUrl(book._id)}>
+    <div key={book.id} className="book">
+      <Link to={bookUrl(book.id)}>
         <div className="thumb">
           {book.thumbnail && <img src={book.thumbnail} alt="" />}
         </div>
@@ -133,9 +133,7 @@ export function ListBooksPage() {
         ) : (
           <>
             <div className="books_list">
-              {data?.data.map((book) => (
-                <BookItem key={book._id} book={book} />
-              ))}
+              {data?.data.map((book) => <BookItem key={book.id} book={book} />)}
             </div>
 
             <Pagination

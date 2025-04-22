@@ -54,7 +54,7 @@ function RegisterBook() {
 
   function onSubmit(values: CreateBookPayload) {
     void mutateAsync(values).then(async (book) => {
-      await navigate(bookUrl(book._id))
+      await navigate(bookUrl(book.id))
     })
   }
 
