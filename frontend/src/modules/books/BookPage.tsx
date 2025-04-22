@@ -31,6 +31,7 @@ function DeleteButton({ book }: { book: Book }) {
 
 export function BookPage() {
   const { id } = useParams()
+
   const { isPending, isError, error, data: book } = useBook(id!)
   const { bookAdmin } = useAuthorization()
 
@@ -53,7 +54,7 @@ export function BookPage() {
         <Link className="btn btn-success" to={registerBookUrl()}>
           Registrer ny bok
         </Link>{" "}
-        <Link className="btn btn-primary" to={editBookUrl(book._id)}>
+        <Link className="btn btn-primary" to={editBookUrl(book.id)}>
           Rediger
         </Link>{" "}
         <DeleteButton book={book} />
