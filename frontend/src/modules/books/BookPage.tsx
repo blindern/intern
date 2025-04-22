@@ -31,7 +31,6 @@ function DeleteButton({ book }: { book: Book }) {
 
 export function BookPage() {
   const { id } = useParams()
-
   const { isPending, isError, error, data: book } = useBook(id!)
   const { bookAdmin } = useAuthorization()
 
