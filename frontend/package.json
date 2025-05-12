@@ -52,7 +52,7 @@
     "autoprefixer": "10.4.21",
     "bootstrap-sass": "3.4.3",
     "eslint": "9.26.0",
-    "eslint-config-prettier": "10.1.3",
+    "eslint-config-prettier": "10.1.5",
     "eslint-config-react-hooks": "1.0.0",
     "eslint-plugin-prettier": "5.4.0",
     "eslint-plugin-react": "7.37.5",
