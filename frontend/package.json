@@ -48,7 +48,7 @@
     "@types/react-router": "5.1.20",
     "@types/react-router-dom": "5.3.3",
     "@types/react-transition-group": "4.4.12",
-    "@vitejs/plugin-react": "4.4.1",
+    "@vitejs/plugin-react": "4.5.0",
     "autoprefixer": "10.4.21",
     "bootstrap-sass": "3.4.3",
     "eslint": "9.27.0",
