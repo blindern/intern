@@ -103,11 +103,11 @@ importers:
         specifier: 22.15.31
         version: 22.15.31
       '@types/react':
-        specifier: 19.1.7
-        version: 19.1.7
+        specifier: 19.1.8
+        version: 19.1.8
       '@types/react-dom':
         specifier: 19.1.6
-        version: 19.1.6(@types/react@19.1.7)
+        version: 19.1.6(@types/react@19.1.8)
       '@types/react-router':
         specifier: 5.1.20
         version: 5.1.20
@@ -116,7 +116,7 @@ importers:
         version: 5.3.3
       '@types/react-transition-group':
         specifier: 4.4.12
-        version: 4.4.12(@types/react@19.1.7)
+        version: 4.4.12(@types/react@19.1.8)
       '@vitejs/plugin-react':
         specifier: 4.5.2
         version: 4.5.2(vite@6.3.5(@types/node@22.15.31)(jiti@2.4.2)(sass@1.89.2))
@@ -894,8 +894,8 @@ packages:
     peerDependencies:
       '@types/react': '*'
 
-  '@types/react@19.1.7':
-    resolution: {integrity: sha512-BnsPLV43ddr05N71gaGzyZ5hzkCmGwhMvYc8zmvI8Ci1bRkkDSzDDVfAXfN2tk748OwI7ediiPX6PfT9p0QGVg==}
+  '@types/react@19.1.8':
+    resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==}
 
   '@types/sizzle@2.3.9':
     resolution: {integrity: sha512-xzLEyKB50yqCUPUJkIsrVvoWNfFUbIZI+RspLWt8u+tIW/BetMBZtgV2LY/2o+tYH8dRvQ+eoPf3NdhQCcLE2w==}
@@ -3003,26 +3003,26 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/react-dom@19.1.6(@types/react@19.1.7)':
+  '@types/react-dom@19.1.6(@types/react@19.1.8)':
     dependencies:
-      '@types/react': 19.1.7
+      '@types/react': 19.1.8
 
   '@types/react-router-dom@5.3.3':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.1.7
+      '@types/react': 19.1.8
       '@types/react-router': 5.1.20
 
   '@types/react-router@5.1.20':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.1.7
+      '@types/react': 19.1.8
 
-  '@types/react-transition-group@4.4.12(@types/react@19.1.7)':
+  '@types/react-transition-group@4.4.12(@types/react@19.1.8)':
     dependencies:
-      '@types/react': 19.1.7
+      '@types/react': 19.1.8
 
-  '@types/react@19.1.7':
+  '@types/react@19.1.8':
     dependencies:
       csstype: 3.1.3
 
