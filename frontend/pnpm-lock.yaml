@@ -169,8 +169,8 @@ importers:
         specifier: 7.0.2
         version: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(sass@1.89.2)
       vite-plugin-checker:
-        specifier: 0.9.3
-        version: 0.9.3(eslint@9.28.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(sass@1.89.2))
+        specifier: 0.10.0
+        version: 0.10.0(eslint@9.28.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(sass@1.89.2))
 
 packages:
 
@@ -2276,8 +2276,8 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  vite-plugin-checker@0.9.3:
-    resolution: {integrity: sha512-Tf7QBjeBtG7q11zG0lvoF38/2AVUzzhMNu+Wk+mcsJ00Rk/FpJ4rmUviVJpzWkagbU13cGXvKpt7CMiqtxVTbQ==}
+  vite-plugin-checker@0.10.0:
+    resolution: {integrity: sha512-EcAi4M5mzayH386Hc1xWi+vnfl4a+1vrDP9PVEQImUR6tIjItNK6R/98YNnJkaAq1ond2qkA6f+H49aprUgzGA==}
     engines: {node: '>=14.16'}
     peerDependencies:
       '@biomejs/biome': '>=1.7'
@@ -2289,7 +2289,7 @@ packages:
       vite: '>=2.0.0'
       vls: '*'
       vti: '*'
-      vue-tsc: ~2.2.10
+      vue-tsc: ~2.2.10 || ^3.0.0
     peerDependenciesMeta:
       '@biomejs/biome':
         optional: true
@@ -4679,7 +4679,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-checker@0.9.3(eslint@9.28.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(sass@1.89.2)):
+  vite-plugin-checker@0.10.0(eslint@9.28.0(jiti@2.4.2))(optionator@0.9.4)(typescript@5.8.3)(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(sass@1.89.2)):
     dependencies:
       '@babel/code-frame': 7.27.1
       chokidar: 4.0.3
