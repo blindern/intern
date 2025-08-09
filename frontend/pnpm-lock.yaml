@@ -136,8 +136,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       eslint-plugin-prettier:
-        specifier: 5.5.3
-        version: 5.5.3(eslint-config-prettier@10.1.8(eslint@9.28.0(jiti@2.5.1)))(eslint@9.28.0(jiti@2.5.1))(prettier@3.5.3)
+        specifier: 5.5.4
+        version: 5.5.4(eslint-config-prettier@10.1.8(eslint@9.28.0(jiti@2.5.1)))(eslint@9.28.0(jiti@2.5.1))(prettier@3.5.3)
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.28.0(jiti@2.5.1))
@@ -1363,8 +1363,8 @@ packages:
   eslint-config-react-hooks@1.0.0:
     resolution: {integrity: sha512-M4hotJLA7bZUxq7alpmcNNdJnVAgLjZAI8qT/Wj6/9gEmJgjE1xmsy2+fsuxCLkQ6PKczpt6i1ihM4YYQ78pPQ==}
 
-  eslint-plugin-prettier@5.5.3:
-    resolution: {integrity: sha512-NAdMYww51ehKfDyDhv59/eIItUVzU0Io9H2E8nHNGKEeeqlnci+1gCvrHib6EmZdf6GxF+LCV5K7UC65Ezvw7w==}
+  eslint-plugin-prettier@5.5.4:
+    resolution: {integrity: sha512-swNtI95SToIz05YINMA6Ox5R057IMAmWZ26GqPxusAp1TZzj+IdY9tXNWWD3vkF/wEqydCONcwjTFpxybBqZsg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       '@types/eslint': '>=8.0.0'
@@ -3668,7 +3668,7 @@ snapshots:
 
   eslint-config-react-hooks@1.0.0: {}
 
-  eslint-plugin-prettier@5.5.3(eslint-config-prettier@10.1.8(eslint@9.28.0(jiti@2.5.1)))(eslint@9.28.0(jiti@2.5.1))(prettier@3.5.3):
+  eslint-plugin-prettier@5.5.4(eslint-config-prettier@10.1.8(eslint@9.28.0(jiti@2.5.1)))(eslint@9.28.0(jiti@2.5.1))(prettier@3.5.3):
     dependencies:
       eslint: 9.28.0(jiti@2.5.1)
       prettier: 3.5.3
