@@ -43,7 +43,7 @@
     "@types/jquery": "3.5.32",
     "@types/lodash": "4.17.20",
     "@types/node": "22.17.1",
-    "@types/react": "19.1.9",
+    "@types/react": "19.1.10",
     "@types/react-dom": "19.1.7",
     "@types/react-router": "5.1.20",
     "@types/react-router-dom": "5.3.3",
