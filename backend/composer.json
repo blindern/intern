@@ -13,7 +13,7 @@
 	"require": {
 		"php": "^8.3",
 		"google/apiclient": "2.18.3",
-		"guzzlehttp/guzzle": "7.9.3",
+		"guzzlehttp/guzzle": "7.10.0",
 		"johngrogg/ics-parser": "3.4.1",
 		"laravel/framework": "^11.0",
 		"laravel/sanctum": "^4.0",
