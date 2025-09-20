@@ -14,12 +14,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
@@ -36,13 +30,31 @@ jobs:
         env:
           INTERN_GOOGLE_API_KEY: ${{ secrets.INTERN_GOOGLE_API_KEY }}
 
+      - id: gcp-auth
+        if: github.ref == 'refs/heads/main'
+        name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          token_format: access_token
+          workload_identity_provider: projects/277979591283/locations/global/workloadIdentityPools/github/providers/github
+          service_account: github-actions@foreningenbs.iam.gserviceaccount.com
+          access_token_lifetime: 300s
+
+      - name: Login to Artifact Registry
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: europe-north2-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.gcp-auth.outputs.access_token }}
+
       - name: Build container
         id: docker_build
         uses: docker/build-push-action@v6
         with:
           context: backend
           push: ${{ github.ref == 'refs/heads/main' }}
-          tags: blindern/intern-backend:latest
+          tags: europe-north2-docker.pkg.dev/foreningenbs/fbs-docker/intern-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -53,7 +65,7 @@ jobs:
           {
             "service": "intern",
             "attributes": {
-              "backend_image": "blindern/intern-backend@${{ steps.docker_build.outputs.digest }}"
+              "backend_image": "europe-north2-docker.pkg.dev/foreningenbs/fbs-docker/intern-backend@${{ steps.docker_build.outputs.digest }}"
             }
           }'
         env:
