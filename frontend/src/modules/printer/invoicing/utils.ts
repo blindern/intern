@@ -37,7 +37,7 @@ export class Summer {
       this.numPagesReal += props.totalJobSize
     }
 
-    if (!this.countByCost[props.costEach]) this.countByCost[props.costEach] = 0
+    this.countByCost[props.costEach] ??= 0
     this.countByCost[props.costEach]! += props.totalJobSize
 
     if (this.prev) {

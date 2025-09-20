@@ -44,16 +44,14 @@ export function DailyGraph({
     height = 150 - margin.top - margin.bottom
 
   useLayoutEffect(() => {
-    if (svg.current == null) {
-      svg.current = d3
-        .select(el.current)
-        .append("svg")
-        .attr("class", "printerchart")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`)
-    }
+    svg.current ??= d3
+      .select(el.current)
+      .append("svg")
+      .attr("class", "printerchart")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`)
   }, [height, margin.bottom, margin.left, margin.right, margin.top, width])
 
   useLayoutEffect(() => {
