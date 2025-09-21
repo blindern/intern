@@ -8,6 +8,9 @@ on:
 jobs:
   frontend:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
@@ -19,7 +22,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '22'
+          node-version: "22"
 
       - run: pnpm install
         working-directory: frontend
@@ -28,23 +31,11 @@ jobs:
       - run: pnpm run build
         working-directory: frontend
 
-      - id: gcp-auth
-        if: github.ref == 'refs/heads/main'
-        name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v3
+      - uses: docker/login-action@v3
         with:
-          token_format: access_token
-          workload_identity_provider: projects/277979591283/locations/global/workloadIdentityPools/github/providers/github
-          service_account: github-actions@foreningenbs.iam.gserviceaccount.com
-          access_token_lifetime: 300s
-
-      - name: Login to Artifact Registry
-        if: github.ref == 'refs/heads/main'
-        uses: docker/login-action@v3
-        with:
-          registry: europe-north2-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.gcp-auth.outputs.access_token }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build docker image
         id: docker_build
@@ -52,7 +43,7 @@ jobs:
         with:
           context: frontend
           push: ${{ github.ref == 'refs/heads/main' }}
-          tags: europe-north2-docker.pkg.dev/foreningenbs/fbs-docker/intern-frontend:latest
+          tags: ghcr.io/blindern/intern-frontend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -63,7 +54,7 @@ jobs:
           {
             "service": "intern",
             "attributes": {
-              "frontend_image": "europe-north2-docker.pkg.dev/foreningenbs/fbs-docker/intern-frontend@${{ steps.docker_build.outputs.digest }}"
+              "frontend_image": "ghcr.io/blindern/intern-frontend@${{ steps.docker_build.outputs.digest }}"
             }
           }'
         env:
