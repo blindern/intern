@@ -26,6 +26,20 @@
       "datasourceTemplate": "packagist",
       "versioningTemplate": "composer",
       "depTypeTemplate": "uses-with"
+    },
+    {
+      "description": "Keep mongodb version up-to-date in Dockerfile",
+      "customType": "regex",
+      "fileMatch": [
+        "^backend/Dockerfile$"
+      ],
+      "matchStrings": [
+        "mongodb-(?<currentValue>.+?)\\s"
+      ],
+      "depNameTemplate": "mongodb/mongodb",
+      "packageNameTemplate": "mongodb/mongodb",
+      "datasourceTemplate": "packagist",
+      "versioningTemplate": "composer"
     }
   ],
   "packageRules": [
