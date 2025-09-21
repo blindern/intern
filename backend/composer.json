@@ -13,7 +13,7 @@
 		"laravel/sanctum": "^4.0",
 		"laravel/tinker": "^2.9",
 		"mongodb/laravel-mongodb": "^5.0",
-		"mongodb/mongodb": "1.19.1",
+		"mongodb/mongodb": "1.21.2",
 		"nategood/httpful": "1.0.0",
 		"nesbot/carbon": "3.10.3",
 		"onelogin/php-saml": "4.3.0",
