@@ -42,6 +42,13 @@
       ],
       "automerge": true,
       "automergeType": "branch"
+    },
+    {
+      "matchDepNames": [
+        "mongodb/mongodb",
+        "mongodb/laravel-mongodb"
+      ],
+      "groupName": "mongodb"
     }
   ],
   "prCreation": "not-pending",
