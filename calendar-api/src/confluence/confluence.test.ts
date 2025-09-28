@@ -27,7 +27,7 @@ test("confluence events", { timeout: 15_000 }, async () => {
     const result = parseIcsData(icsData, priority)
     const sorted = result
       .flat()
-      .sort((a, b) => Temporal.Instant.compare(a.start, b.start))
+      .sort((a, b) => Temporal.ZonedDateTime.compare(a.start, b.start))
     expect(sorted).toMatchSnapshot(file)
   }
 })

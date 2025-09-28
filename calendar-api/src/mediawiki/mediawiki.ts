@@ -82,13 +82,16 @@ export async function getMediawikiEvents(): Promise<FbsEventOrComment[]> {
     let recur: FbsEvent["recur"] | undefined
     if (item.repeat) {
       let dcur = start
-      const events: { start: Temporal.Instant; end: Temporal.Instant }[] = []
+      const events: {
+        start: Temporal.ZonedDateTime
+        end: Temporal.ZonedDateTime
+      }[] = []
       for (let i = 0; i < item.repeat.count - 1; i++) {
         dcur = dcur.add({ weeks: 1 }).withPlainTime(start.toPlainTime())
         const dend = dcur.add(duration)
         events.push({
-          start: dcur.toInstant(),
-          end: dend.toInstant(),
+          start: dcur,
+          end: dend,
         })
       }
       recur = {
@@ -104,8 +107,8 @@ export async function getMediawikiEvents(): Promise<FbsEventOrComment[]> {
       by: item.by,
       place: item.place,
       priority: item.priority ?? "medium",
-      start: start.toInstant(),
-      end: end.toInstant(),
+      start,
+      end,
       info: item.info,
       recur,
     }

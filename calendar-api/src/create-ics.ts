@@ -49,19 +49,15 @@ export function createIcs(
       if (isFullDays) {
         vevent.addPropertyWithValue(
           "dtstart",
-          ICAL.Time.fromDateString(
-            start.toZonedDateTimeISO("Europe/Oslo").toPlainDate().toString(),
-          ),
+          ICAL.Time.fromDateString(start.toPlainDate().toString()),
         )
         vevent.addPropertyWithValue(
           "dtend",
-          ICAL.Time.fromDateString(
-            end.toZonedDateTimeISO("Europe/Oslo").toPlainDate().toString(),
-          ),
+          ICAL.Time.fromDateString(end.toPlainDate().toString()),
         )
       } else {
-        vevent.addPropertyWithValue("dtstart", start.toString())
-        vevent.addPropertyWithValue("dtend", end.toString())
+        vevent.addPropertyWithValue("dtstart", start.toInstant().toString())
+        vevent.addPropertyWithValue("dtend", end.toInstant().toString())
       }
 
       if (isFullDays) {

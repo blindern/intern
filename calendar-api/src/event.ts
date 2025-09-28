@@ -5,8 +5,8 @@ export type Frequency = "DAILY" | "WEEKLY" | "MONTHLY"
 
 export interface FbsEvent {
   type: "event"
-  start: Temporal.Instant
-  end: Temporal.Instant
+  start: Temporal.ZonedDateTime
+  end: Temporal.ZonedDateTime
   title: string
   place?: string | undefined
   priority: Priority
@@ -15,8 +15,8 @@ export interface FbsEvent {
         frequency: Frequency
         interval: number
         events: {
-          start: Temporal.Instant
-          end: Temporal.Instant
+          start: Temporal.ZonedDateTime
+          end: Temporal.ZonedDateTime
         }[]
       }
     | undefined
@@ -35,11 +35,8 @@ export interface FbsComment {
 export type FbsEventOrComment = FbsEvent | FbsComment
 
 export function getIsFullDays(event: FbsEvent) {
-  const start = event.start.toZonedDateTimeISO("Europe/Oslo")
-  const end = event.end.toZonedDateTimeISO("Europe/Oslo")
-
-  const isStartStartOfDay = start.equals(start.startOfDay())
-  const isEndStartOfDay = end.equals(end.startOfDay())
+  const isStartStartOfDay = event.start.equals(event.start.startOfDay())
+  const isEndStartOfDay = event.end.equals(event.end.startOfDay())
 
   return isStartStartOfDay && isEndStartOfDay
 }

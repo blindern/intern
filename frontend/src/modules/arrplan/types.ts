@@ -6,11 +6,7 @@ export interface NormalEvent {
   info?: string | undefined
   place?: string | undefined
   priority: "high" | "medium" | "low"
-  recur?:
-    | {
-        interval: number
-      }
-    | undefined
+  recur?: boolean | undefined
   start: string // YYYY-MM-DD [HH:mm:ss]
   title: string
   type: "event"

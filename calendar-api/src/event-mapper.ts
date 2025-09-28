@@ -15,14 +15,14 @@ export function getAllEvents(events: FbsEventOrComment[]) {
 
   const result = [...events]
     .sort(sortEventsByTimeAndTitle)
-    .map(toResponseModel(Temporal.Now.instant()))
+    .map(toResponseModel(Temporal.Now.zonedDateTimeISO("Europe/Oslo")))
 
   cache.set(events, result)
   return result
 }
 
 export function getNextEvents(events: FbsEventOrComment[], count: number) {
-  const now = Temporal.Now.instant()
+  const now = Temporal.Now.zonedDateTimeISO("Europe/Oslo")
   const expandedEvents: FbsEvent[] = []
 
   for (const event of events) {
@@ -36,7 +36,7 @@ export function getNextEvents(events: FbsEventOrComment[], count: number) {
     ]
 
     for (const { start, end } of all) {
-      if (Temporal.Instant.compare(now, end) < 0) {
+      if (Temporal.ZonedDateTime.compare(now, end) < 0) {
         expandedEvents.push({
           ...event,
           recur: undefined,
@@ -57,7 +57,7 @@ export function sortEventsByTimeAndTitle(
   a: FbsEventOrComment,
   b: FbsEventOrComment,
 ): number {
-  const result = Temporal.Instant.compare(getStart(a), getStart(b))
+  const result = Temporal.ZonedDateTime.compare(getStart(a), getStart(b))
   if (result === 0) {
     const aText = a.type === "event" ? a.title : a.comment
     const bText = b.type === "event" ? b.title : b.comment
@@ -66,14 +66,14 @@ export function sortEventsByTimeAndTitle(
   return result
 }
 
-function getStart(value: FbsEventOrComment): Temporal.Instant {
+function getStart(value: FbsEventOrComment): Temporal.ZonedDateTime {
   if (value.type === "event") {
     return value.start
   }
-  return value.date.toZonedDateTime("Europe/Oslo").toInstant()
+  return value.date.toZonedDateTime("Europe/Oslo")
 }
 
-function toResponseModel(now: Temporal.Instant) {
+export function toResponseModel(now: Temporal.ZonedDateTime) {
   return (event: FbsEventOrComment) => {
     switch (event.type) {
       case "comment":
@@ -88,8 +88,10 @@ function toResponseModel(now: Temporal.Instant) {
         return {
           ...event,
           ...getStartAndEndText(event),
-          expired: Temporal.Instant.compare(now, event.end) >= 0,
+          expired: Temporal.ZonedDateTime.compare(now, event.end) >= 0,
           duration: getDuration(event),
+          // Not exposing recur data for now.
+          recur: event.recur ? true : undefined,
         }
       }
     }
@@ -101,20 +103,18 @@ const midnight = new Temporal.PlainTime()
 export function getDuration(
   event: Pick<FbsEvent, "start" | "end" | "recur">,
 ): string {
-  const start = event.start.toZonedDateTimeISO("Europe/Oslo")
-
   if (event.recur) {
-    if (start.toPlainTime().equals(midnight)) {
+    if (event.start.toPlainTime().equals(midnight)) {
       return (
         "hver " +
-        start.toLocaleString("nb-NO", {
+        event.start.toLocaleString("nb-NO", {
           weekday: "long",
         })
       )
     } else {
       return (
         "hver " +
-        start.toLocaleString("nb-NO", {
+        event.start.toLocaleString("nb-NO", {
           weekday: "long",
           hour: "2-digit",
           minute: "2-digit",
@@ -123,9 +123,9 @@ export function getDuration(
     }
   }
 
-  let end = event.end.toZonedDateTimeISO("Europe/Oslo")
+  let end = event.end
 
-  const isStartMidnight = start.toPlainTime().equals(midnight)
+  const isStartMidnight = event.start.toPlainTime().equals(midnight)
   const isEndMidnight = end.toPlainTime().equals(midnight)
 
   if (isStartMidnight && isEndMidnight) {
@@ -133,16 +133,16 @@ export function getDuration(
   }
 
   // Within or exactly a single day
-  if (start.toPlainDate().equals(end.toPlainDate())) {
+  if (event.start.toPlainDate().equals(end.toPlainDate())) {
     if (isStartMidnight && isEndMidnight) {
-      return start.toLocaleString("nb-NO", {
+      return event.start.toLocaleString("nb-NO", {
         weekday: "long",
         day: "numeric",
         month: "long",
       })
     }
 
-    return start.toLocaleString("nb-NO", {
+    return event.start.toLocaleString("nb-NO", {
       weekday: "long",
       day: "numeric",
       month: "long",
@@ -151,12 +151,12 @@ export function getDuration(
     })
   }
 
-  const sameMonth = start
+  const sameMonth = event.start
     .toPlainDate()
     .toPlainYearMonth()
     .equals(end.toPlainDate().toPlainYearMonth())
 
-  const startText = start.toLocaleString("nb-NO", {
+  const startText = event.start.toLocaleString("nb-NO", {
     weekday: "short",
     day: "numeric",
     month: sameMonth ? undefined : "short",
@@ -180,15 +180,14 @@ function formatLocalDate(date: Temporal.ZonedDateTime): string {
 }
 
 function getStartAndEndText(event: FbsEvent): { start: string; end: string } {
-  const start = event.start.toZonedDateTimeISO("Europe/Oslo")
-  const end = event.end.toZonedDateTimeISO("Europe/Oslo")
-
   const isFullDays = getIsFullDays(event)
 
   return {
-    start: isFullDays ? start.toPlainDate().toString() : formatLocalDate(start),
+    start: isFullDays
+      ? event.start.toPlainDate().toString()
+      : formatLocalDate(event.start),
     end: isFullDays
-      ? end.toPlainDate().subtract({ days: 1 }).toString()
-      : formatLocalDate(end),
+      ? event.end.toPlainDate().subtract({ days: 1 }).toString()
+      : formatLocalDate(event.end),
   }
 }

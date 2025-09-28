@@ -104,8 +104,8 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
       title: (event.summary || "").trim(),
       place: (event.location || "").trim() || undefined,
       priority,
-      start: start.toInstant(),
-      end: end.toInstant(),
+      start,
+      end,
     }
 
     const rrule = vevent.getFirstPropertyValue("rrule") as
@@ -117,8 +117,8 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
         const end = start.add(duration)
 
         return {
-          start: start.toInstant(),
-          end: end.toInstant(),
+          start,
+          end,
         }
       })
 

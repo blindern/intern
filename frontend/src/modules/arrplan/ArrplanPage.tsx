@@ -118,8 +118,7 @@ const List = ({
 
   const eventsRecurring = eventsCurrentSemester
     .filter(
-      (item): item is NormalEvent =>
-        item.type === "event" && item.recur != null,
+      (item): item is NormalEvent => item.type === "event" && !!item.recur,
     )
     .sort(sortRecurringEvents)
   const comments = eventsCurrentSemester.filter(
