@@ -1,15 +1,20 @@
 export interface NormalEvent {
   allday: boolean
-  by: string | null
+  by?: string | undefined
   duration: string
-  end: string // YYYY-MM-DD
+  end: string // YYYY-MM-DD [HH:mm:ss]
   expired: boolean
-  info: string | null
-  place: string | null
+  info?: string | undefined
+  place?: string | undefined
   priority: "high" | "medium" | "low"
-  start: string // YYYY-MM-DD
+  recur?:
+    | {
+        interval: number
+      }
+    | undefined
+  start: string // YYYY-MM-DD [HH:mm:ss]
   title: string
-  type: "event" | "event_recurring"
+  type: "event"
 }
 
 export interface Comment {

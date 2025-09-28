@@ -17,7 +17,7 @@ export const ArrplanHomeBox = () => {
         <ErrorMessages error={error} />
       ) : (
         arrplan.map((event, idx) =>
-          event.type === "event" || event.type === "event_recurring" ? (
+          event.type === "event" ? (
             <p
               key={idx}
               className={classNames({

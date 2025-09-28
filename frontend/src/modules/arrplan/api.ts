@@ -1,6 +1,6 @@
-import { useApiService } from "modules/core/api/ApiServiceProvider.js"
-import { Moment } from "moment"
 import { useQuery } from "@tanstack/react-query"
+import { ResponseError } from "modules/core/api/errors.js"
+import { Moment } from "moment"
 import moment from "utils/moment.js"
 import { EventItem } from "./types.js"
 
@@ -32,24 +32,46 @@ export const getSemesterListFromEvent = (event: EventItem) => {
 }
 
 export function useArrplanList() {
-  const api = useApiService()
   return useQuery({
     queryKey: ["arrplan", "list"],
 
     queryFn: async () => {
-      const response = await api.get("arrplan?invalidate=1")
+      const response = await fetch(
+        "https://foreningenbs.no/calendar-api/events",
+      )
+      if (!response.ok) {
+        let data
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          data = await response.json()
+        } catch {
+          data = null
+        }
+        throw new ResponseError(response, [], data)
+      }
       return (await response.json()) as EventItem[]
     },
   })
 }
 
 export function useArrplanNext() {
-  const api = useApiService()
   return useQuery({
     queryKey: ["arrplan", "next"],
 
     queryFn: async () => {
-      const response = await api.get("arrplan/next?count=6")
+      const response = await fetch(
+        "https://foreningenbs.no/calendar-api/events/next?count=6",
+      )
+      if (!response.ok) {
+        let data
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          data = await response.json()
+        } catch {
+          data = null
+        }
+        throw new ResponseError(response, [], data)
+      }
       return (await response.json()) as EventItem[]
     },
   })

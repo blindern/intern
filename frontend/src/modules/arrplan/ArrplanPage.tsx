@@ -114,10 +114,13 @@ const List = ({
 
   const eventsNormal = eventsCurrentSemester.filter(
     (item) => item.type === "event",
-  ) as NormalEvent[]
+  )
 
   const eventsRecurring = eventsCurrentSemester
-    .filter((item): item is NormalEvent => item.type === "event_recurring")
+    .filter(
+      (item): item is NormalEvent =>
+        item.type === "event" && item.recur != null,
+    )
     .sort(sortRecurringEvents)
   const comments = eventsCurrentSemester.filter(
     (item) => item.type === "comment",
