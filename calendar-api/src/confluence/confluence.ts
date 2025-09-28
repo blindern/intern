@@ -42,6 +42,18 @@ export async function getConfluenceEvents(): Promise<FbsEvent[]> {
   return result.flat()
 }
 
+function dateToZoned(date: ICAL.Time) {
+  if (date.zone.tzid === "floating") {
+    return Temporal.PlainDateTime.from(date.toString()).toZonedDateTime(
+      "Europe/Oslo",
+    )
+  }
+
+  return Temporal.Instant.fromEpochMilliseconds(
+    date.toJSDate().getTime(),
+  ).toZonedDateTimeISO("Europe/Oslo")
+}
+
 export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const jcalData = ICAL.parse(icsData)
@@ -66,12 +78,8 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
   for (const vevent of vevents) {
     const event = new ICAL.Event(vevent)
 
-    const start = Temporal.Instant.fromEpochMilliseconds(
-      event.startDate.toJSDate().getTime(),
-    ).toZonedDateTimeISO("Europe/Oslo")
-    const end = Temporal.Instant.fromEpochMilliseconds(
-      event.endDate.toJSDate().getTime(),
-    ).toZonedDateTimeISO("Europe/Oslo")
+    const start = dateToZoned(event.startDate)
+    const end = dateToZoned(event.endDate)
 
     const isStartStartOfDay = start.equals(start.startOfDay())
     const isEndStartOfDay = end.equals(end.startOfDay())
@@ -99,9 +107,7 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
       | undefined
     if (rrule) {
       const otherOccurrences = Array.from(recurIterator(event)).map((it) => {
-        const start = Temporal.Instant.fromEpochMilliseconds(
-          it.toJSDate().getTime(),
-        ).toZonedDateTimeISO("Europe/Oslo")
+        const start = dateToZoned(it)
         const end = start.add(duration)
 
         return {

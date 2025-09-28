@@ -93,7 +93,7 @@ export function getDuration(
     if (start.toPlainTime().equals(midnight)) {
       return (
         "hver " +
-        event.start.toLocaleString("nb-NO", {
+        start.toLocaleString("nb-NO", {
           weekday: "long",
         })
       )
