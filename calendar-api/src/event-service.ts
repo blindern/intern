@@ -62,12 +62,14 @@ export class EventService {
 
   public async getEvents(options: { fresh: boolean }) {
     if (options.fresh) {
-      await this.#triggerFetch()
-    } else if (this.#shouldFetch()) {
+      return await this.#triggerFetch()
+    }
+
+    if (this.#shouldFetch()) {
       void this.#triggerFetch()
     }
 
-    if (this.cache != null && !options.fresh) {
+    if (this.cache != null) {
       return this.cache.data
     }
 

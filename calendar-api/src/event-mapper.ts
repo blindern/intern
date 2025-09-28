@@ -2,7 +2,7 @@ import { Temporal } from "@js-temporal/polyfill"
 import type { FbsEvent, FbsEventOrComment } from "./event.ts"
 
 export function getAllEvents(events: FbsEventOrComment[]) {
-  return events
+  return [...events]
     .sort(sortEventsByTimeAndTitle)
     .map(toResponseModel(Temporal.Now.instant()))
 }

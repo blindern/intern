@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
 
 image_id=${1?:Missing image id argument}
