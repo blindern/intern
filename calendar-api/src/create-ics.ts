@@ -41,17 +41,26 @@ export function createIcs(
     for (const { start, end } of all) {
       const vevent = new ICAL.Component("vevent")
 
-      /*
-      TODO: Handle allday events differently? Old format:
-      DTSTART;TZID=Europe/Oslo;VALUE=DATE:20101016
-      DTEND;TZID=Europe/Oslo;VALUE=DATE:20101017
-      */
-
       vevent.addPropertyWithValue("uid", uidGenerator())
       vevent.addPropertyWithValue("dtstamp", now.round("second").toString())
 
-      vevent.addPropertyWithValue("dtstart", start.toString())
-      vevent.addPropertyWithValue("dtend", end.toString())
+      if (event.allday) {
+        vevent.addPropertyWithValue(
+          "dtstart",
+          ICAL.Time.fromDateString(
+            start.toZonedDateTimeISO("Europe/Oslo").toPlainDate().toString(),
+          ),
+        )
+        vevent.addPropertyWithValue(
+          "dtend",
+          ICAL.Time.fromDateString(
+            end.toZonedDateTimeISO("Europe/Oslo").toPlainDate().toString(),
+          ),
+        )
+      } else {
+        vevent.addPropertyWithValue("dtstart", start.toString())
+        vevent.addPropertyWithValue("dtend", end.toString())
+      }
 
       if (event.allday) {
         vevent.addPropertyWithValue("x-microsoft-cdo-alldayevent", "true")
