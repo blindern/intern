@@ -64,7 +64,7 @@ export async function getMediawikiEvents(): Promise<FbsEventOrComment[]> {
       }
     }
 
-    const allday = !item.startTime || !item.endTime
+    const allday = !item.startTime && !item.endTime
 
     const start = getTime(item.startDate, item.startTime)
     const end = getTime(
