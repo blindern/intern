@@ -29,11 +29,16 @@ new Elysia({ adapter: node() })
   })
   .get("/", () => "https://github.com/blindern/intern")
   .get("/health", () => "I am alive!")
-  .get("/events.ics", async ({ set }) => {
-    set.headers["Content-Disposition"] = "inline; filename=cal.ics"
-    set.headers["Content-Type"] = "text/calendar; charset=utf-8"
-    return createIcs(await eventService.getEvents({ fresh: false }))
-  })
+  .get(
+    "/events.ics",
+    async () =>
+      new Response(createIcs(await eventService.getEvents({ fresh: false })), {
+        headers: {
+          "content-disposition": "inline; filename=cal.ics",
+          "content-type": "text/calendar; charset=utf-8",
+        },
+      }),
+  )
   .get(
     "/events",
     async ({ query }) =>
