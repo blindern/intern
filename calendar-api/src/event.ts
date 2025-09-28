@@ -1,4 +1,4 @@
-import type { Temporal } from "@js-temporal/polyfill"
+import { Temporal } from "@js-temporal/polyfill"
 
 export type Priority = "low" | "medium" | "high"
 export type Frequency = "DAILY" | "WEEKLY" | "MONTHLY"
@@ -39,4 +39,24 @@ export function getIsFullDays(event: FbsEvent) {
   const isEndStartOfDay = event.end.equals(event.end.startOfDay())
 
   return isStartStartOfDay && isEndStartOfDay
+}
+
+export function sortEventsByTimeAndTitle(
+  a: FbsEventOrComment,
+  b: FbsEventOrComment,
+): number {
+  const result = Temporal.ZonedDateTime.compare(getStart(a), getStart(b))
+  if (result === 0) {
+    const aText = a.type === "event" ? a.title : a.comment
+    const bText = b.type === "event" ? b.title : b.comment
+    return aText.localeCompare(bText)
+  }
+  return result
+}
+
+function getStart(value: FbsEventOrComment): Temporal.ZonedDateTime {
+  if (value.type === "event") {
+    return value.start
+  }
+  return value.date.toZonedDateTime("Europe/Oslo")
 }

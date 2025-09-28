@@ -1,6 +1,6 @@
 import { getConfluenceEvents } from "./confluence/confluence.ts"
 import { getAllEvents } from "./event-mapper.ts"
-import type { FbsEventOrComment } from "./event.ts"
+import { sortEventsByTimeAndTitle, type FbsEventOrComment } from "./event.ts"
 import { getMediawikiEvents } from "./mediawiki/mediawiki.ts"
 
 interface Cache {
@@ -37,6 +37,8 @@ export class EventService {
   #triggerFetch() {
     this.#eventsPromise = retrieveEvents()
       .then((list) => {
+        list = [...list].sort(sortEventsByTimeAndTitle)
+
         // Reuse existing object if same contents.
         const lastList = this.cache?.data
         if (lastList && JSON.stringify(lastList) === JSON.stringify(list)) {
@@ -74,7 +76,7 @@ export class EventService {
     return cacheAge > 10_000
   }
 
-  public async getEvents(options: { fresh: boolean }) {
+  public async getOrderedEvents(options: { fresh: boolean }) {
     if (options.fresh) {
       return await this.#triggerFetch()
     }

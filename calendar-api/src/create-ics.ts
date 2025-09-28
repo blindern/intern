@@ -1,7 +1,6 @@
 import { Temporal } from "@js-temporal/polyfill"
 import ICAL from "ical.js"
 import { randomUUID } from "node:crypto"
-import { sortEventsByTimeAndTitle } from "./event-mapper.ts"
 import { getIsFullDays, type FbsEventOrComment } from "./event.ts"
 
 function defaultUidGenerator() {
@@ -25,8 +24,6 @@ export function createIcs(
   vcal.addPropertyWithValue("prodid", "foreningenbs.no")
   vcal.addPropertyWithValue("name", "foreningenbs.no")
   vcal.addPropertyWithValue("description", "Blindern Studenterhjem")
-
-  events = events.sort(sortEventsByTimeAndTitle)
 
   for (const event of events) {
     if (event.type !== "event") {

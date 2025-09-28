@@ -1,6 +1,7 @@
 import { Temporal } from "@js-temporal/polyfill"
 import {
   getIsFullDays,
+  sortEventsByTimeAndTitle,
   type FbsEvent,
   type FbsEventOrComment,
 } from "./event.ts"
@@ -13,9 +14,9 @@ export function getAllEvents(events: FbsEventOrComment[]) {
     return cached
   }
 
-  const result = [...events]
-    .sort(sortEventsByTimeAndTitle)
-    .map(toResponseModel(Temporal.Now.zonedDateTimeISO("Europe/Oslo")))
+  const result = events.map(
+    toResponseModel(Temporal.Now.zonedDateTimeISO("Europe/Oslo")),
+  )
 
   cache.set(events, result)
   return result
@@ -53,36 +54,13 @@ export function getNextEvents(events: FbsEventOrComment[], count: number) {
     .map(toResponseModel(now))
 }
 
-export function sortEventsByTimeAndTitle(
-  a: FbsEventOrComment,
-  b: FbsEventOrComment,
-): number {
-  const result = Temporal.ZonedDateTime.compare(getStart(a), getStart(b))
-  if (result === 0) {
-    const aText = a.type === "event" ? a.title : a.comment
-    const bText = b.type === "event" ? b.title : b.comment
-    return aText.localeCompare(bText)
-  }
-  return result
-}
-
-function getStart(value: FbsEventOrComment): Temporal.ZonedDateTime {
-  if (value.type === "event") {
-    return value.start
-  }
-  return value.date.toZonedDateTime("Europe/Oslo")
-}
-
 export function toResponseModel(now: Temporal.ZonedDateTime) {
   return (event: FbsEventOrComment) => {
     switch (event.type) {
       case "comment":
         return {
           ...event,
-          date: event.date
-            .toZonedDateTime("Europe/Oslo")
-            .toPlainDate()
-            .toString(),
+          date: event.date.toString(),
         }
       case "event": {
         return {

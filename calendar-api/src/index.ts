@@ -32,18 +32,21 @@ new Elysia({ adapter: node() })
   .get(
     "/events.ics",
     async () =>
-      new Response(createIcs(await eventService.getEvents({ fresh: false })), {
-        headers: {
-          "content-disposition": "inline; filename=cal.ics",
-          "content-type": "text/calendar; charset=utf-8",
+      new Response(
+        createIcs(await eventService.getOrderedEvents({ fresh: false })),
+        {
+          headers: {
+            "content-disposition": "inline; filename=cal.ics",
+            "content-type": "text/calendar; charset=utf-8",
+          },
         },
-      }),
+      ),
   )
   .get(
     "/events",
     async ({ query }) =>
       getAllEvents(
-        await eventService.getEvents({ fresh: query.fresh != null }),
+        await eventService.getOrderedEvents({ fresh: query.fresh != null }),
       ),
     {
       query: z.object({
@@ -55,7 +58,7 @@ new Elysia({ adapter: node() })
     "/events/next",
     async ({ query }) =>
       getNextEvents(
-        await eventService.getEvents({
+        await eventService.getOrderedEvents({
           fresh: query.fresh != null,
         }),
         query.count,

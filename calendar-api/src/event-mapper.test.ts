@@ -1,11 +1,8 @@
 import { Temporal } from "@js-temporal/polyfill"
 import { describe, expect, test } from "vitest"
-import {
-  getDuration,
-  sortEventsByTimeAndTitle,
-  toResponseModel,
-} from "./event-mapper.ts"
+import { getDuration, toResponseModel } from "./event-mapper.ts"
 import { getMediawikiEvents } from "./mediawiki/mediawiki.ts"
+import { sortEventsByTimeAndTitle } from "./event.ts"
 
 function timeAt(value: string) {
   return Temporal.Instant.from(value).toZonedDateTimeISO("Europe/Oslo")
