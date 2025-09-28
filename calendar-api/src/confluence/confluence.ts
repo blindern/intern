@@ -72,7 +72,10 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
       next = iter.next()
     ) {
       if (++i === 100) {
-        throw new Error("Possible infinite rrule loop")
+        console.error(
+          `Possible infinite rrule loop. Skipping further events. Event: ${event.startDate.toString()} ${event.summary}`,
+        )
+        return
       }
       if (next.compare(event.startDate) === 0) continue
       yield next
