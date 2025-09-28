@@ -1,5 +1,4 @@
 export interface NormalEvent {
-  allday: boolean
   by?: string | undefined
   duration: string
   end: string // YYYY-MM-DD [HH:mm:ss]

@@ -7,7 +7,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-01-01T23:00:00Z"),
       end: Temporal.Instant.from("2025-01-02T23:00:00Z"),
-      allday: false,
       recur: undefined,
     })
     expect(result).toMatchInlineSnapshot(`"torsdag 2. januar"`)
@@ -17,7 +16,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-06-05T22:00:00Z"),
       end: Temporal.Instant.from("2025-06-06T22:00:00Z"),
-      allday: false,
       recur: undefined,
     })
     expect(result).toMatchInlineSnapshot(`"fredag 6. juni"`)
@@ -27,7 +25,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-06-05T22:00:00Z"),
       end: Temporal.Instant.from("2025-06-07T22:00:00Z"),
-      allday: true,
       recur: undefined,
     })
     expect(result).toMatchInlineSnapshot(`"fre. 6.–lør. 7. juni"`)
@@ -37,7 +34,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-06-05T10:00:00Z"),
       end: Temporal.Instant.from("2025-06-05T14:00:00Z"),
-      allday: false,
       recur: undefined,
     })
     expect(result).toMatchInlineSnapshot(`"torsdag 5. juni kl. 12:00"`)
@@ -47,7 +43,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-06-05T14:00:00Z"),
       end: Temporal.Instant.from("2025-06-07T12:00:00Z"),
-      allday: false,
       recur: undefined,
     })
     expect(result).toMatchInlineSnapshot(`"tor. 5., 16:00–lør. 7. juni, 14:00"`)
@@ -57,7 +52,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-07-28T14:00:00Z"),
       end: Temporal.Instant.from("2025-08-07T12:00:00Z"),
-      allday: false,
       recur: undefined,
     })
     expect(result).toMatchInlineSnapshot(
@@ -69,7 +63,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-06-05T22:00:00Z"),
       end: Temporal.Instant.from("2025-06-06T22:00:00Z"),
-      allday: false,
       recur: {
         events: [],
         frequency: "DAILY",
@@ -83,7 +76,6 @@ describe("getDuration", () => {
     const result = getDuration({
       start: Temporal.Instant.from("2025-06-05T14:00:00Z"),
       end: Temporal.Instant.from("2025-06-05T16:00:00Z"),
-      allday: false,
       recur: {
         events: [],
         frequency: "DAILY",

@@ -91,9 +91,9 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
     const isStartStartOfDay = start.equals(start.startOfDay())
     const isEndStartOfDay = end.equals(end.startOfDay())
 
-    const allday = isStartStartOfDay && isEndStartOfDay
+    const isFullDays = isStartStartOfDay && isEndStartOfDay
 
-    const duration = allday
+    const duration = isFullDays
       ? start.until(end, {
           smallestUnit: "day",
         })
@@ -106,7 +106,6 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
       priority,
       start: start.toInstant(),
       end: end.toInstant(),
-      allday,
     }
 
     const rrule = vevent.getFirstPropertyValue("rrule") as

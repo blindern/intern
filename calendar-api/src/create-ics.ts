@@ -2,7 +2,7 @@ import { Temporal } from "@js-temporal/polyfill"
 import ICAL from "ical.js"
 import { randomUUID } from "node:crypto"
 import { sortEventsByTimeAndTitle } from "./event-mapper.ts"
-import type { FbsEventOrComment } from "./event.ts"
+import { getIsFullDays, type FbsEventOrComment } from "./event.ts"
 
 function defaultUidGenerator() {
   return randomUUID().replace(/-/g, "").slice(0, 12)
@@ -44,7 +44,9 @@ export function createIcs(
       vevent.addPropertyWithValue("uid", uidGenerator())
       vevent.addPropertyWithValue("dtstamp", now.round("second").toString())
 
-      if (event.allday) {
+      const isFullDays = getIsFullDays(event)
+
+      if (isFullDays) {
         vevent.addPropertyWithValue(
           "dtstart",
           ICAL.Time.fromDateString(
@@ -62,7 +64,7 @@ export function createIcs(
         vevent.addPropertyWithValue("dtend", end.toString())
       }
 
-      if (event.allday) {
+      if (isFullDays) {
         vevent.addPropertyWithValue("x-microsoft-cdo-alldayevent", "true")
       }
 

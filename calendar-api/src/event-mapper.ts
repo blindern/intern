@@ -1,5 +1,9 @@
 import { Temporal } from "@js-temporal/polyfill"
-import type { FbsEvent, FbsEventOrComment } from "./event.ts"
+import {
+  getIsFullDays,
+  type FbsEvent,
+  type FbsEventOrComment,
+} from "./event.ts"
 
 const cache = new WeakMap<object, unknown>()
 
@@ -95,7 +99,7 @@ function toResponseModel(now: Temporal.Instant) {
 const midnight = new Temporal.PlainTime()
 
 export function getDuration(
-  event: Pick<FbsEvent, "start" | "end" | "allday" | "recur">,
+  event: Pick<FbsEvent, "start" | "end" | "recur">,
 ): string {
   const start = event.start.toZonedDateTimeISO("Europe/Oslo")
 
@@ -179,11 +183,11 @@ function getStartAndEndText(event: FbsEvent): { start: string; end: string } {
   const start = event.start.toZonedDateTimeISO("Europe/Oslo")
   const end = event.end.toZonedDateTimeISO("Europe/Oslo")
 
+  const isFullDays = getIsFullDays(event)
+
   return {
-    start: event.allday
-      ? start.toPlainDate().toString()
-      : formatLocalDate(start),
-    end: event.allday
+    start: isFullDays ? start.toPlainDate().toString() : formatLocalDate(start),
+    end: isFullDays
       ? end.toPlainDate().subtract({ days: 1 }).toString()
       : formatLocalDate(end),
   }

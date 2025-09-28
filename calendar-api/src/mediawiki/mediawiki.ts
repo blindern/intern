@@ -64,7 +64,7 @@ export async function getMediawikiEvents(): Promise<FbsEventOrComment[]> {
       }
     }
 
-    const allday = !item.startTime && !item.endTime
+    const isFullDays = !item.startTime && !item.endTime
 
     const start = getTime(item.startDate, item.startTime)
     const end = getTime(
@@ -73,7 +73,7 @@ export async function getMediawikiEvents(): Promise<FbsEventOrComment[]> {
       !item.endTime,
     )
 
-    const duration = allday
+    const duration = isFullDays
       ? start.until(end, {
           smallestUnit: "day",
         })
@@ -107,7 +107,6 @@ export async function getMediawikiEvents(): Promise<FbsEventOrComment[]> {
       start: start.toInstant(),
       end: end.toInstant(),
       info: item.info,
-      allday,
       recur,
     }
   })
