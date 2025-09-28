@@ -1,10 +1,20 @@
 import { Temporal } from "@js-temporal/polyfill"
 import type { FbsEvent, FbsEventOrComment } from "./event.ts"
 
+const cache = new WeakMap<object, unknown>()
+
 export function getAllEvents(events: FbsEventOrComment[]) {
-  return [...events]
+  const cached = cache.get(events)
+  if (cached) {
+    return cached
+  }
+
+  const result = [...events]
     .sort(sortEventsByTimeAndTitle)
     .map(toResponseModel(Temporal.Now.instant()))
+
+  cache.set(events, result)
+  return result
 }
 
 export function getNextEvents(events: FbsEventOrComment[], count: number) {

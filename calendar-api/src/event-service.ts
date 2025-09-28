@@ -1,4 +1,5 @@
 import { getConfluenceEvents } from "./confluence/confluence.ts"
+import { getAllEvents } from "./event-mapper.ts"
 import type { FbsEventOrComment } from "./event.ts"
 import { getMediawikiEvents } from "./mediawiki/mediawiki.ts"
 
@@ -36,10 +37,23 @@ export class EventService {
   #triggerFetch() {
     this.#eventsPromise = retrieveEvents()
       .then((list) => {
+        // Reuse existing object if same contents.
+        const lastList = this.cache?.data
+        if (lastList && JSON.stringify(lastList) === JSON.stringify(list)) {
+          list = lastList
+        } else {
+          console.log("New list of events")
+        }
+
         this.cache = {
           timestamp: new Date().getTime(),
           data: list,
         }
+
+        // Trigger eager mapping to save time on first request.
+        // This will store a cached variant.
+        getAllEvents(list)
+
         return list
       })
       .finally(() => {
