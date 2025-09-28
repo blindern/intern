@@ -1,0 +1,3864 @@
+[
+  {
+    "type": "event",
+    "title": "Rebusløp og velkommen hjem fest",
+    "priority": "medium",
+    "start": "2010-08-21T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-08-22T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmemiddag m/cafe avec",
+    "priority": "medium",
+    "start": "2010-08-29T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-08-30T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmetur til Småbruket",
+    "by": "hytta",
+    "priority": "medium",
+    "start": "2010-09-04T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-09-05T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "by": "tema: eventyr",
+    "priority": "medium",
+    "start": "2010-09-11T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-09-12T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sølecup",
+    "priority": "medium",
+    "start": "2010-09-25T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-09-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "priority": "medium",
+    "start": "2010-10-01T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-10-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Høstball",
+    "priority": "medium",
+    "start": "2010-10-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-10-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Cafe avec",
+    "priority": "medium",
+    "start": "2010-10-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2010-10-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Togafest",
+    "priority": "medium",
+    "start": "2010-11-06T00:00:00+01:00[Europe/Oslo]",
+    "end": "2010-11-07T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad",
+    "priority": "medium",
+    "start": "2010-11-12T00:00:00+01:00[Europe/Oslo]",
+    "end": "2010-11-13T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Revysus",
+    "priority": "medium",
+    "start": "2010-11-20T00:00:00+01:00[Europe/Oslo]",
+    "end": "2010-11-21T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2010-11-27T00:00:00+01:00[Europe/Oslo]",
+    "end": "2010-11-28T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Julemøte",
+    "priority": "medium",
+    "start": "2010-12-03T00:00:00+01:00[Europe/Oslo]",
+    "end": "2010-12-04T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2011-01-08T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-01-09T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte",
+    "priority": "medium",
+    "start": "2011-01-13T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-01-14T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2011-01-14T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-01-15T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmemiddag m/cafe avec",
+    "priority": "medium",
+    "start": "2011-01-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-01-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKEvors",
+    "priority": "medium",
+    "start": "2011-01-22T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-01-23T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKA på Blindern 2011 - se blindernuka.no",
+    "priority": "medium",
+    "start": "2011-01-26T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-02-07T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Holmenkollen skimaraton",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-02-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-02-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket",
+    "by": "hytta",
+    "priority": "medium",
+    "start": "2011-02-18T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-02-19T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2011-02-19T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-02-20T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Ski-VM i Oslo",
+    "by": "IFBS arrangerer camp",
+    "priority": "medium",
+    "start": "2011-02-23T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-03-07T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Skitur til Hemsedal",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-03-01T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-04-04T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKEball m/cafe avec",
+    "priority": "medium",
+    "start": "2011-03-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-03-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "priority": "medium",
+    "start": "2011-03-18T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-03-19T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Birkebeinerrennet",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-03-19T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-03-20T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Schussrenn",
+    "priority": "medium",
+    "start": "2011-04-09T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-04-10T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sjakkturnering",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-04-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-04-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Russefest",
+    "priority": "medium",
+    "start": "2011-04-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2011-05-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "priority": "medium",
+    "start": "2011-05-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-11T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Holmenkollstafetten",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-05-14T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-15T00:00:00+02:00[Europe/Oslo]",
+    "info": "http://www.holmenkollstafetten.no/"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad til Småbruket (etter Holmenkollstafetten)",
+    "priority": "medium",
+    "start": "2011-05-14T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "17. mai med cafe avec",
+    "priority": "medium",
+    "start": "2011-05-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte",
+    "priority": "medium",
+    "start": "2011-05-19T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-20T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKAs funksjonærfest",
+    "priority": "medium",
+    "start": "2011-05-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "IFBS-sommerleker",
+    "priority": "medium",
+    "start": "2011-05-29T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-05-30T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkehaugsfestivalen NB! Ny dato!",
+    "priority": "medium",
+    "start": "2011-06-03T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-06-04T00:00:00+02:00[Europe/Oslo]",
+    "info": "http://www.facebook.com/event.php?eid=191738997538769"
+  },
+  {
+    "type": "event",
+    "title": "Velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2011-08-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-08-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte",
+    "priority": "medium",
+    "start": "2011-08-25T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-08-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket (hytta)",
+    "priority": "medium",
+    "start": "2011-08-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-08-27T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Rebusløp",
+    "priority": "medium",
+    "start": "2011-08-27T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-08-28T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmemiddag m/cafe avec",
+    "priority": "medium",
+    "start": "2011-08-28T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-08-29T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sølecup",
+    "priority": "medium",
+    "start": "2011-09-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-09-11T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Filmmaraton med Pirates of the Caribbean",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-09-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-09-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2011-09-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-09-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld og kaffebar",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-09-25T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-09-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad til Småbruket - IFBS tar turen opp på lørdagen og blir over til søndag",
+    "priority": "medium",
+    "start": "2011-09-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-03T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "priority": "medium",
+    "start": "2011-10-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Barskingen",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-10-08T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-09T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld og kaffebar",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-10-09T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-10T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Stupekurs",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-10-09T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-10T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bocketurnering",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-10-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Høstball",
+    "priority": "medium",
+    "start": "2011-10-22T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Café avec",
+    "priority": "medium",
+    "start": "2011-10-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2011-10-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Åpent Kollegiemøte",
+    "priority": "medium",
+    "start": "2011-11-07T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-08T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Båltur i Oslomarka",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-11-09T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-10T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte",
+    "priority": "medium",
+    "start": "2011-11-10T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-11T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Togafest",
+    "priority": "medium",
+    "start": "2011-11-12T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-13T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Filmmaraton med Twilight",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-11-13T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-14T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "priority": "medium",
+    "start": "2011-11-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-18T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "priority": "medium",
+    "start": "2011-11-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens juleverksted",
+    "priority": "medium",
+    "start": "2011-11-27T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-28T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld og kaffebar",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-11-27T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-11-28T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Julemøte",
+    "priority": "medium",
+    "start": "2011-12-02T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-12-03T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld og kaffebar",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-12-04T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-12-05T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Nansen-foredrag av Carl Emil Vogt",
+    "by": "Biblioteket",
+    "priority": "medium",
+    "start": "2011-12-07T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-12-08T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Filmmaraton med Harry Potter",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2011-12-10T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-12-11T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Skiferie på Tynset",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2011-12-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2011-12-25T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2011-12-31",
+    "comment": "IFBS arrangerer også regelmessige aktiviteter i ukedagene. Se IFBS-tavlen for nærmere informasjon. Tidspunktene nedenfor er kun veiledelde og de vanlige tidspunktene aktivitetene foregår.<br />\n<br />\n<dl>\n  <dt>Mandager</dt>\n  <dd>Løping kl 18</dd>\n  <dt>Onsdager</dt>\n  <dd>Ballspill kl 16</dd>\n  <dt>Torsdager</dt>\n  <dd>&quot;Back-to-basic&quot;-styrkesirkel kl 20</dd>\n  <dt>Søndager</dt>\n  <dd>Svømming/bading kl 12</dd>\n</dl>"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2012-01-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket",
+    "by": "hytta",
+    "priority": "medium",
+    "start": "2012-01-13T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-14T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Skitur til Småbruket ifm. pygmétur",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-01-14T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-15T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2012-01-14T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-15T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémiddag",
+    "priority": "medium",
+    "start": "2012-01-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Overnattingstur til Katnosdammen (IFBS) note 1",
+    "priority": "medium",
+    "start": "2012-01-20T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-22T00:00:00+01:00[Europe/Oslo]",
+    "info": "Toget til Hakadalen lørdag formiddag. 28 km på ski inn til Katnosdammen hvor vi lager middag og overnatter. Katnosdammen er en gammel damvokterbolig som akkurat ha fått nyoppusset kjøkken og freshet opp stue! Søndag går vi tilbake til Blindern via Kikut. Vil man ikke gå så lang tur går man tilbake til Hakadalen og tar toget derfra."
+  },
+  {
+    "type": "event",
+    "title": "Beer Olympics",
+    "priority": "medium",
+    "start": "2012-01-21T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-22T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Filmmaraton",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-01-27T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-28T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2012-01-28T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-29T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-01-29T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-01-30T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Skiweekend i Hamar",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-02-03T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-02-06T00:00:00+01:00[Europe/Oslo]",
+    "info": "Langrenn-, skøyte- og slalåm/snowboard/telemark-weekend i Hamar: Tuva inviterer til skihelg i Hamar. Vi bor i et hus nede ved Mjøsa, med 18 sengeplasser, en koie og en rød stuga. Vi tar toget til Hamar fredag ettermiddag (1 1/2 time). Pris 390 kr, tur-retur, og eneste nødvendige utgift for turen. Kost og losji er gratis.\nLørdag:\nAlt. 1:Langrenn i Vangsåsa (folk velger tur etter nivå), evt. Steinfjellrunden som seeding til Birken.\nAlt. 2: Skøytebane rett utenfor huset dersom Mjøsa er islagt.\nAlt. 3: Svømmehall med det beste stupetårnet i landet!\nAlt. 4: Bli igjen i huset og kose seg.\nSøndag: Hafjell (1 times kjøring) eller langrenn og ellers samme alternativer som lørdag."
+  },
+  {
+    "type": "event",
+    "title": "Juridisk aften",
+    "priority": "medium",
+    "start": "2012-02-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-02-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Ekstraordinært allmannamøte",
+    "priority": "medium",
+    "start": "2012-02-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-02-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Båltur til Sognsvann",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-02-22T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-02-23T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Smørekurs",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-02-24T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-02-25T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Ulympiske vinterleker",
+    "by": "FFR/IFBS",
+    "priority": "medium",
+    "start": "2012-02-25T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-02-26T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-02-26T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-02-27T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkefest",
+    "priority": "medium",
+    "start": "2012-03-03T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-03-04T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Café Avec",
+    "priority": "medium",
+    "start": "2012-03-04T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-03-05T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Tur til Snøhetta",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-03-10T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-03-12T00:00:00+01:00[Europe/Oslo]",
+    "info": "Skitur til Snøhetta: Vi tar toget/kjører til Dovrefjell og Kongsvold Fjellstue. Her starter kvisteløypa på 17 km som tar oss inn til Reinheim, selvbetjent turisthytte hvor vi overnatter.\nNeste dag går vi opp til Snøhetta. Vi avslutter dagen med en skikkelig hyttemiddag på Reinheim før vi neste dag spenner på skiene og kommer oss tilbake til Kongsvold."
+  },
+  {
+    "type": "event",
+    "title": "Sjakkturnering",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-03-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-03-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "priority": "medium",
+    "start": "2012-03-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-03-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hemsedaltur",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-03-23T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-03-26T00:00:00+02:00[Europe/Oslo]",
+    "info": "Hemsedaltur: Tradisjonstro arrangerer IFBS tur til Hemsedal. Vi har allerede booket to leiligheter, hvor vi tilsammen har plass til 16 stk. Påmelding i slutten av januar etter prinsippet førstemann til mølla. Er påmeldingen stor kan vi prøve å booke enda en leilighet."
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-03-25T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-03-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Påskejakten",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-03-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-04-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell utflyttingsfest ifm. oppussingen fra 1. april",
+    "priority": "medium",
+    "start": "2012-03-28T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-03-29T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Utflyttingsfest ifm. oppussingen fra 1. april",
+    "priority": "medium",
+    "start": "2012-03-29T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-03-30T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Schussrenn",
+    "priority": "medium",
+    "start": "2012-04-14T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-04-15T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "-2012-04-21 Filmmaraton",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-04-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-04-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Elefantfest (kun for elefanter)",
+    "priority": "medium",
+    "start": "2012-04-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-04-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-04-29T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-04-30T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Russefest",
+    "priority": "medium",
+    "start": "2012-04-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad til Småbruket",
+    "priority": "medium",
+    "start": "2012-05-04T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Åpent kollegiemøte",
+    "priority": "medium",
+    "start": "2012-05-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foredrag om eugenikk og rasehygienisk tenkning i Norge, holdes av Espen Søbye",
+    "by": "Biblioteksutvalget og FFR",
+    "priority": "medium",
+    "start": "2012-05-09T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-10T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte",
+    "priority": "medium",
+    "start": "2012-05-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-11T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Holmenkollstafetten",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-05-12T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-13T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "priority": "medium",
+    "start": "2012-05-14T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2012-05-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "17. maifeiring på Hardangerjøkulen",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-05-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-18T00:00:00+02:00[Europe/Oslo]",
+    "info": "Nasjonaldagen på Finse: 17. mai-feiringen på Finse har blitt en tradisjon. Opptil 3.000 mennesker velger å feire nasjonaldagen med å gå på ski fra Finse til Hardangerjøkulen. Ved 1.800 meters høyde ved Jøkulhytta holdes det en gudstjeneste, før det arrangeres 17. mai-tog og en legendarisk fotballkamp."
+  },
+  {
+    "type": "event",
+    "title": "Café Avec",
+    "priority": "medium",
+    "start": "2012-05-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "priority": "medium",
+    "start": "2012-05-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sommerleker",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-05-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-05-27T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkehaugsfestivalen",
+    "priority": "medium",
+    "start": "2012-06-01T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-06-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegiekontituering",
+    "priority": "medium",
+    "start": "2012-06-01T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-06-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2012-06-30",
+    "comment": "IFBS arrangerer også regelmessige aktiviteter i ukedagene. Se IFBS-tavlen for nærmere informasjon. Tidspunktene nedenfor er kun veiledende og de vanlige tidspunktene aktivitetene foregår.<br />\n<br />\n<dl>\n  <dt>Mandager</dt>\n  <dd>Løpetreninger kl 18. (Vintertid: Intervalltrening på ski)</dd>\n  <dt>Onsdager</dt>\n  <dd>Ballspill kl 16</dd>\n  <dt>Torsdager</dt>\n  <dd>&quot;Back-to-basic&quot;-styrkesirkel kl 20</dd>\n  <dt>Søndager</dt>\n  <dd>Festforeningen arrangerer \"kino\" med visning av to filmer på søndager.</dd>\n</dl>"
+  },
+  {
+    "type": "event",
+    "title": "miniUKA: Pub-til-pub",
+    "priority": "medium",
+    "start": "2012-08-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-08-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "miniUKA: Konsertkveld",
+    "priority": "medium",
+    "start": "2012-08-21T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-08-22T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "miniUKA: Internaften",
+    "priority": "medium",
+    "start": "2012-08-22T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-08-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte",
+    "priority": "medium",
+    "start": "2012-08-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-08-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Rebusløp og velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2012-08-25T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-08-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémiddag m/café avec",
+    "priority": "medium",
+    "start": "2012-08-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-08-27T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket (hytta)",
+    "priority": "medium",
+    "start": "2012-08-31T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-09-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sølecup",
+    "priority": "medium",
+    "start": "2012-09-08T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-09-09T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Båltur - avreise BS kl 19",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2012-09-18T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-09-19T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2012-09-22T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-09-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad til Småbruket (hytta)",
+    "priority": "medium",
+    "start": "2012-09-28T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-10-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "priority": "medium",
+    "start": "2012-10-05T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-10-06T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bergen Challenge med IFBS",
+    "priority": "medium",
+    "start": "2012-10-11T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-10-15T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Åpent kollegiemøte kl 19:30",
+    "priority": "medium",
+    "start": "2012-10-15T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-10-16T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Høstball",
+    "priority": "medium",
+    "start": "2012-10-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-10-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Café avec",
+    "priority": "medium",
+    "start": "2012-10-21T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-10-22T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Tur med biblioteksutvalget til Det Norske Teateret for å se Himmlers fødselsdag av østerrikeren Thomas Bernhard. Påmelding innen 16. september",
+    "by": "Lars Hektoen",
+    "priority": "medium",
+    "start": "2012-10-27T00:00:00+02:00[Europe/Oslo]",
+    "end": "2012-10-28T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Togafest",
+    "priority": "medium",
+    "start": "2012-11-03T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-11-04T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte",
+    "priority": "medium",
+    "start": "2012-11-08T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-11-09T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "priority": "medium",
+    "start": "2012-11-12T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-11-15T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "RISK-turnering",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2012-11-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-11-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Revysus",
+    "priority": "medium",
+    "start": "2012-11-17T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-11-18T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "priority": "medium",
+    "start": "2012-11-22T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-11-23T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegiekonstituering",
+    "priority": "medium",
+    "start": "2012-11-23T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-11-24T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens juleverksted",
+    "priority": "medium",
+    "start": "2012-12-02T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-12-03T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Julemøte",
+    "priority": "medium",
+    "start": "2012-12-07T00:00:00+01:00[Europe/Oslo]",
+    "end": "2012-12-08T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2012-12-31",
+    "comment": "IFBS arrangerer også regelmessige aktiviteter i ukedagene. Se IFBS-tavlen for nærmere informasjon. Tidspunktene nedenfor er kun veiledende og de vanlige tidspunktene aktivitetene foregår.<br />\n<br />\nRegelmessige aktiviteter høst 2012:<br />\n<dl>\n<dt>Mandager</dt><dd>Løpetreninger kl 18.</dd>\n<dt>Tirsdager</dt><dd>Hiphop kl 18-19\n<dt>Onsdager</dt><dd>Styrkesirkel\n<dt>Torsdager</dt><dd>Ballspill kl 16 (på Blindern Athletica)\n<dt>Fredager</dt><dd>Sprint-trening med Tormod\n<dt>Søndager</dt><dd>Festforeningen arrangerer \"Billa kino\" med visning av to filmer på søndager.</dd>\n</dl>"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2013-01-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-01-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte",
+    "priority": "medium",
+    "start": "2013-01-10T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-01-11T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Velkommen hjem-fest",
+    "priority": "medium",
+    "start": "2013-01-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-01-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémiddag",
+    "priority": "medium",
+    "start": "2013-01-13T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-01-14T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKEvors",
+    "priority": "medium",
+    "start": "2013-01-19T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-01-20T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKA på Blindern 2013 - se blindernuka.no",
+    "priority": "medium",
+    "start": "2013-01-23T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-02-04T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket (hytta) - være over til søndag de som ønsker",
+    "priority": "medium",
+    "start": "2013-02-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-02-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "priority": "medium",
+    "start": "2013-02-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-02-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Studentlekene i Trondheim",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2013-02-20T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-02-25T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKEball",
+    "priority": "medium",
+    "start": "2013-03-02T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-03-03T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Café Avec",
+    "priority": "medium",
+    "start": "2013-03-03T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-03-04T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Seriemaraton i peisestua",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2013-03-10T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-03-11T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "priority": "medium",
+    "start": "2013-03-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-03-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Holmenkollsøndag med Haarn oc Blaese, IFBS m.fl.",
+    "priority": "medium",
+    "start": "2013-03-17T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-03-18T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Schussrenn",
+    "priority": "medium",
+    "start": "2013-04-06T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-04-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKAs funksjonærfest",
+    "priority": "medium",
+    "start": "2013-04-13T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-04-14T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Russefest",
+    "priority": "medium",
+    "start": "2013-04-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Recoveryday i Billa og Gymsalen",
+    "by": "FFC",
+    "priority": "medium",
+    "start": "2013-05-01T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad til Småbruket",
+    "priority": "medium",
+    "start": "2013-05-03T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-06T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Åpent kollegiemøte kl 20",
+    "priority": "medium",
+    "start": "2013-05-06T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte (obs: tirsdag)",
+    "priority": "medium",
+    "start": "2013-05-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Frist for meldelse av valgkandiatur for kollegievalget til Vice-Præces.",
+    "priority": "medium",
+    "start": "2013-05-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-11T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Holmenkollstafetten",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2013-05-11T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-12T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "priority": "medium",
+    "start": "2013-05-13T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-16T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Café Avec",
+    "priority": "medium",
+    "start": "2013-05-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "priority": "medium",
+    "start": "2013-05-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sommerleker",
+    "by": "IFBS og BSG",
+    "priority": "medium",
+    "start": "2013-05-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-05-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegiekonstituering",
+    "priority": "medium",
+    "start": "2013-05-31T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-06-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkehaugsfestivalen",
+    "priority": "medium",
+    "start": "2013-06-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-06-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2013-06-30",
+    "comment": "IFBS arrangerer også regelmessige aktiviteter i ukedagene. Se IFBS-tavlen for nærmere informasjon. Tidspunktene nedenfor er kun veiledende og de vanlige tidspunktene aktivitetene foregår.<br />\n<br />\n  <dl>\n  <dt>Tirsdager</dt>\n  <dd>Zumba kl 20-21</dd>\n  <dt>Onsdager</dt>\n  <dd>Styrkesirkel (&quot;styrkel&quot;) kl 18</dd>\n  <dt>Torsdager</dt>\n  <dd>Ballspill kl 16 (på Blindern Athletica)</dd>\n  <dt>Søndager</dt>\n  <dd>Festforeningen arrangerer \"Billa kino\" (som hovedregel) kl 19 hver søndag.</dd>\n</dl>"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell velkommen hjem-fest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-08-21T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-08-22T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte kl 20",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2013-08-22T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-08-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Velkommen hjem-fest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-08-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-08-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Rebusløp",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2013-08-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-08-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Politisk debatt-vors i Peisestua",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-08-28T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-08-29T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2013-08-29T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-08-30T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket",
+    "by": "Hyttestyret",
+    "priority": "medium",
+    "start": "2013-08-31T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-09-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémiddag m/café avec kl 17",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-09-01T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-09-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Valgvake",
+    "by": "Festforeningen(?)",
+    "priority": "medium",
+    "start": "2013-09-09T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-09-10T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sølecup",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-09-14T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-09-15T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bocketurnering - Sjakk",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2013-09-19T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-09-20T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-09-28T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-09-29T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad",
+    "by": "Hyttestyret",
+    "priority": "medium",
+    "start": "2013-10-04T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-10-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2013-10-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-10-11T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "by": "Pigefaarsamlingen/Katiba/Festforeningen",
+    "priority": "medium",
+    "start": "2013-10-11T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-10-12T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Tur til Amsterdam",
+    "by": "Blindern farger Amsterdam gul) (IFBS",
+    "priority": "medium",
+    "start": "2013-10-18T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-10-22T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Høstball",
+    "by": "Festforeningen (ballkomitéen)",
+    "priority": "medium",
+    "start": "2013-10-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-10-27T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Café avec",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-10-27T00:00:00+02:00[Europe/Oslo]",
+    "end": "2013-10-28T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Filmmaraton",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2013-10-31T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-01T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Togafest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-11-09T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-10T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Åpent kollegiemøte",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2013-11-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Båltur",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2013-11-13T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-14T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2013-11-14T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-15T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2013-11-20T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-23T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "by": "Foreningsstyret",
+    "priority": "medium",
+    "start": "2013-11-21T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-22T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2013-11-21T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-22T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegiekonstituering",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2013-11-28T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-11-29T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Juleverksted",
+    "by": "Pigefaarsamlingen",
+    "priority": "medium",
+    "start": "2013-12-01T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-12-02T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2013-12-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-12-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Julemøte",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2013-12-06T00:00:00+01:00[Europe/Oslo]",
+    "end": "2013-12-07T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Nyttårsfeiring på Småbruket",
+    "by": "Hyttestyret",
+    "place": "Småbruket",
+    "priority": "medium",
+    "start": "2013-12-30T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-03T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2013-12-31",
+    "comment": "IFBS-aktiviteter:<br />\n<dl>\n<dt>Mandager 18.00</dt>\n  <dd>Styrkel med Bjørn og Hiller i gymsalen/gamle tennisbanen</dd>\n  <dt>Tirsdager 18.00</dt>\n  <dd>Svømming med Markus på Domus Athletica</dd>\n  <dt>Tirsdager 20.00</dt>\n  <dd>Zumba med Anett og Mia i gymsalen</dd>\n  <dt><s>Onsdager 18.00 (flyttet til kl 17?)</s></dt>\n  <dd><s>Løping fra med Tormod fra trappa</s> (opphørt for sesongen)</dd>\n  <dt>Torsdager 16.00</dt>\n  <dd>Ballspill med Thomas (Blindern Athletica, noen ganger i gymsal/uteområde)</dd>\n  <dt>Fredager 07.00</dt>\n  <dd>Morgenøkt</dd>\n  <dt><s>Fredager 18.00</s></dt>\n  <dd><s>Sprint med Tormod (annonseres i forkant, arrangeres kun noen fredager)</s> (opphørt for sesongen)</dd>\n  <dt><s>Lørdag 10.00</s></dt>\n  <dd><s>Roing med Tormod og Rosa i Bestumkilen (avreise fra trappa 09.30)</s> (opphørt for sesongen)</dd>\n</dl>\n<br />\nFlere detaljer ligger i opprinnelig plan på wikien: <a href=\"https://foreningenbs.no/wiki/Arrangementplan_h%C3%B8st_2013\">https://foreningenbs.no/wiki/Arrangementplan_h%C3%B8st_2013</a>"
+  },
+  {
+    "type": "event",
+    "title": "Styrkel i gymsalen",
+    "by": "IFBS",
+    "place": "Gymsalen",
+    "priority": "medium",
+    "start": "2014-01-06T18:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-06T19:30:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-01-13T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-13T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-01-20T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-20T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-01-27T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-27T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-03T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-03T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-10T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-10T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-17T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-17T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-24T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-24T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-03T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-03T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-10T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-10T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-17T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-17T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-24T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-24T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-31T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-03-31T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-07T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-07T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-14T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-14T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-21T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-21T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-28T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-28T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-05T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-05T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-12T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-12T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-19T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-19T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-26T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-26T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-02T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-02T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-09T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-09T19:30:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Zumba i gymsalen",
+    "by": "IFBS",
+    "place": "Gymsalen",
+    "priority": "medium",
+    "start": "2014-01-07T20:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-07T21:30:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-01-14T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-14T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-01-21T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-21T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-01-28T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-28T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-04T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-04T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-11T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-11T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-18T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-18T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-25T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-25T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-04T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-04T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-11T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-11T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-18T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-18T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-25T20:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-25T21:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-01T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-01T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-08T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-08T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-15T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-15T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-22T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-22T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-29T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-29T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-06T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-06T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-13T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-13T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-20T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-20T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-27T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-27T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-03T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-03T21:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-10T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-10T21:30:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell velkommen hjem-fest",
+    "by": "Festforeningen",
+    "place": "Billa",
+    "priority": "medium",
+    "start": "2014-01-08T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-09T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Ballspill (fotball)",
+    "by": "IFBS",
+    "place": "Blindern Athletica",
+    "priority": "medium",
+    "start": "2014-01-09T16:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-09T17:30:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-01-16T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-16T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-01-23T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-23T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-01-30T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-30T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-06T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-06T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-13T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-13T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-20T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-20T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-27T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-27T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-06T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-06T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-13T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-13T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-20T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-20T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-27T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-27T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-03T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-03T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-10T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-10T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-17T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-17T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-24T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-24T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-01T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-01T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-08T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-08T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-15T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-15T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-22T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-22T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-29T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-29T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-05T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-05T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-12T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-12T17:30:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Offisiell velkommen hjem-fest",
+    "by": "Festforeningen",
+    "place": "Billa",
+    "priority": "medium",
+    "start": "2014-01-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bli kjent-fest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-01-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte",
+    "by": "Kollegiet",
+    "place": "Musikksalongen",
+    "priority": "medium",
+    "start": "2014-01-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "place": "Peisestua",
+    "priority": "medium",
+    "start": "2014-01-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Forestilling: Lugar 613",
+    "by": "Det Gule Teater",
+    "place": "613",
+    "priority": "medium",
+    "start": "2014-01-19T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-26T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "place": "Billa",
+    "priority": "medium",
+    "start": "2014-01-22T21:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-23T01:00:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-01-29T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-01-30T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-05T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-06T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-12T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-13T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-19T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-20T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-02-26T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-02-27T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-05T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-06T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-12T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-13T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-19T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-20T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-03-26T21:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-27T01:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-02T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-03T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-09T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-10T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-16T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-17T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-23T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-24T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-30T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-01T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-07T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-08T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-14T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-15T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-21T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-22T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-28T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-29T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-04T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-05T01:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-11T21:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-12T01:00:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket",
+    "by": "Hyttestyret",
+    "place": "Småbruket studenthytte",
+    "priority": "medium",
+    "start": "2014-01-25T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-27T00:00:00+01:00[Europe/Oslo]",
+    "info": "Følg med i foajeen for info"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémiddag med café avec",
+    "by": "Festforeningen",
+    "place": "Spisesalen og peisestua",
+    "priority": "medium",
+    "start": "2014-01-26T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-01-27T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "place": "Musikksalongen",
+    "priority": "medium",
+    "start": "2014-02-06T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-02-07T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foredrag - Norges eldste mann",
+    "by": "Festforeningen",
+    "place": "Peisestua",
+    "priority": "medium",
+    "start": "2014-02-12T18:00:00+01:00[Europe/Oslo]",
+    "end": "2014-02-12T21:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hemsedalstur",
+    "by": "IFBS",
+    "place": "Hemsedal",
+    "priority": "medium",
+    "start": "2014-02-14T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-02-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "by": "Festforeningen",
+    "place": "Billa",
+    "priority": "medium",
+    "start": "2014-02-22T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-02-23T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkefest",
+    "by": "Bukkekollegiet/ballkomitéen",
+    "priority": "medium",
+    "start": "2014-03-01T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-03-02T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkefest café avec",
+    "by": "Festforeningen",
+    "place": "Peisestua",
+    "priority": "medium",
+    "start": "2014-03-02T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-03-03T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "by": "Pigefaarsamlingen/Katiba/Festforeningen",
+    "priority": "medium",
+    "start": "2014-03-14T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-03-15T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "place": "Musikksalongen",
+    "priority": "medium",
+    "start": "2014-03-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-03-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Løping fra trappa",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2014-03-19T18:00:00+01:00[Europe/Oslo]",
+    "end": "2014-03-19T19:30:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-03-26T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-26T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-02T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-02T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-09T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-09T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-16T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-16T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-23T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-23T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-30T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-30T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-07T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-07T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-14T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-14T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-21T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-21T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-28T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-28T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-04T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-04T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-11T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-11T19:30:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Sprint/intervall-trening",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2014-03-21T18:00:00+01:00[Europe/Oslo]",
+    "end": "2014-03-21T19:30:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-03-28T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-03-28T19:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-04T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-04T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-11T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-11T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-18T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-18T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-25T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-25T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-02T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-02T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-09T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-09T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-16T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-16T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-23T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-23T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-30T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-30T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-06T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-06T19:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-13T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-13T19:30:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Roing fra Bestumkilen",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2014-03-22T09:30:00+01:00[Europe/Oslo]",
+    "end": "2014-03-22T11:00:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-03-29T09:30:00+01:00[Europe/Oslo]",
+          "end": "2014-03-29T11:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-05T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-04-05T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-12T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-04-12T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-19T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-04-19T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-26T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-04-26T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-03T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-05-03T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-10T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-05-10T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-17T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-05-17T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-24T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-05-24T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-31T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-05-31T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-07T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-06-07T11:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-14T09:30:00+02:00[Europe/Oslo]",
+          "end": "2014-06-14T11:00:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Ballsøndag (volleyball, fotball etc)",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2014-03-23T14:00:00+01:00[Europe/Oslo]",
+    "end": "2014-03-23T16:00:00+01:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-03-30T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-03-30T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-06T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-06T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-13T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-13T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-20T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-20T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-04-27T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-04-27T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-04T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-04T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-11T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-11T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-18T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-18T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-05-25T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-05-25T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-01T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-01T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-08T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-08T16:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-06-15T14:00:00+02:00[Europe/Oslo]",
+          "end": "2014-06-15T16:00:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Ledervalg BSG",
+    "by": "BSG",
+    "place": "Balustraden (Balla)",
+    "priority": "medium",
+    "start": "2014-03-25T17:30:00+01:00[Europe/Oslo]",
+    "end": "2014-03-25T18:30:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Schussrenn",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-04-05T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-04-06T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "place": "Musikksalongen",
+    "priority": "medium",
+    "start": "2014-04-13T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-04-14T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "place": "Musikksalongen",
+    "priority": "medium",
+    "start": "2014-04-13T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-04-14T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Filmmarraton",
+    "by": "BSG",
+    "place": "Peisestua",
+    "priority": "medium",
+    "start": "2014-04-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-04-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Russefest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-04-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad på Småbruket",
+    "by": "Hyttestyret",
+    "place": "Småbruket studenthytte",
+    "priority": "medium",
+    "start": "2014-05-02T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-05T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Åpent kollegiemøte kl 19",
+    "by": "Kollegiet",
+    "place": "Musikksalongen",
+    "priority": "medium",
+    "start": "2014-05-05T19:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-05T21:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte",
+    "by": "Kollegiet",
+    "place": "Peisestua",
+    "priority": "medium",
+    "start": "2014-05-08T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-09T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Holmenkollstafetten",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2014-05-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-11T00:00:00+02:00[Europe/Oslo]",
+    "info": "To lag påmeldt"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "by": "Kollegiet",
+    "place": "Spisesalen",
+    "priority": "medium",
+    "start": "2014-05-12T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-15T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-05-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "17. mai med café avec",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-05-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "by": "Foreningsstyret",
+    "place": "Peisestua",
+    "priority": "medium",
+    "start": "2014-05-22T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-05-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkehaugfestivalen",
+    "by": "Festforeningen",
+    "place": "Bukkehaugen",
+    "priority": "medium",
+    "start": "2014-06-06T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-06-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sommerleker",
+    "by": "IFBS",
+    "priority": "medium",
+    "start": "2014-06-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-06-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2014-08-06",
+    "comment": "Togafest byttet dato fra 8. nov til 15. nov."
+  },
+  {
+    "type": "event",
+    "title": "Studenterhjemmet åpner for innflytting mellom kl 12.00 og kl 18.00",
+    "priority": "low",
+    "start": "2014-08-11T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-12T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Brakkene åpner for innflytting mellom kl 15.00 og kl 20.00",
+    "priority": "low",
+    "start": "2014-08-12T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-13T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kjøkkenet åpner til middag",
+    "priority": "low",
+    "start": "2014-08-15T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-16T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell innflytningsfest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-08-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "miniUKA: Pub-til-pub",
+    "by": "UKA",
+    "priority": "medium",
+    "start": "2014-08-18T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-19T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Styrkel",
+    "by": "IFBS",
+    "place": "Gymsalen",
+    "priority": "medium",
+    "start": "2014-08-18T18:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-18T19:00:00+02:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-08-25T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-08-25T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-01T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-01T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-08T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-08T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-15T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-15T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-22T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-22T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-29T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-29T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-06T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-06T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-13T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-13T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-20T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-20T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-27T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-10-27T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-03T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-03T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-10T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-10T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-17T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-17T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-24T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-24T19:00:00+01:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "miniUKA: Utekino",
+    "by": "UKA",
+    "priority": "medium",
+    "start": "2014-08-19T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-20T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spinning",
+    "by": "IFBS",
+    "place": "Blindern Athletica",
+    "priority": "medium",
+    "start": "2014-08-19T18:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-19T19:00:00+02:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-08-26T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-08-26T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-02T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-02T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-09T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-09T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-16T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-16T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-23T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-23T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-30T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-30T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-07T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-07T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-14T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-14T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-21T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-21T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-28T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-10-28T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-04T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-04T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-11T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-11T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-18T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-18T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-25T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-25T19:00:00+01:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Pigetirsdag",
+    "by": "Pigefaarsamlingen",
+    "place": "Pigerommet",
+    "priority": "medium",
+    "start": "2014-08-19T20:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-19T22:00:00+02:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-08-26T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-08-26T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-02T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-02T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-09T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-09T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-16T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-16T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-23T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-23T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-30T20:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-30T22:00:00+02:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "miniUKA: Internaften",
+    "by": "UKA",
+    "priority": "high",
+    "start": "2014-08-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Løping",
+    "by": "IFBS",
+    "place": "Hovedtrappa",
+    "priority": "medium",
+    "start": "2014-08-20T18:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-20T19:00:00+02:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-08-27T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-08-27T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-03T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-03T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-10T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-10T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-17T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-17T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-24T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-24T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-01T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-01T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-08T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-08T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-15T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-15T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-22T18:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-22T19:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-29T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-10-29T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-05T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-05T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-12T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-12T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-19T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-19T19:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-26T18:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-26T19:00:00+01:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Haarn oc Blaese-øvelse",
+    "by": "H&B",
+    "place": "H&B-rommet",
+    "priority": "medium",
+    "start": "2014-08-20T20:30:00+02:00[Europe/Oslo]",
+    "end": "2014-08-20T22:00:00+02:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-08-27T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-08-27T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-03T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-09-03T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-10T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-09-10T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-17T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-09-17T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-24T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-09-24T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-01T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-10-01T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-08T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-10-08T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-15T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-10-15T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-22T20:30:00+02:00[Europe/Oslo]",
+          "end": "2014-10-22T22:00:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-29T20:30:00+01:00[Europe/Oslo]",
+          "end": "2014-10-29T22:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-05T20:30:00+01:00[Europe/Oslo]",
+          "end": "2014-11-05T22:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-12T20:30:00+01:00[Europe/Oslo]",
+          "end": "2014-11-12T22:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-19T20:30:00+01:00[Europe/Oslo]",
+          "end": "2014-11-19T22:00:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-26T20:30:00+01:00[Europe/Oslo]",
+          "end": "2014-11-26T22:00:00+01:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Fotball",
+    "by": "IFBS",
+    "place": "Blindern Athletica",
+    "priority": "medium",
+    "start": "2014-08-21T16:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-21T17:30:00+02:00[Europe/Oslo]",
+    "recur": {
+      "frequency": "WEEKLY",
+      "interval": 1,
+      "events": [
+        {
+          "start": "2014-08-28T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-08-28T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-04T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-04T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-11T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-11T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-18T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-18T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-09-25T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-09-25T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-02T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-02T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-09T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-09T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-16T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-16T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-23T16:00:00+02:00[Europe/Oslo]",
+          "end": "2014-10-23T17:30:00+02:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-10-30T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-10-30T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-06T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-06T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-13T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-13T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-20T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-20T17:30:00+01:00[Europe/Oslo]"
+        },
+        {
+          "start": "2014-11-27T16:00:00+01:00[Europe/Oslo]",
+          "end": "2014-11-27T17:30:00+01:00[Europe/Oslo]"
+        }
+      ]
+    }
+  },
+  {
+    "type": "event",
+    "title": "Offisiell innflytningsfest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-08-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte (infomøte for nyinnflyttede)",
+    "by": "Kollegiet",
+    "place": "Peisestua",
+    "priority": "high",
+    "start": "2014-08-25T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-08-27T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-28T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Rebusløp",
+    "priority": "high",
+    "start": "2014-08-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-08-31T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémiddag m. cafe avec",
+    "by": "Festforeningen",
+    "priority": "high",
+    "start": "2014-08-31T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-09-03T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-04T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmétur til Småbruket",
+    "by": "Hyttestyret",
+    "priority": "high",
+    "start": "2014-09-06T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-09-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-11T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kandidatmiddag for spesielt inviterte",
+    "by": "Kollegiet",
+    "priority": "low",
+    "start": "2014-09-11T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-12T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sølecup",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-09-13T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-14T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2014-09-16",
+    "comment": "Piger, vin og sang byttet dato fra 17. sept til 24. sept."
+  },
+  {
+    "type": "event",
+    "title": "Biblioteksauksjon",
+    "by": "Biblioteket",
+    "priority": "low",
+    "start": "2014-09-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-09-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-09-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Piger, vin og sang",
+    "by": "Pigefaarsamlingen",
+    "priority": "medium",
+    "start": "2014-09-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-09-27T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-09-28T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-10-01T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens semestermøte og PPP",
+    "by": "Pigefaarsamlingen/Katiba/Festforeningen",
+    "priority": "medium",
+    "start": "2014-10-03T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-04T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2014-10-06T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bergen Challenge",
+    "by": "IFBS",
+    "place": "Bergen",
+    "priority": "medium",
+    "start": "2014-10-08T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-13T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-10-08T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-09T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2014-10-13",
+    "comment": "Rettet dato for foreningens semestermøte fra 20. oktober til 20. november."
+  },
+  {
+    "type": "event",
+    "title": "Bukkehaugsturneringen",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2014-10-15T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-16T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-10-15T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-16T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad på Småbruket",
+    "by": "Hyttestyret",
+    "priority": "medium",
+    "start": "2014-10-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-20T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningsrådsmøte",
+    "by": "Foreningsrådet",
+    "priority": "low",
+    "start": "2014-10-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-10-22T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Høstball",
+    "by": "Festforeningen",
+    "priority": "high",
+    "start": "2014-10-25T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-26T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Ballsøndag m. cafe avec",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-10-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2014-10-27T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-10-29T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-10-30T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Freaky Friday - Halloweenfest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-10-31T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-01T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-11-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Revysus",
+    "by": "UKA",
+    "priority": "high",
+    "start": "2014-11-08T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-09T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte",
+    "by": "Kollegiet",
+    "priority": "high",
+    "start": "2014-11-09T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-10T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Spillkveld",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2014-11-10T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-11T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-11-12T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-13T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Frist for å melde sitt kandidatur til kollegievalg",
+    "by": "Kollegiet",
+    "priority": "low",
+    "start": "2014-11-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Togafest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-11-15T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "priority": "low",
+    "start": "2014-11-17T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-20T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "comment",
+    "date": "2014-11-17",
+    "comment": "Rettet dato for kollegievalg. Det var visst blitt flyttet to dager tidligere."
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-11-19T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-20T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "by": "Foreningsstyret",
+    "priority": "high",
+    "start": "2014-11-20T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-21T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-11-26T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-27T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Konstituering Kollegiet Carm",
+    "by": "Kollegiet",
+    "priority": "low",
+    "start": "2014-11-27T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-11-28T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Juleverksted",
+    "by": "Pigefaarsamlingen",
+    "place": "Peisestua",
+    "priority": "medium",
+    "start": "2014-11-30T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-12-01T00:00:00+01:00[Europe/Oslo]",
+    "info": "https://www.facebook.com/events/727616017330356/"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-12-03T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-12-04T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Julemøte",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2014-12-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-12-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-12-10T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-12-11T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "Festforeningen",
+    "priority": "low",
+    "start": "2014-12-17T00:00:00+01:00[Europe/Oslo]",
+    "end": "2014-12-18T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Julepræces fratrer sin stilling",
+    "priority": "medium",
+    "start": "2015-01-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-01-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kjøkkenet åpner til middag",
+    "priority": "medium",
+    "start": "2015-01-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-01-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell velkommenhjem-fest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2015-01-07T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-01-08T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Offisiell velkommenhjem-fest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2015-01-09T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-01-10T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmemiddag kl. 17.00 m/avec",
+    "by": "Kollegiet/Festforeningen",
+    "priority": "medium",
+    "start": "2015-01-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-01-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKEvorset - Battle of the bands",
+    "priority": "medium",
+    "start": "2015-01-31T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-02-01T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKA på Blindern",
+    "priority": "medium",
+    "start": "2015-02-04T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-02-16T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmètur til småbruket",
+    "priority": "medium",
+    "start": "2015-02-21T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-02-22T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hemsedaltur med IFBS",
+    "priority": "medium",
+    "start": "2015-02-27T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-03-02T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2015-02-28T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-03-01T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Piger, vin og sang",
+    "by": "Pigefaarsamlingen",
+    "priority": "medium",
+    "start": "2015-03-04T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-03-05T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKEball",
+    "priority": "medium",
+    "start": "2015-03-07T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-03-08T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Ballsøndag m/avec (Festforeningen)",
+    "priority": "medium",
+    "start": "2015-03-08T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-03-09T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "UKAs funksjonærfest",
+    "priority": "medium",
+    "start": "2015-03-13T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-03-14T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingen Lieds semestermøte/PPP",
+    "priority": "medium",
+    "start": "2015-03-20T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-03-21T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Påskepræces tiltrer sin stilling",
+    "priority": "medium",
+    "start": "2015-03-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-03-31T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Påskepræces fratrer sin stilling",
+    "priority": "medium",
+    "start": "2015-04-06T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-04-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Schussrenn",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2015-04-11T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-04-12T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad",
+    "priority": "medium",
+    "start": "2015-04-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-04-27T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "X-russefest",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2015-04-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-05-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte i Peisestuen kl. 20",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2015-05-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-05-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Frist for å melde sitt valgkandidatur til Vice-Præces Marthe Sandli",
+    "priority": "medium",
+    "start": "2015-05-10T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-05-11T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "priority": "medium",
+    "start": "2015-05-13T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-05-16T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Avec",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2015-05-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-05-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "by": "Foreningsstyret",
+    "priority": "medium",
+    "start": "2015-05-20T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-05-21T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Konstituering av Kollegiet Sandli",
+    "priority": "medium",
+    "start": "2015-05-28T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-05-29T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Forestillinger",
+    "by": "Det gule teater",
+    "priority": "medium",
+    "start": "2015-05-29T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-06-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Første Kollegiemøte for Kollegiet Sandli kl. 18.00 i Musikksalongen",
+    "priority": "medium",
+    "start": "2015-06-01T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-06-02T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukkehaugsfestivalen",
+    "by": "Festforeningen",
+    "priority": "medium",
+    "start": "2015-06-05T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-06-06T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "IFBS sommerleker",
+    "priority": "medium",
+    "start": "2015-06-06T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-06-07T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kjøkkenet stenger - frokost siste måltid",
+    "priority": "medium",
+    "start": "2015-06-15T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-06-16T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-08-02T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-03T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmémøte kl 20 i peisestua",
+    "priority": "medium",
+    "start": "2015-08-13T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-14T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Uoffisiell velkommen hjem fest",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-08-14T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-15T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pub-til-pub stopp i Billa bar",
+    "priority": "medium",
+    "start": "2015-08-17T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-18T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-08-19T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-20T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygméhyttetur til Småbruket",
+    "by": "Hyttestyret",
+    "priority": "medium",
+    "start": "2015-08-21T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Rebusløp + Offisiell Velkommen hjem fest",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-08-22T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-23T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-08-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-27T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pygmemiddag med Cafe Avec",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-08-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-08-31T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-09-09T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-09-10T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Sølecup",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-09-12T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-09-13T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-09-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-09-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-09-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-09-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Temafest",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-09-26T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-09-27T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-09-30T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-01T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-10-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Piger, vin og sang",
+    "by": "Pigefaarsamlingen",
+    "priority": "medium",
+    "start": "2015-10-07T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-08T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-10-14T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-15T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Pigefaarsamlingens Semestermøte",
+    "by": "Pigefaarsamlingen Sadiku",
+    "priority": "medium",
+    "start": "2015-10-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "PPP",
+    "by": "Katiba",
+    "priority": "medium",
+    "start": "2015-10-16T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-17T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-10-21T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-22T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Høstball",
+    "by": "Ballkomiteen",
+    "priority": "medium",
+    "start": "2015-10-23T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-24T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Ballørdag/Cafe Avec",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-10-24T00:00:00+02:00[Europe/Oslo]",
+    "end": "2015-10-25T00:00:00+02:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-10-28T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-10-29T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Bukketurneringen",
+    "by": "BSG",
+    "priority": "medium",
+    "start": "2015-10-29T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-10-30T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Hyttedugnad",
+    "by": "Hyttestyret",
+    "priority": "medium",
+    "start": "2015-10-30T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-02T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Åpent kollegiemøte",
+    "by": "Kollegiet",
+    "priority": "medium",
+    "start": "2015-11-02T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-03T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-11-04T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-05T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Allmannamøte i Peisestua kl 20.30",
+    "priority": "high",
+    "start": "2015-11-05T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-06T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Frist for å melde valgkandidatur for Kollegievalget",
+    "priority": "medium",
+    "start": "2015-11-08T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-09T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Foreningens semestermøte",
+    "priority": "high",
+    "start": "2015-11-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kollegievalg",
+    "priority": "medium",
+    "start": "2015-11-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-14T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-11-11T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-12T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Togafest",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-11-14T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-15T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-11-18T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-19T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Siste Kollegiemøte for Kollegiet Sandli",
+    "priority": "low",
+    "start": "2015-11-23T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-24T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-11-25T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-26T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Konstituering av Kollegiet Paulsen",
+    "priority": "low",
+    "start": "2015-11-26T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-11-27T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Første kollegiemøte for Kollegiet Paulsen",
+    "priority": "low",
+    "start": "2015-11-30T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-12-01T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-12-02T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-12-03T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Julemøte",
+    "by": "FFJT",
+    "priority": "medium",
+    "start": "2015-12-04T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-12-05T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-12-09T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-12-10T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Semesterets siste onsdagsbilla",
+    "by": "FFJT",
+    "priority": "low",
+    "start": "2015-12-16T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-12-17T00:00:00+01:00[Europe/Oslo]"
+  },
+  {
+    "type": "event",
+    "title": "Kjøkkenet stenger servering etter frokost - åpner igjen i januar",
+    "priority": "medium",
+    "start": "2015-12-18T00:00:00+01:00[Europe/Oslo]",
+    "end": "2015-12-19T00:00:00+01:00[Europe/Oslo]"
+  }
+]

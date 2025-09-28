@@ -115,7 +115,6 @@ describe("toResponseModel", () => {
         "duration": "hver mandag kl. 18:00",
         "end": "2014-01-06 19:30:00",
         "expired": true,
-        "info": undefined,
         "place": "Gymsalen",
         "priority": "medium",
         "recur": true,
