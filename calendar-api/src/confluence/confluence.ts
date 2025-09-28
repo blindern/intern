@@ -64,12 +64,16 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
   const list: FbsEvent[] = []
 
   function* recurIterator(event: ICAL.Event): IterableIterator<ICAL.Time> {
+    let i = 0
     const iter = event.iterator()
     for (
       let next = iter.next() as ICAL.Time | undefined;
       next;
       next = iter.next()
     ) {
+      if (++i === 100) {
+        throw new Error("Possible infinite rrule loop")
+      }
       if (next.compare(event.startDate) === 0) continue
       yield next
     }
