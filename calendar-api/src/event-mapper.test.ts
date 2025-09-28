@@ -1,6 +1,10 @@
 import { Temporal } from "@js-temporal/polyfill"
 import { describe, expect, test } from "vitest"
-import { getDuration, toResponseModel } from "./event-mapper.ts"
+import {
+  getDuration,
+  sortEventsByTimeAndTitle,
+  toResponseModel,
+} from "./event-mapper.ts"
 import { getMediawikiEvents } from "./mediawiki/mediawiki.ts"
 
 function timeAt(value: string) {
@@ -93,9 +97,9 @@ describe("getDuration", () => {
 
 describe("toResponseModel", () => {
   test("recurring event", async () => {
-    const event = (await getMediawikiEvents()).find(
-      (it) => it.type === "event" && it.recur,
-    )
+    const event = (await getMediawikiEvents())
+      .sort(sortEventsByTimeAndTitle)
+      .find((it) => it.type === "event" && it.recur)
 
     if (!event) {
       throw new Error("Event not found")
@@ -107,16 +111,16 @@ describe("toResponseModel", () => {
 
     expect(toResponseModel(now)(event)).toMatchInlineSnapshot(`
       {
-        "by": "Pigefaarsamlingen",
-        "duration": "hver tirsdag kl. 20:00",
-        "end": "2014-08-19 22:00:00",
+        "by": "IFBS",
+        "duration": "hver mandag kl. 18:00",
+        "end": "2014-01-06 19:30:00",
         "expired": true,
         "info": undefined,
-        "place": "Pigerommet",
+        "place": "Gymsalen",
         "priority": "medium",
         "recur": true,
-        "start": "2014-08-19 20:00:00",
-        "title": "Pigetirsdag",
+        "start": "2014-01-06 18:00:00",
+        "title": "Styrkel i gymsalen",
         "type": "event",
       }
     `)
