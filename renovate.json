@@ -58,6 +58,13 @@
       "automergeType": "branch"
     },
     {
+      "matchFileNames": [
+        "calendar-api/**"
+      ],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
       "matchDepNames": [
         "mongodb/mongodb",
         "mongodb/laravel-mongodb"
