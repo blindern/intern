@@ -10,16 +10,16 @@ importers:
     dependencies:
       '@elysiajs/cors':
         specifier: 1.4.0
-        version: 1.4.0(elysia@1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))
+        version: 1.4.0(elysia@1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))
       '@elysiajs/node':
         specifier: 1.4.0
-        version: 1.4.0(elysia@1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))(hono@4.9.8)
+        version: 1.4.0(elysia@1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))(hono@4.9.8)
       '@js-temporal/polyfill':
         specifier: ^0.5.1
         version: 0.5.1
       elysia:
-        specifier: 1.4.8
-        version: 1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2)
+        specifier: 1.4.9
+        version: 1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2)
       ical.js:
         specifier: ^2.2.1
         version: 2.2.1
@@ -647,8 +647,8 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  elysia@1.4.8:
-    resolution: {integrity: sha512-ys3OSLZok9eRlOPOJBOAJy+5YVxRCLaq2FMMs2naCg6klW3kNu5NOUwKMAJJ9lzUgOfCe42e3d3lrlbVSdRlaA==}
+  elysia@1.4.9:
+    resolution: {integrity: sha512-BWNhA8DoKQvlQTjAUkMAmNeso24U+ibZxY/8LN96qSDK/6eevaX59r3GISow699JPxSnFY3gLMUzJzCLYVtbvg==}
     peerDependencies:
       '@sinclair/typebox': '>= 0.34.0 < 1'
       exact-mirror: '>= 0.0.9'
@@ -1236,14 +1236,14 @@ snapshots:
   '@borewit/text-codec@0.1.1':
     optional: true
 
-  '@elysiajs/cors@1.4.0(elysia@1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))':
+  '@elysiajs/cors@1.4.0(elysia@1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))':
     dependencies:
-      elysia: 1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2)
+      elysia: 1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2)
 
-  '@elysiajs/node@1.4.0(elysia@1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))(hono@4.9.8)':
+  '@elysiajs/node@1.4.0(elysia@1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2))(hono@4.9.8)':
     dependencies:
       '@hono/node-server': 1.19.3(hono@4.9.8)
-      elysia: 1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2)
+      elysia: 1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2)
     transitivePeerDependencies:
       - hono
 
@@ -1713,7 +1713,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  elysia@1.4.8(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2):
+  elysia@1.4.9(@sinclair/typebox@0.34.41)(exact-mirror@0.2.2(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.2):
     dependencies:
       '@sinclair/typebox': 0.34.41
       cookie: 1.0.2
