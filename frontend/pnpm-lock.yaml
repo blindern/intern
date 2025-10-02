@@ -169,8 +169,8 @@ importers:
         specifier: 7.1.7
         version: 7.1.7(@types/node@22.18.6)(jiti@2.6.0)(sass@1.93.2)
       vite-plugin-checker:
-        specifier: 0.10.3
-        version: 0.10.3(eslint@9.36.0(jiti@2.6.0))(optionator@0.9.4)(typescript@5.9.2)(vite@7.1.7(@types/node@22.18.6)(jiti@2.6.0)(sass@1.93.2))
+        specifier: 0.11.0
+        version: 0.11.0(eslint@9.36.0(jiti@2.6.0))(optionator@0.9.4)(typescript@5.9.2)(vite@7.1.7(@types/node@22.18.6)(jiti@2.6.0)(sass@1.93.2))
 
 packages:
 
@@ -1011,10 +1011,6 @@ packages:
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
-
-  ansi-regex@6.2.2:
-    resolution: {integrity: sha512-Bq3SmSpyFHaWjPk8If9yc6svM8c56dB5BAtW4Qbw5jHTwwXXcTLoRMkpDJp6VL0XzlWaCHTXrkFURMYmD0sLqg==}
-    engines: {node: '>=12'}
 
   ansi-styles@4.3.0:
     resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
@@ -2210,10 +2206,6 @@ packages:
     resolution: {integrity: sha512-UXSH262CSZY1tfu3G3Secr6uGLCFVPMhIqHjlgCUtCCcgihYc/xKs9djMTMUOb2j1mVSeU8EU6NWc/iQKU6Gfg==}
     engines: {node: '>= 0.4'}
 
-  strip-ansi@7.1.2:
-    resolution: {integrity: sha512-gmBGslpoQJtgnMAvOVqGZpEz9dyoKTCzy2nfz/n8aIFhN/jCE/rCmcxabB6jOOHV+0WNnylOxaxBQPSvcWklhA==}
-    engines: {node: '>=12'}
-
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
@@ -2325,17 +2317,18 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  vite-plugin-checker@0.10.3:
-    resolution: {integrity: sha512-f4sekUcDPF+T+GdbbE8idb1i2YplBAoH+SfRS0e/WRBWb2rYb1Jf5Pimll0Rj+3JgIYWwG2K5LtBPCXxoibkLg==}
-    engines: {node: '>=14.16'}
+  vite-plugin-checker@0.11.0:
+    resolution: {integrity: sha512-iUdO9Pl9UIBRPAragwi3as/BXXTtRu4G12L3CMrjx+WVTd9g/MsqNakreib9M/2YRVkhZYiTEwdH2j4Dm0w7lw==}
+    engines: {node: '>=16.11'}
     peerDependencies:
       '@biomejs/biome': '>=1.7'
       eslint: '>=7'
       meow: ^13.2.0
       optionator: ^0.9.4
+      oxlint: '>=1'
       stylelint: '>=16'
       typescript: '*'
-      vite: '>=2.0.0'
+      vite: '>=5.4.20'
       vls: '*'
       vti: '*'
       vue-tsc: ~2.2.10 || ^3.0.0
@@ -2347,6 +2340,8 @@ packages:
       meow:
         optional: true
       optionator:
+        optional: true
+      oxlint:
         optional: true
       stylelint:
         optional: true
@@ -3207,8 +3202,6 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
-
-  ansi-regex@6.2.2: {}
 
   ansi-styles@4.3.0:
     dependencies:
@@ -4634,10 +4627,6 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.1.1
 
-  strip-ansi@7.1.2:
-    dependencies:
-      ansi-regex: 6.2.2
-
   strip-json-comments@3.1.1: {}
 
   styled-components@6.1.19(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
@@ -4762,14 +4751,13 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-checker@0.10.3(eslint@9.36.0(jiti@2.6.0))(optionator@0.9.4)(typescript@5.9.2)(vite@7.1.7(@types/node@22.18.6)(jiti@2.6.0)(sass@1.93.2)):
+  vite-plugin-checker@0.11.0(eslint@9.36.0(jiti@2.6.0))(optionator@0.9.4)(typescript@5.9.2)(vite@7.1.7(@types/node@22.18.6)(jiti@2.6.0)(sass@1.93.2)):
     dependencies:
       '@babel/code-frame': 7.27.1
       chokidar: 4.0.3
       npm-run-path: 6.0.0
       picocolors: 1.1.1
       picomatch: 4.0.3
-      strip-ansi: 7.1.2
       tiny-invariant: 1.3.3
       tinyglobby: 0.2.15
       vite: 7.1.7(@types/node@22.18.6)(jiti@2.6.0)(sass@1.93.2)
