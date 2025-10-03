@@ -6,7 +6,7 @@
 	"type": "project",
 	"require": {
 		"php": "^8.3",
-		"google/apiclient": "2.18.3",
+		"google/apiclient": "2.18.4",
 		"guzzlehttp/guzzle": "7.10.0",
 		"johngrogg/ics-parser": "3.4.1",
 		"laravel/framework": "^12.0",
