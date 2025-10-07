@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@hookform/error-message':
         specifier: 2.0.1
-        version: 2.0.1(react-dom@19.2.0(react@19.2.0))(react-hook-form@7.63.0(react@19.2.0))(react@19.2.0)
+        version: 2.0.1(react-dom@19.2.0(react@19.2.0))(react-hook-form@7.64.0(react@19.2.0))(react@19.2.0)
       '@react-hook/debounce':
         specifier: 4.0.0
         version: 4.0.0(react@19.2.0)
@@ -45,8 +45,8 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
       react-hook-form:
-        specifier: 7.63.0
-        version: 7.63.0(react@19.2.0)
+        specifier: 7.64.0
+        version: 7.64.0(react@19.2.0)
       react-router:
         specifier: 7.9.3
         version: 7.9.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -2010,8 +2010,8 @@ packages:
     peerDependencies:
       react: ^19.2.0
 
-  react-hook-form@7.63.0:
-    resolution: {integrity: sha512-ZwueDMvUeucovM2VjkCf7zIHcs1aAlDimZu2Hvel5C5907gUzMpm4xCrQXtRzCvsBqFjonB4m3x4LzCFI1ZKWA==}
+  react-hook-form@7.64.0:
+    resolution: {integrity: sha512-fnN+vvTiMLnRqKNTVhDysdrUay0kUUAymQnFIznmgDvapjveUWOOPqMNzPg+A+0yf9DuE2h6xzBjN1s+Qx8wcg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -2689,11 +2689,11 @@ snapshots:
       '@eslint/core': 0.16.0
       levn: 0.4.1
 
-  '@hookform/error-message@2.0.1(react-dom@19.2.0(react@19.2.0))(react-hook-form@7.63.0(react@19.2.0))(react@19.2.0)':
+  '@hookform/error-message@2.0.1(react-dom@19.2.0(react@19.2.0))(react-hook-form@7.64.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-      react-hook-form: 7.63.0(react@19.2.0)
+      react-hook-form: 7.64.0(react@19.2.0)
 
   '@humanfs/core@0.19.1': {}
 
@@ -4361,7 +4361,7 @@ snapshots:
       react: 19.2.0
       scheduler: 0.27.0
 
-  react-hook-form@7.63.0(react@19.2.0):
+  react-hook-form@7.64.0(react@19.2.0):
     dependencies:
       react: 19.2.0
 
