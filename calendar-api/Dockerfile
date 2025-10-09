@@ -1,4 +1,4 @@
-FROM node:24-alpine@sha256:77f3c4d1f33c17dfa4af4b0add57d86957187873e313c2c37f52831d117645c8 AS base
+FROM node:24-alpine@sha256:f8baf2c963e3bff767993135ae3447bb433e8d64a5e4bb65780cd29ef3a525c2 AS base
 WORKDIR /app
 
 FROM base AS install
