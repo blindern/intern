@@ -100,8 +100,8 @@ importers:
         specifier: 4.17.20
         version: 4.17.20
       '@types/node':
-        specifier: 22.18.9
-        version: 22.18.9
+        specifier: 22.18.10
+        version: 22.18.10
       '@types/react':
         specifier: 19.2.2
         version: 19.2.2
@@ -119,7 +119,7 @@ importers:
         version: 4.4.12(@types/react@19.2.2)
       '@vitejs/plugin-react':
         specifier: 5.0.4
-        version: 5.0.4(vite@7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2))
+        version: 5.0.4(vite@7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2))
       autoprefixer:
         specifier: 10.4.21
         version: 10.4.21(postcss@8.5.6)
@@ -167,10 +167,10 @@ importers:
         version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
       vite:
         specifier: 7.1.9
-        version: 7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2)
+        version: 7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2)
       vite-plugin-checker:
         specifier: 0.11.0
-        version: 0.11.0(eslint@9.37.0(jiti@2.6.1))(optionator@0.9.4)(typescript@5.9.3)(vite@7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2))
+        version: 0.11.0(eslint@9.37.0(jiti@2.6.1))(optionator@0.9.4)(typescript@5.9.3)(vite@7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2))
 
 packages:
 
@@ -902,8 +902,8 @@ packages:
   '@types/lodash@4.17.20':
     resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
 
-  '@types/node@22.18.9':
-    resolution: {integrity: sha512-5yBtK0k/q8PjkMXbTfeIEP/XVYnz1R9qZJ3yUicdEW7ppdDJfe+MqXEhpqDL3mtn4Wvs1u0KLEG0RXzCgNpsSg==}
+  '@types/node@22.18.10':
+    resolution: {integrity: sha512-anNG/V/Efn/YZY4pRzbACnKxNKoBng2VTFydVu8RRs5hQjikP8CQfaeAV59VFSCzKNp90mXiVXW2QzV56rwMrg==}
 
   '@types/react-dom@19.2.1':
     resolution: {integrity: sha512-/EEvYBdT3BflCWvTMO7YkYBHVE9Ci6XdqZciZANQgKpaiDRGOLIlRo91jbTNRQjgPFWVaRxcYc0luVNFitz57A==}
@@ -3052,7 +3052,7 @@ snapshots:
 
   '@types/lodash@4.17.20': {}
 
-  '@types/node@22.18.9':
+  '@types/node@22.18.10':
     dependencies:
       undici-types: 6.21.0
 
@@ -3176,7 +3176,7 @@ snapshots:
       '@typescript-eslint/types': 8.46.0
       eslint-visitor-keys: 4.2.1
 
-  '@vitejs/plugin-react@5.0.4(vite@7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2))':
+  '@vitejs/plugin-react@5.0.4(vite@7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2))':
     dependencies:
       '@babel/core': 7.28.4
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.4)
@@ -3184,7 +3184,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.38
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2)
+      vite: 7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -4752,7 +4752,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-checker@0.11.0(eslint@9.37.0(jiti@2.6.1))(optionator@0.9.4)(typescript@5.9.3)(vite@7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2)):
+  vite-plugin-checker@0.11.0(eslint@9.37.0(jiti@2.6.1))(optionator@0.9.4)(typescript@5.9.3)(vite@7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2)):
     dependencies:
       '@babel/code-frame': 7.27.1
       chokidar: 4.0.3
@@ -4761,14 +4761,14 @@ snapshots:
       picomatch: 4.0.3
       tiny-invariant: 1.3.3
       tinyglobby: 0.2.15
-      vite: 7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2)
+      vite: 7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2)
       vscode-uri: 3.1.0
     optionalDependencies:
       eslint: 9.37.0(jiti@2.6.1)
       optionator: 0.9.4
       typescript: 5.9.3
 
-  vite@7.1.9(@types/node@22.18.9)(jiti@2.6.1)(sass@1.93.2):
+  vite@7.1.9(@types/node@22.18.10)(jiti@2.6.1)(sass@1.93.2):
     dependencies:
       esbuild: 0.25.10
       fdir: 6.5.0(picomatch@4.0.3)
@@ -4777,7 +4777,7 @@ snapshots:
       rollup: 4.52.4
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 22.18.9
+      '@types/node': 22.18.10
       fsevents: 2.3.3
       jiti: 2.6.1
       sass: 1.93.2
