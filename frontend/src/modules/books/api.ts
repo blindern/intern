@@ -36,7 +36,7 @@ export interface BookListResponse {
   data: Book[]
 }
 
-export type CreateBookPayload = Omit<Book, "_id" | "updated_at" | "created_at">
+export type CreateBookPayload = Omit<Book, "id" | "updated_at" | "created_at">
 
 interface SearchIsbnResult {
   isbn?: string

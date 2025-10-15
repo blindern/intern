@@ -56,7 +56,7 @@ export function GoogleAppsPage() {
           <h2>{group}</h2>
           {groupaccounts.map((account) => (
             <AccountItem
-              key={account._id}
+              key={account.id}
               account={account}
               globalEdit={isEditing}
             />
