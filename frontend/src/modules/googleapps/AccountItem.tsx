@@ -84,7 +84,7 @@ export function AccountItem({
 
       <ul>
         {users.map((user) => (
-          <li key={user._id}>
+          <li key={user.id}>
             <span style={{ display: "inline-block", minWidth: "220px" }}>
               <Link to={userUrl(user.username)}>
                 {user.realname ?? user.username}

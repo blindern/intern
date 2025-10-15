@@ -98,9 +98,9 @@ class BukkerController extends Controller
                 }
 
                 $award = null;
-                if (isset($item['_id'])) {
+                if (isset($item['id'])) {
                     foreach ($oldAwards as $oldItem) {
-                        if ($oldItem->_id == $item['_id']) {
+                        if ($oldItem->id == $item['id']) {
                             $award = $oldItem;
                             break;
                         }
@@ -108,7 +108,7 @@ class BukkerController extends Controller
 
                     if (!isset($award)) {
                         throw new HttpResponseException(new JsonResponse([
-                            '_id' => ['ID of award not found in list']
+                            'id' => ['ID of award not found in list']
                         ], 422));
                     }
                 } else {

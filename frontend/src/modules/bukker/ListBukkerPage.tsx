@@ -75,8 +75,8 @@ export function ListBukkerPage() {
           const awards = orderBy(bukk.awards, "year", "desc")
 
           return (
-            <div key={bukk._id} className="bukk">
-              <Link to={bukkUrl(bukk._id)}>
+            <div key={bukk.id} className="bukk">
+              <Link to={bukkUrl(bukk.id)}>
                 <div className="bukkdata">
                   <div className="name">{bukk.name}</div>
                   <div className="awards">

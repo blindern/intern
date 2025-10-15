@@ -14,7 +14,7 @@ export interface AccountUser {
   realname: string
   updated_at: string // "2018-09-09 13:41:30"
   username: string
-  _id: string
+  id: string
 }
 
 export interface Account {
@@ -24,7 +24,7 @@ export interface Account {
   group: string
   updated_at: string // "2022-01-27 13:41:09"
   users?: AccountUser[]
-  _id: string
+  id: string
 }
 
 export interface CreateAccountUserPayload {
@@ -71,7 +71,7 @@ export function useGoogleAppsUpdateAccountMutation() {
   return useMutation({
     mutationFn: async (data: Account) => {
       const response = await api.put(
-        "googleapps/accounts/" + encodeURIComponent(data._id),
+        "googleapps/accounts/" + encodeURIComponent(data.id),
         data,
       )
       return (await response.json()) as Account
@@ -91,7 +91,7 @@ export function useGoogleAppsDeleteAccountMutation() {
   return useMutation({
     mutationFn: async (data: Account) => {
       const response = await api.delete(
-        "googleapps/accounts/" + encodeURIComponent(data._id),
+        "googleapps/accounts/" + encodeURIComponent(data.id),
       )
       if (!response.ok) {
         console.log(response)
@@ -130,7 +130,7 @@ export function useGoogleAppsUpdateAccountUserMutation() {
   return useMutation({
     mutationFn: async (data: AccountUser) => {
       const response = await api.put(
-        "googleapps/accountusers/" + encodeURIComponent(data._id),
+        "googleapps/accountusers/" + encodeURIComponent(data.id),
         data,
       )
       return (await response.json()) as AccountUser
@@ -150,7 +150,7 @@ export function useGoogleAppsDeleteAccountUserMutation() {
   return useMutation({
     mutationFn: async (data: AccountUser) => {
       const response = await api.delete(
-        "googleapps/accountusers/" + encodeURIComponent(data._id),
+        "googleapps/accountusers/" + encodeURIComponent(data.id),
       )
       if (!response.ok) {
         console.log(response)

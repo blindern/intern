@@ -2,10 +2,10 @@ import { useApiService } from "modules/core/api/ApiServiceProvider.js"
 import { useQuery } from "@tanstack/react-query"
 
 export interface Bukk {
-  _id: string
+  id: string
   name: string
   awards: {
-    _id: string
+    id: string
     year: number
     rank: string
     image_preview_url: string | null
