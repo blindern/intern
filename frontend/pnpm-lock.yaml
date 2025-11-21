@@ -80,7 +80,7 @@ importers:
         version: 5.90.2(@tanstack/react-query@5.90.10(react@19.2.0))(react@19.2.0)
       '@tsconfig/node22':
         specifier: ^22.0.2
-        version: 22.0.4
+        version: 22.0.5
       '@tsconfig/strictest':
         specifier: 2.0.8
         version: 2.0.8
@@ -771,8 +771,8 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@tsconfig/node22@22.0.4':
-    resolution: {integrity: sha512-GI0gtqW+8Bz9UMOsOO1z3w1ebspOkVjSyeJ18r96LW82OOZenpzWXti/+f/MgPy1hqXTIRXn8QpGIOYHgKkTnQ==}
+  '@tsconfig/node22@22.0.5':
+    resolution: {integrity: sha512-hLf2ld+sYN/BtOJjHUWOk568dvjFQkHnLNa6zce25GIH+vxKfvTgm3qpaH6ToF5tu/NN0IH66s+Bb5wElHrLcw==}
 
   '@tsconfig/strictest@2.0.8':
     resolution: {integrity: sha512-XnQ7vNz5HRN0r88GYf1J9JJjqtZPiHt2woGJOo2dYqyHGGcd6OLGqSlBB6p1j9mpzja6Oe5BoPqWmeDx6X9rLw==}
@@ -2915,7 +2915,7 @@ snapshots:
       '@tanstack/query-core': 5.90.10
       react: 19.2.0
 
-  '@tsconfig/node22@22.0.4': {}
+  '@tsconfig/node22@22.0.5': {}
 
   '@tsconfig/strictest@2.0.8': {}
 
