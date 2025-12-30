@@ -20,7 +20,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
-          extensions: mongodb-2.1.1
+          extensions: mongodb-2.1.2
 
       - run: docker compose up -d database
         working-directory: backend
