@@ -59,16 +59,6 @@
   ],
   "packageRules": [
     {
-      "matchDepNames": [
-        "php"
-      ],
-      "matchFileNames": [
-        "backend/composer.json"
-      ],
-      "rangeStrategy": "bump",
-      "extractVersion": "^(?<version>\\d+\\.\\d+)"
-    },
-    {
       "matchFileNames": [
         "frontend/**"
       ],
