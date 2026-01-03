@@ -38,9 +38,7 @@ export function GoogleAppsPage() {
             </p>
           )}
 
-          {accounts !== undefined && accounts.length === 0 && (
-            <p>Ingen oppføringer lagret</p>
-          )}
+          {accounts?.length === 0 && <p>Ingen oppføringer lagret</p>}
 
           {isEditing && (
             <>
