@@ -95,6 +95,14 @@
         "mongodb/laravel-mongodb"
       ],
       "groupName": "mongodb"
+    },
+    {
+      "matchPackageNames": [
+        "elysia",
+        "@elysiajs/cors",
+        "@elysiajs/node"
+      ],
+      "groupName": "elysia"
     }
   ],
   "prCreation": "not-pending",
