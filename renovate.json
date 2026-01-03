@@ -22,9 +22,9 @@
         "php-version: \"(?<currentValue>.+?)\""
       ],
       "depNameTemplate": "php",
-      "packageNameTemplate": "containerbase/php-prebuild",
-      "datasourceTemplate": "github-tags",
-      "versioningTemplate": "composer",
+      "packageNameTemplate": "php",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker",
       "depTypeTemplate": "uses-with"
     },
     {
