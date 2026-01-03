@@ -25,7 +25,6 @@
       "packageNameTemplate": "containerbase/php-prebuild",
       "datasourceTemplate": "github-tags",
       "versioningTemplate": "composer",
-      "sourceUrlTemplate": "https://github.com/containerbase/php-prebuild",
       "depTypeTemplate": "uses-with"
     },
     {
