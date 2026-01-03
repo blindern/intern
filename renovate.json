@@ -13,6 +13,22 @@
   },
   "customManagers": [
     {
+      "description": "Keep php version up-to-date in workflow.",
+      "customType": "regex",
+      "fileMatch": [
+        "^\\.github/workflows/.+?\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "php-version: \"(?<currentValue>.+?)\""
+      ],
+      "depNameTemplate": "php",
+      "packageNameTemplate": "containerbase/php-prebuild",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "composer",
+      "sourceUrlTemplate": "https://github.com/containerbase/php-prebuild",
+      "depTypeTemplate": "uses-with"
+    },
+    {
       "description": "Keep mongodb version up-to-date in workflow.",
       "customType": "regex",
       "fileMatch": [
@@ -43,6 +59,15 @@
     }
   ],
   "packageRules": [
+    {
+      "matchPackageNames": [
+        "php"
+      ],
+      "matchFileNames": [
+        "backend/composer.json"
+      ],
+      "rangeStrategy": "bump"
+    },
     {
       "matchFileNames": [
         "frontend/**"
