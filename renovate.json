@@ -65,7 +65,8 @@
       "matchFileNames": [
         "backend/composer.json"
       ],
-      "rangeStrategy": "bump"
+      "rangeStrategy": "bump",
+      "extractVersion": "^(?<version>\\d+\\.\\d+)"
     },
     {
       "matchFileNames": [
