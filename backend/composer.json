@@ -8,7 +8,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"php": "^8.3",
+		"php": "^8.4",
 		"google/apiclient": "2.18.4",
 		"guzzlehttp/guzzle": "7.10.0",
 		"johngrogg/ics-parser": "3.5.0",
