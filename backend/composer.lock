@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "475ab5c222db9f4fe1e0825a715ce7e5",
+    "content-hash": "90524fe4af09f170a2f92c32e337cb43",
     "packages": [
         {
             "name": "brick/math",
@@ -1292,7 +1292,7 @@
         },
         {
             "name": "johngrogg/ics-parser",
-            "version": "v3.5.1",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/u01jmg3/ics-parser.git",
@@ -9547,5 +9547,5 @@
         "php": "^8.3"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }

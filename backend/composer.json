@@ -1,14 +1,17 @@
 {
 	"name": "blindern/intern",
 	"description": "Blindern Studenterhjem Intern",
-	"keywords": ["Blindern Studenterhjem", "Laravel"],
+	"keywords": [
+		"Blindern Studenterhjem",
+		"Laravel"
+	],
 	"license": "MIT",
 	"type": "project",
 	"require": {
 		"php": "^8.3",
 		"google/apiclient": "2.18.4",
 		"guzzlehttp/guzzle": "7.10.0",
-		"johngrogg/ics-parser": "3.5.1",
+		"johngrogg/ics-parser": "3.5.0",
 		"laravel/framework": "^12.0",
 		"laravel/sanctum": "^4.0",
 		"laravel/tinker": "^2.9",
