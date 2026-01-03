@@ -15,8 +15,8 @@
     {
       "description": "Keep php version up-to-date in workflow.",
       "customType": "regex",
-      "fileMatch": [
-        "^\\.github/workflows/.+?\\.ya?ml$"
+      "managerFilePatterns": [
+        "/^\\.github/workflows/.+?\\.ya?ml$/"
       ],
       "matchStrings": [
         "php-version: \"(?<currentValue>.+?)\""
@@ -30,8 +30,8 @@
     {
       "description": "Keep mongodb version up-to-date in workflow.",
       "customType": "regex",
-      "fileMatch": [
-        "^\\.github/workflows/.+?\\.ya?ml$"
+      "managerFilePatterns": [
+        "/^\\.github/workflows/.+?\\.ya?ml$/"
       ],
       "matchStrings": [
         "extensions: mongodb-(?<currentValue>.+?)\\s"
@@ -45,8 +45,8 @@
     {
       "description": "Keep mongodb version up-to-date in Dockerfile",
       "customType": "regex",
-      "fileMatch": [
-        "^backend/Dockerfile$"
+      "managerFilePatterns": [
+        "/^backend/Dockerfile$/"
       ],
       "matchStrings": [
         "mongodb-(?<currentValue>.+?)\\s"
