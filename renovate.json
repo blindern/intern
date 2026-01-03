@@ -59,7 +59,7 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": [
+      "matchDepNames": [
         "php"
       ],
       "matchFileNames": [
