@@ -39,7 +39,7 @@ export const HomePage = () => {
           <div className="index-matmeny">
             <h4>Måltider</h4>
             <p>
-              <i>Gjeldende vår 2024</i>
+              <i>Gjeldende vår 2025</i>
             </p>
             <p>
               <strong>(Matsalen stenger ved tidspunktene i parentes)</strong>
@@ -59,23 +59,23 @@ export const HomePage = () => {
                   <td>
                     07.15-
                     <br />
-                    08.55
+                    09.30
                     <br />
-                    (09.30)
+                    (10.00)
                   </td>
                   <td>
                     15.00-
                     <br />
                     17.30
                     <br />
-                    (17.45)
+                    (18.00)
                   </td>
                   <td>
                     19.30-
                     <br />
-                    20.25
+                    20.30
                     <br />
-                    (20.45)
+                    (21.00)
                   </td>
                 </tr>
                 <tr>
@@ -83,16 +83,16 @@ export const HomePage = () => {
                   <td>
                     07.15-
                     <br />
-                    08.55
+                    09.30
                     <br />
-                    (09.30)
+                    (10.00)
                   </td>
                   <td>
                     15.00-
                     <br />
                     17.30
                     <br />
-                    (17.45)
+                    (18.00)
                   </td>
                   <td>
                     Matpakkestasjon
@@ -108,23 +108,23 @@ export const HomePage = () => {
                   <td>
                     08.00-
                     <br />
-                    10.00
+                    10.30
                     <br />
-                    (10.30)
+                    (11.00)
                   </td>
                   <td>
                     16.00-
                     <br />
-                    17.30
+                    18.00
                     <br />
-                    (18.00)
+                    (18.30)
                   </td>
                   <td>
                     Matpakkestasjon
                     <br />
                     16.00-
                     <br />
-                    17.30
+                    18.00
                   </td>
                 </tr>
                 <tr>
@@ -132,18 +132,24 @@ export const HomePage = () => {
                   <td>
                     10.00-
                     <br />
-                    11.30
+                    12.00
                     <br />
-                    (12.00)
+                    (12.30)
                   </td>
                   <td>
                     17.00-
                     <br />
-                    18.30
+                    19.00
                     <br />
-                    (18.45)
+                    (19.30)
                   </td>
-                  <td>ingen</td>
+                  <td>
+                    Matpakkestasjon
+                    <br />
+                    17.00-
+                    <br />
+                    19.00
+                  </td>
                 </tr>
               </tbody>
             </table>
