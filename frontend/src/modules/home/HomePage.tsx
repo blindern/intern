@@ -39,7 +39,7 @@ export const HomePage = () => {
           <div className="index-matmeny">
             <h4>Måltider</h4>
             <p>
-              <i>Gjeldende vår 2025</i>
+              <i>Gjeldende vår 2026</i>
             </p>
             <p>
               <strong>(Matsalen stenger ved tidspunktene i parentes)</strong>
