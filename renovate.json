@@ -59,23 +59,20 @@
   ],
   "packageRules": [
     {
-      "matchFileNames": [
-        "frontend/**"
-      ],
+      "matchFileNames": ["frontend/**"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "branch"
     },
     {
-      "matchFileNames": [
-        "backend/**"
-      ],
+      "matchFileNames": ["backend/**"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "branch"
     },
     {
-      "matchFileNames": [
-        "calendar-api/**"
-      ],
+      "matchFileNames": ["calendar-api/**"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "branch"
     },
