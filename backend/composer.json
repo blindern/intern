@@ -11,7 +11,7 @@
 		"php": "8.5.*",
 		"google/apiclient": "2.19.0",
 		"guzzlehttp/guzzle": "7.10.0",
-		"johngrogg/ics-parser": "3.5.0",
+		"johngrogg/ics-parser": "3.5.1",
 		"laravel/framework": "^12.0",
 		"laravel/sanctum": "^4.0",
 		"laravel/tinker": "^2.9",
