@@ -42,7 +42,7 @@
     "@types/git-rev-sync": "2.0.2",
     "@types/jquery": "3.5.33",
     "@types/lodash": "4.17.23",
-    "@types/node": "24.10.9",
+    "@types/node": "24.10.10",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "@types/react-router": "5.1.20",
