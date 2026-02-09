@@ -12,6 +12,12 @@ FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
 COPY src src
 
+ENV OTEL_SERVICE_NAME=intern-calendar-api
+ENV OTEL_TRACES_EXPORTER=otlp
+ENV OTEL_METRICS_EXPORTER=none
+ENV OTEL_LOGS_EXPORTER=none
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://signoz-otel-collector.zt.foreningenbs.no:4318
+
 USER node
 EXPOSE 8000
-ENTRYPOINT ["node", "src/index.ts"]
+ENTRYPOINT ["node", "--import", "./src/instrumentation.ts", "src/index.ts"]

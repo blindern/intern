@@ -23,7 +23,9 @@ RUN \
     \
     # php extensions
     && pecl install mongodb-2.1.2 \
-    && docker-php-ext-enable mongodb \
+    && pecl install opentelemetry \
+    && pecl install protobuf \
+    && docker-php-ext-enable mongodb opentelemetry protobuf \
     \
     # pgsql for printerdb
     && docker-php-ext-install pdo_pgsql \
@@ -77,5 +79,12 @@ COPY --chown=www-data:www-data . /var/www/html/
 RUN composer install
 
 USER root
+
+ENV OTEL_PHP_AUTOLOAD_ENABLED=1
+ENV OTEL_SERVICE_NAME=intern-backend
+ENV OTEL_TRACES_EXPORTER=otlp
+ENV OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://signoz-otel-collector.zt.foreningenbs.no:4318
+ENV OTEL_PROPAGATORS=baggage,tracecontext
 
 VOLUME ["/var/intern"]
