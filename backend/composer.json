@@ -26,7 +26,7 @@
 		"open-telemetry/opentelemetry-auto-laravel": "1.4.0",
 		"open-telemetry/opentelemetry-auto-mongodb": "0.2.0",
 		"open-telemetry/opentelemetry-auto-pdo": "0.3.0",
-		"open-telemetry/sdk": "1.12.0",
+		"open-telemetry/sdk": "1.13.0",
 		"spatie/icalendar-generator": "^3.0"
 	},
 	"require-dev": {
