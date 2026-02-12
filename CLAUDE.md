@@ -12,6 +12,16 @@ Internal tools app for Blindern Studenterhjem (foreningenbs.no/intern/). Monorep
 - **Frontend** (`frontend/`): React, TypeScript, Vite. SPA served at `/intern/`. Feature modules in `src/modules/`, each with own routes. Uses React Query, React Hook Form, styled-components, Bootstrap Sass 3.
 - **Calendar API** (`calendar-api/`): Elysia (Node.js), TypeScript. Aggregates Confluence + historical calendar data. Exposes JSON and iCalendar endpoints.
 
+### Backend domain modules (`backend/app/src/`)
+
+Arrplan, Auth, Books, Bukker, GoogleApps, Matmeny, Passtools, Printer, Saml2, Support. Each module has Models/ and Controllers/ as needed. Standard Laravel code (Console, Http, Mail, Providers) lives in `app/`.
+
+Auth integrates with an external Users API (`users-api.zt.foreningenbs.no`) via HMAC-authenticated requests for user/group management.
+
+### Frontend routing
+
+All routes defined centrally in `src/App.tsx` using React Router. Base path `/intern/`. Core services (`ApiService`, `AuthService`, `FlashesService`) instantiated at app root and provided via React Context.
+
 ## Commands
 
 Commands are run from each service's directory.
@@ -47,7 +57,7 @@ pnpm test src/some-file.test.ts     # Single test
 
 ## Conventions
 
-- 2-space indentation, LF line endings, UTF-8 (see `.editorconfig`)
+- 2-space indentation, LF line endings, UTF-8 (see `.editorconfig`). PHP uses 4-space indent.
 - Frontend uses path aliases: `components`, `layout`, `modules`, `urls`, `utils` (configured in `vite.config.ts`)
 - Package manager for JS/TS services: pnpm
 - Backend routes prefixed with `/intern/api` (see `routes/app.php`)
