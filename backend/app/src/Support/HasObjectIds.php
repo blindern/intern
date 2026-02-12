@@ -22,6 +22,10 @@ trait HasObjectIds
 
     public function newUniqueId(): string
     {
-        return bin2hex(random_bytes(12));
+        // MongoDB ObjectId format: 4-byte timestamp + 5-byte random + 3-byte counter
+        $timestamp = pack('N', time());
+        $random = random_bytes(5);
+        $counter = substr(pack('N', mt_rand(0, 0xFFFFFF)), 1, 3);
+        return bin2hex($timestamp . $random . $counter);
     }
 }
