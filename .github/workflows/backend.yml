@@ -20,12 +20,25 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.5"
-          extensions: mongodb-2.1.2, opentelemetry
+          extensions: pdo_pgsql, opentelemetry
 
       - run: docker compose up -d database
         working-directory: backend
 
       - run: composer install -n --prefer-dist
+        working-directory: backend
+
+      - name: Wait for PostgreSQL
+        run: |
+          for i in $(seq 1 30); do
+            docker compose exec -T database pg_isready -U intern && exit 0
+            sleep 1
+          done
+          echo "PostgreSQL did not become ready in time"
+          exit 1
+        working-directory: backend
+
+      - run: php artisan migrate --force
         working-directory: backend
 
       - run: php artisan test

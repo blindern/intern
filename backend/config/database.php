@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'mongodb',
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,17 +34,19 @@ return [
     */
 
     'connections' => [
-        'mongodb' => [
-            'driver'   => 'mongodb',
-            'host'     => env('DB_MONGODB_HOST', 'localhost'),
-            'port'     => env('DB_MONGODB_PORT', 27017),
-            'database' => env('DB_MONGODB_DATABASE', 'intern'),
-            'username' => env('DB_MONGODB_USERNAME', 'intern'),
-            'password' => env('DB_MONGODB_PASSWORD', 'secret'),
-            'options' => [
-                'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'),
-            ],
-        ]
+        'pgsql' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'intern'),
+            'username' => env('DB_USERNAME', 'intern'),
+            'password' => env('DB_PASSWORD', 'secret'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
     ],
 
     /*

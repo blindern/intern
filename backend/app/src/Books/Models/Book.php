@@ -1,10 +1,18 @@
 <?php namespace Blindern\Intern\Books\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    use HasUlids;
+
     protected $table = 'books';
+
+    protected $casts = [
+        'authors' => 'array',
+        'isbn_data' => 'array',
+    ];
 
     /**
      * Set a barcode for the book

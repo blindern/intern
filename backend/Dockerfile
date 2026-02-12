@@ -22,10 +22,9 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     \
     # php extensions
-    && pecl install mongodb-2.1.2 \
     && pecl install opentelemetry \
     && pecl install protobuf \
-    && docker-php-ext-enable mongodb opentelemetry protobuf \
+    && docker-php-ext-enable opentelemetry protobuf \
     \
     # pgsql for printerdb
     && docker-php-ext-install pdo_pgsql \

@@ -1,15 +1,18 @@
 <?php namespace Blindern\Intern\GoogleApps\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
-use MongoDB\Laravel\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends Model
 {
-    use SoftDeletes;
+    use HasUlids, SoftDeletes;
 
     protected $table = 'googleapps_accounts';
-    protected $casts = ['deleted_at' => 'datetime'];
-    //protected $primaryKey = 'accountname';
+
+    protected $casts = [
+        'aliases' => 'array',
+    ];
 
     // fields:
     // - accountname (name of account in Google Apps)

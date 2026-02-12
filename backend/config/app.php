@@ -203,7 +203,6 @@ return [
          * BS-related
          */
         Blindern\Intern\Auth\AuthServiceProvider::class,
-        MongoDB\Laravel\MongodbServiceProvider::class,
     ],
 
     /*
@@ -218,7 +217,6 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Eloquent'  => MongoDB\Laravel\Model::class,
         'User'      => Blindern\Intern\Auth\User::class,
     ])->toArray(),
 

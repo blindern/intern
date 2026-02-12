@@ -53,12 +53,12 @@ class BookController extends Controller
             foreach ($s as $part) {
                 $query = $query->where(function ($query) use ($part) {
                     $check = '%' . $part  .'%';
-                    $query->where('title', 'like', $check)
-                          ->orWhere('subtitle', 'like', $check)
-                          ->orWhere('authors', 'like', $check)
-                          ->orWhere('pubdate', 'like', $check)
-                          ->orWHere('isbn', 'like', $check)
-                          ->orWhere('bib_barcode', 'like', $check);
+                    $query->where('title', 'ilike', $check)
+                          ->orWhere('subtitle', 'ilike', $check)
+                          ->orWhereRaw('authors::text ilike ?', [$check])
+                          ->orWhere('pubdate', 'ilike', $check)
+                          ->orWhere('isbn', 'ilike', $check)
+                          ->orWhere('bib_barcode', 'ilike', $check);
                 });
             }
         }
@@ -204,7 +204,7 @@ class BookController extends Controller
         $validator = \Validator::make(\Request::all(), array(
             'title' => 'required',
             'subtitle' => '',
-            'authors' => 'array',
+            'authors' => 'nullable|array',
             'pubdate' => array('regex:/^(\d{4}-\d\d(-\d\d)?|\d{4}\??|\d{2}\?)$/'),
             'description' => '',
             'isbn' => '',

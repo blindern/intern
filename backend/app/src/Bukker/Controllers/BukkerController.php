@@ -2,20 +2,16 @@
 
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Exception\HttpResponseException;
 
 use Blindern\Intern\Bukker\Models\Bukk;
-use Blindern\Intern\Bukker\Models\Award;
 use Blindern\Intern\Responses;
 
 class BukkerController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Bukk::with('awards')->get();
-        return $query;
+        return Bukk::all();
     }
 
     public function store(Request $request)
@@ -33,7 +29,7 @@ class BukkerController extends Controller
 
     public function show($id)
     {
-        return Bukk::with('awards')->findOrFail($id);
+        return Bukk::findOrFail($id);
     }
 
     public function update($id, Request $request)
@@ -81,9 +77,7 @@ class BukkerController extends Controller
         }
 
         if ($request->has('awards')) {
-            $oldAwards = $bukk->awards()->all();
-
-            $bukk->awards = [];
+            $newAwards = [];
             foreach ($request->input('awards') as $item) {
                 $validator = Validator::make($item, [
                     'year' => array('required', 'regex:/^(\d{4})$/'),
@@ -97,44 +91,30 @@ class BukkerController extends Controller
                     $this->throwValidationException($request, $validator);
                 }
 
-                $award = null;
-                if (isset($item['id'])) {
-                    foreach ($oldAwards as $oldItem) {
-                        if ($oldItem->id == $item['id']) {
-                            $award = $oldItem;
-                            break;
-                        }
-                    }
-
-                    if (!isset($award)) {
-                        throw new HttpResponseException(new JsonResponse([
-                            'id' => ['ID of award not found in list']
-                        ], 422));
-                    }
-                } else {
-                    $award = new Award();
-                }
-
-                $award->year = $item['year'];
-                $award->rank = $item['rank'];
+                $award = [
+                    'year' => $item['year'],
+                    'rank' => $item['rank'],
+                ];
                 if (isset($item['image_file'])) {
-                    $award->image_file = $item['image_file'];
+                    $award['image_file'] = $item['image_file'];
                 }
                 if (isset($item['devise'])) {
-                    $award->devise = $item['devise'];
+                    $award['devise'] = $item['devise'];
                 }
                 if (isset($item['comment'])) {
-                    $award->comment = $item['comment'];
+                    $award['comment'] = $item['comment'];
                 }
 
-                $bukk->awards()->associate($award);
+                $newAwards[] = $award;
             }
+
+            $bukk->setRawAwards($newAwards);
         }
 
         $bukk->name = $request->input('name');
         if ($request->has('died')) {
             if ($request->input('died') === false) {
-                $bukk->unset('died');
+                $bukk->died = null;
             } else {
                 $bukk->died = $request->input('died');
             }

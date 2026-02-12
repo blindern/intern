@@ -1,6 +1,7 @@
 <?php namespace Blindern\Intern\Matmeny\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 
 /**
@@ -13,9 +14,15 @@ use \Carbon\Carbon;
  */
 class Matmeny extends Model
 {
+    use HasUlids;
+
     protected $table = 'matmeny';
     protected $visible = array('day', 'text', 'dishes');
     protected $appends = array('date_obj');
+
+    protected $casts = [
+        'dishes' => 'array',
+    ];
 
     /**
      * Get date object for this day
