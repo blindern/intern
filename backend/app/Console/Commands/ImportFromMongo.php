@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 /**
  * Import data from mongoexport JSONL files into PostgreSQL.
@@ -22,8 +21,8 @@ class ImportFromMongo extends Command
     protected $signature = 'import:from-mongo {dir : Directory containing mongoexport JSONL files}';
     protected $description = 'Import mongoexport JSONL files into PostgreSQL';
 
-    // Maps old MongoDB _id to new ULID
-    private array $idMap = [];
+    // Tracks seen account IDs for accountuser FK validation
+    private array $accountIds = [];
 
     public function handle(): int
     {
@@ -73,14 +72,6 @@ class ImportFromMongo extends Command
         return $records;
     }
 
-    private function mapId(string $oldId): string
-    {
-        if (!isset($this->idMap[$oldId])) {
-            $this->idMap[$oldId] = strtolower((string) Str::ulid());
-        }
-        return $this->idMap[$oldId];
-    }
-
     private function extractOid(mixed $id): string
     {
         if (is_array($id) && isset($id['$oid'])) {
@@ -125,7 +116,7 @@ class ImportFromMongo extends Command
         foreach ($records as $doc) {
             $oldId = $this->extractOid($doc['_id']);
             DB::table('books')->insert([
-                'id' => $this->mapId($oldId),
+                'id' => $oldId,
                 'title' => $doc['title'] ?? null,
                 'subtitle' => $doc['subtitle'] ?? null,
                 'authors' => isset($doc['authors']) ? json_encode($doc['authors']) : null,
@@ -170,7 +161,7 @@ class ImportFromMongo extends Command
             }
 
             DB::table('bukker')->insert([
-                'id' => $this->mapId($oldId),
+                'id' => $oldId,
                 'name' => $doc['name'] ?? '',
                 'died' => $died,
                 'comment' => $doc['comment'] ?? null,
@@ -189,7 +180,7 @@ class ImportFromMongo extends Command
         foreach ($records as $doc) {
             $oldId = $this->extractOid($doc['_id']);
             DB::table('matmeny')->insert([
-                'id' => $this->mapId($oldId),
+                'id' => $oldId,
                 'day' => $doc['day'] ?? null,
                 'text' => $doc['text'] ?? null,
                 'dishes' => isset($doc['dishes']) ? json_encode($doc['dishes']) : null,
@@ -206,8 +197,9 @@ class ImportFromMongo extends Command
 
         foreach ($records as $doc) {
             $oldId = $this->extractOid($doc['_id']);
+            $this->accountIds[$oldId] = true;
             DB::table('googleapps_accounts')->insert([
-                'id' => $this->mapId($oldId),
+                'id' => $oldId,
                 'accountname' => $doc['accountname'] ?? '',
                 'group' => $doc['group'] ?? null,
                 'aliases' => isset($doc['aliases']) ? json_encode($doc['aliases']) : null,
@@ -227,14 +219,14 @@ class ImportFromMongo extends Command
             $oldId = $this->extractOid($doc['_id']);
             $accountOldId = $this->extractOid($doc['account_id']);
 
-            if (!isset($this->idMap[$accountOldId])) {
+            if (!isset($this->accountIds[$accountOldId])) {
                 $this->warn("Account not found for accountuser, skipping: $accountOldId");
                 continue;
             }
 
             DB::table('googleapps_accountusers')->insert([
-                'id' => $this->mapId($oldId),
-                'account_id' => $this->idMap[$accountOldId],
+                'id' => $oldId,
+                'account_id' => $accountOldId,
                 'username' => $doc['username'] ?? '',
                 'notification' => $doc['notification'] ?? false,
                 'created_at' => $this->extractDate($doc['created_at'] ?? null),
@@ -260,7 +252,7 @@ class ImportFromMongo extends Command
 
             $oldId = $this->extractOid($doc['_id']);
             DB::table('users')->insert([
-                'id' => $this->mapId($oldId),
+                'id' => $oldId,
                 'username' => $username,
                 'remember_token' => $doc['remember_token'] ?? null,
                 'created_at' => $this->extractDate($doc['created_at'] ?? null),

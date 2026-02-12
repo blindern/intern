@@ -10,7 +10,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->string('id', 24)->primary();
             $table->string('title');
             $table->string('subtitle')->nullable();
             $table->jsonb('authors')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
         });
 
         Schema::create('bukker', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->string('id', 24)->primary();
             $table->string('name');
             $table->string('died')->nullable();
             $table->string('comment')->nullable();
@@ -36,7 +36,7 @@ return new class extends Migration
         });
 
         Schema::create('matmeny', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->string('id', 24)->primary();
             $table->date('day')->unique();
             $table->text('text')->nullable();
             $table->jsonb('dishes')->nullable();
@@ -44,7 +44,7 @@ return new class extends Migration
         });
 
         Schema::create('googleapps_accounts', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->string('id', 24)->primary();
             $table->string('accountname');
             $table->string('group')->nullable();
             $table->jsonb('aliases')->nullable();
@@ -53,8 +53,8 @@ return new class extends Migration
         });
 
         Schema::create('googleapps_accountusers', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->ulid('account_id');
+            $table->string('id', 24)->primary();
+            $table->string('account_id', 24);
             $table->string('username');
             $table->boolean('notification')->default(false);
             $table->timestampsTz(3);
@@ -67,7 +67,7 @@ return new class extends Migration
         DB::statement('CREATE UNIQUE INDEX googleapps_accountusers_account_username_unique ON googleapps_accountusers (account_id, username) WHERE deleted_at IS NULL');
 
         Schema::create('users', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->string('id', 24)->primary();
             $table->string('username')->unique();
             $table->rememberToken();
             $table->timestampsTz(3);

@@ -1,6 +1,6 @@
 <?php namespace Blindern\Intern\Matmeny\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Blindern\Intern\Support\HasObjectIds;
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
 
@@ -14,7 +14,7 @@ use \Carbon\Carbon;
  */
 class Matmeny extends Model
 {
-    use HasUlids;
+    use HasObjectIds;
 
     protected $table = 'matmeny';
     protected $visible = array('day', 'text', 'dishes');

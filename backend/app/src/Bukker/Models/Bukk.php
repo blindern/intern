@@ -1,12 +1,12 @@
 <?php namespace Blindern\Intern\Bukker\Models;
 
+use Blindern\Intern\Support\HasObjectIds;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 
 class Bukk extends Model
 {
-    use HasUlids;
+    use HasObjectIds;
 
     /* field list:
        - name

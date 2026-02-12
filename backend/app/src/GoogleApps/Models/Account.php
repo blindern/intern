@@ -1,12 +1,12 @@
 <?php namespace Blindern\Intern\GoogleApps\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Blindern\Intern\Support\HasObjectIds;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends Model
 {
-    use HasUlids, SoftDeletes;
+    use HasObjectIds, SoftDeletes;
 
     protected $table = 'googleapps_accounts';
 

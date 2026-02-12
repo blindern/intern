@@ -1,6 +1,6 @@
 <?php namespace Blindern\Intern\Auth;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Blindern\Intern\Support\HasObjectIds;
 use Illuminate\Database\Eloquent\Model;
 
 /*
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LocalUser extends Model
 {
-    use HasUlids;
+    use HasObjectIds;
 
     protected $table = 'users';
 }
