@@ -9,7 +9,6 @@ export interface Bukk {
     year: number
     rank: string
     image_preview_url: string | null
-    image_url: string | null
     devise?: string | null
   }[]
   died?: boolean | number

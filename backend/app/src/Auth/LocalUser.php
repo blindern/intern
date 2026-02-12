@@ -1,6 +1,7 @@
 <?php namespace Blindern\Intern\Auth;
 
-use MongoDB\Laravel\Eloquent\Model;
+use Blindern\Intern\Support\HasObjectIds;
+use Illuminate\Database\Eloquent\Model;
 
 /*
  * Dette objektet har til formål å kunne lagre noen variabler
@@ -8,5 +9,7 @@ use MongoDB\Laravel\Eloquent\Model;
  */
 class LocalUser extends Model
 {
+    use HasObjectIds;
+
     protected $table = 'users';
 }

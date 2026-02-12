@@ -8,7 +8,7 @@ Internal tools app for Blindern Studenterhjem (foreningenbs.no/intern/). Monorep
 
 ## Architecture
 
-- **Backend** (`backend/`): Laravel, PHP, MongoDB. REST API at `/intern/api/`. Custom domain code under `app/src/` (PSR-4: `Blindern\Intern\`), standard Laravel code under `app/`. Auth via SAML2.
+- **Backend** (`backend/`): Laravel, PHP, PostgreSQL. REST API at `/intern/api/`. Custom domain code under `app/src/` (PSR-4: `Blindern\Intern\`), standard Laravel code under `app/`. Auth via SAML2. Models use 24-char hex string IDs (MongoDB ObjectId format, `HasObjectIds` trait). Array/nested fields use JSONB columns with Eloquent `$casts`.
 - **Frontend** (`frontend/`): React, TypeScript, Vite. SPA served at `/intern/`. Feature modules in `src/modules/`, each with own routes. Uses React Query, React Hook Form, styled-components, Bootstrap Sass 3.
 - **Calendar API** (`calendar-api/`): Elysia (Node.js), TypeScript. Aggregates Confluence + historical calendar data. Exposes JSON and iCalendar endpoints.
 
@@ -29,7 +29,7 @@ pnpm lint:fix
 ### Backend (`backend/`)
 ```bash
 composer install
-docker compose up database          # MongoDB on :27017
+docker compose up database          # PostgreSQL on :5432
 php artisan serve --port 8081
 php artisan test                    # PHPUnit
 php artisan test --filter=TestName  # Single test

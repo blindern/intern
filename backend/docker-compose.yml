@@ -12,11 +12,12 @@ services:
       APP_ENV: local
       APP_DEBUG: 1
       APP_KEY: KeNd439jeX9n9hqudOxXqCQErFmbApoi
-      DB_MONGODB_HOST: database
-      DB_MONGODB_PORT: 27017
-      DB_MONGODB_DATABASE: intern
-      DB_MONGODB_USERNAME: intern
-      DB_MONGODB_PASSWORD: secret
+      DB_CONNECTION: pgsql
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_DATABASE: intern
+      DB_USERNAME: intern
+      DB_PASSWORD: secret
       LARAVEL_SESSION_SECURE: 0
       INTERN_USERS_API_KEY: $INTERN_USERS_API_KEY
       PRINTERDB_DSN: pgsql:host=postgresql-1.zt.foreningenbs.no;dbname=pykota
@@ -25,16 +26,15 @@ services:
     ports:
       - "8081:80"
   database:
-    # See latest value for
-    # https://github.com/blindern/drift/blob/38fcba4affe5416c86e00a797ee6c4f3f52b6509/ansible/site.yml#L70
-    image: mongo:8
+    image: postgres:18
     volumes:
-      - db:/data/db/
+      - db:/var/lib/postgresql
     environment:
-      MONGO_INITDB_ROOT_USERNAME: intern
-      MONGO_INITDB_ROOT_PASSWORD: secret
+      POSTGRES_DB: intern
+      POSTGRES_USER: intern
+      POSTGRES_PASSWORD: secret
     ports:
-      - "127.0.0.1:27017:27017"
+      - "127.0.0.1:5432:5432"
 
 volumes:
   db:

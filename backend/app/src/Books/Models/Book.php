@@ -1,10 +1,18 @@
 <?php namespace Blindern\Intern\Books\Models;
 
-use MongoDB\Laravel\Eloquent\Model;
+use Blindern\Intern\Support\HasObjectIds;
+use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    use HasObjectIds;
+
     protected $table = 'books';
+
+    protected $casts = [
+        'authors' => 'array',
+        'isbn_data' => 'array',
+    ];
 
     /**
      * Set a barcode for the book
