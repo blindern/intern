@@ -24,7 +24,6 @@ class Bukk extends Model
                 $awards = json_decode($value, true) ?? [];
                 return array_map(function ($award) {
                     $award['image_preview_url'] = null;
-                    $award['image_url'] = null;
                     if (!empty($award['image_file'])) {
                         $award['image_preview_url'] = 'https://foreningenbs.no/intern/assets/images/bukker/preview/' . $award['image_file'];
                     }
