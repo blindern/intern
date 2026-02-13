@@ -1,10 +1,19 @@
 <?php namespace Blindern\Intern\Support;
 
+use Illuminate\Database\Eloquent\Concerns\HasUniqueIds;
+
 /**
  * Generate 24-char hex IDs matching MongoDB ObjectId format.
  */
 trait HasObjectIds
 {
+    use HasUniqueIds;
+
+    public function usesUniqueIds(): bool
+    {
+        return true;
+    }
+
     public function getKeyType(): string
     {
         return 'string';
