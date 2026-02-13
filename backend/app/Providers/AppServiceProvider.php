@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Send timestamps with timezone offset to PostgreSQL
+        $connection = \DB::connection();
+        $connection->setQueryGrammar(new \App\Support\PostgresGrammar($connection));
     }
 }

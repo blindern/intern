@@ -46,6 +46,7 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
+            'timezone' => config('app.timezone'),
         ],
     ],
 
