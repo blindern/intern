@@ -10,7 +10,6 @@ export const ResetPasswordPage = () => {
   const token = searchParams.get("token")
   const [password, setPassword] = useState("")
   const [isDone, setIsDone] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const { isPending, mutateAsync: resetPassword } = useResetPasswordMutation()
   const tokenQuery = useValidateTokenQuery(token)
 
@@ -58,12 +57,11 @@ export const ResetPasswordPage = () => {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setError(null)
     try {
       await resetPassword({ token: token!, password })
       setIsDone(true)
     } catch {
-      setError("Kunne ikke oppdatere passordet. Lenken kan være utløpt.")
+      // Errors shown via flash system automatically
     }
   }
 
@@ -71,8 +69,6 @@ export const ResetPasswordPage = () => {
     <div className="row">
       <div className="col-md-6">
         <p>Velg et nytt passord for din foreningsbruker.</p>
-
-        {error && <p className="text-danger">{error}</p>}
 
         <form onSubmit={onSubmit} className="form-horizontal" role="form">
           <div className="form-group">

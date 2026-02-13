@@ -31,7 +31,7 @@ class UsersApiClient
         }
         $hash = $this->generateHmacV2($time, $method, $uriPath, $jsonBody);
 
-        $request = Http::withHeaders([
+        $request = Http::timeout(5)->retry(2, 200)->withHeaders([
             'X-API-Time' => $time,
             'X-API-Hash' => $hash,
             'X-API-Hash-Version' => '2',

@@ -27,14 +27,22 @@ class ChangePasswordController extends Controller
 
         $client = new UsersApiClient();
 
-        if (!$client->verifyCredentials($user->username, $currentPassword)) {
-            return Responses::clientError(['Nåværende passord er feil.']);
-        }
+        try {
+            if (!$client->verifyCredentials($user->username, $currentPassword)) {
+                return Responses::clientError(['Nåværende passord er feil.']);
+            }
 
-        $passwordHash = pw::unixpass($newPassword);
-        $response = $client->modifyUser($user->username, [
-            'passwordHash' => ['value' => $passwordHash],
-        ]);
+            $passwordHash = pw::unixpass($newPassword);
+            $response = $client->modifyUser($user->username, [
+                'passwordHash' => ['value' => $passwordHash],
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Password change failed due to users-api error', [
+                'username' => $user->username,
+                'error' => $e->getMessage(),
+            ]);
+            return Responses::serverError(['Kunne ikke kontakte brukertjenesten. Prøv igjen senere.']);
+        }
 
         if (!$response->successful()) {
             Log::error('Failed to change password via users-api', [

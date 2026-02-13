@@ -33,19 +33,19 @@ class RegistrationRequestController extends Controller
             return Responses::forbidden(['Ingen tilgang.']);
         }
 
-        return DB::transaction(function () use ($id) {
+        $groups = request()->input('groups');
+        if (!$groups || !is_array($groups) || count($groups) === 0) {
+            return Responses::clientError(['Minst én gruppe må velges.']);
+        }
+
+        $result = DB::transaction(function () use ($id, $groups) {
             $request = RegistrationRequest::lockForUpdate()->find($id);
             if (!$request) {
-                return Responses::clientError(['Forespørsel ikke funnet.']);
+                return ['error' => Responses::clientError(['Forespørsel ikke funnet.'])];
             }
 
             if ($request->status !== 'pending') {
-                return Responses::clientError(['Forespørselen er allerede behandlet.']);
-            }
-
-            $groups = request()->input('groups');
-            if (!$groups || !is_array($groups) || count($groups) === 0) {
-                return Responses::clientError(['Minst én gruppe må velges.']);
+                return ['error' => Responses::clientError(['Forespørselen er allerede behandlet.'])];
             }
 
             $client = new UsersApiClient();
@@ -67,7 +67,7 @@ class RegistrationRequestController extends Controller
                     'status' => $response->status(),
                     'error' => $error,
                 ]);
-                return Responses::serverError(["Kunne ikke opprette bruker: $error"]);
+                return ['error' => Responses::serverError(["Kunne ikke opprette bruker: $error"])];
             }
 
             // Add user to groups
@@ -85,33 +85,38 @@ class RegistrationRequestController extends Controller
 
             $admin = \Auth::user();
 
-            try {
-                $request->update([
-                    'status' => 'approved',
-                    'group_name' => implode(', ', $groups),
-                    'processed_by' => $admin->username,
-                    'processed_at' => now(),
-                ]);
-            } catch (\Exception $e) {
-                Log::error('Failed to update registration request after LDAP user creation', [
-                    'username' => $request->username,
-                    'error' => $e->getMessage(),
-                ]);
-                return Responses::serverError(['Bruker opprettet i LDAP, men databaseoppdatering feilet. Kontakt administrator.']);
-            }
-
-            // Send approval email to user
-            Mail::to($request->email)->send(new RegistrationApproved($request->username));
-
-            Log::info('Registration approved, email sent', [
-                'admin' => $admin->username,
-                'username' => $request->username,
-                'groups' => $groups,
-                'email' => $request->email,
+            $request->update([
+                'status' => 'approved',
+                'group_name' => implode(', ', $groups),
+                'processed_by' => $admin->username,
+                'processed_at' => now(),
             ]);
 
-            return response()->json(['status' => 'approved']);
+            return ['request' => $request, 'admin' => $admin];
         });
+
+        if (isset($result['error'])) {
+            return $result['error'];
+        }
+
+        // Send approval email outside transaction
+        try {
+            Mail::to($result['request']->email)->send(new RegistrationApproved($result['request']->username));
+        } catch (\Exception $e) {
+            Log::error('Failed to send approval email', [
+                'username' => $result['request']->username,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        Log::info('Registration approved', [
+            'admin' => $result['admin']->username,
+            'username' => $result['request']->username,
+            'groups' => $groups,
+            'email' => $result['request']->email,
+        ]);
+
+        return response()->json(['status' => 'approved']);
     }
 
     public function reject(string $id)

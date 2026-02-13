@@ -5,6 +5,8 @@ use Blindern\Intern\Auth\RegistrationRequest;
 use Blindern\Intern\Auth\User;
 use Blindern\Intern\Passtools\pw;
 use Blindern\Intern\Responses;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -52,40 +54,55 @@ class AuthController extends Controller
         $data['username'] = strtolower($data['username']);
         $data['phone'] = !empty($data['phone']) ? $data['phone'] : null;
 
-        // Validate uniqueness against LDAP and pending requests
-        $existingUser = User::find($data['username']);
-        $pendingUsername = RegistrationRequest::where('username', $data['username'])
-            ->where('status', 'pending')
-            ->exists();
-        if ($existingUser || $pendingUsername) {
-            return Responses::clientError(['Brukernavnet er allerede i bruk.']);
-        }
-
-        $existingEmail = User::findByEmail($data['email']);
-        if ($existingEmail) {
-            return Responses::clientError(['E-postadressen er allerede registrert. Bruk glemt passord for å tilbakestille passordet.']);
-        }
-
-        $pendingEmail = RegistrationRequest::where('email', $data['email'])
-            ->where('status', 'pending')
-            ->exists();
-        if ($pendingEmail) {
-            return Responses::clientError(['Det finnes allerede en ventende forespørsel med denne e-postadressen.']);
-        }
-
         $passwordHash = pw::unixpass($data['password']);
 
-        $request = RegistrationRequest::create([
-            'username' => $data['username'],
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password_hash' => $passwordHash,
-            'status' => 'pending',
-            'ip_address' => request()->ip(),
-            'user_agent' => request()->userAgent(),
-        ]);
+        try {
+            $request = DB::transaction(function () use ($data, $passwordHash) {
+                // Validate uniqueness against LDAP and pending requests
+                $existingUser = User::find($data['username']);
+                $pendingUsername = RegistrationRequest::where('username', $data['username'])
+                    ->where('status', 'pending')
+                    ->exists();
+                if ($existingUser || $pendingUsername) {
+                    return Responses::clientError(['Brukernavnet er allerede i bruk.']);
+                }
+
+                $existingEmail = User::findByEmail($data['email']);
+                if ($existingEmail) {
+                    return Responses::clientError(['E-postadressen er allerede registrert. Bruk glemt passord for å tilbakestille passordet.']);
+                }
+
+                $pendingEmail = RegistrationRequest::where('email', $data['email'])
+                    ->where('status', 'pending')
+                    ->exists();
+                if ($pendingEmail) {
+                    return Responses::clientError(['Det finnes allerede en ventende forespørsel med denne e-postadressen.']);
+                }
+
+                return RegistrationRequest::create([
+                    'username' => $data['username'],
+                    'firstname' => $data['firstname'],
+                    'lastname' => $data['lastname'],
+                    'email' => $data['email'],
+                    'phone' => $data['phone'],
+                    'password_hash' => $passwordHash,
+                    'status' => 'pending',
+                    'ip_address' => request()->ip(),
+                    'user_agent' => request()->userAgent(),
+                ]);
+            });
+        } catch (QueryException $e) {
+            Log::warning('Registration race condition', [
+                'username' => $data['username'],
+                'error' => $e->getMessage(),
+            ]);
+            return Responses::clientError(['Brukernavnet eller e-postadressen er allerede i bruk.']);
+        }
+
+        // Transaction returned an error response
+        if (!$request instanceof RegistrationRequest) {
+            return $request;
+        }
 
         // Send notification to IT-gruppa
         $to = config('auth.registeruser_notify_email');
