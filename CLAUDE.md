@@ -55,6 +55,10 @@ pnpm test                           # Vitest
 pnpm test src/some-file.test.ts     # Single test
 ```
 
+### Frontend error handling
+
+`ApiService.post/put/delete` wraps calls in `handleErrors()` which automatically extracts backend error messages (`Responses::clientError()` etc.) and displays them as flashes. Don't add manual try/catch with local error state for API mutations — it causes duplicate error messages. Catch only to prevent unhandled rejections, not to display errors.
+
 ## Conventions
 
 - 2-space indentation, LF line endings, UTF-8 (see `.editorconfig`). PHP uses 4-space indent.

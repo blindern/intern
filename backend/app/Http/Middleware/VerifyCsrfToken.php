@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/intern/api/saml2/acs',
+        '/intern/api/password-reset/*',
     ];
 }

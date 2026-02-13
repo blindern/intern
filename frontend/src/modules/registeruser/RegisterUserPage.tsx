@@ -11,6 +11,8 @@ import {
   useFormContext,
   useFormState,
 } from "react-hook-form"
+import { Link } from "react-router-dom"
+import { forgotPasswordUrl } from "utils/urls.js"
 import * as Yup from "yup"
 import { RegisterData, useRegisterUserMutation } from "./api.js"
 
@@ -201,8 +203,12 @@ const RegisterForm = () => {
   })
 
   async function onSubmit(values: RegisterData) {
-    await registerUser(values)
-    setIsSent(true)
+    try {
+      await registerUser(values)
+      setIsSent(true)
+    } catch {
+      // Error flash is already shown by ApiService.handleErrors
+    }
   }
 
   if (isSent)
@@ -238,6 +244,10 @@ const RegisterForm = () => {
             />
             <span className="help-block">
               Du vil bli lagt til manuelt, så noe ventetid må påregnes.
+            </span>
+            <span className="help-block">
+              Har du allerede en bruker?{" "}
+              <Link to={forgotPasswordUrl()}>Glemt passord</Link>
             </span>
           </div>
         </div>
