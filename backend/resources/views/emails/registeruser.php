@@ -10,13 +10,8 @@ E-post: "<?= $email ?>"
 Mobilnr: <?= ($phone ? "\"{$phone}\"" : "ikke registrert") ?>
 
 
-Kommando for å opprette:
-/fbs/drift/nybruker/process.sh <?= $filename ?>
+Godkjenn eller avvis forespørselen:
+<?= config('app.url') ?>/intern/users/registrations
 
 
 Informasjon for foreningsbrukeroppmann: https://foreningenbs.no/confluence/display/IT/LDAP
-
-
-Sendt fra <?= isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'] ?>
-
-<?= $_SERVER['HTTP_USER_AGENT'] ?>

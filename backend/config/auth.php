@@ -119,6 +119,8 @@ return [
     'superadmin_group' => 'admin',
     'useradmin_group' => 'useradmin',
 
+    'registeruser_notify_email' => env('REGISTERUSER_NOTIFY_EMAIL', 'it-gruppa@foreningenbs.no'),
+
     'blindern-auth' => [
         'api' => env('INTERN_USERS_API_URL', 'http://users-api.zt.foreningenbs.no:8000'),
         'api-key' => env('INTERN_USERS_API_KEY')

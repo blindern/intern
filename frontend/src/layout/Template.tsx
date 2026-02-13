@@ -16,6 +16,8 @@ import {
   listUsersUrl,
   printerInvocingUrl,
   registerUserUrl,
+  changePasswordUrl,
+  registrationRequestsUrl,
 } from "utils/urls.js"
 import "./frontend.scss"
 
@@ -112,6 +114,13 @@ export const Template = ({ children }: { children: ReactNode }) => {
                   <ul className="dropdown-menu">
                     <MenuLink to={listUsersUrl()}>Brukerliste</MenuLink>
                     <MenuLink to={listGroupsUrl()}>Gruppeliste</MenuLink>
+                    {!authInfo.isLoading &&
+                      !authInfo.isError &&
+                      authInfo.data.isUserAdmin && (
+                        <MenuLink to={registrationRequestsUrl()}>
+                          Registreringer
+                        </MenuLink>
+                      )}
                   </ul>
                 </li>
                 <li className="dropdown">
@@ -151,6 +160,9 @@ export const Template = ({ children }: { children: ReactNode }) => {
                     <ul className="dropdown-menu">
                       <MenuLink to={`/user/${authInfo.data.user.username}`}>
                         Brukerinfo
+                      </MenuLink>
+                      <MenuLink to={changePasswordUrl()}>
+                        Endre passord
                       </MenuLink>
                       <li>
                         <LogoutLink>Logg ut</LogoutLink>

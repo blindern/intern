@@ -33,8 +33,12 @@ import { HomePage } from "modules/home/HomePage.js"
 import { MatmenyPage } from "modules/matmeny/MatmenyPage.js"
 import { PrinterInvoicingPage } from "modules/printer/invoicing/PrinterInvoicingPage.js"
 import { LastPrintsPage } from "modules/printer/LastPrintsPage.js"
+import { ChangePasswordPage } from "modules/changepassword/ChangePasswordPage.js"
 import { RegisterUserPage } from "modules/registeruser/RegisterUserPage.js"
+import { RequestResetPage } from "modules/resetpassword/RequestResetPage.js"
+import { ResetPasswordPage } from "modules/resetpassword/ResetPasswordPage.js"
 import { ListUsersPage } from "modules/users/ListUsersPage.js"
+import { RegistrationRequestsPage } from "modules/users/RegistrationRequestsPage.js"
 import { UserPage } from "modules/users/UserPage.js"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
@@ -86,6 +90,9 @@ const RouteList = () => (
     <Route path="/arrplan/:semester" element={<ArrplanPage />} />
 
     <Route path="/register" element={<RegisterUserPage />} />
+    <Route path="/change-password" element={<ChangePasswordPage />} />
+    <Route path="/forgot-password" element={<RequestResetPage />} />
+    <Route path="/reset-password" element={<ResetPasswordPage />} />
 
     <Route path="/bokdatabase" element={<Navigate to="/books" />} />
     <Route path="/books" element={<ListBooksPage />} />
@@ -109,6 +116,7 @@ const RouteList = () => (
     <Route path="/printer/fakturere" element={<PrinterInvoicingPage />} />
 
     <Route path="/users" element={<ListUsersPage />} />
+    <Route path="/users/registrations" element={<RegistrationRequestsPage />} />
     <Route path="/user/:name" element={<UserPage />} />
 
     <Route path="*" element={<NotFoundPage />} />

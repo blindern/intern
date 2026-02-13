@@ -65,3 +65,19 @@ export function matmenyUrl() {
 export function registerUserUrl() {
   return "/register"
 }
+
+export function registrationRequestsUrl() {
+  return "/users/registrations"
+}
+
+export function changePasswordUrl() {
+  return "/change-password"
+}
+
+export function forgotPasswordUrl() {
+  return "/forgot-password"
+}
+
+export function resetPasswordUrl() {
+  return "/reset-password"
+}

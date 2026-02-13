@@ -22,10 +22,21 @@ class HMAC
 
     /**
      * Generate a HMAC-hash
+     *
+     * @param string|int $time
+     * @param string $method
+     * @param string $uri
+     * @param string|array $post_variables String for JSON body, array for form data
      */
-    protected function generateHMACHash($time, $method, $uri, $post_variables)
+    public function generateHMACHash($time, $method, $uri, $post_variables)
     {
-        $data = json_encode(array((string)$time, $method, $uri, (array)$post_variables));
+        if (is_string($post_variables)) {
+            // JSON body: include as-is (already a JSON string)
+            $payload = $post_variables;
+        } else {
+            $payload = (array)$post_variables;
+        }
+        $data = json_encode(array((string)$time, $method, $uri, $payload));
         return hash_hmac('sha256', $data, $this->getPrivateKey());
     }
 

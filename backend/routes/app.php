@@ -14,7 +14,10 @@ use \App\Http\Controllers\API\UserController;
 use \App\Http\Controllers\API\PrinterLastController;
 use \App\Http\Controllers\API\PrinterUsageController;
 use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\ChangePasswordController;
+use \App\Http\Controllers\PasswordResetController;
 use \App\Http\Controllers\MatmenyController as MatmenyPlainController;
+use \App\Http\Controllers\API\RegistrationRequestController;
 use Blindern\Intern\Saml2\Saml2Controller;
 use \Blindern\Intern\GoogleApps\Controllers\AccountsController;
 use \Blindern\Intern\GoogleApps\Controllers\AccountUsersController;
@@ -47,6 +50,13 @@ Route::prefix('intern/api')->group(function () {
     Route::get('me', [MeController::class, 'index']);
     Route::post('register', [AuthController::class, 'register']);
 
+    // password reset (public, rate limited per IP)
+    Route::middleware('throttle:5,1')->group(function () {
+        Route::post('password-reset/request', [PasswordResetController::class, 'requestReset']);
+        Route::post('password-reset/validate', [PasswordResetController::class, 'validateToken']);
+        Route::post('password-reset/reset', [PasswordResetController::class, 'resetPassword']);
+    });
+
     // saml2 login
     Route::get('saml2/metadata', [Saml2Controller::class, 'metadata'])->name('saml2.metadata');
     Route::post('saml2/acs', [Saml2Controller::class, 'acs'])->name('saml2.acs');
@@ -58,6 +68,14 @@ Route::prefix('intern/api')->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('user', UserController::class, array('only' => array('index', 'show', 'edit')));
         Route::resource('group', GroupController::class, array('only' => array('index', 'show')));
+
+        // change password (logged-in user)
+        Route::post('change-password', [ChangePasswordController::class, 'change']);
+
+        // registration request management (useradmin)
+        Route::get('registration-requests', [RegistrationRequestController::class, 'index']);
+        Route::post('registration-requests/{id}/approve', [RegistrationRequestController::class, 'approve']);
+        Route::post('registration-requests/{id}/reject', [RegistrationRequestController::class, 'reject']);
     });
 
     // google apps accounts
