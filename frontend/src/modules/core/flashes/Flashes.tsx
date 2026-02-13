@@ -1,6 +1,8 @@
+import { createRef, useState } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { styled, keyframes } from "styled-components"
 import { formatDate } from "utils/dates.js"
+import { Flash } from "./FlahesService.js"
 import { useFlashesList } from "./FlashesProvider.js"
 
 const animateIn = keyframes`
@@ -43,18 +45,36 @@ const MessageBox = styled.div`
 
 export const Flashes = () => {
   const flashes = useFlashesList()
+  const [nodeRefs] = useState(
+    () => new WeakMap<Flash, React.RefObject<HTMLDivElement | null>>(),
+  )
+
+  function getNodeRef(flash: Flash) {
+    if (!nodeRefs.has(flash)) {
+      nodeRefs.set(flash, createRef<HTMLDivElement>())
+    }
+    return nodeRefs.get(flash)!
+  }
 
   return (
     <TransitionGroup component={null}>
-      {flashes.map((flash, idx) => (
-        <CSSTransition timeout={300} classNames="flash" key={idx}>
-          <MessageBoxWrap>
-            <MessageBox className={flash.type ? `bg-${flash.type}` : ""}>
-              <b>{formatDate(flash.date, "HH:mm:ss")}:</b> {flash.message}
-            </MessageBox>
-          </MessageBoxWrap>
-        </CSSTransition>
-      ))}
+      {flashes.map((flash, idx) => {
+        const ref = getNodeRef(flash)
+        return (
+          <CSSTransition
+            key={idx}
+            timeout={300}
+            classNames="flash"
+            nodeRef={ref}
+          >
+            <MessageBoxWrap ref={ref}>
+              <MessageBox className={flash.type ? `bg-${flash.type}` : ""}>
+                <b>{formatDate(flash.date, "HH:mm:ss")}:</b> {flash.message}
+              </MessageBox>
+            </MessageBoxWrap>
+          </CSSTransition>
+        )
+      })}
     </TransitionGroup>
   )
 }
