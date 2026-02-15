@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@elysiajs/cors':
         specifier: 1.4.1
-        version: 1.4.1(elysia@1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.1(elysia@1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@elysiajs/node':
         specifier: 1.4.4
-        version: 1.4.4(elysia@1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.4(elysia@1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@js-temporal/polyfill':
         specifier: ^0.5.1
         version: 0.5.1
@@ -27,8 +27,8 @@ importers:
         specifier: ^0.211.0
         version: 0.211.0(@opentelemetry/api@1.9.0)
       elysia:
-        specifier: 1.4.24
-        version: 1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+        specifier: 1.4.25
+        version: 1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       ical.js:
         specifier: ^2.2.1
         version: 2.2.1
@@ -1197,8 +1197,8 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  elysia@1.4.24:
-    resolution: {integrity: sha512-cgMUPXzZYZGafj2VePFnckVPZ8xJKbZNOgv4hlM2nW96cPSG1BL3y2KNRrKmmA2hKEuUw0tvHVwG//pMqSZ5Jw==}
+  elysia@1.4.25:
+    resolution: {integrity: sha512-liKjavH99Gpzrv9cDil6uYWmPuqESfPFV1FIaFSd3iNqo3y7e29sN43VxFIK8tWWnyi6eDAmi2SZk8hNAMQMyg==}
     peerDependencies:
       '@sinclair/typebox': '>= 0.34.0 < 1'
       '@types/bun': '>= 1.2.0'
@@ -1880,14 +1880,14 @@ snapshots:
 
   '@borewit/text-codec@0.2.1': {}
 
-  '@elysiajs/cors@1.4.1(elysia@1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/cors@1.4.1(elysia@1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
-      elysia: 1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
 
-  '@elysiajs/node@1.4.4(elysia@1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/node@1.4.4(elysia@1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
       crossws: 0.4.1(srvx@0.11.3)
-      elysia: 1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       srvx: 0.11.3
 
   '@esbuild/aix-ppc64@0.27.2':
@@ -3109,7 +3109,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  elysia@1.4.24(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
+  elysia@1.4.25(@sinclair/typebox@0.34.41)(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
     dependencies:
       '@sinclair/typebox': 0.34.41
       cookie: 1.1.1
