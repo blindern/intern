@@ -72,7 +72,7 @@ class RegistrationRequestController extends Controller
 
             // Add user to groups
             foreach ($groups as $group) {
-                $groupResponse = $client->addUserToGroup($group, $request->username);
+                $groupResponse = $client->addMemberToGroup($group, 'users', $request->username);
                 if (!$groupResponse->successful()) {
                     Log::error('Failed to add user to group', [
                         'username' => $request->username,

@@ -98,16 +98,6 @@ class UsersApiClient
         return $response->successful();
     }
 
-    public function addUserToGroup(string $groupname, string $username)
-    {
-        return $this->jsonRequest('PUT', "v2/groups/" . rawurlencode($groupname) . "/members/users/" . rawurlencode($username));
-    }
-
-    public function removeUserFromGroup(string $groupname, string $username)
-    {
-        return $this->jsonRequest('DELETE', "v2/groups/" . rawurlencode($groupname) . "/members/users/" . rawurlencode($username));
-    }
-
     public function addMemberToGroup(string $groupname, string $memberType, string $memberId)
     {
         return $this->jsonRequest('PUT', "v2/groups/" . rawurlencode($groupname) . "/members/" . rawurlencode($memberType) . "/" . rawurlencode($memberId));
