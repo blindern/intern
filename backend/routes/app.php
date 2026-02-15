@@ -69,6 +69,12 @@ Route::prefix('intern/api')->group(function () {
         Route::resource('user', UserController::class, array('only' => array('index', 'show', 'edit')));
         Route::resource('group', GroupController::class, array('only' => array('index', 'show')));
 
+        // group management
+        Route::post('group/{groupName}/members', [GroupController::class, 'addMember']);
+        Route::delete('group/{groupName}/members/{memberType}/{memberId}', [GroupController::class, 'removeMember']);
+        Route::post('group/{groupName}/owners', [GroupController::class, 'addOwner']);
+        Route::delete('group/{groupName}/owners/{ownerType}/{ownerId}', [GroupController::class, 'removeOwner']);
+
         // change password (logged-in user)
         Route::post('change-password', [ChangePasswordController::class, 'change']);
 
