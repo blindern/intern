@@ -241,6 +241,15 @@ class User implements AuthenticatableContract, CanResetPasswordContract
     }
 
     /**
+     * Check if user is an owner of a group
+     */
+    public function isGroupOwner(string $groupName): bool
+    {
+        $this->loadGroups();
+        return isset($this->groupowner_relations[$groupName]);
+    }
+
+    /**
      * Get list of groupnames
      *
      * @return array of groupnames
@@ -286,7 +295,7 @@ class User implements AuthenticatableContract, CanResetPasswordContract
      */
     public function loadGroups($force_full_structure = false)
     {
-        if (is_null($this->groups) || ($force_full_structure && isset($this->groups[0]) && !($this->groups[0] instanceof Group))) {
+        if (is_null($this->groups) || is_null($this->groupowner_relations) || ($force_full_structure && isset($this->groups[0]) && !($this->groups[0] instanceof Group))) {
             $response = Helper::get('user/'.$this->unique_id."?grouplevel=2");
 
             $this->groups = null;

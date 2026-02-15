@@ -102,4 +102,29 @@ class UsersApiClient
     {
         return $this->jsonRequest('PUT', "v2/groups/" . rawurlencode($groupname) . "/members/users/" . rawurlencode($username));
     }
+
+    public function removeUserFromGroup(string $groupname, string $username)
+    {
+        return $this->jsonRequest('DELETE', "v2/groups/" . rawurlencode($groupname) . "/members/users/" . rawurlencode($username));
+    }
+
+    public function addMemberToGroup(string $groupname, string $memberType, string $memberId)
+    {
+        return $this->jsonRequest('PUT', "v2/groups/" . rawurlencode($groupname) . "/members/" . rawurlencode($memberType) . "/" . rawurlencode($memberId));
+    }
+
+    public function removeMemberFromGroup(string $groupname, string $memberType, string $memberId)
+    {
+        return $this->jsonRequest('DELETE', "v2/groups/" . rawurlencode($groupname) . "/members/" . rawurlencode($memberType) . "/" . rawurlencode($memberId));
+    }
+
+    public function addOwnerToGroup(string $groupname, string $ownerType, string $ownerId)
+    {
+        return $this->jsonRequest('PUT', "v2/groups/" . rawurlencode($groupname) . "/owners/" . rawurlencode($ownerType) . "/" . rawurlencode($ownerId));
+    }
+
+    public function removeOwnerFromGroup(string $groupname, string $ownerType, string $ownerId)
+    {
+        return $this->jsonRequest('DELETE', "v2/groups/" . rawurlencode($groupname) . "/owners/" . rawurlencode($ownerType) . "/" . rawurlencode($ownerId));
+    }
 }
