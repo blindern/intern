@@ -1,0 +1,14 @@
+services:
+  database:
+    image: postgres:18
+    volumes:
+      - db:/var/lib/postgresql
+    environment:
+      POSTGRES_DB: intern
+      POSTGRES_USER: intern
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "127.0.0.1:5432:5432"
+
+volumes:
+  db:
