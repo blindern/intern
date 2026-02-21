@@ -22,8 +22,8 @@ test("can login", async ({ page }) => {
   await page
     .locator('button:text("Brukernavn og passord for foreningsbrukeren din")')
     .click()
-  await page.locator("#username").fill(username)
-  await page.locator("#password").fill(password)
+  await page.locator("#username").fill(username!)
+  await page.locator("#password").fill(password!)
   await page.locator("button[type=submit]").click()
 
   await expect(

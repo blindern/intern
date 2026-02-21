@@ -10,7 +10,6 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  // @ts-expect-error: Unconcise types.
   react.configs.flat["recommended"],
   react.configs.flat["jsx-runtime"],
   {
