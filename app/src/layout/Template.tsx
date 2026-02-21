@@ -81,10 +81,9 @@ export function Template({ children }: { children: ReactNode }) {
   const [navOpen, setNavOpen] = useState(false)
   const { pathname } = useLocation()
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: close nav on route change
-  useEffect(() => {
-    setNavOpen(false)
-  }, [pathname])
+  // Close mobile nav on route change
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setNavOpen(false), [pathname])
 
   return (
     <>
