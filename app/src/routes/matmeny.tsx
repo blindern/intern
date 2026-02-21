@@ -11,8 +11,7 @@ import {
   useConvertMatmenyDocMutation,
 } from "../features/matmeny/hooks.js"
 import { PageTitle } from "../hooks/useTitle.js"
-import { formatDate } from "../utils/dates.js"
-import moment from "../utils/moment.js"
+import { formatDate, moment } from "../utils/dates.js"
 import { isEqual, keyBy } from "lodash"
 import { ChangeEvent, useState } from "react"
 import { useQueryClient } from "@tanstack/react-query"

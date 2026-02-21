@@ -2,13 +2,12 @@ import * as d3 from "d3"
 import { type Selection } from "d3"
 import { createFileRoute } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
-import { FormatNumber } from "../../components/FormatNumber.js"
+import { FormatNumber } from "../../features/printer/FormatNumber.js"
 import { Loading } from "../../components/Loading.js"
 import { usePrinterInvoiceData } from "../../features/printer/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { formatDate } from "../../utils/dates.js"
+import { formatDate, moment } from "../../utils/dates.js"
 import { Fragment, useLayoutEffect, useMemo, useRef, useState } from "react"
-import moment from "../../utils/moment.js"
 
 export const Route = createFileRoute("/printer/fakturere")({
   component: PrinterInvoicingPage,
