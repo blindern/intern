@@ -53,7 +53,7 @@ jobs:
         with:
           context: app
           load: true
-          tags: ghcr.io/blindern/intern-app:latest
+          tags: ghcr.io/blindern/intern-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -70,7 +70,7 @@ jobs:
         with:
           context: app
           push: true
-          tags: ghcr.io/blindern/intern-app:latest
+          tags: ghcr.io/blindern/intern-backend:latest
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
@@ -79,7 +79,7 @@ jobs:
           {
             "service": "intern",
             "attributes": {
-              "app_image": "ghcr.io/blindern/intern-app@${{ steps.docker_build.outputs.digest }}"
+              "backend_image": "ghcr.io/blindern/intern-backend@${{ steps.docker_build.outputs.digest }}"
             }
           }' | tee /tmp/deploy-output.txt
           tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
