@@ -33,15 +33,15 @@
   },
   "dependencies": {
     "@elysiajs/cors": "1.4.1",
-    "@elysiajs/node": "1.4.4",
+    "@elysiajs/node": "1.4.5",
     "@js-temporal/polyfill": "^0.5.1",
     "@opentelemetry/api": "^1.9.0",
-    "@opentelemetry/auto-instrumentations-node": "^0.69.0",
-    "@opentelemetry/sdk-node": "^0.211.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.70.0",
+    "@opentelemetry/sdk-node": "^0.212.0",
     "elysia": "1.4.25",
     "ical.js": "^2.2.1",
     "p-map": "^7.0.3",
     "zod": "^4.1.11"
   },
-  "packageManager": "pnpm@10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc"
+  "packageManager": "pnpm@10.30.0+sha512.2b5753de015d480eeb88f5b5b61e0051f05b4301808a82ec8b840c9d2adf7748eb352c83f5c1593ca703ff1017295bc3fdd3119abb9686efc96b9fcb18200937"
 }
