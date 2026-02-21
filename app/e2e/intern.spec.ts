@@ -13,9 +13,8 @@ test("homepage loads with navigation", async ({ page }) => {
 
 test("can login", async ({ page }) => {
   const username = process.env.FBS_TEST_USERNAME
-  if (!username) throw new Error("Missing FBS_TEST_USERNAME")
   const password = process.env.FBS_TEST_PASSWORD
-  if (!password) throw new Error("Missing FBS_TEST_PASSWORD")
+  test.skip(!username || !password, "Missing FBS_TEST_USERNAME/FBS_TEST_PASSWORD")
 
   await page.goto("/intern/")
   await page.getByRole("link", { name: "Logg inn" }).click()

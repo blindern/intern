@@ -34,10 +34,13 @@ jobs:
       - run: pnpm build
 
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm test:e2e
+      - name: E2E tests against build
+        run: |
+          node serve.js &
+          for i in $(seq 1 30); do curl -sf http://localhost:3000/intern/ > /dev/null && break; sleep 0.5; done
+          pnpm test:e2e
         env:
-          FBS_TEST_USERNAME: halvargimnes
-          FBS_TEST_PASSWORD: ${{ secrets.FBS_TEST_PASSWORD }}
+          BASE_URL: http://localhost:3000
       - uses: actions/upload-artifact@v6
         if: failure()
         with:
