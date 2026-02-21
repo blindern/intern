@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { getSaml } from "../../../server/saml2.js"
-import { clearSessionCookie } from "../../../server/session.js"
+import { clearSessionCookie, safeReturnTo } from "../../../server/session.js"
 
 export const Route = createFileRoute("/api/saml2/sls")({
   server: {
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/api/saml2/sls")({
         await saml.validateRedirectAsync(query, url.search)
 
         const cookie = clearSessionCookie()
-        const returnTo = url.searchParams.get("RelayState") ?? "/intern/"
+        const returnTo = safeReturnTo(url.searchParams.get("RelayState"))
 
         return new Response(null, {
           status: 302,

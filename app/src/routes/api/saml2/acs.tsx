@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { logger } from "../../../server/logger.js"
 import { getSaml } from "../../../server/saml2.js"
-import { createSessionCookie } from "../../../server/session.js"
+import { createSessionCookie, safeReturnTo } from "../../../server/session.js"
 
 export const Route = createFileRoute("/api/saml2/acs")({
   server: {
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/api/saml2/acs")({
           }
 
           const cookie = await createSessionCookie({ username })
-          const returnTo = body.RelayState || "/intern/"
+          const returnTo = safeReturnTo(body.RelayState)
 
           return new Response(null, {
             status: 302,

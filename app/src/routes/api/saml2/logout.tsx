@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router"
 import type { Profile } from "@node-saml/node-saml"
 import { getSaml } from "../../../server/saml2.js"
-import { readSession, clearSessionCookie } from "../../../server/session.js"
+import {
+  readSession,
+  clearSessionCookie,
+  safeReturnTo,
+} from "../../../server/session.js"
 
 export const Route = createFileRoute("/api/saml2/logout")({
   server: {
@@ -10,8 +14,9 @@ export const Route = createFileRoute("/api/saml2/logout")({
         const saml = getSaml()
         const session = await readSession(request)
 
-        const returnTo =
-          new URL(request.url).searchParams.get("returnTo") ?? "/intern/"
+        const returnTo = safeReturnTo(
+          new URL(request.url).searchParams.get("returnTo"),
+        )
 
         // Try SAML SLO if we have a session
         try {
