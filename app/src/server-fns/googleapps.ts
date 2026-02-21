@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
-import { and, eq, isNull } from "drizzle-orm"
+import { and, eq, inArray, isNull } from "drizzle-orm"
 import { db } from "../server/db.js"
 import { googleappsAccounts, googleappsAccountusers } from "../server/schema.js"
 import { generateId } from "../server/id.js"
@@ -18,42 +18,48 @@ export const getGoogleAppsAccounts = createServerFn({
       .where(isNull(googleappsAccounts.deletedAt))
       .orderBy(googleappsAccounts.accountname)
 
-    // Get users for each account
-    const result = await Promise.all(
-      accounts.map(async (account) => {
-        const users = await db
-          .select()
-          .from(googleappsAccountusers)
-          .where(
-            and(
-              eq(googleappsAccountusers.accountId, account.id),
-              isNull(googleappsAccountusers.deletedAt),
-            ),
-          )
+    const accountIds = accounts.map((a) => a.id)
+    const allAccountUsers =
+      accountIds.length > 0
+        ? await db
+            .select()
+            .from(googleappsAccountusers)
+            .where(
+              and(
+                inArray(googleappsAccountusers.accountId, accountIds),
+                isNull(googleappsAccountusers.deletedAt),
+              ),
+            )
+        : []
 
-        let enrichedUsers = users as any[]
+    const usersByAccount = new Map<string, (typeof allAccountUsers)[number][]>()
+    for (const u of allAccountUsers) {
+      const list = usersByAccount.get(u.accountId) ?? []
+      list.push(u)
+      usersByAccount.set(u.accountId, list)
+    }
 
-        if (data.expand) {
-          const allUsers = await usersApi.getUsers()
-          const userMap = new Map(
-            allUsers.map((u) => [u.username.toLowerCase(), u]),
-          )
+    let ldapUserMap:
+      | Map<string, { email?: string | null; realname?: string | null }>
+      | undefined
+    if (data.expand) {
+      const allUsers = await usersApi.getUsers()
+      ldapUserMap = new Map(allUsers.map((u) => [u.username.toLowerCase(), u]))
+    }
 
-          enrichedUsers = users.map((u) => {
-            const ldapUser = userMap.get(u.username.toLowerCase())
-            return {
-              ...u,
-              email: ldapUser?.email ?? null,
-              realname: ldapUser?.realname ?? null,
-            }
-          })
+    return accounts.map((account) => {
+      const users = usersByAccount.get(account.id) ?? []
+      const enrichedUsers = users.map((u) => {
+        const ldapUser = ldapUserMap?.get(u.username.toLowerCase())
+        return {
+          ...u,
+          email: ldapUser?.email ?? null,
+          realname: ldapUser?.realname ?? null,
         }
+      })
 
-        return { ...account, users: enrichedUsers }
-      }),
-    )
-
-    return result
+      return { ...account, users: enrichedUsers }
+    })
   })
 
 export const getGoogleAppsAccount = createServerFn({

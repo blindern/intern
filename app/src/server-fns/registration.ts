@@ -208,48 +208,49 @@ export const approveRegistration = createServerFn({
       throw new Error("Minst én gruppe må velges.")
     }
 
-    const [request] = await db
-      .select()
-      .from(registrationRequests)
-      .where(eq(registrationRequests.id, data.id))
+    const request = await db.transaction(async (tx) => {
+      const [req] = await tx
+        .select()
+        .from(registrationRequests)
+        .where(eq(registrationRequests.id, data.id))
+        .for("update")
 
-    if (!request) throw new Error("Forespørsel ikke funnet.")
-    if (request.status !== "pending") {
-      throw new Error("Forespørselen er allerede behandlet.")
-    }
+      if (!req) throw new Error("Forespørsel ikke funnet.")
+      if (req.status !== "pending") {
+        throw new Error("Forespørselen er allerede behandlet.")
+      }
 
-    // Create user in LDAP via users-api
-    await usersApi.createUser({
-      username: request.username,
-      firstName: request.firstname,
-      lastName: request.lastname,
-      email: request.email,
-      phone: request.phone,
-      passwordHash: request.passwordHash,
+      await usersApi.createUser({
+        username: req.username,
+        firstName: req.firstname,
+        lastName: req.lastname,
+        email: req.email,
+        phone: req.phone,
+        passwordHash: req.passwordHash,
+      })
+
+      for (const group of data.groups) {
+        try {
+          await usersApi.addGroupMember(group, "users", req.username)
+        } catch {
+          // Log but don't fail the approval
+        }
+      }
+
+      await tx
+        .update(registrationRequests)
+        .set({
+          status: "approved",
+          groupName: data.groups.join(", "),
+          processedBy: context.user.username,
+          processedAt: new Date(),
+          updatedAt: new Date(),
+        })
+        .where(eq(registrationRequests.id, data.id))
+
+      return req
     })
 
-    // Add user to groups
-    for (const group of data.groups) {
-      try {
-        await usersApi.addGroupMember(group, "users", request.username)
-      } catch {
-        // Log but don't fail the approval
-      }
-    }
-
-    // Update request status
-    await db
-      .update(registrationRequests)
-      .set({
-        status: "approved",
-        groupName: data.groups.join(", "),
-        processedBy: context.user.username,
-        processedAt: new Date(),
-        updatedAt: new Date(),
-      })
-      .where(eq(registrationRequests.id, data.id))
-
-    // Send approval email
     try {
       await sendMail({
         to: request.email,
@@ -281,25 +282,28 @@ export const rejectRegistration = createServerFn({
       throw new Error("Forbidden")
     }
 
-    const [request] = await db
-      .select()
-      .from(registrationRequests)
-      .where(eq(registrationRequests.id, data.id))
+    await db.transaction(async (tx) => {
+      const [request] = await tx
+        .select()
+        .from(registrationRequests)
+        .where(eq(registrationRequests.id, data.id))
+        .for("update")
 
-    if (!request) throw new Error("Forespørsel ikke funnet.")
-    if (request.status !== "pending") {
-      throw new Error("Forespørselen er allerede behandlet.")
-    }
+      if (!request) throw new Error("Forespørsel ikke funnet.")
+      if (request.status !== "pending") {
+        throw new Error("Forespørselen er allerede behandlet.")
+      }
 
-    await db
-      .update(registrationRequests)
-      .set({
-        status: "rejected",
-        processedBy: context.user.username,
-        processedAt: new Date(),
-        updatedAt: new Date(),
-      })
-      .where(eq(registrationRequests.id, data.id))
+      await tx
+        .update(registrationRequests)
+        .set({
+          status: "rejected",
+          processedBy: context.user.username,
+          processedAt: new Date(),
+          updatedAt: new Date(),
+        })
+        .where(eq(registrationRequests.id, data.id))
+    })
 
     return { status: "rejected" }
   })

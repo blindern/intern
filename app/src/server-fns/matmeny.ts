@@ -4,7 +4,7 @@ import { db } from "../server/db.js"
 import { matmeny } from "../server/schema.js"
 import { generateId } from "../server/id.js"
 import { getCurrentUser } from "../server/get-current-user.js"
-import { isInGroup } from "../server/auth.js"
+import { hasGroupAccess } from "../server/auth.js"
 import { tracingMiddleware } from "../server/tracing.js"
 import { execFile } from "node:child_process"
 import { writeFile, unlink } from "node:fs/promises"
@@ -105,14 +105,14 @@ export const storeMatmeny = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const user = await getCurrentUser()
 
-    // Check access: logged-in admin/ansatt/kollegiet or office IP
-    const hasAccess =
+    // Check access: logged-in admin/ansatt/kollegiet
+    const canEdit =
       user &&
-      (isInGroup(user, "admin") ||
-        isInGroup(user, "ansatt") ||
-        isInGroup(user, "kollegiet"))
+      (hasGroupAccess(user, "admin") ||
+        hasGroupAccess(user, "ansatt") ||
+        hasGroupAccess(user, "kollegiet"))
 
-    if (!hasAccess) {
+    if (!canEdit) {
       throw new Error("Forbidden")
     }
 
