@@ -1,5 +1,6 @@
 import crypto from "node:crypto"
 import { env } from "./env.js"
+import { logger } from "./logger.js"
 
 function generateHmacV2(
   time: string,
@@ -124,7 +125,7 @@ export const usersApi = {
       const user = await legacyGet(`user/${username}?grouplevel=2`)
       return normalizeUser(user)
     } catch (err) {
-      console.error(`[users-api] getUser(${username}) failed:`, err)
+      logger.error({ username, err }, "users-api getUser failed")
       return null
     }
   },

@@ -9,6 +9,9 @@ import { usersApi } from "../server/users-api.js"
 import { sendMail } from "../server/mail.js"
 import { env } from "../server/env.js"
 import { tracingMiddleware } from "../server/tracing.js"
+import { logger } from "../server/logger.js"
+
+const log = logger.child({ module: "password-reset" })
 
 export const requestPasswordReset = createServerFn({
   method: "POST",
@@ -34,6 +37,7 @@ export const requestPasswordReset = createServerFn({
       .limit(1)
 
     if (recentToken) {
+      log.warn({ email: data.email }, "rate limited password reset request")
       const retryAfter = Math.max(
         1,
         Math.ceil(
@@ -52,6 +56,7 @@ export const requestPasswordReset = createServerFn({
     )
 
     if (!user) {
+      log.warn({ email: data.email }, "password reset for unknown email")
       throw new Error("Ingen bruker med denne e-postadressen ble funnet.")
     }
 
@@ -87,6 +92,11 @@ export const requestPasswordReset = createServerFn({
         "Hvis du ikke har bedt om dette, kan du se bort fra denne e-posten.",
       ].join("\n"),
     })
+
+    log.info(
+      { username: user.username, email: data.email },
+      "password reset email sent",
+    )
 
     return {
       messages: [
@@ -128,9 +138,17 @@ export const resetPassword = createServerFn({
 
     // Hash password and update via users-api
     const passwordHash = sshaHash(data.password)
-    await usersApi.modifyUser(resetToken.username, {
-      passwordHash: { value: passwordHash },
-    })
+    try {
+      await usersApi.modifyUser(resetToken.username, {
+        passwordHash: { value: passwordHash },
+      })
+    } catch (err) {
+      log.error(
+        { username: resetToken.username, err },
+        "failed to reset password via users-api",
+      )
+      throw err
+    }
 
     // Invalidate all tokens for this user
     await db
@@ -142,6 +160,8 @@ export const resetPassword = createServerFn({
           eq(passwordResetTokens.used, false),
         ),
       )
+
+    log.info({ username: resetToken.username }, "password reset completed")
 
     return {
       messages: [

@@ -10,6 +10,9 @@ import { sshaHash } from "../server/password.js"
 import { usersApi } from "../server/users-api.js"
 import { sendMail } from "../server/mail.js"
 import { env } from "../server/env.js"
+import { logger } from "../server/logger.js"
+
+const log = logger.child({ module: "registration" })
 
 export const submitRegistration = createServerFn({
   method: "POST",
@@ -130,6 +133,11 @@ export const submitRegistration = createServerFn({
       userAgent,
     })
 
+    log.info(
+      { username, email: data.email, ip },
+      "registration request submitted",
+    )
+
     // Send notification to IT-gruppa
     try {
       await sendMail({
@@ -156,8 +164,11 @@ export const submitRegistration = createServerFn({
           "Informasjon for foreningsbrukeroppmann: https://foreningenbs.no/confluence/display/IT/LDAP",
         ].join("\n"),
       })
-    } catch {
-      // Email failure shouldn't block registration
+    } catch (err) {
+      log.error(
+        { username, email: data.email, err },
+        "failed to send registration notification email",
+      )
     }
 
     return {
@@ -220,20 +231,31 @@ export const approveRegistration = createServerFn({
         throw new Error("Forespørselen er allerede behandlet.")
       }
 
-      await usersApi.createUser({
-        username: req.username,
-        firstName: req.firstname,
-        lastName: req.lastname,
-        email: req.email,
-        phone: req.phone,
-        passwordHash: req.passwordHash,
-      })
+      try {
+        await usersApi.createUser({
+          username: req.username,
+          firstName: req.firstname,
+          lastName: req.lastname,
+          email: req.email,
+          phone: req.phone,
+          passwordHash: req.passwordHash,
+        })
+      } catch (err) {
+        log.error(
+          { username: req.username, err },
+          "failed to create user via users-api",
+        )
+        throw err
+      }
 
       for (const group of data.groups) {
         try {
           await usersApi.addGroupMember(group, "users", req.username)
-        } catch {
-          // Log but don't fail the approval
+        } catch (err) {
+          log.error(
+            { username: req.username, group, err },
+            "failed to add user to group",
+          )
         }
       }
 
@@ -251,6 +273,15 @@ export const approveRegistration = createServerFn({
       return req
     })
 
+    log.info(
+      {
+        username: request.username,
+        approvedBy: context.user.username,
+        groups: data.groups,
+      },
+      "registration approved",
+    )
+
     try {
       await sendMail({
         to: request.email,
@@ -265,8 +296,11 @@ export const approveRegistration = createServerFn({
           "Har du spørsmål, ta kontakt med it-gruppa@foreningenbs.no.",
         ].join("\n"),
       })
-    } catch {
-      // Email failure shouldn't block approval
+    } catch (err) {
+      log.error(
+        { username: request.username, err },
+        "failed to send approval email",
+      )
     }
 
     return { status: "approved" }
@@ -282,15 +316,15 @@ export const rejectRegistration = createServerFn({
       throw new Error("Forbidden")
     }
 
-    await db.transaction(async (tx) => {
-      const [request] = await tx
+    const request = await db.transaction(async (tx) => {
+      const [req] = await tx
         .select()
         .from(registrationRequests)
         .where(eq(registrationRequests.id, data.id))
         .for("update")
 
-      if (!request) throw new Error("Forespørsel ikke funnet.")
-      if (request.status !== "pending") {
+      if (!req) throw new Error("Forespørsel ikke funnet.")
+      if (req.status !== "pending") {
         throw new Error("Forespørselen er allerede behandlet.")
       }
 
@@ -303,7 +337,14 @@ export const rejectRegistration = createServerFn({
           updatedAt: new Date(),
         })
         .where(eq(registrationRequests.id, data.id))
+
+      return req
     })
+
+    log.info(
+      { username: request.username, rejectedBy: context.user.username },
+      "registration rejected",
+    )
 
     return { status: "rejected" }
   })

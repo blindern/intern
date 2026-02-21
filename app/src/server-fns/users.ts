@@ -1,6 +1,9 @@
 import { createServerFn } from "@tanstack/react-start"
 import { authMiddleware, isGroupOwner, isUserAdmin } from "../server/auth.js"
+import { logger } from "../server/logger.js"
 import { usersApi } from "../server/users-api.js"
+
+const log = logger.child({ module: "users" })
 
 export const getUsers = createServerFn({ method: "GET" })
   .middleware([authMiddleware])
@@ -58,6 +61,16 @@ export const addGroupMember = createServerFn({
       data.memberId,
     )
 
+    log.info(
+      {
+        group: data.groupName,
+        memberType: data.memberType,
+        memberId: data.memberId,
+        by: context.user.username,
+      },
+      "group member added",
+    )
+
     return { success: true }
   })
 
@@ -87,6 +100,16 @@ export const removeGroupMember = createServerFn({
       data.memberId,
     )
 
+    log.info(
+      {
+        group: data.groupName,
+        memberType: data.memberType,
+        memberId: data.memberId,
+        by: context.user.username,
+      },
+      "group member removed",
+    )
+
     return { success: true }
   })
 
@@ -110,6 +133,16 @@ export const addGroupOwner = createServerFn({
     }
 
     await usersApi.addGroupOwner(data.groupName, data.ownerType, data.ownerId)
+
+    log.info(
+      {
+        group: data.groupName,
+        ownerType: data.ownerType,
+        ownerId: data.ownerId,
+        by: context.user.username,
+      },
+      "group owner added",
+    )
 
     return { success: true }
   })
@@ -137,6 +170,16 @@ export const removeGroupOwner = createServerFn({
       data.groupName,
       data.ownerType,
       data.ownerId,
+    )
+
+    log.info(
+      {
+        group: data.groupName,
+        ownerType: data.ownerType,
+        ownerId: data.ownerId,
+        by: context.user.username,
+      },
+      "group owner removed",
     )
 
     return { success: true }

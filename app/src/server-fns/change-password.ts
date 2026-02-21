@@ -1,7 +1,10 @@
 import { createServerFn } from "@tanstack/react-start"
 import { authMiddleware } from "../server/auth.js"
+import { logger } from "../server/logger.js"
 import { sshaHash } from "../server/password.js"
 import { usersApi } from "../server/users-api.js"
+
+const log = logger.child({ module: "change-password" })
 
 export const changePassword = createServerFn({
   method: "POST",
@@ -31,9 +34,19 @@ export const changePassword = createServerFn({
 
     // Hash and update
     const passwordHash = sshaHash(data.newPassword)
-    await usersApi.modifyUser(context.user.username, {
-      passwordHash: { value: passwordHash },
-    })
+    try {
+      await usersApi.modifyUser(context.user.username, {
+        passwordHash: { value: passwordHash },
+      })
+    } catch (err) {
+      log.error(
+        { username: context.user.username, err },
+        "failed to change password via users-api",
+      )
+      throw err
+    }
+
+    log.info({ username: context.user.username }, "password changed")
 
     return {
       messages: [
