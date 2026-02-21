@@ -6,13 +6,13 @@ import { tracingMiddleware } from "../server/tracing.js"
 export const getMe = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
   .handler(async () => {
-  const user = await getCurrentUser()
-  if (!user) {
-    return { isLoggedIn: false as const, isUserAdmin: false }
-  }
-  return {
-    isLoggedIn: true as const,
-    user,
-    isUserAdmin: isUserAdmin(user),
-  }
-})
+    const user = await getCurrentUser()
+    if (!user) {
+      return { isLoggedIn: false as const, isUserAdmin: false }
+    }
+    return {
+      isLoggedIn: true as const,
+      user,
+      isUserAdmin: isUserAdmin(user),
+    }
+  })

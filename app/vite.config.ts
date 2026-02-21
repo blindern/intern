@@ -21,7 +21,17 @@ function spaHeadScriptsFix(): PluginOption {
   }
 }
 
+const proxyApi = process.env.PROXY_API
+
 export default defineConfig({
+  server: proxyApi
+    ? {
+        proxy: {
+          "/intern/_server": { target: proxyApi, changeOrigin: true },
+          "/intern/api": { target: proxyApi, changeOrigin: true },
+        },
+      }
+    : undefined,
   plugins: [
     tanstackStart({
       spa: {

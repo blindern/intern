@@ -108,7 +108,8 @@ function normalizeGroup(raw: any): UsersApiGroup {
   const membersData: Record<string, any> = raw.members_data ?? {}
   const members = Object.values(membersData).map(normalizeUser)
   const membersReal = raw.members ?? { users: [], groups: [] }
-  const { members_data: _, members: __, ...rest } = raw
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { members_data: _md, members: _m, ...rest } = raw
   return { ...rest, members, members_real: membersReal }
 }
 

@@ -48,9 +48,9 @@ function formatBukk(row: typeof bukker.$inferSelect): BukkPublic {
 export const getBukker = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
   .handler(async () => {
-  const rows = await db.select().from(bukker)
-  return rows.map(formatBukk)
-})
+    const rows = await db.select().from(bukker)
+    return rows.map(formatBukk)
+  })
 
 export const getBukk = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])

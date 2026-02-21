@@ -324,12 +324,12 @@ function GroupPage() {
 
       {group.members.length === 0 && <p>Ingen medlemmer i gruppa</p>}
 
-      {group.members_real?.groups?.length > 0 && (
+      {(group.members_real?.groups?.length ?? 0) > 0 && (
         <>
           <h3>Grupper som er medlemmer</h3>
           <p>Medlemmer i disse gruppene er også medlemmer av denne gruppa.</p>
           <ul>
-            {group.members_real.groups.map((groupName: string) => (
+            {group.members_real!.groups.map((groupName: string) => (
               <li key={groupName}>
                 <GroupLink groupName={groupName} />
                 {isEditing && (
@@ -367,11 +367,12 @@ function GroupPage() {
       )}
 
       <h2>Administratorer</h2>
-      {group.owners.groups.length === 0 && group.owners.users.length === 0 ? (
+      {(group.owners?.groups?.length ?? 0) === 0 &&
+      (group.owners?.users?.length ?? 0) === 0 ? (
         <p>Ingen administratorer er satt.</p>
       ) : (
         <ul>
-          {group.owners.groups.map((groupName: string) => (
+          {group.owners?.groups?.map((groupName: string) => (
             <li key={groupName}>
               <GroupLink groupName={groupName} />
               {isEditing && (
@@ -391,7 +392,7 @@ function GroupPage() {
               )}
             </li>
           ))}
-          {group.owners.users.map((username: string) => (
+          {group.owners?.users?.map((username: string) => (
             <li key={username}>
               <UserLink username={username} />
               {isEditing && (
@@ -418,8 +419,8 @@ function GroupPage() {
         <AddEntityForm
           placeholder="Legg til administrator..."
           isPending={addOwner.isPending}
-          excludeUsers={new Set(group.owners.users)}
-          excludeGroups={new Set(group.owners.groups)}
+          excludeUsers={new Set(group.owners?.users ?? [])}
+          excludeGroups={new Set(group.owners?.groups ?? [])}
           excludeGroupName={group.name}
           onAdd={(type, id) =>
             addOwner.mutate({ ownerType: type, ownerId: id })

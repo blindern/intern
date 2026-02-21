@@ -17,7 +17,8 @@ FROM base AS release
 RUN apk add --no-cache antiword
 COPY --from=install /app/node_modules node_modules
 COPY --from=build /app/dist dist
-COPY serve.js instrumentation.ts ./
+COPY --from=build /app/drizzle drizzle
+COPY serve.js migrate.js instrumentation.ts ./
 
 ENV OTEL_SERVICE_NAME=intern-app
 ENV OTEL_TRACES_EXPORTER=otlp
@@ -27,4 +28,4 @@ ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://signoz-otel-collector.zt.foreningenbs.no:
 
 USER node
 EXPOSE 3000
-ENTRYPOINT ["node", "--import", "./instrumentation.ts", "serve.js"]
+ENTRYPOINT ["sh", "-c", "node migrate.js && node --import ./instrumentation.ts serve.js"]

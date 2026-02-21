@@ -9,6 +9,7 @@ systemene, forbedret arrangementplan, m.m.
 
 ## Utvikling
 
-Systemet er delt opp i to deler: backend (API) og frontend
+- **app/** — TanStack Start fullstack app (SPA + server functions + API routes)
+- **calendar-api/** — Calendar aggregation API (Elysia)
 
-Se i de respektive mappene for mer veiledning.
+Se README i de respektive mappene for mer veiledning.

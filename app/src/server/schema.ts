@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm"
 import {
   pgTable,
   varchar,
@@ -100,7 +101,7 @@ export const googleappsAccountusers = pgTable(
   (table) => [
     uniqueIndex("googleapps_accountusers_account_username_unique")
       .on(table.accountId, table.username)
-      .where("deleted_at IS NULL" as any),
+      .where(sql`deleted_at IS NULL`),
   ],
 )
 

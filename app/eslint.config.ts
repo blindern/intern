@@ -14,7 +14,18 @@ export default tseslint.config(
   react.configs.flat["recommended"],
   react.configs.flat["jsx-runtime"],
   {
-    ignores: ["dist/", ".output/"],
+    ignores: [
+      "dist/",
+      ".output/",
+      "drizzle/",
+      "e2e/",
+      "test-results/",
+      "playwright-report/",
+      "serve.js",
+      "migrate.js",
+      "instrumentation.ts",
+      "playwright.config.ts",
+    ],
   },
   {
     plugins: {

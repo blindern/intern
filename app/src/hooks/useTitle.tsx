@@ -30,9 +30,10 @@ export function useTitle(title: string) {
   const ctx = useContext(TitleContext)
 
   useLayoutEffect(() => {
-    ctx.register(idRef.current, title)
+    const id = idRef.current
+    ctx.register(id, title)
     return () => {
-      ctx.unregister(idRef.current)
+      ctx.unregister(id)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
