@@ -62,9 +62,7 @@ export const Route = createFileRoute("/api/matmeny/plain")({
 
             const parts: string[] = []
             if (cell.day?.text) {
-              parts.push(
-                `<span style="color:red">${esc(cell.day.text)}</span>`,
-              )
+              parts.push(`<span style="color:red">${esc(cell.day.text)}</span>`)
             }
             if (cell.day?.dishes) {
               for (const dish of cell.day.dishes) {
