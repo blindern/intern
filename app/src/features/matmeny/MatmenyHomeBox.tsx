@@ -5,7 +5,7 @@ import { matmenyUrl } from "../../utils/urls.js"
 import { formatDate } from "../../utils/dates.js"
 import { useMatmenyHomeData, type MatmenyDay } from "./hooks.js"
 
-const MatmenyDayItem = ({ data }: { data?: MatmenyDay }) => {
+function MatmenyDayItem({ data }: { data?: MatmenyDay }) {
   if (!data) return <>Ukjent</>
 
   return (
@@ -16,7 +16,7 @@ const MatmenyDayItem = ({ data }: { data?: MatmenyDay }) => {
   )
 }
 
-export const MatmenyHomeBox = () => {
+export function MatmenyHomeBox() {
   const { isPending, isError, error, data: matmeny } = useMatmenyHomeData()
 
   return (

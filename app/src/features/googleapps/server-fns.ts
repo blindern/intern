@@ -65,37 +65,6 @@ export const getGoogleAppsAccounts = createServerFn({
     })
   })
 
-export const getGoogleAppsAccount = createServerFn({
-  method: "GET",
-})
-  .middleware([authMiddleware])
-  .inputValidator((input: { id: string }) => input)
-  .handler(async ({ data }) => {
-    const [account] = await db
-      .select()
-      .from(googleappsAccounts)
-      .where(
-        and(
-          eq(googleappsAccounts.id, data.id),
-          isNull(googleappsAccounts.deletedAt),
-        ),
-      )
-
-    if (!account) throw new Error("Not found")
-
-    const users = await db
-      .select()
-      .from(googleappsAccountusers)
-      .where(
-        and(
-          eq(googleappsAccountusers.accountId, account.id),
-          isNull(googleappsAccountusers.deletedAt),
-        ),
-      )
-
-    return { ...account, users }
-  })
-
 export const createGoogleAppsAccount = createServerFn({
   method: "POST",
 })

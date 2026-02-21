@@ -1,3 +1,17 @@
+const formatters = new Map<number, Intl.NumberFormat>()
+
+function getFormatter(decimals: number) {
+  let fmt = formatters.get(decimals)
+  if (!fmt) {
+    fmt = new Intl.NumberFormat("nb-NO", {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    })
+    formatters.set(decimals, fmt)
+  }
+  return fmt
+}
+
 export function FormatNumber({
   value,
   decimals = 2,
@@ -6,15 +20,5 @@ export function FormatNumber({
   decimals?: number
 }) {
   const number = typeof value === "number" ? value : parseFloat(value)
-  const numberStr = number.toFixed(decimals) + ""
-
-  const x = numberStr.split(".")
-  let x1 = x[0]
-  const x2 = x.length > 1 ? "," + x[1] : ""
-  const rgx = /(\d+)(\d{3})/
-  while (rgx.test(x1)) {
-    x1 = x1.replace(rgx, "$1" + " " + "$2")
-  }
-
-  return <>{x1 + x2}</>
+  return <>{getFormatter(decimals).format(number)}</>
 }

@@ -5,7 +5,7 @@ import { Link } from "@tanstack/react-router"
 import { arrplanUrl } from "../../utils/urls.js"
 import { useArrplanNext } from "./hooks.js"
 
-export const ArrplanHomeBox = () => {
+export function ArrplanHomeBox() {
   const { isPending, isError, error, data: arrplan } = useArrplanNext()
 
   return (

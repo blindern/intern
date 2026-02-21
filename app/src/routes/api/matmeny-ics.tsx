@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { db } from "../../server/db.js"
+import { toISODateString } from "../../server/dates.js"
 import { matmeny } from "../../server/schema.js"
 import { between } from "drizzle-orm"
 
@@ -13,8 +14,8 @@ export const Route = createFileRoute("/api/matmeny-ics")({
         const to = new Date(now)
         to.setDate(to.getDate() + 5 * 7)
 
-        const fromStr = formatDate(from)
-        const toStr = formatDate(to)
+        const fromStr = toISODateString(from)
+        const toStr = toISODateString(to)
 
         const days = await db
           .select()
@@ -65,10 +66,6 @@ export const Route = createFileRoute("/api/matmeny-ics")({
     },
   },
 })
-
-function formatDate(d: Date): string {
-  return d.toISOString().split("T")[0]
-}
 
 function escapeIcal(text: string): string {
   return text

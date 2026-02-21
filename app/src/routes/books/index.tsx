@@ -2,7 +2,11 @@ import { useDebounceCallback } from "@react-hook/debounce"
 import { createFileRoute, Link } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
-import { type Book, useBookList } from "../../features/books/hooks.js"
+import {
+  type Book,
+  type BookListResponse,
+  useBookList,
+} from "../../features/books/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { useState } from "react"
 import { bookUrl, groupUrl, registerBookUrl } from "../../utils/urls.js"
@@ -80,6 +84,55 @@ function Pagination({
   )
 }
 
+function BookListContent({
+  isPending,
+  isError,
+  error,
+  data,
+  search,
+  currentPage,
+  totalPages,
+  firstPage,
+  prevPage,
+  nextPage,
+  lastPage,
+}: {
+  isPending: boolean
+  isError: boolean
+  error: Error | null
+  data: BookListResponse | undefined
+  search: string
+  currentPage: number
+  totalPages: number
+  firstPage: () => void
+  prevPage: () => void
+  nextPage: () => void
+  lastPage: () => void
+}) {
+  if (isPending) return <Loading />
+  if (isError && data == null) return <ErrorMessages error={error} />
+  if (data!.total === 0 && search !== "") return <p>Ingen treff ble funnet</p>
+  if (data!.total === 0) return <p>Ingen bøker er registrert</p>
+
+  return (
+    <>
+      <div className="books_list">
+        {data!.data.map((book) => (
+          <BookItem key={book.id} book={book} />
+        ))}
+      </div>
+      <Pagination
+        firstPage={firstPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        lastPage={lastPage}
+        currentPage={currentPage}
+        totalPages={totalPages}
+      />
+    </>
+  )
+}
+
 function ListBooksPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [searchFormValue, setSearchFormValue] = useState("")
@@ -147,32 +200,19 @@ function ListBooksPage() {
           </div>
         </form>
 
-        {isPending ? (
-          <Loading />
-        ) : isError && data == null ? (
-          <ErrorMessages error={error} />
-        ) : data.total === 0 && search !== "" ? (
-          <p>Ingen treff ble funnet</p>
-        ) : data.total === 0 ? (
-          <p>Ingen bøker er registrert</p>
-        ) : (
-          <>
-            <div className="books_list">
-              {data?.data.map((book) => (
-                <BookItem key={book.id} book={book} />
-              ))}
-            </div>
-
-            <Pagination
-              firstPage={firstPage}
-              prevPage={prevPage}
-              nextPage={nextPage}
-              lastPage={lastPage}
-              currentPage={currentPage}
-              totalPages={totalPages}
-            />
-          </>
-        )}
+        <BookListContent
+          isPending={isPending}
+          isError={isError}
+          error={error}
+          data={data}
+          search={search}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          firstPage={firstPage}
+          prevPage={prevPage}
+          nextPage={nextPage}
+          lastPage={lastPage}
+        />
       </div>
     </>
   )

@@ -18,9 +18,13 @@ type UserDetails = Awaited<ReturnType<typeof useUserList>>["data"] extends
   ? T
   : never
 
-const realnameFallback = (user: UserDetails) => user.realname ?? user.username
-const compareByRealname = (a: UserDetails, b: UserDetails) =>
-  realnameFallback(a).localeCompare(realnameFallback(b))
+function realnameFallback(user: UserDetails) {
+  return user.realname ?? user.username
+}
+
+function compareByRealname(a: UserDetails, b: UserDetails) {
+  return realnameFallback(a).localeCompare(realnameFallback(b))
+}
 
 function ListUsersPage() {
   const { isPending, isError, error, data: userList } = useUserList()

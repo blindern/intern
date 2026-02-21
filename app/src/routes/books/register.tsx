@@ -8,7 +8,7 @@ import { useIsMemberOf } from "../../features/auth/hooks.js"
 import { useFlashes } from "../../hooks/useFlashes.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { bookUrl, groupUrl } from "../../utils/urls.js"
-import { useMemo } from "react"
+import { useEffect } from "react"
 import { FormProvider, useForm, useWatch } from "react-hook-form"
 import { BookFields } from "../../features/books/BookFields.js"
 
@@ -39,7 +39,7 @@ function RegisterBook() {
   const bibRoom = useWatch({ control: methods.control, name: "bib_room" })
   const bibSection = useWatch({ control: methods.control, name: "bib_section" })
 
-  useMemo(() => {
+  useEffect(() => {
     if (typeof sessionStorage !== "undefined") {
       sessionStorage.setItem("bookRoom", bibRoom ?? "")
       sessionStorage.setItem("bookSection", bibSection ?? "")

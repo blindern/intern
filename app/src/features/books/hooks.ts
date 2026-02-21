@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import {
+  type BookInput,
   getBooks,
   getBook,
   createBook,
@@ -9,20 +10,9 @@ import {
   lookupIsbn,
 } from "./server-fns.js"
 
+export type { BookInput }
 export type Book = NonNullable<Awaited<ReturnType<typeof getBook>>>
 export type BookListResponse = Awaited<ReturnType<typeof getBooks>>
-
-export interface BookInput {
-  title: string
-  subtitle?: string | null
-  authors?: string[] | null
-  pubdate?: string | null
-  description?: string | null
-  isbn?: string | null
-  bib_comment?: string | null
-  bib_room?: string | null
-  bib_section?: string | null
-}
 
 function buildBookKey(id: string) {
   return ["books", "item", id]

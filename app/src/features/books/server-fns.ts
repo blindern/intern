@@ -7,6 +7,18 @@ import { authMiddleware, hasGroupAccess } from "../../server/auth.js"
 import { tracingMiddleware } from "../../server/tracing.js"
 import { env } from "../../server/env.js"
 
+export interface BookInput {
+  title: string
+  subtitle?: string | null
+  authors?: string[] | null
+  pubdate?: string | null
+  description?: string | null
+  isbn?: string | null
+  bib_comment?: string | null
+  bib_room?: string | null
+  bib_section?: string | null
+}
+
 export const getBooks = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
   .inputValidator((input: { page?: number; q?: string }) => input)
@@ -68,19 +80,7 @@ export const getBook = createServerFn({ method: "GET" })
 
 export const createBook = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator(
-    (input: {
-      title: string
-      subtitle?: string | null
-      authors?: string[] | null
-      pubdate?: string | null
-      description?: string | null
-      isbn?: string | null
-      bib_comment?: string | null
-      bib_room?: string | null
-      bib_section?: string | null
-    }) => input,
-  )
+  .inputValidator((input: BookInput) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new Error("Forbidden")
@@ -94,24 +94,7 @@ export const createBook = createServerFn({ method: "POST" })
       throw new Error("Invalid pubdate format")
     }
 
-    let isbnData: any = null
-    let thumbnail: string | null = null
-
-    // Look up ISBN data if available
-    if (data.isbn && env.googleApiKey) {
-      try {
-        const res = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(data.isbn)}&key=${env.googleApiKey}`,
-        )
-        const json = await res.json()
-        if (json.totalItems > 0) {
-          isbnData = json.items[0].volumeInfo
-          thumbnail = isbnData?.imageLinks?.smallThumbnail ?? null
-        }
-      } catch {
-        // ISBN lookup is best-effort
-      }
-    }
+    const { isbnData, thumbnail } = await fetchGoogleBooksData(data.isbn)
 
     const id = generateId()
     const [book] = await db
@@ -137,20 +120,7 @@ export const createBook = createServerFn({ method: "POST" })
 
 export const updateBook = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator(
-    (input: {
-      id: string
-      title: string
-      subtitle?: string | null
-      authors?: string[] | null
-      pubdate?: string | null
-      description?: string | null
-      isbn?: string | null
-      bib_comment?: string | null
-      bib_room?: string | null
-      bib_section?: string | null
-    }) => input,
-  )
+  .inputValidator((input: { id: string } & BookInput) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new Error("Forbidden")
@@ -183,23 +153,10 @@ export const updateBook = createServerFn({ method: "POST" })
       updatedAt: new Date(),
     }
 
-    if (data.isbn && data.isbn !== existing.isbn && env.googleApiKey) {
-      try {
-        const res = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(data.isbn)}&key=${env.googleApiKey}`,
-        )
-        const json = await res.json()
-        if (json.totalItems > 0) {
-          updates.isbnData = json.items[0].volumeInfo
-          updates.thumbnail =
-            updates.isbnData?.imageLinks?.smallThumbnail ?? null
-        } else {
-          updates.isbnData = null
-          updates.thumbnail = null
-        }
-      } catch {
-        // ISBN lookup is best-effort
-      }
+    if (data.isbn && data.isbn !== existing.isbn) {
+      const lookup = await fetchGoogleBooksData(data.isbn)
+      updates.isbnData = lookup.isbnData
+      updates.thumbnail = lookup.thumbnail
     } else if (!data.isbn && existing.isbn) {
       updates.isbnData = null
       updates.thumbnail = null
@@ -285,30 +242,44 @@ export const lookupIsbn = createServerFn({ method: "GET" })
       return { isbn: data.isbn, found: false, data: {} }
     }
 
-    try {
-      const res = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(data.isbn)}&key=${env.googleApiKey}`,
-      )
-      const json = await res.json()
-
-      if (json.totalItems > 0) {
-        const info = json.items[0].volumeInfo
-        return {
-          isbn: data.isbn,
-          found: true,
-          data: {
-            title: info.title,
-            subtitle: info.subtitle ?? null,
-            authors: info.authors ?? null,
-            categories: info.categories ?? null,
-            description: info.description ?? null,
-            pubdate: info.publishedDate ?? null,
-          },
-        }
-      }
-    } catch {
-      // ISBN lookup is best-effort
+    const volumeInfo = await fetchGoogleBooksVolumeInfo(data.isbn)
+    if (!volumeInfo) {
+      return { isbn: data.isbn, found: false, data: {} }
     }
 
-    return { isbn: data.isbn, found: false, data: {} }
+    return {
+      isbn: data.isbn,
+      found: true,
+      data: {
+        title: volumeInfo.title,
+        subtitle: volumeInfo.subtitle ?? null,
+        authors: volumeInfo.authors ?? null,
+        categories: volumeInfo.categories ?? null,
+        description: volumeInfo.description ?? null,
+        pubdate: volumeInfo.publishedDate ?? null,
+      },
+    }
   })
+
+async function fetchGoogleBooksVolumeInfo(isbn: string): Promise<any> {
+  if (!env.googleApiKey) return null
+  try {
+    const res = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&key=${env.googleApiKey}`,
+    )
+    const json = await res.json()
+    if (json.totalItems > 0) return json.items[0].volumeInfo
+  } catch {
+    // best-effort
+  }
+  return null
+}
+
+async function fetchGoogleBooksData(isbn: string | null | undefined) {
+  if (!isbn) return { isbnData: null, thumbnail: null }
+  const volumeInfo = await fetchGoogleBooksVolumeInfo(isbn)
+  return {
+    isbnData: volumeInfo,
+    thumbnail: (volumeInfo?.imageLinks?.smallThumbnail as string) ?? null,
+  }
+}

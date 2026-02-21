@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start"
 import { between, eq } from "drizzle-orm"
 import { db } from "../../server/db.js"
+import { toISODateString } from "../../server/dates.js"
 import { matmeny } from "../../server/schema.js"
 import { generateId } from "../../server/id.js"
 import { getCurrentUser } from "../../server/get-current-user.js"
@@ -27,13 +28,9 @@ function defaultDateRange() {
   to.setDate(to.getDate() + 13) // next week Sunday
 
   return {
-    from: formatDate(from),
-    to: formatDate(to),
+    from: toISODateString(from),
+    to: toISODateString(to),
   }
-}
-
-function formatDate(d: Date): string {
-  return d.toISOString().split("T")[0]
 }
 
 export const getMatmeny = createServerFn({ method: "GET" })

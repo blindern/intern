@@ -54,9 +54,11 @@ moment.defineLocale("nb", {
   },
 })
 
-export const formatDate = (
+export function formatDate(
   date: string | Date | moment.Moment,
   format: string,
-) => moment(date).format(format)
+) {
+  return moment(date).format(format)
+}
 
 export { moment }

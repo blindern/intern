@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { db } from "../../../server/db.js"
+import { toISODateString } from "../../../server/dates.js"
 import { matmeny } from "../../../server/schema.js"
 import { between } from "drizzle-orm"
 
@@ -30,8 +31,8 @@ export const Route = createFileRoute("/api/matmeny/plain")({
         const to = new Date(monday)
         to.setDate(to.getDate() + 13)
 
-        const fromStr = formatDate(from)
-        const toStr = formatDate(to)
+        const fromStr = toISODateString(from)
+        const toStr = toISODateString(to)
 
         const days = await db
           .select()
@@ -40,14 +41,14 @@ export const Route = createFileRoute("/api/matmeny/plain")({
           .orderBy(matmeny.day)
 
         const dayMap = new Map(days.map((d) => [d.day, d]))
-        const today = formatDate(now)
+        const today = toISODateString(now)
 
         const data: { date: string; day: (typeof days)[0] | undefined }[][] =
           Array.from({ length: 7 }, () => [])
         const current = new Date(from)
         for (let week = 0; week < 3; week++) {
           for (let d = 0; d < 7; d++) {
-            const dateStr = formatDate(current)
+            const dateStr = toISODateString(current)
             data[d].push({ date: dateStr, day: dayMap.get(dateStr) })
             current.setDate(current.getDate() + 1)
           }
@@ -126,10 +127,6 @@ ${rows}
     },
   },
 })
-
-function formatDate(d: Date): string {
-  return d.toISOString().split("T")[0]
-}
 
 function esc(s: string): string {
   return s

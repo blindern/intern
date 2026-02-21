@@ -324,8 +324,7 @@ function MatmenyAdmin() {
 }
 
 function MatmenyPage() {
-  const groupAccess = useIsMemberOf(["kollegiet", "ansatt"])
-  const access = groupAccess
+  const hasAccess = useIsMemberOf(["kollegiet", "ansatt"])
 
   return (
     <>
@@ -343,7 +342,7 @@ function MatmenyPage() {
         </a>
       </p>
       <p>Denne siden brukes for øyeblikket kun for oppdatering av matmeny.</p>
-      {!access ? (
+      {!hasAccess ? (
         <p>
           <b>
             Du har ikke tilgang til å redigere matmenyen. Administrasjonen,

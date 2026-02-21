@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router"
+import { IndirectMemberInfo } from "../../components/IndirectMemberInfo.js"
 import { CommaSeparated } from "../../components/CommaSeparated.js"
 import { Loading } from "../../components/Loading.js"
 import { GroupLink } from "../../components/GroupLink.js"
@@ -9,35 +10,6 @@ import { listUsersUrl } from "../../utils/urls.js"
 export const Route = createFileRoute("/user/$name")({
   component: UserPage,
 })
-
-function IndirectMemberInfo({
-  groupsRelation,
-  groupName,
-  hasDescription,
-}: {
-  groupsRelation?: Record<string, string[]>
-  groupName: string
-  hasDescription: boolean
-}) {
-  if (!groupsRelation || !(groupName in groupsRelation)) return null
-  const groups = groupsRelation[groupName]
-  if (groups.includes(groupName)) return null
-
-  return (
-    <>
-      {hasDescription && <br />}
-      <span className="text-muted">
-        (Indirekte medlem gjennom{" "}
-        <CommaSeparated>
-          {groups.map((n) => (
-            <GroupLink key={n} groupName={n} />
-          ))}
-        </CommaSeparated>
-        )
-      </span>
-    </>
-  )
-}
 
 function GroupsSection({ user }: { user: any }) {
   const { data: allGroups } = useGroupList()

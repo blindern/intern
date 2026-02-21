@@ -17,7 +17,7 @@ export const Route = createFileRoute("/arrplan/$semester")({
   component: ArrplanPage,
 })
 
-const getSemesterList = (list: EventItem[]) => {
+function getSemesterList(list: EventItem[]) {
   const hashed: Record<string, Semester> = {}
   for (const event of list) {
     for (const s of getSemesterListFromEvent(event)) {
@@ -33,12 +33,13 @@ const getSemesterList = (list: EventItem[]) => {
     .sort((a, b) => b.sortKey.localeCompare(a.sortKey))
 }
 
-const filterBySemester = (list: EventItem[], semesterId: string) =>
-  list.filter((event) =>
+function filterBySemester(list: EventItem[], semesterId: string) {
+  return list.filter((event) =>
     getSemesterListFromEvent(event).some((s) => s.id === semesterId),
   )
+}
 
-const recurSortKey = (event: NormalEvent) => {
+function recurSortKey(event: NormalEvent) {
   const start = moment(event.start)
   return ((start.day() + 6) % 7) * 10000 + start.hours() * 100 + start.minutes()
 }

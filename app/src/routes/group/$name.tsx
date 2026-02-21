@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router"
-import { CommaSeparated } from "../../components/CommaSeparated.js"
+import { IndirectMemberInfo } from "../../components/IndirectMemberInfo.js"
 import { Loading } from "../../components/Loading.js"
 import { GroupLink } from "../../components/GroupLink.js"
 import { UserLink } from "../../components/UserLink.js"
@@ -20,33 +20,6 @@ import { useState } from "react"
 export const Route = createFileRoute("/group/$name")({
   component: GroupPage,
 })
-
-function IndirectMemberInfo({
-  groupsRelation,
-  groupName,
-}: {
-  groupsRelation?: Record<string, string[]>
-  groupName: string
-}) {
-  if (!groupsRelation || !(groupName in groupsRelation)) return null
-  const groups = groupsRelation[groupName]
-  if (groups.includes(groupName)) return null
-
-  return (
-    <>
-      <br />
-      <span className="text-muted">
-        (Indirekte medlem gjennom{" "}
-        <CommaSeparated>
-          {groups.map((n) => (
-            <GroupLink key={n} groupName={n} />
-          ))}
-        </CommaSeparated>
-        )
-      </span>
-    </>
-  )
-}
 
 function SearchDropdown({
   items,
