@@ -10,7 +10,7 @@ import {
   useGoogleAppsDeleteAccountUserMutation,
   useGoogleAppsUpdateAccountMutation,
   useGoogleAppsUpdateAccountUserMutation,
-} from "../hooks/useGoogleApps.js"
+} from "../features/googleapps/hooks.js"
 import { useIsMemberOf } from "../hooks/useAuth.js"
 import { PageTitle } from "../hooks/useTitle.js"
 import { userUrl } from "../utils/urls.js"
@@ -217,11 +217,18 @@ function AccountItem({
         )}
         {globalEdit && (
           <span style={{ float: "right" }}>
-            <button onClick={() => setIsEdit(!isEdit)}>rediger</button>
-            <button onClick={() => mutateDeleteAccount({ id: account.id })}>
+            <button type="button" onClick={() => setIsEdit(!isEdit)}>
+              rediger
+            </button>
+            <button
+              type="button"
+              onClick={() => mutateDeleteAccount({ id: account.id })}
+            >
               slett
             </button>
-            <button onClick={() => setIsNewUser(!isNewUser)}>ny tilgang</button>
+            <button type="button" onClick={() => setIsNewUser(!isNewUser)}>
+              ny tilgang
+            </button>
           </span>
         )}
       </h4>
@@ -241,11 +248,12 @@ function AccountItem({
             </span>
             {globalEdit && (
               <>
-                <button onClick={() => mutateDeleteUser(user)}>
+                <button type="button" onClick={() => mutateDeleteUser(user)}>
                   slett tilgang
                 </button>{" "}
                 /{" "}
                 <button
+                  type="button"
                   onClick={() =>
                     mutateUser({ ...user, notification: !user.notification })
                   }
@@ -270,7 +278,9 @@ function AccountItem({
             {aliases.map((alias) => (
               <li key={alias}>
                 {alias}{" "}
-                <button onClick={() => deleteAlias(alias)}>slett</button>
+                <button type="button" onClick={() => deleteAlias(alias)}>
+                  slett
+                </button>
               </li>
             ))}
             <li>
@@ -310,7 +320,9 @@ function GoogleAppsPage() {
         <>
           {canEdit && (
             <p>
-              <button onClick={() => setEditing(!isEditing)}>Rediger</button>
+              <button type="button" onClick={() => setEditing(!isEditing)}>
+                Rediger
+              </button>
             </p>
           )}
           {accounts?.length === 0 && <p>Ingen oppføringer lagret</p>}

@@ -7,7 +7,7 @@ import {
   createGoogleAppsAccountUser,
   updateGoogleAppsAccountUser,
   deleteGoogleAppsAccountUser,
-} from "../server-fns/googleapps.js"
+} from "./server-fns.js"
 
 export type Account = Awaited<ReturnType<typeof getGoogleAppsAccounts>>[number]
 export type AccountUser = NonNullable<Account["users"]>[number]

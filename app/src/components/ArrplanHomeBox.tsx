@@ -3,7 +3,7 @@ import { ErrorMessages } from "./ErrorMessages.js"
 import { Loading } from "./Loading.js"
 import { Link } from "@tanstack/react-router"
 import { arrplanUrl } from "../utils/urls.js"
-import { useArrplanNext } from "../hooks/useArrplan.js"
+import { useArrplanNext } from "../features/arrplan/hooks.js"
 
 export const ArrplanHomeBox = () => {
   const { isPending, isError, error, data: arrplan } = useArrplanNext()
@@ -16,10 +16,10 @@ export const ArrplanHomeBox = () => {
       ) : isError && arrplan == null ? (
         <ErrorMessages error={error} />
       ) : (
-        arrplan.map((event, idx) =>
+        arrplan.map((event) =>
           event.type === "event" ? (
             <p
-              key={idx}
+              key={`${event.start}-${event.end}-${event.title}`}
               className={classNames({
                 oldHappening: event.expired,
                 lowPriority: event.priority === "low",
@@ -30,7 +30,7 @@ export const ArrplanHomeBox = () => {
               {event.title}
             </p>
           ) : (
-            <p key={idx}>Ukjent</p>
+            <p key={`${event.date}-${event.comment}`}>Ukjent</p>
           ),
         )
       )}

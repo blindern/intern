@@ -3,7 +3,7 @@ import { PageTitle } from "../hooks/useTitle.js"
 import {
   useResetPasswordMutation,
   useValidateTokenQuery,
-} from "../hooks/usePasswordReset.js"
+} from "../features/password-reset/hooks.js"
 import { useState } from "react"
 
 export const Route = createFileRoute("/reset-password")({

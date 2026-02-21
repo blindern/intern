@@ -1,12 +1,12 @@
 import { createServerFn } from "@tanstack/react-start"
-import { authMiddleware } from "../server/auth.js"
+import { authMiddleware } from "../../server/auth.js"
 import {
   getLastPrints,
   getUsageData,
   getDailyUsageData,
   printerConfig,
-} from "../server/printer.js"
-import { usersApi } from "../server/users-api.js"
+} from "./printer-db.js"
+import { usersApi } from "../../server/users-api.js"
 
 export const getPrinterLast = createServerFn({ method: "GET" })
   .middleware([authMiddleware])

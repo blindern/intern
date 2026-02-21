@@ -1,10 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
-import {
-  getMatmeny,
-  storeMatmeny,
-  convertMatmenyFile,
-} from "../server-fns/matmeny.js"
-import moment from "../utils/moment.js"
+import { getMatmeny, storeMatmeny, convertMatmenyFile } from "./server-fns.js"
+import moment from "../../utils/moment.js"
 
 export interface MatmenyDay {
   day: string

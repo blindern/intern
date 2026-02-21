@@ -4,7 +4,7 @@ import {
   getRegistrationRequests,
   approveRegistration,
   rejectRegistration,
-} from "../server-fns/registration.js"
+} from "./server-fns.js"
 
 export function useRegisterUserMutation() {
   return useMutation({

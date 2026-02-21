@@ -1,11 +1,11 @@
 import { createServerFn } from "@tanstack/react-start"
 import { and, desc, eq, ilike, or, sql } from "drizzle-orm"
-import { db } from "../server/db.js"
-import { books } from "../server/schema.js"
-import { generateId } from "../server/id.js"
-import { authMiddleware, hasGroupAccess } from "../server/auth.js"
-import { tracingMiddleware } from "../server/tracing.js"
-import { env } from "../server/env.js"
+import { db } from "../../server/db.js"
+import { books } from "../../server/schema.js"
+import { generateId } from "../../server/id.js"
+import { authMiddleware, hasGroupAccess } from "../../server/auth.js"
+import { tracingMiddleware } from "../../server/tracing.js"
+import { env } from "../../server/env.js"
 
 export const getBooks = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])

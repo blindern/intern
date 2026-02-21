@@ -11,8 +11,8 @@ import {
   useRemoveMemberMutation,
   useAddOwnerMutation,
   useRemoveOwnerMutation,
-} from "../../hooks/useGroups.js"
-import { useUserList } from "../../hooks/useUsers.js"
+} from "../../features/users/hooks-groups.js"
+import { useUserList } from "../../features/users/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { listGroupsUrl } from "../../utils/urls.js"
 import { useState } from "react"
@@ -68,15 +68,17 @@ function SearchDropdown({
     >
       {items.map((item) => (
         <li key={item.id}>
-          <a
-            href="#"
+          <button
+            type="button"
+            className="btn btn-link"
+            style={{ padding: 0 }}
             onMouseDown={(e) => {
               e.preventDefault()
               onSelect(item.id)
             }}
           >
             {item.label}
-          </a>
+          </button>
         </li>
       ))}
     </ul>
@@ -189,6 +191,7 @@ function RemoveButton({
 }) {
   return (
     <button
+      type="button"
       className="btn btn-xs btn-danger"
       disabled={isPending}
       onClick={() => {
@@ -244,6 +247,7 @@ function GroupPage() {
       {canManage && (
         <div className="pull-right">
           <button
+            type="button"
             className="btn btn-sm btn-default"
             onClick={() => setEditing(!isEditing)}
           >

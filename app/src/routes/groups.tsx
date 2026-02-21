@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { ErrorMessages } from "../components/ErrorMessages.js"
 import { Loading } from "../components/Loading.js"
 import { GroupLink } from "../components/GroupLink.js"
-import { useGroupList } from "../hooks/useGroups.js"
+import { useGroupList } from "../features/users/hooks-groups.js"
 import { PageTitle } from "../hooks/useTitle.js"
 
 export const Route = createFileRoute("/groups")({

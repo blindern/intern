@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getDugnadenOld } from "../server-fns/dugnaden.js"
+import { getDugnadenOld } from "./server-fns.js"
 
 interface DugnadPerson {
   name: string

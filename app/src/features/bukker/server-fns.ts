@@ -1,10 +1,10 @@
 import { createServerFn } from "@tanstack/react-start"
 import { eq } from "drizzle-orm"
-import { db } from "../server/db.js"
-import { bukker } from "../server/schema.js"
-import { generateId } from "../server/id.js"
-import { authMiddleware, hasGroupAccess } from "../server/auth.js"
-import { tracingMiddleware } from "../server/tracing.js"
+import { db } from "../../server/db.js"
+import { bukker } from "../../server/schema.js"
+import { generateId } from "../../server/id.js"
+import { authMiddleware, hasGroupAccess } from "../../server/auth.js"
+import { tracingMiddleware } from "../../server/tracing.js"
 
 interface Award {
   year: string

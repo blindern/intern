@@ -9,7 +9,7 @@ import {
   useMatmenyData,
   useUpdateMatmenyDaysMutation,
   useConvertMatmenyDocMutation,
-} from "../hooks/useMatmeny.js"
+} from "../features/matmeny/hooks.js"
 import { PageTitle } from "../hooks/useTitle.js"
 import { formatDate } from "../utils/dates.js"
 import moment from "../utils/moment.js"

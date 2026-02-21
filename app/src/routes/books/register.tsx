@@ -3,7 +3,7 @@ import {
   type BookInput,
   useCreateBookMutation,
   useSearchIsbnMutation,
-} from "../../hooks/useBooks.js"
+} from "../../features/books/hooks.js"
 import { useIsMemberOf } from "../../hooks/useAuth.js"
 import { useFlashes } from "../../hooks/useFlashes.js"
 import { PageTitle } from "../../hooks/useTitle.js"

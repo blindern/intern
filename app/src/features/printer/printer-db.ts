@@ -1,5 +1,5 @@
 import postgres from "postgres"
-import { env } from "./env.js"
+import { env } from "../../server/env.js"
 
 let printerDb: ReturnType<typeof postgres> | null = null
 

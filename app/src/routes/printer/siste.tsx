@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { UserLink } from "../../components/UserLink.js"
-import { usePrinterLastList } from "../../hooks/usePrinter.js"
+import { usePrinterLastList } from "../../features/printer/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { formatDate } from "../../utils/dates.js"
 

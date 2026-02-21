@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start"
-import { authMiddleware, isGroupOwner, isUserAdmin } from "../server/auth.js"
-import { logger } from "../server/logger.js"
-import { usersApi } from "../server/users-api.js"
+import { authMiddleware, isGroupOwner, isUserAdmin } from "../../server/auth.js"
+import { logger } from "../../server/logger.js"
+import { usersApi } from "../../server/users-api.js"
 
 const log = logger.child({ module: "users" })
 

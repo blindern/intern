@@ -3,7 +3,7 @@ import {
   requestPasswordReset,
   validateResetToken,
   resetPassword,
-} from "../server-fns/password-reset.js"
+} from "./server-fns.js"
 
 export function useRequestPasswordResetMutation() {
   return useMutation({

@@ -6,8 +6,8 @@ import {
   removeGroupMember,
   addGroupOwner,
   removeGroupOwner,
-} from "../server-fns/users.js"
-import { useFlashes } from "./useFlashes.js"
+} from "./server-fns.js"
+import { useFlashes } from "../../hooks/useFlashes.js"
 
 export type GroupDetail = Awaited<ReturnType<typeof getGroup>>
 

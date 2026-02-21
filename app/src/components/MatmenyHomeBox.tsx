@@ -3,7 +3,10 @@ import { Loading } from "./Loading.js"
 import { Link } from "@tanstack/react-router"
 import { matmenyUrl } from "../utils/urls.js"
 import { formatDate } from "../utils/dates.js"
-import { useMatmenyHomeData, type MatmenyDay } from "../hooks/useMatmeny.js"
+import {
+  useMatmenyHomeData,
+  type MatmenyDay,
+} from "../features/matmeny/hooks.js"
 
 const MatmenyDayItem = ({ data }: { data?: MatmenyDay }) => {
   if (!data) return <>Ukjent</>

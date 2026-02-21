@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { useGroupList } from "../../hooks/useGroups.js"
+import { useGroupList } from "../../features/users/hooks-groups.js"
 import {
   useRegistrationRequests,
   useApproveRegistrationMutation,
   useRejectRegistrationMutation,
-} from "../../hooks/useRegistration.js"
+} from "../../features/registration/hooks.js"
 import { useState } from "react"
 
 export const Route = createFileRoute("/users/registrations")({

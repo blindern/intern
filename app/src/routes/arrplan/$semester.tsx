@@ -8,7 +8,7 @@ import {
   type Semester,
   getSemesterListFromEvent,
   useArrplanList,
-} from "../../hooks/useArrplan.js"
+} from "../../features/arrplan/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { moment } from "../../utils/dates.js"
 import { Fragment } from "react"

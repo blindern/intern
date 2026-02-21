@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { PageTitle } from "../hooks/useTitle.js"
-import { useRequestPasswordResetMutation } from "../hooks/usePasswordReset.js"
+import { useRequestPasswordResetMutation } from "../features/password-reset/hooks.js"
 import { useState } from "react"
 
 export const Route = createFileRoute("/forgot-password")({

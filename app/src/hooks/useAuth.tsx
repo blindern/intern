@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { getMe } from "../server-fns/auth.js"
+import { getMe } from "../features/auth/server-fns.js"
 
 type MeData = Awaited<ReturnType<typeof getMe>>
 

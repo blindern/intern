@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getPrinterLast, getPrinterUsage } from "../server-fns/printer.js"
+import { getPrinterLast, getPrinterUsage } from "./server-fns.js"
 
 export function usePrinterLastList() {
   return useQuery({

@@ -1,5 +1,5 @@
 import { Navigate, createFileRoute } from "@tanstack/react-router"
-import { getSemesterFromDate } from "../../hooks/useArrplan.js"
+import { getSemesterFromDate } from "../../features/arrplan/hooks.js"
 import { moment } from "../../utils/dates.js"
 
 export const Route = createFileRoute("/arrplan/")({

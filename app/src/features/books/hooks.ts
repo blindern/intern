@@ -7,7 +7,7 @@ import {
   deleteBook,
   setBookBarcode,
   lookupIsbn,
-} from "../server-fns/books.js"
+} from "./server-fns.js"
 
 export type Book = NonNullable<Awaited<ReturnType<typeof getBook>>>
 export type BookListResponse = Awaited<ReturnType<typeof getBooks>>

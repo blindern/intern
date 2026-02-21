@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getBukker, getBukk } from "../server-fns/bukker.js"
+import { getBukker, getBukk } from "./server-fns.js"
 
 export type Bukk = Awaited<ReturnType<typeof getBukk>>
 

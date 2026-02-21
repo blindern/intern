@@ -1,10 +1,13 @@
 import { createServerFn } from "@tanstack/react-start"
 import { and, eq, inArray, isNull } from "drizzle-orm"
-import { db } from "../server/db.js"
-import { googleappsAccounts, googleappsAccountusers } from "../server/schema.js"
-import { generateId } from "../server/id.js"
-import { authMiddleware, hasGroupAccess } from "../server/auth.js"
-import { usersApi } from "../server/users-api.js"
+import { db } from "../../server/db.js"
+import {
+  googleappsAccounts,
+  googleappsAccountusers,
+} from "../../server/schema.js"
+import { generateId } from "../../server/id.js"
+import { authMiddleware, hasGroupAccess } from "../../server/auth.js"
+import { usersApi } from "../../server/users-api.js"
 
 export const getGoogleAppsAccounts = createServerFn({
   method: "GET",

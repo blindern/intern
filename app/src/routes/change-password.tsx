@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { PageTitle } from "../hooks/useTitle.js"
-import { useChangePasswordMutation } from "../hooks/useChangePassword.js"
+import { useChangePasswordMutation } from "../features/change-password/hooks.js"
 import { useState } from "react"
 
 export const Route = createFileRoute("/change-password")({

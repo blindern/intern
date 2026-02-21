@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { ErrorMessages } from "../../../components/ErrorMessages.js"
 import { Loading } from "../../../components/Loading.js"
-import { type DugnadDay, useDugnadenList } from "../../../hooks/useDugnaden.js"
+import {
+  type DugnadDay,
+  useDugnadenList,
+} from "../../../features/dugnaden/hooks.js"
 import { PageTitle } from "../../../hooks/useTitle.js"
 import { formatDate } from "../../../utils/dates.js"
 import { useState } from "react"

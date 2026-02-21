@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { moment } from "../utils/dates.js"
+import { moment } from "../../utils/dates.js"
 
 export interface NormalEvent {
   by?: string

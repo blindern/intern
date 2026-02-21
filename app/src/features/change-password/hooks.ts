@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { changePassword } from "../server-fns/change-password.js"
+import { changePassword } from "./server-fns.js"
 
 export function useChangePasswordMutation() {
   return useMutation({

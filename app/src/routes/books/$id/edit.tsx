@@ -6,7 +6,7 @@ import {
   type BookInput,
   useBook,
   useUpdateBookMutation,
-} from "../../../hooks/useBooks.js"
+} from "../../../features/books/hooks.js"
 import { useIsMemberOf } from "../../../hooks/useAuth.js"
 import { useTitle } from "../../../hooks/useTitle.js"
 import { bookUrl, groupUrl } from "../../../utils/urls.js"

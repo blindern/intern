@@ -4,7 +4,7 @@ import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { GroupLink } from "../../components/GroupLink.js"
 import { UserLink } from "../../components/UserLink.js"
-import { useUserList } from "../../hooks/useUsers.js"
+import { useUserList } from "../../features/users/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import "../../styles/pages/users.scss"
 

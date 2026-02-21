@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
-import { authMiddleware } from "../server/auth.js"
+import { authMiddleware } from "../../server/auth.js"
 
 export const getDugnadenOld = createServerFn({
   method: "GET",

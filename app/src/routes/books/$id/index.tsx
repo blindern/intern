@@ -6,7 +6,7 @@ import {
   useBook,
   useDeleteBookMutation,
   useSetBookBarcodeMutation,
-} from "../../../hooks/useBooks.js"
+} from "../../../features/books/hooks.js"
 import { useIsMemberOf } from "../../../hooks/useAuth.js"
 import { PageTitle } from "../../../hooks/useTitle.js"
 import { formatDate } from "../../../utils/dates.js"

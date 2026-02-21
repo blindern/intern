@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { orderBy } from "lodash"
-import { type Bukk, useBukkList } from "../../hooks/useBukker.js"
+import { type Bukk, useBukkList } from "../../features/bukker/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { bukkUrl } from "../../utils/urls.js"
 
