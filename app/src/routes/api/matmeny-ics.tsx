@@ -3,7 +3,7 @@ import { db } from "../../server/db.js"
 import { matmeny } from "../../server/schema.js"
 import { between } from "drizzle-orm"
 
-export const Route = createFileRoute("/api/matmeny/ics")({
+export const Route = createFileRoute("/api/matmeny-ics")({
   server: {
     handlers: {
       GET: async () => {

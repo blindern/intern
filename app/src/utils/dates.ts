@@ -47,7 +47,7 @@ moment.defineLocale("nb", {
     yy: "%d år",
   },
   dayOfMonthOrdinalParse: /\d{1,2}\./,
-  ordinal: "%d.",
+  ordinal: (n) => `${n}.`,
   week: {
     dow: 1,
     doy: 4,

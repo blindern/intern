@@ -22,16 +22,35 @@ function spaHeadScriptsFix(): PluginOption {
 }
 
 const proxyApi = process.env.PROXY_API
+const calendarApiUrl = process.env.CALENDAR_API_URL ?? "http://localhost:8000"
 
 export default defineConfig({
-  server: proxyApi
-    ? {
-        proxy: {
-          "/intern/_server": { target: proxyApi, changeOrigin: true },
-          "/intern/api": { target: proxyApi, changeOrigin: true },
-        },
-      }
-    : undefined,
+  server: {
+    proxy: {
+      // Calendar API proxies (URLs with dots can't be TanStack Router routes)
+      "/intern/arrplan.ics": {
+        target: calendarApiUrl,
+        changeOrigin: true,
+        rewrite: (path) => path.replace("/intern/", "/"),
+      },
+      "/intern/kalender.ical": {
+        target: calendarApiUrl,
+        changeOrigin: true,
+        rewrite: (path) => path.replace("/intern/", "/"),
+      },
+      // Rewrite dotted matmeny.ics to dash route handled by TanStack Start
+      "/intern/api/matmeny.ics": {
+        target: "http://localhost:5173",
+        rewrite: () => "/intern/api/matmeny-ics",
+      },
+      ...(proxyApi
+        ? {
+            "/intern/_server": { target: proxyApi, changeOrigin: true },
+            "/intern/api": { target: proxyApi, changeOrigin: true },
+          }
+        : {}),
+    },
+  },
   plugins: [
     tanstackStart({
       spa: {

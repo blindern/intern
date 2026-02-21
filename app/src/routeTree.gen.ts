@@ -29,6 +29,7 @@ import { Route as GroupNameRouteImport } from './routes/group/$name'
 import { Route as BukkerIdRouteImport } from './routes/bukker/$id'
 import { Route as BooksRegisterRouteImport } from './routes/books/register'
 import { Route as ArrplanSemesterRouteImport } from './routes/arrplan/$semester'
+import { Route as ApiMatmenyIcsRouteImport } from './routes/api/matmeny-ics'
 import { Route as BooksIdIndexRouteImport } from './routes/books/$id/index'
 import { Route as DugnadenOldListRouteImport } from './routes/dugnaden/old/list'
 import { Route as BooksIdEditRouteImport } from './routes/books/$id/edit'
@@ -38,9 +39,6 @@ import { Route as ApiSaml2LogoutRouteImport } from './routes/api/saml2/logout'
 import { Route as ApiSaml2LoginRouteImport } from './routes/api/saml2/login'
 import { Route as ApiSaml2AcsRouteImport } from './routes/api/saml2/acs'
 import { Route as ApiMatmenyPlainRouteImport } from './routes/api/matmeny/plain'
-import { Route as ApiMatmenyIcsRouteImport } from './routes/api/matmeny.ics'
-import { Route as ApiKalenderIcalRouteImport } from './routes/api/kalender.ical'
-import { Route as ApiArrplanIcsRouteImport } from './routes/api/arrplan.ics'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -142,6 +140,11 @@ const ArrplanSemesterRoute = ArrplanSemesterRouteImport.update({
   path: '/arrplan/$semester',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMatmenyIcsRoute = ApiMatmenyIcsRouteImport.update({
+  id: '/api/matmeny-ics',
+  path: '/api/matmeny-ics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BooksIdIndexRoute = BooksIdIndexRouteImport.update({
   id: '/books/$id/',
   path: '/books/$id/',
@@ -187,21 +190,6 @@ const ApiMatmenyPlainRoute = ApiMatmenyPlainRouteImport.update({
   path: '/api/matmeny/plain',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiMatmenyIcsRoute = ApiMatmenyIcsRouteImport.update({
-  id: '/api/matmeny/ics',
-  path: '/api/matmeny/ics',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiKalenderIcalRoute = ApiKalenderIcalRouteImport.update({
-  id: '/api/kalender/ical',
-  path: '/api/kalender/ical',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiArrplanIcsRoute = ApiArrplanIcsRouteImport.update({
-  id: '/api/arrplan/ics',
-  path: '/api/arrplan/ics',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -212,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/matmeny': typeof MatmenyRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/api/matmeny-ics': typeof ApiMatmenyIcsRoute
   '/arrplan/$semester': typeof ArrplanSemesterRoute
   '/books/register': typeof BooksRegisterRoute
   '/bukker/$id': typeof BukkerIdRoute
@@ -224,9 +213,6 @@ export interface FileRoutesByFullPath {
   '/books/': typeof BooksIndexRoute
   '/bukker/': typeof BukkerIndexRoute
   '/users/': typeof UsersIndexRoute
-  '/api/arrplan/ics': typeof ApiArrplanIcsRoute
-  '/api/kalender/ical': typeof ApiKalenderIcalRoute
-  '/api/matmeny/ics': typeof ApiMatmenyIcsRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
   '/api/saml2/login': typeof ApiSaml2LoginRoute
@@ -246,6 +232,7 @@ export interface FileRoutesByTo {
   '/matmeny': typeof MatmenyRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/api/matmeny-ics': typeof ApiMatmenyIcsRoute
   '/arrplan/$semester': typeof ArrplanSemesterRoute
   '/books/register': typeof BooksRegisterRoute
   '/bukker/$id': typeof BukkerIdRoute
@@ -258,9 +245,6 @@ export interface FileRoutesByTo {
   '/books': typeof BooksIndexRoute
   '/bukker': typeof BukkerIndexRoute
   '/users': typeof UsersIndexRoute
-  '/api/arrplan/ics': typeof ApiArrplanIcsRoute
-  '/api/kalender/ical': typeof ApiKalenderIcalRoute
-  '/api/matmeny/ics': typeof ApiMatmenyIcsRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
   '/api/saml2/login': typeof ApiSaml2LoginRoute
@@ -281,6 +265,7 @@ export interface FileRoutesById {
   '/matmeny': typeof MatmenyRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/api/matmeny-ics': typeof ApiMatmenyIcsRoute
   '/arrplan/$semester': typeof ArrplanSemesterRoute
   '/books/register': typeof BooksRegisterRoute
   '/bukker/$id': typeof BukkerIdRoute
@@ -293,9 +278,6 @@ export interface FileRoutesById {
   '/books/': typeof BooksIndexRoute
   '/bukker/': typeof BukkerIndexRoute
   '/users/': typeof UsersIndexRoute
-  '/api/arrplan/ics': typeof ApiArrplanIcsRoute
-  '/api/kalender/ical': typeof ApiKalenderIcalRoute
-  '/api/matmeny/ics': typeof ApiMatmenyIcsRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
   '/api/saml2/login': typeof ApiSaml2LoginRoute
@@ -317,6 +299,7 @@ export interface FileRouteTypes {
     | '/matmeny'
     | '/register'
     | '/reset-password'
+    | '/api/matmeny-ics'
     | '/arrplan/$semester'
     | '/books/register'
     | '/bukker/$id'
@@ -329,9 +312,6 @@ export interface FileRouteTypes {
     | '/books/'
     | '/bukker/'
     | '/users/'
-    | '/api/arrplan/ics'
-    | '/api/kalender/ical'
-    | '/api/matmeny/ics'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
     | '/api/saml2/login'
@@ -351,6 +331,7 @@ export interface FileRouteTypes {
     | '/matmeny'
     | '/register'
     | '/reset-password'
+    | '/api/matmeny-ics'
     | '/arrplan/$semester'
     | '/books/register'
     | '/bukker/$id'
@@ -363,9 +344,6 @@ export interface FileRouteTypes {
     | '/books'
     | '/bukker'
     | '/users'
-    | '/api/arrplan/ics'
-    | '/api/kalender/ical'
-    | '/api/matmeny/ics'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
     | '/api/saml2/login'
@@ -385,6 +363,7 @@ export interface FileRouteTypes {
     | '/matmeny'
     | '/register'
     | '/reset-password'
+    | '/api/matmeny-ics'
     | '/arrplan/$semester'
     | '/books/register'
     | '/bukker/$id'
@@ -397,9 +376,6 @@ export interface FileRouteTypes {
     | '/books/'
     | '/bukker/'
     | '/users/'
-    | '/api/arrplan/ics'
-    | '/api/kalender/ical'
-    | '/api/matmeny/ics'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
     | '/api/saml2/login'
@@ -420,6 +396,7 @@ export interface RootRouteChildren {
   MatmenyRoute: typeof MatmenyRoute
   RegisterRoute: typeof RegisterRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ApiMatmenyIcsRoute: typeof ApiMatmenyIcsRoute
   ArrplanSemesterRoute: typeof ArrplanSemesterRoute
   BooksRegisterRoute: typeof BooksRegisterRoute
   BukkerIdRoute: typeof BukkerIdRoute
@@ -432,9 +409,6 @@ export interface RootRouteChildren {
   BooksIndexRoute: typeof BooksIndexRoute
   BukkerIndexRoute: typeof BukkerIndexRoute
   UsersIndexRoute: typeof UsersIndexRoute
-  ApiArrplanIcsRoute: typeof ApiArrplanIcsRoute
-  ApiKalenderIcalRoute: typeof ApiKalenderIcalRoute
-  ApiMatmenyIcsRoute: typeof ApiMatmenyIcsRoute
   ApiMatmenyPlainRoute: typeof ApiMatmenyPlainRoute
   ApiSaml2AcsRoute: typeof ApiSaml2AcsRoute
   ApiSaml2LoginRoute: typeof ApiSaml2LoginRoute
@@ -588,6 +562,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArrplanSemesterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/matmeny-ics': {
+      id: '/api/matmeny-ics'
+      path: '/api/matmeny-ics'
+      fullPath: '/api/matmeny-ics'
+      preLoaderRoute: typeof ApiMatmenyIcsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/books/$id/': {
       id: '/books/$id/'
       path: '/books/$id'
@@ -651,27 +632,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMatmenyPlainRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/matmeny/ics': {
-      id: '/api/matmeny/ics'
-      path: '/api/matmeny/ics'
-      fullPath: '/api/matmeny/ics'
-      preLoaderRoute: typeof ApiMatmenyIcsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/kalender/ical': {
-      id: '/api/kalender/ical'
-      path: '/api/kalender/ical'
-      fullPath: '/api/kalender/ical'
-      preLoaderRoute: typeof ApiKalenderIcalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/arrplan/ics': {
-      id: '/api/arrplan/ics'
-      path: '/api/arrplan/ics'
-      fullPath: '/api/arrplan/ics'
-      preLoaderRoute: typeof ApiArrplanIcsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -684,6 +644,7 @@ const rootRouteChildren: RootRouteChildren = {
   MatmenyRoute: MatmenyRoute,
   RegisterRoute: RegisterRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ApiMatmenyIcsRoute: ApiMatmenyIcsRoute,
   ArrplanSemesterRoute: ArrplanSemesterRoute,
   BooksRegisterRoute: BooksRegisterRoute,
   BukkerIdRoute: BukkerIdRoute,
@@ -696,9 +657,6 @@ const rootRouteChildren: RootRouteChildren = {
   BooksIndexRoute: BooksIndexRoute,
   BukkerIndexRoute: BukkerIndexRoute,
   UsersIndexRoute: UsersIndexRoute,
-  ApiArrplanIcsRoute: ApiArrplanIcsRoute,
-  ApiKalenderIcalRoute: ApiKalenderIcalRoute,
-  ApiMatmenyIcsRoute: ApiMatmenyIcsRoute,
   ApiMatmenyPlainRoute: ApiMatmenyPlainRoute,
   ApiSaml2AcsRoute: ApiSaml2AcsRoute,
   ApiSaml2LoginRoute: ApiSaml2LoginRoute,
