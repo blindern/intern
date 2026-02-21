@@ -41,17 +41,15 @@ function SearchDropdown({
     >
       {items.map((item) => (
         <li key={item.id}>
-          <button
-            type="button"
-            className="btn btn-link"
-            style={{ padding: 0 }}
+          <a
+            role="button"
             onMouseDown={(e) => {
               e.preventDefault()
               onSelect(item.id)
             }}
           >
             {item.label}
-          </button>
+          </a>
         </li>
       ))}
     </ul>
@@ -233,7 +231,7 @@ function GroupPage() {
         <dt>Gruppenavn</dt>
         <dd>{group.name}</dd>
         <dt>GruppeID</dt>
-        <dd>{group.unique_id}</dd>
+        <dd>{group.id}</dd>
         <dt>Beskrivelse</dt>
         <dd>{group.description}</dd>
       </dl>

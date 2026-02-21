@@ -88,6 +88,7 @@ function normalizeUser(raw: any): UsersApiUser {
 }
 
 export interface UsersApiGroup {
+  id: number
   unique_id: string
   name?: string
   description?: string
