@@ -3,7 +3,7 @@ import { and, eq, isNull } from "drizzle-orm"
 import { db } from "../server/db.js"
 import { googleappsAccounts, googleappsAccountusers } from "../server/schema.js"
 import { generateId } from "../server/id.js"
-import { authMiddleware, isInGroup } from "../server/auth.js"
+import { authMiddleware, hasGroupAccess } from "../server/auth.js"
 import { usersApi } from "../server/users-api.js"
 
 export const getGoogleAppsAccounts = createServerFn({
@@ -93,7 +93,7 @@ export const createGoogleAppsAccount = createServerFn({
   .middleware([authMiddleware])
   .inputValidator((input: { accountname: string; group: string }) => input)
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "ukestyret")) {
+    if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new Error("Forbidden")
     }
 
@@ -149,7 +149,7 @@ export const updateGoogleAppsAccount = createServerFn({
     }) => input,
   )
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "ukestyret")) {
+    if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new Error("Forbidden")
     }
 
@@ -174,7 +174,7 @@ export const deleteGoogleAppsAccount = createServerFn({
   .middleware([authMiddleware])
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "ukestyret")) {
+    if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new Error("Forbidden")
     }
 
@@ -209,7 +209,7 @@ export const createGoogleAppsAccountUser = createServerFn({
     }) => input,
   )
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "ukestyret")) {
+    if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new Error("Forbidden")
     }
 
@@ -275,7 +275,7 @@ export const updateGoogleAppsAccountUser = createServerFn({
   .middleware([authMiddleware])
   .inputValidator((input: { id: string; notification: boolean }) => input)
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "ukestyret")) {
+    if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new Error("Forbidden")
     }
 
@@ -298,7 +298,7 @@ export const deleteGoogleAppsAccountUser = createServerFn({
   .middleware([authMiddleware])
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "ukestyret")) {
+    if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new Error("Forbidden")
     }
 

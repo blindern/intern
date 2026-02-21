@@ -3,7 +3,7 @@ import { and, desc, eq, ilike, or, sql } from "drizzle-orm"
 import { db } from "../server/db.js"
 import { books } from "../server/schema.js"
 import { generateId } from "../server/id.js"
-import { authMiddleware, isInGroup } from "../server/auth.js"
+import { authMiddleware, hasGroupAccess } from "../server/auth.js"
 import { tracingMiddleware } from "../server/tracing.js"
 import { env } from "../server/env.js"
 
@@ -82,7 +82,7 @@ export const createBook = createServerFn({ method: "POST" })
     }) => input,
   )
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "biblioteksutvalget")) {
+    if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new Error("Forbidden")
     }
 
@@ -152,7 +152,7 @@ export const updateBook = createServerFn({ method: "POST" })
     }) => input,
   )
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "biblioteksutvalget")) {
+    if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new Error("Forbidden")
     }
 
@@ -219,7 +219,7 @@ export const deleteBook = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "biblioteksutvalget")) {
+    if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new Error("Forbidden")
     }
 
@@ -236,7 +236,7 @@ export const setBookBarcode = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
   .inputValidator((input: { id: string; barcode: string }) => input)
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "biblioteksutvalget")) {
+    if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new Error("Forbidden")
     }
 

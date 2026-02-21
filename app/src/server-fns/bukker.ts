@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm"
 import { db } from "../server/db.js"
 import { bukker } from "../server/schema.js"
 import { generateId } from "../server/id.js"
-import { authMiddleware, isInGroup } from "../server/auth.js"
+import { authMiddleware, hasGroupAccess } from "../server/auth.js"
 import { tracingMiddleware } from "../server/tracing.js"
 
 interface Award {
@@ -71,7 +71,7 @@ export const createBukk = createServerFn({ method: "POST" })
     }) => input,
   )
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "bukkekollegiet")) {
+    if (!hasGroupAccess(context.user, "bukkekollegiet")) {
       throw new Error("Forbidden")
     }
 
@@ -102,7 +102,7 @@ export const updateBukk = createServerFn({ method: "POST" })
     }) => input,
   )
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "bukkekollegiet")) {
+    if (!hasGroupAccess(context.user, "bukkekollegiet")) {
       throw new Error("Forbidden")
     }
 
@@ -135,7 +135,7 @@ export const deleteBukk = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
-    if (!isInGroup(context.user, "bukkekollegiet")) {
+    if (!hasGroupAccess(context.user, "bukkekollegiet")) {
       throw new Error("Forbidden")
     }
 

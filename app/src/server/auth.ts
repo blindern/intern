@@ -32,6 +32,14 @@ export function isSuperAdmin(user: UsersApiUser): boolean {
 }
 
 /**
+ * Check if the user has access to a group's functionality.
+ * Superadmins bypass group membership checks.
+ */
+export function hasGroupAccess(user: UsersApiUser, groupName: string): boolean {
+  return isSuperAdmin(user) || isInGroup(user, groupName)
+}
+
+/**
  * Check if the user is a user admin.
  */
 export function isUserAdmin(user: UsersApiUser): boolean {
