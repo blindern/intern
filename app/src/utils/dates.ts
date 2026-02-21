@@ -1,5 +1,4 @@
-import moment from "moment"
-import "moment/locale/nb"
+import moment from "moment/min/moment-with-locales"
 
 moment.locale("nb")
 
