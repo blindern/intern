@@ -5,7 +5,7 @@ import { Flashes } from "../components/Flashes.js"
 import { useAuthInfo } from "../hooks/useAuth.js"
 import { useCurrentTitle } from "../hooks/useTitle.js"
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
-import { Link, useMatchRoute } from "@tanstack/react-router"
+import { Link, useLocation, useMatchRoute } from "@tanstack/react-router"
 import {
   arrplanUrl,
   dugnadsinnkallingerUrl,
@@ -68,7 +68,9 @@ function Dropdown({
       >
         {label} <b className="caret" />
       </a>
-      <ul className="dropdown-menu">{children}</ul>
+      <ul className="dropdown-menu" onClick={close}>
+        {children}
+      </ul>
     </li>
   )
 }
@@ -77,6 +79,12 @@ export function Template({ children }: { children: ReactNode }) {
   const authInfo = useAuthInfo()
   const title = useCurrentTitle()
   const [navOpen, setNavOpen] = useState(false)
+  const { pathname } = useLocation()
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: close nav on route change
+  useEffect(() => {
+    setNavOpen(false)
+  }, [pathname])
 
   return (
     <>
