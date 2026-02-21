@@ -3,9 +3,18 @@ import { trace, SpanStatusCode } from "@opentelemetry/api"
 
 export const tracer = trace.getTracer("intern-app")
 
-/**
- * Middleware that traces server function requests with OpenTelemetry.
- */
+const SENSITIVE_PARAMS = new Set(["token", "key", "password", "secret"])
+
+function redactUrl(rawUrl: string): string {
+  const url = new URL(rawUrl)
+  for (const key of url.searchParams.keys()) {
+    if (SENSITIVE_PARAMS.has(key.toLowerCase())) {
+      url.searchParams.set(key, "[REDACTED]")
+    }
+  }
+  return url.toString()
+}
+
 export const tracingMiddleware = createMiddleware().server(
   async ({ next, request }) => {
     const url = new URL(request.url)
@@ -15,7 +24,7 @@ export const tracingMiddleware = createMiddleware().server(
       async (span) => {
         span.setAttributes({
           "http.method": request.method,
-          "http.url": request.url,
+          "http.url": redactUrl(request.url),
           "http.route": url.pathname,
         })
 

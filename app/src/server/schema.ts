@@ -117,30 +117,41 @@ export const users = pgTable("users", {
     .defaultNow(),
 })
 
-export const registrationRequests = pgTable("registration_requests", {
-  id: varchar("id", { length: 24 }).primaryKey(),
-  username: varchar("username").notNull(),
-  firstname: varchar("firstname").notNull(),
-  lastname: varchar("lastname").notNull(),
-  email: varchar("email").notNull(),
-  phone: varchar("phone"),
-  passwordHash: varchar("password_hash").notNull(),
-  status: varchar("status").notNull().default("pending"),
-  groupName: varchar("group_name"),
-  processedBy: varchar("processed_by"),
-  processedAt: timestamp("processed_at", {
-    withTimezone: true,
-    precision: 3,
-  }),
-  ipAddress: varchar("ip_address"),
-  userAgent: varchar("user_agent"),
-  createdAt: timestamp("created_at", { withTimezone: true, precision: 3 })
-    .notNull()
-    .defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true, precision: 3 })
-    .notNull()
-    .defaultNow(),
-})
+export const registrationRequests = pgTable(
+  "registration_requests",
+  {
+    id: varchar("id", { length: 24 }).primaryKey(),
+    username: varchar("username").notNull(),
+    firstname: varchar("firstname").notNull(),
+    lastname: varchar("lastname").notNull(),
+    email: varchar("email").notNull(),
+    phone: varchar("phone"),
+    passwordHash: varchar("password_hash").notNull(),
+    status: varchar("status").notNull().default("pending"),
+    groupName: varchar("group_name"),
+    processedBy: varchar("processed_by"),
+    processedAt: timestamp("processed_at", {
+      withTimezone: true,
+      precision: 3,
+    }),
+    ipAddress: varchar("ip_address"),
+    userAgent: varchar("user_agent"),
+    createdAt: timestamp("created_at", { withTimezone: true, precision: 3 })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true, precision: 3 })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("registration_requests_username_pending_unique")
+      .on(table.username)
+      .where(sql`status = 'pending'`),
+    uniqueIndex("registration_requests_email_pending_unique")
+      .on(table.email)
+      .where(sql`status = 'pending'`),
+  ],
+)
 
 export const passwordResetTokens = pgTable("password_reset_tokens", {
   id: varchar("id", { length: 24 }).primaryKey(),

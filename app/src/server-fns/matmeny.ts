@@ -56,29 +56,51 @@ export const getMatmeny = createServerFn({ method: "GET" })
       .orderBy(matmeny.day)
   })
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5 MB
+const ANTIWORD_TIMEOUT_MS = 10_000 // 10 seconds
+
 export const convertMatmenyFile = createServerFn({
   method: "POST",
 })
   .middleware([tracingMiddleware])
   .inputValidator((input: { fileBase64: string }) => input)
   .handler(async ({ data }) => {
+    const user = await getCurrentUser()
+    if (
+      !user ||
+      !(
+        hasGroupAccess(user, "admin") ||
+        hasGroupAccess(user, "ansatt") ||
+        hasGroupAccess(user, "kollegiet")
+      )
+    ) {
+      throw new Error("Forbidden")
+    }
+
     if (!data.fileBase64) {
       throw new Error("No file uploaded")
     }
 
     const buffer = Buffer.from(data.fileBase64, "base64")
+    if (buffer.length > MAX_FILE_SIZE) {
+      throw new Error("File too large")
+    }
 
-    // Write to temp file
     const tempPath = join(tmpdir(), `bs-intern-matmeny-${Date.now()}`)
     await writeFile(tempPath, buffer)
 
     try {
-      // Convert with antiword
       const text = await new Promise<string>((resolve, reject) => {
-        execFile("antiword", ["-w", "0", tempPath], (err, stdout) => {
-          if (err) reject(err as Error)
-          else resolve(stdout)
-        })
+        const proc = execFile(
+          "antiword",
+          ["-w", "0", tempPath],
+          { timeout: ANTIWORD_TIMEOUT_MS },
+          (err, stdout) => {
+            if (err) reject(err as Error)
+            else resolve(stdout)
+          },
+        )
+        proc.stdin?.end()
       })
 
       if (!text) {
