@@ -33,6 +33,18 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm build
 
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+        env:
+          FBS_TEST_USERNAME: halvargimnes
+          FBS_TEST_PASSWORD: ${{ secrets.FBS_TEST_PASSWORD }}
+      - uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: playwright-report
+          path: app/playwright-report/
+          retention-days: 7
+
       - name: Build container
         uses: docker/build-push-action@v6
         with:
