@@ -3,7 +3,7 @@ import { CommaSeparated } from "../../components/CommaSeparated.js"
 import { Loading } from "../../components/Loading.js"
 import { GroupLink } from "../../components/GroupLink.js"
 import { UserLink } from "../../components/UserLink.js"
-import { useAuthInfo } from "../../hooks/useAuth.js"
+import { useAuthInfo } from "../../features/auth/hooks.js"
 import {
   useGroup,
   useGroupList,
@@ -11,8 +11,8 @@ import {
   useRemoveMemberMutation,
   useAddOwnerMutation,
   useRemoveOwnerMutation,
-} from "../../features/users/hooks-groups.js"
-import { useUserList } from "../../features/users/hooks.js"
+  useUserList,
+} from "../../features/users/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { listGroupsUrl } from "../../utils/urls.js"
 import { useState } from "react"

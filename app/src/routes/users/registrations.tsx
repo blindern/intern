@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { useGroupList } from "../../features/users/hooks-groups.js"
+import { useGroupList } from "../../features/users/hooks.js"
 import {
   useRegistrationRequests,
   useApproveRegistrationMutation,

@@ -6,10 +6,10 @@ import {
 } from "@tanstack/react-router"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import { AuthProvider } from "../hooks/useAuth.js"
+import { AuthProvider } from "../features/auth/hooks.js"
 import { FlashesProvider } from "../hooks/useFlashes.js"
 import { TitleProvider } from "../hooks/useTitle.js"
-import { Template } from "../layout/Template.js"
+import { Template } from "../components/Template.js"
 import "../styles/frontend.scss"
 
 const queryClient = new QueryClient({

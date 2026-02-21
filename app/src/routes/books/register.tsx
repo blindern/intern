@@ -4,13 +4,13 @@ import {
   useCreateBookMutation,
   useSearchIsbnMutation,
 } from "../../features/books/hooks.js"
-import { useIsMemberOf } from "../../hooks/useAuth.js"
+import { useIsMemberOf } from "../../features/auth/hooks.js"
 import { useFlashes } from "../../hooks/useFlashes.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { bookUrl, groupUrl } from "../../utils/urls.js"
 import { useMemo } from "react"
 import { FormProvider, useForm, useWatch } from "react-hook-form"
-import { BookFields } from "../../components/BookFields.js"
+import { BookFields } from "../../features/books/BookFields.js"
 
 export const Route = createFileRoute("/books/register")({
   component: RegisterBookPage,

@@ -11,7 +11,7 @@ import {
   useGoogleAppsUpdateAccountMutation,
   useGoogleAppsUpdateAccountUserMutation,
 } from "../features/googleapps/hooks.js"
-import { useIsMemberOf } from "../hooks/useAuth.js"
+import { useIsMemberOf } from "../features/auth/hooks.js"
 import { PageTitle } from "../hooks/useTitle.js"
 import { userUrl } from "../utils/urls.js"
 import { groupBy } from "lodash"

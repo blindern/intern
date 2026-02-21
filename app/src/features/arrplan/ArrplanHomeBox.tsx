@@ -1,9 +1,9 @@
 import classNames from "classnames"
-import { ErrorMessages } from "./ErrorMessages.js"
-import { Loading } from "./Loading.js"
+import { ErrorMessages } from "../../components/ErrorMessages.js"
+import { Loading } from "../../components/Loading.js"
 import { Link } from "@tanstack/react-router"
-import { arrplanUrl } from "../utils/urls.js"
-import { useArrplanNext } from "../features/arrplan/hooks.js"
+import { arrplanUrl } from "../../utils/urls.js"
+import { useArrplanNext } from "./hooks.js"
 
 export const ArrplanHomeBox = () => {
   const { isPending, isError, error, data: arrplan } = useArrplanNext()

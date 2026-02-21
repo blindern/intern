@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router"
 import { PageTitle } from "../hooks/useTitle.js"
 import { LoginLink } from "../components/LoginLink.js"
 import { UserLink } from "../components/UserLink.js"
-import { useAuthInfo } from "../hooks/useAuth.js"
-import { ArrplanHomeBox } from "../components/ArrplanHomeBox.js"
-import { MatmenyHomeBox } from "../components/MatmenyHomeBox.js"
+import { useAuthInfo } from "../features/auth/hooks.js"
+import { ArrplanHomeBox } from "../features/arrplan/ArrplanHomeBox.js"
+import { MatmenyHomeBox } from "../features/matmeny/MatmenyHomeBox.js"
 
 export const Route = createFileRoute("/")({
   component: HomePage,

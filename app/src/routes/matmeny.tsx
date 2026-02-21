@@ -2,7 +2,7 @@ import classNames from "classnames"
 import { createFileRoute } from "@tanstack/react-router"
 import { ErrorMessages } from "../components/ErrorMessages.js"
 import { Loading } from "../components/Loading.js"
-import { useIsMemberOf } from "../hooks/useAuth.js"
+import { useIsMemberOf } from "../features/auth/hooks.js"
 import {
   type MatmenyDay,
   buildMatmenyDataKey,

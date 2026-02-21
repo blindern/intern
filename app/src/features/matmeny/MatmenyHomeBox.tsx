@@ -1,12 +1,9 @@
-import { ErrorMessages } from "./ErrorMessages.js"
-import { Loading } from "./Loading.js"
+import { ErrorMessages } from "../../components/ErrorMessages.js"
+import { Loading } from "../../components/Loading.js"
 import { Link } from "@tanstack/react-router"
-import { matmenyUrl } from "../utils/urls.js"
-import { formatDate } from "../utils/dates.js"
-import {
-  useMatmenyHomeData,
-  type MatmenyDay,
-} from "../features/matmeny/hooks.js"
+import { matmenyUrl } from "../../utils/urls.js"
+import { formatDate } from "../../utils/dates.js"
+import { useMatmenyHomeData, type MatmenyDay } from "./hooks.js"
 
 const MatmenyDayItem = ({ data }: { data?: MatmenyDay }) => {
   if (!data) return <>Ukjent</>
