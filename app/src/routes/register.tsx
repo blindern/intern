@@ -4,7 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router"
 import { PageTitle } from "../hooks/useTitle.js"
 import { useRegisterUserMutation } from "../features/registration/hooks.js"
 import { useYupValidationResolver } from "../features/registration/validation.js"
-import { forgotPasswordUrl } from "../utils/urls.js"
+
 import { ReactNode, useState } from "react"
 import {
   type FieldName,
@@ -229,7 +229,7 @@ function RegisterForm() {
             </span>
             <span className="help-block">
               Har du allerede en bruker?{" "}
-              <Link to={forgotPasswordUrl()}>Glemt passord</Link>
+              <Link to="/forgot-password">Glemt passord</Link>
             </span>
           </div>
         </div>

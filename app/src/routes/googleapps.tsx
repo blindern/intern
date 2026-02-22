@@ -13,7 +13,7 @@ import {
 } from "../features/googleapps/hooks.js"
 import { useIsMemberOf } from "../features/auth/hooks.js"
 import { PageTitle } from "../hooks/useTitle.js"
-import { userUrl } from "../utils/urls.js"
+
 import { groupBy } from "lodash"
 import { Fragment, useState } from "react"
 import { useForm } from "react-hook-form"
@@ -239,7 +239,7 @@ function AccountItem({
         {users.map((user) => (
           <li key={user.id}>
             <span style={{ display: "inline-block", minWidth: "220px" }}>
-              <Link to={userUrl(user.username)}>
+              <Link to="/user/$name" params={{ name: user.username }}>
                 {user.realname ?? user.username}
               </Link>
             </span>

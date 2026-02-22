@@ -2,14 +2,13 @@ import classNames from "classnames"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { Link } from "@tanstack/react-router"
-import { arrplanUrl } from "../../utils/urls.js"
 import { useArrplanNext } from "./hooks.js"
 
 export function ArrplanHomeBox() {
   const { isPending, isError, error, data: arrplan } = useArrplanNext()
 
   return (
-    <Link to={arrplanUrl()} className="index-arrplan">
+    <Link to="/arrplan" className="index-arrplan">
       <h4>Neste på arrangementplanen</h4>
       {isPending ? (
         <Loading />

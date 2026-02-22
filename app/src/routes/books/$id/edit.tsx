@@ -9,7 +9,7 @@ import {
 } from "../../../features/books/hooks.js"
 import { useIsMemberOf } from "../../../features/auth/hooks.js"
 import { useTitle } from "../../../hooks/useTitle.js"
-import { bookUrl, groupUrl } from "../../../utils/urls.js"
+
 import { FormProvider, useForm } from "react-hook-form"
 import { BookFields } from "../../../features/books/BookFields.js"
 
@@ -38,7 +38,7 @@ function EditBookForm({ book }: { book: Book }) {
 
   function onSubmit(values: BookInput) {
     void mutateAsync({ id: book.id, ...values }).then(() =>
-      navigate({ to: bookUrl(book.id) }),
+      navigate({ to: "/books/$id", params: { id: book.id } }),
     )
   }
 
@@ -62,7 +62,11 @@ function EditBookForm({ book }: { book: Book }) {
                 type="submit"
                 value="Lagre endringer"
               />
-              <Link className="btn btn-default" to={bookUrl(book.id)}>
+              <Link
+                className="btn btn-default"
+                to="/books/$id"
+                params={{ id: book.id }}
+              >
                 Avbryt
               </Link>
             </div>
@@ -82,7 +86,10 @@ function EditBookPage() {
     return (
       <p>
         Denne siden er kun tilgjengelig for{" "}
-        <Link to={groupUrl("biblioteksutvalget")}>biblioteksutvalget</Link>.
+        <Link to="/group/$name" params={{ name: "biblioteksutvalget" }}>
+          biblioteksutvalget
+        </Link>
+        .
       </p>
     )
   }

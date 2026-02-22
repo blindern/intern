@@ -6,18 +6,6 @@ import { useAuthInfo } from "../features/auth/hooks.js"
 import { useCurrentTitle } from "../hooks/useTitle.js"
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
 import { Link, useLocation, useMatchRoute } from "@tanstack/react-router"
-import {
-  arrplanUrl,
-  dugnadsinnkallingerUrl,
-  lastPrintsUrl,
-  listBooksUrl,
-  listGroupsUrl,
-  listUsersUrl,
-  printerInvoicingUrl,
-  registerUserUrl,
-  changePasswordUrl,
-  registrationRequestsUrl,
-} from "../utils/urls.js"
 
 function MenuLink({ children, to }: { children: ReactNode; to: string }) {
   const matchRoute = useMatchRoute()
@@ -115,27 +103,25 @@ export function Template({ children }: { children: ReactNode }) {
               })}
             >
               <ul className="nav navbar-nav">
-                <MenuLink to={arrplanUrl()}>Arrangementplan</MenuLink>
-                <MenuLink to={listBooksUrl()}>Biblioteket</MenuLink>
+                <MenuLink to="/arrplan">Arrangementplan</MenuLink>
+                <MenuLink to="/books">Biblioteket</MenuLink>
                 <Dropdown label="Brukere og grupper">
-                  <MenuLink to={listUsersUrl()}>Brukerliste</MenuLink>
-                  <MenuLink to={listGroupsUrl()}>Gruppeliste</MenuLink>
+                  <MenuLink to="/users">Brukerliste</MenuLink>
+                  <MenuLink to="/groups">Gruppeliste</MenuLink>
                   {!authInfo.isLoading &&
                     !authInfo.isError &&
                     authInfo.data.isUserAdmin && (
-                      <MenuLink to={registrationRequestsUrl()}>
+                      <MenuLink to="/users/registrations">
                         Registreringer
                       </MenuLink>
                     )}
                 </Dropdown>
                 <Dropdown label="Dugnaden">
-                  <MenuLink to={dugnadsinnkallingerUrl()}>
-                    Dugnadsinnkalling
-                  </MenuLink>
+                  <MenuLink to="/dugnaden/old/list">Dugnadsinnkalling</MenuLink>
                 </Dropdown>
                 <Dropdown label="Printer">
-                  <MenuLink to={lastPrintsUrl()}>Siste utskrifter</MenuLink>
-                  <MenuLink to={printerInvoicingUrl()}>Fakturering</MenuLink>
+                  <MenuLink to="/printer/siste">Siste utskrifter</MenuLink>
+                  <MenuLink to="/printer/fakturere">Fakturering</MenuLink>
                 </Dropdown>
               </ul>
               <ul className="nav navbar-nav navbar-right">
@@ -148,7 +134,7 @@ export function Template({ children }: { children: ReactNode }) {
                     <MenuLink to={`/user/${authInfo.data.user.username}`}>
                       Brukerinfo
                     </MenuLink>
-                    <MenuLink to={changePasswordUrl()}>Endre passord</MenuLink>
+                    <MenuLink to="/change-password">Endre passord</MenuLink>
                     <li>
                       <LogoutLink>Logg ut</LogoutLink>
                     </li>
@@ -158,7 +144,7 @@ export function Template({ children }: { children: ReactNode }) {
                     <li>
                       <LoginLink>Logg inn</LoginLink>
                     </li>
-                    <MenuLink to={registerUserUrl()}>Registrer</MenuLink>
+                    <MenuLink to="/register">Registrer</MenuLink>
                   </>
                 )}
               </ul>

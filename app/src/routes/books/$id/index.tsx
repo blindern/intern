@@ -10,11 +10,7 @@ import {
 import { useIsMemberOf } from "../../../features/auth/hooks.js"
 import { PageTitle } from "../../../hooks/useTitle.js"
 import { formatDate } from "../../../utils/dates.js"
-import {
-  listBooksUrl,
-  editBookUrl,
-  registerBookUrl,
-} from "../../../utils/urls.js"
+
 import { useState } from "react"
 
 export const Route = createFileRoute("/books/$id/")({
@@ -88,7 +84,7 @@ function DeleteButton({ book }: { book: Book }) {
 
   function doDelete() {
     if (confirm("Er du sikker på at du vil slette boka fra databasen?")) {
-      void mutateAsync(book.id).then(() => navigate({ to: listBooksUrl() }))
+      void mutateAsync(book.id).then(() => navigate({ to: "/books" }))
     }
   }
 
@@ -118,7 +114,7 @@ function BookPage() {
           <PageTitle title="Ukjent bok" />
           <p>Boken er ikke registrert</p>
           <p>
-            <Link to={listBooksUrl()}>Til oversikten</Link>
+            <Link to="/books">Til oversikten</Link>
           </p>
         </>
       )
@@ -135,10 +131,14 @@ function BookPage() {
     <>
       <PageTitle title={bookTitle(book)} />
       <p className="pull-right">
-        <Link className="btn btn-success" to={registerBookUrl()}>
+        <Link className="btn btn-success" to="/books/register">
           Registrer ny bok
         </Link>{" "}
-        <Link className="btn btn-primary" to={editBookUrl(book.id)}>
+        <Link
+          className="btn btn-primary"
+          to="/books/$id/edit"
+          params={{ id: book.id }}
+        >
           Rediger
         </Link>{" "}
         <DeleteButton book={book} />
@@ -211,7 +211,7 @@ function BookPage() {
       </div>
 
       <p>
-        <Link to={listBooksUrl()}>&laquo; Bokliste</Link>
+        <Link to="/books">&laquo; Bokliste</Link>
       </p>
     </>
   )

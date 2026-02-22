@@ -14,7 +14,7 @@ import {
   useUserList,
 } from "../../features/users/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { listGroupsUrl } from "../../utils/urls.js"
+
 import { useState } from "react"
 
 export const Route = createFileRoute("/group/$name")({
@@ -197,7 +197,7 @@ function GroupPage() {
         <PageTitle title="Ukjent gruppe" />
         <p>Gruppen er ikke registrert</p>
         <p>
-          <Link to={listGroupsUrl()}>Til oversikten</Link>
+          <Link to="/groups">Til oversikten</Link>
         </p>
       </>
     )

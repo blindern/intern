@@ -9,7 +9,6 @@ import {
 } from "../../features/books/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { useState } from "react"
-import { bookUrl, groupUrl, registerBookUrl } from "../../utils/urls.js"
 
 export const Route = createFileRoute("/books/")({
   component: ListBooksPage,
@@ -18,7 +17,7 @@ export const Route = createFileRoute("/books/")({
 function BookItem({ book }: { book: Book }) {
   return (
     <div className="book">
-      <Link to={bookUrl(book.id)}>
+      <Link to="/books/$id" params={{ id: book.id }}>
         <div className="thumb">
           {book.thumbnail && <img src={book.thumbnail} alt="" />}
         </div>
@@ -167,7 +166,7 @@ function ListBooksPage() {
     <>
       <PageTitle title="Biblioteket på Blindern Studenterhjem" />
       <p style={{ float: "right" }}>
-        <Link to={registerBookUrl()} className="btn btn-info">
+        <Link to="/books/register" className="btn btn-info">
           Registrer ny bok
         </Link>
       </p>
@@ -178,9 +177,11 @@ function ListBooksPage() {
           GitHub
         </a>
         . Det er{" "}
-        <Link to={groupUrl("biblioteksutvalget")}>biblioteksutvalget</Link> som
-        står for registrering av bøkene i biblioteket. {data?.total} bøker er
-        registrert i databasen.
+        <Link to="/group/$name" params={{ name: "biblioteksutvalget" }}>
+          biblioteksutvalget
+        </Link>{" "}
+        som står for registrering av bøkene i biblioteket. {data?.total} bøker
+        er registrert i databasen.
       </p>
 
       <div className="books_list">

@@ -1,7 +1,6 @@
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { Link } from "@tanstack/react-router"
-import { matmenyUrl } from "../../utils/urls.js"
 import { formatDate } from "../../utils/dates.js"
 import { useMatmenyHomeData, type MatmenyDay } from "./hooks.js"
 
@@ -20,7 +19,7 @@ export function MatmenyHomeBox() {
   const { isPending, isError, error, data: matmeny } = useMatmenyHomeData()
 
   return (
-    <Link to={matmenyUrl()} className="index-matmeny">
+    <Link to="/matmeny" className="index-matmeny">
       <h4>Matmeny</h4>
       {isPending ? (
         <Loading />

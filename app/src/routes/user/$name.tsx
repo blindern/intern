@@ -5,7 +5,6 @@ import { Loading } from "../../components/Loading.js"
 import { GroupLink } from "../../components/GroupLink.js"
 import { useGroupList, useUser } from "../../features/users/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { listUsersUrl } from "../../utils/urls.js"
 
 export const Route = createFileRoute("/user/$name")({
   component: UserPage,
@@ -83,7 +82,7 @@ function UserPage() {
         <PageTitle title="Ukjent bruker" />
         <p>Brukeren er ikke registrert</p>
         <p>
-          <Link to={listUsersUrl()}>Til oversikten</Link>
+          <Link to="/users">Til oversikten</Link>
         </p>
       </>
     )

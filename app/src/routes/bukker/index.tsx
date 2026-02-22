@@ -4,7 +4,6 @@ import { Loading } from "../../components/Loading.js"
 import { orderBy } from "lodash"
 import { type Bukk, useBukkList } from "../../features/bukker/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { bukkUrl } from "../../utils/urls.js"
 
 export const Route = createFileRoute("/bukker/")({
   component: ListBukkerPage,
@@ -77,7 +76,7 @@ function ListBukkerPage() {
             const awards = orderBy(bukk.awards, "year", "desc")
             return (
               <div key={bukk.id} className="bukk">
-                <Link to={bukkUrl(bukk.id)}>
+                <Link to="/bukker/$id" params={{ id: bukk.id }}>
                   <div className="bukkdata">
                     <div className="name">{bukk.name}</div>
                     <div className="awards">

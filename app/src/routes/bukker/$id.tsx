@@ -4,7 +4,6 @@ import { Loading } from "../../components/Loading.js"
 import { orderBy } from "lodash"
 import { useBukk } from "../../features/bukker/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { listBukkerUrl } from "../../utils/urls.js"
 
 export const Route = createFileRoute("/bukker/$id")({
   component: BukkPage,
@@ -27,7 +26,7 @@ function BukkPage() {
         <PageTitle title="Ukjent bukk" />
         <p>Oppføringen er ikke registrert</p>
         <p>
-          <Link to={listBukkerUrl()}>Til oversikten</Link>
+          <Link to="/bukker">Til oversikten</Link>
         </p>
       </>
     )

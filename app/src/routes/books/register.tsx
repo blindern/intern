@@ -7,7 +7,7 @@ import {
 import { useIsMemberOf } from "../../features/auth/hooks.js"
 import { useFlashes } from "../../hooks/useFlashes.js"
 import { PageTitle } from "../../hooks/useTitle.js"
-import { bookUrl, groupUrl } from "../../utils/urls.js"
+
 import { useEffect } from "react"
 import { FormProvider, useForm, useWatch } from "react-hook-form"
 import { BookFields } from "../../features/books/BookFields.js"
@@ -47,7 +47,9 @@ function RegisterBook() {
   }, [bibRoom, bibSection])
 
   function onSubmit(values: BookInput) {
-    void mutateAsync(values).then((book) => navigate({ to: bookUrl(book.id) }))
+    void mutateAsync(values).then((book) =>
+      navigate({ to: "/books/$id", params: { id: book.id } }),
+    )
   }
 
   function isbnSearch() {
@@ -123,7 +125,10 @@ function RegisterBookPage() {
         <PageTitle title="Registrer bok" />
         <p>
           Denne siden er kun tilgjengelig for{" "}
-          <Link to={groupUrl("biblioteksutvalget")}>biblioteksutvalget</Link>.
+          <Link to="/group/$name" params={{ name: "biblioteksutvalget" }}>
+            biblioteksutvalget
+          </Link>
+          .
         </p>
       </>
     )
