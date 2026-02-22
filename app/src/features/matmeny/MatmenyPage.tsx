@@ -4,7 +4,6 @@ import { Loading } from "../../components/Loading.js"
 import { useIsMemberOf } from "../auth/hooks.js"
 import {
   type MatmenyDay,
-  buildMatmenyDataKey,
   useMatmenyData,
   useUpdateMatmenyDaysMutation,
   useConvertMatmenyDocMutation,
@@ -13,7 +12,6 @@ import { PageTitle } from "../../hooks/useTitle.js"
 import { formatDate, moment } from "../../utils/dates.js"
 import { isEqual, keyBy } from "lodash"
 import { ChangeEvent, useState } from "react"
-import { useQueryClient } from "@tanstack/react-query"
 
 interface ModifiedDay {
   dishes: string
@@ -138,7 +136,6 @@ function FileUploader({
 }
 
 function MatmenyAdmin() {
-  const queryClient = useQueryClient()
   const prevWeeksToShow = 4,
     nextWeeksToShow = 4
   const { mutateAsync, isPending: isSubmitting } =
@@ -184,12 +181,8 @@ function MatmenyAdmin() {
       }
       return result
     })
-    void mutateAsync(days).then((response) => {
+    void mutateAsync(days).then(() => {
       const savedDays = days.map((it) => it.day)
-      queryClient.setQueryData(buildMatmenyDataKey(firstDate, lastDate), [
-        ...(data ?? []).filter((it) => !savedDays.includes(it.day)),
-        ...response,
-      ])
       setModifiedDays(
         Object.fromEntries(
           Object.entries(modifiedDays).filter(

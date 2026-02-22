@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getMatmeny, storeMatmeny, convertMatmenyFile } from "./server-fns.js"
 import { moment } from "../../utils/dates.js"
 
@@ -8,7 +8,7 @@ export interface MatmenyDay {
   text: string | null
 }
 
-export function buildMatmenyDataKey(from: string, to: string) {
+function buildMatmenyDataKey(from: string, to: string) {
   return ["matmeny", "list", { from, to }]
 }
 
@@ -41,11 +41,15 @@ export function useMatmenyData(from: string, to: string) {
 }
 
 export function useUpdateMatmenyDaysMutation() {
+  const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (
       days: { day: string; dishes?: string[] | null; text?: string | null }[],
     ) => {
       return storeMatmeny({ data: { days } })
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["matmeny"] })
     },
   })
 }
