@@ -6,13 +6,17 @@ import { useAuthInfo } from "../features/auth/hooks.js"
 import { useCurrentTitle } from "../hooks/useTitle.js"
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
 import { Link, useLocation, useMatchRoute } from "@tanstack/react-router"
+import type { FileRouteTypes } from "../routeTree.gen.js"
 
-function MenuLink({ children, to }: { children: ReactNode; to: string }) {
+function MenuLink({
+  children,
+  to,
+}: {
+  children: ReactNode
+  to: FileRouteTypes["to"]
+}) {
   const matchRoute = useMatchRoute()
-  const isActive = matchRoute({
-    to: to as any,
-    fuzzy: true,
-  })
+  const isActive = matchRoute({ to, fuzzy: true })
 
   return (
     <li className={classNames({ active: !!isActive })}>
@@ -131,9 +135,14 @@ export function Template({ children }: { children: ReactNode }) {
                   <li className="navbar-text">Ukjent feil</li>
                 ) : authInfo.data.isLoggedIn ? (
                   <Dropdown label={authInfo.data.user.username}>
-                    <MenuLink to={`/user/${authInfo.data.user.username}`}>
-                      Brukerinfo
-                    </MenuLink>
+                    <li>
+                      <Link
+                        to="/user/$name"
+                        params={{ name: authInfo.data.user.username }}
+                      >
+                        Brukerinfo
+                      </Link>
+                    </li>
                     <MenuLink to="/change-password">Endre passord</MenuLink>
                     <li>
                       <LogoutLink>Logg ut</LogoutLink>
