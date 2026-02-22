@@ -167,8 +167,8 @@ export interface StatsOverview {
   total_jobs: number
   total_pages: number
   total_users: number
-  first_job: string
-  last_job: string
+  first_job: string | null
+  last_job: string | null
 }
 
 export async function getStatsOverview(): Promise<StatsOverview> {
@@ -177,8 +177,8 @@ export async function getStatsOverview(): Promise<StatsOverview> {
     SELECT COUNT(j.id)::int as total_jobs,
            COALESCE(SUM(j.jobsize), 0)::int as total_pages,
            COUNT(DISTINCT j.userid)::int as total_users,
-           MIN(j.jobdate)::text as first_job,
-           MAX(j.jobdate)::text as last_job
+           to_char(MIN(j.jobdate), 'YYYY-MM-DD') as first_job,
+           to_char(MAX(j.jobdate), 'YYYY-MM-DD') as last_job
     FROM jobhistory j
   `
   return rows[0] as unknown as StatsOverview

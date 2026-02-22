@@ -1,5 +1,5 @@
 import * as d3 from "d3"
-import { useLayoutEffect, useRef } from "react"
+import { useLayoutEffect, useMemo, useRef } from "react"
 
 interface StackedAreaChartProps {
   years: string[]
@@ -27,10 +27,16 @@ export function StackedAreaChart({
   series,
   width: totalWidth = 700,
   height: totalHeight = 300,
-  formatValue = (v: number) =>
-    new Intl.NumberFormat("nb-NO").format(Math.round(v)),
+  formatValue,
 }: StackedAreaChartProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const stableFormatValue = useMemo(
+    () =>
+      formatValue ??
+      ((v: number) => new Intl.NumberFormat("nb-NO").format(Math.round(v))),
+    [formatValue],
+  )
 
   useLayoutEffect(() => {
     if (!containerRef.current || years.length === 0) return
@@ -178,12 +184,12 @@ export function StackedAreaChart({
             span.textContent = "\u25A0"
             tooltipEl.appendChild(span)
             tooltipEl.appendChild(
-              document.createTextNode(` ${k}: ${formatValue(val)}`),
+              document.createTextNode(` ${k}: ${stableFormatValue(val)}`),
             )
           }
           tooltipEl.appendChild(document.createElement("br"))
           const totalEl = document.createElement("strong")
-          totalEl.textContent = `Totalt: ${formatValue(total)}`
+          totalEl.textContent = `Totalt: ${stableFormatValue(total)}`
           tooltipEl.appendChild(totalEl)
         }
 
@@ -200,7 +206,7 @@ export function StackedAreaChart({
     return () => {
       d3.select(container).selectAll("svg").remove()
     }
-  }, [years, series, totalWidth, totalHeight, formatValue])
+  }, [years, series, totalWidth, totalHeight, stableFormatValue])
 
   return (
     <div ref={containerRef} style={{ position: "relative" }}>

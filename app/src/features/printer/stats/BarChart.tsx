@@ -1,5 +1,5 @@
 import * as d3 from "d3"
-import { useLayoutEffect, useRef } from "react"
+import { useLayoutEffect, useMemo, useRef } from "react"
 
 interface BarChartProps {
   data: { label: string; value: number }[]
@@ -16,9 +16,14 @@ export function BarChart({
   height: totalHeight = 280,
   color = "steelblue",
   yLabel,
-  formatValue = (v) => String(Math.round(v)),
+  formatValue,
 }: BarChartProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const stableFormatValue = useMemo(
+    () => formatValue ?? ((v: number) => String(Math.round(v))),
+    [formatValue],
+  )
 
   useLayoutEffect(() => {
     if (!containerRef.current || data.length === 0) return
@@ -74,7 +79,7 @@ export function BarChart({
       d3
         .axisLeft(y)
         .ticks(6)
-        .tickFormat((d) => formatValue(d as number)),
+        .tickFormat((d) => stableFormatValue(d as number)),
     )
 
     if (yLabel) {
@@ -95,7 +100,7 @@ export function BarChart({
         d3.select(containerRef.current)
           .select(".chart-tooltip")
           .style("display", "block")
-          .text(`${bar.label}: ${formatValue(bar.value)}`)
+          .text(`${bar.label}: ${stableFormatValue(bar.value)}`)
       })
       .on("mousemove", function (event) {
         const [mx] = d3.pointer(event, containerRef.current)
@@ -113,7 +118,7 @@ export function BarChart({
     return () => {
       d3.select(container).selectAll("svg").remove()
     }
-  }, [data, totalWidth, totalHeight, color, yLabel, formatValue])
+  }, [data, totalWidth, totalHeight, color, yLabel, stableFormatValue])
   return (
     <div ref={containerRef} style={{ position: "relative" }}>
       <div
