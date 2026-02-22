@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { and, eq, inArray, isNull } from "drizzle-orm"
 import { db } from "../../server/db.js"
@@ -72,11 +74,11 @@ export const createGoogleAppsAccount = createServerFn({
   .inputValidator((input: { accountname: string; group: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!data.accountname || data.accountname.length > 40) {
-      throw new Error("Invalid accountname")
+      throw new AppError("Invalid accountname")
     }
 
     // Check for soft-deleted account to restore
@@ -99,7 +101,7 @@ export const createGoogleAppsAccount = createServerFn({
           .returning()
         return restored
       }
-      throw new Error("Account already exists")
+      throw new AppError("Account already exists")
     }
 
     const [account] = await db
@@ -128,7 +130,7 @@ export const updateGoogleAppsAccount = createServerFn({
   )
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const [account] = await db
@@ -142,7 +144,7 @@ export const updateGoogleAppsAccount = createServerFn({
       .where(eq(googleappsAccounts.id, data.id))
       .returning()
 
-    if (!account) throw new Error("Not found")
+    if (!account) throw new AppError("Not found")
     return account
   })
 
@@ -153,7 +155,7 @@ export const deleteGoogleAppsAccount = createServerFn({
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const now = new Date()
@@ -188,7 +190,7 @@ export const createGoogleAppsAccountUser = createServerFn({
   )
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const [account] = await db
@@ -201,11 +203,11 @@ export const createGoogleAppsAccountUser = createServerFn({
         ),
       )
 
-    if (!account) throw new Error("Account not found")
+    if (!account) throw new AppError("Account not found")
 
     // Verify user exists in LDAP
     const ldapUser = await usersApi.getUser(data.username)
-    if (!ldapUser) throw new Error("User not found")
+    if (!ldapUser) throw new AppError("User not found")
 
     // Check for soft-deleted entry to restore
     const [existing] = await db
@@ -231,7 +233,7 @@ export const createGoogleAppsAccountUser = createServerFn({
           .returning()
         return restored
       }
-      throw new Error("Account user already exists")
+      throw new AppError("Account user already exists")
     }
 
     const [accountUser] = await db
@@ -254,7 +256,7 @@ export const updateGoogleAppsAccountUser = createServerFn({
   .inputValidator((input: { id: string; notification: boolean }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const [accountUser] = await db
@@ -266,7 +268,7 @@ export const updateGoogleAppsAccountUser = createServerFn({
       .where(eq(googleappsAccountusers.id, data.id))
       .returning()
 
-    if (!accountUser) throw new Error("Not found")
+    if (!accountUser) throw new AppError("Not found")
     return accountUser
   })
 
@@ -277,7 +279,7 @@ export const deleteGoogleAppsAccountUser = createServerFn({
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     await db

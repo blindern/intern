@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { type SQL, and, desc, eq, ilike, or, sql } from "drizzle-orm"
 import { db } from "../../server/db.js"
@@ -83,7 +85,7 @@ export const createBook = createServerFn({ method: "POST" })
   .inputValidator((input: BookInput) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     // Validate pubdate format if provided
@@ -91,7 +93,7 @@ export const createBook = createServerFn({ method: "POST" })
       data.pubdate &&
       !/^(\d{4}-\d\d(-\d\d)?|\d{4}\??|\d{2}\?)$/.test(data.pubdate)
     ) {
-      throw new Error("Invalid pubdate format")
+      throw new AppError("Invalid pubdate format")
     }
 
     const { isbnData, thumbnail } = await fetchGoogleBooksData(data.isbn)
@@ -123,14 +125,14 @@ export const updateBook = createServerFn({ method: "POST" })
   .inputValidator((input: { id: string } & BookInput) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (
       data.pubdate &&
       !/^(\d{4}-\d\d(-\d\d)?|\d{4}\??|\d{2}\?)$/.test(data.pubdate)
     ) {
-      throw new Error("Invalid pubdate format")
+      throw new AppError("Invalid pubdate format")
     }
 
     // Re-lookup ISBN data if ISBN changed
@@ -138,7 +140,7 @@ export const updateBook = createServerFn({ method: "POST" })
       .select({ isbn: books.isbn })
       .from(books)
       .where(eq(books.id, data.id))
-    if (!existing) throw new Error("Not found")
+    if (!existing) throw new AppError("Not found")
 
     const updates: Record<string, any> = {
       title: data.title,
@@ -168,7 +170,7 @@ export const updateBook = createServerFn({ method: "POST" })
       .where(eq(books.id, data.id))
       .returning()
 
-    if (!book) throw new Error("Not found")
+    if (!book) throw new AppError("Not found")
     return book
   })
 
@@ -177,7 +179,7 @@ export const deleteBook = createServerFn({ method: "POST" })
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const result = await db
@@ -185,7 +187,7 @@ export const deleteBook = createServerFn({ method: "POST" })
       .where(eq(books.id, data.id))
       .returning({ id: books.id })
 
-    if (result.length === 0) throw new Error("Not found")
+    if (result.length === 0) throw new AppError("Not found")
     return { deleted: true }
   })
 
@@ -194,25 +196,25 @@ export const setBookBarcode = createServerFn({ method: "POST" })
   .inputValidator((input: { id: string; barcode: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const [book] = await db.select().from(books).where(eq(books.id, data.id))
 
-    if (!book) throw new Error("Not found")
+    if (!book) throw new AppError("Not found")
 
     if (book.bibBarcode) {
-      throw new Error("Boka har allerede en strekkode tilegnet.")
+      throw new AppError("Boka har allerede en strekkode tilegnet.")
     }
 
     if (!data.barcode) {
-      throw new Error("Mangler strekkode.")
+      throw new AppError("Mangler strekkode.")
     }
 
     // Validate barcode format: BS-XXXX-XX (hex)
     const match = /(BS-[0-9A-F]+-)[0-9A-F]+/.exec(data.barcode)
     if (!match) {
-      throw new Error("Formatet på strekkoden er galt.")
+      throw new AppError("Formatet på strekkoden er galt.")
     }
 
     // Check uniqueness of sequence number
@@ -223,7 +225,7 @@ export const setBookBarcode = createServerFn({ method: "POST" })
       .limit(1)
 
     if (existing.length > 0) {
-      throw new Error("Løpenummeret er allerede i bruk.")
+      throw new AppError("Løpenummeret er allerede i bruk.")
     }
 
     await db

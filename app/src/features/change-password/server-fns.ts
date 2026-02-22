@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { authMiddleware } from "../../server/auth.js"
 import { logger } from "../../server/logger.js"
@@ -15,11 +17,11 @@ export const changePassword = createServerFn({
   )
   .handler(async ({ data, context }) => {
     if (!data.currentPassword || !data.newPassword) {
-      throw new Error("Begge passordfelt må fylles ut.")
+      throw new AppError("Begge passordfelt må fylles ut.")
     }
 
     if (data.newPassword.length < 8) {
-      throw new Error("Nytt passord må være på minst 8 tegn.")
+      throw new AppError("Nytt passord må være på minst 8 tegn.")
     }
 
     // Verify current password
@@ -29,7 +31,7 @@ export const changePassword = createServerFn({
     )
 
     if (!valid) {
-      throw new Error("Nåværende passord er feil.")
+      throw new AppError("Nåværende passord er feil.")
     }
 
     // Hash and update

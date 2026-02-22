@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { between, eq } from "drizzle-orm"
 import { db } from "../../server/db.js"
@@ -71,16 +73,16 @@ export const convertMatmenyFile = createServerFn({
         hasGroupAccess(user, "kollegiet")
       )
     ) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!data.fileBase64) {
-      throw new Error("No file uploaded")
+      throw new AppError("No file uploaded")
     }
 
     const buffer = Buffer.from(data.fileBase64, "base64")
     if (buffer.length > MAX_FILE_SIZE) {
-      throw new Error("File too large")
+      throw new AppError("File too large")
     }
 
     const tempPath = join(tmpdir(), `bs-intern-matmeny-${Date.now()}`)
@@ -132,18 +134,18 @@ export const storeMatmeny = createServerFn({ method: "POST" })
         hasGroupAccess(user, "kollegiet"))
 
     if (!canEdit) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!Array.isArray(data.days)) {
-      throw new Error("Invalid format")
+      throw new AppError("Invalid format")
     }
 
     const result = []
 
     for (const day of data.days) {
       if (!day.day || !/^\d{4}-\d{2}-\d{2}$/.test(day.day)) {
-        throw new Error("Invalid date format")
+        throw new AppError("Invalid date format")
       }
 
       const isEmpty = (!day.dishes || day.dishes.length === 0) && !day.text

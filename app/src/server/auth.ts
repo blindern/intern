@@ -2,6 +2,7 @@ import { createMiddleware } from "@tanstack/react-start"
 import { getCurrentUser } from "./get-current-user.js"
 import type { UsersApiUser } from "./users-api.js"
 import { tracingMiddleware } from "./tracing.js"
+import { AppError } from "./errors.js"
 
 /**
  * Middleware that requires authentication.
@@ -12,7 +13,7 @@ export const authMiddleware = createMiddleware()
   .server(async ({ next }) => {
     const user = await getCurrentUser()
     if (!user) {
-      throw new Error("Denne siden krever at du logger inn.")
+      throw new AppError("Denne siden krever at du logger inn.")
     }
     return next({ context: { user } })
   })

@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import crypto from "node:crypto"
 import { createServerFn } from "@tanstack/react-start"
 import { and, eq, gt } from "drizzle-orm"
@@ -20,7 +22,7 @@ export const requestPasswordReset = createServerFn({
   .inputValidator((input: { email: string }) => input)
   .handler(async ({ data }) => {
     if (!data.email) {
-      throw new Error("E-postadresse må oppgis.")
+      throw new AppError("E-postadresse må oppgis.")
     }
 
     // Rate limit: check for recent token
@@ -44,7 +46,7 @@ export const requestPasswordReset = createServerFn({
           (recentToken.createdAt.getTime() + 5 * 60 * 1000 - Date.now()) / 1000,
         ),
       )
-      throw new Error(
+      throw new AppError(
         `Vennligst vent ${retryAfter} sekunder før du prøver igjen.`,
       )
     }
@@ -57,7 +59,7 @@ export const requestPasswordReset = createServerFn({
 
     if (!user) {
       log.warn({ email: data.email }, "password reset for unknown email")
-      throw new Error("Ingen bruker med denne e-postadressen ble funnet.")
+      throw new AppError("Ingen bruker med denne e-postadressen ble funnet.")
     }
 
     // Generate token
@@ -115,7 +117,7 @@ export const validateResetToken = createServerFn({
   .middleware([tracingMiddleware])
   .inputValidator((input: { token: string }) => input)
   .handler(async ({ data }) => {
-    if (!data.token) throw new Error("Token må oppgis.")
+    if (!data.token) throw new AppError("Token må oppgis.")
     await findValidToken(data.token)
     return { valid: true }
   })
@@ -127,11 +129,11 @@ export const resetPassword = createServerFn({
   .inputValidator((input: { token: string; password: string }) => input)
   .handler(async ({ data }) => {
     if (!data.token || !data.password) {
-      throw new Error("Token og passord må oppgis.")
+      throw new AppError("Token og passord må oppgis.")
     }
 
     if (data.password.length < 8) {
-      throw new Error("Passordet må være på minst 8 tegn.")
+      throw new AppError("Passordet må være på minst 8 tegn.")
     }
 
     const resetToken = await findValidToken(data.token)
@@ -183,15 +185,15 @@ async function findValidToken(token: string) {
     .limit(1)
 
   if (!resetToken) {
-    throw new Error("Ugyldig eller utløpt lenke.")
+    throw new AppError("Ugyldig eller utløpt lenke.")
   }
 
   if (resetToken.used) {
-    throw new Error("Denne lenken er allerede brukt.")
+    throw new AppError("Denne lenken er allerede brukt.")
   }
 
   if (resetToken.expiresAt < new Date()) {
-    throw new Error("Lenken har utløpt. Vennligst be om en ny.")
+    throw new AppError("Lenken har utløpt. Vennligst be om en ny.")
   }
 
   return resetToken

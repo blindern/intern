@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { eq } from "drizzle-orm"
 import { db } from "../../server/db.js"
@@ -57,7 +59,7 @@ export const getBukk = createServerFn({ method: "GET" })
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data }) => {
     const [row] = await db.select().from(bukker).where(eq(bukker.id, data.id))
-    if (!row) throw new Error("Not found")
+    if (!row) throw new AppError("Not found")
     return formatBukk(row)
   })
 
@@ -72,7 +74,7 @@ export const createBukk = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "bukkekollegiet")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     validateAwards(data.awards)
@@ -103,7 +105,7 @@ export const updateBukk = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "bukkekollegiet")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     validateAwards(data.awards)
@@ -127,7 +129,7 @@ export const updateBukk = createServerFn({ method: "POST" })
       .where(eq(bukker.id, data.id))
       .returning()
 
-    if (!row) throw new Error("Not found")
+    if (!row) throw new AppError("Not found")
     return formatBukk(row)
   })
 
@@ -136,7 +138,7 @@ export const deleteBukk = createServerFn({ method: "POST" })
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "bukkekollegiet")) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const result = await db
@@ -144,7 +146,7 @@ export const deleteBukk = createServerFn({ method: "POST" })
       .where(eq(bukker.id, data.id))
       .returning({ id: bukker.id })
 
-    if (result.length === 0) throw new Error("Not found")
+    if (result.length === 0) throw new AppError("Not found")
     return { deleted: true }
   })
 
@@ -160,10 +162,10 @@ function validateAwards(awards?: Award[]) {
   if (!awards) return
   for (const award of awards) {
     if (!/^\d{4}$/.test(award.year)) {
-      throw new Error("Invalid award year")
+      throw new AppError("Invalid award year")
     }
     if (!["Halv", "Hel", "Høy"].includes(award.rank)) {
-      throw new Error("Invalid award rank")
+      throw new AppError("Invalid award rank")
     }
   }
 }

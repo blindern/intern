@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { authMiddleware } from "../../server/auth.js"
 import {
@@ -35,7 +37,7 @@ export const getPrinterUsage = createServerFn({
       !/^\d{4}-\d{2}-\d{2}$/.test(input.from) ||
       !/^\d{4}-\d{2}-\d{2}$/.test(input.to)
     ) {
-      throw new Error("Invalid date format")
+      throw new AppError("Invalid date format")
     }
     return input
   })

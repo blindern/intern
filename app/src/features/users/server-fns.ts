@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { authMiddleware, isGroupOwner, isUserAdmin } from "../../server/auth.js"
 import { logger } from "../../server/logger.js"
@@ -16,7 +18,7 @@ export const getUser = createServerFn({ method: "GET" })
   .inputValidator((input: { username: string }) => input)
   .handler(async ({ data }) => {
     const user = await usersApi.getUser(data.username)
-    if (!user) throw new Error("Not found")
+    if (!user) throw new AppError("Not found")
     return user
   })
 
@@ -31,7 +33,7 @@ export const getGroup = createServerFn({ method: "GET" })
   .inputValidator((input: { name: string }) => input)
   .handler(async ({ data }) => {
     const group = await usersApi.getGroup(data.name)
-    if (!group) throw new Error("Not found")
+    if (!group) throw new AppError("Not found")
     return group
   })
 
@@ -48,11 +50,11 @@ export const addGroupMember = createServerFn({
       isUserAdmin(context.user) || isGroupOwner(context.user, data.groupName)
 
     if (!canManage) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!["users", "groups"].includes(data.memberType)) {
-      throw new Error("Invalid member type")
+      throw new AppError("Invalid member type")
     }
 
     await usersApi.addGroupMember(
@@ -87,11 +89,11 @@ export const removeGroupMember = createServerFn({
       isUserAdmin(context.user) || isGroupOwner(context.user, data.groupName)
 
     if (!canManage) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!["users", "groups"].includes(data.memberType)) {
-      throw new Error("Invalid member type")
+      throw new AppError("Invalid member type")
     }
 
     await usersApi.removeGroupMember(
@@ -125,11 +127,11 @@ export const addGroupOwner = createServerFn({
       isUserAdmin(context.user) || isGroupOwner(context.user, data.groupName)
 
     if (!canManage) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!["users", "groups"].includes(data.ownerType)) {
-      throw new Error("Invalid owner type")
+      throw new AppError("Invalid owner type")
     }
 
     await usersApi.addGroupOwner(data.groupName, data.ownerType, data.ownerId)
@@ -159,11 +161,11 @@ export const removeGroupOwner = createServerFn({
       isUserAdmin(context.user) || isGroupOwner(context.user, data.groupName)
 
     if (!canManage) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!["users", "groups"].includes(data.ownerType)) {
-      throw new Error("Invalid owner type")
+      throw new AppError("Invalid owner type")
     }
 
     await usersApi.removeGroupOwner(

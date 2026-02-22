@@ -1,3 +1,5 @@
+import { AppError } from "../../server/errors.js"
+
 import { createServerFn } from "@tanstack/react-start"
 import { and, desc, eq } from "drizzle-orm"
 import { getRequest } from "@tanstack/react-start/server"
@@ -37,7 +39,7 @@ export const submitRegistration = createServerFn({
       !data.email ||
       !data.password
     ) {
-      throw new Error("Data missing.")
+      throw new AppError("Data missing.")
     }
 
     const username = data.username.toLowerCase()
@@ -47,19 +49,19 @@ export const submitRegistration = createServerFn({
       username.length > 20 ||
       !/^[a-z][a-z0-9]+$/.test(username)
     ) {
-      throw new Error("Brukernavn må være mellom 4 og 20 tegn (a-z, 0-9)")
+      throw new AppError("Brukernavn må være mellom 4 og 20 tegn (a-z, 0-9)")
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      throw new Error("Du må oppgi en korrekt e-postadresse")
+      throw new AppError("Du må oppgi en korrekt e-postadresse")
     }
 
     if (data.password.length < 8) {
-      throw new Error("Passordet må være på minst 8 tegn")
+      throw new AppError("Passordet må være på minst 8 tegn")
     }
 
     if (data.phone && !/^\d{8}$/.test(data.phone)) {
-      throw new Error("Kun norske nummer med 8 tall kan registreres")
+      throw new AppError("Kun norske nummer med 8 tall kan registreres")
     }
 
     const passwordHash = sshaHash(data.password)
@@ -68,7 +70,7 @@ export const submitRegistration = createServerFn({
     // Check uniqueness against LDAP
     const existingUser = await usersApi.getUser(username)
     if (existingUser) {
-      throw new Error("Brukernavnet er allerede i bruk.")
+      throw new AppError("Brukernavnet er allerede i bruk.")
     }
 
     // Check pending requests
@@ -84,7 +86,7 @@ export const submitRegistration = createServerFn({
       .limit(1)
 
     if (pendingUsername) {
-      throw new Error("Brukernavnet er allerede i bruk.")
+      throw new AppError("Brukernavnet er allerede i bruk.")
     }
 
     // Check email uniqueness against LDAP
@@ -93,7 +95,7 @@ export const submitRegistration = createServerFn({
       (u) => u.email?.toLowerCase() === data.email.toLowerCase(),
     )
     if (emailTaken) {
-      throw new Error(
+      throw new AppError(
         "E-postadressen er allerede registrert. Bruk glemt passord for å tilbakestille passordet.",
       )
     }
@@ -111,7 +113,7 @@ export const submitRegistration = createServerFn({
       .limit(1)
 
     if (pendingEmail) {
-      throw new Error(
+      throw new AppError(
         "Det finnes allerede en ventende forespørsel med denne e-postadressen.",
       )
     }
@@ -189,7 +191,7 @@ export const getRegistrationRequests = createServerFn({
   .inputValidator((input: { status?: string }) => input)
   .handler(async ({ data, context }) => {
     if (!isUserAdmin(context.user)) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const status = data.status ?? "pending"
@@ -212,11 +214,11 @@ export const approveRegistration = createServerFn({
   .inputValidator((input: { id: string; groups: string[] }) => input)
   .handler(async ({ data, context }) => {
     if (!isUserAdmin(context.user)) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     if (!data.groups || data.groups.length === 0) {
-      throw new Error("Minst én gruppe må velges.")
+      throw new AppError("Minst én gruppe må velges.")
     }
 
     const request = await db.transaction(async (tx) => {
@@ -226,9 +228,9 @@ export const approveRegistration = createServerFn({
         .where(eq(registrationRequests.id, data.id))
         .for("update")
 
-      if (!req) throw new Error("Forespørsel ikke funnet.")
+      if (!req) throw new AppError("Forespørsel ikke funnet.")
       if (req.status !== "pending") {
-        throw new Error("Forespørselen er allerede behandlet.")
+        throw new AppError("Forespørselen er allerede behandlet.")
       }
 
       try {
@@ -313,7 +315,7 @@ export const rejectRegistration = createServerFn({
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!isUserAdmin(context.user)) {
-      throw new Error("Forbidden")
+      throw new AppError("Forbidden")
     }
 
     const request = await db.transaction(async (tx) => {
@@ -323,9 +325,9 @@ export const rejectRegistration = createServerFn({
         .where(eq(registrationRequests.id, data.id))
         .for("update")
 
-      if (!req) throw new Error("Forespørsel ikke funnet.")
+      if (!req) throw new AppError("Forespørsel ikke funnet.")
       if (req.status !== "pending") {
-        throw new Error("Forespørselen er allerede behandlet.")
+        throw new AppError("Forespørselen er allerede behandlet.")
       }
 
       await tx
