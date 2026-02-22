@@ -31,7 +31,6 @@ import { Route as BooksRegisterRouteImport } from './routes/books/register'
 import { Route as ArrplanSemesterRouteImport } from './routes/arrplan/$semester'
 import { Route as ApiMatmenyIcsRouteImport } from './routes/api/matmeny-ics'
 import { Route as BooksIdIndexRouteImport } from './routes/books/$id/index'
-import { Route as ApiMatmenyIndexRouteImport } from './routes/api/matmeny/index'
 import { Route as DugnadenOldListRouteImport } from './routes/dugnaden/old/list'
 import { Route as BooksIdEditRouteImport } from './routes/books/$id/edit'
 import { Route as ApiSaml2SlsRouteImport } from './routes/api/saml2/sls'
@@ -40,6 +39,7 @@ import { Route as ApiSaml2LogoutRouteImport } from './routes/api/saml2/logout'
 import { Route as ApiSaml2LoginRouteImport } from './routes/api/saml2/login'
 import { Route as ApiSaml2AcsRouteImport } from './routes/api/saml2/acs'
 import { Route as ApiMatmenyPlainRouteImport } from './routes/api/matmeny/plain'
+import { Route as ApiMatmenyDataRouteImport } from './routes/api/matmeny/data'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -151,11 +151,6 @@ const BooksIdIndexRoute = BooksIdIndexRouteImport.update({
   path: '/books/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiMatmenyIndexRoute = ApiMatmenyIndexRouteImport.update({
-  id: '/api/matmeny/',
-  path: '/api/matmeny/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DugnadenOldListRoute = DugnadenOldListRouteImport.update({
   id: '/dugnaden/old/list',
   path: '/dugnaden/old/list',
@@ -196,6 +191,11 @@ const ApiMatmenyPlainRoute = ApiMatmenyPlainRouteImport.update({
   path: '/api/matmeny/plain',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMatmenyDataRoute = ApiMatmenyDataRouteImport.update({
+  id: '/api/matmeny/data',
+  path: '/api/matmeny/data',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -219,6 +219,7 @@ export interface FileRoutesByFullPath {
   '/books/': typeof BooksIndexRoute
   '/bukker/': typeof BukkerIndexRoute
   '/users/': typeof UsersIndexRoute
+  '/api/matmeny/data': typeof ApiMatmenyDataRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
   '/api/saml2/login': typeof ApiSaml2LoginRoute
@@ -227,7 +228,6 @@ export interface FileRoutesByFullPath {
   '/api/saml2/sls': typeof ApiSaml2SlsRoute
   '/books/$id/edit': typeof BooksIdEditRoute
   '/dugnaden/old/list': typeof DugnadenOldListRoute
-  '/api/matmeny/': typeof ApiMatmenyIndexRoute
   '/books/$id/': typeof BooksIdIndexRoute
 }
 export interface FileRoutesByTo {
@@ -252,6 +252,7 @@ export interface FileRoutesByTo {
   '/books': typeof BooksIndexRoute
   '/bukker': typeof BukkerIndexRoute
   '/users': typeof UsersIndexRoute
+  '/api/matmeny/data': typeof ApiMatmenyDataRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
   '/api/saml2/login': typeof ApiSaml2LoginRoute
@@ -260,7 +261,6 @@ export interface FileRoutesByTo {
   '/api/saml2/sls': typeof ApiSaml2SlsRoute
   '/books/$id/edit': typeof BooksIdEditRoute
   '/dugnaden/old/list': typeof DugnadenOldListRoute
-  '/api/matmeny': typeof ApiMatmenyIndexRoute
   '/books/$id': typeof BooksIdIndexRoute
 }
 export interface FileRoutesById {
@@ -286,6 +286,7 @@ export interface FileRoutesById {
   '/books/': typeof BooksIndexRoute
   '/bukker/': typeof BukkerIndexRoute
   '/users/': typeof UsersIndexRoute
+  '/api/matmeny/data': typeof ApiMatmenyDataRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
   '/api/saml2/login': typeof ApiSaml2LoginRoute
@@ -294,7 +295,6 @@ export interface FileRoutesById {
   '/api/saml2/sls': typeof ApiSaml2SlsRoute
   '/books/$id/edit': typeof BooksIdEditRoute
   '/dugnaden/old/list': typeof DugnadenOldListRoute
-  '/api/matmeny/': typeof ApiMatmenyIndexRoute
   '/books/$id/': typeof BooksIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -321,6 +321,7 @@ export interface FileRouteTypes {
     | '/books/'
     | '/bukker/'
     | '/users/'
+    | '/api/matmeny/data'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
     | '/api/saml2/login'
@@ -329,7 +330,6 @@ export interface FileRouteTypes {
     | '/api/saml2/sls'
     | '/books/$id/edit'
     | '/dugnaden/old/list'
-    | '/api/matmeny/'
     | '/books/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -354,6 +354,7 @@ export interface FileRouteTypes {
     | '/books'
     | '/bukker'
     | '/users'
+    | '/api/matmeny/data'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
     | '/api/saml2/login'
@@ -362,7 +363,6 @@ export interface FileRouteTypes {
     | '/api/saml2/sls'
     | '/books/$id/edit'
     | '/dugnaden/old/list'
-    | '/api/matmeny'
     | '/books/$id'
   id:
     | '__root__'
@@ -387,6 +387,7 @@ export interface FileRouteTypes {
     | '/books/'
     | '/bukker/'
     | '/users/'
+    | '/api/matmeny/data'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
     | '/api/saml2/login'
@@ -395,7 +396,6 @@ export interface FileRouteTypes {
     | '/api/saml2/sls'
     | '/books/$id/edit'
     | '/dugnaden/old/list'
-    | '/api/matmeny/'
     | '/books/$id/'
   fileRoutesById: FileRoutesById
 }
@@ -421,6 +421,7 @@ export interface RootRouteChildren {
   BooksIndexRoute: typeof BooksIndexRoute
   BukkerIndexRoute: typeof BukkerIndexRoute
   UsersIndexRoute: typeof UsersIndexRoute
+  ApiMatmenyDataRoute: typeof ApiMatmenyDataRoute
   ApiMatmenyPlainRoute: typeof ApiMatmenyPlainRoute
   ApiSaml2AcsRoute: typeof ApiSaml2AcsRoute
   ApiSaml2LoginRoute: typeof ApiSaml2LoginRoute
@@ -429,7 +430,6 @@ export interface RootRouteChildren {
   ApiSaml2SlsRoute: typeof ApiSaml2SlsRoute
   BooksIdEditRoute: typeof BooksIdEditRoute
   DugnadenOldListRoute: typeof DugnadenOldListRoute
-  ApiMatmenyIndexRoute: typeof ApiMatmenyIndexRoute
   BooksIdIndexRoute: typeof BooksIdIndexRoute
 }
 
@@ -589,13 +589,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/matmeny/': {
-      id: '/api/matmeny/'
-      path: '/api/matmeny'
-      fullPath: '/api/matmeny/'
-      preLoaderRoute: typeof ApiMatmenyIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dugnaden/old/list': {
       id: '/dugnaden/old/list'
       path: '/dugnaden/old/list'
@@ -652,6 +645,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMatmenyPlainRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/matmeny/data': {
+      id: '/api/matmeny/data'
+      path: '/api/matmeny/data'
+      fullPath: '/api/matmeny/data'
+      preLoaderRoute: typeof ApiMatmenyDataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -677,6 +677,7 @@ const rootRouteChildren: RootRouteChildren = {
   BooksIndexRoute: BooksIndexRoute,
   BukkerIndexRoute: BukkerIndexRoute,
   UsersIndexRoute: UsersIndexRoute,
+  ApiMatmenyDataRoute: ApiMatmenyDataRoute,
   ApiMatmenyPlainRoute: ApiMatmenyPlainRoute,
   ApiSaml2AcsRoute: ApiSaml2AcsRoute,
   ApiSaml2LoginRoute: ApiSaml2LoginRoute,
@@ -685,7 +686,6 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSaml2SlsRoute: ApiSaml2SlsRoute,
   BooksIdEditRoute: BooksIdEditRoute,
   DugnadenOldListRoute: DugnadenOldListRoute,
-  ApiMatmenyIndexRoute: ApiMatmenyIndexRoute,
   BooksIdIndexRoute: BooksIdIndexRoute,
 }
 export const routeTree = rootRouteImport

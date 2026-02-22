@@ -32,6 +32,14 @@ app.get("/intern/api/matmeny.ics", async (c) => {
   return new Response(res.body, { status: res.status, headers: res.headers })
 })
 
+// Rewrite /api/matmeny to internal route (index routes don't work in SPA mode)
+app.get("/intern/api/matmeny", async (c) => {
+  const url = new URL(c.req.url)
+  url.pathname = "/intern/api/matmeny/data"
+  const res = await handler.fetch(new Request(url, c.req.raw))
+  return new Response(res.body, { status: res.status, headers: res.headers })
+})
+
 app.use(
   "/intern/*",
   serveStatic({

@@ -6,7 +6,14 @@ import { defaultDateRange } from "../../../features/matmeny/server-fns.js"
 
 const dateRe = /^\d{4}-\d{2}-\d{2}$/
 
-export const Route = createFileRoute("/api/matmeny/")({
+function json(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+  })
+}
+
+export const Route = createFileRoute("/api/matmeny/data")({
   server: {
     handlers: {
       GET: async ({ request }) => {
@@ -15,22 +22,19 @@ export const Route = createFileRoute("/api/matmeny/")({
         const toParam = url.searchParams.get("to")
 
         if ((fromParam || toParam) && !(fromParam && toParam)) {
-          return Response.json(
-            { error: "Both 'from' and 'to' are required" },
-            { status: 400 },
-          )
+          return json({ error: "Both 'from' and 'to' are required" }, 400)
         }
 
         if (fromParam && !dateRe.test(fromParam)) {
-          return Response.json(
+          return json(
             { error: "Invalid 'from' date format, expected YYYY-MM-DD" },
-            { status: 400 },
+            400,
           )
         }
         if (toParam && !dateRe.test(toParam)) {
-          return Response.json(
+          return json(
             { error: "Invalid 'to' date format, expected YYYY-MM-DD" },
-            { status: 400 },
+            400,
           )
         }
 
@@ -49,7 +53,7 @@ export const Route = createFileRoute("/api/matmeny/")({
           .where(between(matmeny.day, from, to))
           .orderBy(matmeny.day)
 
-        return Response.json(days)
+        return json(days)
       },
     },
   },
