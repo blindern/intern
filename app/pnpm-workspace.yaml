@@ -1,1 +1,4 @@
 minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  # Renovate security update: hono@4.11.10
+  - hono@4.11.10
