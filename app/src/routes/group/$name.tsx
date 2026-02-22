@@ -116,7 +116,7 @@ function AddEntityForm({
           style={{ width: "auto", flexShrink: 0 }}
           value={entityType}
           onChange={(e) => {
-            setEntityType(e.target.value as any)
+            setEntityType(e.target.value as "users" | "groups")
             setSearch("")
           }}
         >
@@ -254,7 +254,7 @@ function GroupPage() {
             </tr>
           </thead>
           <tbody>
-            {group.members.map((member: any) => {
+            {group.members.map((member) => {
               const groupName = group.name ?? group.unique_id
               const isDirect =
                 member.groups_relation?.[groupName]?.includes(groupName) ??
@@ -332,7 +332,7 @@ function GroupPage() {
         <AddEntityForm
           placeholder="Legg til medlem..."
           isPending={addMember.isPending}
-          excludeUsers={new Set(group.members.map((m: any) => m.username))}
+          excludeUsers={new Set(group.members.map((m) => m.username))}
           excludeGroups={new Set(group.members_real?.groups ?? [])}
           excludeGroupName={group.name}
           onAdd={(type, id) =>

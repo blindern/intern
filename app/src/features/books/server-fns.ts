@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
-import { and, desc, eq, ilike, or, sql } from "drizzle-orm"
+import { type SQL, and, desc, eq, ilike, or, sql } from "drizzle-orm"
 import { db } from "../../server/db.js"
 import { books } from "../../server/schema.js"
 import { generateId } from "../../server/id.js"
@@ -27,7 +27,7 @@ export const getBooks = createServerFn({ method: "GET" })
     const limit = 100
     const offset = (page - 1) * limit
 
-    const conditions: any[] = []
+    const conditions: (SQL | undefined)[] = []
 
     if (data.q) {
       const parts = data.q.trim().split(/\s+/)

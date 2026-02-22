@@ -20,7 +20,7 @@ export const getPrinterLast = createServerFn({ method: "GET" })
       names[user.username] = user.realname ?? user.username
     }
 
-    return (last as any[]).map((row) => ({
+    return last.map((row) => ({
       ...row,
       realname: names[row.username] ?? row.username,
     }))

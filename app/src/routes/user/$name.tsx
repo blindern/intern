@@ -3,6 +3,7 @@ import { IndirectMemberInfo } from "../../components/IndirectMemberInfo.js"
 import { CommaSeparated } from "../../components/CommaSeparated.js"
 import { Loading } from "../../components/Loading.js"
 import { GroupLink } from "../../components/GroupLink.js"
+import type { UsersApiUser } from "../../server/users-api.js"
 import { useGroupList, useUser } from "../../features/users/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 
@@ -10,10 +11,10 @@ export const Route = createFileRoute("/user/$name")({
   component: UserPage,
 })
 
-function GroupsSection({ user }: { user: any }) {
+function GroupsSection({ user }: { user: UsersApiUser }) {
   const { data: allGroups } = useGroupList()
   const groupDescriptions = new Map(
-    (allGroups ?? []).map((g: any) => [g.name ?? g.unique_id, g.description]),
+    (allGroups ?? []).map((g) => [g.name ?? g.unique_id, g.description]),
   )
 
   if (!user.groups || user.groups.length === 0) {

@@ -23,11 +23,15 @@ export const Route = createFileRoute("/api/saml2/acs")({
           }
 
           // Extract username from SAML attributes
-          const usernameAttr = (profile as any).attributes?.username
-          const username =
+          const attributes = profile.attributes as
+            | Record<string, unknown>
+            | undefined
+          const usernameAttr = attributes?.username
+          const username = String(
             (Array.isArray(usernameAttr) ? usernameAttr[0] : usernameAttr) ??
-            (profile as any).username ??
-            profile.nameID
+              profile.username ??
+              profile.nameID,
+          )
 
           if (!username) {
             throw new Error("No username in SAML assertion")

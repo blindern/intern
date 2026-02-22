@@ -22,7 +22,14 @@ function getPrinterDb() {
   return printerDb
 }
 
-export async function getLastPrints(limit = 30) {
+export interface PrintRow {
+  jobsize: number
+  jobdate: Date
+  username: string
+  printername: string
+}
+
+export async function getLastPrints(limit = 30): Promise<PrintRow[]> {
   const sql = getPrinterDb()
   const rows = await sql`
     SELECT j.jobsize, j.jobdate, LOWER(u.username) as username, p.printername
@@ -32,12 +39,26 @@ export async function getLastPrints(limit = 30) {
     ORDER BY j.jobdate DESC
     LIMIT ${limit}
   `
-  return rows
+  return rows as unknown as PrintRow[]
+}
+
+interface UsageRow {
+  jobyear: string
+  jobmonth: string
+  count_jobs: number
+  sum_jobsize: number
+  last_jobdate: Date
+  username: string
+  printername: string
+}
+
+interface UsageEntry extends UsageRow {
+  cost_each: number
 }
 
 export async function getUsageData(from: string, to: string) {
   const sql = getPrinterDb()
-  const rows = await sql`
+  const rows = (await sql`
     SELECT to_char(j.jobdate, 'YYYY') as jobyear,
            to_char(j.jobdate, 'MM') as jobmonth,
            COUNT(j.id)::int as count_jobs,
@@ -52,13 +73,13 @@ export async function getUsageData(from: string, to: string) {
       AND j.jobdate::date <= ${to}::date
     GROUP BY LOWER(u.username), p.printername, jobyear, jobmonth
     ORDER BY jobyear, jobmonth, p.printername, LOWER(u.username)
-  `
+  `) as unknown as UsageRow[]
 
   // Restructure into nested format matching PHP output
-  const byPrinter: Record<string, Record<string, any[]>> = {}
+  const byPrinter: Record<string, Record<string, UsageEntry[]>> = {}
   for (const row of rows) {
     const costEach = getCost(`${row.jobyear}-${row.jobmonth}`)
-    const entry = { ...row, cost_each: costEach }
+    const entry: UsageEntry = { ...row, cost_each: costEach }
 
     if (!byPrinter[row.printername]) byPrinter[row.printername] = {}
     if (!byPrinter[row.printername][row.username])
