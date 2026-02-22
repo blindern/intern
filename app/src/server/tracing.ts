@@ -1,5 +1,6 @@
 import { createMiddleware } from "@tanstack/react-start"
 import { trace, SpanStatusCode } from "@opentelemetry/api"
+import { logger } from "./logger.js"
 
 export const tracer = trace.getTracer("intern-app")
 
@@ -33,6 +34,10 @@ export const tracingMiddleware = createMiddleware().server(
           span.setStatus({ code: SpanStatusCode.OK })
           return result
         } catch (error) {
+          logger.error(
+            { err: error, route: url.pathname },
+            "server function error",
+          )
           span.recordException(error as Error)
           span.setStatus({
             code: SpanStatusCode.ERROR,
