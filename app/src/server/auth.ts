@@ -12,7 +12,7 @@ export const authMiddleware = createMiddleware()
   .server(async ({ next }) => {
     const user = await getCurrentUser()
     if (!user) {
-      throw new Error("Not authenticated")
+      throw new Error("Denne siden krever at du logger inn.")
     }
     return next({ context: { user } })
   })
