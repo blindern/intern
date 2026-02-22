@@ -88,9 +88,8 @@ export const getPrinterUsage = createServerFn({
     }
   })
 
-export const getPrinterStats = createServerFn({ method: "GET" })
-  .middleware([authMiddleware])
-  .handler(async () => {
+export const getPrinterStats = createServerFn({ method: "GET" }).handler(
+  async () => {
     const [
       overview,
       yearly,
@@ -118,4 +117,5 @@ export const getPrinterStats = createServerFn({ method: "GET" })
       printerBreakdown,
       sections: printerConfig.sections,
     }
-  })
+  },
+)
