@@ -206,7 +206,7 @@ function GroupPage() {
   const canManage =
     auth.data.isLoggedIn &&
     (auth.data.isUserAdmin ||
-      Object.prototype.hasOwnProperty.call(
+      Object.hasOwn(
         auth.data.user.groupsowner_relation ?? {},
         group.name ?? "",
       ))
