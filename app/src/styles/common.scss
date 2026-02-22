@@ -1,0 +1,60 @@
+/*
+animating progress icon
+usage:
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+see: https://gist.github.com/alexandrevicenzi/680147013e902a4eaa5d
+*/
+.glyphicon-refresh-animate {
+    animation: spin .7s infinite linear;
+    -webkit-animation: spinw .7s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spinw {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+
+/* Flash message animations */
+.flash-wrap {
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+
+.flash-wrap .flash-inner {
+  margin-top: 15px;
+  padding: 15px;
+}
+
+.flash-enter {
+  animation: flash-in 0.2s forwards;
+}
+
+.flash-exit {
+  animation: flash-out 0.2s forwards;
+}
+
+@keyframes flash-in {
+  from {
+    opacity: 1;
+    max-height: 0;
+  }
+  to {
+    max-height: 100px;
+  }
+}
+
+@keyframes flash-out {
+  from {
+    opacity: 1;
+    max-height: 100px;
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+  }
+}

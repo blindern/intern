@@ -1,0 +1,2 @@
+CREATE UNIQUE INDEX "registration_requests_username_pending_unique" ON "registration_requests" USING btree ("username") WHERE status = 'pending';--> statement-breakpoint
+CREATE UNIQUE INDEX "registration_requests_email_pending_unique" ON "registration_requests" USING btree ("email") WHERE status = 'pending';

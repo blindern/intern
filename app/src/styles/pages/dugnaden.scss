@@ -1,0 +1,16 @@
+.dugnad-container {
+  page-break-before: always;
+}
+
+.dugnad-person {
+  page-break-inside: avoid;
+  margin-top: 40px;
+}
+
+.dugnad-header {
+  line-height: 80%;
+}
+
+.dugnad-header-name {
+  font-size: 70%;
+}

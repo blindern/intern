@@ -1,0 +1,8 @@
+node_modules
+dist
+.output
+.vinxi
+.env
+*.local
+test-results
+playwright-report
