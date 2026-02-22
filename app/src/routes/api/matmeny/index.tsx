@@ -4,6 +4,8 @@ import { matmeny } from "../../../server/schema.js"
 import { between } from "drizzle-orm"
 import { defaultDateRange } from "../../../features/matmeny/server-fns.js"
 
+const dateRe = /^\d{4}-\d{2}-\d{2}$/
+
 export const Route = createFileRoute("/api/matmeny/")({
   server: {
     handlers: {
@@ -12,12 +14,37 @@ export const Route = createFileRoute("/api/matmeny/")({
         const fromParam = url.searchParams.get("from")
         const toParam = url.searchParams.get("to")
 
-        const range = defaultDateRange()
-        const from = fromParam ?? range.from
-        const to = toParam ?? range.to
+        if ((fromParam || toParam) && !(fromParam && toParam)) {
+          return Response.json(
+            { error: "Both 'from' and 'to' are required" },
+            { status: 400 },
+          )
+        }
+
+        if (fromParam && !dateRe.test(fromParam)) {
+          return Response.json(
+            { error: "Invalid 'from' date format, expected YYYY-MM-DD" },
+            { status: 400 },
+          )
+        }
+        if (toParam && !dateRe.test(toParam)) {
+          return Response.json(
+            { error: "Invalid 'to' date format, expected YYYY-MM-DD" },
+            { status: 400 },
+          )
+        }
+
+        const { from, to } =
+          fromParam && toParam
+            ? { from: fromParam, to: toParam }
+            : defaultDateRange()
 
         const days = await db
-          .select()
+          .select({
+            day: matmeny.day,
+            text: matmeny.text,
+            dishes: matmeny.dishes,
+          })
           .from(matmeny)
           .where(between(matmeny.day, from, to))
           .orderBy(matmeny.day)
