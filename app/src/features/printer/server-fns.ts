@@ -6,6 +6,12 @@ import {
   getLastPrints,
   getUsageData,
   getDailyUsageData,
+  getStatsOverview,
+  getYearlyStats,
+  getMonthlyPattern,
+  getWeekdayPattern,
+  getHourlyPattern,
+  getPrinterYearlyBreakdown,
   printerConfig,
 } from "./printer-db.js"
 import { usersApi } from "../../server/users-api.js"
@@ -78,5 +84,28 @@ export const getPrinterUsage = createServerFn({
       accounts: printerConfig.accounts,
       realnames,
       utflyttet,
+    }
+  })
+
+export const getPrinterStats = createServerFn({ method: "GET" })
+  .middleware([authMiddleware])
+  .handler(async () => {
+    const [overview, yearly, monthly, weekday, hourly, printerBreakdown] =
+      await Promise.all([
+        getStatsOverview(),
+        getYearlyStats(),
+        getMonthlyPattern(),
+        getWeekdayPattern(),
+        getHourlyPattern(),
+        getPrinterYearlyBreakdown(),
+      ])
+    return {
+      overview,
+      yearly,
+      monthly,
+      weekday,
+      hourly,
+      printerBreakdown,
+      sections: printerConfig.sections,
     }
   })

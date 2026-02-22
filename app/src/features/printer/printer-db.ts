@@ -14,7 +14,7 @@ function getPrinterDb() {
   if (env.printerDbUser) {
     const url = new URL(dsn)
     url.username = env.printerDbUser
-    url.password = env.printerDbPass
+    url.password = env.printerDbPass ?? ""
     dsn = url.toString()
   }
 
@@ -130,6 +130,130 @@ function getCost(monthDate: string): number {
     }
   }
   return lastAmount
+}
+
+export interface YearlyStats {
+  year: string
+  count_jobs: number
+  sum_jobsize: number
+  unique_users: number
+}
+
+export interface MonthlyPattern {
+  month: number
+  avg_jobs: number
+  avg_pages: number
+}
+
+export interface WeekdayPattern {
+  weekday: number
+  avg_jobs: number
+  avg_pages: number
+}
+
+export interface HourlyPattern {
+  hour: number
+  avg_jobs: number
+  avg_pages: number
+}
+
+export interface PrinterYearlyBreakdown {
+  year: string
+  printername: string
+  sum_jobsize: number
+}
+
+export interface StatsOverview {
+  total_jobs: number
+  total_pages: number
+  total_users: number
+  first_job: string
+  last_job: string
+}
+
+export async function getStatsOverview(): Promise<StatsOverview> {
+  const sql = getPrinterDb()
+  const rows = await sql`
+    SELECT COUNT(j.id)::int as total_jobs,
+           COALESCE(SUM(j.jobsize), 0)::int as total_pages,
+           COUNT(DISTINCT j.userid)::int as total_users,
+           MIN(j.jobdate)::text as first_job,
+           MAX(j.jobdate)::text as last_job
+    FROM jobhistory j
+  `
+  return rows[0] as unknown as StatsOverview
+}
+
+export async function getYearlyStats(): Promise<YearlyStats[]> {
+  const sql = getPrinterDb()
+  const rows = await sql`
+    SELECT to_char(j.jobdate, 'YYYY') as year,
+           COUNT(j.id)::int as count_jobs,
+           COALESCE(SUM(j.jobsize), 0)::int as sum_jobsize,
+           COUNT(DISTINCT j.userid)::int as unique_users
+    FROM jobhistory j
+    GROUP BY year
+    ORDER BY year
+  `
+  return rows as unknown as YearlyStats[]
+}
+
+export async function getMonthlyPattern(): Promise<MonthlyPattern[]> {
+  const sql = getPrinterDb()
+  const rows = await sql`
+    SELECT EXTRACT(MONTH FROM j.jobdate)::int as month,
+           (COUNT(j.id)::float / GREATEST(COUNT(DISTINCT to_char(j.jobdate, 'YYYY')), 1))::float as avg_jobs,
+           (SUM(j.jobsize)::float / GREATEST(COUNT(DISTINCT to_char(j.jobdate, 'YYYY')), 1))::float as avg_pages
+    FROM jobhistory j
+    GROUP BY month
+    ORDER BY month
+  `
+  return rows as unknown as MonthlyPattern[]
+}
+
+export async function getWeekdayPattern(): Promise<WeekdayPattern[]> {
+  const sql = getPrinterDb()
+  // PostgreSQL DOW: 0=Sunday, 1=Monday, ... 6=Saturday
+  // Avg per active day: total pages on Mondays / number of distinct Monday dates with prints
+  const rows = await sql`
+    SELECT EXTRACT(DOW FROM j.jobdate)::int as weekday,
+           COUNT(j.id)::float / COUNT(DISTINCT j.jobdate::date) as avg_jobs,
+           SUM(j.jobsize)::float / COUNT(DISTINCT j.jobdate::date) as avg_pages
+    FROM jobhistory j
+    GROUP BY weekday
+    ORDER BY weekday
+  `
+  return rows as unknown as WeekdayPattern[]
+}
+
+export async function getHourlyPattern(): Promise<HourlyPattern[]> {
+  const sql = getPrinterDb()
+  // Avg per active day: total pages at 10am / number of distinct dates with prints at 10am
+  const rows = await sql`
+    SELECT EXTRACT(HOUR FROM j.jobdate)::int as hour,
+           COUNT(j.id)::float / COUNT(DISTINCT j.jobdate::date) as avg_jobs,
+           SUM(j.jobsize)::float / COUNT(DISTINCT j.jobdate::date) as avg_pages
+    FROM jobhistory j
+    GROUP BY hour
+    ORDER BY hour
+  `
+  return rows as unknown as HourlyPattern[]
+}
+
+export async function getPrinterYearlyBreakdown(): Promise<
+  PrinterYearlyBreakdown[]
+> {
+  const sql = getPrinterDb()
+  const rows = await sql`
+    SELECT to_char(j.jobdate, 'YYYY') as year,
+           p.printername,
+           COALESCE(SUM(j.jobsize), 0)::int as sum_jobsize
+    FROM jobhistory j
+      JOIN printers p ON j.printerid = p.id
+    GROUP BY year, p.printername
+    ORDER BY year, p.printername
+  `
+  return rows as unknown as PrinterYearlyBreakdown[]
 }
 
 export const printerConfig = {

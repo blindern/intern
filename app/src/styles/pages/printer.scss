@@ -17,3 +17,19 @@
     fill: #000;
   }
 }
+
+
+.printer-stats-chart {
+  * {
+    font-size: 12px;
+  }
+
+  .axis-label {
+    font-size: 12px;
+    fill: #666;
+  }
+
+  .bar:hover {
+    opacity: 0.8;
+  }
+}
