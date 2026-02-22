@@ -31,6 +31,7 @@ import { Route as BooksRegisterRouteImport } from './routes/books/register'
 import { Route as ArrplanSemesterRouteImport } from './routes/arrplan/$semester'
 import { Route as ApiMatmenyIcsRouteImport } from './routes/api/matmeny-ics'
 import { Route as BooksIdIndexRouteImport } from './routes/books/$id/index'
+import { Route as ApiMatmenyIndexRouteImport } from './routes/api/matmeny/index'
 import { Route as DugnadenOldListRouteImport } from './routes/dugnaden/old/list'
 import { Route as BooksIdEditRouteImport } from './routes/books/$id/edit'
 import { Route as ApiSaml2SlsRouteImport } from './routes/api/saml2/sls'
@@ -150,6 +151,11 @@ const BooksIdIndexRoute = BooksIdIndexRouteImport.update({
   path: '/books/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMatmenyIndexRoute = ApiMatmenyIndexRouteImport.update({
+  id: '/api/matmeny/',
+  path: '/api/matmeny/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DugnadenOldListRoute = DugnadenOldListRouteImport.update({
   id: '/dugnaden/old/list',
   path: '/dugnaden/old/list',
@@ -221,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/api/saml2/sls': typeof ApiSaml2SlsRoute
   '/books/$id/edit': typeof BooksIdEditRoute
   '/dugnaden/old/list': typeof DugnadenOldListRoute
+  '/api/matmeny/': typeof ApiMatmenyIndexRoute
   '/books/$id/': typeof BooksIdIndexRoute
 }
 export interface FileRoutesByTo {
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/api/saml2/sls': typeof ApiSaml2SlsRoute
   '/books/$id/edit': typeof BooksIdEditRoute
   '/dugnaden/old/list': typeof DugnadenOldListRoute
+  '/api/matmeny': typeof ApiMatmenyIndexRoute
   '/books/$id': typeof BooksIdIndexRoute
 }
 export interface FileRoutesById {
@@ -286,6 +294,7 @@ export interface FileRoutesById {
   '/api/saml2/sls': typeof ApiSaml2SlsRoute
   '/books/$id/edit': typeof BooksIdEditRoute
   '/dugnaden/old/list': typeof DugnadenOldListRoute
+  '/api/matmeny/': typeof ApiMatmenyIndexRoute
   '/books/$id/': typeof BooksIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -320,6 +329,7 @@ export interface FileRouteTypes {
     | '/api/saml2/sls'
     | '/books/$id/edit'
     | '/dugnaden/old/list'
+    | '/api/matmeny/'
     | '/books/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -352,6 +362,7 @@ export interface FileRouteTypes {
     | '/api/saml2/sls'
     | '/books/$id/edit'
     | '/dugnaden/old/list'
+    | '/api/matmeny'
     | '/books/$id'
   id:
     | '__root__'
@@ -384,6 +395,7 @@ export interface FileRouteTypes {
     | '/api/saml2/sls'
     | '/books/$id/edit'
     | '/dugnaden/old/list'
+    | '/api/matmeny/'
     | '/books/$id/'
   fileRoutesById: FileRoutesById
 }
@@ -417,6 +429,7 @@ export interface RootRouteChildren {
   ApiSaml2SlsRoute: typeof ApiSaml2SlsRoute
   BooksIdEditRoute: typeof BooksIdEditRoute
   DugnadenOldListRoute: typeof DugnadenOldListRoute
+  ApiMatmenyIndexRoute: typeof ApiMatmenyIndexRoute
   BooksIdIndexRoute: typeof BooksIdIndexRoute
 }
 
@@ -576,6 +589,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/matmeny/': {
+      id: '/api/matmeny/'
+      path: '/api/matmeny'
+      fullPath: '/api/matmeny/'
+      preLoaderRoute: typeof ApiMatmenyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dugnaden/old/list': {
       id: '/dugnaden/old/list'
       path: '/dugnaden/old/list'
@@ -665,6 +685,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSaml2SlsRoute: ApiSaml2SlsRoute,
   BooksIdEditRoute: BooksIdEditRoute,
   DugnadenOldListRoute: DugnadenOldListRoute,
+  ApiMatmenyIndexRoute: ApiMatmenyIndexRoute,
   BooksIdIndexRoute: BooksIdIndexRoute,
 }
 export const routeTree = rootRouteImport

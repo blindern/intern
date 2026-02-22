@@ -14,7 +14,7 @@ import { writeFile, unlink } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 
-function defaultDateRange() {
+export function defaultDateRange() {
   const now = new Date()
   // Get Monday of current ISO week
   const day = now.getDay()
