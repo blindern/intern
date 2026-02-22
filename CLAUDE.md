@@ -59,3 +59,12 @@ pnpm test src/some-file.test.ts     # Single test
 - Docker images pushed to ghcr.io/blindern/intern-{app,calendar-api}
 - CI runs per-service on push to respective directory (`.github/workflows/`)
 - OpenTelemetry instrumentation via `--import ./instrumentation.ts`
+
+### SQL formatting (raw queries)
+
+ Keywords UPPERCASE: `SELECT`, `FROM`, `WHERE`, `JOIN`, `GROUP BY`, `ORDER BY`, `LIMIT`, `WITH`, `AS`, `DISTINCT`, `AND`, `OR`, `ON`, `CROSS JOIN`
+ Functions lowercase: `count()`, `sum()`, `min()`, `max()`, `coalesce()`, `extract()`, `lower()`, `to_char()`, `generate_series()`
+ `extract()` field names UPPERCASE: `extract(MONTH FROM ...)`, `extract(DOW FROM ...)`
+ Alias with lowercase `as`: `count(j.id) as total`
+ JOINs indented 2 spaces from FROM
+ SELECT columns aligned with padding

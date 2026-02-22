@@ -32,7 +32,7 @@ export interface PrintRow {
 export async function getLastPrints(limit = 30): Promise<PrintRow[]> {
   const sql = getPrinterDb()
   const rows = await sql`
-    SELECT j.jobsize, j.jobdate, LOWER(u.username) as username, p.printername
+    SELECT j.jobsize, j.jobdate, lower(u.username) as username, p.printername
     FROM jobhistory j
       JOIN users u ON j.userid = u.id
       JOIN printers p ON j.printerid = p.id
@@ -61,18 +61,18 @@ export async function getUsageData(from: string, to: string) {
   const rows = (await sql`
     SELECT to_char(j.jobdate, 'YYYY') as jobyear,
            to_char(j.jobdate, 'MM') as jobmonth,
-           COUNT(j.id)::int as count_jobs,
-           SUM(j.jobsize)::int as sum_jobsize,
-           MAX(j.jobdate) as last_jobdate,
-           LOWER(u.username) as username,
+           count(j.id)::int as count_jobs,
+           sum(j.jobsize)::int as sum_jobsize,
+           max(j.jobdate) as last_jobdate,
+           lower(u.username) as username,
            p.printername
     FROM jobhistory j
       JOIN users u ON j.userid = u.id
       JOIN printers p ON j.printerid = p.id
     WHERE j.jobdate::date >= ${from}::date
       AND j.jobdate::date <= ${to}::date
-    GROUP BY LOWER(u.username), p.printername, jobyear, jobmonth
-    ORDER BY jobyear, jobmonth, p.printername, LOWER(u.username)
+    GROUP BY lower(u.username), p.printername, jobyear, jobmonth
+    ORDER BY jobyear, jobmonth, p.printername, lower(u.username)
   `) as unknown as UsageRow[]
 
   // Restructure into nested format matching PHP output
@@ -100,8 +100,8 @@ export async function getDailyUsageData(from: string, to: string) {
   const sql = getPrinterDb()
   return sql`
     SELECT to_char(j.jobdate, 'YYYY-MM-DD') as jobday,
-           COUNT(j.id)::int as count_jobs,
-           SUM(j.jobsize)::int as sum_jobsize
+           count(j.id)::int as count_jobs,
+           sum(j.jobsize)::int as sum_jobsize
     FROM jobhistory j
     WHERE j.jobdate::date >= ${from}::date
       AND j.jobdate::date <= ${to}::date
@@ -174,11 +174,11 @@ export interface StatsOverview {
 export async function getStatsOverview(): Promise<StatsOverview> {
   const sql = getPrinterDb()
   const rows = await sql`
-    SELECT COUNT(j.id)::int as total_jobs,
-           COALESCE(SUM(j.jobsize), 0)::int as total_pages,
-           COUNT(DISTINCT j.userid)::int as total_users,
-           to_char(MIN(j.jobdate), 'YYYY-MM-DD') as first_job,
-           to_char(MAX(j.jobdate), 'YYYY-MM-DD') as last_job
+    SELECT count(j.id)::int as total_jobs,
+           coalesce(sum(j.jobsize), 0)::int as total_pages,
+           count(DISTINCT j.userid)::int as total_users,
+           to_char(min(j.jobdate), 'YYYY-MM-DD') as first_job,
+           to_char(max(j.jobdate), 'YYYY-MM-DD') as last_job
     FROM jobhistory j
   `
   return rows[0] as unknown as StatsOverview
@@ -188,9 +188,9 @@ export async function getYearlyStats(): Promise<YearlyStats[]> {
   const sql = getPrinterDb()
   const rows = await sql`
     SELECT to_char(j.jobdate, 'YYYY') as year,
-           COUNT(j.id)::int as count_jobs,
-           COALESCE(SUM(j.jobsize), 0)::int as sum_jobsize,
-           COUNT(DISTINCT j.userid)::int as unique_users
+           count(j.id)::int as count_jobs,
+           coalesce(sum(j.jobsize), 0)::int as sum_jobsize,
+           count(DISTINCT j.userid)::int as unique_users
     FROM jobhistory j
     GROUP BY year
     ORDER BY year
@@ -200,25 +200,30 @@ export async function getYearlyStats(): Promise<YearlyStats[]> {
 
 export async function getMonthlyPattern(): Promise<MonthlyPattern[]> {
   const sql = getPrinterDb()
-  // Divide by total occurrences of each month in the data range
   const rows = await sql`
-    WITH date_range AS (
-      SELECT MIN(jobdate::date) AS min_d, MAX(jobdate::date) AS max_d FROM jobhistory
+    WITH date_range as (
+      SELECT min(jobdate::date) as min_d,
+             max(jobdate::date) as max_d
+      FROM jobhistory
     ),
-    all_months AS (
-      SELECT EXTRACT(MONTH FROM d)::int AS month
-      FROM date_range, generate_series(min_d, max_d, '1 day'::interval) AS d
-      GROUP BY EXTRACT(YEAR FROM d), EXTRACT(MONTH FROM d)
+    all_months as (
+      SELECT extract(MONTH FROM d)::int as month
+      FROM date_range,
+        generate_series(min_d, max_d, '1 day'::interval) as d
+      GROUP BY extract(YEAR FROM d), extract(MONTH FROM d)
     ),
-    month_counts AS (
-      SELECT month, COUNT(*)::float AS total_occurrences FROM all_months GROUP BY month
+    month_counts as (
+      SELECT month,
+             count(*)::float as total_occurrences
+      FROM all_months
+      GROUP BY month
     )
-    SELECT EXTRACT(MONTH FROM j.jobdate)::int as month,
-           COUNT(j.id)::float / mc.total_occurrences as avg_jobs,
-           SUM(j.jobsize)::float / mc.total_occurrences as avg_pages
+    SELECT extract(MONTH FROM j.jobdate)::int as month,
+           count(j.id)::float / mc.total_occurrences as avg_jobs,
+           sum(j.jobsize)::float / mc.total_occurrences as avg_pages
     FROM jobhistory j
-      JOIN month_counts mc ON mc.month = EXTRACT(MONTH FROM j.jobdate)::int
-    GROUP BY EXTRACT(MONTH FROM j.jobdate)::int, mc.total_occurrences
+      JOIN month_counts mc ON mc.month = extract(MONTH FROM j.jobdate)::int
+    GROUP BY extract(MONTH FROM j.jobdate)::int, mc.total_occurrences
     ORDER BY month
   `
   return rows as unknown as MonthlyPattern[]
@@ -226,23 +231,28 @@ export async function getMonthlyPattern(): Promise<MonthlyPattern[]> {
 
 export async function getWeekdayPattern(): Promise<WeekdayPattern[]> {
   const sql = getPrinterDb()
-  // Divide by total occurrences of each weekday in the data range (not just active days)
   const rows = await sql`
-    WITH date_range AS (
-      SELECT MIN(jobdate::date) AS min_d, MAX(jobdate::date) AS max_d FROM jobhistory
+    WITH date_range as (
+      SELECT min(jobdate::date) as min_d,
+             max(jobdate::date) as max_d
+      FROM jobhistory
     ),
-    all_days AS (
-      SELECT generate_series(min_d, max_d, '1 day'::interval)::date AS d FROM date_range
+    all_days as (
+      SELECT generate_series(min_d, max_d, '1 day'::interval)::date as d
+      FROM date_range
     ),
-    weekday_counts AS (
-      SELECT EXTRACT(DOW FROM d)::int AS weekday, COUNT(*)::float AS total_days FROM all_days GROUP BY weekday
+    weekday_counts as (
+      SELECT extract(DOW FROM d)::int as weekday,
+             count(*)::float as total_days
+      FROM all_days
+      GROUP BY weekday
     )
-    SELECT EXTRACT(DOW FROM j.jobdate)::int as weekday,
-           COUNT(j.id)::float / wc.total_days as avg_jobs,
-           SUM(j.jobsize)::float / wc.total_days as avg_pages
+    SELECT extract(DOW FROM j.jobdate)::int as weekday,
+           count(j.id)::float / wc.total_days as avg_jobs,
+           sum(j.jobsize)::float / wc.total_days as avg_pages
     FROM jobhistory j
-      JOIN weekday_counts wc ON wc.weekday = EXTRACT(DOW FROM j.jobdate)::int
-    GROUP BY EXTRACT(DOW FROM j.jobdate)::int, wc.total_days
+      JOIN weekday_counts wc ON wc.weekday = extract(DOW FROM j.jobdate)::int
+    GROUP BY extract(DOW FROM j.jobdate)::int, wc.total_days
     ORDER BY weekday
   `
   return rows as unknown as WeekdayPattern[]
@@ -250,19 +260,22 @@ export async function getWeekdayPattern(): Promise<WeekdayPattern[]> {
 
 export async function getHourlyPattern(): Promise<HourlyPattern[]> {
   const sql = getPrinterDb()
-  // Divide by total days in the data range, consistent with weekday/monthly queries
   const rows = await sql`
-    WITH date_range AS (
-      SELECT MIN(jobdate::date) AS min_d, MAX(jobdate::date) AS max_d FROM jobhistory
+    WITH date_range as (
+      SELECT min(jobdate::date) as min_d,
+             max(jobdate::date) as max_d
+      FROM jobhistory
     ),
-    day_count AS (
-      SELECT COUNT(*)::float AS total_days
-      FROM date_range, generate_series(min_d, max_d, '1 day'::interval) AS d
+    day_count as (
+      SELECT count(*)::float as total_days
+      FROM date_range,
+        generate_series(min_d, max_d, '1 day'::interval) as d
     )
-    SELECT EXTRACT(HOUR FROM j.jobdate)::int as hour,
-           COUNT(j.id)::float / dc.total_days as avg_jobs,
-           SUM(j.jobsize)::float / dc.total_days as avg_pages
-    FROM jobhistory j CROSS JOIN day_count dc
+    SELECT extract(HOUR FROM j.jobdate)::int as hour,
+           count(j.id)::float / dc.total_days as avg_jobs,
+           sum(j.jobsize)::float / dc.total_days as avg_pages
+    FROM jobhistory j
+      CROSS JOIN day_count dc
     GROUP BY hour, dc.total_days
     ORDER BY hour
   `
@@ -276,7 +289,7 @@ export async function getPrinterYearlyBreakdown(): Promise<
   const rows = await sql`
     SELECT to_char(j.jobdate, 'YYYY') as year,
            p.printername,
-           COALESCE(SUM(j.jobsize), 0)::int as sum_jobsize
+           coalesce(sum(j.jobsize), 0)::int as sum_jobsize
     FROM jobhistory j
       JOIN printers p ON j.printerid = p.id
     GROUP BY year, p.printername
