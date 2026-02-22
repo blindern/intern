@@ -26,7 +26,7 @@ export function ErrorMessages({ error }: { error: unknown }) {
 
   if (authError) {
     return (
-      <p>
+      <p style={{ color: "red" }}>
         {AUTH_ERROR_MESSAGE} <a href={getLoginUrl()}>Logg inn</a>
       </p>
     )

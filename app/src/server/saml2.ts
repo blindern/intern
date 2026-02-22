@@ -33,6 +33,7 @@ export function getSaml(): SAML {
     idpCert: env.devSso ? DEV_IDP_CERT : PROD_IDP_CERT,
     wantAssertionsSigned: true,
     requestIdExpirationPeriodMs: 3600000,
+    disableRequestedAuthnContext: true,
   })
 
   return samlInstance

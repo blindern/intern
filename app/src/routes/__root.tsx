@@ -12,17 +12,26 @@ import { TitleProvider } from "../hooks/useTitle.js"
 import { Template } from "../components/Template.js"
 import "../styles/frontend.scss"
 
+// AppError messages are expected client errors (auth, forbidden, not found,
+// validation) that should not be retried.
+const APP_ERROR_MESSAGES = [
+  "Denne siden krever at du logger inn.",
+  "Forbidden",
+  "Not found",
+]
+
+function isAppError(error: unknown): boolean {
+  if (!(error instanceof Error)) return false
+  // AppError.name is not preserved across the server→client boundary,
+  // so we match on known messages instead.
+  return APP_ERROR_MESSAGES.includes(error.message)
+}
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry(failureCount, error) {
         if (failureCount > 3) return false
-        if (
-          error instanceof Error &&
-          error.message.includes("Not authenticated")
-        ) {
-          return false
-        }
+        if (isAppError(error)) return false
         return true
       },
     },
