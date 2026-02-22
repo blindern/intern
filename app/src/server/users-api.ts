@@ -49,11 +49,48 @@ async function apiRequest(
   return res.json()
 }
 
-// Legacy endpoints return { result: ... } wrapper
-async function legacyGet(path: string): Promise<any> {
-  const data = (await apiRequest("GET", `/${path}`)) as any
+// Legacy endpoints return { status, result } wrapper
+async function legacyGet<T>(path: string): Promise<T> {
+  const data = (await apiRequest("GET", `/${path}`)) as {
+    result: T
+  }
   return data.result
 }
+
+// Raw API response shapes (before normalization)
+
+/** User as returned by the users-api */
+interface RawUser {
+  id: number
+  unique_id: string
+  username: string
+  email: string | null
+  realname: string | null
+  phone: string | null
+  // Present with grouplevel >= 1
+  groups_relation?: Record<string, string[]>
+  groupsowner_relation?: Record<string, string[]>
+  // Present with grouplevel >= 2 (array of group objects)
+  groups?: RawGroupBase[]
+}
+
+/** Base group fields (from /groups list and nested in user responses) */
+interface RawGroupBase {
+  id: number
+  unique_id: string
+  name: string
+  description: string | null
+}
+
+/** Group detail fields (from /group/:name) */
+interface RawGroupDetail extends RawGroupBase {
+  members: { users: string[]; groups: string[] }
+  members_relation: Record<string, string[]>
+  owners: { users: string[]; groups: string[] }
+  members_data: Record<string, RawUser>
+}
+
+// Normalized types used by the rest of the app
 
 export interface UsersApiUser {
   username: string
@@ -73,57 +110,71 @@ export interface UsersApiUser {
  * from groups_relation keys. We do the same here so `groups` is always
  * a string array of group names.
  */
-function normalizeUser(raw: any): UsersApiUser {
+function normalizeUser(raw: RawUser): UsersApiUser {
   let groups: string[]
   if (raw.groups_relation) {
     groups = Object.keys(raw.groups_relation)
   } else if (Array.isArray(raw.groups)) {
-    groups = raw.groups.map((g: any) =>
-      typeof g === "string" ? g : (g.unique_id ?? g.name),
-    )
+    groups = raw.groups.map((g) => g.unique_id ?? g.name)
   } else {
     groups = []
   }
-  return { ...raw, groups }
+  return {
+    username: raw.username,
+    realname: raw.realname ?? undefined,
+    email: raw.email ?? undefined,
+    phone: raw.phone ?? undefined,
+    groups,
+    groups_relation: raw.groups_relation,
+    groupsowner_relation: raw.groupsowner_relation,
+  }
 }
 
 export interface UsersApiGroup {
   id: number
   unique_id: string
-  name?: string
-  description?: string
+  name: string
+  description: string | null
+}
+
+export interface UsersApiGroupDetail extends UsersApiGroup {
   members: UsersApiUser[]
-  members_relation?: Record<string, string[]>
-  members_real?: { users: string[]; groups: string[] }
-  owners?: { users: string[]; groups: string[] }
+  members_relation: Record<string, string[]>
+  members_real: { users: string[]; groups: string[] }
+  owners: { users: string[]; groups: string[] }
 }
 
 /**
- * Normalize group data from the users-api.
+ * Normalize group detail data from the users-api.
  *
  * The raw API returns `members` as `{users: [], groups: []}` and
  * `members_data` as a map of username → user object. The old Laravel
  * backend transformed this so `members` was a user object array and
  * the raw structure was renamed to `members_real`. We replicate that.
  */
-function normalizeGroup(raw: any): UsersApiGroup {
-  const membersData: Record<string, any> = raw.members_data ?? {}
-  const members = Object.values(membersData).map(normalizeUser)
-  const membersReal = raw.members ?? { users: [], groups: [] }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { members_data: _md, members: _m, ...rest } = raw
-  return { ...rest, members, members_real: membersReal }
+function normalizeGroup(raw: RawGroupDetail): UsersApiGroupDetail {
+  const members = Object.values(raw.members_data).map(normalizeUser)
+  return {
+    id: raw.id,
+    unique_id: raw.unique_id,
+    name: raw.name,
+    description: raw.description,
+    members,
+    members_relation: raw.members_relation,
+    members_real: raw.members,
+    owners: raw.owners,
+  }
 }
 
 export const usersApi = {
   async getUsers(): Promise<UsersApiUser[]> {
-    const users = await legacyGet("users?grouplevel=1")
-    return (users as any[]).map(normalizeUser)
+    const users = await legacyGet<RawUser[]>("users?grouplevel=1")
+    return users.map(normalizeUser)
   },
 
   async getUser(username: string): Promise<UsersApiUser | null> {
     try {
-      const user = await legacyGet(`user/${username}?grouplevel=2`)
+      const user = await legacyGet<RawUser>(`user/${username}?grouplevel=2`)
       return normalizeUser(user)
     } catch (err) {
       logger.error({ username, err }, "users-api getUser failed")
@@ -132,12 +183,12 @@ export const usersApi = {
   },
 
   async getGroups(): Promise<UsersApiGroup[]> {
-    return legacyGet("groups")
+    return legacyGet<UsersApiGroup[]>("groups")
   },
 
-  async getGroup(groupname: string): Promise<UsersApiGroup | null> {
+  async getGroup(groupname: string): Promise<UsersApiGroupDetail | null> {
     try {
-      const group = await legacyGet(`group/${groupname}`)
+      const group = await legacyGet<RawGroupDetail>(`group/${groupname}`)
       return normalizeGroup(group)
     } catch {
       return null

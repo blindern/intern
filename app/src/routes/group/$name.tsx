@@ -304,7 +304,7 @@ function GroupPage() {
           <h3>Grupper som er medlemmer</h3>
           <p>Medlemmer i disse gruppene er også medlemmer av denne gruppa.</p>
           <ul>
-            {group.members_real!.groups.map((groupName: string) => (
+            {group.members_real.groups.map((groupName: string) => (
               <li key={groupName}>
                 <GroupLink groupName={groupName} />
                 {isEditing && (
