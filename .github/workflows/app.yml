@@ -73,8 +73,7 @@ jobs:
           tags: ghcr.io/blindern/intern-backend:latest
 
       - name: Deploy
-        # if: github.ref == 'refs/heads/main'
-        if: false
+        if: github.ref == 'refs/heads/main'
         run: |
           curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer.foreningenbs.no/deploy?stream" -d '
           {
