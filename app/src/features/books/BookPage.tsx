@@ -1,76 +1,16 @@
 import { Link, useNavigate } from "@tanstack/react-router"
 import { Loading } from "../../components/Loading.js"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
-import {
-  type Book,
-  useBook,
-  useDeleteBookMutation,
-  useSetBookBarcodeMutation,
-} from "./hooks.js"
+import { type Book, useBook, useDeleteBookMutation } from "./hooks.js"
+import { SetBarcode } from "./SetBarcode.js"
 import { useIsMemberOf } from "../auth/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { formatDate } from "../../utils/dates.js"
-
-import { useState } from "react"
 
 function bookTitle(book: Book) {
   return (
     (book.title ?? "Ukjent tittel") +
     (book.subtitle ? `: ${book.subtitle}` : "")
-  )
-}
-
-function SetBarcode({ book }: { book: Book }) {
-  const [newBarcode, setNewBarcode] = useState("")
-  const { mutate } = useSetBookBarcodeMutation()
-
-  function registerBarcode() {
-    if (!newBarcode.startsWith("BS-")) {
-      alert("Ugyldig strekkode for biblioteket.")
-    } else {
-      mutate({ bookId: book.id, barcode: newBarcode })
-    }
-  }
-
-  return (
-    <div className="panel panel-default panel-warning">
-      <div className="panel-heading">
-        <h3 className="panel-title">Mangler strekkode</h3>
-      </div>
-      <div className="panel-body">
-        <p>
-          Denne boka er ikke tilknyttet noen strekkode. Alle bøkene bør påføres
-          klistrelapp med strekkode som identifiserer denne oppføringen i
-          bokdatabasen.
-        </p>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault()
-            registerBarcode()
-          }}
-        >
-          <div className="row">
-            <div className="col-sm-10">
-              <input
-                type="text"
-                className="form-control"
-                value={newBarcode}
-                onChange={(ev) => setNewBarcode(ev.target.value)}
-                placeholder="Scan bibliotekets strekkode som påføres boken"
-                autoFocus
-              />
-            </div>
-            <div className="col-sm-2">
-              <input
-                type="submit"
-                className="form-control btn-primary"
-                value="Registrer"
-              />
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
   )
 }
 

@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
 import { type Book, type BookListResponse, useBookList } from "./hooks.js"
+import { Pagination } from "./Pagination.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { useState } from "react"
 
@@ -32,46 +33,6 @@ function BookItem({ book }: { book: Book }) {
         </div>
       </Link>
     </div>
-  )
-}
-
-function Pagination({
-  firstPage,
-  prevPage,
-  nextPage,
-  lastPage,
-  currentPage,
-  totalPages,
-}: {
-  firstPage: () => void
-  prevPage: () => void
-  nextPage: () => void
-  lastPage: () => void
-  currentPage: number
-  totalPages: number
-}) {
-  return (
-    <nav className="text-center">
-      <ul className="pagination center">
-        <li>
-          <a onClick={firstPage}>&laquo;</a>
-        </li>
-        <li>
-          <a onClick={prevPage}>&lsaquo;</a>
-        </li>
-        <li>
-          <a>
-            {currentPage}/{totalPages}
-          </a>
-        </li>
-        <li>
-          <a onClick={nextPage}>&rsaquo;</a>
-        </li>
-        <li>
-          <a onClick={lastPage}>&raquo;</a>
-        </li>
-      </ul>
-    </nav>
   )
 }
 
