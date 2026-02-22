@@ -3,7 +3,7 @@ import { ErrorMessages } from "../../../components/ErrorMessages.js"
 import { Loading } from "../../../components/Loading.js"
 import { usePrinterStats } from "../hooks.js"
 import { PageTitle } from "../../../hooks/useTitle.js"
-import { formatDate } from "../../../utils/dates.js"
+
 import { BarChart } from "./BarChart.js"
 import { StackedAreaChart } from "./StackedAreaChart.js"
 
@@ -255,17 +255,7 @@ export function PrinterStatsPage() {
           <div className="panel panel-default">
             <div className="panel-body text-center">
               <div style={{ fontSize: 28, fontWeight: 700 }}>{dataYears}</div>
-              <div className="text-muted">
-                år med data
-                {overview.first_job && (
-                  <>
-                    {" "}
-                    <small>
-                      (fra {formatDate(overview.first_job, "MMMM YYYY")})
-                    </small>
-                  </>
-                )}
-              </div>
+              <div className="text-muted">år med data</div>
             </div>
           </div>
         </div>
