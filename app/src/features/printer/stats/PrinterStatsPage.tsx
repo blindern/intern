@@ -108,14 +108,12 @@ export function PrinterStatsPage() {
     printerBreakdownData,
     internalPrinterBreakdownData,
     sectionBreakdownData,
-    internalBreakdownData,
   } = useMemo(() => {
     if (!data)
       return {
         printerBreakdownData: null,
         internalPrinterBreakdownData: null,
         sectionBreakdownData: null,
-        internalBreakdownData: null,
       }
     const printerToSection = buildPrinterToSection(data.sections)
     const beboerPrinters = new Set(data.sections.beboer?.printers ?? [])
@@ -170,7 +168,6 @@ export function PrinterStatsPage() {
         data.printerBreakdown.filter((r) => !beboerPrinters.has(r.printername)),
       ),
       sectionBreakdownData: buildSectionBreakdown(["beboer", "other", "fbs"]),
-      internalBreakdownData: buildSectionBreakdown(["other", "fbs"]),
     }
   }, [data])
 
@@ -316,25 +313,6 @@ export function PrinterStatsPage() {
           <SectionSummaryTable
             totals={sectionBreakdownData.totals}
             grandTotal={sectionBreakdownData.grandTotal}
-          />
-        </>
-      )}
-
-      {internalBreakdownData && internalBreakdownData.series.length > 0 && (
-        <>
-          <h3>Foreningens grupper (uten beboere)</h3>
-          <p className="text-muted">
-            Fordeling mellom administrasjonen og FBS-interne grupper, uten
-            beboerprinting.
-          </p>
-          <StackedAreaChart
-            years={internalBreakdownData.years}
-            series={internalBreakdownData.series}
-          />
-
-          <SectionSummaryTable
-            totals={internalBreakdownData.totals}
-            grandTotal={internalBreakdownData.grandTotal}
           />
         </>
       )}
