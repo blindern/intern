@@ -12,6 +12,7 @@ import {
   getWeekdayPattern,
   getHourlyPattern,
   getPrinterYearlyBreakdown,
+  getTotalCost,
   printerConfig,
 } from "./printer-db.js"
 import { usersApi } from "../../server/users-api.js"
@@ -90,17 +91,26 @@ export const getPrinterUsage = createServerFn({
 export const getPrinterStats = createServerFn({ method: "GET" })
   .middleware([authMiddleware])
   .handler(async () => {
-    const [overview, yearly, monthly, weekday, hourly, printerBreakdown] =
-      await Promise.all([
-        getStatsOverview(),
-        getYearlyStats(),
-        getMonthlyPattern(),
-        getWeekdayPattern(),
-        getHourlyPattern(),
-        getPrinterYearlyBreakdown(),
-      ])
+    const [
+      overview,
+      yearly,
+      monthly,
+      weekday,
+      hourly,
+      printerBreakdown,
+      totalCost,
+    ] = await Promise.all([
+      getStatsOverview(),
+      getYearlyStats(),
+      getMonthlyPattern(),
+      getWeekdayPattern(),
+      getHourlyPattern(),
+      getPrinterYearlyBreakdown(),
+      getTotalCost(),
+    ])
     return {
       overview,
+      totalCost,
       yearly,
       monthly,
       weekday,

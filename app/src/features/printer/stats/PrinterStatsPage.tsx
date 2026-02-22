@@ -35,6 +35,12 @@ function reorderWeekdays<T extends { weekday: number }>(data: T[]): T[] {
 
 const fmtNum = (v: number) =>
   new Intl.NumberFormat("nb-NO").format(Math.round(v))
+const fmtKr = (v: number) =>
+  new Intl.NumberFormat("nb-NO", {
+    style: "currency",
+    currency: "NOK",
+    maximumFractionDigits: 0,
+  }).format(Math.round(v))
 
 function buildPrinterToSection(
   sections: Record<string, { printers: string[] }>,
@@ -183,7 +189,7 @@ export function PrinterStatsPage() {
       </>
     )
 
-  const { overview, yearly, monthly, weekday, hourly } = data
+  const { overview, totalCost, yearly, monthly, weekday, hourly } = data
 
   const dataYears =
     overview.first_job && overview.last_job
@@ -200,8 +206,15 @@ export function PrinterStatsPage() {
       </p>
 
       {/* Overview cards */}
-      <div className="row" style={{ marginBottom: 30 }}>
-        <div className="col-sm-3">
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 10,
+          marginBottom: 30,
+        }}
+      >
+        <div style={{ flex: "1 1 170px" }}>
           <div className="panel panel-default">
             <div className="panel-body text-center">
               <div style={{ fontSize: 28, fontWeight: 700 }}>
@@ -211,7 +224,17 @@ export function PrinterStatsPage() {
             </div>
           </div>
         </div>
-        <div className="col-sm-3">
+        <div style={{ flex: "1 1 170px" }}>
+          <div className="panel panel-default">
+            <div className="panel-body text-center">
+              <div style={{ fontSize: 28, fontWeight: 700 }}>
+                {fmtKr(totalCost)}
+              </div>
+              <div className="text-muted">fakturert totalt</div>
+            </div>
+          </div>
+        </div>
+        <div style={{ flex: "1 1 170px" }}>
           <div className="panel panel-default">
             <div className="panel-body text-center">
               <div style={{ fontSize: 28, fontWeight: 700 }}>
@@ -221,7 +244,7 @@ export function PrinterStatsPage() {
             </div>
           </div>
         </div>
-        <div className="col-sm-3">
+        <div style={{ flex: "1 1 170px" }}>
           <div className="panel panel-default">
             <div className="panel-body text-center">
               <div style={{ fontSize: 28, fontWeight: 700 }}>
@@ -231,7 +254,7 @@ export function PrinterStatsPage() {
             </div>
           </div>
         </div>
-        <div className="col-sm-3">
+        <div style={{ flex: "1 1 170px" }}>
           <div className="panel panel-default">
             <div className="panel-body text-center">
               <div style={{ fontSize: 28, fontWeight: 700 }}>{dataYears}</div>

@@ -132,6 +132,18 @@ function getCost(monthDate: string): number {
   return lastAmount
 }
 
+export async function getTotalCost(): Promise<number> {
+  const sql = getPrinterDb()
+  const rows = (await sql`
+    SELECT to_char(j.jobdate, 'YYYY-MM') as month,
+           coalesce(sum(j.jobsize), 0)::int as pages
+    FROM jobhistory j
+    GROUP BY month
+    ORDER BY month
+  `) as unknown as { month: string; pages: number }[]
+  return rows.reduce((sum, r) => sum + r.pages * getCost(r.month), 0)
+}
+
 export interface YearlyStats {
   year: string
   count_jobs: number
