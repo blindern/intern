@@ -41,6 +41,7 @@ import { Route as ApiSaml2LoginRouteImport } from './routes/api/saml2/login'
 import { Route as ApiSaml2AcsRouteImport } from './routes/api/saml2/acs'
 import { Route as ApiMatmenyPlainRouteImport } from './routes/api/matmeny/plain'
 import { Route as ApiMatmenyDataRouteImport } from './routes/api/matmeny/data'
+import { Route as ApiGoogleappsAccountsRouteImport } from './routes/api/googleapps/accounts'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -202,6 +203,11 @@ const ApiMatmenyDataRoute = ApiMatmenyDataRouteImport.update({
   path: '/api/matmeny/data',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiGoogleappsAccountsRoute = ApiGoogleappsAccountsRouteImport.update({
+  id: '/api/googleapps/accounts',
+  path: '/api/googleapps/accounts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -226,6 +232,7 @@ export interface FileRoutesByFullPath {
   '/books/': typeof BooksIndexRoute
   '/bukker/': typeof BukkerIndexRoute
   '/users/': typeof UsersIndexRoute
+  '/api/googleapps/accounts': typeof ApiGoogleappsAccountsRoute
   '/api/matmeny/data': typeof ApiMatmenyDataRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
@@ -260,6 +267,7 @@ export interface FileRoutesByTo {
   '/books': typeof BooksIndexRoute
   '/bukker': typeof BukkerIndexRoute
   '/users': typeof UsersIndexRoute
+  '/api/googleapps/accounts': typeof ApiGoogleappsAccountsRoute
   '/api/matmeny/data': typeof ApiMatmenyDataRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
@@ -295,6 +303,7 @@ export interface FileRoutesById {
   '/books/': typeof BooksIndexRoute
   '/bukker/': typeof BukkerIndexRoute
   '/users/': typeof UsersIndexRoute
+  '/api/googleapps/accounts': typeof ApiGoogleappsAccountsRoute
   '/api/matmeny/data': typeof ApiMatmenyDataRoute
   '/api/matmeny/plain': typeof ApiMatmenyPlainRoute
   '/api/saml2/acs': typeof ApiSaml2AcsRoute
@@ -331,6 +340,7 @@ export interface FileRouteTypes {
     | '/books/'
     | '/bukker/'
     | '/users/'
+    | '/api/googleapps/accounts'
     | '/api/matmeny/data'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
@@ -365,6 +375,7 @@ export interface FileRouteTypes {
     | '/books'
     | '/bukker'
     | '/users'
+    | '/api/googleapps/accounts'
     | '/api/matmeny/data'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
@@ -399,6 +410,7 @@ export interface FileRouteTypes {
     | '/books/'
     | '/bukker/'
     | '/users/'
+    | '/api/googleapps/accounts'
     | '/api/matmeny/data'
     | '/api/matmeny/plain'
     | '/api/saml2/acs'
@@ -434,6 +446,7 @@ export interface RootRouteChildren {
   BooksIndexRoute: typeof BooksIndexRoute
   BukkerIndexRoute: typeof BukkerIndexRoute
   UsersIndexRoute: typeof UsersIndexRoute
+  ApiGoogleappsAccountsRoute: typeof ApiGoogleappsAccountsRoute
   ApiMatmenyDataRoute: typeof ApiMatmenyDataRoute
   ApiMatmenyPlainRoute: typeof ApiMatmenyPlainRoute
   ApiSaml2AcsRoute: typeof ApiSaml2AcsRoute
@@ -672,6 +685,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMatmenyDataRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/googleapps/accounts': {
+      id: '/api/googleapps/accounts'
+      path: '/api/googleapps/accounts'
+      fullPath: '/api/googleapps/accounts'
+      preLoaderRoute: typeof ApiGoogleappsAccountsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -698,6 +718,7 @@ const rootRouteChildren: RootRouteChildren = {
   BooksIndexRoute: BooksIndexRoute,
   BukkerIndexRoute: BukkerIndexRoute,
   UsersIndexRoute: UsersIndexRoute,
+  ApiGoogleappsAccountsRoute: ApiGoogleappsAccountsRoute,
   ApiMatmenyDataRoute: ApiMatmenyDataRoute,
   ApiMatmenyPlainRoute: ApiMatmenyPlainRoute,
   ApiSaml2AcsRoute: ApiSaml2AcsRoute,
