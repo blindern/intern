@@ -65,4 +65,7 @@ export const env = {
   get officeNetwork() {
     return optional("OFFICE_NETWORK", "158.36.185.160/28")
   },
+  get accountsUrlAuthToken() {
+    return optional("ACCOUNTS_URL_AUTH_TOKEN")
+  },
 }
