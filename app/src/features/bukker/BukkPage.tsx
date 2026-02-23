@@ -5,6 +5,9 @@ import { Loading } from "../../components/Loading.js"
 import { useBukk } from "./hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 
+const byYearDesc = (a: { year: string }, b: { year: string }) =>
+  b.year.localeCompare(a.year)
+
 export function BukkPage({ id }: { id: string }) {
   const { isPending, isError, error, data: bukk } = useBukk(id)
 
@@ -33,7 +36,7 @@ export function BukkPage({ id }: { id: string }) {
       </>
     )
 
-  const awards = [...bukk.awards].sort((a, b) => b.year.localeCompare(a.year))
+  const awards = [...bukk.awards].sort(byYearDesc)
 
   return (
     <div className="bukker-bukk">

@@ -5,16 +5,17 @@ import { Loading } from "../../components/Loading.js"
 import { type Bukk, useBukkList } from "./hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 
+const byYearDesc = (a: { year: string }, b: { year: string }) =>
+  b.year.localeCompare(a.year)
+
 function sortValue(bukk: Bukk) {
-  const newestAward = [...bukk.awards].sort((a, b) =>
-    b.year.localeCompare(a.year),
-  )[0]
+  const newestAward = [...bukk.awards].sort(byYearDesc)[0]
   return `${newestAward.year}-${newestAward.rank}-${bukk.name}`
 }
 
 function getThumb(bukk: Bukk) {
   return [...bukk.awards]
-    .sort((a, b) => b.year.localeCompare(a.year))
+    .sort(byYearDesc)
     .find((award) => award.image_preview_url)?.image_preview_url
 }
 
@@ -73,9 +74,7 @@ export function ListBukkerPage() {
         <div className="bukker-list">
           {bukkerSorted.map((bukk) => {
             const thumb = getThumb(bukk)
-            const awards = [...bukk.awards].sort((a, b) =>
-              b.year.localeCompare(a.year),
-            )
+            const awards = [...bukk.awards].sort(byYearDesc)
             return (
               <div key={bukk.id} className="bukk">
                 <Link to="/bukker/$id" params={{ id: bukk.id }}>

@@ -52,7 +52,7 @@ export function GoogleAppsPage() {
       {Object.entries(accountgroups).map(([group, groupaccounts]) => (
         <Fragment key={group}>
           <h2>{group}</h2>
-          {groupaccounts?.map((account) => (
+          {groupaccounts.map((account) => (
             <AccountItem
               key={account.id}
               account={account}
