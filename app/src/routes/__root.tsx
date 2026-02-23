@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError(error) {
       if (error instanceof Error && error.message === AUTH_ERROR_MESSAGE) {
-        const returnTo = encodeURIComponent(window.location.pathname)
+        const returnTo = encodeURIComponent(window.location.pathname + window.location.search)
         window.location.assign(`/intern/api/saml2/login?returnTo=${returnTo}`)
       }
     },
