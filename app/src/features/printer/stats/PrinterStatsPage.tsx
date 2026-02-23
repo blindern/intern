@@ -190,8 +190,8 @@ export function PrinterStatsPage() {
 
   const dataYears =
     overview.first_job && overview.last_job
-      ? new Date(overview.last_job).getFullYear() -
-        new Date(overview.first_job).getFullYear() +
+      ? new Date(overview.last_job).getUTCFullYear() -
+        new Date(overview.first_job).getUTCFullYear() +
         1
       : 0
 
