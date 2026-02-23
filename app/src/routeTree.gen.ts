@@ -23,6 +23,7 @@ import { Route as BooksIndexRouteImport } from './routes/books/index'
 import { Route as ArrplanIndexRouteImport } from './routes/arrplan/index'
 import { Route as UsersRegistrationsRouteImport } from './routes/users/registrations'
 import { Route as UserNameRouteImport } from './routes/user/$name'
+import { Route as PrinterStatistikkRouteImport } from './routes/printer/statistikk'
 import { Route as PrinterSisteRouteImport } from './routes/printer/siste'
 import { Route as PrinterFakturereRouteImport } from './routes/printer/fakturere'
 import { Route as GroupNameRouteImport } from './routes/group/$name'
@@ -109,6 +110,11 @@ const UsersRegistrationsRoute = UsersRegistrationsRouteImport.update({
 const UserNameRoute = UserNameRouteImport.update({
   id: '/user/$name',
   path: '/user/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrinterStatistikkRoute = PrinterStatistikkRouteImport.update({
+  id: '/printer/statistikk',
+  path: '/printer/statistikk',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrinterSisteRoute = PrinterSisteRouteImport.update({
@@ -213,6 +219,7 @@ export interface FileRoutesByFullPath {
   '/group/$name': typeof GroupNameRoute
   '/printer/fakturere': typeof PrinterFakturereRoute
   '/printer/siste': typeof PrinterSisteRoute
+  '/printer/statistikk': typeof PrinterStatistikkRoute
   '/user/$name': typeof UserNameRoute
   '/users/registrations': typeof UsersRegistrationsRoute
   '/arrplan/': typeof ArrplanIndexRoute
@@ -246,6 +253,7 @@ export interface FileRoutesByTo {
   '/group/$name': typeof GroupNameRoute
   '/printer/fakturere': typeof PrinterFakturereRoute
   '/printer/siste': typeof PrinterSisteRoute
+  '/printer/statistikk': typeof PrinterStatistikkRoute
   '/user/$name': typeof UserNameRoute
   '/users/registrations': typeof UsersRegistrationsRoute
   '/arrplan': typeof ArrplanIndexRoute
@@ -280,6 +288,7 @@ export interface FileRoutesById {
   '/group/$name': typeof GroupNameRoute
   '/printer/fakturere': typeof PrinterFakturereRoute
   '/printer/siste': typeof PrinterSisteRoute
+  '/printer/statistikk': typeof PrinterStatistikkRoute
   '/user/$name': typeof UserNameRoute
   '/users/registrations': typeof UsersRegistrationsRoute
   '/arrplan/': typeof ArrplanIndexRoute
@@ -315,6 +324,7 @@ export interface FileRouteTypes {
     | '/group/$name'
     | '/printer/fakturere'
     | '/printer/siste'
+    | '/printer/statistikk'
     | '/user/$name'
     | '/users/registrations'
     | '/arrplan/'
@@ -348,6 +358,7 @@ export interface FileRouteTypes {
     | '/group/$name'
     | '/printer/fakturere'
     | '/printer/siste'
+    | '/printer/statistikk'
     | '/user/$name'
     | '/users/registrations'
     | '/arrplan'
@@ -381,6 +392,7 @@ export interface FileRouteTypes {
     | '/group/$name'
     | '/printer/fakturere'
     | '/printer/siste'
+    | '/printer/statistikk'
     | '/user/$name'
     | '/users/registrations'
     | '/arrplan/'
@@ -415,6 +427,7 @@ export interface RootRouteChildren {
   GroupNameRoute: typeof GroupNameRoute
   PrinterFakturereRoute: typeof PrinterFakturereRoute
   PrinterSisteRoute: typeof PrinterSisteRoute
+  PrinterStatistikkRoute: typeof PrinterStatistikkRoute
   UserNameRoute: typeof UserNameRoute
   UsersRegistrationsRoute: typeof UsersRegistrationsRoute
   ArrplanIndexRoute: typeof ArrplanIndexRoute
@@ -531,6 +544,13 @@ declare module '@tanstack/react-router' {
       path: '/user/$name'
       fullPath: '/user/$name'
       preLoaderRoute: typeof UserNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/printer/statistikk': {
+      id: '/printer/statistikk'
+      path: '/printer/statistikk'
+      fullPath: '/printer/statistikk'
+      preLoaderRoute: typeof PrinterStatistikkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/printer/siste': {
@@ -671,6 +691,7 @@ const rootRouteChildren: RootRouteChildren = {
   GroupNameRoute: GroupNameRoute,
   PrinterFakturereRoute: PrinterFakturereRoute,
   PrinterSisteRoute: PrinterSisteRoute,
+  PrinterStatistikkRoute: PrinterStatistikkRoute,
   UserNameRoute: UserNameRoute,
   UsersRegistrationsRoute: UsersRegistrationsRoute,
   ArrplanIndexRoute: ArrplanIndexRoute,

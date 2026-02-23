@@ -126,6 +126,7 @@ export function Template({ children }: { children: ReactNode }) {
                 <Dropdown label="Printer">
                   <MenuLink to="/printer/siste">Siste utskrifter</MenuLink>
                   <MenuLink to="/printer/fakturere">Fakturering</MenuLink>
+                  <MenuLink to="/printer/statistikk">Statistikk</MenuLink>
                 </Dropdown>
               </ul>
               <ul className="nav navbar-nav navbar-right">
