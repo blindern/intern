@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
-import { orderBy } from "lodash"
+
 import { useBukk } from "./hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 
@@ -33,7 +33,7 @@ export function BukkPage({ id }: { id: string }) {
       </>
     )
 
-  const awards = orderBy(bukk.awards, "year", "desc")
+  const awards = [...bukk.awards].sort((a, b) => b.year.localeCompare(a.year))
 
   return (
     <div className="bukker-bukk">

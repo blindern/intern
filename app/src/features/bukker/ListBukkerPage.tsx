@@ -1,19 +1,21 @@
 import { Link } from "@tanstack/react-router"
 import { ErrorMessages } from "../../components/ErrorMessages.js"
 import { Loading } from "../../components/Loading.js"
-import { orderBy } from "lodash"
+
 import { type Bukk, useBukkList } from "./hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 
 function sortValue(bukk: Bukk) {
-  const newestAward = orderBy(bukk.awards, "year", "desc")[0]
+  const newestAward = [...bukk.awards].sort((a, b) =>
+    b.year.localeCompare(a.year),
+  )[0]
   return `${newestAward.year}-${newestAward.rank}-${bukk.name}`
 }
 
 function getThumb(bukk: Bukk) {
-  return orderBy(bukk.awards, "year", "desc").find(
-    (award) => award.image_preview_url,
-  )?.image_preview_url
+  return [...bukk.awards]
+    .sort((a, b) => b.year.localeCompare(a.year))
+    .find((award) => award.image_preview_url)?.image_preview_url
 }
 
 export function ListBukkerPage() {
@@ -55,7 +57,9 @@ export function ListBukkerPage() {
     }
   }
 
-  const bukkerSorted = orderBy(bukker, (b) => sortValue(b), "desc")
+  const bukkerSorted = [...bukker].sort((a, b) =>
+    sortValue(b).localeCompare(sortValue(a)),
+  )
 
   return (
     <>
@@ -69,7 +73,9 @@ export function ListBukkerPage() {
         <div className="bukker-list">
           {bukkerSorted.map((bukk) => {
             const thumb = getThumb(bukk)
-            const awards = orderBy(bukk.awards, "year", "desc")
+            const awards = [...bukk.awards].sort((a, b) =>
+              b.year.localeCompare(a.year),
+            )
             return (
               <div key={bukk.id} className="bukk">
                 <Link to="/bukker/$id" params={{ id: bukk.id }}>

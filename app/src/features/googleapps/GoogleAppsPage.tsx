@@ -5,8 +5,6 @@ import { useIsMemberOf } from "../auth/hooks.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { AccountItem } from "./AccountItem.js"
 import { NewAccount } from "./NewAccount.js"
-
-import { groupBy } from "lodash"
 import { Fragment, useState } from "react"
 
 export function GoogleAppsPage() {
@@ -14,7 +12,11 @@ export function GoogleAppsPage() {
   const { isPending, isError, error, data: accounts } = useGoogleAppsAccounts()
   const [isEditing, setEditing] = useState(false)
 
-  const accountgroups = groupBy(accounts, (it) => it.group)
+  const accountgroups: Record<string, NonNullable<typeof accounts>> = {}
+  for (const account of accounts ?? []) {
+    const key = account.group ?? ""
+    ;(accountgroups[key] ??= []).push(account)
+  }
 
   return (
     <>
@@ -50,7 +52,7 @@ export function GoogleAppsPage() {
       {Object.entries(accountgroups).map(([group, groupaccounts]) => (
         <Fragment key={group}>
           <h2>{group}</h2>
-          {groupaccounts.map((account) => (
+          {groupaccounts?.map((account) => (
             <AccountItem
               key={account.id}
               account={account}

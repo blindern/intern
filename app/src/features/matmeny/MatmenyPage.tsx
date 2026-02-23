@@ -10,7 +10,7 @@ import {
 import { PageTitle } from "../../hooks/useTitle.js"
 import { FileUploader } from "./FileUploader.js"
 import { formatDate, moment } from "../../utils/dates.js"
-import { isEqual, keyBy } from "lodash"
+
 import { useState } from "react"
 
 export interface ModifiedDay {
@@ -19,7 +19,7 @@ export interface ModifiedDay {
 }
 
 function useModifiedData(data: MatmenyDay[]) {
-  const dataByDate = keyBy(data ?? [], (it) => it.day)
+  const dataByDate = Object.fromEntries((data ?? []).map((it) => [it.day, it]))
   const [modifiedDays, setModifiedDays] = useState<Record<string, ModifiedDay>>(
     {},
   )
@@ -35,7 +35,11 @@ function useModifiedData(data: MatmenyDay[]) {
     setModifiedDays((prev) => {
       const updated = updater(prev[date] ?? persisted)
       const obj = { ...prev }
-      if (isEqual(persisted, updated)) delete obj[date]
+      if (
+        persisted.dishes === updated.dishes &&
+        persisted.text === updated.text
+      )
+        delete obj[date]
       else obj[date] = updated
       return obj
     })
