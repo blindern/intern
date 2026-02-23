@@ -43,6 +43,15 @@ export default defineConfig({
         target: "http://localhost:5173",
         rewrite: () => "/intern/api/matmeny-ics",
       },
+      // Legacy URLs (pre-TanStack migration)
+      "/intern/matmeny/plain": {
+        target: "http://localhost:5173",
+        rewrite: () => "/intern/api/matmeny/plain",
+      },
+      "/intern/matmeny.ics": {
+        target: "http://localhost:5173",
+        rewrite: () => "/intern/api/matmeny-ics",
+      },
       ...(proxyApi
         ? {
             "/intern/_server": { target: proxyApi, changeOrigin: true },

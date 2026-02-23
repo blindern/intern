@@ -40,6 +40,21 @@ app.get("/intern/api/matmeny", async (c) => {
   return new Response(res.body, { status: res.status, headers: res.headers })
 })
 
+// Legacy URLs (pre-TanStack migration)
+app.get("/intern/matmeny/plain", async (c) => {
+  const url = new URL(c.req.url)
+  url.pathname = "/intern/api/matmeny/plain"
+  const res = await handler.fetch(new Request(url, c.req.raw))
+  return new Response(res.body, { status: res.status, headers: res.headers })
+})
+
+app.get("/intern/matmeny.ics", async (c) => {
+  const url = new URL(c.req.url)
+  url.pathname = "/intern/api/matmeny-ics"
+  const res = await handler.fetch(new Request(url, c.req.raw))
+  return new Response(res.body, { status: res.status, headers: res.headers })
+})
+
 app.use(
   "/intern/*",
   serveStatic({
