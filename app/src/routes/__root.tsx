@@ -4,7 +4,11 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { AuthProvider } from "../features/auth/hooks.js"
 import { FlashesProvider } from "../hooks/useFlashes.js"
@@ -12,13 +16,10 @@ import { TitleProvider } from "../hooks/useTitle.js"
 import { Template } from "../components/Template.js"
 import "../styles/frontend.scss"
 
+const AUTH_ERROR_MESSAGE = "Denne siden krever at du logger inn."
 // AppError messages are expected client errors (auth, forbidden, not found,
 // validation) that should not be retried.
-const APP_ERROR_MESSAGES = [
-  "Denne siden krever at du logger inn.",
-  "Forbidden",
-  "Not found",
-]
+const APP_ERROR_MESSAGES = [AUTH_ERROR_MESSAGE, "Forbidden", "Not found"]
 
 function isAppError(error: unknown): boolean {
   if (!(error instanceof Error)) return false
@@ -27,6 +28,16 @@ function isAppError(error: unknown): boolean {
   return APP_ERROR_MESSAGES.includes(error.message)
 }
 const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError(error) {
+      if (error instanceof Error && error.message === AUTH_ERROR_MESSAGE) {
+        const returnTo = encodeURIComponent(
+          window.location.pathname + window.location.search,
+        )
+        window.location.assign(`/intern/api/saml2/login?returnTo=${returnTo}`)
+      }
+    },
+  }),
   defaultOptions: {
     queries: {
       retry(failureCount, error) {
