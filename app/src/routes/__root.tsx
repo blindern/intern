@@ -4,7 +4,11 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router"
-import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { AuthProvider } from "../features/auth/hooks.js"
 import { FlashesProvider } from "../hooks/useFlashes.js"
