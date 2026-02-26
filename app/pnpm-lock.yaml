@@ -106,7 +106,7 @@ importers:
         specifier: 24.10.13
         version: 24.10.13
       '@types/nodemailer':
-        specifier: ^6.4.17
+        specifier: ^6.4.22
         version: 6.4.22
       '@types/react':
         specifier: 19.2.14
