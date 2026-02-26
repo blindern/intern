@@ -13,7 +13,7 @@ importers:
         version: 7.0.1
       '@hono/node-server':
         specifier: ^1.19.9
-        version: 1.19.9(hono@4.11.10)
+        version: 1.19.9(hono@4.12.2)
       '@hookform/error-message':
         specifier: 2.0.1
         version: 2.0.1(react-dom@19.2.4(react@19.2.4))(react-hook-form@7.71.1(react@19.2.4))(react@19.2.4)
@@ -58,7 +58,7 @@ importers:
         version: 0.44.7(@opentelemetry/api@1.9.0)(@types/pg@8.15.6)(postgres@3.4.8)
       hono:
         specifier: ^4.11.9
-        version: 4.11.10
+        version: 4.12.2
       moment:
         specifier: 2.30.1
         version: 2.30.1
@@ -2862,8 +2862,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  hono@4.11.10:
-    resolution: {integrity: sha512-kyWP5PAiMooEvGrA9jcD3IXF7ATu8+o7B3KCbPXid5se52NPqnOpM/r9qeW2heMnOekF4kqR1fXJqCYeCLKrZg==}
+  hono@4.12.2:
+    resolution: {integrity: sha512-gJnaDHXKDayjt8ue0n8Gs0A007yKXj4Xzb8+cNjZeYsSzzwKc0Lr+OZgYwVfB0pHfUs17EPoLvrOsEaJ9mj+Tg==}
     engines: {node: '>=16.9.0'}
 
   htmlparser2@10.1.0:
@@ -4367,9 +4367,9 @@ snapshots:
       '@hapi/cryptiles': 6.0.3
       '@hapi/hoek': 11.0.7
 
-  '@hono/node-server@1.19.9(hono@4.11.10)':
+  '@hono/node-server@1.19.9(hono@4.12.2)':
     dependencies:
-      hono: 4.11.10
+      hono: 4.12.2
 
   '@hookform/error-message@2.0.1(react-dom@19.2.4(react@19.2.4))(react-hook-form@7.71.1(react@19.2.4))(react@19.2.4)':
     dependencies:
@@ -6857,7 +6857,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  hono@4.11.10: {}
+  hono@4.12.2: {}
 
   htmlparser2@10.1.0:
     dependencies:
