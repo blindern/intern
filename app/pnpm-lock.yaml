@@ -94,10 +94,10 @@ importers:
         specifier: 9.39.2
         version: 9.39.2
       '@playwright/test':
-        specifier: ^1.58.2
+        specifier: 1.58.2
         version: 1.58.2
       '@tanstack/router-plugin':
-        specifier: ^1.162.4
+        specifier: 1.162.4
         version: 1.162.4(@tanstack/react-router@1.162.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(sass@1.97.3)(tsx@4.21.0)(yaml@2.8.2))
       '@types/d3':
         specifier: 7.4.3
@@ -106,7 +106,7 @@ importers:
         specifier: 24.10.13
         version: 24.10.13
       '@types/nodemailer':
-        specifier: ^6.4.22
+        specifier: 6.4.22
         version: 6.4.22
       '@types/react':
         specifier: 19.2.14
@@ -121,7 +121,7 @@ importers:
         specifier: 3.4.3
         version: 3.4.3
       drizzle-kit:
-        specifier: ^0.31.5
+        specifier: 0.31.9
         version: 0.31.9
       eslint:
         specifier: 9.39.2
@@ -148,7 +148,7 @@ importers:
         specifier: 17.3.0
         version: 17.3.0
       jiti:
-        specifier: ^2.6.1
+        specifier: 2.6.1
         version: 2.6.1
       prettier:
         specifier: 3.8.1
