@@ -18,18 +18,18 @@
   "author": "Henrik Steen",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
-    "@tsconfig/node24": "^24.0.3",
+    "@eslint/js": "9.39.2",
+    "@tsconfig/node24": "24.0.3",
     "@tsconfig/strictest": "2.0.8",
-    "@types/node": "^24.10.4",
-    "eslint": "^9.17.0",
+    "@types/node": "24.10.4",
+    "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
-    "jiti": "^2.5.1",
+    "jiti": "2.6.1",
     "prettier": "3.8.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.51.0",
-    "vitest": "^4.0.16"
+    "typescript-eslint": "8.51.0",
+    "vitest": "4.0.16"
   },
   "dependencies": {
     "@elysiajs/cors": "1.4.1",
