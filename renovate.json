@@ -11,61 +11,9 @@
   "major": {
     "automerge": false
   },
-  "customManagers": [
-    {
-      "description": "Keep php version up-to-date in workflow.",
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/^\\.github/workflows/.+?\\.ya?ml$/"
-      ],
-      "matchStrings": [
-        "php-version: \"(?<currentValue>.+?)\""
-      ],
-      "depNameTemplate": "php",
-      "packageNameTemplate": "php",
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "docker",
-      "depTypeTemplate": "uses-with"
-    },
-    {
-      "description": "Keep mongodb version up-to-date in workflow.",
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/^\\.github/workflows/.+?\\.ya?ml$/"
-      ],
-      "matchStrings": [
-        "extensions: mongodb-(?<currentValue>.+?)\\s"
-      ],
-      "depNameTemplate": "mongodb/mongodb",
-      "packageNameTemplate": "mongodb/mongodb",
-      "datasourceTemplate": "packagist",
-      "versioningTemplate": "composer",
-      "depTypeTemplate": "uses-with"
-    },
-    {
-      "description": "Keep mongodb version up-to-date in Dockerfile",
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/^backend/Dockerfile$/"
-      ],
-      "matchStrings": [
-        "mongodb-(?<currentValue>.+?)\\s"
-      ],
-      "depNameTemplate": "mongodb/mongodb",
-      "packageNameTemplate": "mongodb/mongodb",
-      "datasourceTemplate": "packagist",
-      "versioningTemplate": "composer"
-    }
-  ],
   "packageRules": [
     {
-      "matchFileNames": ["frontend/**"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "automergeType": "branch"
-    },
-    {
-      "matchFileNames": ["backend/**"],
+      "matchFileNames": ["app/**"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "branch"
@@ -75,13 +23,6 @@
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "branch"
-    },
-    {
-      "matchDepNames": [
-        "mongodb/mongodb",
-        "mongodb/laravel-mongodb"
-      ],
-      "groupName": "mongodb"
     },
     {
       "matchPackageNames": [
