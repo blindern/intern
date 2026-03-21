@@ -20,7 +20,7 @@
     "@opentelemetry/auto-instrumentations-node": "^0.71.0",
     "@opentelemetry/sdk-node": "^0.213.0",
     "@react-hook/debounce": "4.0.0",
-    "@tanstack/react-query": "5.90.21",
+    "@tanstack/react-query": "5.91.0",
     "@tanstack/react-query-devtools": "5.91.3",
     "@tanstack/react-router": "^1.121.3",
     "@tanstack/react-start": "^1.121.3",
