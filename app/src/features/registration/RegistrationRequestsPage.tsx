@@ -185,7 +185,11 @@ export function RegistrationRequestsPage() {
                 </td>
                 <td>{req.email}</td>
                 <td>{req.phone ?? "-"}</td>
-                <td>{new Date(req.createdAt).toLocaleString("nb-NO")}</td>
+                <td>
+                  {req.createdAt
+                    ? new Date(req.createdAt).toLocaleString("nb-NO")
+                    : "Ukjent"}
+                </td>
                 {tab === "pending" ? (
                   <td>
                     <ApproveButton request={req} groups={groups} />{" "}

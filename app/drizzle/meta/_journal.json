@@ -15,6 +15,13 @@
       "when": 1771695660648,
       "tag": "0001_wakeful_baron_zemo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1774458101468,
+      "tag": "0002_fix-timestamp-defaults",
+      "breakpoints": true
     }
   ]
 }
