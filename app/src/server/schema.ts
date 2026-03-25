@@ -59,12 +59,8 @@ export const matmeny = pgTable("matmeny", {
   day: date("day").unique().notNull(),
   text: text("text"),
   dishes: jsonb("dishes").$type<string[]>(),
-  createdAt: timestamp("created_at", { withTimezone: true, precision: 3 })
-    .notNull()
-    .defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true, precision: 3 })
-    .notNull()
-    .defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true, precision: 3 }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true, precision: 3 }).defaultNow(),
 })
 
 export const googleappsAccounts = pgTable("googleapps_accounts", {
