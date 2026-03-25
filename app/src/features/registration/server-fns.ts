@@ -65,7 +65,8 @@ export const submitRegistration = createServerFn({
     }
 
     const passwordHash = sshaHash(data.password)
-    const phone = data.phone ?? null
+    // Use || to also convert empty string to null (users-api/LDAP rejects blank values)
+    const phone = data.phone || null
 
     // Check uniqueness against LDAP
     const existingUser = await usersApi.getUser(username)
