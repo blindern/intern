@@ -65,7 +65,7 @@ export const submitRegistration = createServerFn({
     }
 
     const passwordHash = sshaHash(data.password)
-    // Use || to also convert empty string to null (users-api/LDAP rejects blank values)
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- convert empty string to null (users-api/LDAP rejects blank values)
     const phone = data.phone || null
 
     // Check uniqueness against LDAP
