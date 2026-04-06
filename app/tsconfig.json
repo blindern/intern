@@ -11,12 +11,11 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": "./src",
     "paths": {
-      "~/*": ["./*"]
+      "~/*": ["./src/*"]
     },
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": ["node"]
+    "types": ["node", "vite/client"]
   },
   "exclude": ["node_modules", "dist", ".output"]
 }
