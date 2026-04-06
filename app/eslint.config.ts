@@ -1,3 +1,4 @@
+import { fixupConfigRules } from "@eslint/compat"
 import js from "@eslint/js"
 import prettier from "eslint-plugin-prettier/recommended"
 import react from "eslint-plugin-react"
@@ -10,8 +11,12 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  react.configs.flat["recommended"],
-  react.configs.flat["jsx-runtime"],
+  // Compat shim until eslint-plugin-react supports ESLint 10
+  // https://github.com/jsx-eslint/eslint-plugin-react/issues/3977
+  ...fixupConfigRules([
+    react.configs.flat["recommended"],
+    react.configs.flat["jsx-runtime"],
+  ]),
   {
     ignores: [
       "dist/",
