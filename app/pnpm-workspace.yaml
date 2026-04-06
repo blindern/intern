@@ -6,3 +6,5 @@ minimumReleaseAgeExclude:
   - "@hono/node-server@1.19.10"
   # Renovate security update: nodemailer@8.0.4
   - nodemailer@8.0.4
+  # Renovate security update: vite@8.0.5
+  - vite@8.0.5
