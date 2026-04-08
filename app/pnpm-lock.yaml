@@ -13,7 +13,7 @@ importers:
         version: 7.0.1
       '@hono/node-server':
         specifier: ^1.19.9
-        version: 1.19.12(hono@4.12.10)
+        version: 1.19.13(hono@4.12.10)
       '@hookform/error-message':
         specifier: 2.0.1
         version: 2.0.1(react-dom@19.2.4(react@19.2.4))(react-hook-form@7.72.1(react@19.2.4))(react@19.2.4)
@@ -799,8 +799,8 @@ packages:
   '@hapi/iron@7.0.1':
     resolution: {integrity: sha512-tEZnrOujKpS6jLKliyWBl3A9PaE+ppuL/+gkbyPPDb/l2KSKQyH4lhMkVb+sBhwN+qaxxlig01JRqB8dk/mPxQ==}
 
-  '@hono/node-server@1.19.12':
-    resolution: {integrity: sha512-txsUW4SQ1iilgE0l9/e9VQWmELXifEFvmdA1j6WFh/aFPj99hIntrSsq/if0UWyGVkmrRPKA1wCeP+UCr1B9Uw==}
+  '@hono/node-server@1.19.13':
+    resolution: {integrity: sha512-TsQLe4i2gvoTtrHje625ngThGBySOgSK3Xo2XRYOdqGN1teR8+I7vchQC46uLJi8OF62YTYA3AhSpumtkhsaKQ==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -3548,8 +3548,8 @@ packages:
     engines: {node: '>=20.16.0'}
     hasBin: true
 
-  srvx@0.11.14:
-    resolution: {integrity: sha512-mx+pKrWJCzo5m6uXqyB7n4VA81mpdFRroSWsVTQTYqCZE65hFJ+jtVIeyhtL2/kvtDMrHdbA0hWEUh/vu0+Viw==}
+  srvx@0.11.15:
+    resolution: {integrity: sha512-iXsux0UcOjdvs0LCMa2Ws3WwcDUozA3JN3BquNXkaFPP7TpRqgunKdEgoZ/uwb1J6xaYHfxtz9Twlh6yzwM6Tg==}
     engines: {node: '>=20.16.0'}
     hasBin: true
 
@@ -4320,7 +4320,7 @@ snapshots:
       '@hapi/cryptiles': 6.0.3
       '@hapi/hoek': 11.0.7
 
-  '@hono/node-server@1.19.12(hono@4.12.10)':
+  '@hono/node-server@1.19.13(hono@4.12.10)':
     dependencies:
       hono: 4.12.10
 
@@ -6700,7 +6700,7 @@ snapshots:
   h3@2.0.1-rc.16:
     dependencies:
       rou3: 0.8.1
-      srvx: 0.11.14
+      srvx: 0.11.15
 
   has-bigints@1.1.0: {}
 
@@ -7495,7 +7495,7 @@ snapshots:
 
   srvx@0.11.13: {}
 
-  srvx@0.11.14: {}
+  srvx@0.11.15: {}
 
   stop-iteration-iterator@1.1.0:
     dependencies:
