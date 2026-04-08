@@ -52,7 +52,7 @@ importers:
         version: 7.9.0
       dotenv:
         specifier: ^17.3.0
-        version: 17.4.0
+        version: 17.4.1
       drizzle-orm:
         specifier: ^0.45.0
         version: 0.45.2(@opentelemetry/api@1.9.1)(@types/pg@8.15.6)(postgres@3.4.8)
@@ -2333,8 +2333,8 @@ packages:
   domutils@3.2.2:
     resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
 
-  dotenv@17.4.0:
-    resolution: {integrity: sha512-kCKF62fwtzwYm0IGBNjRUjtJgMfGapII+FslMHIjMR5KTnwEmBmWLDRSnc3XSNP8bNy34tekgQyDT0hr7pERRQ==}
+  dotenv@17.4.1:
+    resolution: {integrity: sha512-k8DaKGP6r1G30Lx8V4+pCsLzKr8vLmV2paqEj1Y55GdAgJuIqpRp5FfajGF8KtwMxCz9qJc6wUIJnm053d/WCw==}
     engines: {node: '>=12'}
 
   drizzle-kit@0.31.10:
@@ -6194,7 +6194,7 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
 
-  dotenv@17.4.0: {}
+  dotenv@17.4.1: {}
 
   drizzle-kit@0.31.10:
     dependencies:
