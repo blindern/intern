@@ -7,7 +7,9 @@
     "enabled": true,
     "branchTopic": "lock-file-maintenance-{{packageFile}}",
     "commitMessageExtra": "({{packageFile}})",
-    "minimumReleaseAgeBehaviour": "timestamp-optional"
+    "minimumReleaseAgeBehaviour": "timestamp-optional",
+    "automerge": true,
+    "automergeType": "branch"
   },
   "major": {
     "automerge": false
