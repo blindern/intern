@@ -13,6 +13,9 @@ import { execFile } from "node:child_process"
 import { writeFile, unlink } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
+import { promisify } from "node:util"
+
+const execFileAsync = promisify(execFile)
 
 export function defaultDateRange() {
   const now = new Date()
@@ -89,18 +92,11 @@ export const convertMatmenyFile = createServerFn({
     await writeFile(tempPath, buffer)
 
     try {
-      const text = await new Promise<string>((resolve, reject) => {
-        const proc = execFile(
-          "antiword",
-          ["-w", "0", tempPath],
-          { timeout: ANTIWORD_TIMEOUT_MS },
-          (err, stdout) => {
-            if (err) reject(err as Error)
-            else resolve(stdout)
-          },
-        )
-        proc.stdin?.end()
-      })
+      const { stdout: text } = await execFileAsync(
+        "antiword",
+        ["-w", "0", tempPath],
+        { timeout: ANTIWORD_TIMEOUT_MS },
+      )
 
       if (!text) {
         throw new Error("antiword produced no output")
