@@ -43,7 +43,7 @@
     "@eslint/compat": "2.0.5",
     "@eslint/js": "10.0.1",
     "@playwright/test": "1.59.1",
-    "@tanstack/router-plugin": "1.167.28",
+    "@tanstack/router-plugin": "1.167.29",
     "@types/d3": "7.4.3",
     "@types/node": "24.12.2",
     "@types/nodemailer": "8.0.0",
