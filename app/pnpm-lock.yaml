@@ -13,7 +13,7 @@ importers:
         version: 7.0.1
       '@hono/node-server':
         specifier: ^2.0.0
-        version: 2.0.0(hono@4.12.15)
+        version: 2.0.1(hono@4.12.15)
       '@hookform/error-message':
         specifier: 2.0.1
         version: 2.0.1(react-dom@19.2.5(react@19.2.5))(react-hook-form@7.74.0(react@19.2.5))(react@19.2.5)
@@ -799,8 +799,8 @@ packages:
   '@hapi/iron@7.0.1':
     resolution: {integrity: sha512-tEZnrOujKpS6jLKliyWBl3A9PaE+ppuL/+gkbyPPDb/l2KSKQyH4lhMkVb+sBhwN+qaxxlig01JRqB8dk/mPxQ==}
 
-  '@hono/node-server@2.0.0':
-    resolution: {integrity: sha512-n3GfHwwCvHCkGmOwKfxUPOlbfzuO64Sbc5XC4NGPIXxkuOnJrdgExdRKmHfF924r914WRJPT397GdqLvdYTeyQ==}
+  '@hono/node-server@2.0.1':
+    resolution: {integrity: sha512-jI9yMDyFpqBeSighf/zlXnQG/nl9AyBc6aAgy4XtxJMyt/CNyJpvPfzDD+bCc2zAOmhhqtF6TnmIaY+xV4mIrw==}
     engines: {node: '>=20'}
     peerDependencies:
       hono: ^4
@@ -4501,7 +4501,7 @@ snapshots:
       '@hapi/cryptiles': 6.0.3
       '@hapi/hoek': 11.0.7
 
-  '@hono/node-server@2.0.0(hono@4.12.15)':
+  '@hono/node-server@2.0.1(hono@4.12.15)':
     dependencies:
       hono: 4.12.15
 
