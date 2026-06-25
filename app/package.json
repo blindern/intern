@@ -59,7 +59,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
     "git-rev-sync": "3.0.2",
-    "globals": "17.6.0",
+    "globals": "17.7.0",
     "jiti": "2.7.0",
     "prettier": "3.8.4",
     "sass": "1.101.0",
