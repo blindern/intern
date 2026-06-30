@@ -8,8 +8,7 @@ import { PageTitle } from "../../hooks/useTitle.js"
 import "../../styles/pages/users.scss"
 
 type UserDetails = Awaited<ReturnType<typeof useUserList>>["data"] extends
-  | (infer T)[]
-  | undefined
+  (infer T)[] | undefined
   ? T
   : never
 
