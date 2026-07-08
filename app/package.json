@@ -35,7 +35,7 @@
     "postgres": "^3.4.7",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "react-hook-form": "7.80.0",
+    "react-hook-form": "7.81.0",
     "react-transition-group": "4.4.5",
     "yup": "1.7.1"
   },
