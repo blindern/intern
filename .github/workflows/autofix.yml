@@ -15,4 +15,8 @@ jobs:
         working-directory: app
       - run: pnpm run lint --fix
         working-directory: app
+      - run: pnpm install
+        working-directory: calendar-api
+      - run: pnpm run lint --fix
+        working-directory: calendar-api
       - uses: autofix-ci/action@7a166d7532b277f34e16238930461bf77f9d7ed8
