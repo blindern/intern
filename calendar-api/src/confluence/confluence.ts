@@ -109,8 +109,7 @@ export function parseIcsData(icsData: string, priority: Priority): FbsEvent[] {
     }
 
     const rrule = vevent.getFirstPropertyValue("rrule") as
-      | ICAL.Recur
-      | undefined
+      ICAL.Recur | undefined
     if (rrule) {
       const otherOccurrences = Array.from(recurIterator(event)).map((it) => {
         const start = dateToZoned(it)
