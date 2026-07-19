@@ -1,4 +1,8 @@
 minimumReleaseAge: 4320
+allowBuilds:
+  "@parcel/watcher": false
+  esbuild: false
+  protobufjs: false
 minimumReleaseAgeExclude:
   # Renovate security update: hono@4.11.10 || 4.12.4 || 4.12.7 || 4.12.12 || 4.12.14 || 4.12.18
   - hono@4.11.10 || 4.12.4 || 4.12.7 || 4.12.12 || 4.12.14 || 4.12.18
