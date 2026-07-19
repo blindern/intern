@@ -5,7 +5,7 @@ FROM base AS install
 
 RUN mkdir -p /temp/prod
 RUN corepack enable
-COPY package.json pnpm-lock.yaml /temp/prod/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /temp/prod/
 RUN cd /temp/prod && pnpm install --prod
 
 FROM base AS release
