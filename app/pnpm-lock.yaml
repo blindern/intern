@@ -16,7 +16,7 @@ importers:
         version: 2.0.10(hono@4.12.30)
       '@hookform/error-message':
         specifier: 2.0.1
-        version: 2.0.1(react-dom@19.2.7(react@19.2.7))(react-hook-form@7.81.0(react@19.2.7))(react@19.2.7)
+        version: 2.0.1(react-dom@19.2.7(react@19.2.7))(react-hook-form@7.82.0(react@19.2.7))(react@19.2.7)
       '@node-saml/node-saml':
         specifier: ^5.0.1
         version: 5.1.0
@@ -78,8 +78,8 @@ importers:
         specifier: 19.2.7
         version: 19.2.7(react@19.2.7)
       react-hook-form:
-        specifier: 7.81.0
-        version: 7.81.0(react@19.2.7)
+        specifier: 7.82.0
+        version: 7.82.0(react@19.2.7)
       react-transition-group:
         specifier: 4.4.5
         version: 4.4.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -3338,8 +3338,8 @@ packages:
     peerDependencies:
       react: ^19.2.7
 
-  react-hook-form@7.81.0:
-    resolution: {integrity: sha512-ocbmr2p5KBMoAfj4WCUvped33lVi1Kd5DuDUvQDnB6VEAacOjPI/jMbtDdbhco4y9ct4xUuCmMY0b/C9L0QHjw==}
+  react-hook-form@7.82.0:
+    resolution: {integrity: sha512-Zw/uFZ2dO+02GHlBn7JFGn8kZJ7LdM33B/0BXOovzFay+CMhf94JMw5BVu+F1tVkUKjNvBuaE3fz5BJhga10Tg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -4324,11 +4324,11 @@ snapshots:
     dependencies:
       hono: 4.12.30
 
-  '@hookform/error-message@2.0.1(react-dom@19.2.7(react@19.2.7))(react-hook-form@7.81.0(react@19.2.7))(react@19.2.7)':
+  '@hookform/error-message@2.0.1(react-dom@19.2.7(react@19.2.7))(react-hook-form@7.82.0(react@19.2.7))(react@19.2.7)':
     dependencies:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
-      react-hook-form: 7.81.0(react@19.2.7)
+      react-hook-form: 7.82.0(react@19.2.7)
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -7268,7 +7268,7 @@ snapshots:
       react: 19.2.7
       scheduler: 0.27.0
 
-  react-hook-form@7.81.0(react@19.2.7):
+  react-hook-form@7.82.0(react@19.2.7):
     dependencies:
       react: 19.2.7
 
