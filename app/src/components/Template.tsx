@@ -120,9 +120,6 @@ export function Template({ children }: { children: ReactNode }) {
                       </MenuLink>
                     )}
                 </Dropdown>
-                <Dropdown label="Dugnaden">
-                  <MenuLink to="/dugnaden/old/list">Dugnadsinnkalling</MenuLink>
-                </Dropdown>
                 <Dropdown label="Printer">
                   <MenuLink to="/printer/siste">Siste utskrifter</MenuLink>
                   <MenuLink to="/printer/fakturere">Fakturering</MenuLink>
