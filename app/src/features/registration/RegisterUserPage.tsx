@@ -1,6 +1,7 @@
 import { ErrorMessage } from "@hookform/error-message"
 import classNames from "classnames"
 import { Link } from "@tanstack/react-router"
+import { LoginLink } from "../../components/LoginLink.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { useRegisterUserMutation } from "./hooks.js"
 import { useYupValidationResolver } from "./validation.js"
@@ -224,8 +225,8 @@ function RegisterForm() {
               Du vil bli lagt til manuelt, så noe ventetid må påregnes.
             </span>
             <span className="help-block">
-              Har du allerede en bruker?{" "}
-              <Link to="/forgot-password">Glemt passord</Link>
+              Har du allerede en bruker? <LoginLink>Logg inn</LoginLink> eller{" "}
+              <Link to="/forgot-password">tilbakestill passordet</Link>.
             </span>
           </div>
         </div>

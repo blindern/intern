@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { LoginLink } from "../../components/LoginLink.js"
 import { UserLink } from "../../components/UserLink.js"
@@ -277,7 +278,9 @@ export function HomePage() {
       ) : !authInfo.isError && !authInfo.isLoading ? (
         <p>
           Du får flere handlinger ved å{" "}
-          <LoginLink>logge inn med foreningsbrukeren din</LoginLink>.
+          <LoginLink>logge inn med foreningsbrukeren din</LoginLink>. Har du
+          glemt passordet, kan du{" "}
+          <Link to="/forgot-password">tilbakestille det</Link>.
         </p>
       ) : null}
     </>
