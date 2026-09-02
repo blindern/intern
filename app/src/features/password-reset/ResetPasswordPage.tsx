@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router"
+import { LoginLink } from "../../components/LoginLink.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { useResetPasswordMutation, useValidateTokenQuery } from "./hooks.js"
 import { useState } from "react"
@@ -19,6 +21,9 @@ export function ResetPasswordPage({ token }: ResetPasswordPageProps) {
         <div className="row">
           <div className="col-md-6">
             <p className="text-danger">Ugyldig lenke. Mangler token.</p>
+            <p>
+              <Link to="/forgot-password">Be om en ny lenke</Link>
+            </p>
           </div>
         </div>
       </>
@@ -44,8 +49,9 @@ export function ResetPasswordPage({ token }: ResetPasswordPageProps) {
         <PageTitle title="Tilbakestill passord" />
         <div className="row">
           <div className="col-md-6">
-            <p className="text-danger">
-              Denne lenken er ugyldig eller utløpt. Vennligst be om en ny.
+            <p className="text-danger">Denne lenken er ugyldig eller utløpt.</p>
+            <p>
+              <Link to="/forgot-password">Be om en ny lenke</Link>
             </p>
           </div>
         </div>
@@ -59,7 +65,10 @@ export function ResetPasswordPage({ token }: ResetPasswordPageProps) {
         <PageTitle title="Tilbakestill passord" />
         <div className="row">
           <div className="col-md-6">
-            <p>Passordet er oppdatert. Du kan nå logge inn.</p>
+            <p>Passordet er oppdatert.</p>
+            <p>
+              <LoginLink>Logg inn</LoginLink>
+            </p>
           </div>
         </div>
       </>

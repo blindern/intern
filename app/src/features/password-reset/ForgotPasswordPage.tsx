@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router"
+import { LoginLink } from "../../components/LoginLink.js"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { useRequestPasswordResetMutation } from "./hooks.js"
 import { useState } from "react"
@@ -15,7 +17,15 @@ export function ForgotPasswordPage() {
           <div className="col-md-6">
             <p>
               En lenke for å tilbakestille passordet er sendt til din
-              e-postadresse.
+              e-postadresse. Lenken er gyldig i én time.
+            </p>
+            <p>
+              Finner du ikke e-posten, sjekk søppelpost. Kommer den fortsatt
+              ikke, ta kontakt med{" "}
+              <a href="mailto:it-gruppa@foreningenbs.no">
+                it-gruppa@foreningenbs.no
+              </a>
+              .
             </p>
           </div>
         </div>
@@ -41,6 +51,11 @@ export function ForgotPasswordPage() {
           <p>
             Skriv inn e-postadressen knyttet til din foreningsbruker, så sender
             vi deg en lenke for å tilbakestille passordet.
+          </p>
+          <p>
+            Har du ikke en bruker ennå?{" "}
+            <Link to="/register">Registrer deg</Link>. Husker du passordet, kan
+            du <LoginLink>logge inn</LoginLink> direkte.
           </p>
           <form onSubmit={onSubmit} className="form-horizontal" role="form">
             <div className="form-group">
@@ -69,6 +84,14 @@ export function ForgotPasswordPage() {
                 >
                   {isPending ? "Sender..." : "Send tilbakestillingslenke"}
                 </button>
+                <span className="help-block">
+                  Vet du ikke hvilken e-postadresse som er registrert, ta
+                  kontakt med{" "}
+                  <a href="mailto:it-gruppa@foreningenbs.no">
+                    it-gruppa@foreningenbs.no
+                  </a>
+                  .
+                </span>
               </div>
             </div>
           </form>

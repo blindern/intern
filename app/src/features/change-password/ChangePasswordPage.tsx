@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router"
 import { PageTitle } from "../../hooks/useTitle.js"
 import { useChangePasswordMutation } from "./hooks.js"
 import { useState } from "react"
@@ -84,6 +85,10 @@ export function ChangePasswordPage() {
                 >
                   {isPending ? "Oppdaterer..." : "Endre passord"}
                 </button>
+                <span className="help-block">
+                  Husker du ikke nåværende passord?{" "}
+                  <Link to="/forgot-password">Tilbakestill det på e-post</Link>
+                </span>
               </div>
             </div>
           </form>
