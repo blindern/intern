@@ -67,5 +67,5 @@
     "typescript-eslint": "8.70.1",
     "vite": "8.3.0"
   },
-  "packageManager": "pnpm@12.5.1"
+  "packageManager": "pnpm@12.6.0"
 }
