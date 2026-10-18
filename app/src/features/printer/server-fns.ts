@@ -39,7 +39,7 @@ export const getPrinterUsage = createServerFn({
   method: "GET",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { from: string; to: string }) => {
+  .validator((input: { from: string; to: string }) => {
     if (
       !/^\d{4}-\d{2}-\d{2}$/.test(input.from) ||
       !/^\d{4}-\d{2}-\d{2}$/.test(input.to)

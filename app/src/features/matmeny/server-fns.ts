@@ -40,7 +40,7 @@ export function defaultDateRange() {
 
 export const getMatmeny = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { from?: string; to?: string }) => input)
+  .validator((input: { from?: string; to?: string }) => input)
   .handler(async ({ data }) => {
     const range =
       data.from && data.to
@@ -65,7 +65,7 @@ export const convertMatmenyFile = createServerFn({
   method: "POST",
 })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { fileBase64: string }) => input)
+  .validator((input: { fileBase64: string }) => input)
   .handler(async ({ data }) => {
     const user = await getCurrentUser()
     if (
@@ -110,7 +110,7 @@ export const convertMatmenyFile = createServerFn({
 
 export const storeMatmeny = createServerFn({ method: "POST" })
   .middleware([tracingMiddleware])
-  .inputValidator(
+  .validator(
     (input: {
       days: {
         day: string

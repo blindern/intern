@@ -15,7 +15,7 @@ export const getGoogleAppsAccounts = createServerFn({
   method: "GET",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { expand?: boolean }) => input)
+  .validator((input: { expand?: boolean }) => input)
   .handler(async ({ data }) => {
     const accounts = await db
       .select()
@@ -71,7 +71,7 @@ export const createGoogleAppsAccount = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { accountname: string; group: string }) => input)
+  .validator((input: { accountname: string; group: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new AppError("Forbidden")
@@ -120,7 +120,7 @@ export const updateGoogleAppsAccount = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: {
       id: string
       accountname: string
@@ -152,7 +152,7 @@ export const deleteGoogleAppsAccount = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string }) => input)
+  .validator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new AppError("Forbidden")
@@ -181,7 +181,7 @@ export const createGoogleAppsAccountUser = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: {
       accountname: string
       username: string
@@ -253,7 +253,7 @@ export const updateGoogleAppsAccountUser = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string; notification: boolean }) => input)
+  .validator((input: { id: string; notification: boolean }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new AppError("Forbidden")
@@ -276,7 +276,7 @@ export const deleteGoogleAppsAccountUser = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string }) => input)
+  .validator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "ukestyret")) {
       throw new AppError("Forbidden")

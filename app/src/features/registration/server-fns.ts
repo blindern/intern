@@ -20,7 +20,7 @@ export const submitRegistration = createServerFn({
   method: "POST",
 })
   .middleware([tracingMiddleware])
-  .inputValidator(
+  .validator(
     (input: {
       firstname: string
       lastname: string
@@ -189,7 +189,7 @@ export const getRegistrationRequests = createServerFn({
   method: "GET",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { status?: string }) => input)
+  .validator((input: { status?: string }) => input)
   .handler(async ({ data, context }) => {
     if (!isUserAdmin(context.user)) {
       throw new AppError("Forbidden")
@@ -212,7 +212,7 @@ export const approveRegistration = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string; groups: string[] }) => input)
+  .validator((input: { id: string; groups: string[] }) => input)
   .handler(async ({ data, context }) => {
     if (!isUserAdmin(context.user)) {
       throw new AppError("Forbidden")
@@ -313,7 +313,7 @@ export const rejectRegistration = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string }) => input)
+  .validator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!isUserAdmin(context.user)) {
       throw new AppError("Forbidden")
