@@ -15,7 +15,7 @@ export const getUsers = createServerFn({ method: "GET" })
 
 export const getUser = createServerFn({ method: "GET" })
   .middleware([authMiddleware])
-  .inputValidator((input: { username: string }) => input)
+  .validator((input: { username: string }) => input)
   .handler(async ({ data }) => {
     const user = await usersApi.getUser(data.username)
     if (!user) throw new AppError("Not found")
@@ -30,7 +30,7 @@ export const getGroups = createServerFn({ method: "GET" })
 
 export const getGroup = createServerFn({ method: "GET" })
   .middleware([authMiddleware])
-  .inputValidator((input: { name: string }) => input)
+  .validator((input: { name: string }) => input)
   .handler(async ({ data }) => {
     const group = await usersApi.getGroup(data.name)
     if (!group) throw new AppError("Not found")
@@ -41,7 +41,7 @@ export const addGroupMember = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: { groupName: string; memberType: string; memberId: string }) =>
       input,
   )
@@ -80,7 +80,7 @@ export const removeGroupMember = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: { groupName: string; memberType: string; memberId: string }) =>
       input,
   )
@@ -119,7 +119,7 @@ export const addGroupOwner = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: { groupName: string; ownerType: string; ownerId: string }) => input,
   )
   .handler(async ({ data, context }) => {
@@ -153,7 +153,7 @@ export const removeGroupOwner = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: { groupName: string; ownerType: string; ownerId: string }) => input,
   )
   .handler(async ({ data, context }) => {

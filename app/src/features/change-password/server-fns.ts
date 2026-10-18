@@ -12,9 +12,7 @@ export const changePassword = createServerFn({
   method: "POST",
 })
   .middleware([authMiddleware])
-  .inputValidator(
-    (input: { currentPassword: string; newPassword: string }) => input,
-  )
+  .validator((input: { currentPassword: string; newPassword: string }) => input)
   .handler(async ({ data, context }) => {
     if (!data.currentPassword || !data.newPassword) {
       throw new AppError("Begge passordfelt må fylles ut.")

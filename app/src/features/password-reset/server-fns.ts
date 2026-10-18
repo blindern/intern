@@ -19,7 +19,7 @@ export const requestPasswordReset = createServerFn({
   method: "POST",
 })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { email: string }) => input)
+  .validator((input: { email: string }) => input)
   .handler(async ({ data }) => {
     if (!data.email) {
       throw new AppError("E-postadresse må oppgis.")
@@ -115,7 +115,7 @@ export const validateResetToken = createServerFn({
   method: "POST",
 })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { token: string }) => input)
+  .validator((input: { token: string }) => input)
   .handler(async ({ data }) => {
     if (!data.token) throw new AppError("Token må oppgis.")
     await findValidToken(data.token)
@@ -126,7 +126,7 @@ export const resetPassword = createServerFn({
   method: "POST",
 })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { token: string; password: string }) => input)
+  .validator((input: { token: string; password: string }) => input)
   .handler(async ({ data }) => {
     if (!data.token || !data.password) {
       throw new AppError("Token og passord må oppgis.")

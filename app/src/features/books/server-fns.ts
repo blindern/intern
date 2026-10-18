@@ -23,7 +23,7 @@ export interface BookInput {
 
 export const getBooks = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { page?: number; q?: string }) => input)
+  .validator((input: { page?: number; q?: string }) => input)
   .handler(async ({ data }) => {
     const page = data.page ?? 1
     const limit = 100
@@ -74,7 +74,7 @@ export const getBooks = createServerFn({ method: "GET" })
 
 export const getBook = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { id: string }) => input)
+  .validator((input: { id: string }) => input)
   .handler(async ({ data }) => {
     const [book] = await db.select().from(books).where(eq(books.id, data.id))
     return book ?? null
@@ -82,7 +82,7 @@ export const getBook = createServerFn({ method: "GET" })
 
 export const createBook = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator((input: BookInput) => input)
+  .validator((input: BookInput) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new AppError("Forbidden")
@@ -122,7 +122,7 @@ export const createBook = createServerFn({ method: "POST" })
 
 export const updateBook = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string } & BookInput) => input)
+  .validator((input: { id: string } & BookInput) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new AppError("Forbidden")
@@ -176,7 +176,7 @@ export const updateBook = createServerFn({ method: "POST" })
 
 export const deleteBook = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string }) => input)
+  .validator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new AppError("Forbidden")
@@ -193,7 +193,7 @@ export const deleteBook = createServerFn({ method: "POST" })
 
 export const setBookBarcode = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string; barcode: string }) => input)
+  .validator((input: { id: string; barcode: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "biblioteksutvalget")) {
       throw new AppError("Forbidden")
@@ -238,7 +238,7 @@ export const setBookBarcode = createServerFn({ method: "POST" })
 
 export const lookupIsbn = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { isbn: string }) => input)
+  .validator((input: { isbn: string }) => input)
   .handler(async ({ data }) => {
     if (!data.isbn || !env.googleApiKey) {
       return { isbn: data.isbn, found: false, data: {} }

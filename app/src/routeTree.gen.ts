@@ -9,68 +9,43 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as RegisterRouteImport } from './routes/register'
-import { Route as MatmenyRouteImport } from './routes/matmeny'
-import { Route as GroupsRouteImport } from './routes/groups'
-import { Route as GoogleappsRouteImport } from './routes/googleapps'
-import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
-import { Route as ChangePasswordRouteImport } from './routes/change-password'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as UsersIndexRouteImport } from './routes/users/index'
-import { Route as BukkerIndexRouteImport } from './routes/bukker/index'
-import { Route as BooksIndexRouteImport } from './routes/books/index'
-import { Route as ArrplanIndexRouteImport } from './routes/arrplan/index'
-import { Route as UsersRegistrationsRouteImport } from './routes/users/registrations'
-import { Route as UserNameRouteImport } from './routes/user/$name'
-import { Route as PrinterStatistikkRouteImport } from './routes/printer/statistikk'
-import { Route as PrinterSisteRouteImport } from './routes/printer/siste'
-import { Route as PrinterFakturereRouteImport } from './routes/printer/fakturere'
-import { Route as GroupNameRouteImport } from './routes/group/$name'
-import { Route as BukkerIdRouteImport } from './routes/bukker/$id'
-import { Route as BooksRegisterRouteImport } from './routes/books/register'
-import { Route as ArrplanSemesterRouteImport } from './routes/arrplan/$semester'
+import { Route as ChangePasswordRouteImport } from './routes/change-password'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as GoogleappsRouteImport } from './routes/googleapps'
+import { Route as GroupsRouteImport } from './routes/groups'
+import { Route as MatmenyRouteImport } from './routes/matmeny'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ApiMatmenyIcsRouteImport } from './routes/api/matmeny-ics'
-import { Route as BooksIdIndexRouteImport } from './routes/books/$id/index'
-import { Route as DugnadenOldListRouteImport } from './routes/dugnaden/old/list'
-import { Route as BooksIdEditRouteImport } from './routes/books/$id/edit'
-import { Route as ApiSaml2SlsRouteImport } from './routes/api/saml2/sls'
-import { Route as ApiSaml2MetadataRouteImport } from './routes/api/saml2/metadata'
-import { Route as ApiSaml2LogoutRouteImport } from './routes/api/saml2/logout'
-import { Route as ApiSaml2LoginRouteImport } from './routes/api/saml2/login'
-import { Route as ApiSaml2AcsRouteImport } from './routes/api/saml2/acs'
-import { Route as ApiMatmenyPlainRouteImport } from './routes/api/matmeny/plain'
-import { Route as ApiMatmenyDataRouteImport } from './routes/api/matmeny/data'
+import { Route as ArrplanIndexRouteImport } from './routes/arrplan/index'
+import { Route as ArrplanSemesterRouteImport } from './routes/arrplan/$semester'
+import { Route as BooksIndexRouteImport } from './routes/books/index'
+import { Route as BooksRegisterRouteImport } from './routes/books/register'
+import { Route as BukkerIndexRouteImport } from './routes/bukker/index'
+import { Route as BukkerIdRouteImport } from './routes/bukker/$id'
+import { Route as GroupNameRouteImport } from './routes/group/$name'
+import { Route as PrinterFakturereRouteImport } from './routes/printer/fakturere'
+import { Route as PrinterSisteRouteImport } from './routes/printer/siste'
+import { Route as PrinterStatistikkRouteImport } from './routes/printer/statistikk'
+import { Route as UserNameRouteImport } from './routes/user/$name'
+import { Route as UsersIndexRouteImport } from './routes/users/index'
+import { Route as UsersRegistrationsRouteImport } from './routes/users/registrations'
 import { Route as ApiGoogleappsAccountsRouteImport } from './routes/api/googleapps/accounts'
+import { Route as ApiMatmenyDataRouteImport } from './routes/api/matmeny/data'
+import { Route as ApiMatmenyPlainRouteImport } from './routes/api/matmeny/plain'
+import { Route as ApiSaml2AcsRouteImport } from './routes/api/saml2/acs'
+import { Route as ApiSaml2LoginRouteImport } from './routes/api/saml2/login'
+import { Route as ApiSaml2LogoutRouteImport } from './routes/api/saml2/logout'
+import { Route as ApiSaml2MetadataRouteImport } from './routes/api/saml2/metadata'
+import { Route as ApiSaml2SlsRouteImport } from './routes/api/saml2/sls'
+import { Route as BooksIdIndexRouteImport } from './routes/books/$id/index'
+import { Route as BooksIdEditRouteImport } from './routes/books/$id/edit'
+import { Route as DugnadenOldListRouteImport } from './routes/dugnaden/old/list'
 
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RegisterRoute = RegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MatmenyRoute = MatmenyRouteImport.update({
-  id: '/matmeny',
-  path: '/matmeny',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GroupsRoute = GroupsRouteImport.update({
-  id: '/groups',
-  path: '/groups',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GoogleappsRoute = GoogleappsRouteImport.update({
-  id: '/googleapps',
-  path: '/googleapps',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChangePasswordRoute = ChangePasswordRouteImport.update({
@@ -78,74 +53,34 @@ const ChangePasswordRoute = ChangePasswordRouteImport.update({
   path: '/change-password',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UsersIndexRoute = UsersIndexRouteImport.update({
-  id: '/users/',
-  path: '/users/',
+const GoogleappsRoute = GoogleappsRouteImport.update({
+  id: '/googleapps',
+  path: '/googleapps',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BukkerIndexRoute = BukkerIndexRouteImport.update({
-  id: '/bukker/',
-  path: '/bukker/',
+const GroupsRoute = GroupsRouteImport.update({
+  id: '/groups',
+  path: '/groups',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BooksIndexRoute = BooksIndexRouteImport.update({
-  id: '/books/',
-  path: '/books/',
+const MatmenyRoute = MatmenyRouteImport.update({
+  id: '/matmeny',
+  path: '/matmeny',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArrplanIndexRoute = ArrplanIndexRouteImport.update({
-  id: '/arrplan/',
-  path: '/arrplan/',
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UsersRegistrationsRoute = UsersRegistrationsRouteImport.update({
-  id: '/users/registrations',
-  path: '/users/registrations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UserNameRoute = UserNameRouteImport.update({
-  id: '/user/$name',
-  path: '/user/$name',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrinterStatistikkRoute = PrinterStatistikkRouteImport.update({
-  id: '/printer/statistikk',
-  path: '/printer/statistikk',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrinterSisteRoute = PrinterSisteRouteImport.update({
-  id: '/printer/siste',
-  path: '/printer/siste',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrinterFakturereRoute = PrinterFakturereRouteImport.update({
-  id: '/printer/fakturere',
-  path: '/printer/fakturere',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GroupNameRoute = GroupNameRouteImport.update({
-  id: '/group/$name',
-  path: '/group/$name',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BukkerIdRoute = BukkerIdRouteImport.update({
-  id: '/bukker/$id',
-  path: '/bukker/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BooksRegisterRoute = BooksRegisterRouteImport.update({
-  id: '/books/register',
-  path: '/books/register',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ArrplanSemesterRoute = ArrplanSemesterRouteImport.update({
-  id: '/arrplan/$semester',
-  path: '/arrplan/$semester',
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiMatmenyIcsRoute = ApiMatmenyIcsRouteImport.update({
@@ -153,49 +88,74 @@ const ApiMatmenyIcsRoute = ApiMatmenyIcsRouteImport.update({
   path: '/api/matmeny-ics',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BooksIdIndexRoute = BooksIdIndexRouteImport.update({
-  id: '/books/$id/',
-  path: '/books/$id/',
+const ArrplanIndexRoute = ArrplanIndexRouteImport.update({
+  id: '/arrplan/',
+  path: '/arrplan/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DugnadenOldListRoute = DugnadenOldListRouteImport.update({
-  id: '/dugnaden/old/list',
-  path: '/dugnaden/old/list',
+const ArrplanSemesterRoute = ArrplanSemesterRouteImport.update({
+  id: '/arrplan/$semester',
+  path: '/arrplan/$semester',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BooksIdEditRoute = BooksIdEditRouteImport.update({
-  id: '/books/$id/edit',
-  path: '/books/$id/edit',
+const BooksIndexRoute = BooksIndexRouteImport.update({
+  id: '/books/',
+  path: '/books/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiSaml2SlsRoute = ApiSaml2SlsRouteImport.update({
-  id: '/api/saml2/sls',
-  path: '/api/saml2/sls',
+const BooksRegisterRoute = BooksRegisterRouteImport.update({
+  id: '/books/register',
+  path: '/books/register',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiSaml2MetadataRoute = ApiSaml2MetadataRouteImport.update({
-  id: '/api/saml2/metadata',
-  path: '/api/saml2/metadata',
+const BukkerIndexRoute = BukkerIndexRouteImport.update({
+  id: '/bukker/',
+  path: '/bukker/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiSaml2LogoutRoute = ApiSaml2LogoutRouteImport.update({
-  id: '/api/saml2/logout',
-  path: '/api/saml2/logout',
+const BukkerIdRoute = BukkerIdRouteImport.update({
+  id: '/bukker/$id',
+  path: '/bukker/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiSaml2LoginRoute = ApiSaml2LoginRouteImport.update({
-  id: '/api/saml2/login',
-  path: '/api/saml2/login',
+const GroupNameRoute = GroupNameRouteImport.update({
+  id: '/group/$name',
+  path: '/group/$name',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiSaml2AcsRoute = ApiSaml2AcsRouteImport.update({
-  id: '/api/saml2/acs',
-  path: '/api/saml2/acs',
+const PrinterFakturereRoute = PrinterFakturereRouteImport.update({
+  id: '/printer/fakturere',
+  path: '/printer/fakturere',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiMatmenyPlainRoute = ApiMatmenyPlainRouteImport.update({
-  id: '/api/matmeny/plain',
-  path: '/api/matmeny/plain',
+const PrinterSisteRoute = PrinterSisteRouteImport.update({
+  id: '/printer/siste',
+  path: '/printer/siste',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrinterStatistikkRoute = PrinterStatistikkRouteImport.update({
+  id: '/printer/statistikk',
+  path: '/printer/statistikk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserNameRoute = UserNameRouteImport.update({
+  id: '/user/$name',
+  path: '/user/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersIndexRoute = UsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersRegistrationsRoute = UsersRegistrationsRouteImport.update({
+  id: '/users/registrations',
+  path: '/users/registrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiGoogleappsAccountsRoute = ApiGoogleappsAccountsRouteImport.update({
+  id: '/api/googleapps/accounts',
+  path: '/api/googleapps/accounts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiMatmenyDataRoute = ApiMatmenyDataRouteImport.update({
@@ -203,9 +163,49 @@ const ApiMatmenyDataRoute = ApiMatmenyDataRouteImport.update({
   path: '/api/matmeny/data',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiGoogleappsAccountsRoute = ApiGoogleappsAccountsRouteImport.update({
-  id: '/api/googleapps/accounts',
-  path: '/api/googleapps/accounts',
+const ApiMatmenyPlainRoute = ApiMatmenyPlainRouteImport.update({
+  id: '/api/matmeny/plain',
+  path: '/api/matmeny/plain',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSaml2AcsRoute = ApiSaml2AcsRouteImport.update({
+  id: '/api/saml2/acs',
+  path: '/api/saml2/acs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSaml2LoginRoute = ApiSaml2LoginRouteImport.update({
+  id: '/api/saml2/login',
+  path: '/api/saml2/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSaml2LogoutRoute = ApiSaml2LogoutRouteImport.update({
+  id: '/api/saml2/logout',
+  path: '/api/saml2/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSaml2MetadataRoute = ApiSaml2MetadataRouteImport.update({
+  id: '/api/saml2/metadata',
+  path: '/api/saml2/metadata',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSaml2SlsRoute = ApiSaml2SlsRouteImport.update({
+  id: '/api/saml2/sls',
+  path: '/api/saml2/sls',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BooksIdIndexRoute = BooksIdIndexRouteImport.update({
+  id: '/books/$id/',
+  path: '/books/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BooksIdEditRoute = BooksIdEditRouteImport.update({
+  id: '/books/$id/edit',
+  path: '/books/$id/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DugnadenOldListRoute = DugnadenOldListRouteImport.update({
+  id: '/dugnaden/old/list',
+  path: '/dugnaden/old/list',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -461,46 +461,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/register': {
-      id: '/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof RegisterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/matmeny': {
-      id: '/matmeny'
-      path: '/matmeny'
-      fullPath: '/matmeny'
-      preLoaderRoute: typeof MatmenyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/groups': {
-      id: '/groups'
-      path: '/groups'
-      fullPath: '/groups'
-      preLoaderRoute: typeof GroupsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/googleapps': {
-      id: '/googleapps'
-      path: '/googleapps'
-      fullPath: '/googleapps'
-      preLoaderRoute: typeof GoogleappsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/forgot-password': {
-      id: '/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof ForgotPasswordRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/change-password': {
@@ -510,102 +475,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChangePasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/users/': {
-      id: '/users/'
-      path: '/users'
-      fullPath: '/users/'
-      preLoaderRoute: typeof UsersIndexRouteImport
+    '/googleapps': {
+      id: '/googleapps'
+      path: '/googleapps'
+      fullPath: '/googleapps'
+      preLoaderRoute: typeof GoogleappsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bukker/': {
-      id: '/bukker/'
-      path: '/bukker'
-      fullPath: '/bukker/'
-      preLoaderRoute: typeof BukkerIndexRouteImport
+    '/groups': {
+      id: '/groups'
+      path: '/groups'
+      fullPath: '/groups'
+      preLoaderRoute: typeof GroupsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/books/': {
-      id: '/books/'
-      path: '/books'
-      fullPath: '/books/'
-      preLoaderRoute: typeof BooksIndexRouteImport
+    '/matmeny': {
+      id: '/matmeny'
+      path: '/matmeny'
+      fullPath: '/matmeny'
+      preLoaderRoute: typeof MatmenyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/arrplan/': {
-      id: '/arrplan/'
-      path: '/arrplan'
-      fullPath: '/arrplan/'
-      preLoaderRoute: typeof ArrplanIndexRouteImport
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/users/registrations': {
-      id: '/users/registrations'
-      path: '/users/registrations'
-      fullPath: '/users/registrations'
-      preLoaderRoute: typeof UsersRegistrationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/user/$name': {
-      id: '/user/$name'
-      path: '/user/$name'
-      fullPath: '/user/$name'
-      preLoaderRoute: typeof UserNameRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/printer/statistikk': {
-      id: '/printer/statistikk'
-      path: '/printer/statistikk'
-      fullPath: '/printer/statistikk'
-      preLoaderRoute: typeof PrinterStatistikkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/printer/siste': {
-      id: '/printer/siste'
-      path: '/printer/siste'
-      fullPath: '/printer/siste'
-      preLoaderRoute: typeof PrinterSisteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/printer/fakturere': {
-      id: '/printer/fakturere'
-      path: '/printer/fakturere'
-      fullPath: '/printer/fakturere'
-      preLoaderRoute: typeof PrinterFakturereRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/group/$name': {
-      id: '/group/$name'
-      path: '/group/$name'
-      fullPath: '/group/$name'
-      preLoaderRoute: typeof GroupNameRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bukker/$id': {
-      id: '/bukker/$id'
-      path: '/bukker/$id'
-      fullPath: '/bukker/$id'
-      preLoaderRoute: typeof BukkerIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/books/register': {
-      id: '/books/register'
-      path: '/books/register'
-      fullPath: '/books/register'
-      preLoaderRoute: typeof BooksRegisterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/arrplan/$semester': {
-      id: '/arrplan/$semester'
-      path: '/arrplan/$semester'
-      fullPath: '/arrplan/$semester'
-      preLoaderRoute: typeof ArrplanSemesterRouteImport
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/matmeny-ics': {
@@ -615,67 +524,102 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMatmenyIcsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/books/$id/': {
-      id: '/books/$id/'
-      path: '/books/$id'
-      fullPath: '/books/$id/'
-      preLoaderRoute: typeof BooksIdIndexRouteImport
+    '/arrplan/': {
+      id: '/arrplan/'
+      path: '/arrplan'
+      fullPath: '/arrplan/'
+      preLoaderRoute: typeof ArrplanIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dugnaden/old/list': {
-      id: '/dugnaden/old/list'
-      path: '/dugnaden/old/list'
-      fullPath: '/dugnaden/old/list'
-      preLoaderRoute: typeof DugnadenOldListRouteImport
+    '/arrplan/$semester': {
+      id: '/arrplan/$semester'
+      path: '/arrplan/$semester'
+      fullPath: '/arrplan/$semester'
+      preLoaderRoute: typeof ArrplanSemesterRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/books/$id/edit': {
-      id: '/books/$id/edit'
-      path: '/books/$id/edit'
-      fullPath: '/books/$id/edit'
-      preLoaderRoute: typeof BooksIdEditRouteImport
+    '/books/': {
+      id: '/books/'
+      path: '/books'
+      fullPath: '/books/'
+      preLoaderRoute: typeof BooksIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/saml2/sls': {
-      id: '/api/saml2/sls'
-      path: '/api/saml2/sls'
-      fullPath: '/api/saml2/sls'
-      preLoaderRoute: typeof ApiSaml2SlsRouteImport
+    '/books/register': {
+      id: '/books/register'
+      path: '/books/register'
+      fullPath: '/books/register'
+      preLoaderRoute: typeof BooksRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/saml2/metadata': {
-      id: '/api/saml2/metadata'
-      path: '/api/saml2/metadata'
-      fullPath: '/api/saml2/metadata'
-      preLoaderRoute: typeof ApiSaml2MetadataRouteImport
+    '/bukker/': {
+      id: '/bukker/'
+      path: '/bukker'
+      fullPath: '/bukker/'
+      preLoaderRoute: typeof BukkerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/saml2/logout': {
-      id: '/api/saml2/logout'
-      path: '/api/saml2/logout'
-      fullPath: '/api/saml2/logout'
-      preLoaderRoute: typeof ApiSaml2LogoutRouteImport
+    '/bukker/$id': {
+      id: '/bukker/$id'
+      path: '/bukker/$id'
+      fullPath: '/bukker/$id'
+      preLoaderRoute: typeof BukkerIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/saml2/login': {
-      id: '/api/saml2/login'
-      path: '/api/saml2/login'
-      fullPath: '/api/saml2/login'
-      preLoaderRoute: typeof ApiSaml2LoginRouteImport
+    '/group/$name': {
+      id: '/group/$name'
+      path: '/group/$name'
+      fullPath: '/group/$name'
+      preLoaderRoute: typeof GroupNameRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/saml2/acs': {
-      id: '/api/saml2/acs'
-      path: '/api/saml2/acs'
-      fullPath: '/api/saml2/acs'
-      preLoaderRoute: typeof ApiSaml2AcsRouteImport
+    '/printer/fakturere': {
+      id: '/printer/fakturere'
+      path: '/printer/fakturere'
+      fullPath: '/printer/fakturere'
+      preLoaderRoute: typeof PrinterFakturereRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/matmeny/plain': {
-      id: '/api/matmeny/plain'
-      path: '/api/matmeny/plain'
-      fullPath: '/api/matmeny/plain'
-      preLoaderRoute: typeof ApiMatmenyPlainRouteImport
+    '/printer/siste': {
+      id: '/printer/siste'
+      path: '/printer/siste'
+      fullPath: '/printer/siste'
+      preLoaderRoute: typeof PrinterSisteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/printer/statistikk': {
+      id: '/printer/statistikk'
+      path: '/printer/statistikk'
+      fullPath: '/printer/statistikk'
+      preLoaderRoute: typeof PrinterStatistikkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/$name': {
+      id: '/user/$name'
+      path: '/user/$name'
+      fullPath: '/user/$name'
+      preLoaderRoute: typeof UserNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users/': {
+      id: '/users/'
+      path: '/users'
+      fullPath: '/users/'
+      preLoaderRoute: typeof UsersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users/registrations': {
+      id: '/users/registrations'
+      path: '/users/registrations'
+      fullPath: '/users/registrations'
+      preLoaderRoute: typeof UsersRegistrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/googleapps/accounts': {
+      id: '/api/googleapps/accounts'
+      path: '/api/googleapps/accounts'
+      fullPath: '/api/googleapps/accounts'
+      preLoaderRoute: typeof ApiGoogleappsAccountsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/matmeny/data': {
@@ -685,11 +629,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMatmenyDataRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/googleapps/accounts': {
-      id: '/api/googleapps/accounts'
-      path: '/api/googleapps/accounts'
-      fullPath: '/api/googleapps/accounts'
-      preLoaderRoute: typeof ApiGoogleappsAccountsRouteImport
+    '/api/matmeny/plain': {
+      id: '/api/matmeny/plain'
+      path: '/api/matmeny/plain'
+      fullPath: '/api/matmeny/plain'
+      preLoaderRoute: typeof ApiMatmenyPlainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/saml2/acs': {
+      id: '/api/saml2/acs'
+      path: '/api/saml2/acs'
+      fullPath: '/api/saml2/acs'
+      preLoaderRoute: typeof ApiSaml2AcsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/saml2/login': {
+      id: '/api/saml2/login'
+      path: '/api/saml2/login'
+      fullPath: '/api/saml2/login'
+      preLoaderRoute: typeof ApiSaml2LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/saml2/logout': {
+      id: '/api/saml2/logout'
+      path: '/api/saml2/logout'
+      fullPath: '/api/saml2/logout'
+      preLoaderRoute: typeof ApiSaml2LogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/saml2/metadata': {
+      id: '/api/saml2/metadata'
+      path: '/api/saml2/metadata'
+      fullPath: '/api/saml2/metadata'
+      preLoaderRoute: typeof ApiSaml2MetadataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/saml2/sls': {
+      id: '/api/saml2/sls'
+      path: '/api/saml2/sls'
+      fullPath: '/api/saml2/sls'
+      preLoaderRoute: typeof ApiSaml2SlsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/books/$id/': {
+      id: '/books/$id/'
+      path: '/books/$id'
+      fullPath: '/books/$id/'
+      preLoaderRoute: typeof BooksIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/books/$id/edit': {
+      id: '/books/$id/edit'
+      path: '/books/$id/edit'
+      fullPath: '/books/$id/edit'
+      preLoaderRoute: typeof BooksIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dugnaden/old/list': {
+      id: '/dugnaden/old/list'
+      path: '/dugnaden/old/list'
+      fullPath: '/dugnaden/old/list'
+      preLoaderRoute: typeof DugnadenOldListRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

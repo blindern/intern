@@ -56,7 +56,7 @@ export const getBukker = createServerFn({ method: "GET" })
 
 export const getBukk = createServerFn({ method: "GET" })
   .middleware([tracingMiddleware])
-  .inputValidator((input: { id: string }) => input)
+  .validator((input: { id: string }) => input)
   .handler(async ({ data }) => {
     const [row] = await db.select().from(bukker).where(eq(bukker.id, data.id))
     if (!row) throw new AppError("Not found")
@@ -65,7 +65,7 @@ export const getBukk = createServerFn({ method: "GET" })
 
 export const createBukk = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: {
       name: string
       died?: string | boolean | null
@@ -95,7 +95,7 @@ export const createBukk = createServerFn({ method: "POST" })
 
 export const updateBukk = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator(
+  .validator(
     (input: {
       id: string
       name: string
@@ -135,7 +135,7 @@ export const updateBukk = createServerFn({ method: "POST" })
 
 export const deleteBukk = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
-  .inputValidator((input: { id: string }) => input)
+  .validator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     if (!hasGroupAccess(context.user, "bukkekollegiet")) {
       throw new AppError("Forbidden")
