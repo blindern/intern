@@ -177,7 +177,7 @@ importers:
         version: 2.0.1(react-dom@19.3.1(react@19.3.1))(react-hook-form@7.91.0(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       '@node-saml/node-saml':
         specifier: ^5.0.1
-        version: 5.1.0
+        version: 5.2.0
       '@opentelemetry/api':
         specifier: ^1.9.0
         version: 1.10.0
@@ -1029,8 +1029,8 @@ packages:
     peerDependencies:
       solid-js: ^1.8.8
 
-  '@node-saml/node-saml@5.1.0':
-    resolution: {integrity: sha512-t3cJnZ4aC7HhPZ6MGylGZULvUtBOZ6FzuUndaHGXjmIZHXnLfC/7L8a57O9Q9V7AxJGKAiRM5zu2wNm9EsvQpw==}
+  '@node-saml/node-saml@5.2.0':
+    resolution: {integrity: sha512-bWjGrSZmenN+SiFcDxQ7Di2C108nK2jofJ0NT56C/NC/ELmjZS+6QOpf6YByM6f+eLTgfisrYVdwsNRV+XZsxg==}
     engines: {node: '>= 18'}
 
   '@oozcitak/dom@2.0.2':
@@ -2066,9 +2066,6 @@ packages:
   '@types/d3@7.4.3':
     resolution: {integrity: sha512-lZXZ9ckh5R8uiFVt8ogUNf+pIrK4EsWrx2Np75WvF/eTpJ0FMHNhjXk8CKEx/+gpHbNQyJWehbFaTvqmHWB3ww==}
 
-  '@types/debug@4.1.13':
-    resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
-
   '@types/esrecurse@4.3.1':
     resolution: {integrity: sha512-xJBAbDifo5hpffDBuHl0Y8ywswbiAp/Wi7Y/GtAgSlZyIABppyurxVueOPE8LUQOxdlgi6Zqce7uoEpqNTeiUw==}
 
@@ -2083,9 +2080,6 @@ packages:
 
   '@types/memcached@2.2.10':
     resolution: {integrity: sha512-AM9smvZN55Gzs2wRrqeMHVP7KE8KWgCJO/XL5yCly2xF6EKa4YlbpK+cLSAH4NG/Ah64HrlegmGqW8kYws7Vxg==}
-
-  '@types/ms@2.1.0':
-    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
   '@types/node@24.19.2':
     resolution: {integrity: sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==}
@@ -4106,8 +4100,8 @@ packages:
     resolution: {integrity: sha512-NNXnzrkDrAzalLhIUc01jO2mOzXGXh1JwPgkihcLLzw98c0WgYDmmjSh1Kl3wzaxSVWMuA+fe0WTWOBDWCBmNA==}
     engines: {node: '>=0.6.0'}
 
-  xpath@0.0.34:
-    resolution: {integrity: sha512-FxF6+rkr1rNSQrhUNYrAFJpRXNzlDoMxeXN5qI84939ylEv3qqPFKa85Oxr6tDaJKqwW6KKyo2v26TSv3k6LeA==}
+  xpath@0.0.35:
+    resolution: {integrity: sha512-8O+m2N04SwLpGw/1Grz2HD8ejnWDV7M1dMPgKKuOjhYh5W9H4pel/+06kInohIdpS2FeSbL4i8ID8c4tpxwq9Q==}
     engines: {node: '>=0.6.0'}
 
   xtend@4.0.2:
@@ -4684,22 +4678,18 @@ snapshots:
       '@solid-primitives/utils': 6.4.1(solid-js@1.9.17)
       solid-js: 1.9.17
 
-  '@node-saml/node-saml@5.1.0':
+  '@node-saml/node-saml@5.2.0':
     dependencies:
-      '@types/debug': 4.1.13
       '@types/qs': 6.15.1
       '@types/xml-encryption': 1.2.4
       '@types/xml2js': 0.4.14
       '@xmldom/is-dom-node': 1.0.1
       '@xmldom/xmldom': 0.8.15
-      debug: 4.4.3
       xml-crypto: 6.4.0
       xml-encryption: 3.1.0
       xml2js: 0.6.2
       xmlbuilder: 15.1.1
-      xpath: 0.0.34
-    transitivePeerDependencies:
-      - supports-color
+      xpath: 0.0.35
 
   '@oozcitak/dom@2.0.2':
     dependencies:
@@ -5945,10 +5935,6 @@ snapshots:
       '@types/d3-transition': 3.0.9
       '@types/d3-zoom': 3.0.9
 
-  '@types/debug@4.1.13':
-    dependencies:
-      '@types/ms': 2.1.0
-
   '@types/esrecurse@4.3.1': {}
 
   '@types/estree@1.0.9': {}
@@ -5960,8 +5946,6 @@ snapshots:
   '@types/memcached@2.2.10':
     dependencies:
       '@types/node': 24.19.2
-
-  '@types/ms@2.1.0': {}
 
   '@types/node@24.19.2':
     dependencies:
@@ -8155,7 +8139,7 @@ snapshots:
 
   xpath@0.0.33: {}
 
-  xpath@0.0.34: {}
+  xpath@0.0.35: {}
 
   xtend@4.0.2: {}
 
