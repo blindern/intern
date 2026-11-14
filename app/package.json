@@ -32,7 +32,7 @@
     "moment": "2.31.0",
     "nodemailer": "^10.0.0",
     "pino": "^10.3.1",
-    "postgres": "^3.4.7",
+    "postgres": "^4.0.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-hook-form": "7.91.0",
