@@ -19,7 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@tsconfig/node24": "24.0.6",
+    "@tsconfig/node26": "26.0.0",
     "@tsconfig/strictest": "2.0.9",
     "@types/node": "24.19.2",
     "eslint": "10.15.0",
