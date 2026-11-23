@@ -231,7 +231,7 @@ importers:
         version: 2.31.0
       nodemailer:
         specifier: ^10.0.0
-        version: 10.6.0
+        version: 10.6.1
       pino:
         specifier: ^10.3.1
         version: 10.4.0
@@ -3422,8 +3422,8 @@ packages:
     resolution: {integrity: sha512-PfvofsGQ+MiOQIPkX9fU8ELUWmy5zL74CdQaph/ismKszfFkfwXaw0cGiwbwym2hT9k5+mdyl8O5WQ1MD8EHmA==}
     engines: {node: '>=18'}
 
-  nodemailer@10.6.0:
-    resolution: {integrity: sha512-jWanL7D9GD3jvUDYKmoC5rWTiG8MnBgnN2yV68bgMKip1zUJhiSTyz7Eg+18y8sk5OvdVDzws5nZK5arSI4f5Q==}
+  nodemailer@10.6.1:
+    resolution: {integrity: sha512-d7kfFfS/tR4Aca+SBvRaQ+MXKNv7d2JiRe5TxaRcFT/kYMh4GGPnW9aKksTIEvyEbA7d/7HYWE4YPDEHxzJj/g==}
     engines: {node: '>=20.0.0'}
 
   object-assign@4.1.1:
@@ -7472,7 +7472,7 @@ snapshots:
 
   node-releases@2.0.65: {}
 
-  nodemailer@10.6.0: {}
+  nodemailer@10.6.1: {}
 
   object-assign@4.1.1: {}
 
